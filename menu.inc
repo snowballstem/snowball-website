@@ -1,9 +1,15 @@
 <?php
+# Calculate the relative path from file $from to file $to
 function relativePath($from, $to)
 {
+  # FIXME: not yet implemented: just a simple hack that works if
+  # all files are in same directory.
   return basename($to);
 }
 
+# Output the text of a menu entry, with a link unless the menu entry is
+# to the current page.  $text is the text to be displayed, $file is the
+# absolute path from the top of the website to the file to be linked to.
 function menuEntry($text, $file)
 {
   global $PHP_SELF;
@@ -16,6 +22,7 @@ function menuEntry($text, $file)
   echo "<br>\n";
 }
 
+# Display the whole menu.  Expects to be in a <table> context.
 function displayMenu()
 {
   echo "<td valign=top bgcolor=cyan width=128>";
@@ -38,6 +45,9 @@ function displayMenu()
 <?php
 }
 
+# Display the header of a page, including the menu.
+# Title is the title of the page: it will be prefixed with "Snowball - ".
+# There should be no output before this is called.
 function displayHeader($title)
 {
   $fulltitle = "Snowball";
@@ -60,6 +70,8 @@ function displayHeader($title)
 <?php
 }
 
+# Display the footer of the page.
+# There should be no output after this is called.
 function displayFooter()
 {
 ?>
