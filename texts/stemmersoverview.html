@@ -1,0 +1,61 @@
+
+<HTML>
+<HEAD>
+<TITLE>Stemming algorithms for various European languages</TITLE></HEAD>
+<BODY BGCOLOR=WHITE>
+<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
+<H1 ALIGN=CENTER>Stemming algorithms for various European languages</H1>
+
+<TR><TD BGCOLOR="#FCFCe0">
+<BR>&nbsp;<H2>Links to resources</H2>
+
+<DL>
+    <DD><A HREF="../porter/stemmer.html">English (porter)</A>
+    <DD><A HREF="../texts/romance.html">Romance stemmers:</A>
+    <DL>
+        <DD><A HREF="../french/stemmer.html">French</A>
+        <DD><A HREF="../spanish/stemmer.html">Spanish</A>
+        <DD><A HREF="../portuguese/stemmer.html">Portuguese</A>
+        <DD><A HREF="../italian/stemmer.html">Italian</A>
+    </DL>
+    <DD><A HREF="../texts/germanic.html">Germanic stemmers</A>
+    <DL>
+        <DD><A HREF="../german/stemmer.html">German</A>
+        <DD><A HREF="../dutch/stemmer.html">Dutch</A>
+    </DL>
+    <DD><A HREF="../russian/stemmer.html">Russian</A>
+</DL>
+</TR>
+
+
+<TR><TD>
+<BR><BR>
+
+We present stemming algorithms, and Snowball stemmers, for Russian,
+for the Romance languages French, Spanish, Portuguese and Italian, and for
+German and Dutch.
+<BR><BR>
+Note that by <I>i</I>-suffix we mean inflexional suffix, and by <I>d</I>-suffix,
+derivational suffix.
+<BR><BR>
+There are also Snowball stemmers for English (believed to be an improvement on the
+1980 &#8216;porter&#8217; algorithm), for the
+Scandinavian languages Swedish, Norwegian (bokm&aring;l dialect) and Danish,
+and for the Schinke/Willett Latin algorithm, and the Kraaij/Pohlmann Dutch
+algorithm. Some of these will be released in due course.
+<BR><BR>
+Each formal algorithm should be compared with the corresponding Snowball program.
+<BR><BR>
+Surprisingly, the French stemmer turns out to be the most complicated, whereas
+the Russian stemmer, despite its large number of suffixes, is very simple. In
+fact it is interesting that English, with its minimal use of <I>i</I>-suffixes,
+has such a complex stemmer. This is partly due to the delicate nature of
+<I>i</I>-suffix removal (undoubling the <B><I>p</I></B> after removing <B><I>ing</I></B> from <I>hopping</I> etc),
+and partly to the wealth of forms of <I>d</I>-suffixes, deriving as they do from
+the mixed Romance and Germanic ancestry of the language.
+
+</TR>
+
+</TABLE>
+</BODY>
+</HTML>
