@@ -76,17 +76,22 @@ purported implementations is much wider than is generally realised in the
 IR community. Three problems seem to compound: one is a misunderstanding
 of the meaning of the original algorithm, another is bugs in the
 encodings, and a third is the the almost irresistible urge of programmers
-to add improvements. To give a single example, Krovetz (1995) gives in
-Table 4.5 sixteen &#8216;errors of commission&#8217; in the Porter stemmer, that is,
-word pairs that are conflated together that ought to be kept apart. But
-only 11 of these 16 are truly conflated together by the Porter stemmer.
-(We need hardly add that we are illustrating here the problem of correctly
-distributing the Porter stemmer, and in no way intending a criticism of
-Krovetz's important work.) One of his examples is <I>easy/easily</I>. The
-Porter stemmer stems this pair to <I>easi/easili</I> (in other words they are
-separated) and that is because <B><I>ly</I></B> by itself is not a suffix which the
-stemmer actually removes. <B><I>ly</I></B>, like <B><I>ise</I></B>, is often casually added in
-when its omission is noticed.
+to add improvements.
+
+For example, a Perl script advertised on the Web as an
+implementation of the Porter algorithm was tested in October 2001, and it was
+found that 14 percent of words were stemmed incorrectly when given a large sample
+vocabulary. Most words of English have
+very simple endings, so this means that it was effectively getting everything
+wrong. At certain points on the Web are demonstrations of the Porter stemmer.
+You type some English into a box and the stemmed words are displayed. These
+are frequently faulty. (A good test is to type in <I>agreement</I>. It should stem
+to <I>agreement</I> - the same word. If it stems to <I>agreem</I> there is an
+error.) Researchers frequently pick up faulty versions of the stemmer and
+report that they have applied &#8216;Porter stemming&#8217;, with the result that their
+experiments are not quite repeatable. Researchers who work on stemming will
+sometimes give incorrect examples of the behaviour of the Porter stemmer in
+their published works.
 
 <BR><BR>
 
@@ -141,15 +146,15 @@ The idea of stemming is to improve IR performance generally by bringing
 under one heading variant forms of a word which share a common meaning.
 Harman (1991) was first to present compelling evidence that it may not do
 so, when her experiments discovered no significant improvement with the
-use of stemming. Later work has modified that position however. Krovetz
+use of stemming.
+Similarly Lennon (1981) discovered no appreciable difference between different
+stemmers running on a constant collection.
+Later work has modified this position however. Krovetz
 (1995) found significant, although sometimes small, improvements across a
 range of test collections. What he did discover is that the degree of
-improvement varies considerably between different collections. Earlier,
-Lennon (1981) discovered no appreciable difference between different
-stemmers running on a constant collection, which may suggest that once a
-stemmer is working reasonably well, there is little advantage in trying
-further to improve it. These tests were however done on collections in
-English, and the reasonable assumption of IR researchers is that for
+improvement varies considerably between different collections.
+These tests were however done on collections in
+English, and the reasonable assumption of IR researchers has always been that for
 languages that are more highly inflected that English (and nearly all
 are), greater improvements will be observed when stemming is applied. My
 own view is that stemming helps regularise the
@@ -395,8 +400,11 @@ process.
 In Krovetz's dictionary experiments (Krovetz 1995), he noted that in
 looking up a past participle like <I>suited</I>, one is led either to <I>suit</I> or
 to <I>suite</I> as plausible infinitive forms. <I>suite</I> can be rejected,
-however, because it is not a verb form. Cases like this (and Krovetz found
-about 60) had to be treated as exceptions. But the form <I>routed</I> could
+however, because the dictionary tells us that
+although it is a word of English
+it is not a verb form. Cases
+like this (and Krovetz found about 60) had to be treated as exceptions. But
+the form <I>routed</I> could
 either derive from the the verb <I>rout</I> or the verb <I>route</I>:
 
 <DL><DD>
@@ -421,8 +429,9 @@ If the second is intended, removal of <B><I>iez</I></B> is mis-stemming.
 With over-stemming we must rely upon the dictionary to separate meanings.
 There are different ways of doing this, but all involve some degree of
 reliance upon the lexicographers. Krovetz's methods are no doubt best,
-because the most objective: his principle measure of the similarity of
-meaning of two words is the degree of overlap in the words used to define
+because the most objective: he uses several measures, but they are based on
+the idea of measuring the similarity in
+meaning of two words by the degree of overlap among the words used to define
 them, and this is at a good remove from a lexicographer's subjective
 judgement about semantic similarity.
 
@@ -437,18 +446,48 @@ Mis-stemmings will be roughly the same, but the pattern of over-stemming will
 be different because of the changing meaning of words in the language. For
 example, <I>relativity</I> in the 19th century merely meant &#8216;the condition of
 being relative to&#8217;. With that meaning, it is acceptable to conflate it
-with <I>relative</I>. But with the 20th century meaning brought to it by
-Einstein, stemming to <I>relativ</I> is over-stemming. Another example is
-<I>mobility</I> being conflated with <I>mobile</I>. This might be judged as doubtful
-today, because <I>mobile</I> has come to mean &#8216;mobile phone&#8217;,
-and it might have been judged doubful in the 60s, when a <I>mobile</I> could
-mean
-a dangly construction over a child's cot. But in the 50s, and before, the
-conflation would have been more acceptable. Here it is not the word
-<I>mobility</I> which has changed, however, but the word <I>mobile</I>, with which it
-might be conflated. So what was formerly an acceptable stemming may be judged now as
+with <I>relative</I>.
+But with the 20th century meaning brought to it by
+Einstein, stemming to <I>relativ</I> is over-stemming.
+Here we see the word with the suffix changing its meaning, but it can happen
+the other way round. <I>transpire</I> has come to mean &#8216;happen&#8217;, and its old
+meaning of &#8217;exhalation&#8217; or &#8216;breathing out&#8217; is now effectively lost.
+(That is the bitter reality, although dictionaries still try to persuade us
+otherwise). But <I>transpiration</I> still carries the earlier meaning.
+So what was formerly an acceptable stemming may be judged now as
 an over-stemming, not because the word being stemmed had changed its meaning,
 but because some cognate word has changed its meaning.
+
+<BR><BR>
+
+In these examples we are presenting words as if they had single meanings, but
+the true picture is more complicated. Krovetz uses a model of word
+meanings which is extremely helpful here. He makes a distinction between
+<I>homonyms</I> and <I>polysemes</I>. The meaning of homonyms are quite unrelated.
+For example, <I>ground</I> in the sense of &#8216;earth&#8217;, and &#8216;ground&#8217; as the past
+participle of &#8216;grind&#8217; are homonyms. Etymologically homonyms have different
+stories, and they usually have separate entries in a dictionary. But each
+homonym form can have a range of polysemic forms, corresponding to different
+shades of meaning. So <I>ground</I> can mean the earth's surface, or the bottom
+of the sea, or soil, or any base, and so the basis of an argument, and so on.
+Over time new polysemes appear and old ones die. At any moment, the use of a
+word will be common in some polysemic forms and rare in others. If a suffix is
+attached to a word the new word will get a different set of polysemes. For
+example, <I>grounds</I> = <I>ground</I> + <B><I>s</I></B> acquires the sense of &#8216;dregs&#8217; and
+&#8216;estate lands&#8217;, loses the sense of &#8216;earth&#8217;, and shares the sense of
+&#8216;basis&#8217;.
+
+
+Consider the conflation of <I>mobility</I> with <I>mobile</I>. <I>mobile</I> has
+acquired two new polysemes not shared with <I>mobility</I>. One is the &#8216;mobile
+art object&#8217;, common in the nursery. This arrived in the 1960s, and is
+still in use. The other is the &#8216;mobile phone&#8217; which is now very dominant,
+although it may decline in the future when it has replaced by some new
+gadget with a different name. We might draw a graph of the degree of
+separation of the meanings of <I>mobility</I> and <I>mobile</I> against time,
+which would depend upon the number of polysemes and the intensity of their
+use. What seemed like a valid conflation of the two words in 1940 may seem
+to be invalid today.
 
 <BR><BR>
 
@@ -467,19 +506,30 @@ to achieve the best results.
 
 <BR><BR>
 
-A classic exposition of a dictionary based stemmer is given in Savoy
-(1993). By contrast, all the stemmers presented in this paper are
-algorithmic. In general, stemmers are usually thought of as either
-dictionary based or algorithmic, although in fact the two approaches are
-closely connected. An algorithmic stemmer can include long exception lists
-that are effectively mini-dictionaries, and a dictionary based stemmer
-usually needs a process for removing <I>i</I>-suffixes to make the look-up in the
-dictionary possible.
+Historically, stemmers have often been thought of as either
+dictionary-based or algorithmic. The presentation of studies of stemming
+in the literature has perhaps helped to create this division. In the
+Lovins' stemmer the algorithmic description is central. In accounts of
+dictionary-based stemmers the emphasis tends to be on dictionary content
+and structure, and IR effectiveness. Savoy's French stemmer (Savoy, 1993)
+is a good example of this. But the two approaches are not really distinct.
+An algorithmic stemmer can include long exception lists that are
+effectively mini-dictionaries, and a dictionary-based stemmer usually
+needs a process for removing at least <I>i</I>-suffixes to make the look-up
+in the dictionary possible. In fact in a language in which proper names
+are inflected (Latin, Finnish, Russian ...), a dictionary-based stemmer
+will need to remove <I>i</I>-suffixes independently of dictionary look-up,
+because the proper names will not of course be in the dictionary.
 
 <BR><BR>
 
-If dictionary-based stemmers are superior to algorithmic stemmers, why are
-algorithmic stemmers of any interest? There are three main reasons.
+The stemmers available on the Snowball website are all purely
+algorithmic. They can be extended to include built-in exception lists, they
+could be used in combination with a full dictionary, but they are still
+presented here in their simplest possible form. Being purely algorithmic,
+they are, or ought to be, inferior to the performance of well-constucted
+dictionary-based stemmers. But they are still very useful, for the
+following reasons:
 
 <BR><BR>
 
@@ -497,7 +547,7 @@ algorithmic stemmer, &#8216;Why does it do so well?&#8217; (page 89).
 
 <BR><BR>
 
-3) Dictionary based stemmers require dictionary maintenance, to keep up
+3) Dictionary-based stemmers require dictionary maintenance, to keep up
 with an ever-changing language, and this is actually quite a problem. It
 is not just that a dictionary created to assist stemming today will
 probably require major updating in a few years time, but that a dictionary
@@ -507,8 +557,9 @@ in use for this purpose today may already be several years out of date.
 
 We can hazard an answer to Krovetz's question, as to why algorithmic
 stemmers perform as well as they do, when they reveal so many cases of
-under-, over- and mis-stemming. Under-stemming will not degrade the
-performance of an IR system. Because of under-stemming words may fail
+under-, over- and mis-stemming. Under-stemming is a fault, but by itself
+it will not degrade the performance of an IR system. Because of
+under-stemming words may fail
 to conflate that ought to have conflated, but you are, in a sense, no
 worse off than you were before. Over-stemming is more serious, but again
 over-stemming does not really matter unless it leads to false conflations,
@@ -641,11 +692,13 @@ of words, <I>words(s)</I>, that stem to <I>s</I>.
 The user should not have to see the stemmed form of a word. If a list of
 stems is to be presented back for query expansion, in place of
 a stem, <I>s</I>, the user should be shown a single representative from the set
-<I>words(s)</I>, the one of highest frequency perhaps. The user should also be
-able to choose for each word in a query, whether or not it should be
-stemmed. In the absence of such choices, the system can make its own
-decisions: perhaps short queries (one or two words) would not undergo
-stemming; long queries (a paragraph) would; stopwords would be removed
+<I>words(s)</I>, the one of highest frequency perhaps. The user should also
+be able to choose for the whole query, or at a lower level for each word
+in a query, whether or not it should be stemmed. In the absence of such
+choices, the system can make its own
+decisions.
+perhaps single word queries would not undergo
+stemming; long queries would; stopwords would be removed
 except in phrases. In query expansion, the system would work with stemmed
 forms, ignoring stopwords.
 
