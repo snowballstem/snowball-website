@@ -26,10 +26,41 @@ snowball_OBJECTS = ./p/space.o \
 		   ./p/generator.o \
 		   ./p/driver.o
 
-all: $(addprefix lang_, $(languages))
+all: $(addprefix lang_, $(languages)) libs
 
 lang_%: %/stem.c %/stemmer %/output.txt %/tarball.tgz
 	@true
+
+libs: libstemmer/libstemmer.o
+
+libstemmer/libstemmer.o: $(addsuffix /stem.o, $(languages)) \
+	                 libstemmer/wrapper.o \
+			 q/api.o \
+			 q/utilities.o
+	$(CC) -O4 -o $@ -I q/ $^
+
+libstemmer/wrapper.o: libstemmer/wrapper.c libstemmer/modules.c q/api.h
+	$(CC) -O4 -c -o $@ -I q/ $<
+
+libstemmer/modules.c: Makefile
+	@f=libstemmer/modules.c; \
+	echo "Making $$f"; \
+	echo "" > $$f; \
+	for lang in $(languages); do \
+	  echo "#include \"../$${lang}/stem.h\"" >> $$f; \
+	done; \
+	echo "" >> $$f; \
+	echo "struct stemmer_modules {" >> $$f; \
+	echo "  const char * name;" >> $$f; \
+	echo "  struct SN_env * (*create)(void);" >> $$f; \
+	echo "  void (*close)(struct SN_env *);" >> $$f; \
+	echo "  int (*stem)(struct SN_env *);" >> $$f; \
+	echo "} modules[] = {" >> $$f; \
+	for lang in $(languages); do \
+	  echo "  {\"$${lang}\", $${lang}_create_env, $${lang}_close_env, $${lang}_stem}, " >> $$f; \
+	done; \
+	echo "  {0,0,0,0}" >> $$f; \
+	echo "};" >> $$f;
 
 clean:
 	@for lang in $(languages); do \
@@ -38,10 +69,15 @@ clean:
 	        $${lang}/tarball.tgz \
 	        $${lang}/output.txt \
 	        $${lang}/.timestamp-output.txt \
-	        $${lang}/stemmer; \
+	        $${lang}/stemmer \
+	        $${lang}/*.o; \
 	done
 	@echo "Cleaning p/"
 	@$(RM) p/*.o
+	@echo "Cleaning q/"
+	@$(RM) q/*.o
+	@echo "Cleaning libstemmer/"
+	@$(RM) libstemmer/*.o libstemmer/modules.c
 
 %/tarball.tgz: %/stem.sbl %/stem.c %/stem.h %/voc.txt %/output.txt %/stemmer.html
 	@echo "Making $@"
@@ -64,12 +100,14 @@ clean:
 	mv $@.tmp $@;
 
 # Rule for building a stemmer program for a given language
-%/stemmer: %/stem.c %/stem.h q/api.c q/utilities.c q/driver.c
+BUILD_STEMMER=$(CC) -O4 -o $@ -I $$l/ -I q/ $^ \
+	      -Dcreate_env=$${l}_create_env \
+	      -Dclose_env=$${l}_close_env \
+	      -Dstem=$${l}_stem
+%/stemmer: %/stem.o q/api.o q/utilities.o q/driver.c
 	@l=`echo "$@" | sed 's!\(.*\)/stemmer$$!\1!;s!^.*/!!'`; \
-	$(CC) -O4 -o $@ -I $$l/ -I q/ $(filter %c,$^) \
-	-Dcreate_env=$${l}_create_env \
-	-Dclose_env=$${l}_close_env \
-	-Dstem=$${l}_stem
+	echo $(BUILD_STEMMER); \
+	$(BUILD_STEMMER)
 
 # Rule for building the snowball to C converter
 snowball: $(snowball_OBJECTS) $(snowball_HEADERS)
@@ -77,22 +115,20 @@ snowball: $(snowball_OBJECTS) $(snowball_HEADERS)
 
 .c.o:
 	$(CC) -O4 -c -o $@ $<
-
-
-# Command for building stem.c and stem.h from stem.sbl
-# The nasty sed expressions are used to extract the bits of the filename
-# into the correct from.
-MAKEC_COMMAND=./snowball $< -o `echo "$@" | sed 's/\.[ch]$$//'` \
-	 -eprefix `echo "$@" | sed 's!\(.*\)/stem\.[ch]$$!\1_!;s!^.*/!!'`
+%/stem.o: %/stem.c %/stem.h
+	$(CC) -O4 -c -o $@ -I q/ $<
 
 # Rules for building the stem.c and stem.h for each language
-%/stem.c: %/stem.sbl snowball
-	@echo "Making $@"
-	@$(MAKEC_COMMAND)
-%/stem.h: %/stem.sbl snowball
-	@echo "Making $@"
-	@$(MAKEC_COMMAND)
+# The nasty sed expressions are used to extract the bits of the filename
+# into the correct from.
+%/stem.c %/stem.h: %/stem.sbl snowball
+	@l=`echo "$<" | sed 's!\(.*\)/stem.sbl$$!\1!;s!^.*/!!'`; \
+	echo ./snowball $< -o $${l}/stem -eprefix $${l}_; \
+	./snowball $< -o $${l}/stem -eprefix $${l}_
 
+
+.PHONY: all lang_% clean libs
+.PRECIOUS: %.o
 .PRECIOUS: %/stem.c %/stem.h \
 	   %/stemmer \
 	   %/output.txt \
