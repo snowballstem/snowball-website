@@ -13,7 +13,7 @@
 <p>
 
 <form method="POST" action="demo.php">
-Words to stem: <input name="words" size=30><?php echo "$words" ?></input>
+Words to stem: <input name="words" size=30 value="<?php echo "$words" ?>">
 </form>
 
 </p><p>
