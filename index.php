@@ -24,4 +24,10 @@ strongly encouraged to submit any and all comments, problem reports and
 improvements.
 
 </p>
+<h2>Recent News</h2>
+<p>
+<?php include "http://sourceforge.net/export/projnews.php?group_id=36391&limit=5&flat=1&show_summaries=0"; ?>
+</p><p>
+<a href="news.php">Full stories</a>
+</p>
 <?php displayFooter(); ?>
