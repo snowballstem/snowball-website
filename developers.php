@@ -73,8 +73,8 @@ cvs -z3 -d <i>username</i>@cvs.snowball.sourceforge.net:/cvsroot/snowball co .;
   development it can receive a lot of mesages.
 </li></ul>
 
-If think of any other notes which should be added, feel free to update this
-webpage.
+If you think of any other notes which should be added, then feel free to
+update this webpage.
 
 </p>
 <?php displayFooter(); ?>
