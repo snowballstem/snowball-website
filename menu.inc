@@ -64,10 +64,10 @@ function displayHeader($title)
 <table><tr><td valign=center>
 <center><A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=36391" width="88" height="31" border="0" alt="SourceForge Logo"></A></center>
 </td><td>
-<h1><?php echo $fulltitle ?></h1>
+<h1 align=center><?php echo $fulltitle ?></h1>
 </td></tr>
 <tr><?php displayMenu(); ?><td valign=top>
-<b>STATUS: (2 Oct 2001) initial upload of project is currently in progress.</b>
+<table width="75%" align=center cols=1>
 <?php
 }
 
@@ -76,6 +76,7 @@ function displayHeader($title)
 function displayFooter()
 {
 ?>
+</table>
 </td></tr></table>
 <address>
 Last modified on <?php

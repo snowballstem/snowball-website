@@ -21,11 +21,14 @@
       return $filecontents;
   }
 ?>
-<?php include "texts/start.html" ?>
+<?php include "index_body.html" ?>
+<TR><TD>
+<p>
 <h2>Recent News</h2>
 <p>
 <?php
   echo get_news();
 ?>
 </p>
+</TR></TD>
 <?php displayFooter(); ?>
