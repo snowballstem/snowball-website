@@ -449,7 +449,7 @@ static void generate_backwards(struct generator * g, struct node * p)
 {
     wp(g,"~Mz->lb = z->c; z->c = z->l;~C~N", p);
     generate(g, p->left);
-    w(g, "~Mz->c = z->lb;");
+    w(g, "~Mz->c = z->lb;~N");
 }
 
 

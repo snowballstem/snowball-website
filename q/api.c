@@ -36,6 +36,7 @@ extern void SN_close_env(struct SN_env * z)
     }
     if (z->I_size) free(z->I);
     if (z->B_size) free(z->B);
+    if (z->p) lose_s(z->p);
     free(z);
 }
 
