@@ -5,7 +5,8 @@
    echo $text;
   }
   echo "<br>";
- } ?>
+ }
+?>
 <br>
 <?php menuEntry("Introduction", "index.php", "index.php") ?>
 <br>
