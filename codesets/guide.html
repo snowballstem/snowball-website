@@ -18,7 +18,8 @@
 <DT><A HREF="http://snowball.sourceforge.net"> Snowball main page</A>
 <BR><BR>
 <DT>Snowball header files for
-    <DD><A HREF="ISO-Latin-1.txt"> ISO Latin 1</A>
+    <DD><A HREF="ISO-Latin-1-hex.txt"> ISO Latin 1 (hex form)</A>
+    <DD><A HREF="ISO-Latin-1.txt"> ISO Latin 1 (decimal form)</A>
     <DD><A HREF="MS-DOS-Latin-1.txt"> MS-DOS Latin 1</A>
 
 </DL>
@@ -31,14 +32,15 @@ The Snowball scripts on this site define the codings of accented letters and
 other non-ASCII forms in a series of explicit declarations. For example, the
 German stemmer includes the lines
 <BR><PRE>
-    /* special characters (in MS-DOS Latin I) */
+    /* special characters (in ISO Latin I) */
 
-    stringdef a"   hex '84'
-    stringdef o"   hex '94'
-    stringdef u"   hex '81'
-    stringdef ss   hex 'E1'
+    stringdef a"   hex 'E4'
+    stringdef o"   hex 'F6'
+    stringdef u"   hex 'FC'
+    stringdef ss   hex 'DF'
+
 </PRE>
-In the MS-DOS Latin I code set, hex 84, 94, 81 and E1 are the numeric values
+In the ISO Latin I code set, hex E4, F6, FC and DF are the numeric values
 of characters <B><I>&auml;</I></B>, <B><I>&ouml;</I></B>, <B><I>&uuml;</I></B> and <B><I>&szlig;</I></B> respectively. These codings
 in the stemmer scripts then correspond to the codings used in the sample
 data.
@@ -48,7 +50,7 @@ data.
 For a more general approach, you may wish to replace the set of &nbsp;<TT>stringdef</TT>s
 by a &nbsp;<TT>get</TT>&nbsp; directive of the form,
 <BR><PRE>
-    get 'MS-DOS-Latin-1'
+    get 'ISO-Latin-1'
 </PRE>
 possibly compiling with an &nbsp;<TT>-include</TT>&nbsp; option that declares the
 directory where this and other files are held,
@@ -56,7 +58,7 @@ directory where this and other files are held,
     Snowball gstem.sbl -o gstem ... -include /home/shazzer/snowball/codesets
 </PRE>
 
-Appropriate code sets for MS-DOS Latin I and ISO Latin I are provided via the links
+Appropriate code sets for ISO Latin I and MS-DOS Latin I are provided via the links
 above, and others will be added on demand or if submitted to us.
 
 <BR><BR>

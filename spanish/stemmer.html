@@ -14,10 +14,14 @@
 <TR><TD><A HREF="stem.sbl">    The stemmer in Snowball</A>
 <TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
 <TR><TD><A HREF="stem.h">      - and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Spanish vocabulary (MS-DOS Latin I codings)</A>
+<TR><TD><A HREF="voc.txt">     Sample Spanish vocabulary</A>
 <TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="diffs.txt">   Vocabulary + stemmed equivalent in pure ASCII</A>
+<TR><TD><A HREF="diffs.txt">   Vocabulary + stemmed equivalent in two columns</A>
 <TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+</TABLE></DL>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><A HREF="stem-MS-DOS-Latin-I.sbl">    The stemmer in Snowball - MS DOS Latin I encodings</A>
 </TABLE></DL>
 
 <DL><DD><TABLE CELLPADDING=0>
@@ -383,7 +387,7 @@ And finally:
 
 <BR>&nbsp;<H2>The same algorithm in Snowball</H2>
 
-<FONT SIZE=-1><PRE>
+<BR><PRE>
 <DL><DD>
 routines (
            postlude mark_regions
@@ -403,15 +407,15 @@ groupings ( v )
 
 stringescapes {}
 
-/* special characters (in MS-DOS Latin I) */
+/* special characters (in ISO Latin I) */
 
-stringdef a'   hex 'A0'  // a-acute
-stringdef e'   hex '82'  // e-acute
-stringdef i'   hex 'A1'  // i-acute
-stringdef o'   hex 'A2'  // o-acute
-stringdef u'   hex 'A3'  // u-acute
-stringdef u"   hex '81'  // u-diaeresis
-stringdef n~   hex 'A4'  // n-tilde
+stringdef a'   hex 'E1'  // a-acute
+stringdef e'   hex 'E9'  // e-acute
+stringdef i'   hex 'ED'  // i-acute
+stringdef o'   hex 'F3'  // o-acute
+stringdef u'   hex 'FA'  // u-acute
+stringdef u"   hex 'FC'  // u-diaeresis
+stringdef n~   hex 'F1'  // n-tilde
 
 define v 'aeiou{a'}{e'}{i'}{o'}{u'}{u"}'
 
@@ -610,7 +614,7 @@ define stem as (
     do postlude
 )
 </DL>
-</PRE></FONT>
+</PRE>
 </TABLE>
 </BODY>
 </HTML>

@@ -13,11 +13,11 @@ groupings ( v s_ending )
 
 stringescapes {}
 
-/* special characters (in ISO Latin I) */
+/* special characters (in MS-DOS Latin I) */
 
-stringdef ae   hex 'E6'
-stringdef ao   hex 'E5'
-stringdef o/   hex 'F8'
+stringdef ae   hex '91'
+stringdef ao   hex '86'
+stringdef o/   hex '9B'
 
 define v 'aeiouy{ae}{ao}{o/}'
 

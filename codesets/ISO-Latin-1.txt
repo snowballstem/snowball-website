@@ -2,7 +2,7 @@
 
 /* special characters (ISO Latin I) */
 
-/* usually presented in ascending decimal, like this: */
+/* ISO Latin I is often presented in ascending decimal, like this: */
 
 stringdef A` decimal '192'
 stringdef A' decimal '193'

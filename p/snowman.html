@@ -27,7 +27,7 @@ with which it shares the
 concept of string patterns delivering signals that are used to control the
 flow of the program.
 
-<BR>&nbsp;<H2>Data types</H2>
+<BR>&nbsp;<H2>1 Data types</H2>
 
 The basic data types handled by Snowball are strings of characters, signed
 integers, and boolean truth values, or more simply <I>strings</I>, <I>integers</I>
@@ -35,7 +35,7 @@ and <I>booleans</I>. Snowball's characters are either 8-bit wide, or
 16-bit, depending on the mode of use. In particular, both 8-bit
 ASCII and 16-bit Unicode are supported.
 
-<BR>&nbsp;<H2>Names</H2>
+<BR>&nbsp;<H2>2 Names</H2>
 
 A name in Snowball is a letter followed by zero or more letters, digits
 and underlines. A name can be of type <I>string</I>, <I>integer</I>, <I>boolean</I>,
@@ -67,7 +67,7 @@ routine definitions can have the same name, etc. Names declared and
 subsequently not used are merely reported in a warning message. A name may
 not be one of the reserved words of Snowball.
 
-<BR>&nbsp;<H2>Literals</H2>
+<BR>&nbsp;<H2>3 Literals</H2>
 
 A literal integer is a digit sequence, and is always interpreted as
 decimal. A literal string is written between single quotes, for example,
@@ -138,7 +138,7 @@ For example,
 
     define v 'aeiou[a'][e'][i'][o'][u'][u"]'
 </PRE>
-<BR>&nbsp;<H2>Routines</H2>
+<BR>&nbsp;<H2>4 Routines</H2>
 
 A routine definition has the form
 <BR><PRE>
@@ -159,7 +159,7 @@ Snowball routines do not (at present) take parameters. For example,
 </PRE>
 A routine is called simply by using its name, &nbsp;<TT>R</TT>, as a command.
 
-<BR>&nbsp;<H2>Commands and signals</H2>
+<BR>&nbsp;<H2>5 Commands and signals</H2>
 
 The flow of control in Snowball is arranged by the implicit use of
 <I>signals</I>, rather than the explicit use of constructs like the &nbsp;<TT>if</TT>,
@@ -252,7 +252,7 @@ means
 <TT>and</TT>&nbsp; and &nbsp;<TT>or</TT>&nbsp; are equally binding, and bind from left to right,
 so &nbsp;<TT>C<SUB>1</SUB> or C<SUB>2</SUB> and C<SUB>3</SUB></TT>&nbsp; means &nbsp;<TT>(C<SUB>1</SUB> or C<SUB>2</SUB>) and C<SUB>3</SUB></TT>&nbsp; etc.
 
-<BR>&nbsp;<H2>AEs and integer commands</H2>
+<BR>&nbsp;<H2>6 AEs and integer commands</H2>
 
 An AE (arithmetic expression) consists of integer names and literal
 numbers connected by diadic &nbsp;<TT>+</TT>, &nbsp;<TT>-</TT>, &nbsp;<TT>*</TT>&nbsp; and &nbsp;<TT>/</TT>, and monadic &nbsp;<TT>-</TT>, with the same
@@ -282,7 +282,7 @@ Examples of integer commands are,
     $p1 = limit    // set p1 to the string limit
 </PRE>
 
-<BR>&nbsp;<H2>String commands</H2>
+<BR>&nbsp;<H2>7 String commands</H2>
 
 If &nbsp;<TT>s</TT>&nbsp; is a string name, a string command has the form
 <BR><PRE>
@@ -755,7 +755,7 @@ to a routine which simply returns signal <B><I>t</I></B>,
 movement (<B><I>c</I></B> is in any case set back to its old value following a call of
 <TT>R<SUB>ij</SUB></TT>).
 
-<BR>&nbsp;<H2>Booleans</H2>
+<BR>&nbsp;<H2>8 Booleans</H2>
 
 <TT>set B</TT>&nbsp; and &nbsp;<TT>unset B</TT>&nbsp; set &nbsp;<TT>B</TT>&nbsp; to true and false respectively, where &nbsp;<TT>B</TT>&nbsp; is a
 boolean name. &nbsp;<TT>B</TT>&nbsp; as a command gives a signal <B><I>t</I></B> if it is set true, <B><I>f</I></B>
@@ -784,7 +784,7 @@ otherwise. For example,
 
     do (Y_found repeat(goto (['Y']) <- 'y')
 </PRE>
-<BR>&nbsp;<H2>Groupings</H2>
+<BR>&nbsp;<H2>9 Groupings</H2>
 
 A grouping brings characters together and enables them to be looked for
 with a single test.
@@ -823,7 +823,7 @@ characters of &nbsp;<TT>G</TT>. Note that &nbsp;<TT>non G</TT>&nbsp; is not the 
 </PRE>
 etc.
 
-<BR>&nbsp;<H2>A Snowball program</H2>
+<BR>&nbsp;<H2>10 A Snowball program</H2>
 
 
 A complete program consists of a sequence of declarations followed by a
@@ -849,7 +849,7 @@ The strings, integers and booleans are accessible from any point in the
 program, and exist throughout the running of the Snowball program. They are
 therefore like static declarations in C.
 
-<BR>&nbsp;<H2>Comments, and other whitespace fillers</H2>
+<BR>&nbsp;<H2>11 Comments, and other whitespace fillers</H2>
 
 At a deeper level, a program is a sequence of <I>tokens</I>, interspersed with
 whitespace. Names, reserved words, literal numbers and strings are all
@@ -878,9 +878,6 @@ Anywhere that whitespace can occur, there may also occur:
 whitespace and terminated with whitespace, and &nbsp;<TT>'S'</TT>&nbsp; is a literal string.
 <BR><BR>
 
-This completes the definition of Snowball.
-
-<BR><BR>
 
 
 

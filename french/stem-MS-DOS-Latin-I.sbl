@@ -17,21 +17,21 @@ groupings ( v keep_with_s )
 
 stringescapes {}
 
-/* special characters (in ISO Latin I) */
+/* special characters (in MS-DOS Latin I) */
 
-stringdef a^   hex 'E2'  // a-circumflex
-stringdef a`   hex 'E0'  // a-grave
-stringdef c,   hex 'E7'  // c-cedilla
+stringdef a^   hex '83'  // a-circumflex
+stringdef a`   hex '85'  // a-grave
+stringdef c,   hex '87'  // c-cedilla
 
-stringdef e"   hex 'EB'  // e-diaeresis (rare)
-stringdef e'   hex 'E9'  // e-acute
-stringdef e^   hex 'EA'  // e-circumflex
-stringdef e`   hex 'E8'  // e-grave
-stringdef i"   hex 'EF'  // i-diaeresis
-stringdef i^   hex 'EE'  // i-circumflex
-stringdef o^   hex 'F4'  // o-circumflex
-stringdef u^   hex 'FB'  // u-circumflex
-stringdef u`   hex 'F9'  // u-grave
+stringdef e"   hex '89'  // e-diaeresis (rare)
+stringdef e'   hex '82'  // e-acute
+stringdef e^   hex '88'  // e-circumflex
+stringdef e`   hex '8A'  // e-grave
+stringdef i"   hex '8B'  // i-diaeresis
+stringdef i^   hex '8C'  // i-circumflex
+stringdef o^   hex '93'  // o-circumflex
+stringdef u^   hex '96'  // u-circumflex
+stringdef u`   hex '97'  // u-grave
 
 define v 'aeiouy{a^}{a`}{e"}{e'}{e^}{e`}{i"}{i^}{o^}{u^}{u`}'
 

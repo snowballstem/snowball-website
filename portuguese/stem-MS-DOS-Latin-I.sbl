@@ -15,20 +15,20 @@ groupings ( v )
 
 stringescapes {}
 
-/* special characters (in ISO Latin I) */
+/* special characters (in MS-DOS Latin I) */
 
-stringdef a'   hex 'E1'  // a-acute
-stringdef a^   hex 'E2'  // a-circumflex e.g. 'bota^nico
-stringdef e'   hex 'E9'  // e-acute
-stringdef e^   hex 'EA'  // e-circumflex
-stringdef i'   hex 'ED'  // i-acute
-stringdef o^   hex 'F4'  // o-circumflex
-stringdef o'   hex 'F3'  // o-acute
-stringdef u'   hex 'FA'  // u-acute
-stringdef c,   hex 'E7'  // c-cedilla
+stringdef a'   hex 'A0'  // a-acute
+stringdef a^   hex '83'  // a-circumflex e.g. 'bota^nico
+stringdef e'   hex '82'  // e-acute
+stringdef e^   hex '88'  // e-circumflex
+stringdef i'   hex 'A1'  // i-acute
+stringdef o^   hex '93'  // o-circumflex
+stringdef o'   hex 'A2'  // o-acute
+stringdef u'   hex 'A3'  // u-acute
+stringdef c,   hex '87'  // c-cedilla
 
-stringdef a~   hex 'E3'  // a-tilde
-stringdef o~   hex 'F5'  // o-tilde
+stringdef a~   hex 'C6'  // a-tilde
+stringdef o~   hex 'E4'  // o-tilde
 
 
 define v 'aeiou{a'}{e'}{i'}{o'}{u'}{a^}{e^}{o^}'

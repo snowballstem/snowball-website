@@ -15,9 +15,10 @@
 <TR><TD><A HREF="stem.sbl">    The stemmer in Snowball</A>
 <TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
 <TR><TD><A HREF="stem.h">      - and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Russian vocabulary (codings as in the Snowball stemmer)</A>
+<TR><TD><A HREF="voc.txt">     Sample Russian vocabulary</A>
 <TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="diffs.txt">   Vocabulary + stemmed equivalent in pure ASCII</A>
+<TR><TD><A HREF="diffs.txt">   Vocabulary + stemmed equivalent</A>
+<TR><TD><A HREF="diffs-t.txt">   Vocabulary + stemmed equivalent (transliterated)</A>
 <TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
 </TABLE></DL>
 
@@ -25,14 +26,20 @@
 This page should display in Unicode. If you have problems, switch to a different
 browser, update the browser you have, or, failing all else, download this page, edit out
 the HTML tag
-<FONT SIZE=-1><PRE>
+<BR><PRE>
     &lt;META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-</PRE></FONT>
+</PRE>
 and view the modified page.<BR><BR>
 
 The sample Russian vocabulary and its stemmed equivalent should be viewable in your
 browser if you select the Cyrillic KO18-R character set. You can get to this in Microsoft's
 Internet Explorer via <B>View/Encoding/More</B>, and in Netscape via <B>View/Character Set</B>.
+
+<BR><BR>
+The Snowball stemmer itself represents the Cyrillic alphabet with ASCII characters,
+following the standard Library of Congress transliteration scheme. The vocabulary + stemmed
+equivalent is also viewable in this transliterated form.
+
 </TR>
 
 
@@ -521,7 +528,7 @@ remove it and undouble &#1085; (<B><I>n</I></B>), or (3) if the word ends &#1100
 
 <BR>&nbsp;<H2>The same algorithm in Snowball</H2>
 
-<FONT SIZE=-1><PRE>
+<BR><PRE>
 <DL><DD>
 stringescapes {}
 
@@ -778,7 +785,7 @@ define stem as (
     )
 )
 </DL>
-</PRE></FONT>
+</PRE>
 </TR>
 </TABLE>
 </BODY>

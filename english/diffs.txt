@@ -27013,7 +27013,6 @@ tyrants                       tyrant
 tyrolese                      tyroles
 tyrone                        tyron
 u                             u
-£                             u'
 ud                            ud
 ugh                           ugh
 uglier                        uglier
