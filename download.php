@@ -24,16 +24,14 @@ Developers may wish to access the latest source via anonymous CVS using the comm
 </font>
 <p>
 <tt>
- cvs -z3 -d:pserver:anonymous@cvs.snowball.sourceforge.net:/cvsroot/snowball login
+ cvs -z3 -d:pserver:cvsuser@cvs.tartarus.org:/home/cvs login
 </tt>
 <br>
-<font color="red">
-  (Password is blank - just press return when asked for CVS password.)
-</font>
+  Password is "<tt>anonymous</tt>"
 <p>
 
 <tt>
- cvs -z3 -d:pserver:anonymous@cvs.snowball.sourceforge.net:/cvsroot/snowball co snowball
+ cvs -z3 -d:pserver:cvsuser@cvs.tartarus.org:/home/cvs co snowball
 </tt>
 
 </TD></TR>
@@ -43,7 +41,7 @@ Developers may wish to access the latest source via anonymous CVS using the comm
 
 <p>
 There is also a
-<A HREF="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/snowball/">web interface to the CVS repository</A>
+<A HREF="http://cvs.tartarus.org/snowball/">web interface to the CVS repository</A>
 which you can use to check on the progress of snowball.
 
 </TD></TR>

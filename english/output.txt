@@ -8267,8 +8267,8 @@ earnest
 earnest
 earn
 earn
-ear
-ear
+earring
+earring
 ear
 eart
 earth
@@ -9208,7 +9208,7 @@ exceed
 exceed
 exceed
 exceed
-exce
+exceed
 excel
 excel
 excel
@@ -12397,7 +12397,7 @@ heroin
 heroism
 heron
 herri
-her
+herring
 her
 herschel
 herself
@@ -20074,7 +20074,7 @@ proceed
 proceed
 proceed
 proceed
-proce
+proceed
 procellaria
 process
 process
@@ -25151,7 +25151,7 @@ suc
 succeed
 succeed
 succeed
-succe
+succeed
 success
 success
 success

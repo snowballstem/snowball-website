@@ -30,15 +30,13 @@ function displayMenu()
   menuEntry("Demo", "/demo.php");
   menuEntry("Download", "/download.php");
   menuEntry("Mailing lists", "/lists.php");
-  menuEntry("Developer Notes", "/developers.php");
   menuEntry("License", "/license.php");
   menuEntry("Credits", "/credits.php");
   menuEntry("Projects", "/projects.php");
 ?>
 <br>
 
-<a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/snowball/">Browse CVS</a><br>
-<a href="https://sourceforge.net/projects/snowball/">Sourceforge project page</a><br>
+<a href="http://cvs.tartarus.org/snowball/">Browse CVS</a><br>
 <br>
 
 </td>
@@ -82,37 +80,11 @@ Last modified on <?php
   global $SCRIPT_FILENAME;
   echo date('r', filemtime($SCRIPT_FILENAME));
 ?>.<br>
-<a href="mailto:richardb@users.sourceforge.net">Contact the webmaster</a> if you have comments directly related to the webpage.
+<a href="mailto:richard@tartarus.org">Contact the webmaster</a> if you have comments directly related to the webpage.
 </address>
 </body>
 </html>
 <?php
-}
-
-function get_news()
-{
-    $filehandle = fopen ("http://sourceforge.net/export/projnews.php?group_id=36391&limit=5&flat=1&show_summaries=1", "r");
-    if (!$filehandle) {
-	return "Unable to open remote file.";
-    } else {
-	$filecontents = '';
-	while (!feof ($filehandle)) {
-	    $filecontents .= fgets ($filehandle, 1024);
-	}
-	fclose ($filehandle);
-    }
-
-    $filecontents = preg_replace('|<I>[^<]*</I>[^<]*<A HREF="http://sourceforge.net/projects/snowball/">Snowball</A>|', '', $filecontents);
-    $filecontents = preg_replace('|<div align="center">.*?</div>|', '', $filecontents);
-    $filecontents = preg_replace('|<HR.*?>|i', '<P>', $filecontents);
-    $filecontents = preg_replace('|<DL COMPACT>|i', '', $filecontents);
-
-    return $filecontents;
-}
-
-function display_news()
-{
-    echo get_news();
 }
 
 ?>

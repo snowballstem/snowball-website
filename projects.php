@@ -14,7 +14,7 @@ A python interface to snowball.
 
 </p>
 <hr>
-<a href="mailto:snowball-discuss@lists.sourceforge.net">Contact us</a> if
+<a href="mailto:snowball-discuss@lists.tartarus.org">Contact us</a> if
 you have a project that you would like to be listed here.
 
 <TD><TR>
