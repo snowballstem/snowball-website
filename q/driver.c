@@ -37,7 +37,7 @@ void stemfile(struct SN_env * z, FILE * f_in, FILE * f_out)
             {   int j; for (j = 1; j <= repetitions; j++)
                 {
                     SN_set_current(z, i, b);
-                    porter_stem(z); stem_count++;
+                    stem(z); stem_count++;
                 }
             }
             {   int j;
@@ -92,7 +92,7 @@ int main(int argc, char * argv[])
 
     /* initialise the stemming process: */
 
-    {   struct SN_env * z = porter_create_env();
+    {   struct SN_env * z = create_env();
         FILE * f_in;
         FILE * f_out;
         f_in = fopen(in, "r");
@@ -100,7 +100,7 @@ int main(int argc, char * argv[])
         f_out = out == 0 ? stdout : fopen(out, "w");
         if (f_out == 0) { fprintf(stderr, "file %s cannot be opened\n", out); exit(1); }
         stemfile(z, f_in, f_out);
-        porter_close_env(z);
+        close_env(z);
     }
 
     printf("%d calls to stem\n", stem_count);
