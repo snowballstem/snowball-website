@@ -95,16 +95,7 @@ backwardmode (
                       (<-'ize')
             'ational' 'ation' 'ator'
                       (<-'ate')
-
-            'alli'    (
-                substring] R1 among (
-                    'tion'  (<- 'tion')
-                    'ation' (<- 'ate')
-                    ''      (<- 'al')
-                )
-            )
-
-            'alism' 'aliti'
+            'alism' 'aliti' 'alli'
                       (<-'al')
             'fulness' (<-'ful')
             'ousli' 'ousness'
@@ -122,6 +113,8 @@ backwardmode (
 
     define Step_3 as (
         [substring] R1 among (
+            'tional'  (<- 'tion')
+            'ational' (<- 'ate')
             'alize'   (<-'al')
             'icate' 'iciti' 'ical'
                       (<-'ic')

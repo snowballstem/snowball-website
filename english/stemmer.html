@@ -305,7 +305,8 @@ So <I>rap</I>,
 classed as short syllables. But <I>uproot</I>, <I>bestow</I>, <I>disturb</I> do not end with a
 short syllable.
 <BR><BR>
-A word is called <I>short</I> if it consists of a short syllable.
+A word is called <I>short</I> if it consists of a short syllable preceded by zero or
+more consonants.
 <BR><BR>
 <I>R</I>1 is the region after the first non-vowel following a vowel, or the end of
 the word if there is no such non-vowel.
@@ -380,11 +381,7 @@ Step 2:
     <DT><B><I>entli</I></B>:  &nbsp;  replace by <B><I>ent</I></B>
     <DT><B><I>izer  &nbsp;  ization</I></B>:  &nbsp;  replace by <B><I>ize</I></B>
     <DT><B><I>ational  &nbsp;  ation  &nbsp;  ator</I></B>:  &nbsp;  replace by <B><I>ate</I></B>
-    <DT><B><I>alli</I></B><TT><FONT COLOR=BLUE>*</FONT></TT>
-        <DD>delete if preceded by <B><I>ation</I></B> in <I>R</I>1, and replace <B><I>ation</I></B> by <B><I>ate</I></B>, or
-        <DD>delete if preceded by <B><I>tion</I></B> in <I>R</I>1, or
-        <DD>replace by <B><I>al</I></B>
-    <DT><B><I>alism  &nbsp;  aliti</I></B>:  &nbsp;  replace by <B><I>al</I></B>
+    <DT><B><I>alism  &nbsp;  aliti  &nbsp;  alli</I></B>:  &nbsp;  replace by <B><I>al</I></B>
     <DT><B><I>fulness</I></B>:  &nbsp;  replace by <B><I>ful</I></B>
     <DT><B><I>ousli &nbsp;  ousness</I></B>:  &nbsp;  replace by <B><I>ous</I></B>
     <DT><B><I>iveness &nbsp;  iviti</I></B>:  &nbsp;  replace by <B><I>ive</I></B>
@@ -402,6 +399,8 @@ Step 3:
     found and in <I>R</I>1, perform the action indicated.
 
 <BR><BR><DL>
+    <DT><B><I>tional</I></B><TT><FONT COLOR=BLUE>+</FONT></TT>:  &nbsp;  replace by <B><I>tion</I></B>
+    <DT><B><I>ational</I></B><TT><FONT COLOR=BLUE>+</FONT></TT>:  &nbsp;  replace by <B><I>ate</I></B>
     <DT><B><I>alize</I></B>:  &nbsp;  replace by <B><I>al</I></B>
     <DT><B><I>icate  &nbsp;  iciti  &nbsp;  ical</I></B>:  &nbsp;  replace by <B><I>ic</I></B>
     <DT><B><I>ative  &nbsp;  ful  &nbsp;  ness</I></B>:  &nbsp;  delete
@@ -762,16 +761,7 @@ backwardmode (
                       (<-'ize')
             'ational' 'ation' 'ator'
                       (<-'ate')
-
-            'alli'    (
-                substring] R1 among (
-                    'tion'  (<- 'tion')
-                    'ation' (<- 'ate')
-                    ''      (<- 'al')
-                )
-            )
-
-            'alism' 'aliti'
+            'alism' 'aliti' 'alli'
                       (<-'al')
             'fulness' (<-'ful')
             'ousli' 'ousness'
@@ -789,6 +779,8 @@ backwardmode (
 
     define Step_3 as (
         [substring] R1 among (
+            'tional'  (<- 'tion')
+            'ational' (<- 'ate')
             'alize'   (<-'al')
             'icate' 'iciti' 'ical'
                       (<-'ic')
