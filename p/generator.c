@@ -17,10 +17,10 @@ static int new_label(struct generator * g)
 }
 
 static void wch(struct generator * g, int ch)  { fprintf(g->output, "%c", ch); } /* character */
-static void wnl(struct generator * g)           { fprintf(g->output, "\n"); } /* newline */
+static void wnl(struct generator * g)          { fprintf(g->output, "\n"); g->line_count++; } /* newline */
 static void ws(struct generator * g, char * s) { fprintf(g->output, "%s", s); } /* string */
 static void wi(struct generator * g, int i)    { fprintf(g->output, "%d", i); } /* integer */
-static void wi3(struct generator * g, int i) { fprintf(g->output, "%3d", i); } /* integer (width 3) */
+static void wi3(struct generator * g, int i)   { fprintf(g->output, "%3d", i); } /* integer (width 3) */
 
 static void wvn(struct generator * g, struct name * p)  /* variable name */
 {
@@ -91,7 +91,9 @@ static void wbs(struct generator * g) /* block start */
 }
 
 static void wbe(struct generator * g)    /* block end */
-{   g->margin--;
+{
+    if (g->line_labelled == g->line_count) { wms(g, ";"); wnl(g); }
+    g->margin--;
     wms(g, "}"); wnl(g);
 }
 
@@ -117,6 +119,7 @@ static void winc(struct generator * g, struct node * p)     /* increment c */
 static void wsetl(struct generator * g, int n)
 {   g->margin--;
     wms(g, "lab"); wi(g, n); ws(g, ":"); wnl(g);
+    g->line_labelled = g->line_count;
     g->margin++;
 }
 
@@ -1059,6 +1062,7 @@ extern struct generator * create_generator_c(struct analyser * a, struct options
     g->options = o;
     g->margin = 0;
     g->debug_count = 0;
+    g->line_count = 0;
     return g;
 }
 

@@ -221,7 +221,7 @@ struct generator {
     struct analyser * analyser;
     struct options * options;
     int unreachable;           /* 0 if code can be reached, 1 if current code
-				* is unreachable. */
+                                * is unreachable. */
     int var_number;            /* Number of next variable to use. */
     struct str * outbuf;       /* temporary str to store output */
     struct str * declarations; /* str storing variable declarations */
@@ -240,6 +240,8 @@ struct generator {
     struct name * V[5];  /* variables */
     byte * L[5];         /* literals, used in formatted write */
 
+    int line_count;      /* counts number of lines output */
+    int line_labelled;   /* in ANSI C, will need extra ';' if it is a block end */
 };
 
 struct options {
