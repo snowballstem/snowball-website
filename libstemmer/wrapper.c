@@ -1,4 +1,5 @@
 
+#include "libstemmer.h"
 #include "api.h"
 #include "modules.c"
 
@@ -37,7 +38,7 @@ struct sb_stemmer * sb_stemmer_create(const char * language)
     return stemmer;
 }
 
-void sb_stemmer_close(struct sb_stemmer * stemmer)
+void sb_stemmer_release(struct sb_stemmer * stemmer)
 {
     if (stemmer == 0) return;
     if (stemmer->close == 0) return;
