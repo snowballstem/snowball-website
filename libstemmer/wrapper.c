@@ -1,4 +1,5 @@
 
+#include <stdlib.h>
 #include "libstemmer.h"
 #include "api.h"
 #include "modules.c"
