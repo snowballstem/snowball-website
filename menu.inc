@@ -67,7 +67,7 @@ function displayHeader($title)
 <h1><?php echo $fulltitle ?></h1>
 </td></tr>
 <tr><?php displayMenu(); ?><td valign=top>
-<b>STATUS: (27 Sept 2001) initial upload of project is currently in progress.</b>
+<b>STATUS: (2 Oct 2001) initial upload of project is currently in progress.</b>
 <?php
 }
 
