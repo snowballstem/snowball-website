@@ -635,7 +635,8 @@ static struct node * read_C(struct analyser * a)
                 struct name * q = find_name(a);
                 int mode = a->mode;
                 int modifyable = a->modifyable;
-                switch (q->type)
+                switch (q ? q->type : t_string)
+                    /* above line was: switch (q->type) - bug #1 fix 7/2/2003 */
                 {   default: error(a, 34);
                     case t_string:
                         a->mode = m_forward;
