@@ -317,7 +317,8 @@ If the word has two letters or less, leave it as it is.
 <BR><BR>
 Otherwise, do each of the following operations,
 <BR><BR>
-Set initial <B><I>y</I></B>, or <B><I>y</I></B> after a vowel, to <B><I>Y</I></B>
+Set initial <B><I>y</I></B>, or <B><I>y</I></B> after a vowel, to <B><I>Y</I></B>, and then establish the regions
+<I>R</I>1 and <I>R</I>2. (Of course, <B><I>y</I></B> is interpreted as a vowel and <B><I>Y</I></B> as a consonant.)
 <BR><BR>
 
 Step 1<I>a</I>:
@@ -334,7 +335,8 @@ Step 1<I>a</I>:
         (so <I>ties</I> <TT>-&gt;</TT> <I>tie</I>, <I>cries</I> <TT>-&gt;</TT> <I>cri</I>)
 <BR><BR>
     <DT><B><I>s</I></B>
-        <DD>delete
+        <DD>delete if the preceding word part contains a vowel not immediately before the
+<B><I>s</I></B> (so <I>gas</I> and <I>this</I> retain the <B><I>s</I></B>, <I>gaps</I> and <I>kiwis</I> lose it)
 <BR><BR>
     <DT><B><I>us</I></B><TT><FONT COLOR=BLUE>+</FONT></TT>  &nbsp;  <B><I>ss</I></B>
         <DD>do nothing
@@ -348,7 +350,7 @@ Step 1<I>b</I>:
 
 <BR><BR><DL>
     <DT><B><I>eed  &nbsp;  eedly</I></B><TT><FONT COLOR=BLUE>+</FONT></TT>
-        <DD>replace by <B><I>ee</I></B>
+        <DD>replace by <B><I>ee</I></B> if in <I>R</I>1
 <BR><BR>
     <DT><B><I>ed  &nbsp;  edly</I></B><TT><FONT COLOR=BLUE>+</FONT></TT>  &nbsp;  <B><I>ing  &nbsp;  ingly</I></B><TT><FONT COLOR=BLUE>+</FONT></TT>
         <DD>delete if the preceding word part contains a vowel, and then
@@ -367,8 +369,8 @@ Step 1<I>c</I>: <TT><FONT COLOR=BLUE>*</FONT></TT>
 
 Step 2:
 <DL><DD>
-    Search for the longest among the following suffixes in <I>R</I>1, and, if
-    found, perform the action indicated.
+    Search for the longest among the following suffixes, and, if
+    found and in <I>R</I>1, perform the action indicated.
 
 <BR><BR><DL>
     <DT><B><I>tional</I></B>:  &nbsp;  replace by <B><I>tion</I></B>
@@ -396,8 +398,8 @@ Step 2:
 
 Step 3:
 <DL><DD>
-    Search for the longest among the following suffixes in <I>R</I>1, and, if
-    found, perform the action indicated.
+    Search for the longest among the following suffixes, and, if
+    found and in <I>R</I>1, perform the action indicated.
 
 <BR><BR><DL>
     <DT><B><I>alize</I></B>:  &nbsp;  replace by <B><I>al</I></B>
@@ -408,8 +410,8 @@ Step 3:
 
 Step 4:
 <DL><DD>
-    Search for the longest among the following suffixes in <I>R</I>2, and, if
-    found, perform the action indicated.
+    Search for the longest among the following suffixes, and, if
+    found and in <I>R</I>2, perform the action indicated.
 
 <BR><BR><DL>
     <DT><B><I>al  &nbsp;  ance  &nbsp;  ence  &nbsp;  er  &nbsp;  ic  &nbsp;  able  &nbsp;  ible  &nbsp;  ant  &nbsp;  ement  &nbsp;
@@ -483,6 +485,7 @@ shape:
 
             /* special changes: */
 
+            'skis'      (<-'ski')
             'skies'     (<-'sky')
             'dying'     (<-'die')
             'lying'     (<-'lie')
@@ -509,6 +512,8 @@ shape:
             'howe'
             'inning' 'outing' 'canning'
             'proceed' 'exceed' 'succeed'
+
+            'atlas' 'cosmos' 'bias' 'andes' // not plural forms
 
             // ... extensions possible here ...
         )
@@ -580,9 +585,10 @@ The exception lists in the English stemmer are meant to be illustrative (&#8216;
 want to do it&#8217;), and were derived piecemeal.
 <BR><BR>
 <I>a</I>)
-The new stemmer imroves on the Porter stemmer in handling short words ending <B><I>e</I></B> and <B><I>y</I></B>. There is however
-a mishandling of the four forms <I>sky</I>, <I>skies</I>, <I>ski</I>, <I>skis</I>, which is easily
-corrected by stemming <I>sky</I> and <I>skies</I> to <I>sky</I> as a special case.
+The new stemmer improves on the Porter stemmer in handling short words ending <B><I>e</I></B> and
+<B><I>y</I></B>. There is however a mishandling of the four forms <I>sky</I>, <I>skies</I>, <I>ski</I>,
+<I>skis</I>, which is easily corrected by treating three of these words as
+special cases.
 <BR><BR>
 <I>b</I>)
 Similarly there is a problem with the <B><I>ing</I></B> form of three letter verbs ending <B><I>ie</I></B>. There
@@ -610,6 +616,9 @@ from India).
 Incidentally, this illustrates how much feedback to expect from the real users of a stemming
 algorithm: five words in twenty years!
 <BR><BR>
+More recently, a few non-plural words ending <B><I>s</I></B> have been added. This follows
+suggestions from Steve Tolkin, currently with Fidelity in the States.
+<BR><BR>
 The definition of the English stemmer above is therefore supplemented by the following:
 <BR><BR>
 <BR>&nbsp;<H2>Exceptional forms in the English stemmer</H2>
@@ -621,6 +630,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
     Stem certain special words as follows,
 <BR><BR>
 <DL><DD><TABLE CELLPADDING=0>
+<TR><TD> <I>skis</I>      <TD></TD><TD>   &nbsp;  <TT>-&gt;</TT>  &nbsp;  <TD></TD><TD> <I>ski</I>
 <TR><TD> <I>skies</I>     <TD></TD><TD>   &nbsp;  <TT>-&gt;</TT>  &nbsp;  <TD></TD><TD> <I>sky</I>
 
 <TR><TD> <I>dying <BR> lying <BR> tying</I>
@@ -643,6 +653,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 <TR><TD>        <I>sky <BR> news <BR> howe</I>
 <TR><TD>        <I>inning</I>   &nbsp; <TD></TD><TD> &nbsp;  <I>outing</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>canning</I>
 <TR><TD>        <I>proceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>exceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>succeed</I>
+<TR><TD>        <I>atlas</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>cosmos</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>bias</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>andes</I>
 </TABLE></DL>
 </DL>
 
@@ -710,7 +721,7 @@ backwardmode (
             'sses' (<-'ss')
             'ied' 'ies'
                    ((next atlimit <-'ie') or <-'i')
-            's'    (delete)
+            's'    (next gopast v delete)
             'us' 'ss'
         )
     )
@@ -814,6 +825,7 @@ define exception as (
 
         /* special changes: */
 
+        'skis'      (<-'ski')
         'skies'     (<-'sky')
         'dying'     (<-'die')
         'lying'     (<-'lie')
@@ -840,6 +852,8 @@ define exception as (
         'howe'
         'inning' 'outing' 'canning'
         'proceed' 'exceed' 'succeed'
+
+        'atlas' 'cosmos' 'bias' 'andes' // not plural forms
 
         // ... extensions possible here ...
     )

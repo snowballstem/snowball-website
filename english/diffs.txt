@@ -932,7 +932,7 @@ ancients                      ancient
 and                           and
 andalusia                     andalusia
 ande                          and
-andes                         and
+andes                         andes
 andle                         andl
 andled                        andl
 andrew                        andrew
@@ -2082,7 +2082,7 @@ bart                          bart
 barter                        barter
 bartholomew                   bartholomew
 barton                        barton
-bas                           ba
+bas                           bas
 basa                          basa
 basal                         basal
 basalt                        basalt
@@ -2503,7 +2503,7 @@ beyond                        beyond
 bezants                       bezant
 bezzemelny                    bezzemelni
 bianchini                     bianchini
-bias                          bia
+bias                          bias
 bible                         bibl
 bibo                          bibo
 bibron                        bibron
@@ -2648,7 +2648,7 @@ blankets                      blanket
 blankly                       blank
 blankness                     blank
 blanks                        blank
-blas                          bla
+blas                          blas
 blasphemer                    blasphem
 blasphemy                     blasphemi
 blast                         blast
@@ -2941,7 +2941,7 @@ borrowing                     borrow
 borrows                       borrow
 borum                         borum
 bory                          bori
-bos                           bo
+bos                           bos
 bosh                          bosh
 bosom                         bosom
 bosomer                       bosom
@@ -4027,7 +4027,7 @@ certifying                    certifi
 cervicem                      cervicem
 cervus                        cervus
 ceryle                        ceryl
-ces                           ce
+ces                           ces
 cesenate                      cesen
 cessation                     cessat
 cesspool                      cesspool
@@ -4620,7 +4620,7 @@ clipped                       clip
 clippers                      clipper
 clipping                      clip
 cliquot                       cliquot
-clks                          clk
+clks                          clks
 cloak                         cloak
 cloaks                        cloak
 clock                         clock
@@ -5774,7 +5774,7 @@ corse                         cors
 cortez                        cortez
 corunda                       corunda
 corynetes                     corynet
-cos                           co
+cos                           cos
 cosa                          cosa
 coseguina                     coseguina
 cosgrave                      cosgrav
@@ -6109,7 +6109,7 @@ crooks                        crook
 crop                          crop
 cropley                       cropley
 crops                         crop
-cros                          cro
+cros                          cros
 cross                         cross
 crosse                        cross
 crossed                       cross
@@ -6474,7 +6474,7 @@ darwin                        darwin
 darwinian                     darwinian
 darwinii                      darwinii
 darya                         darya
-das                           da
+das                           das
 dash                          dash
 dashed                        dash
 dashes                        dash
@@ -6980,7 +6980,7 @@ deriving                      deriv
 dermestes                     dermest
 derogatory                    derogatori
 derwent                       derwent
-des                           de
+des                           des
 desc                          desc
 descanted                     descant
 descanting                    descant
@@ -10077,7 +10077,7 @@ firs                          fir
 first                         first
 firstborn                     firstborn
 firstly                       first
-fis                           fi
+fis                           fis
 fiscal                        fiscal
 fish                          fish
 fished                        fish
@@ -10329,7 +10329,7 @@ fly                           fli
 flycatcher                    flycatch
 flycatchers                   flycatch
 flying                        fli
-flys                          fli
+flys                          flys
 fo                            fo
 foal                          foal
 foals                         foal
@@ -10701,7 +10701,7 @@ frequenting                   frequent
 frequentl                     frequentl
 frequently                    frequent
 frequents                     frequent
-fres                          fre
+fres                          fres
 fresco                        fresco
 fresh                         fresh
 freshen                       freshen
@@ -11033,7 +11033,7 @@ gartered                      garter
 garters                       garter
 garth                         garth
 garthers                      garther
-gas                           ga
+gas                           gas
 gases                         gase
 gash                          gash
 gashed                        gash
@@ -12114,7 +12114,7 @@ hartshorn                     hartshorn
 harum                         harum
 harurn                        harurn
 harvest                       harvest
-has                           ha
+has                           has
 hash                          hash
 hashed                        hash
 hasn                          hasn
@@ -12499,7 +12499,7 @@ hire                          hire
 hired                         hire
 hiring                        hire
 hirrold                       hirrold
-his                           hi
+his                           his
 hiss                          hiss
 hisself                       hisself
 hisses                        hiss
@@ -14824,7 +14824,7 @@ larks                         lark
 larming                       larm
 larry                         larri
 larvae                        larva
-las                           la
+las                           las
 lash                          lash
 lashed                        lash
 lashes                        lash
@@ -15062,7 +15062,7 @@ leoneros                      leonero
 leoville                      leovil
 lepidoptera                   lepidoptera
 lepus                         lepus
-les                           le
+les                           les
 leslie                        lesli
 less                          less
 lessen                        lessen
@@ -15469,7 +15469,7 @@ lords                         lord
 lordship                      lordship
 lordships                     lordship
 lorenzo                       lorenzo
-los                           lo
+los                           los
 lose                          lose
 loser                         loser
 losers                        loser
@@ -16806,7 +16806,7 @@ mortify                       mortifi
 mortifying                    mortifi
 mortimer                      mortim
 morton                        morton
-mos                           mo
+mos                           mos
 moscow                        moscow
 mosquitoes                    mosquito
 moss                          moss
@@ -16887,9 +16887,9 @@ mowed                         mow
 mown                          mown
 mozart                        mozart
 mp                            mp
-mps                           mp
+mps                           mps
 mr                            mr
-mrs                           mr
+mrs                           mrs
 ms                            ms
 mt                            mt
 muc                           muc
@@ -18528,7 +18528,7 @@ parts                         part
 party                         parti
 parvula                       parvula
 parvulus                      parvulus
-pas                           pa
+pas                           pas
 pashenka                      pashenka
 pass                          pass
 passable                      passabl
@@ -23067,7 +23067,7 @@ serving                       serv
 servitor                      servitor
 servitude                     servitud
 servts                        servt
-ses                           se
+ses                           ses
 session                       session
 sessions                      session
 set                           set
@@ -26038,7 +26038,7 @@ therewith                     therewith
 theridion                     theridion
 theristicus                   theristicus
 thermometer                   thermomet
-thes                          the
+thes                          thes
 these                         these
 they                          they
 thi                           thi
@@ -26086,7 +26086,7 @@ thirteen                      thirteen
 thirteenth                    thirteenth
 thirtieth                     thirtieth
 thirty                        thirti
-this                          thi
+this                          this
 thistle                       thistl
 thistles                      thistl
 thither                       thither
@@ -26326,7 +26326,7 @@ tired                         tire
 tires                         tire
 tiresome                      tiresom
 tiring                        tire
-tis                           ti
+tis                           tis
 tissue                        tissu
 tit                           tit
 tithe                         tith
@@ -26694,7 +26694,7 @@ trenching                     trench
 trenham                       trenham
 trepanned                     trepan
 trepidation                   trepid
-tres                          tre
+tres                          tres
 trespass                      trespass
 tress                         tress
 tresses                       tress
@@ -26943,7 +26943,7 @@ tutor                         tutor
 tw                            tw
 twain                         twain
 twang                         twang
-twas                          twa
+twas                          twas
 tweak                         tweak
 tweaking                      tweak
 twelfth                       twelfth
@@ -26992,7 +26992,7 @@ twonty                        twonti
 twopence                      twopenc
 twopenn                       twopenn
 twopenny                      twopenni
-twos                          two
+twos                          twos
 twould                        twould
 ty                            ty
 tybalt                        tybalt
@@ -28180,7 +28180,7 @@ virtues                       virtu
 virtuous                      virtuous
 virtuously                    virtuous
 virulence                     virul
-vis                           vi
+vis                           vis
 visage                        visag
 visaged                       visag
 viscid                        viscid
@@ -28472,7 +28472,7 @@ warted                        wart
 warts                         wart
 warwick                       warwick
 wary                          wari
-was                           wa
+was                           was
 wasche                        wasch
 wash                          wash
 washed                        wash
@@ -28945,7 +28945,7 @@ wiping                        wipe
 wire                          wire
 wires                         wire
 wiry                          wiri
-wis                           wi
+wis                           wis
 wisdom                        wisdom
 wise                          wise
 wisely                        wise
@@ -29135,7 +29135,7 @@ worthless                     worthless
 worthlessness                 worthless
 worthwhile                    worthwhil
 worthy                        worthi
-wos                           wo
+wos                           wos
 wot                           wot
 woul                          woul
 would                         would
@@ -29311,7 +29311,7 @@ yells                         yell
 yelping                       yelp
 yeoman                        yeoman
 yerba                         yerba
-yes                           ye
+yes                           yes
 yesday                        yesday
 yeso                          yeso
 yesterday                     yesterday

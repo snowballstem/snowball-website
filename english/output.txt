@@ -932,7 +932,7 @@ ancient
 and
 andalusia
 and
-and
+andes
 andl
 andl
 andrew
@@ -2082,7 +2082,7 @@ bart
 barter
 bartholomew
 barton
-ba
+bas
 basa
 basal
 basalt
@@ -2503,7 +2503,7 @@ beyond
 bezant
 bezzemelni
 bianchini
-bia
+bias
 bibl
 bibo
 bibron
@@ -2648,7 +2648,7 @@ blanket
 blank
 blank
 blank
-bla
+blas
 blasphem
 blasphemi
 blast
@@ -2941,7 +2941,7 @@ borrow
 borrow
 borum
 bori
-bo
+bos
 bosh
 bosom
 bosom
@@ -4027,7 +4027,7 @@ certifi
 cervicem
 cervus
 ceryl
-ce
+ces
 cesen
 cessat
 cesspool
@@ -4620,7 +4620,7 @@ clip
 clipper
 clip
 cliquot
-clk
+clks
 cloak
 cloak
 clock
@@ -5774,7 +5774,7 @@ cors
 cortez
 corunda
 corynet
-co
+cos
 cosa
 coseguina
 cosgrav
@@ -6109,7 +6109,7 @@ crook
 crop
 cropley
 crop
-cro
+cros
 cross
 cross
 cross
@@ -6474,7 +6474,7 @@ darwin
 darwinian
 darwinii
 darya
-da
+das
 dash
 dash
 dash
@@ -6980,7 +6980,7 @@ deriv
 dermest
 derogatori
 derwent
-de
+des
 desc
 descant
 descant
@@ -10077,7 +10077,7 @@ fir
 first
 firstborn
 first
-fi
+fis
 fiscal
 fish
 fish
@@ -10329,7 +10329,7 @@ fli
 flycatch
 flycatch
 fli
-fli
+flys
 fo
 foal
 foal
@@ -10701,7 +10701,7 @@ frequent
 frequentl
 frequent
 frequent
-fre
+fres
 fresco
 fresh
 freshen
@@ -11033,7 +11033,7 @@ garter
 garter
 garth
 garther
-ga
+gas
 gase
 gash
 gash
@@ -12114,7 +12114,7 @@ hartshorn
 harum
 harurn
 harvest
-ha
+has
 hash
 hash
 hasn
@@ -12499,7 +12499,7 @@ hire
 hire
 hire
 hirrold
-hi
+his
 hiss
 hisself
 hiss
@@ -14824,7 +14824,7 @@ lark
 larm
 larri
 larva
-la
+las
 lash
 lash
 lash
@@ -15062,7 +15062,7 @@ leonero
 leovil
 lepidoptera
 lepus
-le
+les
 lesli
 less
 lessen
@@ -15469,7 +15469,7 @@ lord
 lordship
 lordship
 lorenzo
-lo
+los
 lose
 loser
 loser
@@ -16806,7 +16806,7 @@ mortifi
 mortifi
 mortim
 morton
-mo
+mos
 moscow
 mosquito
 moss
@@ -16887,9 +16887,9 @@ mow
 mown
 mozart
 mp
-mp
+mps
 mr
-mr
+mrs
 ms
 mt
 muc
@@ -18528,7 +18528,7 @@ part
 parti
 parvula
 parvulus
-pa
+pas
 pashenka
 pass
 passabl
@@ -23067,7 +23067,7 @@ serv
 servitor
 servitud
 servt
-se
+ses
 session
 session
 set
@@ -26038,7 +26038,7 @@ therewith
 theridion
 theristicus
 thermomet
-the
+thes
 these
 they
 thi
@@ -26086,7 +26086,7 @@ thirteen
 thirteenth
 thirtieth
 thirti
-thi
+this
 thistl
 thistl
 thither
@@ -26326,7 +26326,7 @@ tire
 tire
 tiresom
 tire
-ti
+tis
 tissu
 tit
 tith
@@ -26694,7 +26694,7 @@ trench
 trenham
 trepan
 trepid
-tre
+tres
 trespass
 tress
 tress
@@ -26943,7 +26943,7 @@ tutor
 tw
 twain
 twang
-twa
+twas
 tweak
 tweak
 twelfth
@@ -26992,7 +26992,7 @@ twonti
 twopenc
 twopenn
 twopenni
-two
+twos
 twould
 ty
 tybalt
@@ -28180,7 +28180,7 @@ virtu
 virtuous
 virtuous
 virul
-vi
+vis
 visag
 visag
 viscid
@@ -28472,7 +28472,7 @@ wart
 wart
 warwick
 wari
-wa
+was
 wasch
 wash
 wash
@@ -28945,7 +28945,7 @@ wipe
 wire
 wire
 wiri
-wi
+wis
 wisdom
 wise
 wise
@@ -29135,7 +29135,7 @@ worthless
 worthless
 worthwhil
 worthi
-wo
+wos
 wot
 woul
 would
@@ -29311,7 +29311,7 @@ yell
 yelp
 yeoman
 yerba
-ye
+yes
 yesday
 yeso
 yesterday

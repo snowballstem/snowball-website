@@ -54,7 +54,7 @@ backwardmode (
             'sses' (<-'ss')
             'ied' 'ies'
                    ((next atlimit <-'ie') or <-'i')
-            's'    (delete)
+            's'    (next gopast v delete)
             'us' 'ss'
         )
     )
@@ -158,6 +158,7 @@ define exception as (
 
         /* special changes: */
 
+        'skis'      (<-'ski')
         'skies'     (<-'sky')
         'dying'     (<-'die')
         'lying'     (<-'lie')
@@ -185,7 +186,7 @@ define exception as (
         'inning' 'outing' 'canning'
         'proceed' 'exceed' 'succeed'
 
-        'atlas' 'cosmos' // are among the nouns ending s in the singular
+        'atlas' 'cosmos' 'bias' 'andes' // not plural forms
 
         // ... extensions possible here ...
     )
