@@ -1,5 +1,8 @@
 # Makefile for building snowball.
 
+JAVADOC=javadoc
+JAVAC=jikes
+JAVA=java
 CC=gcc
 RM=rm -f
 
@@ -30,7 +33,33 @@ snowball_OBJECTS = ./p/space.o \
 		   ./p/str.o \
 		   ./p/driver.o
 
-all: $(addprefix lang_, $(languages)) libs
+all: $(addprefix lang_, $(languages)) libs snowball.jar javaoutput
+
+javaoutput: $(addsuffix /output_java.txt, $(languages))
+
+java_SOURCES = net/sf/snowball/Among.java \
+               net/sf/snowball/SnowballProgram.java \
+               net/sf/snowball/TestApp.java
+java_OBJECTS = net/sf/snowball/Among.class \
+               net/sf/snowball/SnowballProgram.class \
+               net/sf/snowball/TestApp.class
+javastemmer_SOURCES = $(addsuffix Stemmer.java, $(addprefix net/sf/snowball/ext/, $(languages)))
+javastemmer_OBJECTS = $(addsuffix Stemmer.class, $(addprefix net/sf/snowball/ext/, $(languages)))
+
+javastemmers: javaoutput
+
+snowball.jar: javastemmers $(java_OBJECTS) $(javastemmer_OBJECTS)
+	rm -rf snowball.jar
+	jar -cvf snowball.jar $(java_OBJECTS) $(javastemmer_OBJECTS)
+
+javadocs: javastemmers $(java_SOURCES) $(javastemmer_SOURCES)
+	mkdir -p javadocs
+	rm -rf javadocs/*
+	$(JAVADOC) \
+	    -d javadocs \
+	    -windowtitle Snowball \
+	    net.sf.snowball \
+	    net.sf.snowball.ext
 
 lang_%: %/stem.c %/stemmer %/output.txt %/tarball.tgz
 	@true
@@ -144,6 +173,20 @@ clean:
 	fi; \
 	mv $@.tmp $@;
 
+%/output_java.txt: %/stem.sbl %/voc.txt snowball net/sf/snowball/TestApp.class
+	@l=`echo "$<" | sed 's!\(.*\)/stem.sbl$$!\1!;s!^.*/!!'`; \
+	n=$${l}; \
+	echo ./snowball $< -j -o net/sf/snowball/ext/$${n}Stemmer -n $${n}Stemmer; \
+	./snowball $< -j -o net/sf/snowball/ext/$${n}Stemmer -n $${n}Stemmer; \
+	echo $(JAVAC) net/sf/snowball/ext/$${n}Stemmer.java; \
+	$(JAVAC) net/sf/snowball/ext/$${n}Stemmer.java; \
+	echo $(JAVA) net/sf/snowball/TestApp $${n} $${l}/voc.txt -o $${l}/output_java.txt; \
+	$(JAVA) net/sf/snowball/TestApp $${n} $${l}/voc.txt -o $${l}/output_java.txt;
+
+%.class: %.java
+	$(JAVAC) $<
+
+
 # Rule for building a stemmer program for a given language
 BUILD_STEMMER=$(CC) $(CFLAGS) -O4 -o $@ -I $$l/ -I q/ $^ \
 	      -Dcreate_env=$${l}_create_env \
@@ -177,5 +220,6 @@ snowball: $(snowball_OBJECTS) $(snowball_HEADERS)
 .PRECIOUS: %/stem.c %/stem.h \
 	   %/stemmer \
 	   %/output.txt \
+	   %/output_java.txt \
 	   %/tarball.tgz \
 	   %/.timestamp-output.txt
