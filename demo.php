@@ -13,6 +13,7 @@
 Enter some (english) words to stem:<br>
 (Other languages will be added to the demo later)<br>
 <textarea name="words" rows="10" cols="50"><?php echo "$words" ?></textarea>
+<br>
 <input type="submit" name="Submit" value="Submit">
 </form>
 
