@@ -49,26 +49,31 @@ const char *
 sb_stemmer_stem(struct sb_stemmer * stemmer, const char * word, int size)
 {
     SN_set_current(stemmer->env, size, word);
-    int retval = stemmer->stem(stemmer->env);
-    (void) retval;
+    /* We don't care what the return value is. */
+    (void) stemmer->stem(stemmer->env);
     stemmer->env->p[stemmer->env->l] = 0;
     return stemmer->env->p;
 }
 
-// test code
+/* test code */
 void error(const char * err) {
     printf("%s\n", err);
     exit(0);
 }
 
 int main () {
-    struct sb_stemmer * s = sb_stemmer_create("e");
+    const char * stemmed;
+    const char * unstemmed;
+    struct sb_stemmer * s;
+    
+    s = sb_stemmer_create("e");
     if (s != 0) error("TEST FAIL: non zero return for unrecognised language");
     s = sb_stemmer_create("english");
     if (s == 0) error("TEST FAIL: zero return for recognised language");
-    const char * stemmed;
-    const char * unstemmed = "recognised";
+    unstemmed = "recognised";
     stemmed = sb_stemmer_stem(s, unstemmed, 10);
+    printf("%s -> %s\n", unstemmed, stemmed);
+    unstemmed = "recognized";
     printf("%s -> %s\n", unstemmed, stemmed);
     sb_stemmer_close(s);
     printf("FINISHED\n");
