@@ -26,7 +26,7 @@ if ($words != '')
   echo "<pre>";
   $tmpfile = tmpfile();
   # Have a limit of 10000 bytes, just in case.
-  int fwrite($tmpfile, $words, 10000);
+  fwrite($tmpfile, $words, 10000);
   passthru ("./stemdemo_en $tmpfile");
   fclose($tmpfile);
   echo "</pre>";
