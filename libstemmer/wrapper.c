@@ -44,6 +44,7 @@ void sb_stemmer_release(struct sb_stemmer * stemmer)
     if (stemmer->close == 0) return;
     stemmer->close(stemmer->env);
     stemmer->close = 0;
+    free(stemmer);
 }
 
 const char *
