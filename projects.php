@@ -5,14 +5,18 @@
 <TR><TD>
 <p>
 
-This page lists projects which make use of snowball.
+This page lists projects which make use of snowball, or are related in some way.
 
 <hr>
 
-<a href="http://www.sourceforge.net/projects/pystemmer/"><h2>PyStemmer</a></h2>
+<h2><a href="http://www.sourceforge.net/projects/pystemmer/">PyStemmer</a></h2>
 A python interface to snowball.
-
 </p>
+
+<h2><a href="https://sourceforge.net/projects/porterstemmers/">C++ stemmers</a></h2>
+A reimplementation of the snowball stemming algorithms in C++.
+</p>
+
 <hr>
 <a href="mailto:snowball-discuss@lists.tartarus.org">Contact us</a> if
 you have a project that you would like to be listed here.
