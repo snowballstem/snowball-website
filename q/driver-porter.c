@@ -82,7 +82,7 @@ static void stem_file(struct SN_env * z, FILE * f_in, FILE * f_out) {
             {
                 int j; for (j = 1; j <= repetitions; j++) {
                     SN_set_current(z, i, b);
-                    german2_stem(z); stem_count++;
+                    porter_stem(z); stem_count++;
                 }
             }
             {
@@ -155,7 +155,7 @@ int main(int argc, char * argv[])
     /* initialise the stemming process: */
 
     {
-        struct SN_env * z = german2_create_env();
+        struct SN_env * z = porter_create_env();
         FILE * f_in;
         FILE * f_out;
         f_in = in == 0 ? stdin : fopen(in, "r");
@@ -167,7 +167,7 @@ int main(int argc, char * argv[])
             fprintf(stderr, "file %s cannot be opened\n", out); exit(1);
         }
         stem_file(z, f_in, f_out);
-        german2_close_env(z);
+        porter_close_env(z);
     }
 
     if (!pretty) {
