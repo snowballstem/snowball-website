@@ -7,7 +7,8 @@ routines (
     shortv
     R1 R2
     Step_1a Step_1b Step_1c Step_2 Step_3 Step_4 Step_5
-    exception
+    exception1
+    exception2
 )
 
 externals ( stem )
@@ -140,9 +141,20 @@ backwardmode (
             'l' (R2 'l' delete)
         )
     )
+
+    define exception2 as (
+
+        [substring] atlimit among(
+            'inning' 'outing' 'canning' 'herring' 'earring'
+            'proceed' 'exceed' 'succeed'
+
+            // ... extensions possible here ...
+
+        )
+    )
 )
 
-define exception as (
+define exception1 as (
 
     [substring] atlimit among(
 
@@ -153,9 +165,6 @@ define exception as (
         'dying'     (<-'die')
         'lying'     (<-'lie')
         'tying'     (<-'tie')
-        'innings'   (<-'inning')
-        'outings'   (<-'outing')
-        'cannings'  (<-'canning')
 
         /* special -LY cases */
 
@@ -173,8 +182,6 @@ define exception as (
         'sky'
         'news'
         'howe'
-        'inning' 'outing' 'canning'
-        'proceed' 'exceed' 'succeed'
 
         'atlas' 'cosmos' 'bias' 'andes' // not plural forms
 
@@ -186,7 +193,7 @@ define postlude as (Y_found  repeat(goto (['Y']) <-'y'))
 
 define stem as (
 
-    exception or (
+    exception1 or (
 
         test hop 3
         do prelude
@@ -194,14 +201,18 @@ define stem as (
         backwards (
 
             do Step_1a
-            do Step_1b
-            do Step_1c
 
-            do Step_2
-            do Step_3
-            do Step_4
+            exception2 or (
 
-            do Step_5 // 5a, 5b joined Dec 2001
+                do Step_1b
+                do Step_1c
+
+                do Step_2
+                do Step_3
+                do Step_4
+
+                do Step_5
+            )
         )
         do postlude
     )

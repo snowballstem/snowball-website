@@ -234,7 +234,8 @@ knot<BR>
 
 <BR>&nbsp;<H2>Developing the English stemmer</H2>
 
-(Revised slightly, December 2001)
+(Revised slightly, December 2001)<BR>
+(Further revised, September 2002)
 
 <BR><BR>
 
@@ -489,10 +490,10 @@ that need to be mapped to &nbsp;<TT>X<SUB>1</SUB></TT>, another group &nbsp;<TT>
            'V<SUB>1</SUB>' 'V<SUB>2</SUB>' ... 'V<SUB>k</SUB>'
          )
 </PRE>
-And indeed the &nbsp;<TT>exception</TT>&nbsp; routine for the English stemmer has just that
+And indeed the &nbsp;<TT>exception1</TT>&nbsp; routine for the English stemmer has just that
 shape:
 <BR><PRE>
-    define exception as (
+    define exception1 as (
 
          [substring] atlimit among(
 
@@ -503,9 +504,6 @@ shape:
             'dying'     (<-'die')
             'lying'     (<-'lie')
             'tying'     (<-'tie')
-            'innings'   (<-'inning')
-            'outings'   (<-'outing')
-            'cannings'  (<-'canning')
 
             /* special -LY cases */
 
@@ -523,8 +521,6 @@ shape:
             'sky'
             'news'
             'howe'
-            'inning' 'outing' 'canning'
-            'proceed' 'exceed' 'succeed'
 
             'atlas' 'cosmos' 'bias' 'andes' // not plural forms
 
@@ -585,6 +581,22 @@ after which the words beginning <B><I>gener</I></B> stem as follows:
          generously</I>
                       <TD></TD><TD>  &nbsp;  <TT>-&gt;</TT>  &nbsp;  <TD></TD><TD> <I>generous</I>
 </TABLE></DL>
+Another example is given by the &nbsp;<TT>exception2</TT>&nbsp; routine, which is similar to &nbsp;<TT>exception1</TT>,
+but placed after the call of &nbsp;<TT>Step_1a</TT>, which may have removed terminal <B><I>s</I></B>,
+<BR><PRE>
+    define exception2 as (
+
+        [substring] atlimit among(
+            'inning' 'outing' 'canning' 'herring'
+            'proceed' 'exceed' 'succeed'
+
+            // ... extensions possible here ...
+
+        )
+    )
+
+</PRE>
+
 Snowball makes it easy therefore to add in lists of exceptions. But deciding what the lists of
 exceptions should be is far from easy. Essentially there are two lines of attack, the
 systematic and the piecemeal. One might systematically treat as exceptions the stem changes of
@@ -609,9 +621,10 @@ are only three such verbs: <I>die</I>, <I>lie</I> and <I>tie</I>, so a special c
 <I>dying</I>, <I>lying</I> and <I>tying</I>.
 <BR><BR>
 <I>d</I>)
-One has to be a little careful of <B><I>ing</I></B> forms that disappear as stopwords after stemming, so
-<I>inning</I>, <I>outing</I> and <I>canning</I> are given special treatment
-(<I>in</I>, <I>out</I> and <I>can</I> often being stopwords).
+One has to be a little careful of certain <B><I>ing</I></B> forms.
+<I>inning</I>, <I>outing</I>, <I>canning</I>, which one does not wish
+to be stemmed to
+(<I>in</I>, <I>out</I>, <I>can</I>.
 <BR><BR>
 <I>e</I>)
 The removal of suffix <B><I>ly</I></B>, which is not in the Porter stemmer, has a number of exceptions.
@@ -619,18 +632,19 @@ Certain short-word exceptions are <I>idly</I>, <I>gently</I>, <I>ugly</I>, <I>ea
 Rarer words (<I>bristly</I>, <I>burly</I>, <I>curly</I>, <I>surly</I> ...) are not included.
 <BR><BR>
 <I>f</I>)
+
 The remaining words were included following complaints from users of the Porter algorithm.
 <I>news</I> is not the plural of <I>new</I> (noticed when IR systems were being set up for
-Reuters). <I>Howe</I> is a surname, and needs to be separated from <I>how</I> (noticed when doing a
-search for &#8216;Sir Geoffrey Howe&#8217; in a demonstration at the House of Commons). <I>succeed</I> etc
-are not past participles, so the <B><I>ed</I></B> should not be removed (pointed out to me in an email
-from India).
+Reuters). <I>Howe</I> is a surname, and needs to be separated from <I>how</I> (noticed when
+doing a search for &#8216;Sir Geoffrey Howe&#8217; in a demonstration at the House of Commons).
+<I>succeed</I> etc are not past participles, so the <B><I>ed</I></B> should not be removed (pointed out
+to me in an email from India). <I>herring</I> should not stem to <I>her</I> (another email from
+Russia).
+<BR><BR>
+Finally, few non-plural words ending <B><I>s</I></B> have been added.
 <BR><BR>
 Incidentally, this illustrates how much feedback to expect from the real users of a stemming
-algorithm: five words in twenty years!
-<BR><BR>
-More recently, a few non-plural words ending <B><I>s</I></B> have been added. This follows
-suggestions from Steve Tolkin, currently with Fidelity in the States.
+algorithm: seven or eight words in twenty years!
 <BR><BR>
 The definition of the English stemmer above is therefore supplemented by the following:
 <BR><BR>
@@ -650,9 +664,6 @@ The definition of the English stemmer above is therefore supplemented by the fol
                  <TD></TD><TD>  <TT>-&gt;</TT>
                                <TD></TD><TD> <I>die <BR> lie <BR> tie</I>
 
-<TR><TD> <I>innings <BR> outings <BR> cannings</I>
-                 <TD></TD><TD>  <TT>-&gt;</TT>
-                               <TD></TD><TD> <I>inning <BR> outing <BR> canning</I>
 
 <TR><TD> <I>idly <BR> gently <BR> ugly <BR> early <BR> only <BR> singly</I>
                  <TD></TD><TD>  <TT>-&gt;</TT>
@@ -660,15 +671,23 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 </TABLE></DL>
 <BR><BR>
-    If one of the following is found, leave it as it is,
+    If one of the following is found, leave it invariant,
 <BR><BR>
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>        <I>sky <BR> news <BR> howe</I>
-<TR><TD>        <I>inning</I>   &nbsp; <TD></TD><TD> &nbsp;  <I>outing</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>canning</I>
-<TR><TD>        <I>proceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>exceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>succeed</I>
 <TR><TD>        <I>atlas</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>cosmos</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>bias</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>andes</I>
 </TABLE></DL>
+<BR><BR>
+    Following step 1<I>a</I>, leave the following invariant,
+<BR><BR>
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>        <I>inning</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>outing</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>canning</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>herring</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>earring</I>
+<TR><TD>        <I>proceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>exceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>succeed</I>
+</TABLE></DL>
 </DL>
+<BR><BR>
+
+
 
 
 </TR>
@@ -687,7 +706,8 @@ routines (
     shortv
     R1 R2
     Step_1a Step_1b Step_1c Step_2 Step_3 Step_4 Step_5
-    exception
+    exception1
+    exception2
 )
 
 externals ( stem )
@@ -820,9 +840,20 @@ backwardmode (
             'l' (R2 'l' delete)
         )
     )
+
+    define exception2 as (
+
+        [substring] atlimit among(
+            'inning' 'outing' 'canning' 'herring' 'earring'
+            'proceed' 'exceed' 'succeed'
+
+            // ... extensions possible here ...
+
+        )
+    )
 )
 
-define exception as (
+define exception1 as (
 
     [substring] atlimit among(
 
@@ -833,9 +864,6 @@ define exception as (
         'dying'     (<-'die')
         'lying'     (<-'lie')
         'tying'     (<-'tie')
-        'innings'   (<-'inning')
-        'outings'   (<-'outing')
-        'cannings'  (<-'canning')
 
         /* special -LY cases */
 
@@ -853,8 +881,6 @@ define exception as (
         'sky'
         'news'
         'howe'
-        'inning' 'outing' 'canning'
-        'proceed' 'exceed' 'succeed'
 
         'atlas' 'cosmos' 'bias' 'andes' // not plural forms
 
@@ -866,7 +892,7 @@ define postlude as (Y_found  repeat(goto (['Y']) <-'y'))
 
 define stem as (
 
-    exception or (
+    exception1 or (
 
         test hop 3
         do prelude
@@ -874,14 +900,18 @@ define stem as (
         backwards (
 
             do Step_1a
-            do Step_1b
-            do Step_1c
 
-            do Step_2
-            do Step_3
-            do Step_4
+            exception2 or (
 
-            do Step_5 // 5a, 5b joined Dec 2001
+                do Step_1b
+                do Step_1c
+
+                do Step_2
+                do Step_3
+                do Step_4
+
+                do Step_5
+            )
         )
         do postlude
     )

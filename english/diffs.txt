@@ -8267,8 +8267,8 @@ earnestly                     earnest
 earnestness                   earnest
 earning                       earn
 earnings                      earn
-earring                       ear
-earrings                      ear
+earring                       ear                           * earring
+earrings                      ear                           * earring
 ears                          ear
 eart                          eart
 earth                         earth
@@ -9208,7 +9208,7 @@ exceed                        exceed
 exceeded                      exceed
 exceeding                     exceed
 exceedingly                   exceed
-exceeds                       exce
+exceeds                       exce                          * exceed
 excelled                      excel
 excellence                    excel
 excellences                   excel
@@ -12397,7 +12397,7 @@ heroine                       heroin
 heroism                       heroism
 herons                        heron
 herries                       herri
-herrings                      her
+herrings                      her                           * herring
 hers                          her
 herschel                      herschel
 herself                       herself
@@ -20074,7 +20074,7 @@ proceed                       proceed
 proceeded                     proceed
 proceeding                    proceed
 proceedings                   proceed
-proceeds                      proce
+proceeds                      proce                         * proceed
 procellaria                   procellaria
 process                       process
 processes                     process
@@ -25151,7 +25151,7 @@ suc                           suc
 succeed                       succeed
 succeeded                     succeed
 succeeding                    succeed
-succeeds                      succe
+succeeds                      succe                         * succeed
 success                       success
 successes                     success
 successful                    success

@@ -3,7 +3,7 @@
 
 #include "header.h"
 
-extern int stem(struct SN_env * z);
+extern int lovins_stem(struct SN_env * z);
 static int r_respell(struct SN_env * z);
 static int r_undouble(struct SN_env * z);
 static int r_endings(struct SN_env * z);
@@ -1604,7 +1604,7 @@ static int r_respell(struct SN_env * z) {
     return 1;
 }
 
-extern int stem(struct SN_env * z) {
+extern int lovins_stem(struct SN_env * z) {
     z->lb = z->c; z->c = z->l; /* backwards, line 199 */
 
     {   int m = z->l - z->c; /* do, line 200 */
@@ -1626,7 +1626,7 @@ extern int stem(struct SN_env * z) {
     return 1;
 }
 
-extern struct SN_env * create_env(void) { return SN_create_env(0, 0, 0); }
+extern struct SN_env * lovins_create_env(void) { return SN_create_env(0, 0, 0); }
 
-extern void close_env(struct SN_env * z) { SN_close_env(z); }
+extern void lovins_close_env(struct SN_env * z) { SN_close_env(z); }
 
