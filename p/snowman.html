@@ -939,8 +939,8 @@ C               ::= ( [C]* ) ||
                     => &lt;s_name> || [ || ] || -> &lt;s_name> ||
                     setmark &lt;i_name> || tomark AE || atmark AE ||
                     tolimit || atlimit || setlimit C for C ||
-                    backwards C || reverse C ||
-                    substring || among ( [&lt;literal string> || (C)]* ) ||
+                    backwards C || reverse C || substring ||
+                    among ( [&lt;literal string> [&lt;r_name>] || (C)]* ) ||
                     set &lt;b_name> || unset &lt;b_name> || &lt;b_name> ||
                     &lt;r_name> || &lt;g_name> || non [-] &lt;g_name> ||
                     true || false || ?
