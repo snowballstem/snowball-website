@@ -222,6 +222,8 @@ struct generator {
 
     struct analyser * analyser;
     struct options * options;
+    int unreachable;           /* 0 if code can be reached, 1 if current code
+				* is unreachable. */
     int var_number;            /* Number of next variable to use. */
     struct str * outbuf;       /* temporary str to store output */
     struct str * declarations; /* str storing variable declarations */
