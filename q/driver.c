@@ -7,6 +7,7 @@
 
 static repetitions = 1;
 static stem_count;
+static int pretty = 1;
 
 void stemfile(struct SN_env * z, FILE * f_in, FILE * f_out)
 {
@@ -34,6 +35,11 @@ void stemfile(struct SN_env * z, FILE * f_in, FILE * f_out)
                 ch = getc(f_in);
             }
 
+	    if (pretty) {
+		int j;
+		for (j = 0; j < i; j++) fprintf(f_out, "%c", b[j]);
+		fprintf(f_out, "%s", " -> ");
+	    }
             {   int j; for (j = 1; j <= repetitions; j++)
                 {
                     SN_set_current(z, i, b);
@@ -68,22 +74,32 @@ int main(int argc, char * argv[])
 {   char * in;
     char * out = 0;
     if (argc == 1)
-    {    printf("options are: file [-o[utput] file] [-r[epetitions] number]\n");
-         exit(1);
-    }
-    if (argc % 2 == 1)
-    {    printf("number of options must be odd\n");
+    {    printf("options are: file -p[retty] [-o[utput] file] [-r[epetitions] number]\n");
          exit(1);
     }
     {   char * s;
         int i = 1;
-        while(1)
-        {   if (i >= argc) break;
+	pretty = 0;
+        while(1) {
+	    if (i >= argc) break;
             s = argv[i++];
-            if (s[0] == '-')
-            {   if (eq(s, "-output") || eq(s, "-o")) out = argv[i++]; else
-                if (eq(s, "-repetitions") || eq(s, "-r")) repetitions = intof(argv[i++]); else
-                {   fprintf(stderr, "%s unknown\n", s); exit(1);
+            if (s[0] == '-') {
+		if (eq(s, "-output") || eq(s, "-o")) {
+		    if (i >= argc) {
+			fprintf(stderr, "%s requires an argument\n", s);
+			exit(1);
+		    }
+		    out = argv[i++];
+		} else if (eq(s, "-repetitions") || eq(s, "-r")) {
+		    if (i >= argc) {
+			fprintf(stderr, "%s requires an argument\n", s);
+			exit(1);
+		    }
+		    repetitions = intof(argv[i++]);
+		} else if (eq(s, "-pretty") || eq(s, "-p")) {
+		    pretty = 1;
+		} else {
+		    fprintf(stderr, "%s unknown\n", s); exit(1);
                 }
             }
             else in = s;
@@ -103,7 +119,9 @@ int main(int argc, char * argv[])
         close_env(z);
     }
 
-    printf("%d calls to stem\n", stem_count);
+    if (!pretty) {
+	printf("%d calls to stem\n", stem_count);
+    }
 
     return 0;
 }
