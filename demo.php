@@ -2,6 +2,7 @@
   require "menu.inc";
   displayHeader("Demo");
 ?>
+<p>
 
 <form method="POST" action="demo.php">
 Enter some (english) words to stem:<br>
@@ -10,6 +11,7 @@ Enter some (english) words to stem:<br>
 <br>
 <input type="submit" name="Submit" value="Submit">
 </form>
+</p>
 
 <?php
 if ($words != '')
