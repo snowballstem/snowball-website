@@ -706,6 +706,7 @@ static void generate_loop(struct generator * g, struct node * p)
 
     w(g, "~}");
     g->unreachable = false;
+    str_delete(loopvar);
 }
 
 static void generate_repeat(struct generator * g, struct node * p, struct str * loopvar)
@@ -766,6 +767,7 @@ static void generate_atleast(struct generator * g, struct node * p)
     g->B[0] = str_data(loopvar);
     write_failure_if(g, "~B0 > 0", p);
     w(g, "~}");
+    str_delete(loopvar);
 }
 
 static void generate_setmark(struct generator * g, struct node * p)
