@@ -76,10 +76,10 @@ libstemmer/libstemmer.o: $(addsuffix /stem.o, $(languages)) \
 	                 libstemmer/wrapper.o \
 			 q/api.o \
 			 q/utilities.o
-	libtool --mode=link $(CC) -O4 -o $@ -I q/ $^
+	libtool --mode=link $(CC) $(CFLAGS) -O4 -o $@ -I q/ $^
 
 libstemmer/wrapper.o: libstemmer/wrapper.c libstemmer/modules.c q/api.h
-	$(CC) -O4 -c -o $@ -I q/ $<
+	$(CC) $(CFLAGS) -O4 -c -o $@ -I q/ $<
 
 libstemmer/modules.c: Makefile
 	@f=libstemmer/modules.c; \
@@ -141,7 +141,7 @@ clean:
 	mv $@.tmp $@;
 
 # Rule for building a stemmer program for a given language
-BUILD_STEMMER=$(CC) -O4 -o $@ -I $$l/ -I q/ $^ \
+BUILD_STEMMER=$(CC) $(CFLAGS) -O4 -o $@ -I $$l/ -I q/ $^ \
 	      -Dcreate_env=$${l}_create_env \
 	      -Dclose_env=$${l}_close_env \
 	      -Dstem=$${l}_stem
@@ -152,12 +152,12 @@ BUILD_STEMMER=$(CC) -O4 -o $@ -I $$l/ -I q/ $^ \
 
 # Rule for building the snowball to C converter
 snowball: $(snowball_OBJECTS) $(snowball_HEADERS)
-	$(CC) -O4 -o $@ $(snowball_OBJECTS)
+	$(CC) $(CFLAGS) -O4 -o $@ $(snowball_OBJECTS)
 
 .c.o:
-	$(CC) -O4 -c -o $@ $<
+	$(CC) $(CFLAGS) -O4 -c -o $@ $<
 %/stem.o: %/stem.c %/stem.h
-	$(CC) -O4 -c -o $@ -I q/ $<
+	$(CC) $(CFLAGS) -O4 -c -o $@ -I q/ $<
 
 # Rules for building the stem.c and stem.h for each language
 # The nasty sed expressions are used to extract the bits of the filename
