@@ -13,14 +13,25 @@
 <p>
 
 <form method="POST" action="demo.php">
-Words to stem: <input name="words" size=30>
+Words to stem: <input name="words" size=30><?php echo "$words" ?></input>
 </form>
 
 </p><p>
 
 Note: this is not yet functional.
 
-<?php echo "$words" ?>
+<?php
+if ($words != '')
+{
+  echo "<pre>";
+  $tmpfile = tmpfile();
+  # Have a limit of 10000 bytes, just in case.
+  int fwrite($tmpfile, $words, 10000);
+  passthru ("./stemdemo_en $tmpfile");
+  fclose($tmpfile);
+  echo "</pre>";
+}
+?>
 
 </p>
 </td></tr></table>
