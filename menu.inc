@@ -1,4 +1,5 @@
 <?php function menuEntry($text, $file) {
+  global $PHP_SELF;
   $href = $file;
   echo "PHP_SELF=$PHP_SELF ";
   if ($SCRIPT_NAME != $file && file_exists($file)) {
