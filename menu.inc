@@ -16,6 +16,7 @@ function menuEntry($text, $file)
   echo "<br>";
 }
 ?>
+<td valign=top bgcolor=cyan width=128>
 <br>
 <?php menuEntry("Introduction", "/index.php") ?>
 <?php menuEntry("Demo", "/demo.php") ?>
@@ -33,3 +34,4 @@ function menuEntry($text, $file)
 <br>
 <A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=36391" width="88" height="31" border="0" alt="SourceForge Logo"></A>
 <br>
+</td>

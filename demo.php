@@ -7,12 +7,10 @@
 </td><td>
 <h1>Snowball</h1>
 </td></tr>
-<tr><td valign=top bgcolor=cyan>
-<?php include "menu.inc"; ?>
-</td><td valign=top>
+<tr><?php include "menu.inc"; ?><td valign=top>
 <p>
 
-<form method="GET" action="demo.php">
+<form method="POST" action="demo.php">
 Words to stem: <input name="words" size=30 value="<?php echo "$words" ?>">
 </form>
 
