@@ -1,7 +1,6 @@
 <?php function menuEntry($text, $file) {
-  $href = $file
-  if ($SCRIPT_NAME != $file &&
-      file_exists($file)) {
+  $href = $file;
+  if ($SCRIPT_NAME != $file && file_exists($file)) {
    echo "<a href=$href>$text</a>";
   } else {
    echo $text;
