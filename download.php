@@ -7,7 +7,7 @@
 No download available yet.
 
 </p>
-<h1>CVS</h1>
+<h2>CVS</h2>
 <p>
 
 You may access the source by anonymous CVS using the command:
