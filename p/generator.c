@@ -677,10 +677,12 @@ static void generate_assignfrom(struct generator * g, struct node * p)
     if (keep_c) w(g, "~Mz->c = c;~N~}");
 }
 
+/* bugs marked <======= fixed 22/7/02. Similar fixes required for Java */
 
 static void generate_slicefrom(struct generator * g, struct node * p)
 {
-    w(g, "~Mslice_from_s(z, ");
+/*  w(g, "~Mslice_from_s(z, ");   <============= bug! should be: */
+    wp(g, "~Mslice_from_~$(z, ", p);
     generate_data_address(g, p);
     wp(g, ");~C", p);
 }
@@ -702,18 +704,46 @@ static void generate_setlimit(struct generator * g, struct node * p)
     }
 }
 
+/* There are bugs in this version
+--static void generate_dollar(struct generator * g, struct node * p)
+--{
+--    g->V[0] = p->name;
+--    g->failure_string = "* z = env;";
+--    wp(g, "~{struct SN_env env = * z;~C"
+--             "~Mz->p = ~V0;~N"
+--             "~Mz->c = 0;~N"   <====== z->lb ought to be set to 0 as well
+--             "~Mz->l = SIZE(z->p);~N", p);
+--    generate(g, p->left);
+--    wms(g, g->failure_string); <====== but string p->name may have a new address
+--    w(g, "~N"
+--      "~}");
+--}
+*/
+
 static void generate_dollar(struct generator * g, struct node * p)
 {
+    int a0 = g->failure_label;
+    char * a1 = g->failure_string;
+    g->failure_label = new_label(g);
+    g->failure_string = 0;
+
     g->V[0] = p->name;
-    g->failure_string = "* z = env;";
     wp(g, "~{struct SN_env env = * z;~C"
+             "~Mint failure = 1; /* assume failure */~N"
              "~Mz->p = ~V0;~N"
-             "~Mz->c = 0;~N"
+             "~Mz->lb = z->c = 0;~N"
              "~Mz->l = SIZE(z->p);~N", p);
     generate(g, p->left);
-    wms(g, g->failure_string);
-    w(g, "~N"
-      "~}");
+    w(g, "~Mfailure = 0; /* mark success */~N");
+    wsetl(g, g->failure_label);
+    g->V[0] = p->name; /* necessary */
+
+    g->failure_label = a0;
+    g->failure_string = a1;
+
+    w(g, "~M~V0 = z->p;~N"
+         "~M* z = env;~N"
+         "~Mif (failure) ~f~N~}");
 }
 
 static void generate_integer_assign(struct generator * g, struct node * p, char * s)
