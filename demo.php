@@ -25,8 +25,8 @@ if ($words != '')
   $words = strtolower($words);
   $words = preg_replace('|[^-A-Za-z\']|', ' ', $words);
   $words = preg_replace('|[-\']|', '', $words);
-  $words = preg_replace('|  *|', ' ', $words);
   $words = preg_replace('| *$|', '', $words);
+  $words = preg_replace('|  *|', "\n", $words);
   $language = "english";
   # Have a limit of 10000 bytes, just in case.
   fwrite($tmpfile, $words, 10000);
