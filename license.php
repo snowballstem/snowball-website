@@ -7,8 +7,10 @@
 
 All the software given out on this Snowball site is covered by the BSD License (see
 <A HREF="http://www.opensource.org/licenses/bsd-license.html">
-http://www.opensource.org/licenses/bsd-license.html </A>), with Copyright (c)
-2001, Dr Martin Porter.
+http://www.opensource.org/licenses/bsd-license.html </A>), with
+Copyright (c) 2001, Dr Martin Porter,
+and (for the Java developments)
+Copyright (c) 2002, Richard Boulton.
 
 
 </p><p>

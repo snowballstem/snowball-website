@@ -6,8 +6,11 @@
 <p>
 
 Snowball, and all of the current stemming algorithms were written by
-Dr Martin Porter, who also prepared the material for the Website. He wishes to
-thank Richard Boulton and Dr Andrew Macfarlane for technical and proofreading
+Dr Martin Porter, who also prepared the material for the Website.
+The Snowball to Java codegenerator, and supporting Java libraries, were
+contributed by Richard Boulton.
+Dr Andrew Macfarlane, of City University, London, gave much
+initial encouragement and proofreading
 assistance.
 
 </p><p>
