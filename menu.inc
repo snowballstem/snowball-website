@@ -34,7 +34,7 @@ function displayMenu()
 <a href="https://sourceforge.net/projects/snowball/">Sourceforge project page</a><br>
 <br>
 
-<A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=36391" width="88" height="31" border="0" alt="SourceForge Logo"></A><br>
+<center><A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=36391" width="88" height="31" border="0" alt="SourceForge Logo"></A></center><br>
 </td>
 <?php
 }
