@@ -29,7 +29,6 @@ function displayMenu()
   menuEntry("Introduction", "/index.php");
   menuEntry("Demo", "/demo.php");
   menuEntry("Download", "/download.php");
-  #menuEntry("Documentation", "/documentation.php");
   menuEntry("Mailing lists", "/lists.php");
   menuEntry("Developer Notes", "/developers.php");
   menuEntry("License", "/license.php");
