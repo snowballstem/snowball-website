@@ -1,0 +1,760 @@
+
+<HTML>
+<HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+
+<TITLE>Russian stemming algorith</TITLE></HEAD>
+<BODY BGCOLOR=WHITE>
+<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
+<H1 ALIGN=CENTER>Russian stemming algorithm</H1>
+
+<TR><TD>
+<BR>&nbsp;<H2>Links to resources</H2>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><A HREF="stem">        The stemmer in Snowball</A>
+<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
+<TR><TD><A HREF="stem.h">      - and its header</A>
+<TR><TD><A HREF="voc.txt">     Sample Russian vocabulary (codings as in the Snowball stemmer)</A>
+<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
+<TR><TD><A HREF="diffs.txt">   Vocabulary + stemmed equivalent in pure ASCII</A>
+<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+</TABLE></DL>
+
+<BR><BR>
+This page should display in Unicode. If you have problems, switch to a different
+browser, update the browser you have, or, failing all else, download this page, edit out
+the HTML tag
+<FONT SIZE=-1><PRE>
+    &lt;META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+</PRE></FONT>
+and view the modified page.<BR><BR>
+
+The sample Russian vocabulary and its stemmed equivalent should be viewable in your
+browser if you select the Cyrillic KO18-R character set. You can get to this in Microsoft's
+Internet Explorer via <B>View/Encoding/More</B>, and in Netscape via <B>View/Character Set</B>.
+</TR>
+
+
+
+<TR><TD BGCOLOR="#FCd0d0">
+
+<BR><BR>
+
+Here is a sample of Russian vocabulary, with the stemmed forms that will
+be generated with this algorithm.
+
+<BR><BR>
+
+
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>  <B>word</B> </TD>
+ <TD></TD><TD> </TD>
+ <TD></TD><TD> <B>stem</B> </TD>
+ <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+ <TD></TD><TD> <B>word</B> </TD>
+ <TD></TD><TD> </TD>
+ <TD></TD><TD> <B>stem</B> </TD>
+</TR>
+
+<TR><TD>
+&#1074;<BR>
+&#1074;&#1072;&#1074;&#1080;&#1083;&#1086;&#1074;&#1082;&#1072;<BR>
+&#1074;&#1072;&#1075;&#1085;&#1077;&#1088;&#1072;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;&#1072;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;&#1077;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;&#1086;&#1074;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;&#1086;&#1084;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;&#1099;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1072;&#1103;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1077;&#1077;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1077;&#1081;&#1096;&#1080;&#1077;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1077;&#1081;&#1096;&#1080;&#1084;&#1080;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1080;&#1095;&#1072;&#1083;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1075;&#1086;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1077;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1081;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1084;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1084;&#1091;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1089;&#1090;&#1080;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1089;&#1090;&#1080;&#1102;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1089;&#1090;&#1100;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1089;&#1090;&#1100;&#1102;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1091;&#1102;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1099;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1099;&#1077;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1099;&#1081;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1099;&#1084;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1099;&#1093;<BR>
+&#1074;&#1072;&#1079;&#1072;&#1093;<BR>
+&#1074;&#1072;&#1079;&#1099;<BR>
+&#1074;&#1072;&#1082;&#1089;&#1072;<BR>
+&#1074;&#1072;&#1082;&#1093;&#1072;&#1085;&#1082;&#1072;<BR>
+&#1074;&#1072;&#1083;<BR>
+&#1074;&#1072;&#1083;&#1072;&#1085;&#1076;&#1072;&#1083;&#1089;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1077;&#1085;&#1090;&#1080;&#1085;&#1072;<BR>
+&#1074;&#1072;&#1083;&#1077;&#1088;&#1080;&#1072;&#1085;&#1086;&#1074;&#1099;&#1093;<BR>
+&#1074;&#1072;&#1083;&#1077;&#1088;&#1080;&#1102;<BR>
+&#1074;&#1072;&#1083;&#1077;&#1090;&#1072;&#1084;&#1080;<BR>
+&#1074;&#1072;&#1083;&#1080;<BR>
+&#1074;&#1072;&#1083;&#1080;&#1083;<BR>
+&#1074;&#1072;&#1083;&#1080;&#1083;&#1089;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1080;&#1090;&#1089;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1086;&#1074;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1076;&#1096;&#1085;&#1077;&#1087;&#1072;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1089;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1089;&#1072;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1089;&#1077;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1089;&#1080;&#1096;&#1082;&#1091;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1090;&#1077;&#1088;&#1072;<BR>
+&#1074;&#1072;&#1083;&#1103;&#1077;&#1090;&#1089;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1103;&#1083;&#1072;&#1089;&#1100;<BR>
+&#1074;&#1072;&#1083;&#1103;&#1083;&#1080;&#1089;&#1100;<BR>
+&#1074;&#1072;&#1083;&#1103;&#1083;&#1086;&#1089;&#1100;<BR>
+&#1074;&#1072;&#1083;&#1103;&#1083;&#1089;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1103;&#1090;&#1100;<BR>
+&#1074;&#1072;&#1083;&#1103;&#1102;&#1090;&#1089;&#1103;<BR>
+&#1074;&#1072;&#1084;<BR>
+&#1074;&#1072;&#1084;&#1080;<BR>
+</TD>
+<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD>
+&#1074;<BR>
+&#1074;&#1072;&#1074;&#1080;&#1083;&#1086;&#1074;&#1082;<BR>
+&#1074;&#1072;&#1075;&#1085;&#1077;&#1088;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;<BR>
+&#1074;&#1072;&#1075;&#1086;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1080;&#1095;&#1072;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1089;&#1090;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1089;&#1090;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1089;&#1090;<BR>
+&#1074;&#1072;&#1078;&#1085;&#1086;&#1089;&#1090;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1078;&#1085;<BR>
+&#1074;&#1072;&#1079;<BR>
+&#1074;&#1072;&#1079;<BR>
+&#1074;&#1072;&#1082;&#1089;<BR>
+&#1074;&#1072;&#1082;&#1093;&#1072;&#1085;&#1082;<BR>
+&#1074;&#1072;&#1083;<BR>
+&#1074;&#1072;&#1083;&#1072;&#1085;&#1076;&#1072;<BR>
+&#1074;&#1072;&#1083;&#1077;&#1085;&#1090;&#1080;&#1085;<BR>
+&#1074;&#1072;&#1083;&#1077;&#1088;&#1080;&#1072;&#1085;&#1086;&#1074;<BR>
+&#1074;&#1072;&#1083;&#1077;&#1088;<BR>
+&#1074;&#1072;&#1083;&#1077;&#1090;<BR>
+&#1074;&#1072;&#1083;<BR>
+&#1074;&#1072;&#1083;<BR>
+&#1074;&#1072;&#1083;<BR>
+&#1074;&#1072;&#1083;<BR>
+&#1074;&#1072;&#1083;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1076;&#1096;&#1085;&#1077;&#1087;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1089;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1089;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1089;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1089;&#1080;&#1096;&#1082;<BR>
+&#1074;&#1072;&#1083;&#1100;&#1090;&#1077;&#1088;<BR>
+&#1074;&#1072;&#1083;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1103;<BR>
+&#1074;&#1072;&#1083;&#1103;<BR>
+&#1074;&#1072;&#1084;<BR>
+&#1074;&#1072;&#1084;<BR>
+</TD>
+<TD></TD><TD> </TD>
+<TD></TD><TD>
+&#1087;<BR>
+&#1087;&#1072;<BR>
+&#1087;&#1072;&#1074;&#1072;<BR>
+&#1087;&#1072;&#1074;&#1077;&#1083;<BR>
+&#1087;&#1072;&#1074;&#1080;&#1083;&#1100;&#1086;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1080;&#1083;&#1100;&#1086;&#1085;&#1072;&#1084;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1072;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1080;&#1085;&#1080;&#1081;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1080;&#1085;&#1100;&#1080;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1080;&#1085;&#1100;&#1080;&#1084;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1080;&#1095;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;&#1072;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;&#1077;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;&#1086;&#1081;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;&#1091;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;&#1099;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1094;&#1099;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1099;&#1095;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1099;&#1095;&#1072;<BR>
+&#1087;&#1072;&#1075;&#1091;&#1073;&#1085;&#1072;&#1103;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1077;&#1090;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1081;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1083;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1083;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1083;&#1100;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1090;&#1100;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1102;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1102;&#1090;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1102;&#1097;&#1077;&#1075;&#1086;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1102;&#1097;&#1080;&#1077;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1078;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;&#1080;&#1077;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;&#1080;&#1077;&#1084;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;&#1080;&#1080;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;&#1080;&#1081;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;&#1080;&#1103;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;&#1100;&#1077;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;&#1100;&#1103;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1090;<BR>
+&#1087;&#1072;&#1076;&#1091;&#1090;<BR>
+&#1087;&#1072;&#1076;&#1091;&#1095;&#1072;&#1103;<BR>
+&#1087;&#1072;&#1076;&#1095;&#1077;&#1088;&#1080;&#1094;&#1077;&#1081;<BR>
+&#1087;&#1072;&#1076;&#1095;&#1077;&#1088;&#1080;&#1094;&#1099;<BR>
+&#1087;&#1072;&#1076;&#1096;&#1072;&#1103;<BR>
+&#1087;&#1072;&#1076;&#1096;&#1077;&#1081;<BR>
+&#1087;&#1072;&#1076;&#1096;&#1077;&#1084;&#1091;<BR>
+&#1087;&#1072;&#1076;&#1096;&#1080;&#1081;<BR>
+&#1087;&#1072;&#1076;&#1096;&#1080;&#1084;<BR>
+&#1087;&#1072;&#1076;&#1096;&#1080;&#1093;<BR>
+&#1087;&#1072;&#1076;&#1096;&#1091;&#1102;<BR>
+&#1087;&#1072;&#1077;&#1082;<BR>
+&#1087;&#1072;&#1079;&#1091;&#1093;&#1080;<BR>
+&#1087;&#1072;&#1079;&#1091;&#1093;&#1091;<BR>
+&#1087;&#1072;&#1081;<BR>
+&#1087;&#1072;&#1082;&#1077;&#1090;<BR>
+&#1087;&#1072;&#1082;&#1077;&#1090;&#1086;&#1084;<BR>
+&#1087;&#1072;&#1082;&#1077;&#1090;&#1099;<BR>
+&#1087;&#1072;&#1082;&#1086;&#1089;&#1090;&#1077;&#1081;<BR>
+&#1087;&#1072;&#1082;&#1086;&#1089;&#1090;&#1085;&#1086;<BR>
+&#1087;&#1072;&#1083;<BR>
+</TD>
+<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD>
+&#1087;<BR>
+&#1087;&#1072;<BR>
+&#1087;&#1072;&#1074;<BR>
+&#1087;&#1072;&#1074;&#1077;&#1083;<BR>
+&#1087;&#1072;&#1074;&#1080;&#1083;&#1100;&#1086;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1080;&#1083;&#1100;&#1086;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1083;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1080;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1080;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1080;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1080;&#1095;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1085;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1086;&#1074;&#1094;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1099;&#1095;<BR>
+&#1087;&#1072;&#1074;&#1083;&#1099;&#1095;<BR>
+&#1087;&#1072;&#1075;&#1091;&#1073;&#1085;<BR>
+&#1087;&#1072;&#1076;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1072;&#1083;<BR>
+&#1087;&#1072;&#1076;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1072;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1078;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1085;<BR>
+&#1087;&#1072;&#1076;&#1077;&#1090;<BR>
+&#1087;&#1072;&#1076;&#1091;&#1090;<BR>
+&#1087;&#1072;&#1076;&#1091;&#1095;<BR>
+&#1087;&#1072;&#1076;&#1095;&#1077;&#1088;&#1080;&#1094;<BR>
+&#1087;&#1072;&#1076;&#1095;&#1077;&#1088;&#1080;&#1094;<BR>
+&#1087;&#1072;&#1076;&#1096;<BR>
+&#1087;&#1072;&#1076;&#1096;<BR>
+&#1087;&#1072;&#1076;&#1096;<BR>
+&#1087;&#1072;&#1076;&#1096;<BR>
+&#1087;&#1072;&#1076;&#1096;<BR>
+&#1087;&#1072;&#1076;&#1096;<BR>
+&#1087;&#1072;&#1076;&#1096;<BR>
+&#1087;&#1072;&#1077;&#1082;<BR>
+&#1087;&#1072;&#1079;&#1091;&#1093;<BR>
+&#1087;&#1072;&#1079;&#1091;&#1093;<BR>
+&#1087;&#1072;<BR>
+&#1087;&#1072;&#1082;&#1077;&#1090;<BR>
+&#1087;&#1072;&#1082;&#1077;&#1090;<BR>
+&#1087;&#1072;&#1082;&#1077;&#1090;<BR>
+&#1087;&#1072;&#1082;&#1086;&#1089;&#1090;<BR>
+&#1087;&#1072;&#1082;&#1086;&#1089;&#1090;&#1085;<BR>
+&#1087;&#1072;&#1083;<BR>
+</TD>
+</TR>
+</TABLE></DL>
+
+
+</TR>
+
+<TR><TD>
+
+<BR><BR>
+<BR>&nbsp;<H2>The stemming algorith</H2>
+
+<I>i</I>-suffixes of Russian tend to be quite regular, with irregularities of
+declension involving a change to the stem. Irregular forms therefore
+usually just generate two or more possible stems. Stems in Russian can
+be very short, and many of the suffixes are also particle words that make
+&#8216;natural stopwords&#8217;, so a tempting way of running the stemmer is to set a
+minimum stem length of zero, and thereby reduce to null all words which
+are made up entirely of suffix parts. We have been a little more cautious,
+and have insisted that a minimum stem contains one vowel.
+<BR><BR>
+The 32 letters of the Russian alphabet are as follows, with the
+transliterated forms that we will use here shown in brackets:
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD> &#1072; (<B><I>a</I></B>)
+<TD></TD><TD> &#1073; (<B><I>b</I></B>)
+<TD></TD><TD> &#1074; (<B><I>v</I></B>)
+<TD></TD><TD> &#1075; (<B><I>g</I></B>)
+<TD></TD><TD> &#1076; (<B><I>d</I></B>)
+<TD></TD><TD> &#1077; (<B><I>e</I></B>)
+<TD></TD><TD> &#1078; (<B><I>zh</I></B>)
+<TD></TD><TD> &#1079; (<B><I>z</I></B>)
+
+<TR><TD> &#1080; (<B><I>i</I></B>)
+<TD></TD><TD> &#1081; (<B><I>&igrave;</I></B>)
+<TD></TD><TD> &#1082; (<B><I>k</I></B>)
+<TD></TD><TD> &#1083; (<B><I>l</I></B>)
+<TD></TD><TD> &#1084; (<B><I>m</I></B>)
+<TD></TD><TD> &#1085; (<B><I>n</I></B>)
+<TD></TD><TD> &#1086; (<B><I>o</I></B>)
+<TD></TD><TD> &#1087; (<B><I>p</I></B>)
+
+<TR><TD> &#1088; (<B><I>r</I></B>)
+<TD></TD><TD> &#1089; (<B><I>s</I></B>)
+<TD></TD><TD> &#1090; (<B><I>t</I></B>)
+<TD></TD><TD> &#1091; (<B><I>u</I></B>)
+<TD></TD><TD> &#1092; (<B><I>f</I></B>)
+<TD></TD><TD> &#1093; (<B><I>kh</I></B>)
+<TD></TD><TD> &#1094; (<B><I><U>ts</U></I></B>)
+<TD></TD><TD> &#1095; (<B><I>ch</I></B>)
+
+<TR><TD> &#1096; (<B><I>sh</I></B>)
+<TD></TD><TD> &#1097; (<B><I>shch</I></B>)
+<TD></TD><TD> &#1098; (<B><I>"</I></B>)
+<TD></TD><TD> &#1099; (<B><I>y</I></B>)
+<TD></TD><TD> &#1100; (<B><I>'</I></B>)
+<TD></TD><TD> &#1101; (<B><I>&egrave;</I></B>)
+<TD></TD><TD> &#1102; (<B><I><U>iu</U></I></B>)
+<TD></TD><TD> &#1103; (<B><I><U>ia</U></I></B>)
+
+</TABLE></DL>
+There is a 33rd letter, &#1105; (<B><I>&euml;</I></B>), but it is rarely used, and we assume it is mapped into &#1077; (<B><I>e</I></B>).
+<BR><BR>
+The following are vowels:
+<DL><DD>
+    &#1072; (<B><I>a</I></B>)  &nbsp;   &#1077; (<B><I>e</I></B>)  &nbsp;   &#1080; (<B><I>i</I></B>)  &nbsp;   &#1086; (<B><I>o</I></B>)  &nbsp;   &#1091; (<B><I>u</I></B>)  &nbsp;   &#1099; (<B><I>y</I></B>)  &nbsp;
+    &#1101; (<B><I>&egrave;</I></B>)  &nbsp;   &#1102; (<B><I><U>iu</U></I></B>)  &nbsp;   &#1103; (<B><I><U>ia</U></I></B>)
+</DL>
+In any word, <I>RV</I> is the region after the first vowel, or the end of the word
+if it contains no vowel.
+<BR><BR>
+<I>R</I>1 is the region after the first non-vowel following a vowel, or the end of
+the word if there is no such non-vowel.
+<BR><BR>
+<I>R</I>2 is the region after the first non-vowel following a vowel in <I>R</I>1, or the
+end of the word if there is no such non-vowel.
+<BR><BR>
+For example:
+<BR><PRE>
+    p r o t i v o e s t e s t v e n n o m
+         |<------       RV        ------>|
+           |<-----       R1       ------>|
+               |<-----     R2     ------>|
+</PRE>
+We now define the following classes of ending:
+<BR><BR>
+<FONT SIZE=-1>PERFECTIVE GERUND</FONT>:
+<DL><DD>
+    group 1:  &nbsp;  &#1074; (<B><I>v</I></B>)  &nbsp;  &#1074;&#1096;&#1080; (<B><I>vshi</I></B>) &#1074;&#1096;&#1080;&#1089;&#1100; (<B><I>vshis'</I></B>)  &nbsp;
+<BR><BR>
+    group 2:  &nbsp;  &#1080;&#1074; (<B><I>iv</I></B>)  &nbsp;  &#1080;&#1074;&#1096;&#1080; (<B><I>ivshi</I></B>)  &nbsp;  &#1080;&#1074;&#1096;&#1080;&#1089;&#1100; (<B><I>ivshis'</I></B>)  &nbsp;
+                &#1099;&#1074; (<B><I>yv</I></B>)  &nbsp;  &#1099;&#1074;&#1096;&#1080; (<B><I>yvshi</I></B>) &#1099;&#1074;&#1096;&#1080;&#1089;&#1100; (<B><I>yvshis'</I></B>)  &nbsp;
+</DL>
+group 1 endings must follow &#1072; (<B><I>a</I></B>) or &#1103; (<B><I><U>ia</U></I></B>)
+<BR><BR>
+<FONT SIZE=-1>ADJECTIVE</FONT>:
+<DL><DD>
+    &#1077;&#1077; (<B><I>ee</I></B>)  &nbsp;   &#1080;&#1077; (<B><I>ie</I></B>)  &nbsp;   &#1099;&#1077; (<B><I>ye</I></B>)  &nbsp;   &#1086;&#1077; (<B><I>oe</I></B>)  &nbsp;   &#1080;&#1084;&#1080; (<B><I>imi</I></B>)  &nbsp;   &#1099;&#1084;&#1080;
+    (<B><I>ymi</I></B>)  &nbsp;   &#1077;&#1081; (<B><I>e&igrave;</I></B>)  &nbsp;   &#1080;&#1081; (<B><I>i&igrave;</I></B>)  &nbsp;   &#1099;&#1081; (<B><I>y&igrave;</I></B>)  &nbsp;   &#1086;&#1081; (<B><I>o&igrave;</I></B>)  &nbsp;   &#1077;&#1084;
+    (<B><I>em</I></B>)  &nbsp;   &#1080;&#1084; (<B><I>im</I></B>)  &nbsp;   &#1099;&#1084; (<B><I>ym</I></B>)  &nbsp;   &#1086;&#1084; (<B><I>om</I></B>)  &nbsp;   &#1077;&#1075;&#1086; (<B><I>ego</I></B>)  &nbsp;  &#1086;&#1075;&#1086; (<B><I>ogo</I></B>)
+     &nbsp;  &#1077;&#1084;&#1091; (<B><I>emu</I></B>)  &nbsp;   &#1086;&#1084;&#1091; (<B><I>omu</I></B>)  &nbsp;   &#1080;&#1093; (<B><I>ikh</I></B>)  &nbsp;   &#1099;&#1093; (<B><I>ykh</I></B>)  &nbsp;   &#1091;&#1102; (<B><I>u<U>iu</U></I></B>)
+     &nbsp;  &#1102;&#1102; (<B><I><U>iu</U><U>iu</U></I></B>)  &nbsp;   &#1072;&#1103; (<B><I>a<U>ia</U></I></B>)  &nbsp;   &#1103;&#1103; (<B><I><U>ia</U><U>ia</U></I></B>)
+     &nbsp;   &#1086;&#1102; (<B><I>o<U>iu</U></I></B>)
+     &nbsp;   &#1077;&#1102; (<B><I>e<U>iu</U></I></B>)
+</DL>
+<FONT SIZE=-1>PARTICIPLE</FONT>:
+<DL><DD>
+    group 1:  &nbsp;  &#1077;&#1084; (<B><I>em</I></B>)  &nbsp;  &#1085;&#1085; (<B><I>nn</I></B>)  &nbsp;  &#1074;&#1096; (<B><I>vsh</I></B>)  &nbsp;  &#1102;&#1097; (<B><I><U>iu</U>shch</I></B>)  &nbsp;  &#1097; (<B><I>shch</I></B>)
+<BR><BR>
+    group 2:  &nbsp;  &#1080;&#1074;&#1096; (<B><I>ivsh</I></B>)  &nbsp;  &#1099;&#1074;&#1096; (<B><I>yvsh</I></B>)  &nbsp;  &#1091;&#1102;&#1097; (<B><I>u<U>iu</U>shch</I></B>)
+</DL>
+group 1 endings must follow &#1072; (<B><I>a</I></B>) or &#1103; (<B><I><U>ia</U></I></B>)
+<BR><BR>
+<FONT SIZE=-1>REFLEXIVE</FONT>:
+<DL><DD>
+    &#1089;&#1103; (<B><I>s<U>ia</U></I></B>)  &nbsp;  &#1089;&#1100; (<B><I>s'</I></B>)
+</DL>
+<FONT SIZE=-1>VERB</FONT>:
+<DL><DD>
+    group 1: &#1083;&#1072; (<B><I>la</I></B>)  &nbsp;  &#1085;&#1072; (<B><I>na</I></B>)  &nbsp;  &#1077;&#1090;&#1077; (<B><I>ete</I></B>)  &nbsp;  &#1081;&#1090;&#1077; (<B><I>&igrave;te</I></B>)  &nbsp;  &#1083;&#1080; (<B><I>li</I></B>)
+     &nbsp;  &#1081; (<B><I>&igrave;</I></B>)  &nbsp;  &#1083; (<B><I>l</I></B>)  &nbsp;  &#1077;&#1084; (<B><I>em</I></B>)  &nbsp;  &#1085; (<B><I>n</I></B>)  &nbsp;  &#1083;&#1086; (<B><I>lo</I></B>)  &nbsp;  &#1085;&#1086; (<B><I>no</I></B>)  &nbsp;  &#1077;&#1090;
+    (<B><I>et</I></B>)  &nbsp;  &#1102;&#1090; (<B><I><U>iu</U>t</I></B>)  &nbsp;  &#1085;&#1099; (<B><I>ny</I></B>)  &nbsp;  &#1090;&#1100; (<B><I>t'</I></B>)  &nbsp;  &#1077;&#1096;&#1100; (<B><I>esh'</I></B>)  &nbsp;  &#1085;&#1085;&#1086; (<B><I>nno</I></B>)
+<BR><BR>
+    group 2: &#1080;&#1083;&#1072; (<B><I>ila</I></B>)  &nbsp;  &#1099;&#1083;&#1072; (<B><I>yla</I></B>)  &nbsp;  &#1077;&#1085;&#1072; (<B><I>ena</I></B>)  &nbsp;  &#1077;&#1081;&#1090;&#1077; (<B><I>e&igrave;te</I></B>)  &nbsp;
+    &#1091;&#1081;&#1090;&#1077; (<B><I>u&igrave;te</I></B>)  &nbsp;  &#1080;&#1090;&#1077; (<B><I>ite</I></B>)  &nbsp;  &#1080;&#1083;&#1080; (<B><I>ili</I></B>)  &nbsp;  &#1099;&#1083;&#1080;
+    (<B><I>yli</I></B>)  &nbsp;  &#1077;&#1081; (<B><I>e&igrave;</I></B>)  &nbsp;  &#1091;&#1081; (<B><I>u&igrave;</I></B>)  &nbsp;  &#1080;&#1083; (<B><I>il</I></B>)  &nbsp;  &#1099;&#1083; (<B><I>yl</I></B>)  &nbsp;  &#1080;&#1084; (<B><I>im</I></B>)  &nbsp;
+    &#1099;&#1084; (<B><I>ym</I></B>)  &nbsp;  &#1077;&#1085; (<B><I>en</I></B>)  &nbsp;  &#1080;&#1083;&#1086; (<B><I>ilo</I></B>)  &nbsp;  &#1099;&#1083;&#1086; (<B><I>ylo</I></B>)  &nbsp;  &#1077;&#1085;&#1086; (<B><I>eno</I></B>)  &nbsp;  &#1103;&#1090;
+    (<B><I><U>ia</U>t</I></B>)  &nbsp;  &#1091;&#1077;&#1090; (<B><I>uet</I></B>)  &nbsp;  &#1091;&#1102;&#1090; (<B><I>u<U>iu</U>t</I></B>)  &nbsp;  &#1080;&#1090; (<B><I>it</I></B>)  &nbsp;  &#1099;&#1090; (<B><I>yt</I></B>)  &nbsp;  &#1077;&#1085;&#1099;
+    (<B><I>eny</I></B>)  &nbsp;  &#1080;&#1090;&#1100; (<B><I>it'</I></B>)  &nbsp;  &#1099;&#1090;&#1100; (<B><I>yt'</I></B>)  &nbsp;  &#1080;&#1096;&#1100; (<B><I>ish'</I></B>)  &nbsp;
+    &#1091;&#1102; (<B><I>u<U>iu</U></I></B>)  &nbsp;  &#1102; (<B><I><U>iu</U></I></B>)
+</DL>
+group 1 endings must follow &#1072; (<B><I>a</I></B>) or &#1103; (<B><I><U>ia</U></I></B>)
+<BR><BR>
+<FONT SIZE=-1>NOUN</FONT>:
+<DL><DD>
+&#1072; (<B><I>a</I></B>)  &nbsp;  &#1077;&#1074; (<B><I>ev</I></B>)  &nbsp;  &#1086;&#1074; (<B><I>ov</I></B>)  &nbsp;  &#1080;&#1077; (<B><I>ie</I></B>)  &nbsp;  &#1100;&#1077; (<B><I>'e</I></B>)  &nbsp;  &#1077; (<B><I>e</I></B>)  &nbsp;  &#1080;&#1103;&#1084;&#1080;
+(<B><I>i<U>ia</U>mi</I></B>)  &nbsp;  &#1103;&#1084;&#1080; (<B><I><U>ia</U>mi</I></B>)  &nbsp;  &#1072;&#1084;&#1080; (<B><I>ami</I></B>)  &nbsp;  &#1077;&#1080; (<B><I>ei</I></B>)  &nbsp;  &#1080;&#1080; (<B><I>ii</I></B>)  &nbsp;  &#1080; (<B><I>i</I></B>)  &nbsp;
+&#1080;&#1077;&#1081; (<B><I>ie&igrave;</I></B>)  &nbsp;  &#1077;&#1081; (<B><I>e&igrave;</I></B>)  &nbsp;  &#1086;&#1081; (<B><I>o&igrave;</I></B>)  &nbsp;  &#1080;&#1081; (<B><I>i&igrave;</I></B>)  &nbsp;  &#1081; (<B><I>&igrave;</I></B>)  &nbsp;
+&#1080;&#1103;&#1084; (<B><I>i<U>ia</U>m</I></B>)  &nbsp;  &#1103;&#1084; (<B><I><U>ia</U>m</I></B>)  &nbsp;  &#1080;&#1077;&#1084; (<B><I>iem</I></B>)  &nbsp;  &#1077;&#1084; (<B><I>em</I></B>)  &nbsp;  &#1072;&#1084; (<B><I>am</I></B>)  &nbsp;  &#1086;&#1084;
+(<B><I>om</I></B>)  &nbsp;  &#1086; (<B><I>o</I></B>)  &nbsp;  &#1091; (<B><I>u</I></B>)  &nbsp;  &#1072;&#1093; (<B><I>akh</I></B>)  &nbsp;  &#1080;&#1103;&#1093; (<B><I>i<U>ia</U>kh</I></B>)  &nbsp;  &#1103;&#1093; (<B><I><U>ia</U>kh</I></B>)  &nbsp;  &#1099;
+(<B><I>y</I></B>)  &nbsp;  &#1100; (<B><I>'</I></B>)  &nbsp;  &#1080;&#1102; (<B><I>i<U>iu</U></I></B>)  &nbsp;  &#1100;&#1102; (<B><I>'<U>iu</U></I></B>)  &nbsp;  &#1102; (<B><I><U>iu</U></I></B>)  &nbsp;  &#1080;&#1103; (<B><I>i<U>ia</U></I></B>)  &nbsp;  &#1100;&#1103;
+(<B><I>'<U>ia</U></I></B>)  &nbsp;  &#1103; (<B><I><U>ia</U></I></B>)
+</DL>
+<FONT SIZE=-1>SUPERLATIVE</FONT>:
+<DL><DD>
+    &#1077;&#1081;&#1096; (<B><I>e&igrave;sh</I></B>)  &nbsp;   &#1077;&#1081;&#1096;&#1077; (<B><I>e&igrave;she</I></B>)
+</DL>
+These are all <I>i</I>-suffixes. The list of <I>d</I>-suffixes is very short,
+<BR><BR>
+<FONT SIZE=-1>DERIVATIONAL</FONT>:
+<DL><DD>
+    &#1086;&#1089;&#1090; (<B><I>ost</I></B>)  &nbsp;   &#1086;&#1089;&#1090;&#1100; (<B><I>ost'</I></B>)
+</DL>
+Define an <FONT SIZE=-1>ADJECTIVAL</FONT> ending as an <FONT SIZE=-1>ADJECTIVE</FONT> ending optionally preceded
+by a <FONT SIZE=-1>PARTICIPLE</FONT> ending.
+<DL><DD>
+    For example, in
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>        &#1073;&#1077;&#1075;&#1072;&#1074;&#1096;&#1072;&#1103;  <TD></TD><TD> = <TD></TD><TD> &#1073;&#1077;&#1075;&#1072; <TD></TD><TD> + <TD></TD><TD> &#1074;&#1096; <TD></TD><TD> + <TD></TD><TD> &#1072;&#1103;
+<TR><TD>        (<I>begavsha<U>ia</U></I>         <TD></TD><TD> = <TD></TD><TD> <I>bega</I>     <TD></TD><TD> + <TD></TD><TD> <B><I>vsh</I></B>   <TD></TD><TD> + <TD></TD><TD> <B><I>a<U>ia</U></I></B>)
+</TABLE></DL>
+    &#1072;&#1103; (<B><I>a<U>ia</U></I></B>) is an adjective ending, and &#1074;&#1096; (<B><I>vsh</I></B>) a participle ending of group 1
+    (preceded by the final &#1072; (<B><I>a</I></B>) of &#1073;&#1077;&#1075;&#1072; (<B><I>bega</I></B>)), so &#1074;&#1096;&#1072;&#1103; (<B><I>vsha<U>ia</U></I></B>) is an
+    adjectival ending.
+</DL>
+Define a <FONT SIZE=-1>VERBAL</FONT> ending as either a <FONT SIZE=-1>REFLEXIVE</FONT> ending preceded by a <FONT SIZE=-1>VERB</FONT> or
+<FONT SIZE=-1>ADJECTIVAL</FONT> ending, or a <FONT SIZE=-1>VERB</FONT> ending.
+<DL><DD>
+    For example,
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>        &#1074;&#1075;&#1083;&#1103;&#1076;&#1099;&#1074;&#1072;&#1077;&#1090;&#1089;&#1103; <TD></TD><TD>=<TD></TD><TD> &#1074;&#1075;&#1083;&#1103;&#1076;&#1099;&#1074;&#1072; <TD></TD><TD>+<TD></TD><TD> &#1077;&#1090;  <TD></TD><TD>+<TD></TD><TD> &#1089;&#1103;
+<TR><TD>        (<I>vgl<U>ia</U>dyvaets<U>ia</U></I>   <TD></TD><TD>=<TD></TD><TD> <I>vgl<U>ia</U>dyva</I> <TD></TD><TD>+<TD></TD><TD> <B><I>et</I></B><TD></TD><TD>+<TD></TD><TD> <B><I>s<U>ia</U></I></B>)
+</TABLE></DL>
+      (verbal + reflexive)
+<BR><BR>
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>        &#1074;&#1099;&#1088;&#1074;&#1072;&#1074;&#1096;&#1072;&#1103;&#1089;&#1103; <TD></TD><TD>=<TD></TD><TD> &#1074;&#1099;&#1088;&#1074;&#1072; <TD></TD><TD>+<TD></TD><TD> &#1074;&#1096;  <TD></TD><TD>+<TD></TD><TD> &#1072;&#1103;       <TD></TD><TD>+<TD></TD><TD> &#1089;&#1103;
+<TR><TD>        <I>vyrvavsha<U>ia</U>s<U>ia</U></I>    <TD></TD><TD>=<TD></TD><TD> <I>vyrva</I>      <TD></TD><TD>+<TD></TD><TD> <B><I>vsh</I></B><TD></TD><TD>+<TD></TD><TD> <B><I>a<U>ia</U></I></B> <TD></TD><TD>+<TD></TD><TD> <B><I>s<U>ia</U></I></B>)
+</TABLE></DL>
+   (adjectival + reflexive)
+<BR><BR>
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>        &#1074;&#1099;&#1088;&#1074;&#1072;&#1083;&#1072;          <TD></TD><TD>=<TD></TD><TD> &#1074;&#1099;&#1088;&#1074;&#1072; <TD></TD><TD>+<TD></TD><TD> &#1083;&#1072;
+<TR><TD>        (<I>vyrvala</I>            <TD></TD><TD>=<TD></TD><TD> <I>vyrva</I>  <TD></TD><TD>+<TD></TD><TD> <B><I>la</I></B>)
+</TABLE></DL>
+   (verb)
+</DL>
+In searching for an ending in a class, always choose the longest one
+from the class.
+<DL><DD>
+    So in seaching for a <FONT SIZE=-1>NOUN</FONT> ending for &#1074;&#1077;&#1083;&#1080;&#1095;&#1080;&#1077; (<I>velichie</I>), choose &#1080;&#1077; (<B><I>ie</I></B>) rather than
+    &#1077; (<B><I>e</I></B>).
+</DL>
+Undouble &#1085; (<B><I>n</I></B>) means, if the word ends &#1085;&#1085; (<B><I>nn</I></B>), remove the last letter.
+<BR><BR>
+Here now are the stemming rules.
+<BR><BR>
+All tests take place in the the <I>RV</I> part of the word.
+<DL><DD>
+    So in the test for perfective gerund, the &#1072; (<B><I>a</I></B>) or &#1103; (<B><I><U>ia</U></I></B>) which the group 2
+    endings must follow must itself be in <I>RV</I>. In other words the letters
+    before the <I>RV</I> region are never examined in the stemming process.
+</DL>
+Step 1: In turn, seach for a (1) <FONT SIZE=-1>PERFECTIVE GERUND</FONT>, (2) <FONT SIZE=-1>ADJECTIVAL</FONT>, (3)
+<FONT SIZE=-1>VERBAL</FONT> or (4) <FONT SIZE=-1>NOUN</FONT> ending. As soon as one is found remove it, and
+terminate step 1. Whether one is found or not, continue to step 2.
+<BR><BR>
+Step 2: If the word ends with &#1080; (<B><I>i</I></B>), remove it.
+<BR><BR>
+Step 3: Search for a <FONT SIZE=-1>DERIVATIONAL</FONT> ending in <I>R</I>2 (i.e. the entire ending
+must lie in <I>R</I>2), and if one is found, remove it.
+<BR><BR>
+Step 4: (1) Undouble &#1085; (<B><I>n</I></B>), or, (2) if the word ends with a <FONT SIZE=-1>SUPERLATIVE</FONT> ending,
+remove it and undouble &#1085; (<B><I>n</I></B>), or (3) if the word ends &#1100; (<B><I>'</I></B>) (soft sign) remove it.
+<BR><BR>
+
+
+
+</TR>
+
+<TR><TD BGCOLOR="#e0e0FC">
+
+<BR>&nbsp;<H2>The same algorithm in Snowball</H2>
+
+<FONT SIZE=-1><PRE>
+<DL><DD>
+stringescapes {}
+
+// the 32 Cyrillic letters:
+
+stringdef a    hex 'C1'
+stringdef b    hex 'C2'
+stringdef v    hex 'D7'
+stringdef g    hex 'C7'
+stringdef d    hex 'C4'
+stringdef e    hex 'C5'
+stringdef zh   hex 'D6'
+stringdef z    hex 'DA'
+stringdef i    hex 'C9'
+stringdef i`   hex 'CA'
+stringdef k    hex 'CB'
+stringdef l    hex 'CC'
+stringdef m    hex 'CD'
+stringdef n    hex 'CE'
+stringdef o    hex 'CF'
+stringdef p    hex 'D0'
+stringdef r    hex 'D2'
+stringdef s    hex 'D3'
+stringdef t    hex 'D4'
+stringdef u    hex 'D5'
+stringdef f    hex 'C6'
+stringdef kh   hex 'C8'
+stringdef ts   hex 'C3'
+stringdef ch   hex 'DE'
+stringdef sh   hex 'DB'
+stringdef shch hex 'DD'
+stringdef "    hex 'DF'
+stringdef y    hex 'D9'
+stringdef '    hex 'D8'
+stringdef e`   hex 'DC'
+stringdef iu   hex 'C0'
+stringdef ia   hex 'D1'
+
+routines ( mark_regions R2
+           perfective_gerund
+           adjective
+           adjectival
+           reflexive
+           verb
+           verbal
+           noun
+           derivational
+           tidy_up
+)
+
+externals ( stem )
+
+integers ( pV p2 )
+
+groupings ( v )
+
+define v '{a}{e}{i}{o}{u}{y}{e`}{iu}{ia}'
+
+define mark_regions as (
+
+    $pV = limit
+    $p2 = limit
+    do (
+        gopast v  setmark pV  gopast non-v
+        gopast v  gopast non-v  setmark p2
+       )
+)
+
+backwardmode (
+
+    define R2 as $p2 <= cursor
+
+    define perfective_gerund as (
+        [substring] among (
+            '{v}'
+            '{v}{sh}{i}'
+            '{v}{sh}{i}{s}{'}'
+                ('{a}' or '{ia}' delete)
+            '{i}{v}'
+            '{i}{v}{sh}{i}'
+            '{i}{v}{sh}{i}{s}{'}'
+            '{y}{v}'
+            '{y}{v}{sh}{i}'
+            '{y}{v}{sh}{i}{s}{'}'
+                (delete)
+        )
+    )
+
+    define adjective as (
+        [substring] among (
+            '{e}{e}' '{i}{e}' '{y}{e}' '{o}{e}' '{i}{m}{i}' '{y}{m}{i}'
+            '{e}{i`}' '{i}{i`}' '{y}{i`}' '{o}{i`}' '{e}{m}' '{i}{m}'
+            '{y}{m}' '{o}{m}' '{e}{g}{o}' '{o}{g}{o}' '{e}{m}{u}'
+            '{o}{m}{u}' '{i}{kh}' '{y}{kh}' '{u}{iu}' '{iu}{iu}' '{a}{ia}'
+            '{ia}{ia}'
+                        // and -
+            '{o}{iu}'   // - which is somewhat archaic
+            '{e}{iu}'   // - soft form of {o}{iu}
+                (delete)
+        )
+    )
+
+    define adjectival as (
+        adjective
+
+        /* of the participle forms, em, vsh, ivsh, yvsh are readily removable.
+           nn, &iuml;shch, shch, u&iuml;shch can be removed, with a small proportion of
+           errors. Removing im, uem, enn creates too many errors.
+        */
+
+        try (
+            [substring] among (
+                '{e}{m}'                  // present passive participle
+                '{n}{n}'                  // adjective from past passive participle
+                '{v}{sh}'                 // past active participle
+                '{iu}{shch}' '{shch}'     // present active participle
+                    ('{a}' or '{ia}' delete)
+
+     //but not  '{i}{m}' '{u}{e}{m}'      // present passive participle
+     //or       '{e}{n}{n}'               // adjective from past passive participle
+
+                '{i}{v}{sh}' '{y}{v}{sh}'// past active participle
+                '{u}{iu}{shch}'          // present active participle
+                    (delete)
+            )
+        )
+
+    )
+
+    define reflexive as (
+        [substring] among (
+            '{s}{ia}'
+            '{s}{'}'
+                (delete)
+        )
+    )
+
+    define verb as (
+        [substring] among (
+            '{l}{a}' '{n}{a}' '{e}{t}{e}' '{i`}{t}{e}' '{l}{i}' '{i`}'
+            '{l}' '{e}{m}' '{n}' '{l}{o}' '{n}{o}' '{e}{t}' '{iu}{t}'
+            '{n}{y}' '{t}{'}' '{e}{sh}{'}'
+
+            '{n}{n}{o}'
+                ('{a}' or '{ia}' delete)
+
+            '{i}{l}{a}' '{y}{l}{a}' '{e}{n}{a}' '{e}{i`}{t}{e}'
+            '{u}{i`}{t}{e}' '{i}{t}{e}' '{i}{l}{i}' '{y}{l}{i}' '{e}{i`}'
+            '{u}{i`}' '{i}{l}' '{y}{l}' '{i}{m}' '{y}{m}' '{e}{n}'
+            '{i}{l}{o}' '{y}{l}{o}' '{e}{n}{o}' '{ia}{t}' '{u}{e}{t}'
+            '{u}{iu}{t}' '{i}{t}' '{y}{t}' '{e}{n}{y}' '{i}{t}{'}'
+            '{y}{t}{'}' '{i}{sh}{'}' '{u}{iu}' '{iu}'
+                (delete)
+            /* note the short passive participle tests:
+               '{n}{a}' '{n}' '{n}{o}' '{n}{y}'
+               '{e}{n}{a}' '{e}{n}' '{e}{n}{o}' '{e}{n}{y}'
+            */
+        )
+    )
+
+    define verbal as (
+        ( reflexive
+          verb or adjectival )
+        or verb
+    )
+
+    define noun as (
+        [substring] among (
+            '{a}' '{e}{v}' '{o}{v}' '{i}{e}' '{'}{e}' '{e}'
+            '{i}{ia}{m}{i}' '{ia}{m}{i}' '{a}{m}{i}' '{e}{i}' '{i}{i}'
+            '{i}' '{i}{e}{i`}' '{e}{i`}' '{o}{i`}' '{i}{i`}' '{i`}'
+            '{i}{ia}{m}' '{ia}{m}' '{i}{e}{m}' '{e}{m}' '{a}{m}' '{o}{m}'
+            '{o}' '{u}' '{a}{kh}' '{i}{ia}{kh}' '{ia}{kh}' '{y}' '{'}'
+            '{i}{iu}' '{'}{iu}' '{iu}' '{i}{ia}' '{'}{ia}' '{ia}'
+                (delete)
+            /* the small class of neuter forms '{e}{n}{i}' '{e}{n}{e}{m}'
+               '{e}{n}{a}' '{e}{n}' '{e}{n}{a}{m}' '{e}{n}{a}{m}{i}' '{e}{n}{a}{x}'
+               omitted - they only occur on 12 words.
+            */
+        )
+    )
+
+    define derivational as (
+        [substring] R2 among (
+            '{o}{s}{t}'
+            '{o}{s}{t}{'}'
+                (delete)
+        )
+    )
+
+    define tidy_up as (
+        [substring] among (
+
+            '{e}{i`}{sh}'
+            '{e}{i`}{sh}{e}'  // superlative forms
+               (delete
+                ['{n}'] '{n}' delete
+               )
+            '{n}'
+               ('{n}' delete) // e.g. -nno endings
+            '{'}'
+               (delete)  // with some slight false conflations
+        )
+    )
+)
+
+define stem as (
+
+    do mark_regions
+    backwards setlimit tomark pV for (
+        do ( perfective_gerund or adjectival or verbal or noun )
+
+        try([ '{i}' ] delete)
+        // because noun ending -i&iuml; is being treated as verb ending -&iuml;
+
+        do derivational
+        do tidy_up
+    )
+)
+</DL>
+</PRE></FONT>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

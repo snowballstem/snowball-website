@@ -1,0 +1,191 @@
+
+<HTML>
+<HEAD>
+<TITLE>Using Snowball</TITLE></HEAD>
+<BODY BGCOLOR=WHITE>
+<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
+<H1 ALIGN=CENTER>Using Snowball</H1>
+<TR><TD BGCOLOR="#FCFCe0">
+<BR>&nbsp;<H2>Links to resources</H2>
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><A HREF="../p/snowman.html">     Snowball manual</A>
+</TABLE></DL>
+
+</TR>
+
+<TR><TD>
+
+<BR><BR>
+
+
+<BR>&nbsp;<H2>Compiling and running Snowball</H2>
+
+When you download Snowball, it already has in place a make file that you can
+call to build it. But in any case, Snowball has a very simple structure,
+comprising a traditional tokeniser, syntax analyser and code generator modules,
+with two extra modules for space management and an internal merge sort,
+and a small driver module, all
+sharing a common header file.  If you put these sources into a directory
+<TT>p/</TT>, you can compile Snowball at once (Linux or Unix) with
+<BR><PRE>
+    gcc -O -o Snowball p/*.c
+</PRE>
+Snowball can then be called up with the following syntax,
+<BR><PRE>
+    F1 [-o[utput] F2] [-s[yntax]] [-ep[refix] S1] [-vp[refix] S2]
+</PRE>
+For example,
+<BR><PRE>
+    ./Snowball danish/stem -o q/danish
+    ./Snowball danish/stem -syntax
+    ./Snowball danish/stem -output q/danish -ep danish_
+</PRE>
+The first argument, &nbsp;<TT>F1</TT>, is the name of the Snowball file to be compiled. It produces
+two outputs, an ANSI C module in &nbsp;<TT>F2.c</TT>&nbsp; and a corresponding header file in &nbsp;<TT>F2.h</TT>.
+In the absence of the &nbsp;<TT>-eprefix</TT>&nbsp; and &nbsp;<TT>-vprefix</TT>&nbsp; options, the list of declared externals in
+the Snowball program, for example,
+<BR><PRE>
+    externals ( stem_1 stem_2 moderate )
+</PRE>
+gives rise to a header file containing,
+<BR><PRE>
+    extern struct SN_env * create_env(void);
+    extern void close_env(struct SN_env * z);
+
+    extern int moderate(struct SN_env * z);
+    extern int stem_2(struct SN_env * z);
+    extern int stem_1(struct SN_env * z);
+</PRE>
+If &nbsp;<TT>-eprefix</TT>&nbsp; is used, its string, &nbsp;<TT>S1</TT>, is prefixed to each external name, for
+example &nbsp;<TT>-eprefix Khotanese_</TT>&nbsp; would give rise the header file,
+<BR><PRE>
+    extern struct SN_env * Khotanese_create_env(void);
+    extern void close_env(struct SN_env * z);
+
+    extern int Khotanese_moderate(struct SN_env * z);
+    extern int Khotanese_stem_2(struct SN_env * z);
+    extern int Khotanese_stem_1(struct SN_env * z);
+</PRE>
+If &nbsp;<TT>-vprefix</TT>&nbsp; is used, all Snowball strings, integers and booleans give rise to a
+<TT>#define</TT>&nbsp; line in the header file. For example
+<TT>-eprefix Khotanese_ -vprefix Khotanese_variable</TT>&nbsp; would give rise the header file,
+<BR><PRE>
+    extern struct SN_env * Khotanese_create_env(void);
+    extern void close_env(struct SN_env * z);
+
+    #define Khotanese_variable_ch (S[0])
+    #define Khotanese_variable_Y_found (B[0])
+    #define Khotanese_variable_p2 (I[1])
+    #define Khotanese_variable_p1 (I[0])
+    extern int Khotanese_stem(struct SN_env * z);
+</PRE>
+If &nbsp;<TT>-syntax</TT>&nbsp; is used the other options are ignored, and the syntax tree of the Snowball
+program is directed to &nbsp;<TT>stdout</TT>. This can be a handy way of checking that you have got
+the bracketing right in the program you have written.
+
+
+<BR>&nbsp;<H2>The Snowball API</H2>
+
+To access Snowball from C, include the header &nbsp;<TT>api.h</TT>, and any headers generated from the
+Snowball scripts you wish to use. &nbsp;<TT>api.h</TT>&nbsp; declares
+<BR><PRE>
+    struct SN_env { ... };
+    extern void SN_set_current(struct SN_env * z, int size, char * s);
+</PRE>
+Continuing the previous example, you set up an environment to call the resources of the
+Khotanese module with
+<BR><PRE>
+    struct SN_env * z;
+    z = Khotanese_create_env();
+</PRE>
+Snowball has the concept of a &#8216;current string&#8217;.
+This can be set up by,
+<BR><PRE>
+    SN_set_current(z, i, b);
+</PRE>
+This defines the current string as the &nbsp;<TT>i</TT>&nbsp; bytes of data starting at address &nbsp;<TT>b</TT>.
+<BR><PRE>
+The externals can then be called,
+
+    Khotanese_moderate(z);
+    ...
+    Khotanese_stem_1(z);
+</PRE>
+They give a 1 or 0 result, corresponding to the <B><I>t</I></B> or <B><I>f</I></B> result of the Snowball
+routine.
+<BR><BR>
+And later,
+<BR><PRE>
+    Khotanese_close_env(z);
+</PRE>
+To release the space raised by z back to the system. You can do this for a number of
+Snowball modules at the same time: you will need a separate
+<TT>struct SN_env * z;</TT>&nbsp; for each module.
+
+The current string is given by the &nbsp;<TT>z->l</TT>&nbsp; bytes of data starting at &nbsp;<TT>z->p</TT>.
+The string is not zero-terminated, but you can zero terminate it yourself with
+<BR><PRE>
+    z->p[z->l] = 0;
+</PRE>
+(There is always room for this last zero byte.) For example,
+<BR><PRE>
+    SN_set_current(z, strlen(s), s);
+    Khotanese_stem_1(z);
+    z->p[z->l] = 0;
+    printf("Khotanese-1 stems '%s' to '%s'\n", s, z->p);
+</PRE>
+The values of the other variables can be accessed via the #define settings that result
+from the -vprefix option, although this should not usually be necessary:
+<BR><PRE>
+    printf("p1 is %d\n", z->Khotanese_variable_p1);
+</PRE>
+The stemming scripts on this Web site use Snowball very simply. &nbsp;<TT>-vprefix</TT>&nbsp; and
+<TT>-eprefix</TT>
+are left unset, and all the programs are tested through a common
+<A HREF="driver.c">driver</A>
+program.
+
+<BR>&nbsp;<H2>Debugging</H2>
+
+In the rare event that your Snowball script does not run perfectly the first time:
+<BR><BR>
+Remember that the option &nbsp;<TT>-syntax</TT>&nbsp; prints out the syntax tree. A question mark can be
+included in Snowball as a command, and it will cause the current string to sent to
+<TT>stdout</TT>, with square brackets marking the slice and vertical bar the position of <B><I>c</I></B>.
+Curly brackets mark the end-limits of the string, which may be less than the whole
+string because of the action of &nbsp;<TT>setlimit</TT>.
+<BR><BR>
+At present there is no way of reporting the value of an integer or boolean.
+<BR><BR>
+If desperate, you can put debugging lines into the generated C program. This is not so
+hard, since running comments show the correspondence with the Snowball source.
+<BR><BR>
+<BR>&nbsp;<H2>Compiler bugs</H2>
+
+There must be a few compiler bugs in such a young language. If you hit one, try to
+capture it in a small script before notifying us.
+
+<BR>&nbsp;<H2>Known problems in Snowball</H2>
+
+The main one is that it is possible to &#8216;pull the rug from under your own feet&#8217; in
+contructions like this:
+<BR><PRE>
+    [ do something ]
+    do something else
+    ( C1 delete C2 ) or ( C3 )
+</PRE>
+Suppose &nbsp;<TT>C1</TT>&nbsp; gives <B><I>t</I></B>, the delete removes the slice established on the first
+line, and &nbsp;<TT>C2</TT>&nbsp; gives <B><I>f</I></B>, so C3 is done with <B><I>c</I></B> set back to the value it had
+before &nbsp;<TT>C1</TT>&nbsp; was obeyed - but this old value does not take account of the byte shift
+caused by the delete. This problem was forseen from the beginning when designing
+Snowball, and recognised as a minor issue because it is an unnatural thing to want to
+do. (<TT>C3</TT>&nbsp; should not be an alternative to something which has deletion as an
+occasional side-effect.) This problem may be addressed in the future.
+<BR><BR>
+
+
+</TR>
+
+</TABLE>
+</BODY>
+</HTML>
