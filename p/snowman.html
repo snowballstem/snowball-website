@@ -665,7 +665,7 @@ The effect of obeying &nbsp;<TT>substring</TT>&nbsp; when the preceding &nbsp;<T
 is undefined. This would happen for example here,
 <BR><PRE>
     try($x != 617 substring)
-    among(...) // among is bypassed in the exceptional case where x == 617
+    among(...) // 'substring' is bypassed in the exceptional case where x == 617
 </PRE>
 The significance of separating the &nbsp;<TT>substring</TT>&nbsp; from the &nbsp;<TT>among</TT>&nbsp; is to allow
 them to work in different contexts. For example,
