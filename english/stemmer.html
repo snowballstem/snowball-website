@@ -276,7 +276,7 @@ few additional suffixes are included for removal, including (4) suffix
 <B><I>ly</I></B>. In addition, a small list of exceptional forms is included. In
 December 2001 there were two further adjustments: (5) Steps 5<I>a</I> and 5<I>b</I>
 of the old Porter stemmer were combined into a single step. This means
-that undoubling final <B><I>ll</I></B> is not done removal of final <I>e</I>. (6)
+that undoubling final <B><I>ll</I></B> is not done with removal of final <B><I>e</I></B>. (6)
 In Step 3 <B><I>ative</I></B> is removed only when in region <I>R</I>2.
 
 <BR><BR>
@@ -532,7 +532,8 @@ shape:
 <BR><BR>
 Here we see words being treated exceptionally before stemming is done, but equally we could
 treat stems exceptionally after stemming is done, and so, if we wish, map <I>absorpt</I> to
-<I>absorb</I>, <I>reduct</I> to <I>reduc</I> etc., as in the Lovins stemmer.
+<I>absorb</I>, <I>reduct</I> to <I>reduc</I> etc., as in the
+<A HREF="../lovins/stemmer.html">Lovins stemmer</A>.
 But more generally, throughout the algorithm, each significant step may have recognised
 exceptions, and a suitably placed &nbsp;<TT>among</TT>&nbsp; will take care of them. For example, a point made
 at least twice in the literature is that words beginning <B><I>gener</I></B> are overstemmed by the
@@ -620,19 +621,18 @@ Similarly there is a problem with the <B><I>ing</I></B> form of three letter ver
 are only three such verbs: <I>die</I>, <I>lie</I> and <I>tie</I>, so a special case is made for
 <I>dying</I>, <I>lying</I> and <I>tying</I>.
 <BR><BR>
-<I>d</I>)
+<I>c</I>)
 One has to be a little careful of certain <B><I>ing</I></B> forms.
 <I>inning</I>, <I>outing</I>, <I>canning</I>, which one does not wish
 to be stemmed to
-(<I>in</I>, <I>out</I>, <I>can</I>.
+<I>in</I>, <I>out</I>, <I>can</I>.
 <BR><BR>
-<I>e</I>)
+<I>d</I>)
 The removal of suffix <B><I>ly</I></B>, which is not in the Porter stemmer, has a number of exceptions.
 Certain short-word exceptions are <I>idly</I>, <I>gently</I>, <I>ugly</I>, <I>early</I>, <I>only</I>, <I>singly</I>.
 Rarer words (<I>bristly</I>, <I>burly</I>, <I>curly</I>, <I>surly</I> ...) are not included.
 <BR><BR>
-<I>f</I>)
-
+<I>e</I>)
 The remaining words were included following complaints from users of the Porter algorithm.
 <I>news</I> is not the plural of <I>new</I> (noticed when IR systems were being set up for
 Reuters). <I>Howe</I> is a surname, and needs to be separated from <I>how</I> (noticed when
@@ -641,7 +641,8 @@ doing a search for &#8216;Sir Geoffrey Howe&#8217; in a demonstration at the Hou
 to me in an email from India). <I>herring</I> should not stem to <I>her</I> (another email from
 Russia).
 <BR><BR>
-Finally, few non-plural words ending <B><I>s</I></B> have been added.
+<I>f</I>)
+Finally, a few non-plural words ending <B><I>s</I></B> have been added.
 <BR><BR>
 Incidentally, this illustrates how much feedback to expect from the real users of a stemming
 algorithm: seven or eight words in twenty years!
