@@ -8,15 +8,12 @@
 <h1>Snowball</h1>
 </td></tr>
 <tr><?php include "menu.inc"; ?><td valign=top>
-<p>
 
 <form method="POST" action="demo.php">
-Words to stem: <input name="words" size=30 value="<?php echo "$words" ?>">
+Enter some words to stem:
+<br>
+<input name="words" size=30 value="<?php echo "$words" ?>">
 </form>
-
-</p><p>
-
-Note: this is not yet functional.
 
 <?php
 if ($words != '')
@@ -32,8 +29,6 @@ if ($words != '')
   echo "</pre>";
 }
 ?>
-
-</p>
 </td></tr></table>
 </body>
 </html>
