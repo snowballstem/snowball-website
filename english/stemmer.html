@@ -233,51 +233,49 @@ knot<BR>
 
 <BR>&nbsp;<H2>Developing the English stemmer</H2>
 
-I have made more than one attempt to improve the structure of the Porter algorithm by
-making it follow the pattern of ending removal of the Romance language stemmers. It
-is not hard to see why one should want to do this: step 1<I>b</I> of the Porter stemmer
-removes <B><I>ed</I></B> and <B><I>ing</I></B>, which are <I>i</I>-suffixes attached to verbs. If these
-suffixes are removed, there should be no need to remove <I>d</I>-suffixes which are not
-verbal, although the Porter stemmer will try to do so.
-This seems to be a deficiency in the Porter stemmer, not shared by the
-Romance stemmers.
-Again, the divisions between steps
+I have made more than one attempt to improve the structure of the Porter
+algorithm by making it follow the pattern of ending removal of the Romance
+language stemmers. It is not hard to see why one should want to do this:
+step 1<I>b</I> of the Porter stemmer removes <B><I>ed</I></B> and <B><I>ing</I></B>, which are
+<I>i</I>-suffixes attached to verbs. If these suffixes are removed, there
+should be no need to remove <I>d</I>-suffixes which are not verbal, although
+it will try to do so. This seems to be a deficiency in the Porter stemmer,
+not shared by the Romance stemmers. Again, the divisions between steps
 2, 3 and 4 seem rather arbitrary, and are not found in the Romance stemmers.
 <BR><BR>
-Nevertheless, these attempts at improvement have been abandoned. They seem to lead to
-a more complicated algorithm with no very obvious improvements. A reason for not
-taking note of the outcome of step 1<I>b</I> may be that English endings do not
-determine word categories quite as strongly as endings in the Romance languages. For
-example, <I>condition</I> and <I>position</I> in French have to be nouns, but in English
-they can be verbs as well as nouns,
+Nevertheless, these attempts at improvement have been abandoned. They seem
+to lead to a more complicated algorithm with no very obvious improvements.
+A reason for not taking note of the outcome of step 1<I>b</I> may be that
+English endings do not determine word categories quite as strongly as
+endings in the Romance languages. For example, <I>condition</I> and
+<I>position</I> in French have to be nouns, but in English they can be verbs
+as well as nouns,
 <DL><DD>
     We are all conditioned by advertising<BR>
     They are positioning themselves differently today
 </DL>
-A possible reason for having separate steps 2, 3 and 4 is that <I>d</I>-suffix combinations in
-English are quite complex, a point which has been made
+A possible reason for having separate steps 2, 3 and 4 is that
+<I>d</I>-suffix combinations in English are quite complex, a point which has
+been made
 <A HREF="../texts/stemmersoverview.html">elsewhere</A>.
 
 <BR><BR>
-But it is hardly surprising that after twenty years of use of the Porter stemmer, certain
-improvements do suggest themselves, even if one may doubt whether they make a
-measurable improvement to the performance of the algorithm.
-A new algorithm for English is therefore offered here.
-(It could be called the &#8216;Porter2&#8217; stemmer to distinguish it from the
-Porter stemmer, from which it derives.)
-The changes are not so very extensive:
-(1) terminating <B><I>y</I></B>
-is changed to <B><I>i</I></B> rather less often, (2) suffix <B><I>us</I></B> does not lose its
-<B><I>s</I></B>, (3) a few additional suffixes are included for removal, including
-(4) suffix <B><I>ly</I></B>. In addition, a small list of exceptional forms is included.
+But it is hardly surprising that after twenty years of use of the Porter
+stemmer, certain improvements do suggest themselves, and a new algorithm
+for English is therefore offered here. (It could be called the &#8216;Porter2&#8217;
+stemmer to distinguish it from the Porter stemmer, from which it derives.)
+The changes are not so very extensive: (1) terminating <B><I>y</I></B> is changed to
+<B><I>i</I></B> rather less often, (2) suffix <B><I>us</I></B> does not lose its <B><I>s</I></B>, (3) a
+few additional suffixes are included for removal, including (4) suffix
+<B><I>ly</I></B>. In addition, a small list of exceptional forms is included.
 
 <BR><BR>
 
 To begin with, here is the basic algorithm without reference to the
-exceptional forms. An exact comparison with the Porter algorithm needs to be done
-quite carefully if done at all. Here we indicate by <TT><FONT COLOR=BLUE>*</FONT></TT> points of departure, and
-by <TT><FONT COLOR=BLUE>+</FONT></TT> additional features. In the sample vocabulary, Porter and Porter2 stem
-slightly under 5% of words to different forms.
+exceptional forms. An exact comparison with the Porter algorithm needs to
+be done quite carefully if done at all. Here we indicate by <TT><FONT COLOR=BLUE>*</FONT></TT> points
+of departure, and by <TT><FONT COLOR=BLUE>+</FONT></TT> additional features. In the sample vocabulary,
+Porter and Porter2 stem slightly under 5% of words to different forms.
 
 <BR>&nbsp;<H2>Definition of the English stemmer</H2>
 
@@ -356,8 +354,8 @@ Step 1<I>b</I>:
         <DD>delete if the preceding word part contains a vowel, and then
         <DD>if the word ends <B><I>at</I></B>, <B><I>bl</I></B> or <B><I>iz</I></B> add <B><I>e</I></B> (so <I>luxuriat</I> <TT>-&gt;</TT> <I>luxuriate</I>), or
         <DD>if the word ends with a double
-        remove the last letter (so <I>hopp</I> -> <I>hop</I>), or
-        <DD>if the word is short, add <B><I>e</I></B> (so <I>hop</I> -> <I>hope</I>)
+        remove the last letter (so <I>hopp</I> <TT>-&gt;</TT> <I>hop</I>), or
+        <DD>if the word is short, add <B><I>e</I></B> (so <I>hop</I> <TT>-&gt;</TT> <I>hope</I>)
 </DL>
 </DL>
 
@@ -430,18 +428,17 @@ Step 5<I>a</I>:
 
 Step 5<I>b</I>:
 <DL><DD>
-    Delete suffix <B><I>l</I></B> if in <I>R</I>2, and preceded by <B><I>l</I></B>.
+    Delete suffix <B><I>l</I></B> if in <I>R</I>2 and preceded by <B><I>l</I></B>.
 </DL>
 Finally, turn any remaining <B><I>Y</I></B> letters in the word back into lower case.
 
 <BR>&nbsp;<H2>Exceptional forms in general</H2>
 
-It is quite easy to expand a Snowball script so that certain exceptional word forms get
-special treatment. The standard case is that certain words
-<TT>W<SUB>1</SUB></TT>, &nbsp;<TT>W<SUB>2</SUB></TT>&nbsp; ...,
-instead of passing through the stemming process, are mapped to the
-forms
-<TT>X<SUB>1</SUB></TT>, &nbsp;<TT>X<SUB>2</SUB></TT>&nbsp; ... respectively. If the script does the stemming by means of the call
+It is quite easy to expand a Snowball script so that certain exceptional
+word forms get special treatment. The standard case is that certain words
+<TT>W<SUB>1</SUB></TT>, &nbsp;<TT>W<SUB>2</SUB></TT>&nbsp; ..., instead of passing through the stemming process, are
+mapped to the forms &nbsp;<TT>X<SUB>1</SUB></TT>, &nbsp;<TT>X<SUB>2</SUB></TT>&nbsp; ... respectively. If the script does
+the stemming by means of the call
 <BR><PRE>
     define stem as C
 </PRE>
@@ -459,15 +456,15 @@ and putting in a routine &nbsp;<TT>exception</TT>:
         )
     )
 </PRE>
-<TT>atlimit</TT>&nbsp; causes the whole string to be tested for equality with one of the
-<TT>W<SUB>i</SUB></TT>, and if a match is found, the string is replaced with
+<TT>atlimit</TT>&nbsp; causes the whole string to be tested for equality with one of
+the &nbsp;<TT>W<SUB>i</SUB></TT>, and if a match is found, the string is replaced with
 <TT>X<SUB>i</SUB></TT>.
 <BR><BR>
-More precisely we might have a group of words
-<TT>W<SUB>11</SUB></TT>, &nbsp;<TT>W<SUB>12</SUB></TT>&nbsp; ... which need to be mapped to &nbsp;<TT>X<SUB>1</SUB></TT>, another group
-<TT>W<SUB>21</SUB></TT>, &nbsp;<TT>W<SUB>22</SUB></TT>&nbsp; ... which need to be mapped to &nbsp;<TT>X<SUB>2</SUB></TT>, and so on, and
-a list of words &nbsp;<TT>V<SUB>1</SUB></TT>, &nbsp;<TT>V<SUB>2</SUB></TT>&nbsp; ... &nbsp;<TT>V<SUB>k</SUB></TT>
-that are to remain invariant. The &nbsp;<TT>exception</TT>&nbsp; routine may then be written as follows:
+More precisely we might have a group of words &nbsp;<TT>W<SUB>11</SUB></TT>, &nbsp;<TT>W<SUB>12</SUB></TT>&nbsp; ...
+that need to be mapped to &nbsp;<TT>X<SUB>1</SUB></TT>, another group &nbsp;<TT>W<SUB>21</SUB></TT>, &nbsp;<TT>W<SUB>22</SUB></TT>
+... that need to be mapped to &nbsp;<TT>X<SUB>2</SUB></TT>, and so on, and a list of words
+<TT>V<SUB>1</SUB></TT>, &nbsp;<TT>V<SUB>2</SUB></TT>&nbsp; ... &nbsp;<TT>V<SUB>k</SUB></TT>&nbsp; that are to remain invariant. The
+<TT>exception</TT>&nbsp; routine may then be written as follows:
 
 <BR><PRE>
     among( 'W<SUB>11</SUB>' 'W<SUB>12</SUB>' ... (<- 'X<SUB>1</SUB>')
@@ -477,7 +474,8 @@ that are to remain invariant. The &nbsp;<TT>exception</TT>&nbsp; routine may the
            'V<SUB>1</SUB>' 'V<SUB>2</SUB>' ... 'V<SUB>k</SUB>'
          )
 </PRE>
-And indeed the &nbsp;<TT>exception</TT>&nbsp; routine for the English stemmer has just that shape:
+And indeed the &nbsp;<TT>exception</TT>&nbsp; routine for the English stemmer has just that
+shape:
 <BR><PRE>
     define exception as (
 
