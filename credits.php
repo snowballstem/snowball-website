@@ -28,7 +28,7 @@ stage.
 <p>
 Various emailers have helped improve the stemmers with their many suggestions
 and comments. We must especially mention Andrei Aksyonoff and
-Oleg Bartunov (Russian), Steve Tolkin (English), and Fred Brault (French).
+Oleg Bartunov (Russian), Steve Tolkin and Wendy Reetz (English), and Fred Brault (French).
 </p>
 
 <p>
