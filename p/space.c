@@ -9,10 +9,46 @@
 #define EXTENDER 40
 #define DEBUG 0
 
-/*  For a block p, SIZE(p) is the number of bytes sp far written into it,
-    CAPACITY(p) the total number it can contain, so SIZE(p) <= CAPACITY(p).
+
+/*  This modules provides a simple mechanism for arbitrary length writable
+    strings, called 'blocks'. They are 'byte *' items rather than 'char *'
+    items however.
+
+    The calls are:
+
+        byte * b = create_b(n);
+            - create an empty block b with room for n bytes
+        b = increase_capacity(b, n);
+            - increase the capacity of block b by n bytes (b may change)
+        b2 = copy_b(b)
+            - copy block b into b2
+        lose_b(b);
+            - lose block b
+        b = move_to_b(b, n, p);
+            - set the data in b to be the n bytes at address p
+        b = addto_to_b(b, n, p);
+            - add the n bytes at address p to the end of the data in b
+        SIZE(b)
+            - is the number of bytes in b
+        For example:
+
+        byte * b = create_b(0);
+        {   int i;
+            char p[10];
+            for (i = 0; i < 100; i++) {
+                sprintf(p, " %d", i);
+                add_to_b(b, strlen(p), (byte *)p);
+            }
+            b[SIZE(b)] = 0;       <---zero terminate (see next comment)
+        }
+
+    and b contains the string " 0 1 2 ... 99"
+*/
+
+/*  For a block b, SIZE(b) is the number of bytes so far written into it,
+    CAPACITY(b) the total number it can contain, so SIZE(b) <= CAPACITY(b).
     In fact blocks have 1 extra character over the promised capacity so
-    they can be zero terminated by 'p[SIZE(p)] = 0;' without fear of
+    they can be zero terminated by 'b[SIZE(b)] = 0;' without fear of
     overwriting.
 */
 

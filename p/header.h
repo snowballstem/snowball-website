@@ -1,6 +1,4 @@
 
-#include "str.h"
-
 typedef unsigned char byte;
 
 #define true 1
