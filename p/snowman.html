@@ -621,9 +621,9 @@ following are equivalent,
 If a routine is defined for backwards mode processing, it must be included
 inside a &nbsp;<TT>backwardmode(...)</TT>&nbsp; declaration.
 
-&nbsp;<H4>g) &nbsp;<TT>substring among</TT></H4>
+&nbsp;<H4>g) &nbsp;<TT>substring</TT>&nbsp; and &nbsp;<TT>among</TT></H4>
 
-The use of &nbsp;<TT>substring among</TT>&nbsp; is central to the implementation of the
+The use of &nbsp;<TT>substring</TT>&nbsp; and &nbsp;<TT>among</TT>&nbsp; is central to the implementation of the
 stemming algorithms. It is like a case switch on strings. In its simpler
 form,
 <BR><PRE>
@@ -670,7 +670,7 @@ definition. But there is no problem with an &nbsp;<TT>among</TT>&nbsp; containin
 The essential constraint is that two &nbsp;<TT>substring</TT>s must be separated by an
 <TT>among</TT>, and each &nbsp;<TT>substring</TT>&nbsp; must be followed by an &nbsp;<TT>among</TT>.
 <BR><BR>
-The effect of obeying &nbsp;<TT>substring</TT>&nbsp; when the preceding &nbsp;<TT>among</TT>&nbsp; is not obeyed
+The effect of obeying &nbsp;<TT>among</TT>&nbsp; when the preceding &nbsp;<TT>substring</TT>&nbsp; is not obeyed
 is undefined. This would happen for example here,
 <BR><PRE>
     try($x != 617 substring)
@@ -752,8 +752,8 @@ to a routine which simply returns signal <B><I>t</I></B>,
 <TT>'S<SUB>ij</SUB>'</TT>&nbsp; whose corresponding routine
 <TT>R<SUB>ij</SUB></TT>&nbsp; gives <B><I>t</I></B>. The routines
 <TT>R<SUB>ij</SUB></TT>&nbsp; should be written without any side-effects, other than the inevitable cursor
-movement (<B><I>c</I></B> is in any case set back to its old value following a call of
-<TT>R<SUB>ij</SUB></TT>).
+movement. (<B><I>c</I></B> is in any case set back to its old value following a call of
+<TT>R<SUB>ij</SUB></TT>.)
 
 <BR>&nbsp;<H2>8 Booleans</H2>
 

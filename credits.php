@@ -19,7 +19,7 @@ administration.
 </p>
 
 <p>
-Linguistic assistance for Russian has been provided by
+Linguistic assistance for Russian, German and Dutch has been provided by
 
 <a href="http://www.patrickmiles.co.uk/">Patrick Miles</a>
 (of the
