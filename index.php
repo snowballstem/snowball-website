@@ -1,6 +1,29 @@
 <?php
   require "menu.inc";
   displayHeader("");
+
+  function get_news() {
+      $filehandle = fopen ("http://sourceforge.net/export/projnews.php?group_id=36391&limit=5&flat=1&show_summaries=1", "r");
+      if (!$filehandle) {
+	  return "Unable to open remote file.";
+      } else {
+	  $filecontents = '';
+	  while (!feof ($filehandle)) {
+	      $filecontents .= fgets ($filehandle, 1024);
+	  }
+	  fclose ($filehandle);
+      }
+      return $filecontents;
+  }
+
+  function get_news_headlines() {
+      $fullnews = get_news();
+      $headlines = '';
+
+      $headlines = $fullnews;
+      
+      return $headlines;
+  }
 ?>
 <p>
 
@@ -27,17 +50,7 @@ improvements.
 <h2>Recent News</h2>
 <p>
 <?php
-  $filehandle = fopen ("http://sourceforge.net/export/projnews.php?group_id=36391&limit=5&flat=1&show_summaries=0", "r");
-  if (!$filehandle) {
-      $filecontents = "Unable to open remote file.";
-  } else {
-      $filecontents = '';
-      while (!feof ($filehandle)) {
-	  $filecontents .= fgets ($filehandle, 1024);
-      }
-      fclose ($filehandle);
-  }
-  echo "$filecontents\n";
+  echo get_news_headlines();
 ?>
 </p><p>
 <a href="news.php">Full stories</a>
