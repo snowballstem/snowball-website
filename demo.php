@@ -8,7 +8,7 @@
 <h1>Snowball</h1>
 </td></tr>
 <tr><td valign=top bgcolor=cyan>
-<?php include('menu.inc'); ?>
+<?php include "menu.inc"; ?>
 </td><td valign=top>
 <p>
 

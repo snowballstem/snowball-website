@@ -1,8 +1,7 @@
 <?php function menuEntry($text, $file) {
   global $PHP_SELF;
   $href = $file;
-  echo "PHP_SELF=$PHP_SELF ";
-  if ($SCRIPT_NAME != $file && file_exists($file)) {
+  if ($PHP_SELF != $file && file_exists($file)) {
    echo "<a href=$href>$text</a>";
   } else {
    echo $text;
@@ -13,14 +12,14 @@
 <br>
 <?php
   echo "PHP_SELF=$PHP_SELF ";
-menuEntry("Introduction", "index.php") ?>
-<?php menuEntry("Demo", "demo.php") ?>
-<?php menuEntry("Download", "download.php") ?>
-<?php menuEntry("Documentation", "docs.php") ?>
-<?php menuEntry("Mailing lists", "lists.php") ?>
-<?php menuEntry("License", "license.php") ?>
-<?php menuEntry("Credits", "credits.php") ?>
-<?php menuEntry("Projects", "projects.php") ?>
+menuEntry("Introduction", "/index.php") ?>
+<?php menuEntry("Demo", "/demo.php") ?>
+<?php menuEntry("Download", "/download.php") ?>
+<?php menuEntry("Documentation", "/docs.php") ?>
+<?php menuEntry("Mailing lists", "/lists.php") ?>
+<?php menuEntry("License", "/license.php") ?>
+<?php menuEntry("Credits", "/credits.php") ?>
+<?php menuEntry("Projects", "/projects.php") ?>
 
 <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/snowball/">Browse CVS</a>
 <br>
