@@ -39,6 +39,15 @@ function displayMenu()
 <a href="http://cvs.tartarus.org/snowball/">Browse CVS</a><br>
 <br>
 
+<form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
+<center>
+<input NAME=P VALUE="">
+<input TYPE=SUBMIT VALUE="Search" BORDER=0>
+<input TYPE=hidden NAME=DB VALUE="snowball-website">
+<input TYPE=hidden NAME=FMT VALUE="snquery">
+</form>
+<br>
+
 </td>
 <?php
 }
