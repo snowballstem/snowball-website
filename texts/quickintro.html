@@ -34,12 +34,26 @@ language of your choice.
 
 - You can use the various ANSI C stemmers, without bothering yourself
 with the Snowball system that generated them. To do that, download the
-Snowball system, and extract the &nbsp;<TT>*.h</TT>&nbsp; and &nbsp;<TT>*.c</TT>&nbsp; files from directory &nbsp;<TT>q/</TT>. They
+Snowball system, and extract the following &nbsp;<TT>*.h</TT>&nbsp; and &nbsp;<TT>*.c</TT>&nbsp; files
+from directory &nbsp;<TT>q/</TT>:
+
+<BR><PRE>
+    header.h    utilities.c
+    api.h       api.c
+</PRE>
+
+
+
+They
 provide the library and api connections to the stemmers. For each language
 stemmer you want to use, download the corresponding &nbsp;<TT>.c</TT>&nbsp; and &nbsp;<TT>.h</TT>&nbsp; file.
 Then follow the
 
     <A HREF=" ../q/use.html "> instructions for use</A>.
+
+<BR><BR>
+
+For an even faster route, see the <B>Quick start</B> for Snowball, below.
 
 <BR><BR>
 
@@ -74,6 +88,27 @@ And look at the
 
 on how you can help.
 
+<BR>&nbsp;<H2>Quick Start</H2>
+
+To get something working quickly, use &nbsp;<TT>gcc</TT>&nbsp; with the following
+modules from dowloaded directory &nbsp;<TT>q/</TT>:
+
+<BR><PRE>
+    gcc -o STEMMER q/api.c q/utilities.c q/driver-porter.c q/stem.c
+</PRE>
+
+<TT>STEMMER</TT>&nbsp; runs the Porter stemming algorithm. See the start of
+<TT>q/driver-porter.c</TT>&nbsp; for a simple spec of the command.
+
+<BR><BR>
+
+For the French stemmer, replace &nbsp;<TT>q/stem.c</TT>&nbsp; and &nbsp;<TT>q/stem.h</TT>&nbsp; with
+<TT>french/stem.c</TT>&nbsp; and &nbsp;<TT>french/stem.h</TT>, change &nbsp;<TT>porter</TT>&nbsp; to &nbsp;<TT>french</TT>
+throughout &nbsp;<TT>q/driver-porter.c</TT>&nbsp; and recompile. Similarly for other languages.
+<TT>q/driver.template</TT>&nbsp; provides a template driver that you can adjust language by
+language.
+
+<BR><BR>
 </TR>
 
 </TABLE>

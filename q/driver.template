@@ -5,7 +5,7 @@
 #include <ctype.h>  /* for isupper, tolower */
 
 #include "api.h"
-#include "stem.h"
+#include "*STEMMER*.h"
 
 /* This derives from the source file driver.template */
 
@@ -14,11 +14,11 @@
 
    A typical compilation is
 
-   gcc -o TEST api.c utilities.c stem.c driver.c
+   gcc -o TEST api.c utilities.c *STEMMER*.c driver.c
 
-   where api.c, utilities.c are in directory q/, stem.c is the
-   generated stemmer, with associated header stem.h, and driver.c is
-   this driver. The header for stem.c is in stem.h, header.h is
+   where api.c, utilities.c are in directory q/, *STEMMER*.c is the
+   generated stemmer, with associated header *STEMMER*.h, and driver.c is
+   this driver. The header for *STEMMER*.c is in *STEMMER*.h, header.h is
    the general header for the Snowball system, and api.h a separated header
    for API calls into Snowball.
 
@@ -82,7 +82,7 @@ static void stem_file(struct SN_env * z, FILE * f_in, FILE * f_out) {
             {
                 int j; for (j = 1; j <= repetitions; j++) {
                     SN_set_current(z, i, b);
-                    stem(z); stem_count++;
+                    *NAME*stem(z); stem_count++;
                 }
             }
             {
@@ -155,7 +155,7 @@ int main(int argc, char * argv[])
     /* initialise the stemming process: */
 
     {
-        struct SN_env * z = create_env();
+        struct SN_env * z = *NAME*create_env();
         FILE * f_in;
         FILE * f_out;
         f_in = in == 0 ? stdin : fopen(in, "r");
@@ -167,7 +167,7 @@ int main(int argc, char * argv[])
             fprintf(stderr, "file %s cannot be opened\n", out); exit(1);
         }
         stem_file(z, f_in, f_out);
-        close_env(z);
+        *NAME*close_env(z);
     }
 
     if (!pretty) {

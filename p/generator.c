@@ -967,7 +967,6 @@ static void generate_routine_headers(struct generator * g)
         }
         q = q->next;
     }
-    w(g, "~N");
 }
 
 static void generate_among_table(struct generator * g, struct among * x)
@@ -1077,16 +1076,18 @@ static void generate_close(struct generator * g)
     w(g, "~Nextern void ~pclose_env(struct SN_env * z) { SN_close_env(z); }~N~N");
 }
 
+static void generate_create_and_close_templates(struct generator * g) {
+    w(g, "~N"
+         "extern struct SN_env * ~pcreate_env(void);~N"
+         "extern void ~pclose_env(struct SN_env * z);~N~N");
+}
+
 static void generate_header_file(struct generator * g)
 {
     struct name * q = g->analyser->names;
     char * vp = g->options->variables_prefix;
     g->S[0] = vp;
-
-    w(g, "~N"
-         "extern struct SN_env * ~pcreate_env(void);~N"
-         "extern void ~pclose_env(struct SN_env * z);~N~N");
-
+    generate_create_and_close_templates(g);
     until (q == 0)
     {   g->V[0] = q;
         switch (q->type)
@@ -1117,6 +1118,7 @@ extern void generate_program_c(struct generator * g)
     generate_start_comment(g);
     generate_head(g);
     generate_routine_headers(g);
+    generate_create_and_close_templates(g);
     generate_amongs(g);
     generate_groupings(g);
     g->declarations = g->outbuf;
