@@ -2,6 +2,7 @@
   require "menu.inc";
   displayHeader("Developers");
 ?>
+<TR><TD>
 <p>
 
 If you feel that you could make a useful contribution to the development of
@@ -77,4 +78,5 @@ If you think of any other notes which should be added, then feel free to
 update this webpage.
 
 </p>
+</TD></TR>
 <?php displayFooter(); ?>

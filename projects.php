@@ -2,6 +2,7 @@
   require "menu.inc";
   displayHeader("Projects");
 ?>
+<TR><TD>
 <p>
 
 This page will list projects which make use of snowball.
@@ -12,4 +13,5 @@ However, as yet, we know of no such projects.
 you have a project that you would like to be listed here.
 
 </p>
+<TD><TR>
 <?php displayFooter(); ?>

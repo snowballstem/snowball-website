@@ -2,6 +2,7 @@
   require "menu.inc";
   displayHeader("License");
 ?>
+<TR><TD>
 <p>
 
 All the software given out on this Snowball site is covered by the BSD License (see
@@ -26,4 +27,5 @@ text of the Snowball software.
 
 
 </p>
+</TD></TR>
 <?php displayFooter(); ?>

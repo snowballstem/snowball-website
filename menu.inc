@@ -29,7 +29,7 @@ function displayMenu()
   menuEntry("Introduction", "/index.php");
   menuEntry("Demo", "/demo.php");
   menuEntry("Download", "/download.php");
-  menuEntry("Documentation", "/documentation.php");
+  #menuEntry("Documentation", "/documentation.php");
   menuEntry("Mailing lists", "/lists.php");
   menuEntry("Developer Notes", "/developers.php");
   menuEntry("License", "/license.php");
@@ -67,7 +67,7 @@ function displayHeader($title)
 <h1 align=center><?php echo $fulltitle ?></h1>
 </td></tr>
 <tr><?php displayMenu(); ?><td valign=top>
-<table width=75% align=center cols=1>
+<table width=95% align=center cols=1>
 <?php
 }
 

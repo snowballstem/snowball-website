@@ -2,6 +2,7 @@
   require "menu.inc";
   displayHeader("Credits");
 ?>
+<TR><TD>
 <p>
 
 Snowball, and all of the current stemming algorithms were written by
@@ -27,4 +28,5 @@ The website and project hosting is performed by
 thanks are due.
 
 </p>
+</TD></TR>
 <?php displayFooter(); ?>
