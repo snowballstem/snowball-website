@@ -13,16 +13,11 @@
 	  }
 	  fclose ($filehandle);
       }
+
+      $filecontents = preg_replace('|<I>[^<]*</I>[^<]*<A HREF="http://sourceforge.net/projects/snowball/">Snowball</A>|', '', $filecontents);
+      $filecontents = preg_replace('|<div align="center">.*?</div>|', '', $filecontents);
+
       return $filecontents;
-  }
-
-  function get_news_headlines() {
-      $fullnews = get_news();
-      $headlines = '';
-
-      $fullnews = preg_replace('|<I>[^<]*</I>[^<]*<A HREF="http://sourceforge.net/projects/snowball/">Snowball</A>|', '', $fullnews);
-      
-      return $headlines;
   }
 ?>
 <p>
@@ -50,7 +45,7 @@ improvements.
 <h2>Recent News</h2>
 <p>
 <?php
-  echo get_news_headlines();
+  echo get_news();
 ?>
 </p><p>
 <a href="news.php">Full stories</a>
