@@ -3,7 +3,7 @@
  | word is at the start of a line.
 
  | This stop word list is for the dominant bokmål dialect. Words unique
- | to bokmål are marked *.
+ | to nynorsk are marked *.
 
 og             | and
 i              | in
