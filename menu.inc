@@ -41,7 +41,7 @@ function displayMenu()
 
 <form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
 <center>
-<input NAME=P VALUE="">
+<input NAME=P VALUE="" SIZE=12>
 <input TYPE=SUBMIT VALUE="Search" BORDER=0>
 <input TYPE=hidden NAME=DB VALUE="snowball-website">
 <input TYPE=hidden NAME=FMT VALUE="snquery">
