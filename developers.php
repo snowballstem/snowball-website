@@ -24,20 +24,24 @@ developers of Snowball.
 
 As a new developer, there are several things to set up:
 <ul><li>
-  First, if you havn't already done so you should
-<a href="http://lists.sourceforge.net/lists/listinfo/snowball-discuss">join</a>
-  join the snowball-discuss mailing list.
+  <p>
+  First, if you havn't already done so you should join the
+<a href="http://lists.sourceforge.net/lists/listinfo/snowball-discuss">snowball-discuss</a>
+  mailing list.
+  </p>
 </li><li>
+  <p>
   Next, you should
 <a href="https://sourceforge.net/account/register.php">register</a>
   as a new sourceforge user.
+  </p>
 </li><li>
   <p>
   Connect (once) to "cvs.sourceforge.net" via ssh.  This is necessary to set
   up your user home directory.  The following command can be used for this:
-  <blockquote>
+  <blockquote><code>
 ssh <i>username</i>@cvs.sourceforge.net
-  </blockquote>
+  </code></blockquote>
   (Where <i>username</i> is your sourceforge username.
   </p>
   <p>
@@ -47,12 +51,12 @@ ssh <i>username</i>@cvs.sourceforge.net
   </p>
 </li><li>
   Check out a working directory from CVS.
-  <blockquote>
-export CVS_RSH=ssh;
-mkdir snowball;
-cd snowball;
+  <blockquote><code>
+export CVS_RSH=ssh;<br>
+mkdir snowball;<br>
+cd snowball;<br>
 cvs -z3 -d <i>username</i>@cvs.snowball.sourceforge.net:/cvsroot/snowball co .;
-  </blockquote>
+  <code></blockquote>
   <p>
   The snowball code is to be found in the "snowball" module.
   </p>
@@ -60,13 +64,17 @@ cvs -z3 -d <i>username</i>@cvs.snowball.sourceforge.net:/cvsroot/snowball co .;
   The website can be modified by editing the files in the "website" module: any changes which are committed to this module will show up on the live website within an hour. (The website is currently updated at 17 minutes past each hour.)
   </p>
 </li><li>
-  Depending how obsessive you are, and how good your internet connection is,
+  Depending how obsessive you are (and how good your internet connection is)
   you may wish to subscribe to the
 <a href="http://lists.sourceforge.net/lists/listinfo/snowball-commits">snowball-commits</a>
   mailing list.  This is a readonly list, to which an automatic message is sent
   whenever the snowball CVS is modified.  This is very useful to keep track of
-  what changes other developers are making.
+  what changes other developers are making.  However, at times of busy
+  development it can receive a lot of mesages.
 </li></ul>
+
+If think of any other notes which should be added, feel free to update this
+webpage.
 
 </p>
 <?php displayFooter(); ?>
