@@ -12,7 +12,7 @@
 </td><td valign=top>
 <p>
 
-<form method="POST" action="demo.php">
+<form method="GET" action="demo.php">
 Words to stem: <input name="words" size=30 value="<?php echo "$words" ?>">
 </form>
 
