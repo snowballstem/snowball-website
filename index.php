@@ -28,12 +28,16 @@ improvements.
 <p>
 <?php
   $filehandle = fopen ("http://sourceforge.net/export/projnews.php?group_id=36391&limit=5&flat=1&show_summaries=0");
-  $filecontents = '';
-  while (!feof ($file)) {
-    $filecontents .= fgets ($file, 1024);
+  if (!$file) {
+      $filecontents = "Unable to open remote file.";
+  } else {
+      $filecontents = '';
+      while (!feof ($file)) {
+	  $filecontents = fgets ($file, 1024);
+      }
+      fclose ($file);
   }
-  fclose ($file);
-  echo $filecontents;
+  echo "$filecontents\n";
 ?>
 </p><p>
 <a href="news.php">Full stories</a>
