@@ -920,12 +920,13 @@ G               ::= &lt;g_name> || &lt;literal string>
                     groupings ( [&lt;g_name>]* )
 
 &lt;r_definition>  ::= define &lt;r_name> as C
-&lt;g_definition>  ::= G || &lt;g_definition> + G || &lt;g_definition> - G
+&lt;plus_or_minus> ::= + || -
+&lt;g_definition>  ::= define &lt;g_name> G [ &lt;plus_or_minus> G ]*
 
 AE              ::= (AE) ||
                     AE + AE || AE - AE || AE * AE || AE / AE || - AE ||
                     maxint || minint || cursor || limit || size ||
-                    sizeof &lt;s_name> || &lt;i_name> || &lt;integer>
+                    sizeof &lt;s_name> || &lt;i_name> || &lt;number>
 
 &lt;i_command>     ::= $ &lt;i_name> = AE ||
                     $ &lt;i_name> += AE || $ &lt;i_name> -= AE ||
