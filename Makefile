@@ -14,6 +14,8 @@ srcdir=.
 
 languages = danish dutch english french german italian norwegian \
 	    porter portuguese russian spanish swedish
+uclanguages = Danish Dutch English French German Italian Norwegian \
+	    Porter Portuguese Russian Spanish Swedish
 
 snowball_SOURCES = $(srcdir)/p/space.c \
 		   $(srcdir)/p/sort.c \
@@ -31,7 +33,7 @@ snowball_OBJECTS = ./p/space.o \
 		   ./p/generator_java.o \
 		   ./p/driver.o
 
-all: $(addprefix lang_, $(languages)) libs # snowball.jar javaoutput
+all: $(addprefix lang_, $(languages)) libs snowball.jar snowball_java.tgz javaoutput
 
 javaoutput: $(addsuffix /output_java.txt, $(languages))
 
@@ -41,16 +43,18 @@ java_SOURCES = net/sf/snowball/Among.java \
 java_OBJECTS = net/sf/snowball/Among.class \
                net/sf/snowball/SnowballProgram.class \
                net/sf/snowball/TestApp.class
-javastemmer_SOURCES = $(addsuffix Stemmer.java, $(addprefix net/sf/snowball/ext/, $(languages)))
-javastemmer_OBJECTS = $(addsuffix Stemmer.class, $(addprefix net/sf/snowball/ext/, $(languages)))
+javastemmer_SOURCES = $(addsuffix Stemmer.java, $(addprefix net/sf/snowball/ext/, $(uclanguages)))
+javastemmer_OBJECTS = $(addsuffix Stemmer.class, $(addprefix net/sf/snowball/ext/, $(uclanguages)))
 
-javastemmers: javaoutput
+snowball.jar: $(java_OBJECTS) $(javastemmer_OBJECTS)
+	rm -rf $@
+	jar -cvf $@ $(java_OBJECTS) $(javastemmer_OBJECTS)
 
-snowball.jar: javastemmers $(java_OBJECTS) $(javastemmer_OBJECTS)
-	rm -rf snowball.jar
-	jar -cvf snowball.jar $(java_OBJECTS) $(javastemmer_OBJECTS)
+snowball_java.tgz: $(java_SOURCES) $(javastemmer_SOURCES)
+	rm -rf $@
+	tar zcvf $@ $(java_SOURCES) $(javastemmer_SOURCES)
 
-javadocs: javastemmers $(java_SOURCES) $(javastemmer_SOURCES)
+javadocs: $(java_SOURCES) $(javastemmer_SOURCES)
 	mkdir -p javadocs
 	rm -rf javadocs/*
 	$(JAVADOC) \
@@ -150,6 +154,8 @@ clean:
 	@$(RM) libstemmer/*.o libstemmer/modules.c
 	@echo "Cleaning libpkg/"
 	@$(RM) libpkg/*.o libpkg/modules.c
+	@echo "Cleaning net/sf/snowball/"
+	@$(RM) net/sf/snowball/*.class net/sf/snowball/ext/*
 
 %/tarball.tgz: %/stem.sbl %/stem.c %/stem.h %/voc.txt %/output.txt %/stemmer.html
 	@echo "Making $@"
@@ -171,11 +177,20 @@ clean:
 	fi; \
 	mv $@.tmp $@;
 
-%/output_java.txt: %/stem.sbl %/voc.txt snowball net/sf/snowball/TestApp.class
+net/sf/snowball/ext/%Stemmer.java: %/stem.sbl snowball
 	@l=`echo "$<" | sed 's!\(.*\)/stem.sbl$$!\1!;s!^.*/!!'`; \
-	n=$${l}; \
+	n=`echo "$${l}" | sed 's!^\([a-z]\).*$$!\1!' | tr '[a-z]' '[A-Z]'`; \
+	m=`echo "$${l}" | sed 's!^\([a-z]\)!!'`; \
+	n="$$n$$m"; \
 	echo ./snowball $< -j -o net/sf/snowball/ext/$${n}Stemmer -n $${n}Stemmer; \
 	./snowball $< -j -o net/sf/snowball/ext/$${n}Stemmer -n $${n}Stemmer; \
+
+%/output_java.txt: %/stem.sbl %/voc.txt snowball net/sf/snowball/TestApp.class
+	l=`echo "$<" | sed 's!\(.*\)/stem.sbl$$!\1!;s!^.*/!!'`; \
+	n=`echo "$${l}" | sed 's!^\([a-z]\).*$$!\1!' | tr '[a-z]' '[A-Z]'`; \
+	m=`echo "$${l}" | sed 's!^\([a-z]\)!!'`; \
+	n="$$n$$m"; \
+	${MAKE} net/sf/snowball/ext/$${l}Stemmer.java; \
 	echo $(JAVAC) net/sf/snowball/ext/$${n}Stemmer.java; \
 	$(JAVAC) net/sf/snowball/ext/$${n}Stemmer.java; \
 	echo $(JAVA) net/sf/snowball/TestApp $${n} $${l}/voc.txt -o $${l}/output_java.txt; \
