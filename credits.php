@@ -32,6 +32,8 @@ stage.
 Various emailers have helped improve the stemmers with their many suggestions
 and comments. We must especially mention Andrei Aksyonoff and
 Oleg Bartunov (Russian), Steve Tolkin and Wendy Reetz (English), and Fred Brault (French).
+Blake Madden found a number of elusive errors in the stemmer descriptions.
+
 </p>
 
 <p>
