@@ -20,7 +20,10 @@
 <BR>&nbsp;<H2>Snowball definition</H2>
 
 Snowball is a small string-handling language, and its name was chosen as a
-tribute to SNOBOL (Farber 1964, Griswold 1968), with which it shares the
+tribute to SNOBOL (Farber 1964, Griswold 1968 -
+see the references at the end of the
+<A HREF="../texts/introduction.html">introduction</A>),
+with which it shares the
 concept of string patterns delivering signals that are used to control the
 flow of the program.
 
@@ -28,9 +31,9 @@ flow of the program.
 
 The basic data types handled by Snowball are strings of characters, signed
 integers, and boolean truth values, or more simply <I>strings</I>, <I>integers</I>
-and <I>booleans</I>. At present Snowball's characters are 8-bit ASCII, which is
-sufficient for presenting the algorithms, but at some point Unicode
-characters will need to be supported.
+and <I>booleans</I>. Snowball's characters are either 8-bit wide, or
+16-bit, depending on the mode of use. In particular, both 8-bit
+ASCII and 16-bit Unicode are supported.
 
 <BR>&nbsp;<H2>Names</H2>
 
@@ -885,7 +888,7 @@ This completes the definition of Snowball.
 
 <TR><TD BGCOLOR="lightblue">
 <BR>&nbsp;<H2>Snowball syntax</H2>
-<FONT SIZE=-1><PRE>
+
 <DL><DD>
 <TT>||</TT>&nbsp; is used for alternatives, &nbsp;<TT>[<I>X</I>]</TT>&nbsp; means that <I>X</I> is
 optional, and &nbsp;<TT>[<I>X</I>]*</TT>&nbsp; means that <I>X</I> is repreated zero or more
@@ -897,7 +900,7 @@ conventions established by the &nbsp;<TT>stringescapes</TT>&nbsp; directive. The
 <TT>?</TT>&nbsp; is a debugging aid.
 <BR><BR>
 
-<FONT SIZE=-1><PRE>
+<BR><PRE>
 &lt;letter>        ::= a || b || ... || z || A || B || ... || Z
 &lt;digit>         ::= 0 || 1 || ... || 9
 &lt;name>          ::= &lt;letter> [ &lt;letter> || &lt;digit> || _ ]*
@@ -960,11 +963,11 @@ P              ::=  [P]* || &lt;declaration> ||
 
 
 synonyms:      &lt;+ for insert
-</PRE></FONT>
+</PRE>
 
 
 </DL>
-</PRE></FONT>
+
 </TR>
 
 
