@@ -20,7 +20,7 @@
       $fullnews = get_news();
       $headlines = '';
 
-      $headlines = $fullnews;
+      $fullnews = preg_replace('<I>[^<]*</I>[^<]*<A HREF="http://sourceforge.net/projects/snowball/">Snowball</A>', '', $fullnews);
       
       return $headlines;
   }
