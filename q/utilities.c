@@ -222,7 +222,7 @@ extern byte * increase_size(byte * p, int n)
    s_size chars at s
 */
 
-extern void replace_s(struct SN_env * z, int c_bra, int c_ket, int s_size, byte * s)
+extern int replace_s(struct SN_env * z, int c_bra, int c_ket, int s_size, byte * s)
 {   int adjustment = s_size - (c_ket - c_bra);
     int len = SIZE(z->p);
     if (adjustment != 0)
@@ -233,8 +233,8 @@ extern void replace_s(struct SN_env * z, int c_bra, int c_ket, int s_size, byte 
         if (z->c >= c_ket) z->c += adjustment; else
             if (z->c > c_bra) z->c = c_bra;
     }
-    if (s_size == 0) return;
-    memmove(z->p + c_bra, s, s_size);
+    unless (s_size == 0) memmove(z->p + c_bra, s, s_size);
+    return adjustment;
 }
 
 static void slice_check(struct SN_env * z)
@@ -264,11 +264,15 @@ extern void slice_del(struct SN_env * z)
 }
 
 extern void insert_s(struct SN_env * z, int bra, int ket, int s_size, char * s)
-{   replace_s(z, bra, ket, s_size, (byte *) s);
+{   int adjustment = replace_s(z, bra, ket, s_size, (byte *) s);
+    if (bra <= z->bra) z->bra += adjustment;
+    if (bra <= z->ket) z->ket += adjustment;
 }
 
 extern void insert_v(struct SN_env * z, int bra, int ket, byte * p)
-{   replace_s(z, bra, ket, SIZE(p), p);
+{   int adjustment = replace_s(z, bra, ket, SIZE(p), p);
+    if (bra <= z->bra) z->bra += adjustment;
+    if (bra <= z->ket) z->ket += adjustment;
 }
 
 extern byte * slice_to(struct SN_env * z, byte * p)

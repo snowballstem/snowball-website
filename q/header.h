@@ -43,7 +43,7 @@ extern int find_among(struct SN_env * z, struct among * v, int v_size);
 extern int find_among_b(struct SN_env * z, struct among * v, int v_size);
 
 extern byte * increase_size(byte * p, int n);
-extern void replace_s(struct SN_env * z, int c_bra, int c_ket, int s_size, byte * s);
+extern int replace_s(struct SN_env * z, int c_bra, int c_ket, int s_size, byte * s);
 extern void slice_from_s(struct SN_env * z, int s_size, char * s);
 extern void slice_from_v(struct SN_env * z, byte * p);
 extern void slice_del(struct SN_env * z);
