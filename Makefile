@@ -109,7 +109,7 @@ libstemmer/libstemmer.o: $(addsuffix /stem.o, $(languages)) \
 	                 libstemmer/wrapper.o \
 			 q/api.o \
 			 q/utilities.o
-	libtool --mode=link $(CC) $(CFLAGS) -O4 -o $@ -I q/ $^
+	libtool --tag=CXX --mode=link $(CC) $(CFLAGS) -O4 -o $@ -I q/ $^
 
 libstemmer/wrapper.o: libstemmer/wrapper.c libstemmer/modules.c q/api.h
 	$(CC) $(CFLAGS) -O4 -c -o $@ -I q/ $<
