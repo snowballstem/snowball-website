@@ -36,17 +36,17 @@ with which Lovins found herself working (subject term keywords attached to
 documents in the materials science and engineering field). The subject term
 list may also have been slightly limiting in that certain common endings
 are not represented (<B><I>ements</I></B> and <B><I>ents</I></B> for example, corresponding to
-<B><I>ement</I></B> and <B><I>ent</I></B>), and also in that the algorithm's treatment of short
-words, or words with short stems, can be rather destructive.
+the singular forms <B><I>ement</I></B> and <B><I>ent</I></B>), and also in that the algorithm's
+treatment of short words, or words with short stems, can be rather
+destructive.
 
 <BR><BR>
 
-The Lovins algorithm is noticeably bigger than the Porter algorithm, because of
-its very extensive endings list. But in one way that is used to advantage:
-it is
-faster. It has effectively traded space for time, and with its large suffix set
-it needs just two major steps to remove a suffix, compared with the eight of
-the Porter algorithm.
+The Lovins algorithm is noticeably bigger than the Porter algorithm,
+because of its very extensive endings list. But in one way that is used to
+advantage: it is faster. It has effectively traded space for time, and with
+its large suffix set it needs just two major steps to remove a suffix,
+compared with the eight of the Porter algorithm.
 
 <BR><BR>
 
@@ -59,7 +59,7 @@ an ending is removed in the first step.
 
 <BR><BR>
 
-For example, <I>nationally</I> has the ending <B><I>ationally</I></B>, but its associated
+For example, <I>nationally</I> has the ending <B><I>ationally</I></B>, with associated
 condition, B, &#8216;minimum stem length = 3&#8217;. Since removing <B><I>ationally</I></B>
 would leave a stem of length 1 this is rejected. But it also has ending
 <B><I>ionally</I></B> with associated condition A. Condition A is &#8216;no restriction on
@@ -72,7 +72,7 @@ The transformation rules handle features like letter undoubling (<I>sitting</I>
 and English morphological oddities ultimately caused by the behaviour of
 Latin verbs of the second conjugation (<I>assume</I> / <I>assumption</I>,
 <I>commit</I> / <I>commission</I> etc). Although they are described as being
-applied in turn, they can been broken into two stages, rule 1 being done in
+applied in turn, they can be broken into two stages, rule 1 being done in
 stage 1, and either zero or one of rules 2 to 35 being done in stage 2.
 
 <BR><BR>
@@ -297,7 +297,7 @@ Finally, here are the 35 transformation rules.
 
 <TR><TD>
 
-(Rule 30 as given here corrects a typographical error in published
+(Rule 30 as given here corrects a typographical error in the published
 paper of 1968.)
 
 <BR><BR>
