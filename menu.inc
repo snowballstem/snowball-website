@@ -20,7 +20,6 @@ function displayMenu()
 {
   echo "<td valign=top bgcolor=cyan width=128>";
   menuEntry("Introduction", "/index.php");
-  menuEntry("News", "/news.php");
   menuEntry("Demo", "/demo.php");
   menuEntry("Download", "/download.php");
   menuEntry("Documentation", "/documentation.php");
