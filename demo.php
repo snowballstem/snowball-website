@@ -1,13 +1,7 @@
-<html>
-<head>
-<title>Snowball - Demo</title>
-</head>
-<body bgcolor=white>
-<table><tr><td valign=top>
-</td><td>
-<h1>Snowball</h1>
-</td></tr>
-<tr><?php include "menu.inc"; ?><td valign=top>
+<?php
+  require "menu.inc";
+  displayHeader("Demo");
+?>
 
 <form method="POST" action="demo.php">
 Enter some (english) words to stem:<br>

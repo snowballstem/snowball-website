@@ -13,7 +13,7 @@ function menuEntry($text, $file)
   } else {
     echo $text;
   }
-  echo "<br>";
+  echo "<br>\n";
 }
 
 function displayMenu()
@@ -30,14 +30,32 @@ function displayMenu()
 ?>
 <br>
 
-<a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/snowball/">Browse CVS</a>
+<a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/snowball/">Browse CVS</a><br>
+<a href="https://sourceforge.net/projects/snowball/">Sourceforge project page</a><br>
 <br>
-<a href="https://sourceforge.net/projects/snowball/">Sourceforge project page</a>
-<br>
-<br>
-<A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=36391" width="88" height="31" border="0" alt="SourceForge Logo"></A>
-<br>
+
+<A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=36391" width="88" height="31" border="0" alt="SourceForge Logo"></A><br>
 </td>
+<?php
+}
+
+function displayHeader($title)
+{
+  $fulltitle = "Snowball";
+  if ($title != "") {
+    $fulltitle = "$fulltitle - $title";
+  }
+?>
+<html>
+<head>
+<title><?php echo $fulltitle ?></title>
+</head>
+<body bgcolor=white>
+<table><tr><td valign=top>
+</td><td>
+<h1><?php echo $fulltitle ?></h1>
+</td></tr>
+<tr><?php displayMenu(); ?><td valign=top>
 <?php
 }
 ?>

@@ -1,13 +1,7 @@
-<html>
-<head>
-<title>Snowball</title>
-</head>
-<body bgcolor=white>
-<table><tr><td valign=top>
-</td><td>
-<h1>Snowball</h1>
-</td></tr>
-<tr><?php require "menu.inc"; displayMenu(); ?><td valign=top>
+<?php
+  require "menu.inc";
+  displayHeader("");
+?>
 <b>STATUS: (26 Sept 2001) initial upload of project is currently in progress.</b>
 <p>
 
