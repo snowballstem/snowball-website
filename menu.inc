@@ -67,7 +67,7 @@ function displayHeader($title)
 <h1 align=center><?php echo $fulltitle ?></h1>
 </td></tr>
 <tr><?php displayMenu(); ?><td valign=top>
-<table width="75%" align=center cols=1>
+<table width=75% align=center cols=1>
 <?php
 }
 
@@ -89,4 +89,30 @@ Last modified on <?php
 </html>
 <?php
 }
+
+function get_news()
+{
+    $filehandle = fopen ("http://sourceforge.net/export/projnews.php?group_id=36391&limit=5&flat=1&show_summaries=1", "r");
+    if (!$filehandle) {
+	return "Unable to open remote file.";
+    } else {
+	$filecontents = '';
+	while (!feof ($filehandle)) {
+	    $filecontents .= fgets ($filehandle, 1024);
+	}
+	fclose ($filehandle);
+    }
+
+    $filecontents = preg_replace('|<I>[^<]*</I>[^<]*<A HREF="http://sourceforge.net/projects/snowball/">Snowball</A>|', '', $filecontents);
+    $filecontents = preg_replace('|<div align="center">.*?</div>|', '', $filecontents);
+    $filecontents = preg_replace('|<HR.*?>|i', '', $filecontents);
+
+    return $filecontents;
+}
+
+function display_news()
+{
+    echo get_news();
+}
+
 ?>
