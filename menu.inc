@@ -68,7 +68,7 @@ function displayHeader($title)
 </head>
 <body bgcolor=white>
 <table><tr><td valign=center>
-<center>Need a logo</center>
+<center><img src="snub-dodecahedron.gif"></center>
 </td><td>
 <h1 align=center><?php echo $fulltitle ?></h1>
 </td></tr>
