@@ -2,7 +2,6 @@
   require "menu.inc";
   displayHeader("");
 ?>
-<b>STATUS: (26 Sept 2001) initial upload of project is currently in progress.</b>
 <p>
 
 Snowball is a language for describing stemming algorithms, primarily for
@@ -25,6 +24,4 @@ strongly encouraged to submit any and all comments, problem reports and
 improvements.
 
 </p>
-</td></tr></table>
-</body>
-</html>
+<?php displayFooter(""); ?>

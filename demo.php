@@ -25,6 +25,5 @@ if ($words != '')
   echo "</pre>";
 }
 ?>
-</td></tr></table>
-</body>
-</html>
+
+<?php displayFooter(""); ?>

@@ -56,6 +56,22 @@ function displayHeader($title)
 <h1><?php echo $fulltitle ?></h1>
 </td></tr>
 <tr><?php displayMenu(); ?><td valign=top>
+<b>STATUS: (27 Sept 2001) initial upload of project is currently in progress.</b>
+<?php
+}
+
+function displayFooter()
+{
+?>
+</td></tr></table>
+<address>
+Last modified on <?php
+  global $PHP_SELF;
+  echo date('r', filemtime($PHP_SELF));
+?>
+</address>
+</body>
+</html>
 <?php
 }
 ?>
