@@ -19,7 +19,10 @@ administration.
 </p>
 
 <p>
-Linguistic assistance for Russian has been provided by Patrick Miles (of the
+Linguistic assistance for Russian has been provided by
+
+<a href="http://www.patrickmiles.co.uk/">Patrick Miles</a>
+(of the
 Patrick Miles Translation Agency, Cambridge, UK). Pat is a distinguished
 translator, whose English versions of Chekhov have appeared on the London
 stage.
