@@ -24,11 +24,13 @@ Note: this is not yet functional.
 if ($words != '')
 {
   echo "<pre>";
-  $tmpfile = tmpfile();
+  $tmpname = tempnam("/tmp", "snowball_stemdemo");
+  $tmpfile = fopen($tmpname);
   # Have a limit of 10000 bytes, just in case.
   fwrite($tmpfile, $words, 10000);
-  passthru ("./stemdemo_en $tmpfile");
   fclose($tmpfile);
+  passthru ("./stemdemo_en $tmpname");
+  delete($tmpname);
   echo "</pre>";
 }
 ?>
