@@ -887,12 +887,14 @@ This completes the definition of Snowball.
 <BR>&nbsp;<H2>Snowball syntax</H2>
 <FONT SIZE=-1><PRE>
 <DL><DD>
-<TT>||</TT>&nbsp; is used for alternatives, &nbsp;<TT>[<I>X</I>]</TT>&nbsp; means that <I>X</I> is optional, and &nbsp;<TT>[<I>X</I>]*</TT>
-means that <I>X</I> is repreated zero or more times. meta-symbols are defined on
-the left. &nbsp;<TT>&lt;char></TT>&nbsp; means any character.
+<TT>||</TT>&nbsp; is used for alternatives, &nbsp;<TT>[<I>X</I>]</TT>&nbsp; means that <I>X</I> is
+optional, and &nbsp;<TT>[<I>X</I>]*</TT>&nbsp; means that <I>X</I> is repreated zero or more
+times. meta-symbols are defined on the left. &nbsp;<TT>&lt;char></TT>&nbsp; means any
+character.
 <BR><BR>
-The definition of literal strings does not allow for the escaping
-conventions. The command &nbsp;<TT>?</TT>&nbsp; is a debugging aid.
+The definition of &nbsp;<TT>literal string</TT>&nbsp; does not allow for the escaping
+conventions established by the &nbsp;<TT>stringescapes</TT>&nbsp; directive. The command
+<TT>?</TT>&nbsp; is a debugging aid.
 <BR><BR>
 
 <FONT SIZE=-1><PRE>
@@ -904,9 +906,7 @@ conventions. The command &nbsp;<TT>?</TT>&nbsp; is a debugging aid.
 &lt;b_name>        ::= &lt;name>
 &lt;r_name>        ::= &lt;name>
 &lt;g_name>        ::= &lt;name>
-&lt;hexdigit>      ::= &lt;digit> || a || b || c || d || e || f ||
-                               A || B || C || D || E || F
-&lt;literal string>::= '[&lt;char>]*' || hex '[&lt;hexdigit>]*'
+&lt;literal string>::= '[&lt;char>]*'
 &lt;number>        ::= &lt;digit> [ &lt;digit> ]*
 
 S               ::= &lt;s_name> || &lt;literal string>
