@@ -27,7 +27,15 @@ public class SnowballProgram {
      */
     public String getCurrent()
     {
-	return current.toString();
+        String result = current.toString();
+        // Make a new StringBuffer.  If we reuse the old one, and a user of
+        // the library keeps a reference to the buffer returned (for example,
+        // by converting it to a String in a way which doesn't force a copy),
+        // the buffer size will not decrease, and we will risk wasting a large
+        // amount of memory.
+        // Thanks to Wolfram Esser for spotting this problem.
+        current = new StringBuffer();
+        return result;
     }
 
     // current string
