@@ -8,7 +8,9 @@
 <h1>Snowball</h1>
 </td></tr>
 <tr><td valign=top bgcolor=cyan>
-<?php include('menu.inc'); ?>
+<?php
+  echo "PHP_SELF=$PHP_SELF ";
+include('menu.inc'); ?>
 </td><td valign=top>
 <b>STATUS: (26 Sept 2001) initial upload of project is currently in progress.</b>
 <p>

@@ -10,7 +10,9 @@
  }
 ?>
 <br>
-<?php menuEntry("Introduction", "index.php") ?>
+<?php
+  echo "PHP_SELF=$PHP_SELF ";
+menuEntry("Introduction", "index.php") ?>
 <?php menuEntry("Demo", "demo.php") ?>
 <?php menuEntry("Download", "download.php") ?>
 <?php menuEntry("Documentation", "docs.php") ?>
