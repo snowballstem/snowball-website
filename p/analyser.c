@@ -217,7 +217,7 @@ static void check_name_type(struct analyser * a, struct name * p, int type)
     error2(a, 33, type);
 }
 
-extern void read_names(struct analyser * a, int type)
+static void read_names(struct analyser * a, int type)
 {   struct tokeniser * t = a->tokeniser;
     unless (get_token(a, c_bra)) return;
     repeat
@@ -240,7 +240,7 @@ extern void read_names(struct analyser * a, int type)
     unless (check_token(a, c_ket)) t->token_held = true;
 }
 
-extern symbol * new_literalstring(struct analyser * a)
+static symbol * new_literalstring(struct analyser * a)
 {   NEW(literalstring, p);
     p->b = copy_b(a->tokeniser->b);
     p->next = a->literalstrings;
@@ -248,7 +248,7 @@ extern symbol * new_literalstring(struct analyser * a)
     return p->b;
 }
 
-extern int read_AE_test(struct analyser * a)
+static int read_AE_test(struct analyser * a)
 {
     struct tokeniser * t = a->tokeniser;
     switch (read_token(t))

@@ -320,7 +320,7 @@ static void generate_AE(struct generator * g, struct node * p)
         case c_minint:
             write_string(g, "MININT"); break;
         case c_neg:
-            write_string(g, "-"); generate_AE(g, p->left); break;
+            write_string(g, "-"); generate_AE(g, p->right); break;
         case c_multiply:
             s = " * "; goto label0;
         case c_plus:
@@ -706,7 +706,6 @@ static void generate_loop(struct generator * g, struct node * p)
 
     w(g, "~}");
     g->unreachable = false;
-    str_delete(loopvar);
 }
 
 static void generate_repeat(struct generator * g, struct node * p, struct str * loopvar)
@@ -767,7 +766,6 @@ static void generate_atleast(struct generator * g, struct node * p)
     g->B[0] = str_data(loopvar);
     write_failure_if(g, "~B0 > 0", p);
     w(g, "~}");
-    str_delete(loopvar);
 }
 
 static void generate_setmark(struct generator * g, struct node * p)

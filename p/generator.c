@@ -243,7 +243,7 @@ static void generate_AE(struct generator * g, struct node * p)
         case c_minint:
             ws(g, "MININT"); break;
         case c_neg:
-            wch(g, '-'); generate_AE(g, p->left); break;
+            wch(g, '-'); generate_AE(g, p->right); break;
         case c_multiply:
             s = " * "; goto label0;
         case c_plus:
