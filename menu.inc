@@ -1,5 +1,7 @@
-<?php function menuEntry($text, $file, $href) {
-  if ($SCRIPT_NAME != $file) {
+<?php function menuEntry($text, $file) {
+  $href = $file
+  if ($SCRIPT_NAME != $file &&
+      file_exists($file)) {
    echo "<a href=$href>$text</a>";
   } else {
    echo $text;
@@ -8,22 +10,15 @@
  }
 ?>
 <br>
-<?php menuEntry("Introduction", "index.php", "index.php") ?>
-<br>
-<?php menuEntry("Demo", "demo.php", "demo.php") ?>
-<br>
-Download
-<br>
-Documentation
-<br>
-Mailing lists
-<br>
-License
-<br>
-Credits
-<br>
-Projects
-<br>
+<?php menuEntry("Introduction", "index.php") ?>
+<?php menuEntry("Demo", "demo.php") ?>
+<?php menuEntry("Download", "download.php") ?>
+<?php menuEntry("Documentation", "docs.php") ?>
+<?php menuEntry("Mailing lists", "lists.php") ?>
+<?php menuEntry("License", "license.php") ?>
+<?php menuEntry("Credits", "credits.php") ?>
+<?php menuEntry("Projects", "projects.php") ?>
+
 <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/snowball/">Browse CVS</a>
 <br>
 <a href="https://sourceforge.net/projects/snowball/">Sourceforge project page</a>
