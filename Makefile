@@ -33,7 +33,7 @@ snowball_OBJECTS = ./p/space.o \
 		   ./p/str.o \
 		   ./p/driver.o
 
-all: $(addprefix lang_, $(languages)) libs snowball.jar javaoutput
+all: $(addprefix lang_, $(languages)) libs # snowball.jar javaoutput
 
 javaoutput: $(addsuffix /output_java.txt, $(languages))
 
