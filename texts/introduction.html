@@ -316,7 +316,7 @@ If the stemming process reduces two words to the same stem, they are said
 to be <I>conflated</I>.
 
 
-<BR>&nbsp;<H2>3 Stemming errors, and the use dictionaries</H2>
+<BR>&nbsp;<H2>3 Stemming errors, and the use of dictionaries</H2>
 
 One way of thinking of the relation between terms and documents in an IR
 system is to see the documents as being about concepts, and the terms as
@@ -728,10 +728,9 @@ the stemmer tables of exceptions.
 Switching from English to French, consider <I>&ecirc;tre</I>, the equivalent form
 of <I>be</I>. It has about 40 different forms, including,
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD>  <B><I>suis</I></B> <TD></TD><TD> <B><I>es</I></B> <TD></TD><TD> <B><I>sommes</I></B> <TD></TD><TD> <B><I>serez</I></B> <TD></TD><TD> <B><I>&eacute;taient</I></B> <TD></TD><TD>
-    <B><I>fus</I></B> <TD></TD><TD> <B><I>furent</I></B> <TD></TD><TD> <B><I>sois</I></B> <TD></TD><TD> <B><I>&eacute;t&eacute;</I></B>
-</TABLE></DL>
+<DL><DD>
+  <B><I>suis  &nbsp;  es  &nbsp;  sommes  &nbsp;  serez  &nbsp;  &eacute;taient  &nbsp;  fus  &nbsp;  furent  &nbsp;  sois  &nbsp;  &eacute;t&eacute;</I></B>
+</DL>
 
 (and <I>suis</I> incidentally is a homonym, as part of the verb <I>suivre</I>.)
 Passing all forms through a rule-based stemmer creates something of a
