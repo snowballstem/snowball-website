@@ -1053,8 +1053,8 @@ static void generate_namedstring(struct generator * g, struct node * p)
 
 static void generate_literalstring(struct generator * g, struct node * p)
 {
-    write_comment(g, p);
     byte * b = p->literalstring;
+    write_comment(g, p);
     g->S[0] = p->mode == m_forward ? "" : "_b";
     g->I[0] = SIZE(b);
     g->L[0] = b;
