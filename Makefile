@@ -33,7 +33,7 @@ lang_%: %/stem.c %/stemmer %/output.txt %/tarball.tgz
 
 libs: libstemmer/libstemmer.o
 
-LIBSTEMMER_XTRA = libstemmer/modules.c libstemmer/README
+LIBSTEMMER_XTRA = libstemmer/modules.c
 LIBSTEMMER_SRCS = libstemmer/libstemmer.h \
 		libstemmer/wrapper.c \
 		q/api.c \
