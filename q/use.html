@@ -145,9 +145,9 @@ from the &nbsp;<TT>-vprefix</TT>&nbsp; option, although this should not usually 
 <BR><PRE>
     printf("p1 is %d\n", z->Khotanese_variable_p1);
 </PRE>
-The stemming scripts on this Web site use Snowball very simply. &nbsp;<TT>-vprefix</TT>&nbsp; and
+The stemming scripts on this Web site use Snowball very simply. &nbsp;<TT>-vprefix</TT>&nbsp; is left unset, and 
 <TT>-eprefix</TT>
-are left unset, and all the programs are tested through a common
+is set to the name of the script (usually the language the script is for).  All the programs are tested through a common
 <A HREF="driver.c">driver</A>
 program.
 
