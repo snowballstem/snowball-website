@@ -222,7 +222,7 @@ extern byte * increase_size(byte * p, int n)
    s_size chars at s
 */
 
-extern int replace_s(struct SN_env * z, int c_bra, int c_ket, int s_size, byte * s)
+extern int replace_s(struct SN_env * z, int c_bra, int c_ket, int s_size, const byte * s)
 {   int adjustment = s_size - (c_ket - c_bra);
     int len = SIZE(z->p);
     if (adjustment != 0)

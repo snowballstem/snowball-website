@@ -39,7 +39,7 @@ extern void SN_close_env(struct SN_env * z)
     free(z);
 }
 
-extern void SN_set_current(struct SN_env * z, int size, char * s)
+extern void SN_set_current(struct SN_env * z, int size, const char * s)
 {
     replace_s(z, 0, z->l, size, (byte *) s);
     z->c = 0;
