@@ -1004,7 +1004,7 @@ static void generate_header_file(struct generator * g)
 
     w(g, "~N"
          "extern struct SN_env * ~pcreate_env(void);~N"
-         "extern void close_env(struct SN_env * z);~N~N");
+         "extern void ~pclose_env(struct SN_env * z);~N~N");
 
     until (q == 0)
     {   g->V[0] = q;
