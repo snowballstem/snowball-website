@@ -1,0 +1,3 @@
+
+gcc -O -o X/snowball p/space.c p/sort.c p/tokeniser.c p/analyser.c \
+                      p/generator.c p/driver.c
