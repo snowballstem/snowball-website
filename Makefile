@@ -6,7 +6,7 @@ JAVA=java
 CC=gcc
 RM=rm -f
 
-CFLAGS=-Wall -Wmissing-prototypes -Wmissing-declarations # -Werror
+#CFLAGS=-Wall -Wmissing-prototypes -Wmissing-declarations # -Werror
 
 SHELL=/bin/sh
 MAKE=make
