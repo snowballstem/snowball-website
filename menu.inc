@@ -90,7 +90,7 @@ Last modified on <?php
   echo date('r', filemtime($SCRIPT_FILENAME));
 ?>.<br>
 <a href="mailto:snowball-discuss@lists.tartarus.org">Write to our mailing list</a> if you have comments or questions about the project.<br>
-<a href="mailto:richard@tartarus.org">Contact the webmaster</a> if you have comments directly related to the webpage.
+<a href="mailto:richard@tartarus.org">Contact the webmaster</a> ONLY to report broken links or related problems with the webpages.  Other mail will be ignored.
 </address>
 </body>
 </html>
