@@ -34,7 +34,6 @@ function displayMenu()
 <a href="https://sourceforge.net/projects/snowball/">Sourceforge project page</a><br>
 <br>
 
-<center><A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=36391" width="88" height="31" border="0" alt="SourceForge Logo"></A></center><br>
 </td>
 <?php
 }
@@ -51,7 +50,8 @@ function displayHeader($title)
 <title><?php echo $fulltitle ?></title>
 </head>
 <body bgcolor=white>
-<table><tr><td valign=top>
+<table><tr><td valign=center>
+<center><A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=36391" width="88" height="31" border="0" alt="SourceForge Logo"></A></center>
 </td><td>
 <h1><?php echo $fulltitle ?></h1>
 </td></tr>
