@@ -59,7 +59,7 @@ define postlude as repeat (
         '{o"}' (<- 'o')
         '{u"}' (<- 'u')
         ''     (next)
-    ) //or next
+    )
 
 )
 

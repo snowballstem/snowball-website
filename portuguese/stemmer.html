@@ -14,7 +14,7 @@
 <TR><TD><A HREF="stem.sbl">    The stemmer in Snowball</A>
 <TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
 <TR><TD><A HREF="stem.h">      - and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Portuguese vocabulary (ISO Latin codings)</A>
+<TR><TD><A HREF="voc.txt">     Sample Portuguese vocabulary (MS-DOS Latin I codings)</A>
 <TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
 <TR><TD><A HREF="diffs.txt">   Vocabulary + stemmed equivalent in pure ASCII</A>
 <TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
@@ -379,7 +379,7 @@ groupings ( v )
 
 stringescapes {}
 
-/* special characters (in ISO Latin) */
+/* special characters (in MS-DOS Latin I) */
 
 stringdef a'   hex 'A0'  // a-acute
 stringdef a^   hex '83'  // a-circumflex e.g. 'bota^nico
@@ -401,7 +401,8 @@ define prelude as repeat (
     [substring] among(
         '{a~}' (<- 'a~')
         '{o~}' (<- 'o~')
-    ) or next
+        ''     (next)
+    ) //or next
 )
 
 define mark_regions as (
@@ -426,7 +427,8 @@ define postlude as repeat (
     [substring] among(
         'a~' (<- '{a~}')
         'o~' (<- '{o~}')
-    ) or next
+        ''   (next)
+    ) //or next
 )
 
 backwardmode (

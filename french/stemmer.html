@@ -14,7 +14,7 @@
 <TR><TD><A HREF="stem.sbl">    The stemmer in Snowball</A>
 <TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
 <TR><TD><A HREF="stem.h">      - and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample French vocabulary (ISO Latin codings)</A>
+<TR><TD><A HREF="voc.txt">     Sample French vocabulary (MS-DOS Latin I codings)</A>
 <TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
 <TR><TD><A HREF="diffs.txt">   Vocabulary + stemmed equivalent in pure ASCII</A>
 <TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
@@ -469,7 +469,7 @@ groupings ( v keep_with_s )
 
 stringescapes {}
 
-/* special characters (in ISO Latin) */
+/* special characters (in MS-DOS Latin I) */
 
 stringdef a^   hex '83'  // a-circumflex
 stringdef a`   hex '85'  // a-grave
@@ -521,7 +521,9 @@ define postlude as repeat (
         'I' (<- 'i')
         'U' (<- 'u')
         'Y' (<- 'y')
-    ) or next
+        ''  (next)
+    )
+    ///) or next
 )
 
 backwardmode (
@@ -684,6 +686,7 @@ define stem as (
     )
     do postlude
 )
+
 </DL>
 </PRE></FONT>
 </TABLE>
