@@ -24,4 +24,4 @@ strongly encouraged to submit any and all comments, problem reports and
 improvements.
 
 </p>
-<?php displayFooter(""); ?>
+<?php displayFooter(); ?>

@@ -26,4 +26,4 @@ if ($words != '')
 }
 ?>
 
-<?php displayFooter(""); ?>
+<?php displayFooter(); ?>
