@@ -1,6 +1,6 @@
 <?php
   require "menu.inc";
-  displayHeader("Introduction");
+  displayHeader("");
 ?>
 
 <?php include "index_body.html" ?>
