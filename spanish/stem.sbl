@@ -54,7 +54,8 @@ define postlude as repeat (
         '{o'}' (<- 'o')
         '{u'}' (<- 'u')
         // and possibly {u"}->u here, or in prelude
-    ) or next
+        ''     (next)
+    ) //or next
 )
 
 backwardmode (

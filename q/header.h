@@ -19,6 +19,7 @@ struct among
     byte * s;       /* search string */
     int substring_i;/* index to longest matching substring */
     int result;     /* result of the lookup */
+    int (* function)(struct SN_env *);
 };
 
 extern byte * create_s(void);

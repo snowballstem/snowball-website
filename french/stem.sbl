@@ -69,7 +69,9 @@ define postlude as repeat (
         'I' (<- 'i')
         'U' (<- 'u')
         'Y' (<- 'y')
-    ) or next
+        ''  (next)
+    )
+    ///) or next
 )
 
 backwardmode (

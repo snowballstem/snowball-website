@@ -746,6 +746,7 @@ static void generate_define(struct generator * g, struct node * p)
     g->V[0] = q;
 
     w(g, "~N~S0 int ~V0(struct SN_env * z) {~N~+");
+    if (p->amongvar_needed) w(g, "~Mint among_var;~N");
     g->failure_string = 0;
     g->failure_label = x_return;
     generate(g, p->left);
@@ -763,7 +764,8 @@ static void generate_substring(struct generator * g, struct node * p)
     if (x->command_count == 0 && x->starter == 0)
         wp(g, "~Mif (!(find_among~S0(z, a_~I0, ~I1))) ~f~C", p);
     else
-        wp(g, "~Mz->a = find_among~S0(z, a_~I0, ~I1);~C", p);
+        wp(g, "~Mamong_var = find_among~S0(z, a_~I0, ~I1);~C"
+              "~Mif (!(among_var)) ~f~N", p);
 }
 
 static void generate_among(struct generator * g, struct node * p)
@@ -778,7 +780,7 @@ static void generate_among(struct generator * g, struct node * p)
 
     p = p->left;
     if (p != 0 && p->type != c_literalstring) p = p->right;
-    w(g, "~Mswitch(z->a) {~N~+"
+    w(g, "~Mswitch(among_var) {~N~+"
              "~Mcase 0: ~f~N");
 
     until (p == 0)
@@ -923,7 +925,10 @@ static void generate_among_table(struct generator * g, struct among * x)
             g->L[0] = v->b;
             g->S[0] = i < x->literalstring_count - 1 ? "," : "";
 
-            w(g, "/*~J0 */ { ~I1, (byte *)~L0, ~I2, ~I3}~S0~N");
+            w(g, "/*~J0 */ { ~I1, (byte *)~L0, ~I2, ~I3, ");
+            if (v->function == 0) w(g, "0"); else
+                                  wvn(g, v->function);
+            w(g, "}~S0~N");
             v++;
         }
     }

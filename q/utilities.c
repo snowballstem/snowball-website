@@ -158,7 +158,14 @@ extern int find_among(struct SN_env * z, struct among * v, int v_size)
     }
     while(1)
     {   w = v + i;
-        if (common_i >= w->s_size) { z->c += w->s_size; return w->result; }
+        if (common_i >= w->s_size)
+        {   z->c = c + w->s_size;
+            if (w->function == 0) return w->result;
+            {   int res = w->function(z);
+                z->c = c + w->s_size;
+                if (res) return w->result;
+            }
+        }
         i = w->substring_i;
         if (i < 0) return 0;
     }
@@ -204,7 +211,14 @@ extern int find_among_b(struct SN_env * z, struct among * v, int v_size)
     }
     while(1)
     {   w = v + i;
-        if (common_i >= w->s_size) { z->c -= w->s_size; return w->result; }
+        if (common_i >= w->s_size)
+        {   z->c = c - w->s_size;
+            if (w->function == 0) return w->result;
+            {   int res = w->function(z);
+                z->c = c - w->s_size;
+                if (res) return w->result;
+            }
+        }
         i = w->substring_i;
         if (i < 0) return 0;
     }
@@ -213,7 +227,7 @@ extern int find_among_b(struct SN_env * z, struct among * v, int v_size)
 
 extern byte * increase_size(byte * p, int n)
 {   int new_size = /**-CAPACITY(p) +-**/ n + 20;
-    byte * q = HEAD + malloc(HEAD + new_size + 1);
+    byte * q = HEAD + (byte *) malloc(HEAD + new_size + 1);
     CAPACITY(q) = new_size;
     memmove(q, p, CAPACITY(p)); lose_s(p); return q;
 }

@@ -18,14 +18,9 @@ struct system_word
 
 static int smaller(int a, int b) { return a < b ? a : b; }
 
-static void zero_terminate(byte * p)
-{   add_to_b(p, 1, (byte *)"");  /* a zero character */
-    SIZE(p)--;
-}
-
 extern byte * get_input(byte * p)
 {
-    zero_terminate(p);
+    p[SIZE(p)] = 0;  /* zero terminate */
     {   FILE * input = fopen((char *)p, "r");
         if (input == 0) return 0;
         {   byte * b = create_b(STARTSIZE);
@@ -45,7 +40,9 @@ extern byte * get_input(byte * p)
 static void error(struct tokeniser * t, char * s1, int n, byte * p, char * s2)
 {
     if (t->error_count == 20) { fprintf(stderr, "... etc\n"); exit(1); }
-    fprintf(stderr, "Line %d: ", t->line_number);
+    fprintf(stderr, "Line %d", t->line_number);
+    if (t->get_depth > 0) fprintf(stderr, " (of included file)");
+    fprintf(stderr, ": ");
     unless (s1 == 0) fprintf(stderr, "%s", s1);
     unless (p == 0)
     {   int i;
@@ -180,7 +177,6 @@ static int next_token(struct tokeniser * t)
             code = find_word(c - c0, p + c0);
             if (code < 0)
             {   t->b = move_to_b(t->b, c - c0, p + c0);
-                /*zero_terminate(t->b);*/
                 code = c_name;
             }
         } else
@@ -333,9 +329,9 @@ extern int read_token(struct tokeniser * t)
                }
             case -1:
                unless (t->next == 0)
-               {   lose_b(t->p);
+               {   lose_b(p);
                    {   struct input * q = t->next;
-                       memmove(t, q, sizeof(struct input));
+                       memmove(t, q, sizeof(struct input)); p = t->p;
                        FREE(q);
                    }
                    t->get_depth--;

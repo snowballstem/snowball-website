@@ -9,8 +9,15 @@
 #define EXTENDER 40
 #define DEBUG 0
 
+/*  For a block p, SIZE(p) is the number of bytes sp far written into it,
+    CAPACITY(p) the total number it can contain, so SIZE(p) <= CAPACITY(p).
+    In fact blocks have 1 extra character over the promised capacity so
+    they can be zero terminated by 'p[SIZE(p)] = 0;' without fear of
+    overwriting.
+*/
+
 extern byte * create_b(int n)
-{   byte * p = HEAD + (byte *) MALLOC(HEAD + n);
+{   byte * p = HEAD + (byte *) MALLOC(HEAD + n + 1);
     CAPACITY(p) = n;
     SIZE(p) = 0;
     if (DEBUG) printf("<-- %d\n", p);
@@ -31,7 +38,9 @@ extern void lose_b(byte * p)
 extern byte * increase_capacity(byte * p, int n)
 {   byte * q = create_b(CAPACITY(p) + n + EXTENDER);
     if (DEBUG) printf("%d --> %d\n", p, q);
-    memmove(q, p, CAPACITY(p)); lose_b(p); return q;
+    memmove(q, p, CAPACITY(p));
+    SIZE(q) = SIZE(p);
+    lose_b(p); return q;
 }
 
 extern byte * move_to_b(byte * p, int n, byte * q)

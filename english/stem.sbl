@@ -6,7 +6,7 @@ routines (
     mark_regions
     shortv
     R1 R2
-    Step_1a Step_1b Step_1c Step_2 Step_3 Step_4 Step_5a Step_5b
+    Step_1a Step_1b Step_1c Step_2 Step_3 Step_4 Step_5
     exception
 )
 
@@ -118,8 +118,10 @@ backwardmode (
             'alize'   (<-'al')
             'icate' 'iciti' 'ical'
                       (<-'ic')
-            'ative' 'ful' 'ness'
+            'ful' 'ness'
                       (delete)
+            'ative'
+                      (R2 delete)  // 'R2' added Dec 2001
         )
     )
 
@@ -132,16 +134,11 @@ backwardmode (
         )
     )
 
-    define Step_5a as (
-        ['e']
-        R2 or (R1 not shortv)
-        delete
-    )
-
-    define Step_5b as (
-        ['l']
-        R2 'l'
-        delete
+    define Step_5 as (
+        [substring] among (
+            'e' (R2 or (R1 not shortv) delete)
+            'l' (R2 'l' delete)
+        )
     )
 )
 
@@ -204,8 +201,7 @@ define stem as (
             do Step_3
             do Step_4
 
-            do Step_5a
-            do Step_5b
+            do Step_5 // 5a, 5b joined Dec 2001
         )
         do postlude
     )

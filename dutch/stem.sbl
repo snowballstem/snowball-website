@@ -51,7 +51,8 @@ define prelude as (
                 (<- 'o')
             '{u"}' '{u'}'
                 (<- 'u')
-        ) or next
+            ''  (next)
+        ) //or next
     )
     try(['y'] <- 'Y')
     repeat goto (
@@ -76,7 +77,8 @@ define postlude as repeat (
     [substring] among(
         'Y'  (<- 'y')
         'I'  (<- 'i')
-    ) or next
+        ''   (next)
+    ) //or next
 
 )
 

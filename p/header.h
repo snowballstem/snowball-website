@@ -119,6 +119,7 @@ struct amongvec {
     struct node * p; /* the corresponding command */
     int i;           /* the amongvec index of the longest substring of b */
     int result;      /* the numeric result for the case */
+    struct name * function;
 
 };
 
@@ -158,7 +159,7 @@ struct node {
     byte * literalstring;
     int number;
     int line_number;
-
+    int amongvar_needed;   /* used in routine definitions */
 };
 
 enum name_types {
@@ -196,6 +197,7 @@ struct analyser {
     struct among * amongs;
     struct among * amongs_end;
     int among_count;
+    int amongvar_needed;      /* used in reading routine definitions */
     struct grouping * groupings;
     struct grouping * groupings_end;
     struct node * substring;  /* pending 'substring' in current routine definition */

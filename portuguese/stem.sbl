@@ -37,7 +37,8 @@ define prelude as repeat (
     [substring] among(
         '{a~}' (<- 'a~')
         '{o~}' (<- 'o~')
-    ) or next
+        ''     (next)
+    ) //or next
 )
 
 define mark_regions as (
@@ -62,7 +63,8 @@ define postlude as repeat (
     [substring] among(
         'a~' (<- '{a~}')
         'o~' (<- '{o~}')
-    ) or next
+        ''   (next)
+    ) //or next
 )
 
 backwardmode (

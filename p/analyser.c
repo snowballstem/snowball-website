@@ -59,7 +59,8 @@ static char * name_of_type(int n)
          default: fault(1);
          case 's': return "string";
          case 'i': return "integer";
-         case 'r': return "routine or grouping";
+         case 'r': return "routine";
+         case 'R': return "routine or grouping";
          case 'g': return "grouping";
     }
 }
@@ -73,7 +74,9 @@ static void count_error(struct analyser * a)
 static void error2(struct analyser * a, int n, int x)
 {   struct tokeniser * t = a->tokeniser;
     count_error(a);
-    fprintf(stderr, "Line %d: ", t->line_number);
+    fprintf(stderr, "Line %d", t->line_number);
+    if (t->get_depth > 0) fprintf(stderr, " (of included file)");
+    fprintf(stderr, ": ");
     if (n >= 30) report_b(stderr, t->b);
     switch (n)
     {
@@ -112,7 +115,7 @@ static void error2(struct analyser * a, int n, int x)
             fprintf(stderr, " undeclared"); break;
         case 32:
             fprintf(stderr, " declared as %s mode; used as %s mode",
-                            name_of_mode(x), name_of_mode(a->mode)); break;
+                            name_of_mode(a->mode), name_of_mode(x)); break;
         case 33:
             fprintf(stderr, " not of type %s", name_of_type(x)); break;
         case 34:
@@ -121,6 +124,9 @@ static void error2(struct analyser * a, int n, int x)
             fprintf(stderr, " misplaced"); break;
         case 36:
             fprintf(stderr, " redefined"); break;
+        case 37:
+            fprintf(stderr, " mis-used as %s mode",
+                            name_of_mode(x)); break;
         default:
             fprintf(stderr, " error %d", n); break;
 
@@ -187,14 +193,19 @@ static struct name * find_name(struct analyser * a)
     return p;
 }
 
+static void check_routine_mode(struct analyser * a, struct name * p, int mode)
+{   if (p->mode < 0) p->mode = mode; else
+    unless (p->mode == mode) error2(a, 37, mode);
+}
+
 static void check_name_type(struct analyser * a, struct name * p, int type)
 {   switch (type)
     {   case 's': if (p->type == t_string) return; break;
         case 'i': if (p->type == t_integer) return; break;
         case 'b': if (p->type == t_boolean) return; break;
+        case 'R': if (p->type == t_grouping) return;
         case 'r': if (p->type == t_routine ||
-                      p->type == t_external ||
-                      p->type == t_grouping) return; break;
+                      p->type == t_external) return; break;
         case 'g': if (p->type == t_grouping) return; break;
     }
     error2(a, 33, type);
@@ -420,7 +431,9 @@ static void make_among(struct analyser * a, struct node * p, struct node * subst
     struct amongvec * w0 = v;
     struct amongvec * w1 = v;
     int result = 1;
-    int backward = p->mode == m_backward;
+
+    int direction = substring != 0 ? substring->mode : p->mode;
+    int backward = direction == m_backward;
 
     if (a->amongs == 0) a->amongs = x; else a->amongs_end->next = x;
     a->amongs_end = x;
@@ -439,6 +452,9 @@ static void make_among(struct analyser * a, struct node * p, struct node * subst
             w1->size = SIZE(b);  /* number of characters in string */
             w1->i = -1;          /* index of longest substring */
             w1->result = -1;     /* number of corresponding case expression */
+            w1->function = q->left == 0 ? 0 : q->left->name;
+            unless (w1->function == 0)
+                check_routine_mode(a, w1->function, direction);
             w1++;
         }
         else
@@ -484,6 +500,7 @@ static void make_among(struct analyser * a, struct node * p, struct node * subst
 
     x->substring = substring;
     if (substring != 0) substring->among = x;
+    unless (x->command_count == 0 && x->starter == 0) a->amongvar_needed = true;
 }
 
 static struct node * read_among(struct analyser * a)
@@ -502,6 +519,12 @@ static struct node * read_among(struct analyser * a)
         switch (token)
         {   case c_literalstring:
                 q = read_literalstring(a);
+                if (read_token(t) == c_name)
+                {   struct node * r = new_node(a, c_name);
+                    name_to_node(a, r, 'r');
+                    q->left = r;
+                }
+                else t->token_held = true;
                 p->number++; break;
             case c_bra:
                 if (previous_token == c_bra) error(a, 19);
@@ -638,7 +661,9 @@ static struct node * read_C(struct analyser * a)
                             break;
                         case t_routine:
                         case t_external:
-                            p->type = c_call; break;
+                            p->type = c_call;
+                            check_routine_mode(a, q, a->mode);
+                            break;
                         case t_grouping:
                             p->type = c_grouping; break;
                     }
@@ -731,9 +756,10 @@ static void read_define_grouping(struct analyser * a, struct name * q)
 
 static void read_define_routine(struct analyser * a, struct name * q)
 {   struct node * p = new_node(a, c_define);
+    a->amongvar_needed = false;
     unless (q == 0)
     {
-        check_name_type(a, q, 'r');
+        check_name_type(a, q, 'R');
         if (q->definition != 0) error(a, 36);
         if (q->mode < 0) q->mode = a->mode; else
         if (q->mode != a->mode) error2(a, 32, q->mode);
@@ -749,6 +775,7 @@ static void read_define_routine(struct analyser * a, struct name * q)
     {    error2(a, 14, a->substring->line_number);
          a->substring = 0;
     }
+    p->amongvar_needed = a->amongvar_needed;
 }
 
 static void read_define(struct analyser * a)

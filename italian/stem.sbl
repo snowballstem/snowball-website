@@ -40,7 +40,8 @@ define prelude as (
             '{o'}' (<- '{o`}')
             '{u'}' (<- '{u`}')
             'qu'   (<- 'qU')
-        ) or next
+            ''     (next)
+        ) //or next
     )
     repeat goto (
         v [ ('u' ] v <- 'U') or
@@ -71,7 +72,8 @@ define postlude as repeat (
     [substring] among(
         'I'  (<- 'i')
         'U'  (<- 'u')
-    ) or next
+        ''   (next)
+    ) //or next
 
 )
 

@@ -639,7 +639,7 @@ without a preceding &nbsp;<TT>substring</TT>&nbsp; is equivalent to
 </PRE>
 <TT>substring</TT>&nbsp; may also be detached from its &nbsp;<TT>among</TT>, although it must
 precede it textually in the same routine in which the &nbsp;<TT>among</TT>&nbsp; appears.
-The general form of &nbsp;<TT>substring ... among</TT>&nbsp; is,
+The more general form of &nbsp;<TT>substring ... among</TT>&nbsp; is,
 <BR><PRE>
     substring
     ...
@@ -722,6 +722,30 @@ and this is just equivalent to
            'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
          )
 </PRE>
+
+In its most general form, each string &nbsp;<TT>'S<SUB>ij</SUB>'</TT>&nbsp; may be optionally followed by a
+routine name,
+<BR><PRE>
+    among( (C)
+           'S<SUB>11</SUB>' R<SUB>11</SUB> 'S<SUB>12</SUB>' R<SUB>12</SUB> ... (C<SUB>1</SUB>)
+           'S<SUB>21</SUB>' R<SUB>21</SUB> 'S<SUB>22</SUB>' R<SUB>22</SUB> ... (C<SUB>2</SUB>)
+           ...
+           'S<SUB>n1</SUB>' R<SUB>n1</SUB> 'S<SUB>n2</SUB>' R<SUB>n1</SUB> ... (C<SUB>n</SUB>)
+         )
+</PRE>
+So here each &nbsp;<TT>R<SUB>ij</SUB></TT>&nbsp; is either a routine name or is null. If null, it is equivalent
+to a routine which simply returns signal <B><I>t</I></B>,
+<BR><PRE>
+    define null as true
+</PRE>
+- so we can imagine each &nbsp;<TT>'S<SUB>ij</SUB>'</TT>&nbsp; having its associated routine
+<TT>R<SUB>ij</SUB></TT>. Then obeying the &nbsp;<TT>among</TT>&nbsp; causes a search for the longest
+<TT>'S<SUB>ij</SUB>'</TT>&nbsp; whose corresponding routine
+<TT>R<SUB>ij</SUB></TT>&nbsp; gives <B><I>t</I></B>. The routines
+<TT>R<SUB>ij</SUB></TT>&nbsp; should be written without any side-effects, other than the inevitable cursor
+movement (<B><I>c</I></B> is in any case set back to its old value following a call of
+<TT>R<SUB>ij</SUB></TT>).
+
 <BR>&nbsp;<H2>Booleans</H2>
 
 <TT>set B</TT>&nbsp; and &nbsp;<TT>unset B</TT>&nbsp; set &nbsp;<TT>B</TT>&nbsp; to true and false respectively, where &nbsp;<TT>B</TT>&nbsp; is a

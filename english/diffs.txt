@@ -231,7 +231,7 @@ achievement                   achiev
 achievements                  achiev
 achieves                      achiev
 achieving                     achiev
-achilles                      achil
+achilles                      achill
 aching                        ach
 acid                          acid
 acids                         acid
@@ -1012,7 +1012,7 @@ annoys                        annoy
 annual                        annual
 annually                      annual
 annuals                       annual
-annuelle                      annuel
+annuelle                      annuell
 annuity                       annuiti
 annul                         annul
 annum                         annum
@@ -1060,7 +1060,7 @@ anticipation                  anticip
 anticipations                 anticip
 anticipative                  anticip
 antics                        antic
-antilles                      antil
+antilles                      antill
 antipodean                    antipodean
 antipodes                     antipod
 antiquarian                   antiquarian
@@ -1890,7 +1890,7 @@ badly                         bad
 badness                       bad
 baffled                       baffl
 bag                           bag
-bagatelle                     bagatel
+bagatelle                     bagatell
 baggage                       baggag
 bagnet                        bagnet
 bagnets                       bagnet
@@ -2972,7 +2972,7 @@ bottomed                      bottom
 bottomless                    bottomless
 bottoms                       bottom
 boudoir                       boudoir
-bougainville                  bougainvil
+bougainville                  bougainvill
 boughs                        bough
 bought                        bought
 boulder                       boulder
@@ -4232,7 +4232,7 @@ chemise                       chemis
 chemist                       chemist
 chemistry                     chemistri
 chemists                      chemist
-chenille                      chenil
+chenille                      chenill
 chepones                      chepon
 cheque                        chequ
 chequered                     chequer
@@ -4864,8 +4864,8 @@ com                           com
 comb                          comb
 combat                        combat
 combatants                    combat
-combative                     comb
-combativeness                 comb
+combative                     combat
+combativeness                 combat
 combats                       combat
 combatted                     combat
 combed                        comb
@@ -5678,7 +5678,7 @@ copying                       copi
 coquetry                      coquetri
 coquette                      coquett
 coquettish                    coquettish
-coquille                      coquil
+coquille                      coquill
 coquimbo                      coquimbo
 cora                          cora
 coral                         coral
@@ -7521,7 +7521,7 @@ disgusting                    disgust
 disgustingly                  disgust
 disgusts                      disgust
 dish                          dish
-dishabille                    dishabil
+dishabille                    dishabill
 disheartened                  dishearten
 disheartening                 dishearten
 dished                        dish
@@ -8948,7 +8948,7 @@ epsom                         epsom
 equable                       equabl
 equal                         equal
 equality                      equal
-equalle                       equal
+equalle                       equall
 equalled                      equal
 equalling                     equal
 equally                       equal
@@ -9084,7 +9084,7 @@ etc                           etc
 ete                           ete
 eternal                       etern
 eternally                     etern
-eternelle                     eternel
+eternelle                     eternell
 eternity                      etern
 etes                          ete
 ethereal                      ether
@@ -11076,8 +11076,8 @@ gay                           gay
 gayest                        gayest
 gaze                          gaze
 gazed                         gaze
-gazelle                       gazel
-gazelles                      gazel
+gazelle                       gazell
+gazelles                      gazell
 gazes                         gaze
 gazette                       gazett
 gazing                        gaze
@@ -14241,7 +14241,7 @@ january                       januari
 japan                         japan
 jar                           jar
 jargon                        jargon
-jargonelle                    jargonel
+jargonelle                    jargonell
 jarnders                      jarnder
 jarndyce                      jarndyc
 jarndyces                     jarndyc
@@ -14858,7 +14858,7 @@ latin                         latin
 latinity                      latin
 latitude                      latitud
 latitudes                     latitud
-latreille                     latreil
+latreille                     latreill
 latro                         latro
 latte                         latt
 latter                        latter
@@ -15056,10 +15056,10 @@ lenou                         lenou
 lens                          len
 lent                          lent
 lentils                       lentil
-lenville                      lenvil
+lenville                      lenvill
 leone                         leon
 leoneros                      leonero
-leoville                      leovil
+leoville                      leovill
 lepidoptera                   lepidoptera
 lepus                         lepus
 les                           les
@@ -15089,7 +15089,7 @@ levanted                      levant
 leve                          leve
 levees                        leve
 level                         level
-levelle                       level
+levelle                       levell
 levelled                      level
 levelling                     level
 levels                        level
@@ -15541,7 +15541,7 @@ luckiest                      luckiest
 luckily                       luckili
 luckless                      luckless
 lucky                         lucki
-lucrative                     lucr
+lucrative                     lucrat
 lucre                         lucr
 lucy                          luci
 lud                           lud
@@ -15681,7 +15681,7 @@ maddest                       maddest
 made                          made
 madeira                       madeira
 madeline                      madelin
-mademoiselle                  mademoisel
+mademoiselle                  mademoisell
 madhouse                      madhous
 madly                         mad
 madman                        madman
@@ -15967,7 +15967,7 @@ marry                         marri
 marrying                      marri
 mars                          mar
 marsden                       marsden
-marseilles                    marseil
+marseilles                    marseill
 marsh                         marsh
 marshal                       marshal
 marshalled                    marshal
@@ -16272,7 +16272,7 @@ merriest                      merriest
 merrily                       merrili
 merriment                     merriment
 merry                         merri
-merveille                     merveil
+merveille                     merveill
 mervyn                        mervyn
 mesalliance                   mesalli
 mesh                          mesh
@@ -16412,7 +16412,7 @@ minaret                       minaret
 minas                         mina
 mince                         minc
 minced                        minc
-mincefenille                  mincefenil
+mincefenille                  mincefenill
 mincing                       minc
 mincingly                     minc
 mind                          mind
@@ -17079,8 +17079,8 @@ narr                          narr
 narrated                      narrat
 narrates                      narrat
 narration                     narrat
-narrative                     narr
-narratives                    narr
+narrative                     narrat
+narratives                    narrat
 narrow                        narrow
 narrowed                      narrow
 narrower                      narrow
@@ -17119,7 +17119,7 @@ naturalness                   natur
 nature                        natur
 natured                       natur
 naturedly                     natur
-naturelles                    naturel
+naturelles                    naturell
 natures                       natur
 naughtiest                    naughtiest
 naughtiness                   naughti
@@ -17202,7 +17202,7 @@ needs                         need
 needy                         needi
 neeght                        neeght
 nefarious                     nefari
-negative                      neg
+negative                      negat
 neglect                       neglect
 neglected                     neglect
 neglectful                    neglect
@@ -18809,7 +18809,7 @@ pensiveness                   pensiv
 pent                          pent
 pentland                      pentland
 penton                        penton
-pentonville                   pentonvil
+pentonville                   pentonvill
 penultimate                   penultim
 penury                        penuri
 peony                         peoni
@@ -20563,7 +20563,7 @@ quadra                        quadra
 quadrangle                    quadrangl
 quadrangular                  quadrangular
 quadras                       quadra
-quadrille                     quadril
+quadrille                     quadrill
 quadruped                     quadrup
 quadrupeds                    quadrup
 quadruple                     quadrupl
@@ -21108,7 +21108,7 @@ recovering                    recov
 recovers                      recov
 recovery                      recoveri
 recreation                    recreat
-recreative                    recr
+recreative                    recreat
 recrimination                 recrimin
 recriminations                recrimin
 recross                       recross
@@ -21325,9 +21325,9 @@ relating                      relat
 relation                      relat
 relations                     relat
 relationship                  relationship
-relative                      rel
-relatively                    rel
-relatives                     rel
+relative                      relat
+relatively                    relat
+relatives                     relat
 relax                         relax
 relaxation                    relax
 relaxations                   relax
@@ -22891,7 +22891,7 @@ sed                           sed
 sedate                        sedat
 sedately                      sedat
 sedateness                    sedat
-sedative                      sed
+sedative                      sedat
 sedentary                     sedentari
 sedes                         sede
 sedge                         sedg
@@ -23115,8 +23115,8 @@ sexes                         sex
 sexton                        sexton
 sextus                        sextus
 sexty                         sexti
-seychelle                     seychel
-seychelles                    seychel
+seychelle                     seychell
+seychelles                    seychell
 sh                            sh
 sha                           sha
 shabbily                      shabbili
@@ -25657,7 +25657,7 @@ tales                         tale
 talguen                       talguen
 talisman                      talisman
 talk                          talk
-talkative                     talk
+talkative                     talkat
 talked                        talk
 talker                        talker
 talkers                       talker
@@ -25890,8 +25890,8 @@ tension                       tension
 tensions                      tension
 tent                          tent
 tentacula                     tentacula
-tentative                     tent
-tentatively                   tent
+tentative                     tentat
+tentatively                   tentat
 tenth                         tenth
 tenths                        tenth
 tents                         tent
@@ -28030,7 +28030,7 @@ vermiform                     vermiform
 vermilion                     vermilion
 vermin                        vermin
 verona                        verona
-versailles                    versail
+versailles                    versaill
 versatile                     versatil
 verse                         vers
 versed                        vers
