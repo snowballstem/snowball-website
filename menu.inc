@@ -18,7 +18,7 @@ function menuEntry($text, $file)
 
 function displayMenu()
 {
-  echo "<td valign=top bgcolor=cyan width=128>"
+  echo "<td valign=top bgcolor=cyan width=128>";
   menuEntry("Introduction", "/index.php");
   menuEntry("Demo", "/demo.php");
   menuEntry("Download", "/download.php");
