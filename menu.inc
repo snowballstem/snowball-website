@@ -66,9 +66,9 @@ function displayFooter()
 </td></tr></table>
 <address>
 Last modified on <?php
-  global $PHP_SELF;
-  echo $PHP_SELF;
-  echo date('r', filemtime($PHP_SELF));
+  global $SCRIPT_FILENAME;
+  echo $SCRIPT_FILENAME;
+  echo date('r', filemtime($SCRIPT_FILENAME));
 ?>.<br>
 <a href="mailto:richardb@users.sourceforge.net">Contact the webmaster</a> if you have comments directly related to the webpage.
 </address>
