@@ -114,7 +114,7 @@ in the future.
 <BR>&nbsp;<H2>2 Some ideas underlying stemming</H2>
 
 Work in stemming has produced a number of different approaches, albeit tied
-together by a number a common assumptions. It is worthwhile looking at some
+together by a number of common assumptions. It is worthwhile looking at some
 of them to see exactly where Snowball fits into the whole picture.
 
 <BR><BR>
@@ -561,26 +561,37 @@ under-, over- and mis-stemming. Under-stemming is a fault, but by itself
 it will not degrade the performance of an IR system. Because of
 under-stemming words may fail
 to conflate that ought to have conflated, but you are, in a sense, no
-worse off than you were before. Over-stemming is more serious, but again
-over-stemming does not really matter unless it leads to false conflations,
+worse off than you were before. Mis-stemming is more serious, but again
+mis-stemming does not really matter unless it leads to false conflations,
 and that frequently does not happen. For example, removing the <B><I>ate</I></B>
 ending in English, can result in useful conflations (<I>luxury</I>,
 <I>luxuriate</I>; <I>affection</I>, <I>affectionate</I>), but very often produces
 stems that are not English words
 (<I>enerv-ate</I>, <I>accommod-ate</I>,
-<I>deliber-ate</I> etc), and this would normally be judged as over-stemming.
+<I>deliber-ate</I> etc). In the literature, these are normally
+classed as stemming errors - overstemming - although in our nomenclature
+they are examples of mis-stemming.
 However these residual stems,
 <I>enerv</I>, <I>accommod</I>,
 <I>deliber</I> ... do not conflate with other word forms, and so behave in
 an IR system in the same way as if they still retained their <B><I>ate</I></B>
-ending. To summarise, one can say that just as a word can be mis-stemmed
-but not over-stemmed (<I>relativity</I> <TT>-&gt;</TT> <I>relative</I>), so it can be
-over-stemmed but not mis-stemmed (<I>enervate</I> <TT>-&gt;</TT> <I>enerv</I>). And, of
-course, even mis-stemming does not matter, if the mis-stemmed word falsely
+ending. No false conflations arise, and so there is no over-stemming here.
+
+<BR><BR>
+
+To summarise, one can say that just as a word can be over-stemmed
+but not mis-stemmed (<I>relativity</I> <TT>-&gt;</TT> <I>relative</I>), so it can be
+mis-stemmed but not over-stemmed (<I>enervate</I> <TT>-&gt;</TT> <I>enerv</I>). And, of
+course, even over-stemming does not matter, if the over-stemmed word falsely
 conflates with other words that exist in the language, but are not
 encountered in the IR
-system which is being used. Mis-stemming alone is therefore critical, and
-using a dictionary does not elimiate all mis-stemmings, but reduce their
+system which is being used.
+
+<BR><BR>
+
+Of the three types of error,
+over-stemming is the most important, and
+using a dictionary does not elimiate all over-stemmings, but does reduce their
 incidence.
 
 
@@ -646,7 +657,7 @@ treated as vowels, and any other character gets treated as a consonant.
 Each stemmer presented here assumes some degree of normalisation before it
 receives the word, which is roughly (<I>a</I>) put all letters into lower case,
 and (<I>b</I>) remove accents from letter-accent combinations that do not form
-part of the alphabet of the language. Each stemmer in fact declares the
+part of the alphabet of the language. Each stemmer declares the
 letter-accent combinations for its language, and this can be used as a
 guide for the normalisation, but even so, we can see from
 the discussion above that (<I>a</I>) and (<I>b</I>) are not trivial
