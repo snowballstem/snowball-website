@@ -105,7 +105,8 @@ function get_news()
 
     $filecontents = preg_replace('|<I>[^<]*</I>[^<]*<A HREF="http://sourceforge.net/projects/snowball/">Snowball</A>|', '', $filecontents);
     $filecontents = preg_replace('|<div align="center">.*?</div>|', '', $filecontents);
-    $filecontents = preg_replace('|<HR.*?>|i', '', $filecontents);
+    $filecontents = preg_replace('|<HR.*?>|i', '<P>', $filecontents);
+    $filecontents = preg_replace('|<DL COMPACT>|i', '', $filecontents);
 
     return $filecontents;
 }
