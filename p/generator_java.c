@@ -1,4 +1,6 @@
 
+#include <stdlib.h> /* for exit */
+#include <string.h> /* for strlen */
 #include <stdio.h> /* for fprintf etc */
 #include "header.h"
 
@@ -454,9 +456,10 @@ static void generate_bra(struct generator * g, struct node * p)
 static void generate_and(struct generator * g, struct node * p)
 {
     struct str * savevar = vars_newname(g);
+    int keep_c = K_needed(g, p->left);
 
     write_comment(g, p);
-    int keep_c = K_needed(g, p->left);
+
     if (keep_c) {
 	write_block_start(g);
 	write_savecursor(g, p, savevar);
@@ -492,9 +495,9 @@ static void generate_or(struct generator * g, struct node * p)
     str_clear(g->failure_str);
 
     if (p == 0) {
-	// p should never be 0 after an or: there should be at least two
-	// sub nodes.
-	fprintf(stderr, "Error: \"or\" node without children nodes.", p);
+	/* p should never be 0 after an or: there should be at least two
+	 * sub nodes. */
+	fprintf(stderr, "Error: \"or\" node without children nodes.");
 	exit (1);
     }
     while (p->right != 0) {
@@ -547,15 +550,12 @@ static void generate_not(struct generator * g, struct node * p)
 
     generate(g, p->left);
 
-    {
-	int l = g->failure_label;
+    g->failure_label = a0;
+    str_delete(g->failure_str);
+    g->failure_str = a1;
 
-        g->failure_label = a0;
-	str_delete(g->failure_str);
-        g->failure_str = a1;
+    w(g, "~M~f~N");
 
-        w(g, "~M~f~N");
-    }
     wsetlab_end(g);
     if (keep_c) write_restorecursor(g, p, savevar);
     if (keep_c) write_block_end(g);
@@ -955,7 +955,7 @@ static void generate_dollar(struct generator * g, struct node * p)
 {
     write_comment(g, p);
     g->V[0] = p->name;
-    // FIXME - this won't produce valid JAVA; can't assign to this.
+    /* FIXME - this won't produce valid JAVA; can't assign to this. */
     str_assign(g->failure_str, "copy_from(saved_env);");
     writef(g, "~{~M~n saved_env = this;"
              "~Mcurrent = ~V0;~N"
