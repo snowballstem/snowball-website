@@ -10,10 +10,7 @@
 <h2>Major events</h2>
 
 <p>
-<b>Announcement</b>
-<br>
-Martin Porter is developing a Finnish stemmer. Email him if you feel
-you have an interest (<tt>martin@tartarus.org</tt>).
+<b>September 2002 - Finnish stemmer</b>
 </p>
 
 <p>
@@ -25,7 +22,6 @@ Snowball stemmers are still accessible on the site.
 
 <p>
 <b>May 2002 - Unicode support added</b>
-<br>
 </p>
 
 <p>
