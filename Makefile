@@ -33,9 +33,9 @@ lang_%: %/stem.c %/stemmer %/output.txt %/tarball.tgz
 
 libs: libstemmer/libstemmer.o
 
-LIBSTEMMER_SRC = libstemmer/libstemmer.h \
+LIBSTEMMER_XTRA = libstemmer/modules.c libstemmer/README
+LIBSTEMMER_SRCS = libstemmer/libstemmer.h \
 		libstemmer/wrapper.c \
-		libstemmer/modules.c \
 		q/api.c \
 		q/api.h \
 		q/utilities.c \
@@ -43,16 +43,34 @@ LIBSTEMMER_SRC = libstemmer/libstemmer.h \
 libpkg: \
 		$(addsuffix /stem.c, $(languages)) \
 		$(addsuffix /stem.h, $(languages)) \
-		$(LIBSTEMMER_SRC)
-	@echo "Building $@"; \
-	rm -fr pkg; \
-	mkdir -p pkg; \
-	for lang in $(languages); do \
-	  mkdir -p pkg/$${lang}; \
-	  cp $${lang}/stem.{c,h} pkg/$${lang} ; \
-	done; \
-	mkdir -p pkg/libstemmer; \
-	cp $(LIBSTEMMER_SRC) pkg/libstemmer/; \
+		$(LIBSTEMMER_SRCS)
+	@echo "Building $@";
+	@rm -fr libpkg;
+	@mkdir -p libpkg;
+	@mkdir -p libpkg/libstemmer;
+	@echo "" > libpkg/MANIFEST;
+	@echo "LIBSTEMMER_SRCS= \\" > libpkg/Makefile_inc.am;
+	@for file in $(LIBSTEMMER_SRCS); do \
+	  cp $${file} libpkg/libstemmer/; \
+	  echo "\$$(STEMMER_DIR)$${file} \\" | sed 's|)q/|)libstemmer/|g' >> libpkg/Makefile_inc.am; \
+	  echo "$${file}" | sed 's|q/|libstemmer/|g' >> libpkg/MANIFEST; \
+	done;
+	@for lang in $(languages); do \
+	  mkdir -p libpkg/$${lang}; \
+	  cp $${lang}/stem.{c,h} libpkg/$${lang} ; \
+	  echo "\$$(STEMMER_DIR)$${lang}/stem.c \\" >> libpkg/Makefile_inc.am; \
+	  echo "\$$(STEMMER_DIR)$${lang}/stem.h \\" >> libpkg/Makefile_inc.am; \
+	  echo "$${lang}/stem.c" >> libpkg/MANIFEST; \
+	  echo "$${lang}/stem.h" >> libpkg/MANIFEST; \
+	done;
+	@echo "\$$(DUMMY_BLANK_VARIABLE_TO_HELP_AUTOMAKE)" >> libpkg/Makefile_inc.am;
+	@echo "LIBSTEMMER_XTRA= \\" >> libpkg/Makefile_inc.am;
+	@for file in $(LIBSTEMMER_XTRA); do \
+	  cp $${file} libpkg/libstemmer/; \
+	  echo "\$$(STEMMER_DIR)$${file} \\" >> libpkg/Makefile_inc.am; \
+	  echo "$${file}" >> libpkg/MANIFEST; \
+	done;
+	@echo "\$$(DUMMY_BLANK_VARIABLE_TO_HELP_AUTOMAKE)" >> libpkg/Makefile_inc.am;
 
 libstemmer/libstemmer.o: $(addsuffix /stem.o, $(languages)) \
 	                 libstemmer/wrapper.o \
@@ -99,6 +117,8 @@ clean:
 	@$(RM) q/*.o
 	@echo "Cleaning libstemmer/"
 	@$(RM) libstemmer/*.o libstemmer/modules.c
+	@echo "Cleaning libpkg/"
+	@$(RM) libpkg/*.o libpkg/modules.c
 
 %/tarball.tgz: %/stem.sbl %/stem.c %/stem.h %/voc.txt %/output.txt %/stemmer.html
 	@echo "Making $@"
