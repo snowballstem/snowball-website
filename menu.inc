@@ -1,18 +1,23 @@
-<?php function menuEntry($text, $file) {
+<?php
+function relativePath($from, $to)
+{
+  return basename($to);
+}
+
+function menuEntry($text, $file)
+{
   global $PHP_SELF;
-  $href = $file;
-  if ($PHP_SELF != $file && file_exists($file)) {
-   echo "<a href=$href>$text</a>";
+  $href = relativePath($PHP_SELF, $file);
+  if ($PHP_SELF != $file && file_exists($href)) {
+    echo "<a href=$href>$text</a>";
   } else {
-   echo $text;
+    echo $text;
   }
   echo "<br>";
- }
+}
 ?>
 <br>
-<?php
-  echo "PHP_SELF=$PHP_SELF ";
-menuEntry("Introduction", "/index.php") ?>
+<?php menuEntry("Introduction", "/index.php") ?>
 <?php menuEntry("Demo", "/demo.php") ?>
 <?php menuEntry("Download", "/download.php") ?>
 <?php menuEntry("Documentation", "/docs.php") ?>
