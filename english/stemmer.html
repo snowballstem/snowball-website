@@ -234,6 +234,10 @@ knot<BR>
 
 <BR>&nbsp;<H2>Developing the English stemmer</H2>
 
+(Revised slightly, December 2001)
+
+<BR><BR>
+
 I have made more than one attempt to improve the structure of the Porter
 algorithm by making it follow the pattern of ending removal of the Romance
 language stemmers. It is not hard to see why one should want to do this:
@@ -268,7 +272,11 @@ stemmer to distinguish it from the Porter stemmer, from which it derives.)
 The changes are not so very extensive: (1) terminating <B><I>y</I></B> is changed to
 <B><I>i</I></B> rather less often, (2) suffix <B><I>us</I></B> does not lose its <B><I>s</I></B>, (3) a
 few additional suffixes are included for removal, including (4) suffix
-<B><I>ly</I></B>. In addition, a small list of exceptional forms is included.
+<B><I>ly</I></B>. In addition, a small list of exceptional forms is included. In
+December 2001 there were two further adjustments: (5) Steps 5<I>a</I> and 5<I>b</I>
+of the old Porter stemmer were combined into a single step. This means
+that undoubling final <B><I>ll</I></B> is not done removal of final <I>e</I>. (6)
+In Step 3 <B><I>ative</I></B> is removed only when in region <I>R</I>2.
 
 <BR><BR>
 
@@ -404,7 +412,8 @@ Step 3:
     <DT><B><I>ational</I></B><TT><FONT COLOR=BLUE>+</FONT></TT>:  &nbsp;  replace by <B><I>ate</I></B>
     <DT><B><I>alize</I></B>:  &nbsp;  replace by <B><I>al</I></B>
     <DT><B><I>icate  &nbsp;  iciti  &nbsp;  ical</I></B>:  &nbsp;  replace by <B><I>ic</I></B>
-    <DT><B><I>ative  &nbsp;  ful  &nbsp;  ness</I></B>:  &nbsp;  delete
+    <DT><B><I>ful  &nbsp;  ness</I></B>:  &nbsp;  delete
+    <DT><B><I>ative</I></B><TT><FONT COLOR=BLUE>*</FONT></TT>:  &nbsp;  delete if in <I>R</I>2
 </DL>
 </DL>
 
@@ -422,15 +431,17 @@ Step 4:
 </DL>
 </DL>
 
-Step 5<I>a</I>:
+Step 5: <TT><FONT COLOR=BLUE>*</FONT></TT>
 <DL><DD>
-    Delete suffix <B><I>e</I></B> if in <I>R</I>2, or in <I>R</I>1 and not preceded by a short
-    syllable.
+    Search for the the following suffixes, and, if
+    found, perform the action indicated.
+<BR><BR><DL>
+    <DT><B><I>e</I></B>
+    <DD>delete if in <I>R</I>2, or in <I>R</I>1 and not preceded by a short
+    syllable
+    <DT><B><I>l</I></B>
+    <DD>delete if in <I>R</I>2 and preceded by <B><I>l</I></B>
 </DL>
-
-Step 5<I>b</I>:
-<DL><DD>
-    Delete suffix <B><I>l</I></B> if in <I>R</I>2 and preceded by <B><I>l</I></B>.
 </DL>
 Finally, turn any remaining <B><I>Y</I></B> letters in the word back into lower case.
 
@@ -673,7 +684,7 @@ routines (
     mark_regions
     shortv
     R1 R2
-    Step_1a Step_1b Step_1c Step_2 Step_3 Step_4 Step_5a Step_5b
+    Step_1a Step_1b Step_1c Step_2 Step_3 Step_4 Step_5
     exception
 )
 
@@ -785,8 +796,10 @@ backwardmode (
             'alize'   (<-'al')
             'icate' 'iciti' 'ical'
                       (<-'ic')
-            'ative' 'ful' 'ness'
+            'ful' 'ness'
                       (delete)
+            'ative'
+                      (R2 delete)  // 'R2' added Dec 2001
         )
     )
 
@@ -799,16 +812,11 @@ backwardmode (
         )
     )
 
-    define Step_5a as (
-        ['e']
-        R2 or (R1 not shortv)
-        delete
-    )
-
-    define Step_5b as (
-        ['l']
-        R2 'l'
-        delete
+    define Step_5 as (
+        [substring] among (
+            'e' (R2 or (R1 not shortv) delete)
+            'l' (R2 'l' delete)
+        )
     )
 )
 
@@ -871,8 +879,7 @@ define stem as (
             do Step_3
             do Step_4
 
-            do Step_5a
-            do Step_5b
+            do Step_5 // 5a, 5b joined Dec 2001
         )
         do postlude
     )
