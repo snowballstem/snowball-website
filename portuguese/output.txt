@@ -8759,8 +8759,8 @@ deferent
 defes
 defes
 deff
-deficent
-deficent
+deficient
+deficient
 deficient
 deficient
 déficit
@@ -10900,7 +10900,7 @@ efetu
 eficác
 eficaz
 eficaz
-eficent
+eficient
 eficient
 eficient
 eficient
@@ -16380,7 +16380,7 @@ imortal
 imortal
 imóv
 imóvel
-impacent
+impacient
 impacient
 impact
 impactant
@@ -16697,7 +16697,7 @@ inconform
 inconform
 inconform
 incongruent
-inconscent
+inconscient
 inconscient
 inconscient
 inconsequent
@@ -16877,8 +16877,8 @@ inedit
 inédit
 inédit
 ineficaz
-ineficent
-ineficent
+ineficient
+ineficient
 ineficient
 ineg
 ineg
@@ -17253,7 +17253,7 @@ instrutor
 instrutor
 insubstitu
 insucess
-insuficent
+insuficient
 insuficient
 insuficient
 insulin

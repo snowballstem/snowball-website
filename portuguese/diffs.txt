@@ -8759,8 +8759,8 @@ deferência                    deferent
 defesa                        defes
 defesas                       defes
 deff                          deff
-deficiência                   deficent
-deficiências                  deficent
+deficiência                   deficient
+deficiências                  deficient
 deficiente                    deficient
 deficientes                   deficient
 déficit                       déficit
@@ -10900,7 +10900,7 @@ efetuadas                     efetu
 eficácia                      eficác
 eficaz                        eficaz
 eficazes                      eficaz
-eficiência                    eficent
+eficiência                    eficient
 eficiente                     eficient
 eficientemente                eficient
 eficientes                    eficient
@@ -16380,7 +16380,7 @@ imortal                       imortal
 imortalidade                  imortal
 imóveis                       imóv
 imóvel                        imóvel
-impaciência                   impacent
+impaciência                   impacient
 impacientes                   impacient
 impacta                       impact
 impactante                    impactant
@@ -16697,7 +16697,7 @@ inconformada                  inconform
 inconformado                  inconform
 inconformados                 inconform
 incongruente                  incongruent
-inconsciência                 inconscent
+inconsciência                 inconscient
 inconsciente                  inconscient
 inconscientemente             inconscient
 inconsequência                inconsequent
@@ -16877,8 +16877,8 @@ ineditismo                    inedit
 inédito                       inédit
 inéditos                      inédit
 ineficaz                      ineficaz
-ineficiência                  ineficent
-ineficiências                 ineficent
+ineficiência                  ineficient
+ineficiências                 ineficient
 ineficientes                  ineficient
 inegáveis                     ineg
 inegável                      ineg
@@ -17253,7 +17253,7 @@ instrutor                     instrutor
 instrutores                   instrutor
 insubstituível                insubstitu
 insucesso                     insucess
-insuficiência                 insuficent
+insuficiência                 insuficient
 insuficiente                  insuficient
 insuficientes                 insuficient
 insulina                      insulin
