@@ -53,7 +53,7 @@ public class TestApp {
 		    for (int i = repeat; i != 0; i--) {
 			stemMethod.invoke(stemmer, emptyArgs);
 		    }
-		    output.write(stemmer.current.toString());
+		    output.write(stemmer.getCurrent());
 		    output.write('\n');
 		    input.delete(0, input.length());
 		}

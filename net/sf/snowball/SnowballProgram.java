@@ -9,6 +9,9 @@ public class SnowballProgram {
 	setCurrent("");
     }
 
+    /**
+     * Set the current string.
+     */
     public void setCurrent(String value)
     {
 	current.replace(0, current.length(), value);
@@ -19,6 +22,9 @@ public class SnowballProgram {
 	ket = limit;
     }
 
+    /**
+     * Get the current string.
+     */
     public String getCurrent()
     {
 	return current.toString();
