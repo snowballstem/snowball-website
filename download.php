@@ -8,7 +8,8 @@
 
 A <A HREF="texts/snowball.tgz">Tar gzipped file containing the Snowball sources</A> is now available.
 
-Tarballs containing various stemming algorithms written using snowball will be made available in due course.
+Tarballs containing various stemming algorithms written using snowball
+are available on this website.
 
 </TD></TR>
 <TR><TD>
