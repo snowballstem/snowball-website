@@ -56,6 +56,7 @@ sb_stemmer_stem(struct sb_stemmer * stemmer, const char * word, int size)
 }
 
 /* test code */
+/*
 void error(const char * err) {
     printf("%s\n", err);
     exit(0);
@@ -79,3 +80,4 @@ int main () {
     printf("FINISHED\n");
 }
 
+*/

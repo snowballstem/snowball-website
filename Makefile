@@ -33,11 +33,32 @@ lang_%: %/stem.c %/stemmer %/output.txt %/tarball.tgz
 
 libs: libstemmer/libstemmer.o
 
+LIBSTEMMER_SRC = libstemmer/libstemmer.h \
+		libstemmer/wrapper.c \
+		libstemmer/modules.c \
+		q/api.c \
+		q/api.h \
+		q/utilities.c \
+		q/header.h
+libpkg: \
+		$(addsuffix /stem.c, $(languages)) \
+		$(addsuffix /stem.h, $(languages)) \
+		$(LIBSTEMMER_SRC)
+	@echo "Building $@"; \
+	rm -fr pkg; \
+	mkdir -p pkg; \
+	for lang in $(languages); do \
+	  mkdir -p pkg/$${lang}; \
+	  cp $${lang}/stem.{c,h} pkg/$${lang} ; \
+	done; \
+	mkdir -p pkg/libstemmer; \
+	cp $(LIBSTEMMER_SRC) pkg/libstemmer/; \
+
 libstemmer/libstemmer.o: $(addsuffix /stem.o, $(languages)) \
 	                 libstemmer/wrapper.o \
 			 q/api.o \
 			 q/utilities.o
-	$(CC) -O4 -o $@ -I q/ $^
+	libtool --mode=link $(CC) -O4 -o $@ -I q/ $^
 
 libstemmer/wrapper.o: libstemmer/wrapper.c libstemmer/modules.c q/api.h
 	$(CC) -O4 -c -o $@ -I q/ $<
