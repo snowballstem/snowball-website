@@ -7,7 +7,7 @@
 </td><td>
 <h1>Snowball</h1>
 </td></tr>
-<tr><?php include "menu.inc"; ?><td valign=top>
+<tr><?php require "menu.inc"; displayMenu(); ?><td valign=top>
 <b>STATUS: (26 Sept 2001) initial upload of project is currently in progress.</b>
 <p>
 
