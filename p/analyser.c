@@ -260,7 +260,10 @@ static int binding(int t)
 
 static void name_to_node(struct analyser * a, struct node * p, int type)
 {   struct name * q = find_name(a);
-    unless (q == 0) check_name_type(a, q, type);
+    unless (q == 0)
+    {   check_name_type(a, q, type);
+        q->used = true;
+    }
     p->name = q;
 }
 
@@ -811,11 +814,25 @@ extern void read_program(struct analyser * a)
         until (q == 0)
         {   unless (q->referenced)
             {   unless (warned)
-                {   fprintf(stderr, "Unused names: ");
+                {   fprintf(stderr, "Declared but not used:");
                     warned = true;
                 }
-                fprintf(stderr, " ");
-                report_b(stderr, q->b);
+                fprintf(stderr, " "); report_b(stderr, q->b);
+            }
+            q = q->next;
+        }
+        if (warned) fprintf(stderr, "\n");
+
+        q = a->names;
+        warned = false;
+        until (q == 0)
+        {   if (! q->used && (q->type == t_routine ||
+                              q->type == t_grouping))
+            {   unless (warned)
+                {   fprintf(stderr, "Declared and defined but not used:");
+                    warned = true;
+                }
+                fprintf(stderr, " "); report_b(stderr, q->b);
             }
             q = q->next;
         }
