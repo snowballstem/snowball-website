@@ -21,6 +21,8 @@ static int eq(char * s1, char * s2)
 static void print_arglist(void)
 {   fprintf(stderr, "options are: file [-o[utput] file] \n"
                     "                  [-s[yntax]]\n"
+                    "                  [-j[ava]]\n"
+                    "                  [-n[ame] class name]\n"
                     "                  [-ep[refix] string]\n"
                     "                  [-vp[refix] string]\n"
            );
@@ -53,6 +55,9 @@ static void read_options(struct options * o, int argc, char * argv[])
     o->syntax_tree = false;
     o->externals_prefix = "";
     o->variables_prefix = 0;
+    o->name = "";
+    o->make_c = true;
+    o->make_java = false;
 
     /* read options: */
 
@@ -62,6 +67,17 @@ static void read_options(struct options * o, int argc, char * argv[])
         {   if (eq(s, "-o") || eq(s, "-output"))
             {   check_lim(i, argc);
                 o->output_file = argv[i++];
+                continue;
+            }
+            if (eq(s, "-n") || eq(s, "-name"))
+            {   check_lim(i, argc);
+                o->name = argv[i++];
+                continue;
+            }
+            if (eq(s, "-j") || eq(s, "-java"))
+            {   check_lim(i, argc);
+                o->make_java = true;
+                o->make_c = false;
                 continue;
             }
             if (eq(s, "-s") || eq(s, "-syntax"))
@@ -110,18 +126,30 @@ extern int main(int argc, char * argv[])
                 {   fprintf(stderr, "Please include the -o option\n");
                     exit(1);
                 }
-                {   byte * b = move_to_b(create_b(0), strlen(s), (byte *)s);
+		if (o->make_c) {
+                    byte * b = move_to_b(create_b(0), strlen(s), (byte *)s);
                     b = add_to_b(b, 3, (byte *)".c");
                     o->output_c = get_output(b);
                     b[SIZE(b) - 2] = 'h';
                     o->output_h = get_output(b);
                     lose_b(b);
+
+		    g = create_generator_c(a, o);
+		    generate_program_c(g);
+		    close_generator_c(g);
+		    close(o->output_c);
+		    close(o->output_h);
                 }
-                g = create_generator(a, o);
-                generate_program(g);
-                close_generator(g);
-                close(o->output_c);
-                close(o->output_h);
+                if (o->make_java) {
+                    byte * b = move_to_b(create_b(0), strlen(s), (byte *)s);
+                    b = add_to_b(b, 6, (byte *)".java");
+                    o->output_java = get_output(b);
+                    lose_b(b);
+		    g = create_generator_java(a, o);
+		    generate_program_java(g);
+		    close_generator_java(g);
+		    close(o->output_java);
+                }
             }
             close_analyser(a);
         }

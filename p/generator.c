@@ -100,7 +100,7 @@ static void wk(struct generator * g, struct node * p)     /* keep c */
                                  "int m = z->l - z->c;");
 }
 
-char * restore_string(struct generator * g, struct node * p)
+static char * restore_string(struct generator * g, struct node * p)
 {   return p->mode == m_forward ? "z->c = c;" :
                                   "z->c = z->l - m;";
 }
@@ -1035,7 +1035,7 @@ static void generate_header_file(struct generator * g)
     w(g, "~N");
 }
 
-extern void generate_program(struct generator * g)
+extern void generate_program_c(struct generator * g)
 {
     g->output = g->options->output_c;
     generate_head(g);
@@ -1053,7 +1053,7 @@ extern void generate_program(struct generator * g)
     generate_header_file(g);
 }
 
-extern struct generator * create_generator(struct analyser * a, struct options * o)
+extern struct generator * create_generator_c(struct analyser * a, struct options * o)
 {   NEW(generator, g);
     g->analyser = a;
     g->options = o;
@@ -1062,7 +1062,7 @@ extern struct generator * create_generator(struct analyser * a, struct options *
     return g;
 }
 
-extern void close_generator(struct generator * g)
+extern void close_generator_c(struct generator * g)
 {
     FREE(g);
 }

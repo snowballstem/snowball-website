@@ -1,4 +1,6 @@
 
+#include "str.h"
+
 typedef unsigned char byte;
 
 #define true 1
@@ -220,10 +222,16 @@ struct generator {
 
     struct analyser * analyser;
     struct options * options;
+    int var_number;            /* Number of next variable to use. */
+    struct str * outbuf;       /* temporary str to store output */
+    struct str * declarations; /* str storing variable declarations */
     int next_label;
     FILE * output;
     int margin;
-    char * failure_string;
+
+    char * failure_string;     /* String to output in case of a failure. */
+    struct str * failure_str; /* This is used by the java generator instead of failure_string */
+
     int failure_label;
     int debug_count;
 
@@ -239,16 +247,28 @@ struct options {
     /* for the command line: */
 
     char * output_file;
+    char * name;
     FILE * output_c;
     FILE * output_h;
+    FILE * output_java;
     byte syntax_tree;
+    byte make_java;
+    byte make_c;
     char * externals_prefix;
     char * variables_prefix;
 
 };
 
-extern struct generator * create_generator(struct analyser * a, struct options * o);
-extern void close_generator(struct generator * g);
 
-extern void generate_program(struct generator * g);
+/* Generator for C code. */
+extern struct generator * create_generator_c(struct analyser * a, struct options * o);
+extern void close_generator_c(struct generator * g);
+
+extern void generate_program_c(struct generator * g);
+
+/* Generator for Java code. */
+extern struct generator * create_generator_java(struct analyser * a, struct options * o);
+extern void close_generator_java(struct generator * g);
+
+extern void generate_program_java(struct generator * g);
 
