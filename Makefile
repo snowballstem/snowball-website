@@ -17,13 +17,17 @@ snowball_SOURCES = $(srcdir)/p/space.c \
 		   $(srcdir)/p/tokeniser.c \
 		   $(srcdir)/p/analyser.c \
 		   $(srcdir)/p/generator.c \
+		   $(srcdir)/p/generator_java.c \
+		   $(srcdir)/p/str.c \
 		   $(srcdir)/p/driver.c
-snowball_HEADERS = $(srcdir)/p/header.h
+snowball_HEADERS = $(srcdir)/p/header.h $(srcdir)/p/str.h
 snowball_OBJECTS = ./p/space.o \
 		   ./p/sort.o \
 		   ./p/tokeniser.o \
 		   ./p/analyser.o \
 		   ./p/generator.o \
+		   ./p/generator_java.o \
+		   ./p/str.o \
 		   ./p/driver.o
 
 all: $(addprefix lang_, $(languages)) libs
