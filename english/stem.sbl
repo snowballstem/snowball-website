@@ -185,6 +185,8 @@ define exception as (
         'inning' 'outing' 'canning'
         'proceed' 'exceed' 'succeed'
 
+        'atlas' 'cosmos' // are among the nouns ending s in the singular
+
         // ... extensions possible here ...
     )
 )
