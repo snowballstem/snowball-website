@@ -30,7 +30,7 @@ if ($words != '')
   fwrite($tmpfile, $words, 10000);
   fclose($tmpfile);
   passthru ("./stemdemo_en $tmpname");
-  delete($tmpname);
+  unlink($tmpname);
   echo "</pre>";
 }
 ?>
