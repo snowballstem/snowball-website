@@ -59,7 +59,7 @@ function displayHeader($title)
 </head>
 <body bgcolor=white>
 <table><tr><td valign=center>
-<center><A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=36391" width="88" height="31" border="0" alt="SourceForge Logo"></A></center>
+<center>Need a logo</center>
 </td><td>
 <h1 align=center><?php echo $fulltitle ?></h1>
 </td></tr>
@@ -80,6 +80,7 @@ Last modified on <?php
   global $SCRIPT_FILENAME;
   echo date('r', filemtime($SCRIPT_FILENAME));
 ?>.<br>
+<a href="mailto:snowball-discuss@lists.tartarus.org">Write to our mailing list</a> if you have comments or questions about the project.<br>
 <a href="mailto:richard@tartarus.org">Contact the webmaster</a> if you have comments directly related to the webpage.
 </address>
 </body>

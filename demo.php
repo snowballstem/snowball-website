@@ -27,10 +27,11 @@ if ($words != '')
   $words = preg_replace('|[-\']|', '', $words);
   $words = preg_replace('|  *|', ' ', $words);
   $words = preg_replace('| *$|', '', $words);
+  $language = "english";
   # Have a limit of 10000 bytes, just in case.
   fwrite($tmpfile, $words, 10000);
   fclose($tmpfile);
-  passthru ("./stemdemo_en $tmpname");
+  passthru ("./$language/stemmer $tmpname");
   unlink($tmpname);
   echo "</pre>";
   echo "</TR></TD>";
