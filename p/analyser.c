@@ -13,7 +13,8 @@ static struct node * C_style(struct analyser * a, char * s, int token);
 static void fault(int n) { fprintf(stderr, "fault %d\n", n); exit(1); }
 
 static void print_node_(struct node * p, int n, char * s)
-{   int i;
+{
+    int i;
     for (i = 0; i < n; i++) printf(i == n - 1 ? s : "  ");
     printf("%s ", name_of_token(p->type));
     unless (p->name == 0) report_b(stdout, p->name->b);
@@ -26,14 +27,19 @@ static void print_node_(struct node * p, int n, char * s)
     unless (p->AE == 0) print_node_(p->AE, n+1, "# ");
     unless (p->left == 0) print_node_(p->left, n+1, "  ");
     unless (p->right == 0) print_node_(p->right, n, "  ");
+    if (p->aux != 0) print_node_(p->aux, n+1, "@ ");
 }
 
-extern void print_program(struct analyser * a) { print_node_(a->program, 0, "  "); }
+extern void print_program(struct analyser * a) {
+    print_node_(a->program, 0, "  ");
+}
 
 static struct node * new_node(struct analyser * a, int type)
 {   NEW(node, p);
     p->next = a->nodes; a->nodes = p;
-    p->left = 0; p->right = 0;
+    p->left = 0;
+    p->right = 0;
+    p->aux = 0;
     p->AE = 0;
     p->name = 0;
     p->literalstring = 0;
