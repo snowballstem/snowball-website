@@ -10,9 +10,9 @@
 <tr><?php include "menu.inc"; ?><td valign=top>
 
 <form method="POST" action="demo.php">
-Enter some words to stem:
-<br>
-<input name="words" size=30 value="<?php echo "$words" ?>">
+Enter some (english) words to stem:<br>
+(Other languages will be added to the demo later)<br>
+<input name="words" size=30 width=40 height=5 value="<?php echo "$words" ?>">
 </form>
 
 <?php
