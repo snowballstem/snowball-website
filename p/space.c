@@ -1,7 +1,7 @@
 
 #include <stdio.h>    /* for printf */
 #include <stdlib.h>   /* malloc, free */
-#include <memory.h>   /* memmove */
+#include <string.h>   /* memmove */
 
 #include "header.h"
 

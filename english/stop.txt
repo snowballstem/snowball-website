@@ -197,6 +197,7 @@ very
 
  | Just for the record, the following words are among the commonest in English
 
+    | one
     | every
     | least
     | less

@@ -1,6 +1,6 @@
 
 #include <stdio.h>   /* main etc */
-#include <memory.h>   /* memmove */
+#include <string.h>  /* memmove */
 #include "header.h"
 
 /* recursive usage: */

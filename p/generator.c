@@ -1,5 +1,6 @@
 
-#include <stdio.h> /* for fprintf etc */
+#include <stdio.h>   /* for fprintf etc */
+#include <stdlib.h>  /* free etc */
 #include "header.h"
 
 /* recursive use: */

@@ -1,5 +1,6 @@
 
 #include <stdio.h>   /* main etc */
+#include <stdlib.h>  /* free etc */
 #include "header.h"
 
 /*-static int intof(char * s)
@@ -164,8 +165,8 @@ extern int main(int argc, char * argv[])
                     g = create_generator_c(a, o);
                     generate_program_c(g);
                     close_generator_c(g);
-                    close(o->output_c);
-                    close(o->output_h);
+                    fclose(o->output_c);
+                    fclose(o->output_h);
                 }
                 if (o->make_java) {
                     symbol * b = add_s_to_b(0, s);
@@ -175,7 +176,7 @@ extern int main(int argc, char * argv[])
                     g = create_generator_java(a, o);
                     generate_program_java(g);
                     close_generator_java(g);
-                    close(o->output_java);
+                    fclose(o->output_java);
                 }
             }
             close_analyser(a);
