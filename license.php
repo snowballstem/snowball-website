@@ -21,8 +21,8 @@ software to the fact that it is covered by the BSD license.
 
 </p><p>
 
-We have not bothered to insert the the licensing arrangement into the
-text of the Snowball softwre.
+We have not bothered to insert the licensing arrangement into the
+text of the Snowball software.
 
 
 </p>
