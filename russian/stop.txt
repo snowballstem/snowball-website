@@ -6,6 +6,8 @@
  | this is a ranked list (commonest to rarest) of stopwords derived from
  | a large text sample.
 
+ | letter `ё' is translated to `е'.
+
 и              | and
 в              | in/into
 во             | alternative form
@@ -61,17 +63,17 @@
 до             | up to
 вас            | you accusative
 нибудь         | indef. suffix preceded by hyphen
-опят           | again
+опять          | again
 уж             | already, but homonym of `adder'
 вам            | to you
 сказал         | he said
 ведь           | particle `after all'
 там            | there
 потом          | then
-себья          | oneself
+себя           | oneself
 ничего         | nothing
 ей             | to her
-может          | usually with `быт' as `maybe'
+может          | usually with `быть' as `maybe'
 они            | they
 тут            | here
 где            | where
@@ -103,8 +105,8 @@
 говорил        | was saying
 того           | genitive form of `that'
 потому         | for that reason
-етого          | genitive form of `this'
-какои          | which
+этого          | genitive form of `this'
+какой          | which
 совсем         | altogether
 ним            | prepositional form of `его', `они'
 здесь          | here
@@ -129,7 +131,7 @@
 наконец        | finally
 два            | two
 об             | alternative form of `о', about
-другои         | another
+другой         | another
 хоть           | even
 после          | after
 над            | above
@@ -142,7 +144,7 @@
 всего          | in all, only, of all
 них            | prepositional form of `они' (they)
 какая          | which, feminine
-мноого         | lots
+много          | lots
 разве          | interrogative particle
 сказала        | she said
 три            | three
@@ -151,14 +153,14 @@
 впрочем        | moreover, besides
 хорошо         | good
 свою           | ones own, acc. fem. sing.
-этои           | oblique form of `ета', fem. `this'
+этой           | oblique form of `эта', fem. `this'
 перед          | in front of
 иногда         | sometimes
 лучше          | better
 чуть           | a little
 том            | preposn. form of `that one'
 нельзя         | one must not
-такои          | such a one
+такой          | such a one
 им             | to them
 более          | more
 всегда         | always
