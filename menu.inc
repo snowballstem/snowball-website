@@ -22,7 +22,7 @@ function displayMenu()
   menuEntry("Introduction", "/index.php");
   menuEntry("Demo", "/demo.php");
   menuEntry("Download", "/download.php");
-  menuEntry("Documentation", "/docs.php");
+  menuEntry("Documentation", "/documentation.php");
   menuEntry("Mailing lists", "/lists.php");
   menuEntry("License", "/license.php");
   menuEntry("Credits", "/credits.php");
