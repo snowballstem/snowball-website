@@ -16,11 +16,36 @@ static int new_label(struct generator * g)
 {   return g->next_label++;
 }
 
-static void wch(struct generator * g, int ch)  { fprintf(g->output, "%c", ch); } /* character */
-static void wnl(struct generator * g)          { fprintf(g->output, "\n"); g->line_count++; } /* newline */
-static void ws(struct generator * g, char * s) { fprintf(g->output, "%s", s); } /* string */
-static void wi(struct generator * g, int i)    { fprintf(g->output, "%d", i); } /* integer */
-static void wi3(struct generator * g, int i)   { fprintf(g->output, "%3d", i); } /* integer (width 3) */
+/* Output routines */
+static void output_str(FILE * outfile, struct str * str)
+{
+    char * s = b_to_s(str_data(str));
+    fprintf(outfile, "%s", s);
+    free(s);
+}
+
+static void wch(struct generator * g, int ch)
+{   str_append_ch(g->outbuf, ch); /* character */
+}
+
+static void wnl(struct generator * g)
+{   str_append_ch(g->outbuf, '\n'); /* newline */
+    g->line_count++;
+}
+
+static void ws(struct generator * g, char * s)
+{   str_append_string(g->outbuf, s); /* string */
+}
+
+static void wi(struct generator * g, int i)
+{   str_append_int(g->outbuf, i); /* integer */
+}
+
+static void wi3(struct generator * g, int i)
+{   if (i < 100) wch(g, ' ');
+    if (i < 10)  wch(g, ' ');
+    wi(g, i); /* integer (width 3) */
+}
 
 static void wvn(struct generator * g, struct name * p)  /* variable name */
 {
@@ -35,7 +60,7 @@ static void wvn(struct generator * g, struct name * p)  /* variable name */
         default:
             wch(g, ch); wch(g, '_');
     }
-    report_b(g->output, p->b);
+    str_append_b(g->outbuf, p->b);
 }
 
 static void wv(struct generator * g, struct name * p)  /* reference to variable */
@@ -43,30 +68,58 @@ static void wv(struct generator * g, struct name * p)  /* reference to variable 
     wvn(g, p);
 }
 
-static void whexch(struct generator * g, int n)
-{   wch(g, n < 10 ? n + '0' : n - 10 + 'A');
-}
+/*--static void whexch(struct generator * g, int n)
+--{   wch(g, n < 10 ? n + '0' : n - 10 + 'A');
+--}
+--
+--static void whex(struct generator * g, int ch)
+--{   ws(g, "\\x");
+--    whexch(g, ch >> 4);
+--    whexch(g, ch & 0XF);
+--    ws(g, "\" \"");
+--}
+--*/
 
-static void whex(struct generator * g, int ch)
-{   ws(g, "\\x");
-    whexch(g, ch >> 4);
-    whexch(g, ch & 0XF);
-    ws(g, "\" \"");
-}
-
-static void wlit(struct generator * g, byte * p)  /* write literal string */
-{   ws(g, "\"");
+static void wlitarray(struct generator * g, symbol * p)  /* write literal array */
+{
+/*
+    struct string * s = g->outbuf;
+    g->outbuf = g->declarations;
+*/
+    ws(g, "{ ");
     {   int i;
         for (i = 0; i < SIZE(p); i++)
         {   int ch = p[i];
-            if (32 <= ch && ch <= 127) switch (ch)
-            {   case '\"': case '\\': ws(g, "\\");
-                default: wch(g, ch);
-            }  else whex(g, ch);
+            if (32 <= ch && ch <= 127)
+            {   wch(g, '\'');
+                switch (ch)
+                {   case '\'':
+                    case '\\': wch(g, '\\');
+                    default:   wch(g, ch);
+                }
+                wch(g, '\'');
+            }  else wi(g, ch);
+            if (i < SIZE(p) - 1) ws(g, ", ");
         }
     }
-    ws(g, "\"");
+    ws(g, " }");
+/*
+    g->outbuf = s;
+*/
 }
+
+static void wlitref(struct generator * g, symbol * p)  /* write ref to literal array */
+{
+    struct str * s = g->outbuf;
+    g->outbuf = g->declarations;
+    ws(g, "static symbol s_"); wi(g, g->literalstring_count); ws(g, "[] = ");
+    wlitarray(g, p);
+    ws(g, ";\n");
+    g->outbuf = s;
+    ws(g, "s_"); wi(g, g->literalstring_count);
+    g->literalstring_count++;
+}
+
 
 static void wm(struct generator * g)       /* margin */
 {   int i;
@@ -77,7 +130,10 @@ static void wc(struct generator * g, struct node * p) /* comment */
 {
     ws(g, " /* ");
     ws(g, (char *) name_of_token(p->type));
-    unless (p->name == 0) { ws(g, " "); report_b(g->output, p->name->b); }
+    unless (p->name == 0)
+    {   ws(g, " ");
+        str_append_b(g->outbuf, p->name->b);
+    }
     ws(g, ", line "); wi(g, p->line_number); ws(g, " */");
     wnl(g);
 }
@@ -118,23 +174,23 @@ static void winc(struct generator * g, struct node * p)     /* increment c */
 
 static void wsetl(struct generator * g, int n)
 {   g->margin--;
-    wms(g, "lab"); wi(g, n); ws(g, ":"); wnl(g);
+    wms(g, "lab"); wi(g, n); wch(g, ':'); wnl(g);
     g->line_labelled = g->line_count;
     g->margin++;
 }
 
 static void wgotol(struct generator * g, int n)
-{   wms(g, "goto lab"); wi(g, n); ws(g, ";"); wnl(g);
+{   wms(g, "goto lab"); wi(g, n); wch(g, ';'); wnl(g);
 }
 
 static void wf(struct generator * g)          /* fail */
-{   if (g->failure_string != 0) { ws(g, "{ "); ws(g, g->failure_string); ws(g, " "); }
+{   if (g->failure_string != 0) { ws(g, "{ "); ws(g, g->failure_string); wch(g, ' '); }
     switch (g->failure_label)
     {
         case x_return:
            ws(g, "return 0;"); break;
         default:
-           ws(g, "goto lab"); wi(g, g->failure_label); ws(g, ";");
+           ws(g, "goto lab"); wi(g, g->failure_label); wch(g, ';');
     }
     if (g->failure_string != 0) ws(g, " }");
 }
@@ -177,7 +233,8 @@ static void wp(struct generator * g, char * s, struct node * p) /* formatted wri
             case 'J': wi3(g, g->I[s[i++] - '0']); continue;
             case 'V': wv(g, g->V[s[i++] - '0']); continue;
             case 'W': wvn(g, g->V[s[i++] - '0']); continue;
-            case 'L': wlit(g, g->L[s[i++] - '0']); continue;
+            case 'L': wlitref(g, g->L[s[i++] - '0']); continue;
+            case 'A': wlitarray(g, g->L[s[i++] - '0']); continue;
             case '+': g->margin++; continue;
             case '-': g->margin--; continue;
             case '$': /* insert_s, insert_v etc */
@@ -202,7 +259,7 @@ static void generate_AE(struct generator * g, struct node * p)
         case c_minint:
             ws(g, "MININT"); break;
         case c_neg:
-            ws(g, "-"); generate_AE(g, p->left); break;
+            wch(g, '-'); generate_AE(g, p->left); break;
         case c_multiply:
             s = " * "; goto label0;
         case c_plus:
@@ -212,8 +269,8 @@ static void generate_AE(struct generator * g, struct node * p)
         case c_divide:
             s = " / ";
         label0:
-            ws(g, "("); generate_AE(g, p->left);
-            ws(g, s); generate_AE(g, p->right); ws(g, ")"); break;
+            wch(g, '('); generate_AE(g, p->left);
+            ws(g, s); generate_AE(g, p->right); wch(g, ')'); break;
         case c_sizeof:
             g->V[0] = p->name;
             w(g, "SIZE(~V0)"); break;
@@ -622,10 +679,10 @@ static void generate_sliceto(struct generator * g, struct node * p)
 
 static void generate_data_address(struct generator * g, struct node * p)
 {
-    byte * b = p->literalstring;
+    symbol * b = p->literalstring;
     if (b != 0)
     {   wi(g, SIZE(b)); w(g, ", ");
-        wlit(g, b);
+        wlitref(g, b);
     } else
         wv(g, p->name);
 }
@@ -733,7 +790,7 @@ static void generate_namedstring(struct generator * g, struct node * p)
 }
 
 static void generate_literalstring(struct generator * g, struct node * p)
-{   byte * b = p->literalstring;
+{   symbol * b = p->literalstring;
     g->S[0] = p->mode == m_forward ? "" : "_b";
     g->I[0] = SIZE(b);
     g->L[0] = b;
@@ -889,6 +946,11 @@ static void generate(struct generator * g, struct node * p)
 
 }
 
+static void generate_start_comment(struct generator * g)
+{
+    w(g, "~N/* This file was generated automatically by the Snowball to ANSI C compiler */~N");
+}
+
 static void generate_head(struct generator * g)
 {
     w(g, "~N#include \"header.h\"~N~N");
@@ -914,21 +976,33 @@ static void generate_among_table(struct generator * g, struct among * x)
     struct amongvec * v = x->b;
 
     g->I[0] = x->number;
-    g->I[1] = x->literalstring_count;
-
-    w(g, "~Mstatic struct among a_~I0[~I1] =~N{~N");
 
     {   int i;
         for (i = 0; i < x->literalstring_count; i++)
 
-        {   g->I[0] = i;
-            g->I[1] = v->size;
-            g->I[2] = v->i;
-            g->I[3] = v->result;
+        {   g->I[1] = i;
+            g->I[2] = v->size;
             g->L[0] = v->b;
+
+            w(g, "static symbol s_~I0_~I1[~I2] = ~A0;~N");
+            v++;
+        }
+    }
+
+    g->I[1] = x->literalstring_count;
+    w(g, "~N~Mstatic struct among a_~I0[~I1] =~N{~N");
+
+    v = x->b;
+    {   int i;
+        for (i = 0; i < x->literalstring_count; i++)
+
+        {   g->I[1] = i;
+            g->I[2] = v->size;
+            g->I[3] = v->i;
+            g->I[4] = v->result;
             g->S[0] = i < x->literalstring_count - 1 ? "," : "";
 
-            w(g, "/*~J0 */ { ~I1, (byte *)~L0, ~I2, ~I3, ");
+            w(g, "/*~J1 */ { ~I2, s_~I0_~I1, ~I3, ~I4, ");
             if (v->function == 0) w(g, "0"); else
                                   wvn(g, v->function);
             w(g, "}~S0~N");
@@ -946,20 +1020,18 @@ static void generate_amongs(struct generator * g)
     }
 }
 
-static void set_bit(byte * b, int i) { b[i/8] |= 1 << i%8; }
+static void set_bit(symbol * b, int i) { b[i/8] |= 1 << i%8; }
 
-static int bit_is_set(byte * b, int i) { return b[i/8] & 1 << i%8; }
+static int bit_is_set(symbol * b, int i) { return b[i/8] & 1 << i%8; }
 
 static void generate_grouping_table(struct generator * g, struct grouping * q)
 {
     int range = q->largest_ch - q->smallest_ch + 1;
-    int size = (range + 7)/ 8;  /* assume 8 bits per byte */
-    byte * b = q->b;
-    byte * map = create_b(size);
+    int size = (range + 7)/ 8;  /* assume 8 bits per symbol */
+    symbol * b = q->b;
+    symbol * map = create_b(size);
     int i;
     for (i = 0; i < size; i++) map[i] = 0;
-
-    /* Using unicode would require revision here */
 
     for (i = 0; i < SIZE(b); i++) set_bit(map, b[i] - q->smallest_ch);
 
@@ -969,13 +1041,12 @@ static void generate_grouping_table(struct generator * g, struct grouping * q)
     unless (q->no_gaps)
     {   g->V[0] = q->name;
 
-        w(g, "~N"
-             "static byte ~V0[] = { ");
+        w(g, "static unsigned char ~V0[] = { ");
         for (i = 0; i < size; i++)
         {    wi(g, map[i]);
              if (i < size - 1) w(g, ", ");
         }
-        w(g, " };~N");
+        w(g, " };~N~N");
     }
     lose_b(map);
 }
@@ -1007,7 +1078,7 @@ static void generate_close(struct generator * g)
 static void generate_header_file(struct generator * g)
 {
     struct name * q = g->analyser->names;
-    byte * vp = g->options->variables_prefix;
+    char * vp = g->options->variables_prefix;
     g->S[0] = vp;
 
     w(g, "~N"
@@ -1028,7 +1099,7 @@ static void generate_header_file(struct generator * g)
                 if (vp)
                 {   g->I[0] = q->count;
                     w(g, "#define ~S0");
-                    report_b(g->output, q->b);
+                    str_append_b(g->outbuf, q->b);
                     w(g, " (~S1[~I0])~N");
                 }
                 break;
@@ -1040,20 +1111,29 @@ static void generate_header_file(struct generator * g)
 
 extern void generate_program_c(struct generator * g)
 {
-    g->output = g->options->output_c;
+    g->outbuf = str_new();
+    generate_start_comment(g);
     generate_head(g);
     generate_routine_headers(g);
     generate_amongs(g);
     generate_groupings(g);
-
+    g->declarations = g->outbuf;
+    g->outbuf = str_new();
+    g->literalstring_count = 0;
     {   struct node * p = g->analyser->program;
         until (p == 0) { generate(g, p); p = p->right; }
     }
     generate_create(g);
     generate_close(g);
+    output_str(g->options->output_c, g->declarations);
+    str_delete(g->declarations);
+    output_str(g->options->output_c, g->outbuf);
+    str_clear(g->outbuf);
 
-    g->output = g->options->output_h;
+    generate_start_comment(g);
     generate_header_file(g);
+    output_str(g->options->output_h, g->outbuf);
+    str_delete(g->outbuf);
 }
 
 extern struct generator * create_generator_c(struct analyser * a, struct options * o)

@@ -12,7 +12,7 @@ void stemfile(struct SN_env * z, FILE * f_in, FILE * f_out)
 {
 #define INC 10
     int lim = INC;
-    char * b = (char *) malloc(lim);
+    symbol * b = (symbol *) malloc(lim * sizeof(symbol));
 
     while(1)
     {   int ch = getc(f_in);
@@ -22,8 +22,8 @@ void stemfile(struct SN_env * z, FILE * f_in, FILE * f_out)
             {
                 if (ch == '\n' || ch == EOF) break;
                 if (i == lim)
-                {   char * q = (char *) malloc(lim + INC);
-                    memmove(q, b, lim);
+                {   symbol * q = (symbol *) malloc((lim + INC) * sizeof(symbol));
+                    memmove(q, b, lim * sizeof(symbol));
                     free(b); b = q;
                     lim = lim + INC;
                 }
@@ -40,9 +40,9 @@ void stemfile(struct SN_env * z, FILE * f_in, FILE * f_out)
                     stem(z); stem_count++;
                 }
             }
-            {
-                z->p[z->l] = 0;
-                fprintf(f_out, "%s%c", z->p, '\n');
+            {   int j;
+                for (j = 0; j < z->l; j++) fprintf(f_out, "%c", z->p[j]);
+                fprintf(f_out, "\n");
             }
         }
     }

@@ -9,16 +9,16 @@
 
 #define CREATE_SIZE 1
 
-extern byte * create_s(void)
-{   byte * p = HEAD + (byte *) malloc(HEAD + CREATE_SIZE + 1);
+extern symbol * create_s(void)
+{   symbol * p = (symbol *) (HEAD + (char *) malloc(HEAD + (CREATE_SIZE + 1) * sizeof(symbol)));
     CAPACITY(p) = CREATE_SIZE;
     SET_SIZE(p, CREATE_SIZE);
     return p;
 }
 
-extern void lose_s(byte * p) { free(p - HEAD); }
+extern void lose_s(symbol * p) { free((char *) p - HEAD); }
 
-extern int in_grouping(struct SN_env * z, byte * s, int min, int max)
+extern int in_grouping(struct SN_env * z, unsigned char * s, int min, int max)
 {   if (z->c >= z->l) return 0;
     {   int ch = z->p[z->c];
         if
@@ -28,7 +28,7 @@ extern int in_grouping(struct SN_env * z, byte * s, int min, int max)
     z->c++; return 1;
 }
 
-extern int in_grouping_b(struct SN_env * z, char * s, int min, int max)
+extern int in_grouping_b(struct SN_env * z, unsigned char * s, int min, int max)
 {   if (z->c <= z->lb) return 0;
     {   int ch = z->p[z->c - 1];
         if
@@ -38,7 +38,7 @@ extern int in_grouping_b(struct SN_env * z, char * s, int min, int max)
     z->c--; return 1;
 }
 
-extern int out_grouping(struct SN_env * z, byte * s, int min, int max)
+extern int out_grouping(struct SN_env * z, unsigned char * s, int min, int max)
 {   if (z->c >= z->l) return 0;
     {   int ch = z->p[z->c];
         unless
@@ -48,7 +48,7 @@ extern int out_grouping(struct SN_env * z, byte * s, int min, int max)
     z->c++; return 1;
 }
 
-extern int out_grouping_b(struct SN_env * z, char * s, int min, int max)
+extern int out_grouping_b(struct SN_env * z, unsigned char * s, int min, int max)
 {   if (z->c <= z->lb) return 0;
     {   int ch = z->p[z->c - 1];
         unless
@@ -95,24 +95,24 @@ extern int out_range_b(struct SN_env * z, int min, int max)
     z->c--; return 1;
 }
 
-extern int eq_s(struct SN_env * z, int s_size, char * s)
+extern int eq_s(struct SN_env * z, int s_size, symbol * s)
 {   if (z->l - z->c < s_size ||
-        memcmp(z->p + z->c, s, s_size) != 0) return 0;
+        memcmp(z->p + z->c, s, s_size * sizeof(symbol)) != 0) return 0;
     z->c += s_size; return 1;
 }
 
-extern int eq_s_b(struct SN_env * z, int s_size, char * s)
+extern int eq_s_b(struct SN_env * z, int s_size, symbol * s)
 {   if (z->c - z->lb < s_size ||
-        memcmp(z->p + z->c - s_size, s, s_size) != 0) return 0;
+        memcmp(z->p + z->c - s_size, s, s_size * sizeof(symbol)) != 0) return 0;
     z->c -= s_size; return 1;
 }
 
-extern int eq_v(struct SN_env * z, byte * p)
-{   return eq_s(z, SIZE(p), (char *)p);
+extern int eq_v(struct SN_env * z, symbol * p)
+{   return eq_s(z, SIZE(p), p);
 }
 
-extern int eq_v_b(struct SN_env * z, byte * p)
-{   return eq_s_b(z, SIZE(p), (char *)p);
+extern int eq_v_b(struct SN_env * z, symbol * p)
+{   return eq_s_b(z, SIZE(p), p);
 }
 
 extern int find_among(struct SN_env * z, struct among * v, int v_size)
@@ -121,7 +121,7 @@ extern int find_among(struct SN_env * z, struct among * v, int v_size)
     int j = v_size;
 
     int c = z->c; int l = z->l;
-    byte * q = z->p + c;
+    symbol * q = z->p + c;
 
     struct among * w;
 
@@ -179,7 +179,7 @@ extern int find_among_b(struct SN_env * z, struct among * v, int v_size)
     int j = v_size;
 
     int c = z->c; int lb = z->lb;
-    byte * q = z->p + c - 1;
+    symbol * q = z->p + c - 1;
 
     struct among * w;
 
@@ -225,29 +225,29 @@ extern int find_among_b(struct SN_env * z, struct among * v, int v_size)
 }
 
 
-extern byte * increase_size(byte * p, int n)
-{   int new_size = /**-CAPACITY(p) +-**/ n + 20;
-    byte * q = HEAD + (byte *) malloc(HEAD + new_size + 1);
+extern symbol * increase_size(symbol * p, int n)
+{   int new_size = n + 20;
+    symbol * q = (symbol *) (HEAD + (char *) malloc(HEAD + (new_size + 1) * sizeof(symbol)));
     CAPACITY(q) = new_size;
-    memmove(q, p, CAPACITY(p)); lose_s(p); return q;
+    memmove(q, p, CAPACITY(p) * sizeof(symbol)); lose_s(p); return q;
 }
 
-/* to replace chars between c_bra and c_ket in z->p by the
-   s_size chars at s
+/* to replace symbols between c_bra and c_ket in z->p by the
+   s_size symbols at s
 */
 
-extern int replace_s(struct SN_env * z, int c_bra, int c_ket, int s_size, const byte * s)
+extern int replace_s(struct SN_env * z, int c_bra, int c_ket, int s_size, const symbol * s)
 {   int adjustment = s_size - (c_ket - c_bra);
     int len = SIZE(z->p);
     if (adjustment != 0)
     {   if (adjustment + len > CAPACITY(z->p)) z->p = increase_size(z->p, adjustment + len);
-        memmove(z->p + c_ket + adjustment, z->p + c_ket, len - c_ket);
+        memmove(z->p + c_ket + adjustment, z->p + c_ket, (len - c_ket) * sizeof(symbol));
         SET_SIZE(z->p, adjustment + len);
         z->l += adjustment;
         if (z->c >= c_ket) z->c += adjustment; else
             if (z->c > c_bra) z->c = c_bra;
     }
-    unless (s_size == 0) memmove(z->p + c_bra, s, s_size);
+    unless (s_size == 0) memmove(z->p + c_bra, s, s_size * sizeof(symbol));
     return adjustment;
 }
 
@@ -264,45 +264,45 @@ static void slice_check(struct SN_env * z)
     }
 }
 
-extern void slice_from_s(struct SN_env * z, int s_size, char * s)
+extern void slice_from_s(struct SN_env * z, int s_size, symbol * s)
 {   slice_check(z);
-    replace_s(z, z->bra, z->ket, s_size, (byte *) s);
+    replace_s(z, z->bra, z->ket, s_size, s);
 }
 
-extern void slice_from_v(struct SN_env * z, byte * p)
-{   slice_from_s(z, SIZE(p), (char *)p);
+extern void slice_from_v(struct SN_env * z, symbol * p)
+{   slice_from_s(z, SIZE(p), p);
 }
 
 extern void slice_del(struct SN_env * z)
 {   slice_from_s(z, 0, 0);
 }
 
-extern void insert_s(struct SN_env * z, int bra, int ket, int s_size, char * s)
-{   int adjustment = replace_s(z, bra, ket, s_size, (byte *) s);
+extern void insert_s(struct SN_env * z, int bra, int ket, int s_size, symbol * s)
+{   int adjustment = replace_s(z, bra, ket, s_size, s);
     if (bra <= z->bra) z->bra += adjustment;
     if (bra <= z->ket) z->ket += adjustment;
 }
 
-extern void insert_v(struct SN_env * z, int bra, int ket, byte * p)
+extern void insert_v(struct SN_env * z, int bra, int ket, symbol * p)
 {   int adjustment = replace_s(z, bra, ket, SIZE(p), p);
     if (bra <= z->bra) z->bra += adjustment;
     if (bra <= z->ket) z->ket += adjustment;
 }
 
-extern byte * slice_to(struct SN_env * z, byte * p)
+extern symbol * slice_to(struct SN_env * z, symbol * p)
 {   slice_check(z);
     {   int len = z->ket - z->bra;
         if (CAPACITY(p) < len) p = increase_size(p, len);
-        memmove(p, z->p + z->bra, len);
+        memmove(p, z->p + z->bra, len * sizeof(symbol));
         SET_SIZE(p, len);
     }
     return p;
 }
 
-extern byte * assign_to(struct SN_env * z, byte * p)
+extern symbol * assign_to(struct SN_env * z, symbol * p)
 {   int len = z->l;
     if (CAPACITY(p) < len) p = increase_size(p, len);
-    memmove(p, z->p, len);
+    memmove(p, z->p, len * sizeof(symbol));
     SET_SIZE(p, len);
     return p;
 }

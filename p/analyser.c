@@ -144,7 +144,7 @@ static void error2(struct analyser * a, int n, int x)
 
 static void error(struct analyser * a, int n) { error2(a, n, 0); }
 
-static void error3(struct analyser * a, struct node * p, byte * b)
+static void error3(struct analyser * a, struct node * p, symbol * b)
 {   count_error(a);
     fprintf(stderr, "among(...) on line %d has repeated string '", p->line_number);
     report_b(stderr, b);
@@ -179,12 +179,12 @@ static int get_token(struct analyser * a, int code)
 
 static struct name * look_for_name(struct analyser * a)
 {   struct name * p = a->names;
-    byte * q = a->tokeniser->b;
+    symbol * q = a->tokeniser->b;
     repeat
     {   if (p == 0) return 0;
-        {   byte * b = p->b;
+        {   symbol * b = p->b;
             int n = SIZE(b);
-            if (n == SIZE(q) && memcmp(q, b, n) == 0)
+            if (n == SIZE(q) && memcmp(q, b, n * sizeof(symbol)) == 0)
             {   p->referenced = true;
                 return p;
             }
@@ -240,7 +240,7 @@ extern void read_names(struct analyser * a, int type)
     unless (check_token(a, c_ket)) t->token_held = true;
 }
 
-extern byte * new_literalstring(struct analyser * a)
+extern symbol * new_literalstring(struct analyser * a)
 {   NEW(literalstring, p);
     p->b = copy_b(a->tokeniser->b);
     p->next = a->literalstrings;
@@ -411,7 +411,7 @@ static struct node * read_literalstring(struct analyser * a)
 
 
 
-static void reverse_b(byte * b)
+static void reverse_b(symbol * b)
 {   int i = 0; int j = SIZE(b) - 1;
     until (i >= j)
     {   int ch1 = b[i]; int ch2 = b[j];
@@ -420,8 +420,8 @@ static void reverse_b(byte * b)
 }
 
 static int compare_amongvec(struct amongvec * p, struct amongvec * q)
-{   byte * b_p = p->b; int p_size = p->size;
-    byte * b_q = q->b; int q_size = q->size;
+{   symbol * b_p = p->b; int p_size = p->size;
+    symbol * b_q = q->b; int q_size = q->size;
     int smaller_size = p_size < q_size ? p_size : q_size;
     int i;
     for (i = 0; i < smaller_size; i++)
@@ -452,7 +452,7 @@ static void make_among(struct analyser * a, struct node * p, struct node * subst
 
     until (q == 0)
     {   if (q->type == c_literalstring)
-        {   byte * b = q->literalstring;
+        {   symbol * b = q->literalstring;
             w1->b = b;           /* pointer to case string */
             w1->p = 0;           /* pointer to corresponding case expression */
             w1->size = SIZE(b);  /* number of characters in string */
@@ -482,13 +482,13 @@ static void make_among(struct analyser * a, struct node * p, struct node * subst
 
     /* the following loop is O(n squared) */
     for (w0 = w1 - 1; w0 >= v; w0--)
-    {   byte * b = w0->b;
+    {   symbol * b = w0->b;
         int size = w0->size;
         struct amongvec * w;
 
         for (w = w0 - 1; w >= v; w--)
         {
-            if (w->size < size && memcmp(w->b, b, w->size) == 0)
+            if (w->size < size && memcmp(w->b, b, w->size * sizeof(symbol)) == 0)
             {   w0->i = w - v;  /* fill in index of longest substring */
                 break;
             }
@@ -498,7 +498,7 @@ static void make_among(struct analyser * a, struct node * p, struct node * subst
 
     for (w0 = v; w0 < w1 - 1; w0++)
         if (w0->size == (w0 + 1)->size &&
-            memcmp(w0->b, (w0 + 1)->b, w0->size) == 0) error3(a, p, w0->b);
+            memcmp(w0->b, (w0 + 1)->b, w0->size * sizeof(symbol)) == 0) error3(a, p, w0->b);
 
     x->literalstring_count = p->number;
     x->command_count = result - 1;
@@ -693,18 +693,15 @@ static struct node * read_C(struct analyser * a)
     }
 }
 
-static byte * alter_grouping(byte * p, byte * q, int style)
+static symbol * alter_grouping(symbol * p, symbol * q, int style)
 {   if (style == c_plus) return add_to_b(p, SIZE(q), q);
-
-    /* the next bit will need serious revision in the Unicode
-       case */
 
     {   int j;
         for (j = 0; j < SIZE(q); j++)
         {   int ch = q[j];
             int i;
             for (i = 0; i < SIZE(p); i++) if (ch == p[i])
-            {   memmove(p + i, p + i + 1, SIZE(p) - i - 1);
+            {   memmove(p + i, p + i + 1, (SIZE(p) - i - 1) * sizeof(symbol));
                 SIZE(p)--;
             }
         }

@@ -16,7 +16,7 @@ groupings ( v )
 
 stringescapes {}
 
-/* special characters (in ISO Latin) */
+/* special characters (in MS-DOS Latin I) */
 
 stringdef a'   hex 'A0'  // a-acute
 stringdef e'   hex '82'  // e-acute

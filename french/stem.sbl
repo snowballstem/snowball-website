@@ -17,7 +17,7 @@ groupings ( v keep_with_s )
 
 stringescapes {}
 
-/* special characters (in ISO Latin) */
+/* special characters (in MS-DOS Latin I) */
 
 stringdef a^   hex '83'  // a-circumflex
 stringdef a`   hex '85'  // a-grave
@@ -234,3 +234,4 @@ define stem as (
     )
     do postlude
 )
+

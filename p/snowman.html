@@ -71,23 +71,29 @@ decimal. A literal string is written between single quotes, for example,
 <BR><PRE>
     'aeiouy'
 </PRE>
-A string may be preceded by the word &nbsp;<TT>hex</TT>, in which case the contents are
-interpreted as being written out in hexadecimal notation, e.g.
+In a &nbsp;<TT>stringdef</TT>&nbsp; (see below), string may be preceded by the word &nbsp;<TT>hex</TT>,
+or the word &nbsp;<TT>decimal</TT>,
+in which case the contents are
+interpreted as characters written out in hexadecimal, or decimal, notation.
+The characters should be separated by spaces. For example,
 <BR><PRE>
-    hex '0D0A'  /* carriage return, line feed */
+    hex 'DA'        /* is character hex DA */
+    hex 'D A'       /* is the two characters, hex D and A (carriage
+                       return, and line feed) */
+    decimal '10'    /* character 10 (line feed) */
+    decimal '13 10' /* characters 13 and 10 (carriage return, and
+                       line feed) */
 </PRE>
-Equivalently
+The following forms are equivalent,
 <BR><PRE>
-    hex '0d0a'   /* lower case also allowed */
-    hex '0D 0A'  /* spaces ignored */
+    hex 'd a'      /* lower case also allowed */
+    hex '0D 000A'  /* leading zeroes ignored */
+    hex ' D  A  '  /* extra spacing is harmless */
 </PRE>
-But &nbsp;<TT>hex 'd0a'</TT>&nbsp; would be an error: the number of enclosed symbols must be
-even.
-<BR><BR>
-Strings may include special <I>string macro</I> sequences, to handle unusual
+<TT>stringdef</TT>s define special <I>string macros</I>, to handle unusual
 character combinations.
 <BR><BR>
-String macros may be defined in the form &nbsp;<TT>stringdef m 'S'</TT>, where &nbsp;<TT>'S'</TT>&nbsp; is a
+Macro &nbsp;<TT>m</TT>&nbsp; may is defined in the form &nbsp;<TT>stringdef m 'S'</TT>, where &nbsp;<TT>'S'</TT>&nbsp; is a
 string, and &nbsp;<TT>m</TT>&nbsp; a sequence of one or more printing characters terminating
 with whitespace.
 <BR><BR>
@@ -113,7 +119,7 @@ For example,
 <BR><PRE>
     stringescapes []
 
-    /* special Spanish characters (in ISO Latin) */
+    /* special Spanish characters (in MS-DOS Latin I) */
 
     stringdef a'   hex 'A0'  // a-acute
     stringdef e'   hex '82'  // e-acute

@@ -16,7 +16,7 @@ groupings ( v AEIO CG )
 
 stringescapes {}
 
-/* special characters (in ISO Latin) */
+/* special characters (in MS-DOS Latin I) */
 
 stringdef a'   hex 'A0'
 stringdef a`   hex '85'

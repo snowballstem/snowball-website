@@ -1,5 +1,6 @@
 
 typedef unsigned char byte;
+typedef unsigned short symbol;
 
 #define true 1
 #define false 0
@@ -17,40 +18,65 @@ typedef unsigned char byte;
 #define SIZE(p)     ((int *)(p))[-1]
 #define CAPACITY(p) ((int *)(p))[-2]
 
-extern byte * create_b(int n);
-extern void report_b(FILE * out, byte * p);
-extern void lose_b(byte * p);
-extern byte * increase_capacity(byte * p, int n);
-extern byte * move_to_b(byte * p, int n, byte * q);
-extern byte * add_to_b(byte * p, int n, byte * q);
-extern byte * copy_b(byte * p);
+extern symbol * create_b(int n);
+extern void report_b(FILE * out, symbol * p);
+extern void lose_b(symbol * p);
+extern symbol * increase_capacity(symbol * p, int n);
+extern symbol * move_to_b(symbol * p, int n, symbol * q);
+extern symbol * add_to_b(symbol * p, int n, symbol * q);
+extern symbol * copy_b(symbol * p);
+extern char * b_to_s(symbol * p);
+extern symbol * add_s_to_b(symbol * p, char * s);
+
+struct str; /* defined in space.c */
+
+extern struct str * str_new();
+extern void str_delete(struct str * str);
+extern void str_append(struct str * str, struct str * add);
+extern void str_append_ch(struct str * str, char add);
+extern void str_append_b(struct str * str, symbol * q);
+extern void str_append_string(struct str * str, char * s);
+extern void str_append_int(struct str * str, int i);
+extern void str_clear(struct str * str);
+extern void str_assign(struct str * str, char * s);
+extern struct str * str_copy(struct str * old);
+extern symbol * str_data(struct str * str);
+extern int str_len(struct str * str);
 
 extern void sort(void * p, void * p_end, int unit, int (*f)());
 
 struct m_pair {
 
     struct m_pair * next;
-    byte * name;
-    byte * value;
+    symbol * name;
+    symbol * value;
 
 };
 
 struct input {
 
     struct input * next;
-    byte * p;
+    symbol * p;
     int c;
+    int line_number;
+
+};
+
+struct include {
+
+    struct include * next;
+    symbol * b;
 
 };
 
 struct tokeniser {
 
     struct input * next;
-    byte * p;
+    symbol * p;
     int c;
     int line_number;
-    byte * b;
-    byte * b2;
+    symbol * b;
+    symbol * b2;
     int number;
     int m_start;
     int m_end;
@@ -60,13 +86,15 @@ struct tokeniser {
     int token;
     int previous_token;
     byte token_held;
+    byte widechars;
 
     int omission;
+    struct include * includes;
 
 };
 
-extern byte * get_input(byte * p);
-extern struct tokeniser * create_tokeniser(byte * b);
+extern symbol * get_input(symbol * p);
+extern struct tokeniser * create_tokeniser(symbol * b);
 extern int read_token(struct tokeniser * t);
 extern byte * name_of_token(int code);
 extern void close_tokeniser(struct tokeniser * t);
@@ -94,7 +122,7 @@ struct node;
 struct name {
 
     struct name * next;
-    byte * b;
+    symbol * b;
     int type;                   /* t_string etc */
     int mode;                   /*    )_  for routines, externals */
     struct node * definition;   /*    )                           */
@@ -108,13 +136,13 @@ struct name {
 struct literalstring {
 
     struct literalstring * next;
-    byte * b;
+    symbol * b;
 
 };
 
 struct amongvec {
 
-    byte * b;        /* the string giving the case */
+    symbol * b;      /* the string giving the case */
     int size;        /* - and its size */
     struct node * p; /* the corresponding command */
     int i;           /* the amongvec index of the longest substring of b */
@@ -138,7 +166,7 @@ struct grouping {
 
     struct grouping * next;
     int number;               /* groupings are numbered 0, 1, 2 ... */
-    byte * b;                 /* the characters of this group */
+    symbol * b;               /* the characters of this group */
     int largest_ch;           /* character with max code */
     int smallest_ch;          /* character with min code */
     byte no_gaps;             /* no gaps between min and max codes */
@@ -156,7 +184,7 @@ struct node {
     int mode;
     struct node * AE;
     struct name * name;
-    byte * literalstring;
+    symbol * literalstring;
     int number;
     int line_number;
     int amongvar_needed;   /* used in routine definitions */
@@ -226,22 +254,23 @@ struct generator {
     struct str * outbuf;       /* temporary str to store output */
     struct str * declarations; /* str storing variable declarations */
     int next_label;
-    FILE * output;
     int margin;
 
     char * failure_string;     /* String to output in case of a failure. */
-    struct str * failure_str; /* This is used by the java generator instead of failure_string */
+    struct str * failure_str;  /* This is used by the java generator instead of failure_string */
 
     int failure_label;
     int debug_count;
 
     char * S[10];        /* strings */
+    symbol * B[10];      /* blocks */
     int I[10];           /* integers */
     struct name * V[5];  /* variables */
-    byte * L[5];         /* literals, used in formatted write */
+    symbol * L[5];       /* literals, used in formatted write */
 
     int line_count;      /* counts number of lines output */
     int line_labelled;   /* in ANSI C, will need extra ';' if it is a block end */
+    int literalstring_count;
 };
 
 struct options {
@@ -256,11 +285,13 @@ struct options {
     byte syntax_tree;
     byte make_java;
     byte make_c;
+    byte widechars;
     char * externals_prefix;
     char * variables_prefix;
+    struct include * includes;
+    struct include * includes_end;
 
 };
-
 
 /* Generator for C code. */
 extern struct generator * create_generator_c(struct analyser * a, struct options * o);

@@ -7,100 +7,6 @@
 #define BASE_PACKAGE "net.sf.snowball"
 #define BASE_CLASS   "SnowballProgram"
 
-/* The next section defines string handling capabilities in terms
-   of the lower level block handling capabilities of space.c */
-/* -------------------------------------------------------------*/
-
-struct str {
-    byte * data;
-};
-
-/* Create a new string. */
-static struct str * str_new()
-{
-    struct str * output = (struct str *) malloc(sizeof(struct str));
-    output->data = create_b(0);
-    return output;
-}
-
-/* Delete a string. */
-static void str_delete(struct str * str)
-{
-    lose_b(str->data);
-    free(str);
-}
-
-/* Append a str to this str. */
-static void str_append(struct str * str, struct str * add)
-{
-    byte * q = add->data;
-    str->data = add_to_b(str->data, SIZE(q), q);
-}
-
-/* Append a character to this str. */
-static void str_append_ch(struct str * str, char add)
-{
-    byte q[1];
-    q[0] = add;
-    str->data = add_to_b(str->data, 1, q);
-}
-
-/* Append a low level block to a str. */
-static void str_append_b(struct str * str, byte * q)
-{
-    str->data = add_to_b(str->data, SIZE(q), q);
-}
-
-/* Append a (char *, null teminated) string to a str. */
-static void str_append_string(struct str * str, char * s)
-{
-    str->data = add_to_b(str->data, strlen(s), s);
-}
-
-/* Append an integer to a str. */
-static void str_append_int(struct str * str, int i)
-{
-    char s[30];
-    sprintf(s, "%d", i);
-    str_append_string(str, s);
-}
-
-/* Clear a string */
-static void str_clear(struct str * str)
-{
-    SIZE(str->data) = 0;
-}
-
-/* Set a string */
-static void str_assign(struct str * str, char * s)
-{
-    str_clear(str);
-    str_append_string(str, s);
-}
-
-/* Copy a string. */
-static struct str * str_copy(struct str * old)
-{
-    struct str * new = str_new();
-    str_append(new, old);
-    return new;
-}
-
-/* Get the data stored in this str. */
-static char * str_data(struct str * str)
-{
-    byte * p = str->data;
-    p[SIZE(p)] = 0;
-    return (char *) p;
-}
-
-/* Get the length of the str. */
-static int str_len(struct str * str)
-{
-    return SIZE(str->data);
-}
-/* -------------------------------------------------------------*/
-
 /* prototypes */
 
 static void generate(struct generator * g, struct node * p);
@@ -130,7 +36,9 @@ static struct str * vars_newname(struct generator * g)
 /* Output routines */
 static void output_str(FILE * outfile, struct str * str)
 {
-    fprintf(outfile, "%s", str_data(str));
+    char * s = b_to_s(str_data(str));
+    fprintf(outfile, "%s", s);
+    free(s);
 }
 
 /* Write routines for simple entities */
@@ -148,6 +56,11 @@ static void write_newline(struct generator * g)
 static void write_string(struct generator * g, char * s)
 {
     str_append_string(g->outbuf, s);
+}
+
+static void write_b(struct generator * g, symbol * b)
+{
+    str_append_b(g->outbuf, b);
 }
 
 static void write_str(struct generator * g, struct str * str)
@@ -187,12 +100,13 @@ static void write_hexdigit(struct generator * g, int n)
 
 static void write_hex(struct generator * g, int ch)
 {
-    write_string(g, "\\u00");
-    write_hexdigit(g, ch >> 4);
-    write_hexdigit(g, ch & 15);
+    write_string(g, "\\u");
+    {   int i;
+        for (i = 12; i >= 0; i -= 4) write_hexdigit(g, ch >> i & 0xf);
+    }
 }
 
-static void write_literal_string(struct generator * g, byte * p)
+static void write_literal_string(struct generator * g, symbol * p)
 {
     int i;
     write_string(g, "\"");
@@ -255,11 +169,11 @@ static void write_block_end(struct generator * g)    /* block end */
 static void write_savecursor(struct generator * g, struct node * p,
                              struct str * savevar)
 {
-    g->S[0] = str_data(savevar);
+    g->B[0] = str_data(savevar);
     g->S[1] = "";
     if (p->mode != m_forward) g->S[1] = "limit - ";
-    write_declare(g, "int ~S0", p);
-    writef(g, "~M~S0 = ~S1cursor;~N" , p);
+    write_declare(g, "int ~B0", p);
+    writef(g, "~M~B0 = ~S1cursor;~N" , p);
 }
 
 static void restore_string(struct node * p, struct str * out, struct str * savevar)
@@ -375,6 +289,7 @@ static void writef(struct generator * g, char * input, struct node * p)
                 case '{': write_block_start(g); continue;
                 case '}': write_block_end(g); continue;
                 case 'S': write_string(g, g->S[input[i++] - '0']); continue;
+                case 'B': write_b(g, g->B[input[i++] - '0']); continue;
                 case 'I': write_int(g, g->I[input[i++] - '0']); continue;
                 case 'V': write_varref(g, g->V[input[i++] - '0']); continue;
                 case 'W': write_varname(g, g->V[input[i++] - '0']); continue;
@@ -779,12 +694,12 @@ static void generate_loop(struct generator * g, struct node * p)
 {
     struct str * loopvar = vars_newname(g);
     write_comment(g, p);
-    g->S[0] = str_data(loopvar);
-    write_declare(g, "int ~S0", p);
-    w(g, "~Mfor (~S0 = ");
+    g->B[0] = str_data(loopvar);
+    write_declare(g, "int ~B0", p);
+    w(g, "~Mfor (~B0 = ");
     generate_AE(g, p->AE);
-    g->S[0] = str_data(loopvar);
-    writef(g, "; ~S0 > 0; ~S0--)~N", p);
+    g->B[0] = str_data(loopvar);
+    writef(g, "; ~B0 > 0; ~B0--)~N", p);
     writef(g, "~{", p);
 
     generate(g, p->left);
@@ -811,8 +726,8 @@ static void generate_repeat(struct generator * g, struct node * p, struct str * 
 
     if (!g->unreachable) {
         if (loopvar != 0) {
-            g->S[0] = str_data(loopvar);
-            w(g, "~M~S0--;~N");
+            g->B[0] = str_data(loopvar);
+            w(g, "~M~B0--;~N");
         }
 
         g->I[0] = replab;
@@ -834,8 +749,8 @@ static void generate_atleast(struct generator * g, struct node * p)
     struct str * loopvar = vars_newname(g);
     write_comment(g, p);
     w(g, "~{");
-    g->S[0] = str_data(loopvar);
-    w(g, "~Mint ~S0 = ");
+    g->B[0] = str_data(loopvar);
+    w(g, "~Mint ~B0 = ");
     generate_AE(g, p->AE);
     w(g, ";~N");
     {
@@ -848,8 +763,8 @@ static void generate_atleast(struct generator * g, struct node * p)
         str_delete(g->failure_str);
         g->failure_str = a1;
     }
-    g->S[0] = str_data(loopvar);
-    write_failure_if(g, "~S0 > 0", p);
+    g->B[0] = str_data(loopvar);
+    write_failure_if(g, "~B0 > 0", p);
     w(g, "~}");
 }
 
@@ -959,7 +874,7 @@ static void generate_sliceto(struct generator * g, struct node * p)
 
 static void generate_address(struct generator * g, struct node * p)
 {
-    byte * b = p->literalstring;
+    symbol * b = p->literalstring;
     if (b != 0) {
         write_literal_string(g, b);
     } else {
@@ -1013,13 +928,13 @@ static void generate_setlimit(struct generator * g, struct node * p)
     generate(g, p->left);
 
     if (!g->unreachable) {
-        g->S[0] = str_data(varname);
-        write_declare(g, "int ~S0", p);
+        g->B[0] = str_data(varname);
+        write_declare(g, "int ~B0", p);
         if (p->mode == m_forward) {
-            w(g, "~M~S0 = limit - cursor;~N");
+            w(g, "~M~B0 = limit - cursor;~N");
             w(g, "~Mlimit = cursor;~N");
         } else {
-            w(g, "~M~S0 = limit_backward;~N");
+            w(g, "~M~B0 = limit_backward;~N");
             w(g, "~Mlimit_backward = cursor;~N");
         }
         write_restorecursor(g, p, savevar);
@@ -1056,8 +971,8 @@ static void generate_dollar(struct generator * g, struct node * p)
     str_assign(g->failure_str, "copy_from(");
     str_append(g->failure_str, savevar);
     str_append_string(g->failure_str, ");");
-    g->S[0] = str_data(savevar);
-    writef(g, "~{~M~n ~S0 = this;~N"
+    g->B[0] = str_data(savevar);
+    writef(g, "~{~M~n ~B0 = this;~N"
              "~Mcurrent = ~V0;~N"
              "~Mcursor = 0;~N"
              "~Mlimit = (current.length());~N", p);
@@ -1120,7 +1035,7 @@ static void generate_namedstring(struct generator * g, struct node * p)
 
 static void generate_literalstring(struct generator * g, struct node * p)
 {
-    byte * b = p->literalstring;
+    symbol * b = p->literalstring;
     write_comment(g, p);
     g->S[0] = p->mode == m_forward ? "" : "_b";
     g->I[0] = SIZE(b);
@@ -1313,7 +1228,7 @@ static void generate(struct generator * g, struct node * p)
 
 static void generate_start_comment(struct generator * g)
 {
-    w(g, "// This file was generated automatically by the snowball to Java converter~N");
+    w(g, "// This file was generated automatically by the Snowball to Java compiler~N");
     w(g, "~N");
 }
 
@@ -1374,16 +1289,16 @@ static void generate_amongs(struct generator * g)
     }
 }
 
-static void set_bit(byte * b, int i) { b[i/8] |= 1 << i%8; }
+static void set_bit(symbol * b, int i) { b[i/8] |= 1 << i%8; }
 
-static int bit_is_set(byte * b, int i) { return b[i/8] & 1 << i%8; }
+static int bit_is_set(symbol * b, int i) { return b[i/8] & 1 << i%8; }
 
 static void generate_grouping_table(struct generator * g, struct grouping * q)
 {
     int range = q->largest_ch - q->smallest_ch + 1;
-    int size = (range + 7)/ 8;  /* assume 8 bits per byte */
-    byte * b = q->b;
-    byte * map = create_b(size);
+    int size = (range + 7)/ 8;  /* assume 8 bits per symbol */
+    symbol * b = q->b;
+    symbol * map = create_b(size);
     int i;
     for (i = 0; i < size; i++) map[i] = 0;
 

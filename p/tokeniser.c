@@ -18,26 +18,27 @@ struct system_word
 
 static int smaller(int a, int b) { return a < b ? a : b; }
 
-extern byte * get_input(byte * p)
+extern symbol * get_input(symbol * p)
 {
-    p[SIZE(p)] = 0;  /* zero terminate */
-    {   FILE * input = fopen((char *)p, "r");
+    char * s = b_to_s(p);
+    {   FILE * input = fopen(s, "r");
+        free(s);
         if (input == 0) return 0;
-        {   byte * b = create_b(STARTSIZE);
+        {   symbol * u = create_b(STARTSIZE);
             int size = 0;
             repeat
             {   int ch = getc(input);
                 if (ch == EOF) break;
-                if (size >= CAPACITY(b)) b = increase_capacity(b, size/2);
-                b[size++] = ch;
+                if (size >= CAPACITY(u)) u = increase_capacity(u, size/2);
+                u[size++] = ch;
             }
             fclose(input);
-            SIZE(b) = size; return b;
+            SIZE(u) = size; return u;
         }
     }
 }
 
-static void error(struct tokeniser * t, char * s1, int n, byte * p, char * s2)
+static void error(struct tokeniser * t, char * s1, int n, symbol * p, char * s2)
 {
     if (t->error_count == 20) { fprintf(stderr, "... etc\n"); exit(1); }
     fprintf(stderr, "Line %d", t->line_number);
@@ -59,7 +60,7 @@ static void error1(struct tokeniser * t, char * s)
 static void error2(struct tokeniser * t, char * s)
    { error(t, "unexpected end of text after ", 0,0, s); }
 
-static int compare_words(int m, byte * p, int n, byte * q)
+static int compare_words(int m, symbol * p, int n, byte * q)
 {   unless (m == n) return m - n;
     {   int i; for (i = 0; i < n; i++)
         {   int diff = p[i] - q[i];
@@ -69,7 +70,7 @@ static int compare_words(int m, byte * p, int n, byte * q)
     return 0;
 }
 
-static int find_word(int n, byte * p)
+static int find_word(int n, symbol * p)
 {   int i = 0; int j = vocab->code;
     repeat
     {   int k = i + (j - i)/2;
@@ -82,7 +83,7 @@ static int find_word(int n, byte * p)
     return -1;
 }
 
-static int get_number(int n, byte * p)
+static int get_number(int n, symbol * p)
 {   int x = 0;
     int i; for (i = 0; i < n; i++) x = 10*x + p[i] - '0';
     return x;
@@ -90,8 +91,10 @@ static int get_number(int n, byte * p)
 
 static int eq_s(struct tokeniser * t, char * s)
 {   int l = strlen(s);
-    if (SIZE(t->p) - t->c < l ||
-        memcmp(t->p + t->c, s, l) != 0) return false;
+    if (SIZE(t->p) - t->c < l) return false;
+    {   int i;
+        for (i = 0; i < l; i++) if (t->p[t->c + i] != s[i]) return false;
+    }
     t->c += l; return true;
 }
 
@@ -105,19 +108,19 @@ static int white_space(struct tokeniser * t, int ch)
     return false;
 }
 
-static byte * find_in_m(struct tokeniser * t, int n, byte * p)
+static symbol * find_in_m(struct tokeniser * t, int n, symbol * p)
 {   struct m_pair * q = t->m_pairs;
     repeat
     {   if (q == 0) return 0;
-        {   byte * name = q->name;
-            if (n == SIZE(name) && memcmp(name, p, n) == 0) return q->value;
+        {   symbol * name = q->name;
+            if (n == SIZE(name) && memcmp(name, p, n * sizeof(symbol)) == 0) return q->value;
         }
         q = q->next;
     }
 }
 
 static int read_literal_string(struct tokeniser * t, int c)
-{   byte * p = t->p;
+{   symbol * p = t->p;
     int ch;
     SIZE(t->b) = 0;
     repeat
@@ -145,7 +148,7 @@ static int read_literal_string(struct tokeniser * t, int c)
             {
                 int n = c - c0 - 1;    /* macro size */
                 int firstch = p[c0];
-                byte * q = find_in_m(t, n, p + c0);
+                symbol * q = find_in_m(t, n, p + c0);
                 if (q == 0)
                 {   if (n == 1 && (firstch == '\'' || firstch == t->m_start))
                         t->b = add_to_b(t->b, 1, p + c0);
@@ -163,7 +166,7 @@ static int read_literal_string(struct tokeniser * t, int c)
 }
 
 static int next_token(struct tokeniser * t)
-{   byte * p = t->p;
+{   symbol * p = t->p;
     int c = t->c;
     int ch;
     int code = -1;
@@ -232,30 +235,59 @@ static void read_chars(struct tokeniser * t)
     }
 }
 
+static int decimal_to_num(ch)
+{   if ('0' <= ch && ch <= '9') return ch - '0';
+    return -1;
+}
+
 static int hex_to_num(ch)
 {   if ('0' <= ch && ch <= '9') return ch - '0';
     if ('a' <= ch && ch <= 'f') return ch - 'a' + 10;
     return -1;
 }
 
-static void convert_hex(struct tokeniser * t, byte * p)
+static void convert_numeric_string(struct tokeniser * t, symbol * p, int base)
 {
     int c = 0; int d = 0;
-    int even = true;
-    until (c >= SIZE(p))
-    {   int ch = p[c++];
-        if (ch == ' ') continue;
-        ch = hex_to_num(tolower(ch));
-        if (ch < 0) { error1(t, "hex string contains non-hex characters"); return; }
-        if (even) p[d] = ch << 4; else p[d++] |= ch;
-        even = ! even;
+    repeat
+    {   while (c < SIZE(p) && p[c] == ' ') c++;
+        if (c == SIZE(p)) break;
+        {   int number = 0;
+            repeat
+            {   int ch = p[c];
+                if (c == SIZE(p) || ch == ' ') break;
+                if (base == 10)
+                {   ch = decimal_to_num(ch);
+                    if (ch < 0)
+                    {   error1(t, "decimal string contains non-digits");
+                        return;
+                    }
+                } else
+                {   ch = hex_to_num(tolower(ch));
+                    if (ch < 0)
+                    {   error1(t, "hex string contains non-hex characters");
+                        return;
+                    }
+                }
+                number = base * number + ch;
+                c++;
+            }
+            if (t->widechars) unless (0 <= number && number <= 0xffff)
+            {   error1(t, "character values exceed 64K");
+                return;
+            }
+            unless (t->widechars) unless (0 <= number && number <= 0xff)
+            {   error1(t, "character values exceed 256");
+                return;
+            }
+            p[d++] = number;
+        }
     }
-    unless (even) error1(t, "hex string contains an odd number of characters");
     SIZE(p) = d;
 }
 
 extern int read_token(struct tokeniser * t)
-{   byte * p = t->p;
+{   symbol * p = t->p;
     int held = t->token_held;
     t->token_held = false;
     if (held) return t->token;
@@ -289,13 +321,14 @@ extern int read_token(struct tokeniser * t)
                }
                continue;
             case c_stringdef:
-               {   int hex = false;
+               {   int base = 0;
                    read_chars(t);
                    code = read_token(t);
-                   if (code == c_hex) { hex = true; code = read_token(t); }
+                   if (code == c_hex) { base = 16; code = read_token(t); } else
+                   if (code == c_decimal) { base = 10; code = read_token(t); }
                    unless (code == c_literalstring)
                        { error1(t, "string omitted after stringdef"); continue; }
-                   if (hex) convert_hex(t, t->b);
+                   if (base > 0) convert_numeric_string(t, t->b, base);
                    {   NEW(m_pair, q);
                        q->next = t->m_pairs;
                        q->name = copy_b(t->b2);
@@ -313,18 +346,30 @@ extern int read_token(struct tokeniser * t)
                    {   fprintf(stderr, "get directives go 10 deep. Looping?\n");
                        exit(1);
                    }
-                   {   byte * p = get_input(t->b);
-                       NEW(input, q);
-                       if (p == 0)
+                   {   NEW(input, q);
+                       symbol * u = get_input(t->b);
+                       if (u == 0)
+                       {   struct include * r = t->includes;
+                           until (r == 0)
+                           {   symbol * b = copy_b(r->b);
+                               b = add_to_b(b, SIZE(t->b), t->b);
+                               u = get_input(b);
+                               lose_b(b);
+                               unless (u == 0) break;
+                               r = r->next;
+                           }
+                       }
+                       if (u == 0)
                        {   error(t, "Can't get '", SIZE(t->b), t->b, "'");
                            exit(1);
                        }
                        memmove(q, t, sizeof(struct input));
                        t->next = q;
-                       t->p = p;
+                       t->p = u;
                        t->c = 0;
                        t->line_number = 1;
                    }
+                   p = t->p;
                    continue;
                }
             case -1:
@@ -340,7 +385,8 @@ extern int read_token(struct tokeniser * t)
                /* drop through */
             default:
                 t->previous_token = t->token;
-                t->token = code; return code;
+                t->token = code;
+                return code;
         }
     }
 }
@@ -365,7 +411,7 @@ extern byte * name_of_token(int code)
     }
 }
 
-extern struct tokeniser * create_tokeniser(byte * p)
+extern struct tokeniser * create_tokeniser(symbol * p)
 {   NEW(tokeniser, t);
     t->next = 0;
     t->p = p;
