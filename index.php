@@ -16,6 +16,7 @@
 
       $filecontents = preg_replace('|<I>[^<]*</I>[^<]*<A HREF="http://sourceforge.net/projects/snowball/">Snowball</A>|', '', $filecontents);
       $filecontents = preg_replace('|<div align="center">.*?</div>|', '', $filecontents);
+      $filecontents = preg_replace('|<HR.*?>|i', '', $filecontents);
 
       return $filecontents;
   }
@@ -47,7 +48,5 @@ improvements.
 <?php
   echo get_news();
 ?>
-</p><p>
-<a href="news.php">Full stories</a>
 </p>
 <?php displayFooter(); ?>
