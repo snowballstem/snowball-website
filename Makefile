@@ -4,6 +4,7 @@ CC=gcc
 RM=rm -f
 
 SHELL=/bin/sh
+MAKE=make
 .SUFFIXES:
 .SUFFIXES: .c .h .o .sbl
 srcdir=.
@@ -25,18 +26,19 @@ snowball_OBJECTS = ./p/space.o \
 		   ./p/generator.o \
 		   ./p/driver.o
 
-all:
-	@for lang in $(languages); do \
-	  make $${lang}/stem.c; \
-	  make $${lang}/stemmer; \
-	  make $${lang}/output.txt; \
-	  make $${lang}/tarball.tgz; \
-	done
+all: $(addprefix lang_, $(languages))
+
+lang_%: %/stem.c %/stemmer %/output.txt %/tarball.tgz
+	@true
 
 clean:
 	@for lang in $(languages); do \
 	  echo "Cleaning $${lang}/"; \
-	  $(RM) $${lang}/stem.[ch] $${lang}/tarball.tgz; \
+	  $(RM) $${lang}/stem.[ch] \
+	        $${lang}/tarball.tgz \
+	        $${lang}/output.txt \
+	        $${lang}/.timestamp-output.txt \
+	        $${lang}/stemmer; \
 	done
 	@echo "Cleaning p/"
 	@$(RM) p/*.o
@@ -45,14 +47,26 @@ clean:
 	@echo "Making $@"
 	@tar zcf $@ $^
 
-%/output.txt: %/voc.txt %/stemmer
-	l=`echo "$<" | sed 's!\(.*\)/voc.txt$$!\1!;s!^.*/!!'`; \
-	$${l}/stemmer $< -o $@
+%/output.txt: %/.timestamp-output.txt
+	@if test ! -f $@; then $(RM) $<; $(MAKE) $<; else :; fi
+%/.timestamp-output.txt: %/voc.txt %/stemmer
+	@l=`echo "$<" | sed 's!\(.*\)/voc.txt$$!\1!;s!^.*/!!'`; \
+	echo "Generating $${l}/output.txt"; \
+	$(RM) $@; \
+	echo timestamp > $@.tmp 2>/dev/null; \
+	$${l}/stemmer $< -o $${l}/output.txt.tmp; \
+	if cmp -s $${l}/output.txt.tmp $${l}/output.txt 2>/dev/null; then \
+	  echo "$${l}/output.txt is unchanged"; \
+	  $(RM) $${l}/output.txt.tmp; \
+	else \
+	  mv $${l}/output.txt.tmp $${l}/output.txt; \
+	fi; \
+	mv $@.tmp $@;
 
 # Rule for building a stemmer program for a given language
-%/stemmer: %/stem.c q/api.c q/utilities.c q/driver.c
-	l=`echo "$@" | sed 's!\(.*\)/stemmer$$!\1!;s!^.*/!!'`; \
-	$(CC) -O4 -o $@ -I $$l/ -I q/ $^ \
+%/stemmer: %/stem.c %/stem.h q/api.c q/utilities.c q/driver.c
+	@l=`echo "$@" | sed 's!\(.*\)/stemmer$$!\1!;s!^.*/!!'`; \
+	$(CC) -O4 -o $@ -I $$l/ -I q/ $(filter %c,$^) \
 	-Dcreate_env=$${l}_create_env \
 	-Dclose_env=$${l}_close_env \
 	-Dstem=$${l}_stem
@@ -79,4 +93,8 @@ MAKEC_COMMAND=./snowball $< -o `echo "$@" | sed 's/\.[ch]$$//'` \
 	@echo "Making $@"
 	@$(MAKEC_COMMAND)
 
-.PRECIOUS: %/stem.c
+.PRECIOUS: %/stem.c %/stem.h \
+	   %/stemmer \
+	   %/output.txt \
+	   %/tarball.tgz \
+	   %/.timestamp-output.txt
