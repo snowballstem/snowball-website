@@ -18,7 +18,7 @@ groupings ( v v_WXY valid_LI )
 define v        'aeiouy'
 define v_WXY    v + 'wxY'
 
-define valid_LI 'bcdeghkmnrt'
+define valid_LI 'cdeghkmnrt'
 
 define prelude as (
     unset Y_found
