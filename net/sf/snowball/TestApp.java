@@ -1,59 +1,66 @@
 
 package net.sf.snowball;
 
-import net.sf.snowball.ext.EnglishStemmer;
-import java.io.InputStream;
-import java.io.FileReader;
+import java.lang.reflect.Method;
+import java.io.Reader;
+import java.io.Writer;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.BufferedInputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.OutputStream;
 import java.io.FileOutputStream;
-import java.io.BufferedOutputStream;
 
 public class TestApp {
     public static void main(String [] args) throws Throwable {
-        EnglishStemmer stemmer = new EnglishStemmer();
+	Class stemClass = Class.forName("net.sf.snowball.ext." +
+					args[0] + "Stemmer");
+        SnowballProgram stemmer = (SnowballProgram) stemClass.newInstance();
+	Method stemMethod = stemClass.getMethod("stem", new Class[0]);
 
-	//InputStream reader = new FileInputStream(args[0]);
-	FileReader reader = new FileReader(args[0]);
+	Reader reader;
+	reader = new InputStreamReader(new FileInputStream(args[1]));
+	reader = new BufferedReader(reader);
+
 	StringBuffer input = new StringBuffer();
 
-        OutputStream output;
+        OutputStream outstream;
 
-	if (args.length > 2 && args[1].equals("-o")) {
-	    output = new FileOutputStream(args[2]);
-	    output = new BufferedOutputStream(output);
+	if (args.length > 2 && args[2].equals("-o")) {
+	    outstream = new FileOutputStream(args[3]);
 	} else if (args.length == 2) {
-	     System.err.println("Usage: TestApp <input file> [-o <output file>]");
-	     return;
+	    System.err.println("Usage: TestApp <input file> [-o <output file>]");
+	    return;
 	} else {
-	    output = System.out;
+	    outstream = System.out;
 	}
+	Writer output = new OutputStreamWriter(outstream);
+	output = new BufferedWriter(output);
+
 	int repeat = 1;
-	if (args.length > 3) {
-	    repeat = Integer.parseInt(args[3]);
+	if (args.length > 4) {
+	    repeat = Integer.parseInt(args[4]);
 	}
 
-
-	int count;
-	char [] b = new char[8192];
-	while ((count = reader.read(b, 0, b.length)) != -1) {
-	    for (int j = 0; j < count; j++) {
-		char ch = (char) b[j];
-		if (Character.isWhitespace((char) ch)) {
-		    if (input.length() > 0) {
-			stemmer.setCurrent(input.toString());
-			for (int i = repeat; i != 0; i--) {
-			    stemmer.stem();
-			}
-			output.write(stemmer.current.toString().getBytes());
-			output.write('\n');
-			input.delete(0, input.length());
+	Object [] emptyArgs = new Object[0];
+	int character;
+	while ((character = reader.read()) != -1) {
+	    char ch = (char) character;
+	    if (Character.isWhitespace((char) ch)) {
+		if (input.length() > 0) {
+		    stemmer.setCurrent(input.toString());
+		    for (int i = repeat; i != 0; i--) {
+			stemMethod.invoke(stemmer, emptyArgs);
 		    }
-		} else {
-		    input.append(Character.toLowerCase((char) ch));
+		    output.write(stemmer.current.toString());
+		    output.write('\n');
+		    input.delete(0, input.length());
 		}
+	    } else {
+		input.append(Character.toLowerCase(ch));
 	    }
 	}
+	output.flush();
     }
 }
