@@ -13868,7 +13868,6 @@ parvient                      parvient
 parvinrent                    parvinrent
 parvint                       parvint
 pas                           pas
-pas^a                         pas^
 pascal                        pascal
 pass                          pass
 passa                         pass
@@ -17368,7 +17367,6 @@ russell                       russel
 russes                        russ
 russie                        russ
 s                             s
-s^a                           s^a
 sa                            sa
 sablé                         sabl
 sablées                       sabl
@@ -18138,7 +18136,6 @@ somptueusement                somptueux
 somptueux                     somptueux
 somptuosité                   somptuos
 son                           son
-son^a                         son^
 sonder                        sond
 songe                         song
 songé                         song
@@ -19630,7 +19627,6 @@ tutti                         tutt
 tutto                         tutto
 tuyau                         tuyau
 tuyaux                        tuyal
-twas^a                        twas^
 twelfth                       twelfth
 two                           two
 tympaniser                    tympanis

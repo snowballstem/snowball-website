@@ -13868,7 +13868,6 @@ parvient
 parvinrent
 parvint
 pas
-pas^
 pascal
 pass
 pass
@@ -17368,7 +17367,6 @@ russel
 russ
 russ
 s
-s^a
 sa
 sabl
 sabl
@@ -18138,7 +18136,6 @@ somptueux
 somptueux
 somptuos
 son
-son^
 sond
 song
 song
@@ -19630,7 +19627,6 @@ tutt
 tutto
 tuyau
 tuyal
-twas^
 twelfth
 two
 tympanis
