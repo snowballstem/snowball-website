@@ -25,7 +25,7 @@ if ($words != '')
 {
   echo "<pre>";
   $tmpname = tempnam("/tmp", "snowball_stemdemo");
-  $tmpfile = fopen($tmpname);
+  $tmpfile = fopen($tmpname, "w");
   # Have a limit of 10000 bytes, just in case.
   fwrite($tmpfile, $words, 10000);
   fclose($tmpfile);
