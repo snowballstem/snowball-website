@@ -296,14 +296,19 @@ extern byte * assign_to(struct SN_env * z, byte * p)
 extern void debug(struct SN_env * z, int number, int line_count)
 {   int i;
     int limit = SIZE(z->p);
-    if (number >= 0) printf("%3d (line %4d): '", number, line_count);
+    /*if (number >= 0) printf("%3d (line %4d): '", number, line_count);*/
+    if (number >= 0) printf("%3d (line %4d): [%d]'", number, line_count,limit);
     for (i = 0; i <= limit; i++)
     {   if (z->lb == i) printf("{");
         if (z->bra == i) printf("[");
         if (z->c == i) printf("|");
         if (z->ket == i) printf("]");
         if (z->l == i) printf("}");
-        if (i < limit) printf("%c", z->p[i]);
+        if (i < limit)
+        {   int ch = z->p[i];
+            if (ch == 0) ch = '#';
+            printf("%c", ch);
+        }
     }
     printf("'\n");
 }

@@ -64,7 +64,7 @@ example
 would give rise to the header file,
 <BR><PRE>
     extern struct SN_env * Khotanese_create_env(void);
-    extern void close_env(struct SN_env * z);
+    extern void Khotanese_close_env(struct SN_env * z);
 
     extern int Khotanese_moderate(struct SN_env * z);
     extern int Khotanese_stem_2(struct SN_env * z);
@@ -78,7 +78,7 @@ If &nbsp;<TT>-vprefix</TT>&nbsp; is used, all Snowball strings, integers and boo
 would give rise the header file,
 <BR><PRE>
     extern struct SN_env * Khotanese_create_env(void);
-    extern void close_env(struct SN_env * z);
+    extern void Khotanese_close_env(struct SN_env * z);
 
     #define Khotanese_variable_ch (S[0])
     #define Khotanese_variable_Y_found (B[0])
@@ -145,9 +145,9 @@ from the &nbsp;<TT>-vprefix</TT>&nbsp; option, although this should not usually 
 <BR><PRE>
     printf("p1 is %d\n", z->Khotanese_variable_p1);
 </PRE>
-The stemming scripts on this Web site use Snowball very simply. &nbsp;<TT>-vprefix</TT>&nbsp; is left unset, and 
+The stemming scripts on this Web site use Snowball very simply. &nbsp;<TT>-vprefix</TT>&nbsp; is left unset, and
 <TT>-eprefix</TT>
-is set to the name of the script (usually the language the script is for).  All the programs are tested through a common
+is set to the name of the script (usually the language the script is for). All the programs are tested through a common
 <A HREF="driver.c">driver</A>
 program.
 
