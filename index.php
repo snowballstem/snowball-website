@@ -10,7 +10,7 @@
 <tr><td valign=top bgcolor=cyan>
 <?php
   echo "PHP_SELF=$PHP_SELF ";
-include('menu.inc'); ?>
+include "menu.inc"; ?>
 </td><td valign=top>
 <b>STATUS: (26 Sept 2001) initial upload of project is currently in progress.</b>
 <p>
