@@ -2,7 +2,10 @@
 package net.sf.snowball;
 
 import net.sf.snowball.ext.EnglishStemmer;
+import java.io.InputStream;
 import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.BufferedInputStream;
 import java.io.OutputStream;
 import java.io.FileOutputStream;
 import java.io.BufferedOutputStream;
@@ -11,6 +14,7 @@ public class TestApp {
     public static void main(String [] args) throws Throwable {
         EnglishStemmer stemmer = new EnglishStemmer();
 
+	//InputStream reader = new FileInputStream(args[0]);
 	FileReader reader = new FileReader(args[0]);
 	StringBuffer input = new StringBuffer();
 
@@ -30,20 +34,25 @@ public class TestApp {
 	    repeat = Integer.parseInt(args[3]);
 	}
 
-	while (reader.ready()) {
-	    char ch = (char) reader.read();
-	    if (Character.isWhitespace(ch)) {
-		if (input.length() > 0) {
-		    //System.out.println("Stemming '" + input + "'");
-		    stemmer.setCurrent(input.toString());
-		    for (int i = repeat; i != 0; i--) {
-			stemmer.stem();
+
+	int count;
+	char [] b = new char[8192];
+	while ((count = reader.read(b, 0, b.length)) != -1) {
+	    for (int j = 0; j < count; j++) {
+		char ch = (char) b[j];
+		if (Character.isWhitespace((char) ch)) {
+		    if (input.length() > 0) {
+			stemmer.setCurrent(input.toString());
+			for (int i = repeat; i != 0; i--) {
+			    stemmer.stem();
+			}
+			output.write(stemmer.current.toString().getBytes());
+			output.write('\n');
+			input.delete(0, input.length());
 		    }
-		    output.write(stemmer.current.toString().getBytes());
-		    input.delete(0, input.length());
+		} else {
+		    input.append(Character.toLowerCase((char) ch));
 		}
-	    } else {
-		input.append(Character.toLowerCase(ch));
 	    }
 	}
     }
