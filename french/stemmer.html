@@ -251,7 +251,8 @@ also put into upper case. For example,
 <TR><TD>    yeux    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  Yeux
 <TR><TD>    quand   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  qUand
 </TABLE></DL>
-(The upper case forms are not then classed as vowels.)
+(The upper case forms are not then classed as vowels - see <A HREF="../texts/vowelmarking.html"> note</A> on vowel
+marking.)
 <BR><BR>
 If the word begins with two vowels, <I>RV</I> is the region after the third
 letter, otherwise the region after the first vowel not at the beginning of
@@ -311,9 +312,10 @@ Step 1: Standard suffix removal
         <DD>delete if in <I>RV</I>
         <DD>if preceded by <B><I>iv</I></B>, delete if in <I>R</I>2 (and if further preceded by <B><I>at</I></B>,
         delete if in <I>R</I>2), otherwise,
-        <DD>if preceded by <B><I>eus</I></B>, delete if in <I>R</I>2, else replace by <B><I>eux</I></B>,
-        otherwise,
-        <DD>if preceded by <B><I>abl</I></B> or <B><I>iqU</I></B>, delete if in <I>R</I>2
+        <DD>if preceded by <B><I>eus</I></B>, delete if in <I>R</I>2, else replace by <B><I>eux</I></B>
+          if in <I>R</I>1, otherwise,
+        <DD>if preceded by <B><I>abl</I></B> or <B><I>iqU</I></B>, delete if in <I>R</I>2, otherwise,
+        <DD>if preceded by <B><I>i&egrave;r</I></B> or <B><I>I&egrave;r</I></B>, delete if in <I>RV</I>
 <BR><BR>
     <DT><B><I>it&eacute;  &nbsp;  it&eacute;s</I></B>
         <DD>delete if in <I>R</I>2
@@ -527,7 +529,6 @@ define postlude as repeat (
         'Y' (<- 'y')
         ''  (next)
     )
-    ///) or next
 )
 
 backwardmode (
@@ -562,9 +563,12 @@ backwardmode (
                 RV delete
                 try (
                     [substring] among(
-                        'iv' (R2 delete ['at'] R2 delete)
-                        'eus' ((R2 delete) or (R1<-'eux'))
-                        'abl' 'iqU' (R2 delete)
+                        'iv'   (R2 delete ['at'] R2 delete)
+                        'eus'  ((R2 delete) or (R1<-'eux'))
+                        'abl' 'iqU'
+                               (R2 delete)
+                        'i{e`}r' 'I{e`}r'      //)
+                               (RV <-'i')      //)--new 2 Sept 02
                     )
                 )
             )

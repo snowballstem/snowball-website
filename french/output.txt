@@ -8337,7 +8337,7 @@ fameux
 familiaris
 familiar
 famili
-familier
+famili
 famill
 famill
 fanal
@@ -8591,7 +8591,7 @@ fin
 financ
 financ
 financi
-financier
+financi
 find
 fin
 fin
@@ -8711,7 +8711,7 @@ foll
 foll
 foll
 fonc
-foncier
+fonci
 fonctionnair
 fonctionnair
 fonction
@@ -9517,7 +9517,7 @@ grosseur
 gross
 grossi
 grossi
-grossier
+grossi
 grossi
 grossièret
 grossièret
@@ -10844,7 +10844,7 @@ iron
 iron
 iront
 irréguli
-irrégulier
+irréguli
 irréguli
 irrémédi
 irrémissibl
@@ -13825,7 +13825,7 @@ particular
 particular
 particuli
 particuli
-particulier
+particuli
 particuli
 part
 part
@@ -14942,7 +14942,7 @@ prémédit
 prémed
 premi
 premi
-premier
+premi
 premi
 premi
 pren
@@ -16248,7 +16248,7 @@ régular
 régul
 réguli
 réguli
-régulier
+réguli
 rehauss
 rein
 rein
@@ -18024,7 +18024,7 @@ singular
 singular
 singuli
 singuli
-singulier
+singuli
 singuli
 singuli
 sinistr

@@ -71,7 +71,6 @@ define postlude as repeat (
         'Y' (<- 'y')
         ''  (next)
     )
-    ///) or next
 )
 
 backwardmode (
@@ -106,9 +105,12 @@ backwardmode (
                 RV delete
                 try (
                     [substring] among(
-                        'iv' (R2 delete ['at'] R2 delete)
-                        'eus' ((R2 delete) or (R1<-'eux'))
-                        'abl' 'iqU' (R2 delete)
+                        'iv'   (R2 delete ['at'] R2 delete)
+                        'eus'  ((R2 delete) or (R1<-'eux'))
+                        'abl' 'iqU'
+                               (R2 delete)
+                        'i{e`}r' 'I{e`}r'      //)
+                               (RV <-'i')      //)--new 2 Sept 02
                     )
                 )
             )

@@ -8337,7 +8337,7 @@ fameux                        fameux
 familiarisé                   familiaris
 familiarité                   familiar
 familier                      famili
-familièrement                 familier
+familièrement                 famili
 famille                       famill
 familles                      famill
 fanal                         fanal
@@ -8591,7 +8591,7 @@ fin                           fin
 finance                       financ
 finances                      financ
 financier                     financi
-financièrement                financier
+financièrement                financi
 finds                         find
 fine                          fin
 fines                         fin
@@ -8711,7 +8711,7 @@ folle                         foll
 follement                     foll
 folles                        foll
 foncé                         fonc
-foncièrement                  foncier
+foncièrement                  fonci
 fonctionnaire                 fonctionnair
 fonctionnaires                fonctionnair
 fonctionne                    fonction
@@ -9517,7 +9517,7 @@ grosseur                      grosseur
 grossie                       gross
 grossier                      grossi
 grossière                     grossi
-grossièrement                 grossier
+grossièrement                 grossi
 grossières                    grossi
 grossièreté                   grossièret
 grossièretés                  grossièret
@@ -10844,7 +10844,7 @@ ironique                      iron
 irons                         iron
 iront                         iront
 irrégulière                   irréguli
-irrégulièrement               irrégulier
+irrégulièrement               irréguli
 irréguliers                   irréguli
 irrémédiable                  irrémédi
 irrémissiblement              irrémissibl
@@ -13825,7 +13825,7 @@ particularité                 particular
 particularités                particular
 particulier                   particuli
 particulière                  particuli
-particulièrement              particulier
+particulièrement              particuli
 particuliers                  particuli
 partie                        part
 parties                       part
@@ -14942,7 +14942,7 @@ préméditation                 prémédit
 prémédité                     prémed
 premier                       premi
 première                      premi
-premièrement                  premier
+premièrement                  premi
 premières                     premi
 premiers                      premi
 prenaient                     pren
@@ -16248,7 +16248,7 @@ régularité                    régular
 régulateur                    régul
 régulier                      réguli
 régulière                     réguli
-régulièrement                 régulier
+régulièrement                 réguli
 rehausse                      rehauss
 rein                          rein
 reina                         rein
@@ -18024,7 +18024,7 @@ singularité                   singular
 singularités                  singular
 singulier                     singuli
 singulière                    singuli
-singulièrement                singulier
+singulièrement                singuli
 singulières                   singuli
 singuliers                    singuli
 sinistre                      sinistr

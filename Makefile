@@ -13,7 +13,7 @@ MAKE=make
 srcdir=.
 
 languages = danish dutch english french german italian norwegian \
-	    porter portuguese russian spanish swedish
+	    porter portuguese russian spanish swedish finnish
 
 snowball_SOURCES = $(srcdir)/p/space.c \
 		   $(srcdir)/p/sort.c \
