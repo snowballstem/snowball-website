@@ -59,8 +59,14 @@ cvs -z3 -d <i>username</i>@cvs.snowball.sourceforge.net:/cvsroot/snowball co .;
   <p>
   The website can be modified by editing the files in the "website" module: any changes which are committed to this module will show up on the live website within an hour. (The website is currently updated at 17 minutes past each hour.)
   </p>
+</li><li>
+  Depending how obsessive you are, and how good your internet connection is,
+  you may wish to subscribe to the
+<a href="http://lists.sourceforge.net/lists/listinfo/snowball-commits">snowball-commits</a>
+  mailing list.  This is a readonly list, to which an automatic message is sent
+  whenever the snowball CVS is modified.  This is very useful to keep track of
+  what changes other developers are making.
 </li></ul>
-
 
 </p>
 <?php displayFooter(); ?>

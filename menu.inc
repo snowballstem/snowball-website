@@ -31,6 +31,7 @@ function displayMenu()
   menuEntry("Download", "/download.php");
   menuEntry("Documentation", "/documentation.php");
   menuEntry("Mailing lists", "/lists.php");
+  menuEntry("Developer Notes", "/developers.php");
   menuEntry("License", "/license.php");
   menuEntry("Credits", "/credits.php");
   menuEntry("Projects", "/projects.php");
