@@ -83,7 +83,7 @@ only 11 of these 16 are truly conflated together by the Porter stemmer.
 (We need hardly add that we are illustrating here the problem of correctly
 distributing the Porter stemmer, and in no way intending a criticism of
 Krovetz's important work.) One of his examples is <I>easy/easily</I>. The
-Porter stemmer stems them to <I>easi/easili</I> (in other words they are
+Porter stemmer stems this pair to <I>easi/easili</I> (in other words they are
 separated) and that is because <B><I>ly</I></B> by itself is not a suffix which the
 stemmer actually removes. <B><I>ly</I></B>, like <B><I>ise</I></B>, is often casually added in
 when its omission is noticed.
@@ -351,7 +351,7 @@ example, <I>cro&ucirc;tons</I> is the plural of <I>cro&ucirc;ton</I>, &#8216;a c
 &#8216;to totter&#8217;, so to remove <B><I>s</I></B> would be under-stemming. We would like to
 introduce a further distinction between mis-stemming and over-stemming.
 Mis-stemming is taking off what looks like an ending, but is really part
-of the word. Over-stemming is taking off a true ending which results in
+of the stem. Over-stemming is taking off a true ending which results in
 the conflation of words of different meanings.
 
 <BR><BR>
@@ -433,7 +433,7 @@ to do with language history. The morphology of a language changes less
 rapidly than the meanings of the words in it. When extended to include a
 few archaic endings, such as <B><I>ick</I></B> as an alternative to <B><I>ic</I></B>, a stemmer for
 contemporary English can be applied to the English of 300 years ago.
-Mis-stemmings will be roughly the same, but the pattern over-stemming will
+Mis-stemmings will be roughly the same, but the pattern of over-stemming will
 be different because of the changing meaning of words in the language. For
 example, <I>relativity</I> in the 19th century merely meant &#8216;the condition of
 being relative to&#8217;. With that meaning, it is acceptable to conflate it
@@ -446,8 +446,8 @@ mean
 a dangly constructions over a child's cot. But in the 50s, and before, the
 conflation would have been more acceptable. Here it is not the word
 <I>mobility</I> which has changed, however, but the word <I>mobile</I>, with which it
-might be conflated. So a formerly acceptable stemming may be judged now as
-being over-stemmed not because the word being stemmed had changed its meaning,
+might be conflated. So what was formerly an acceptable stemming may be judged now as
+an over-stemming, not because the word being stemmed had changed its meaning,
 but because some cognate word has changed its meaning.
 
 <BR><BR>
@@ -512,7 +512,7 @@ performance of an IR system. Because of under-stemming words may fail
 to conflate that ought to have conflated, but you are, in a sense, no
 worse off than you were before. Over-stemming is more serious, but again
 over-stemming does not really matter unless it leads to false conflations,
-and that frequently does not happen. For example, removing the (</A>te</I></B>
+and that frequently does not happen. For example, removing the <B><I>ate</I></B>
 ending in English, can result in useful conflations (<I>luxury</I>,
 <I>luxuriate</I>; <I>affection</I>, <I>affectionate</I>), but very often produces
 stems that are not English words
@@ -521,7 +521,7 @@ stems that are not English words
 However these residual stems,
 <I>enerv</I>, <I>accommod</I>,
 <I>deliber</I> ... do not conflate with other word forms, and so behave in
-an IR system in the same way as if they still retained their (</A>te</I></B>
+an IR system in the same way as if they still retained their <B><I>ate</I></B>
 ending. To summarise, one can say that just as a word can be mis-stemmed
 but not over-stemmed (<I>relativity</I> <TT>-&gt;</TT> <I>relative</I>), so it can be
 over-stemmed but not mis-stemmed (<I>enervate</I> <TT>-&gt;</TT> <I>enerv</I>). And, of
