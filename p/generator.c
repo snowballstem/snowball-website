@@ -68,24 +68,8 @@ static void wv(struct generator * g, struct name * p)  /* reference to variable 
     wvn(g, p);
 }
 
-/*--static void whexch(struct generator * g, int n)
---{   wch(g, n < 10 ? n + '0' : n - 10 + 'A');
---}
---
---static void whex(struct generator * g, int ch)
---{   ws(g, "\\x");
---    whexch(g, ch >> 4);
---    whexch(g, ch & 0XF);
---    ws(g, "\" \"");
---}
---*/
-
 static void wlitarray(struct generator * g, symbol * p)  /* write literal array */
 {
-/*
-    struct string * s = g->outbuf;
-    g->outbuf = g->declarations;
-*/
     ws(g, "{ ");
     {   int i;
         for (i = 0; i < SIZE(p); i++)
@@ -103,21 +87,21 @@ static void wlitarray(struct generator * g, symbol * p)  /* write literal array 
         }
     }
     ws(g, " }");
-/*
-    g->outbuf = s;
-*/
 }
 
 static void wlitref(struct generator * g, symbol * p)  /* write ref to literal array */
 {
-    struct str * s = g->outbuf;
-    g->outbuf = g->declarations;
-    ws(g, "static symbol s_"); wi(g, g->literalstring_count); ws(g, "[] = ");
-    wlitarray(g, p);
-    ws(g, ";\n");
-    g->outbuf = s;
-    ws(g, "s_"); wi(g, g->literalstring_count);
-    g->literalstring_count++;
+    if (SIZE(p) == 0) ws(g, "0"); else
+    {
+        struct str * s = g->outbuf;
+        g->outbuf = g->declarations;
+        ws(g, "static symbol s_"); wi(g, g->literalstring_count); ws(g, "[] = ");
+        wlitarray(g, p);
+        ws(g, ";\n");
+        g->outbuf = s;
+        ws(g, "s_"); wi(g, g->literalstring_count);
+        g->literalstring_count++;
+    }
 }
 
 
@@ -428,22 +412,6 @@ static void generate_or(struct generator * g, struct node * p)
         p = p->right;
     }
 }
-
-/*-static void generate_backwards(struct generator * g, struct node * p)
--{   char * a1 = g->failure_string;
--
--    wp(g, "~{int m_backw = LOF(z->p, z->chead) - z->l;~C~N"
--             "~Mz->lb = z->c; z->c = z->l;~N", p);
--
--    g->failure_string = "z->l = LOF(z->p, z->chead) - m_backw;";
--    generate(g, p->left);
--
--    w(g,    "~Mz->c = z->lb; z->l = LOF(z->p, z->chead) - m_backw;~N"
--         "~}");
--
--    g->failure_string = a1;
--}
--*/
 
 static void generate_backwards(struct generator * g, struct node * p)
 {
@@ -983,8 +951,8 @@ static void generate_among_table(struct generator * g, struct among * x)
         {   g->I[1] = i;
             g->I[2] = v->size;
             g->L[0] = v->b;
-
-            w(g, "static symbol s_~I0_~I1[~I2] = ~A0;~N");
+            unless (v->size == 0)
+                w(g, "static symbol s_~I0_~I1[~I2] = ~A0;~N");
             v++;
         }
     }
@@ -1002,7 +970,10 @@ static void generate_among_table(struct generator * g, struct among * x)
             g->I[4] = v->result;
             g->S[0] = i < x->literalstring_count - 1 ? "," : "";
 
-            w(g, "/*~J1 */ { ~I2, s_~I0_~I1, ~I3, ~I4, ");
+            w(g, "/*~J1 */ { ~I2, ");
+            if (v->size == 0) w(g, "0,");
+                         else w(g, "s_~I0_~I1,");
+            w(g, " ~I3, ~I4, ");
             if (v->function == 0) w(g, "0"); else
                                   wvn(g, v->function);
             w(g, "}~S0~N");
