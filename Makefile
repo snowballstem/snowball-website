@@ -14,8 +14,6 @@ srcdir=.
 
 languages = danish dutch english french german italian norwegian \
 	    porter portuguese russian spanish swedish
-uclanguages = Danish Dutch English French German Italian Norwegian \
-	    Porter Portuguese Russian Spanish Swedish
 
 snowball_SOURCES = $(srcdir)/p/space.c \
 		   $(srcdir)/p/sort.c \
@@ -33,7 +31,7 @@ snowball_OBJECTS = ./p/space.o \
 		   ./p/generator_java.o \
 		   ./p/driver.o
 
-all: $(addprefix lang_, $(languages)) libs snowball.jar snowball_java.tgz javaoutput
+all: $(addprefix lang_, $(languages)) libs snowball_java.tgz #snowball.jar javaoutput
 
 javaoutput: $(addsuffix /output_java.txt, $(languages))
 
@@ -43,8 +41,8 @@ java_SOURCES = net/sf/snowball/Among.java \
 java_OBJECTS = net/sf/snowball/Among.class \
                net/sf/snowball/SnowballProgram.class \
                net/sf/snowball/TestApp.class
-javastemmer_SOURCES = $(addsuffix Stemmer.java, $(addprefix net/sf/snowball/ext/, $(uclanguages)))
-javastemmer_OBJECTS = $(addsuffix Stemmer.class, $(addprefix net/sf/snowball/ext/, $(uclanguages)))
+javastemmer_SOURCES = $(addsuffix Stemmer.java, $(addprefix net/sf/snowball/ext/, $(languages)))
+javastemmer_OBJECTS = $(addsuffix Stemmer.class, $(addprefix net/sf/snowball/ext/, $(languages)))
 
 snowball.jar: $(java_OBJECTS) $(javastemmer_OBJECTS)
 	rm -rf $@
@@ -178,23 +176,18 @@ clean:
 	mv $@.tmp $@;
 
 net/sf/snowball/ext/%Stemmer.java: %/stem.sbl snowball
+	@mkdir -p net/sf/snowball/ext
 	@l=`echo "$<" | sed 's!\(.*\)/stem.sbl$$!\1!;s!^.*/!!'`; \
-	n=`echo "$${l}" | sed 's!^\([a-z]\).*$$!\1!' | tr '[a-z]' '[A-Z]'`; \
-	m=`echo "$${l}" | sed 's!^\([a-z]\)!!'`; \
-	n="$$n$$m"; \
-	echo ./snowball $< -j -o net/sf/snowball/ext/$${n}Stemmer -n $${n}Stemmer; \
-	./snowball $< -j -o net/sf/snowball/ext/$${n}Stemmer -n $${n}Stemmer; \
+	echo ./snowball $< -j -o net/sf/snowball/ext/$${l}Stemmer -n $${l}Stemmer; \
+	./snowball $< -j -o net/sf/snowball/ext/$${l}Stemmer -n $${l}Stemmer; \
 
 %/output_java.txt: %/stem.sbl %/voc.txt snowball net/sf/snowball/TestApp.class
 	l=`echo "$<" | sed 's!\(.*\)/stem.sbl$$!\1!;s!^.*/!!'`; \
-	n=`echo "$${l}" | sed 's!^\([a-z]\).*$$!\1!' | tr '[a-z]' '[A-Z]'`; \
-	m=`echo "$${l}" | sed 's!^\([a-z]\)!!'`; \
-	n="$$n$$m"; \
 	${MAKE} net/sf/snowball/ext/$${l}Stemmer.java; \
-	echo $(JAVAC) net/sf/snowball/ext/$${n}Stemmer.java; \
-	$(JAVAC) net/sf/snowball/ext/$${n}Stemmer.java; \
-	echo $(JAVA) net/sf/snowball/TestApp $${n} $${l}/voc.txt -o $${l}/output_java.txt; \
-	$(JAVA) net/sf/snowball/TestApp $${n} $${l}/voc.txt -o $${l}/output_java.txt;
+	echo $(JAVAC) net/sf/snowball/ext/$${l}Stemmer.java; \
+	$(JAVAC) net/sf/snowball/ext/$${l}Stemmer.java; \
+	echo $(JAVA) net/sf/snowball/TestApp $${l} $${l}/voc.txt -o $${l}/output_java.txt; \
+	$(JAVA) net/sf/snowball/TestApp $${l} $${l}/voc.txt -o $${l}/output_java.txt;
 
 %.class: %.java
 	$(JAVAC) $<
