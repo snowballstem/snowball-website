@@ -317,7 +317,7 @@ be generated with this algorithm.
 <TR><TD>
 
 <BR><BR>
-<BR>&nbsp;<H2>The stemming algorithm</H2>
+<BR>&nbsp;<H2>The stemming algorith</H2>
 
 <I>i</I>-suffixes of Russian tend to be quite regular, with irregularities of
 declension involving a change to the stem. Irregular forms therefore
@@ -473,28 +473,7 @@ by a <FONT SIZE=-1>PARTICIPLE</FONT> ending.
     (preceded by the final &#1072; (<B><I>a</I></B>) of &#1073;&#1077;&#1075;&#1072; (<B><I>bega</I></B>)), so &#1074;&#1096;&#1072;&#1103; (<B><I>vsha<U>ia</U></I></B>) is an
     adjectival ending.
 </DL>
-Define a <FONT SIZE=-1>VERBAL</FONT> ending as either a <FONT SIZE=-1>REFLEXIVE</FONT> ending preceded by a <FONT SIZE=-1>VERB</FONT> or
-<FONT SIZE=-1>ADJECTIVAL</FONT> ending, or a <FONT SIZE=-1>VERB</FONT> ending.
-<DL><DD>
-    For example,
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD>        &#1074;&#1075;&#1083;&#1103;&#1076;&#1099;&#1074;&#1072;&#1077;&#1090;&#1089;&#1103; <TD></TD><TD>=<TD></TD><TD> &#1074;&#1075;&#1083;&#1103;&#1076;&#1099;&#1074;&#1072; <TD></TD><TD>+<TD></TD><TD> &#1077;&#1090;  <TD></TD><TD>+<TD></TD><TD> &#1089;&#1103;
-<TR><TD>        (<I>vgl<U>ia</U>dyvaets<U>ia</U></I>   <TD></TD><TD>=<TD></TD><TD> <I>vgl<U>ia</U>dyva</I> <TD></TD><TD>+<TD></TD><TD> <B><I>et</I></B><TD></TD><TD>+<TD></TD><TD> <B><I>s<U>ia</U></I></B>)
-</TABLE></DL>
-      (verbal + reflexive)
-<BR><BR>
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD>        &#1074;&#1099;&#1088;&#1074;&#1072;&#1074;&#1096;&#1072;&#1103;&#1089;&#1103; <TD></TD><TD>=<TD></TD><TD> &#1074;&#1099;&#1088;&#1074;&#1072; <TD></TD><TD>+<TD></TD><TD> &#1074;&#1096;  <TD></TD><TD>+<TD></TD><TD> &#1072;&#1103;       <TD></TD><TD>+<TD></TD><TD> &#1089;&#1103;
-<TR><TD>        <I>vyrvavsha<U>ia</U>s<U>ia</U></I>    <TD></TD><TD>=<TD></TD><TD> <I>vyrva</I>      <TD></TD><TD>+<TD></TD><TD> <B><I>vsh</I></B><TD></TD><TD>+<TD></TD><TD> <B><I>a<U>ia</U></I></B> <TD></TD><TD>+<TD></TD><TD> <B><I>s<U>ia</U></I></B>)
-</TABLE></DL>
-   (adjectival + reflexive)
-<BR><BR>
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD>        &#1074;&#1099;&#1088;&#1074;&#1072;&#1083;&#1072;          <TD></TD><TD>=<TD></TD><TD> &#1074;&#1099;&#1088;&#1074;&#1072; <TD></TD><TD>+<TD></TD><TD> &#1083;&#1072;
-<TR><TD>        (<I>vyrvala</I>            <TD></TD><TD>=<TD></TD><TD> <I>vyrva</I>  <TD></TD><TD>+<TD></TD><TD> <B><I>la</I></B>)
-</TABLE></DL>
-   (verb)
-</DL>
+
 In searching for an ending in a class, always choose the longest one
 from the class.
 <DL><DD>
@@ -511,9 +490,16 @@ All tests take place in the the <I>RV</I> part of the word.
     endings must follow must itself be in <I>RV</I>. In other words the letters
     before the <I>RV</I> region are never examined in the stemming process.
 </DL>
-Step 1: In turn, seach for a (1) <FONT SIZE=-1>PERFECTIVE GERUND</FONT>, (2) <FONT SIZE=-1>ADJECTIVAL</FONT>, (3)
-<FONT SIZE=-1>VERBAL</FONT> or (4) <FONT SIZE=-1>NOUN</FONT> ending. As soon as one is found remove it, and
-terminate step 1. Whether one is found or not, continue to step 2.
+
+Do each of steps 1, 2, 3 and 4.
+<BR><BR>
+Step 1:
+
+Search for a <FONT SIZE=-1>PERFECTIVE GERUND</FONT> ending. If one is found remove it, and that
+is then the end of step 1. Otherwise try and remove a <FONT SIZE=-1>REFLEXIVE</FONT> ending,
+and then search in turn for (1) an <FONT SIZE=-1>ADJECTIVAL</FONT>, (2) a <FONT SIZE=-1>VERB</FONT> or (3) a
+<FONT SIZE=-1>NOUN</FONT> ending. As soon as one of the endings (1) to (3) is found remove it,
+and terminate step 1.
 <BR><BR>
 Step 2: If the word ends with &#1080; (<B><I>i</I></B>), remove it.
 <BR><BR>
@@ -577,7 +563,6 @@ routines ( mark_regions R2
            adjectival
            reflexive
            verb
-           verbal
            noun
            derivational
            tidy_up
@@ -693,12 +678,6 @@ backwardmode (
         )
     )
 
-    define verbal as (
-        ( reflexive
-          verb or adjectival )
-        or verb
-    )
-
     define noun as (
         [substring] among (
             '{a}' '{e}{v}' '{o}{v}' '{i}{e}' '{'}{e}' '{e}'
@@ -743,8 +722,12 @@ define stem as (
 
     do mark_regions
     backwards setlimit tomark pV for (
-        do ( perfective_gerund or adjectival or verbal or noun )
-
+        do (
+             perfective_gerund or
+             ( try reflexive
+               adjectival or verb or noun
+             )
+        )
         try([ '{i}' ] delete)
         // because noun ending -i{iu} is being treated as verb ending -{iu}
 

@@ -1228,7 +1228,7 @@ bespokoi`si^a                 bespok
 bespokoi`te                   bespokoi`t
 bespokoi`tes'                 bespokoi`t
 bespokoi^u                    bespok
-bespokoi^us'                  bespoko
+bespokoi^us'                  bespok
 bespokoi^at                   bespoko
 bespoleznai^a                 bespolezn
 bespolezno                    bespolezn
@@ -4363,8 +4363,8 @@ volnui^us'                    voln
 volnui^ut                     voln
 volnui^utsi^a                 voln
 volnui^ushchei`               voln
-volnui^ushchei`si^a           volnui^ushch
-volnui^ushchui^usi^a          volnui^ushch
+volnui^ushchei`si^a           voln
+volnui^ushchui^usi^a          voln
 volnui^as'                    volnu
 volny                         voln
 volo                          vol
@@ -5529,7 +5529,7 @@ vydastsi^a                    vydast
 vydat'                        vyda
 vydai^ut                      vyda
 vydai^utsi^a                  vyda
-vydai^ushchei^usi^a           vydai^ushche
+vydai^ushchei^usi^a           vyda
 vydvinul                      vydvinul
 vydelanno                     vydela
 vydelannym                    vydela
@@ -7873,7 +7873,7 @@ dveri^am                      dver
 dveri^ami                     dver
 dveri^akh                     dver
 dvesti                        dvest
-dvigavshimsi^a                dvigavsh
+dvigavshimsi^a                dviga
 dvigaet                       dviga
 dvigaetsi^a                   dviga
 dvigal                        dviga
@@ -9120,9 +9120,9 @@ dostavit'                     dostav
 dostavli^aet                  dostavli^a
 dostavli^al                   dostavli^a
 dostavli^alo                  dostavli^a
-dostavshei`si^a               dostavsh
+dostavshei`si^a               dosta
 dostavshikhsi^a               dosta
-dostavshui^usi^a              dostavsh
+dostavshui^usi^a              dosta
 dostaet                       dosta
 dostaetsi^a                   dosta
 dostal                        dosta
@@ -9147,7 +9147,7 @@ dostatochnymi                 dostatochn
 dostat'                       dosta
 dostai^ut                     dosta
 dostai^utsi^a                 dosta
-dostai^ushchei^usi^a          dostai^ushche
+dostai^ushchei^usi^a          dosta
 dostig                        dostig
 dostigaesh'                   dostiga
 dostigal                      dostiga
@@ -9645,7 +9645,7 @@ dymnykh                       dymn
 dymom                         dym
 dymu                          dym
 dymi^at                       dym
-dymi^ashchimsi^a              dymi^ashch
+dymi^ashchimsi^a              dymi^a
 dyr                           dyr
 dyra                          dyr
 dyrakh                        dyr
@@ -10822,7 +10822,7 @@ zagorai^utsi^a                zagora
 zagorditsi^a                  zagord
 zagorevshai^asi^a             zagorevsh
 zagorevshei`si^a              zagorevsh
-zagorevshei^usi^a             zagorevshe
+zagorevshei^usi^a             zagorevsh
 zagorevshimisi^a              zagorevsh
 zagorelas'                    zagorel
 zagoreli                      zagorel
@@ -11008,8 +11008,8 @@ zadykhalas'                   zadykha
 zadykhalsi^a                  zadykha
 zadykhat'si^a                 zadykha
 zadykhai^us'                  zadykha
-zadykhai^ushchimsi^a          zadykhai^ushch
-zadykhai^ushchui^usi^a        zadykhai^ushch
+zadykhai^ushchimsi^a          zadykha
+zadykhai^ushchui^usi^a        zadykha
 zadykhai^as'                  zadykh
 zaedaet                       zaeda
 zaedat'                       zaeda
@@ -11348,7 +11348,7 @@ zalai^ala                     zalai^a
 zale                          zal
 zaleg                         zaleg
 zalegla                       zalegl
-zalezhavshei`si^a             zalezhavsh
+zalezhavshei`si^a             zalezha
 zalezhalsi^a                  zalezha
 zalezhat'si^a                 zalezha
 zalez                         zalez
@@ -11887,7 +11887,7 @@ zapreshchenii^am              zapreshchen
 zapreshcheno                  zapreshch
 zaprite                       zapr
 zaprites'                     zapr
-zapropastivshui^usi^a         zapropastivsh
+zapropastivshui^usi^a         zapropast
 zapropastilis'                zapropast
 zaprosila                     zapros
 zaprositsi^a                  zapros
@@ -12230,9 +12230,9 @@ zasyplet                      zasyplet
 zasykhavshai^a                zasykha
 zasi^adem                     zasi^ad
 zataennoi`                    zataen
-zataivshei`si^a               zataivsh
+zataivshei`si^a               zata
 zataivshiesi^a                zata
-zataivshimsi^a                zataivsh
+zataivshimsi^a                zata
 zatail                        zata
 zataratorila                  zatarator
 zataskannoi`                  zataska
@@ -13414,7 +13414,7 @@ izlagai^a                     izlag
 izler                         izler
 izlechivat'                   izlechiva
 izliv                         izl
-izlivavshei`si^a              izlivavsh
+izlivavshei`si^a              izliva
 izlivaetsi^a                  izliva
 izlivali                      izliva
 izlivalis'                    izliva
@@ -13454,7 +13454,7 @@ izmena                        izm
 izmenenie                     izmenen
 izmenenii^u                   izmenen
 izmeniv                       izmen
-izmenivshimsi^a               izmenivsh
+izmenivshimsi^a               izmen
 izmenil                       izmen
 izmenilas'                    izmen
 izmenili                      izmen
@@ -13908,9 +13908,9 @@ iskrennosti                   iskren
 iskrennost'                   iskren
 iskrennost'i^u                iskren
 iskrenni^ai^a                 iskren
-iskrivivshei^usi^a            iskrivivshe
+iskrivivshei^usi^a            iskriv
 iskrivivshimisi^a             iskriv
-iskrivivshimsi^a              iskrivivsh
+iskrivivshimsi^a              iskriv
 iskrivila                     iskriv
 iskrivilos'                   iskriv
 iskrivlennom                  iskrivlen
@@ -14322,7 +14322,7 @@ kazhis'                       kazh
 kazhus'                       kazh
 kazhutsi^a                    kazhut
 kazhushchui^usi^a             kazhushch
-kazavshei^usi^a               kazavshe
+kazavshei^usi^a               kaza
 kazavshii`si^a                kaza
 kazak                         kazak
 kazal                         kaza
@@ -14647,7 +14647,7 @@ kasalas'                      kasa
 kasalos'                      kasa
 kasalsi^a                     kasa
 kasai^utsi^a                  kasa
-kasai^ushchei`si^a            kasai^ushch
+kasai^ushchei`si^a            kasa
 kasai^ushchemsi^a             kasa
 kasai^ushchikhsi^a            kasa
 kasai^as'                     kas
@@ -16177,7 +16177,7 @@ krupnykh                      krupn
 krupoi`                       krup
 krupy                         krup
 krutai^a                      krut
-krutivshimsi^a                krutivsh
+krutivshimsi^a                krut
 krutiznu                      krutizn
 krutilis'                     krut
 krutilsi^a                    krut
@@ -16395,7 +16395,7 @@ kuri^u                        kur
 kuri^a                        kur
 kuri^atnikam                  kuri^atnik
 kuri^atniki                   kuri^atnik
-kuri^ashchei`si^a             kuri^ashch
+kuri^ashchei`si^a             kuri^a
 kuri^ashchikh                 kuri^a
 kusali                        kusa
 kusai^a                       kus
@@ -19372,7 +19372,7 @@ nabolevshie                   nabolevsh
 nabolelo                      nabolel
 nabolit                       nabol
 nabornym                      naborn
-nabravshui^usi^a              nabravsh
+nabravshui^usi^a              nabra
 nabral                        nabra
 nabralsi^a                    nabra
 nabrasyvala                   nabrasyva
@@ -19578,7 +19578,7 @@ nadetoe                       nadet
 nadetoi`                      nadet
 nadety                        nadet
 nadet'                        nadet
-nadei^us'                     nade
+nadei^us'                     nad
 nadei^utsi^a                  nadei^ut
 nadei^alas'                   nadei^a
 nadei^alis'                   nadei^a
@@ -19634,7 +19634,7 @@ nadrugaetsi^a                 nadruga
 nadrugatel'stvo               nadrugatel'stv
 nadryvaet                     nadryva
 nadryvai^utsi^a               nadryva
-nadryvai^ushchimsi^a          nadryvai^ushch
+nadryvai^ushchimsi^a          nadryva
 nadryvai^as'                  nadryv
 nadsazhdai^as'                nadsazhd
 nadsedai^utsi^a               nadseda
@@ -19694,7 +19694,7 @@ nazidanie                     nazidan
 nazidanii^a                   nazidan
 nazidatel'no                  nazidatel'n
 nazlo                         nazl
-naznachavshui^usi^a           naznachavsh
+naznachavshui^usi^a           naznacha
 naznachaemye                  naznacha
 naznachal                     naznacha
 naznachalas'                  naznacha
@@ -20389,7 +20389,7 @@ nasmeshlivosti                nasmeshliv
 nasmeshlivyi`                 nasmeshliv
 nasmeshlivymi                 nasmeshliv
 nasmeshlivykh                 nasmeshliv
-nasmei^us'                    nasme
+nasmei^us'                    nasm
 nasmei^alsi^a                 nasmei^a
 nasmotrelsi^a                 nasmotrel
 nasolit'                      nasol
@@ -20592,7 +20592,7 @@ nakhmuril                     nakhmur
 nakhmurila                    nakhmur
 nakhmurilsi^a                 nakhmur
 nakhmuri^as'                  nakhmur
-nakhodivshei`si^a             nakhodivsh
+nakhodivshei`si^a             nakhod
 nakhodil                      nakhod
 nakhodila                     nakhod
 nakhodilas'                   nakhod
@@ -20665,7 +20665,7 @@ nachertil                     nachert
 nachest'                      nachest
 nachinavshai^asi^a            nachina
 nachinavshee                  nachina
-nachinavshei`si^a             nachinavsh
+nachinavshei`si^a             nachina
 nachinavshii`                 nachina
 nachinaem                     nachina
 nachinaet                     nachina
@@ -20689,7 +20689,7 @@ nachinai^ut                   nachina
 nachinai^ushchai^a            nachina
 nachinai^ushchego             nachina
 nachinai^ushchii`             nachina
-nachinai^ushchimsi^a          nachinai^ushch
+nachinai^ushchimsi^a          nachina
 nachinai^a                    nachin
 nachinennye                   nachinen
 nachinki                      nachink
@@ -20974,7 +20974,7 @@ nevyrazimym                   nevyrazim
 nevyskazannom                 nevyskaza
 nevysoko                      nevysok
 nevysokomu                    nevysok
-nevystoi^avshei^usi^a         nevystoi^avshe
+nevystoi^avshei^usi^a         nevystoi^a
 nevysykhaemym                 nevysykha
 nevytorgovannyi`              nevytorgova
 neg                           neg
@@ -21288,7 +21288,7 @@ neizmennoi`                   neizmen
 neizmennui^u                  neizmen
 neizmennyi`                   neizmen
 neizmennym                    neizmen
-neizmeni^ai^ushchei`si^a      neizmeni^ai^ushch
+neizmeni^ai^ushchei`si^a      neizmeni^a
 neizmerimoi^u                 neizmerim
 neizrechennoi`                neizrechen
 neiz"i^asnimo                 neiz"i^asnim
@@ -22132,9 +22132,9 @@ neugodliv                     neugodl
 neugodlivai^a                 neugodliv
 neugodno                      neugodn
 neugomonnyi`                  neugomon
-neudavshei`si^a               neudavsh
+neudavshei`si^a               neuda
 neudavshiesi^a                neuda
-neudavshui^usi^a              neudavsh
+neudavshui^usi^a              neuda
 neudach                       neudach
 neudacha                      neudach
 neudachami                    neudach
@@ -23211,7 +23211,7 @@ obnimai^a                     obnim
 obnimemsi^a                   obnim
 obnimet                       obnimet
 obnimi                        obn
-obnovivshimsi^a               obnovivsh
+obnovivshimsi^a               obnov
 obnovilsi^a                   obnov
 obnovit'                      obnov
 obnovki                       obnovk
@@ -24588,7 +24588,7 @@ opredelennye                  opredelen
 opredelennyi`                 opredelen
 opredelennykh                 opredelen
 opredeliv                     opredel
-opredelivshei^usi^a           opredelivshe
+opredelivshei^usi^a           opredel
 opredelil                     opredel
 opredelilsi^a                 opredel
 opredelitel'no                opredelitel'n
@@ -25035,7 +25035,7 @@ ostavli^ai^u                  ostavli^a
 ostavli^ai^ut                 ostavli^a
 ostavli^ai^a                  ostavl
 ostavshii`si^a                osta
-ostavshimsi^a                 ostavsh
+ostavshimsi^a                 osta
 ostavshis'                    osta
 ostavshikhsi^a                osta
 ostav'                        ostav
@@ -25443,7 +25443,7 @@ otdai^u                       otda
 otdai^ut                      otda
 otdai^utsi^a                  otda
 otdai^ushchikh                otda
-otdai^ushchui^usi^a           otdai^ushch
+otdai^ushchui^usi^a           otda
 otdelan                       otdela
 otdelannui^u                  otdela
 otdelat'si^a                  otdela
@@ -25629,7 +25629,7 @@ otkryvat'                     otkryva
 otkryvat'si^a                 otkryva
 otkryvai^u                    otkryva
 otkryvai^utsi^a               otkryva
-otkryvai^ushchimsi^a          otkryvai^ushch
+otkryvai^ushchimsi^a          otkryva
 otkryvai^a                    otkryv
 otkryl                        otkr
 otkryla                       otkr
@@ -25773,7 +25773,7 @@ otnosites'                    otnos
 otnositsi^a                   otnos
 otnosit'si^a                  otnos
 otnosi^atsi^a                 otnos
-otnosi^ashchimsi^a            otnosi^ashch
+otnosi^ashchimsi^a            otnosi^a
 otnoshenie                    otnoshen
 otnoshenii                    otnoshen
 otnoshenii`                   otnoshen
@@ -25873,7 +25873,7 @@ otpikhnut'                    otpikhnut
 otpli^asyval                  otpli^asyva
 otpolirovannogo               otpolirova
 otpor                         otpor
-otpravivshimsi^a              otpravivsh
+otpravivshimsi^a              otprav
 otpravil                      otprav
 otpravila                     otprav
 otpravilas'                   otprav
@@ -26129,7 +26129,7 @@ ottolknuv                     ottolknuv
 ottolknul                     ottolknul
 ottolknula                    ottolknul
 ottolknutyi`                  ottolknut
-ottopyrivshui^usi^a           ottopyrivsh
+ottopyrivshui^usi^a           ottopyr
 ottrepal                      ottrepa
 ottreplet                     ottreplet
 ottuda                        ottud
@@ -26443,7 +26443,7 @@ oshibochnykh                  oshibochn
 oshibsi^a                     oshib
 oshibus'                      oshib
 oshcherish'si^a               oshcher
-oshchetinivshei`si^a          oshchetinivsh
+oshchetinivshei`si^a          oshchetin
 oshchetinilsi^a               oshchetin
 oshchupav                     oshchupa
 oshchupal                     oshchupa
@@ -27169,7 +27169,7 @@ peremena                      perem
 peremene                      peremen
 peremeni                      peremen
 peremenivshemsi^a             peremen
-peremenivshimsi^a             peremenivsh
+peremenivshimsi^a             peremen
 peremenil                     peremen
 peremenila                    peremen
 peremenilas'                  peremen
@@ -29191,7 +29191,7 @@ pod"eme                       pod"em
 pod"emli^ut                   pod"emli^ut
 pod"emnyi`                    pod"emn
 pod"ekhal                     pod"ekha
-podymavshei^usi^a             podymavshe
+podymavshei^usi^a             podyma
 podymavshii`si^a              podyma
 podymaet                      podyma
 podymai`si^a                  podyma
@@ -29598,7 +29598,7 @@ pokoe                         pok
 pokoem                        poko
 pokoen                        poko
 pokoi                         poko
-pokoivshei`si^a               pokoivsh
+pokoivshei`si^a               poko
 pokoilas'                     poko
 pokoilis'                     poko
 pokoit                        poko
@@ -29680,11 +29680,11 @@ pokori^ai^us'                 pokori^a
 pokosivshis'                  pokos
 pokosilsi^a                   pokos
 pokoi^u                       pok
-pokoi^us'                     poko
+pokoi^us'                     pok
 pokoi^a                       poko
 pokoi^atsi^a                  poko
 pokoi^akh                     poko
-pokoi^ashchimsi^a             pokoi^ashch
+pokoi^ashchimsi^a             pokoi^a
 pokradut                      pokradut
 pokrazhe                      pokrazh
 pokrazhi                      pokrazh
@@ -29707,7 +29707,7 @@ pokrovitel'stvovali           pokrovitel'stvova
 pokrovitel'stvom              pokrovitel'stv
 pokrovitel'stvuet             pokrovitel'stv
 pokrovy                       pokrov
-pokroi^us'                    pokro
+pokroi^us'                    pokr
 pokrupnee                     pokrupn
 pokrutivshis'                 pokrut
 pokryv                        pokr
@@ -32132,7 +32132,7 @@ predsmertnogo                 predsmertn
 predsmertnyi`                 predsmertn
 predstavali                   predstava
 predstaviv                    predstav
-predstavivshei`si^a           predstavivsh
+predstavivshei`si^a           predstav
 predstavil                    predstav
 predstavila                   predstav
 predstavilas'                 predstav
@@ -32376,7 +32376,7 @@ preryvalsi^a                  preryva
 preryvat'                     preryva
 preryvai^u                    preryva
 preryvai^ushchee              preryva
-preryvai^ushchui^usi^a        preryvai^ushch
+preryvai^ushchui^usi^a        preryva
 preryvai^a                    preryv
 preryvisto                    preryvist
 preryvistym                   preryvist
@@ -32514,7 +32514,7 @@ pribirali                     pribira
 pribirat'                     pribira
 pribirat'si^a                 pribira
 pribityi`                     pribit
-priblizhavshei`si^a           priblizhavsh
+priblizhavshei`si^a           priblizha
 priblizhaetsi^a               priblizha
 priblizhalas'                 priblizha
 priblizhalsi^a                priblizha
@@ -33792,7 +33792,7 @@ probudi^as'                   probud
 probuzhdavshimisi^a           probuzhda
 probuzhdalis'                 probuzhda
 probuzhdat'si^a               probuzhda
-probuzhdai^ushchei`si^a       probuzhdai^ushch
+probuzhdai^ushchei`si^a       probuzhda
 probuzhdenii^a                probuzhden
 probuzhdennogo                probuzhden
 probuzhdennye                 probuzhden
@@ -33802,7 +33802,7 @@ probyl                        prob
 probyt'                       prob
 provale                       proval
 provalivaetsi^a               provaliva
-provalivshimsi^a              provalivsh
+provalivshimsi^a              proval
 provalilas'                   proval
 provalilsi^a                  proval
 provalis'                     prova
@@ -34375,7 +34375,7 @@ pronosili                     pronos
 pronosilos'                   pronos
 pronosit                      pronos
 pronosit'                     pronos
-pronosi^ashchei`si^a          pronosi^ashch
+pronosi^ashchei`si^a          pronosi^a
 proni^ukhal                   proni^ukha
 proni^ukhai^ut                proni^ukha
 propagand                     propagand
@@ -34810,7 +34810,7 @@ proti^anesh'                  proti^anesh
 proti^anite                   proti^an
 proti^anu                     proti^an
 proti^anuv                    proti^anuv
-proti^anuvshei^usi^a          proti^anuvshe
+proti^anuvshei^usi^a          proti^anuvsh
 proti^anuvshiesi^a            proti^anuvsh
 proti^anul                    proti^anul
 proti^anula                   proti^anul
@@ -35677,7 +35677,7 @@ razbival                      razbiva
 razbivalas'                   razbiva
 razbivai^utsi^a               razbiva
 razbivai^ushchee              razbiva
-razbivshimsi^a                razbivsh
+razbivshimsi^a                razb
 razbil                        razb
 razbila                       razb
 razbilas'                     razb
@@ -35738,7 +35738,7 @@ razbudit                      razbud
 razbudit'                     razbud
 razbudish'                    razbud
 razvalivaetsi^a               razvaliva
-razvalivshui^usi^a            razvalivsh
+razvalivshui^usi^a            razval
 razvalilas'                   razval
 razvalilis'                   razval
 razvalilos'                   razval
@@ -36062,7 +36062,7 @@ razlivalas'                   razliva
 razlivalis'                   razliva
 razlivalsi^a                  razliva
 razlivakh                     razliv
-razlivai^ushchei`si^a         razlivai^ushch
+razlivai^ushchei`si^a         razliva
 razlive                       razliv
 razlivnykh                    razlivn
 razlilas'                     razl
@@ -36878,7 +36878,7 @@ rastenie                      rasten
 rastenii^ami                  rasten
 rasterzannom                  rasterza
 rasteri^avshai^asi^a          rasteri^a
-rasteri^avshimsi^a            rasteri^avsh
+rasteri^avshimsi^a            rasteri^a
 rasteri^avshis'               rasteri^a
 rasteri^aetsi^a               rasteri^a
 rasteri^ala                   rasteri^a
@@ -37483,8 +37483,8 @@ rozhdali                      rozhda
 rozhdalos'                    rozhda
 rozhdalsi^a                   rozhda
 rozhdai^ut                    rozhda
-rozhdai^ushchei`si^a          rozhdai^ushch
-rozhdai^ushchimsi^a           rozhdai^ushch
+rozhdai^ushchei`si^a          rozhda
+rozhdai^ushchimsi^a           rozhda
 rozhdai^ushchikhsi^a          rozhda
 rozhdenie                     rozhden
 rozhdeniem                    rozhden
@@ -38123,7 +38123,7 @@ sbivai^as'                    sbiv
 sbivchivo                     sbivchiv
 sbivchivui^u                  sbivchiv
 sbivshei`si^a                 sbivsh
-sbivshei^usi^a                sbivshe
+sbivshei^usi^a                sbivsh
 sbivshis'                     sbivsh
 sbil                          sbil
 sbilas'                       sbil
@@ -38574,10 +38574,10 @@ sgubil                        sgub
 sgubila                       sgub
 sgubili                       sgub
 sgubilo                       sgub
-sgushchavshei`si^a            sgushchavsh
+sgushchavshei`si^a            sgushcha
 sgushchavshikhsi^a            sgushcha
 sgushchalis'                  sgushcha
-sgushchai^ushchei`si^a        sgushchai^ushch
+sgushchai^ushchei`si^a        sgushcha
 sdav                          sdav
 sdavilo                       sdav
 sdaet                         sdaet
@@ -39387,7 +39387,7 @@ sklonen                       sklon
 sklonennyi`                   sklonen
 skloni                        sklon
 skloniv                       sklon
-sklonivshei`si^a              sklonivsh
+sklonivshei`si^a              sklon
 sklonivshis'                  sklon
 sklonil                       sklon
 sklonila                      sklon
@@ -39465,7 +39465,7 @@ skonfuzit                     skonfuz
 skonfuzites'                  skonfuz
 skonchalsi^a                  skoncha
 skopivshegosi^a               skop
-skopivshei`si^a               skopivsh
+skopivshei`si^a               skop
 skopit'                       skop
 skoplennykh                   skoplen
 skopleno                      skopl
@@ -39995,7 +39995,7 @@ sluchai^am                    slucha
 sluchai^akh                   slucha
 sluchivsheesi^a               sluch
 sluchivshemsi^a               sluch
-sluchivshimsi^a               sluchivsh
+sluchivshimsi^a               sluch
 sluchilas'                    sluch
 sluchilis'                    sluch
 sluchilos'                    sluch
@@ -41237,8 +41237,8 @@ sostavli^ai^u                 sostavli^a
 sostavli^ai^ut                sostavli^a
 sostavli^ai^ushchikh          sostavli^a
 sostavov                      sostav
-sostarei^us'                  sostare
-sostarivshimsi^a              sostarivsh
+sostarei^us'                  sostar
+sostarivshimsi^a              sostar
 sostarilas'                   sostar
 sostarilos'                   sostar
 sostarilsi^a                  sostar
@@ -42676,7 +42676,7 @@ stydu                         styd
 stydi^a                       styd
 stydi^as'                     styd
 stydi^ashchii`si^a            stydi^a
-stydi^ashchui^usi^a           stydi^ashch
+stydi^ashchui^usi^a           stydi^a
 styzhu                        styzh
 styzhus'                      styzh
 styl                          styl
@@ -43241,7 +43241,7 @@ taverny                       tavern
 taet                          taet
 taz                           taz
 tai                           ta
-taivshei`si^a                 taivsh
+taivshei`si^a                 ta
 tail                          ta
 taila                         ta
 tailas'                       ta
@@ -44924,7 +44924,7 @@ ubore                         ubor
 uborka                        ubork
 uborke                        ubork
 uborki                        ubork
-uboi^us'                      ubo
+uboi^us'                      ub
 uboi^alis'                    uboi^a
 ubral                         ubra
 ubrala                        ubra
@@ -45244,7 +45244,7 @@ ugri^umykh                    ugri^um
 ugri^akh                      ugr
 udavalos'                     udava
 udavalsi^a                    udava
-udavivshei^usi^a              udavivshe
+udavivshei^usi^a              udav
 udavivshiesi^a                udav
 udavilsi^a                    udav
 udavit'si^a                   udav
@@ -45259,7 +45259,7 @@ udalit'si^a                   udal
 udalos'                       uda
 udalsi^a                      uda
 udali^us'                     udal
-udali^avshei`si^a             udali^avsh
+udali^avshei`si^a             udali^a
 udali^avshiesi^a              udali^a
 udali^aetsi^a                 udali^a
 udali^at'si^a                 udali^a
@@ -45764,7 +45764,7 @@ ulybai^us'                    ulyba
 ulybai^utsi^a                 ulyba
 ulybai^ushchegosi^a           ulyba
 ulybai^ushchii`si^a           ulyba
-ulybai^ushchimsi^a            ulybai^ushch
+ulybai^ushchimsi^a            ulyba
 ulybai^ushchikhsi^a           ulyba
 ulybai^as'                    ulyb
 ulybka                        ulybk
@@ -45919,7 +45919,7 @@ umopomeshatel'stva            umopomeshatel'stv
 umopomeshatel'stve            umopomeshatel'stv
 umoril                        umor
 umorit'                       umor
-umoi^us'                      umo
+umoi^us'                      um
 umrem                         umr
 umret                         umret
 umrete                        umret
@@ -46283,7 +46283,7 @@ usilivalas'                   usiliva
 usilivalsi^a                  usiliva
 usilivat'                     usiliva
 usilivai^as'                  usiliv
-usilivshei`si^a               usilivsh
+usilivshei`si^a               usil
 usilie                        usil
 usiliem                       usil
 usilii`                       usil
@@ -46429,7 +46429,7 @@ uspokoi`                      uspok
 uspokoi`si^a                  uspok
 uspokoi`tes'                  uspokoi`t
 uspokoi^u                     uspok
-uspokoi^us'                   uspoko
+uspokoi^us'                   uspok
 uspokoi^atsi^a                uspoko
 ust                           ust
 usta                          ust
@@ -47887,7 +47887,7 @@ t^seluesh'                    t^seluesh
 t^selui^u                     t^sel
 t^selui^ut                    t^sel
 t^selui^utsi^a                t^sel
-t^selui^ushchui^usi^a         t^selui^ushch
+t^selui^ushchui^usi^a         t^sel
 t^selui^a                     t^selu
 t^sely                        t^sel
 t^selye                       t^sel
@@ -48758,7 +48758,7 @@ shatalos'                     shata
 shatalsi^a                    shata
 shatan'i^a                    shatan
 shatat'si^a                   shata
-shatai^ushchimsi^a            shatai^ushch
+shatai^ushchimsi^a            shata
 shatai^ushchikhsi^a           shata
 shatai^as'                    shat
 shater                        shater

@@ -41,7 +41,6 @@ routines ( mark_regions R2
            adjectival
            reflexive
            verb
-           verbal
            noun
            derivational
            tidy_up
@@ -157,12 +156,6 @@ backwardmode (
         )
     )
 
-    define verbal as (
-        ( reflexive
-          verb or adjectival )
-        or verb
-    )
-
     define noun as (
         [substring] among (
             '{a}' '{e}{v}' '{o}{v}' '{i}{e}' '{'}{e}' '{e}'
@@ -207,8 +200,12 @@ define stem as (
 
     do mark_regions
     backwards setlimit tomark pV for (
-        do ( perfective_gerund or adjectival or verbal or noun )
-
+        do (
+             perfective_gerund or
+             ( try reflexive
+               adjectival or verb or noun
+             )
+        )
         try([ '{i}' ] delete)
         // because noun ending -i{iu} is being treated as verb ending -{iu}
 
