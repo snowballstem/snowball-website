@@ -1,3 +1,0 @@
-
-gcc -O4 -c -o q/utilities.o q/utilities.c
-gcc -O4 -c -o q/api.o q/api.c
