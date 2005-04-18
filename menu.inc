@@ -89,8 +89,7 @@ Last modified on <?php
   global $SCRIPT_FILENAME;
   echo date('r', filemtime($SCRIPT_FILENAME));
 ?>.<br>
-<a href="mailto:snowball-discuss@lists.tartarus.org">Write to our mailing list</a> if you have comments or questions about the project.<br>
-<a href="mailto:richard@tartarus.org">Contact the webmaster</a> ONLY to report broken links or related problems with the webpages.  Other mail will be ignored.
+<a href="mailto:snowball-discuss@lists.tartarus.org">Write to our mailing list</a> if you have comments or questions about the project.  Note that this mailing list will hold postings from non-subscribers for moderation (so they may take several days to be processed).
 </address>
 </body>
 </html>
