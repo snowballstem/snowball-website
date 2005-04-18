@@ -11,7 +11,7 @@
 <BR>&nbsp;<H2>Links to resources</H2>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF=".."> Snowball main page</A>
+<TR><TD><A HREF="../.."> Snowball main page</A>
 <TR><TD><A HREF="stem.sbl">    The stemmer in Snowball</A>
 <TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
 <TR><TD><A HREF="stem.h">      - and its header</A>
@@ -245,7 +245,7 @@ I have made more than one attempt to improve the structure of the Porter
 algorithm by making it follow the pattern of ending removal of the Romance
 language stemmers. It is not hard to see why one should want to do this:
 step 1<I>b</I> of the Porter stemmer removes <B><I>ed</I></B> and <B><I>ing</I></B>, which are
-<I>i</I>-suffixes <A HREF="../texts/glossary.html">(*)</A> attached to verbs. If these suffixes are removed, there
+<I>i</I>-suffixes <A HREF="../../texts/glossary.html">(*)</A> attached to verbs. If these suffixes are removed, there
 should be no need to remove <I>d</I>-suffixes which are not verbal, although
 it will try to do so. This seems to be a deficiency in the Porter stemmer,
 not shared by the Romance stemmers. Again, the divisions between steps
@@ -265,7 +265,7 @@ as well as nouns,
 A possible reason for having separate steps 2, 3 and 4 is that
 <I>d</I>-suffix combinations in English are quite complex, a point which has
 been made
-<A HREF="../texts/stemmersoverview.html">elsewhere</A>.
+<A HREF="../../texts/stemmersoverview.html">elsewhere</A>.
 
 <BR><BR>
 But it is hardly surprising that after twenty years of use of the Porter
@@ -325,7 +325,7 @@ the word if there is no such non-vowel.
 <BR><BR>
 <I>R</I>2 is the region after the first non-vowel following a vowel in <I>R</I>1, or the
 end of the word if there is no such non-vowel.
-(See <A HREF="../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
+(See <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
 <BR><BR>
 If the word has two letters or less, leave it as it is.
 <BR><BR>
@@ -333,7 +333,7 @@ Otherwise, do each of the following operations,
 <BR><BR>
 Set initial <B><I>y</I></B>, or <B><I>y</I></B> after a vowel, to <B><I>Y</I></B>, and then establish the regions
 <I>R</I>1 and <I>R</I>2.
-(See <A HREF="../texts/vowelmarking.html"> note</A> on vowel marking.)
+(See <A HREF="../../texts/vowelmarking.html"> note</A> on vowel marking.)
 <BR><BR>
 
 Step 1<I>a</I>:
