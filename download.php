@@ -40,15 +40,17 @@ the test data files, and is therefore rather large (several megabytes).
 </li>
 </ul>
 
-Tarballs containing various stemming algorithms written using snowball
-are available on this website.
-
-
+<p>
+Also, tarballs containing just the files related to each individual stemming
+algorithm described on this site are available from the page for each algorithm.
+</p>
+<p>
 We do not make binary (ie, compiled) distributions of snowball available -
 there are simply too many different platforms and architectures to support.  If
-you wish to make such binaries available for others, and provide at least some
-measure of support for ensuring that they work, feel free to contact us and we
-will add a link to your work from this site.
+you are willing to make such binaries available for others, and can provide at
+least some measure of support for ensuring that they work, feel free to contact
+us and we will add a link to your work from this site.
+</p>
 
 </td></tr>
 <tr><td>
