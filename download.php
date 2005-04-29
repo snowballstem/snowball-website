@@ -56,7 +56,7 @@ will add a link to your work from this site.
 <h2>Subversion</h2>
 
 <p>
-Developers may wish to access the latest source using the commands:
+Developers may wish to access the latest source using the command:
 <br>
 <p>
 <tt>
