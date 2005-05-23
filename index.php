@@ -10,6 +10,11 @@
 <h2>Major events</h2>
 
 <p>
+<b>May 2005 - UTF-8 Unicode support</b>
+</p>
+
+
+<p>
 <b>September 2002 - Finnish stemmer</b>
 </p>
 
@@ -21,11 +26,11 @@ Snowball stemmers are still accessible on the site.
 </p>
 
 <p>
-<b>May 2002 - Unicode support added</b>
+<b>May 2002 - Unicode support</b>
 </p>
 
 <p>
-<b>Feb 2002 - Java support added</b>
+<b>Feb 2002 - Java support</b>
 <br>
 Richard has modified the snowball code generator to produce Java output as
 well as ANSI C output.  This means that pure Java systems can now use the
