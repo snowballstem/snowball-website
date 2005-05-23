@@ -12,7 +12,8 @@
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem.sbl">    The stemmer in Snowball</A>
+<TR><TD><A HREF="stem.sbl">    The stemmer in Snowball (KOI8-R encoding)</A>
+<TR><TD><A HREF="stem-Unicode.sbl">    The stemmer in Snowball (Unicode encoding) </A>
 <TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
 <TR><TD><A HREF="stem.h">      - and its header</A>
 <TR><TD><A HREF="voc.txt">     Sample Russian vocabulary</A>
@@ -25,14 +26,6 @@
 </TABLE></DL>
 
 <BR><BR>
-This page should display in Unicode. If you have problems, switch to a different
-browser, update the browser you have, or, failing all else, download this page, edit out
-the HTML tag
-<BR><PRE>
-    &lt;META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-</PRE>
-and view the modified page.<BR><BR>
-
 The sample Russian vocabulary and its stemmed equivalent should be viewable in your
 browser if you select the Cyrillic KO18-R character set. You can get to this in Microsoft's
 Internet Explorer via <B>View/Encoding/More</B>, and in Netscape via <B>View/Character Set</B>.
@@ -570,43 +563,6 @@ stringdef '    hex 'D8'
 stringdef e`   hex 'DC'
 stringdef iu   hex 'C0'
 stringdef ia   hex 'D1'
-
-/* The same in Unicode (commented out here):
-
-stringdef a    decimal '1072'
-stringdef b    decimal '1073'
-stringdef v    decimal '1074'
-stringdef g    decimal '1075'
-stringdef d    decimal '1076'
-stringdef e    decimal '1077'
-stringdef zh   decimal '1078'
-stringdef z    decimal '1079'
-stringdef i    decimal '1080'
-stringdef i`   decimal '1081'
-stringdef k    decimal '1082'
-stringdef l    decimal '1083'
-stringdef m    decimal '1084'
-stringdef n    decimal '1085'
-stringdef o    decimal '1086'
-stringdef p    decimal '1087'
-stringdef r    decimal '1088'
-stringdef s    decimal '1089'
-stringdef t    decimal '1090'
-stringdef u    decimal '1091'
-stringdef f    decimal '1092'
-stringdef kh   decimal '1093'
-stringdef ts   decimal '1094'
-stringdef ch   decimal '1095'
-stringdef sh   decimal '1096'
-stringdef shch decimal '1097'
-stringdef "    decimal '1098'
-stringdef y    decimal '1099'
-stringdef '    decimal '1100'
-stringdef e`   decimal '1101'
-stringdef iu   decimal '1102'
-stringdef ia   decimal '1103'
-
-*/
 
 routines ( mark_regions R2
            perfective_gerund
