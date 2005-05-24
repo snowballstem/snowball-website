@@ -26,10 +26,10 @@ can call to build it. But in any case, Snowball has a very simple
 structure, comprising the traditional tokeniser, syntax analyser and code
 generator modules, with two extra modules for space management and an
 internal merge sort, and a small driver module, all sharing a common header
-file.  If you put these sources into a directory &nbsp;<TT>p/</TT>, you can compile
+file.  If you put these sources into a directory &nbsp;<TT>compiler/</TT>, you can compile
 Snowball at once (Linux or Unix) with
 <BR><PRE>
-    gcc -O -o Snowball p/*.c
+    gcc -O -o Snowball compiler/*.c
 </PRE>
 Snowball can then be called up with the following syntax,
 <BR><PRE>
@@ -39,12 +39,14 @@ Snowball can then be called up with the following syntax,
        [-j[ava]] [-n[ame] C]
        [-ep[refix] S1] [-vp[refix] S2]
        [-i[nclude] D]
+       [-r[untime] P]
+       [-u[tf8]]
 </PRE>
 For example,
 <BR><PRE>
-    ./Snowball danish/stem.sbl -o q/danish
+    ./Snowball danish/stem.sbl -o runtime/danish
     ./Snowball danish/stem.sbl -syntax
-    ./Snowball danish/stem.sbl -output q/danish -ep danish_
+    ./Snowball danish/stem.sbl -output runtime/danish -ep danish_
 </PRE>
 The first argument, &nbsp;<TT>F1</TT>, is the name of the Snowball file to be compiled. If
 <TT>-java</TT>&nbsp; option is absent, it
@@ -54,7 +56,7 @@ If option &nbsp;<TT>-java</TT>&nbsp; is present, Java output is produced in &nbs
 
 <BR><BR>
 
-The &nbsp;<TT>-widechars</TT>, &nbsp;<TT>-eprefix</TT>&nbsp; and &nbsp;<TT>-vprefix</TT>&nbsp; options belong with ANSI C
+The &nbsp;<TT>-widechars</TT>, &nbsp;<TT>-eprefix</TT>&nbsp;, &nbsp;<TT>-vprefix</TT>&nbsp; and &nbsp;<TT>-runtime</TT>&nbsp; options belong with ANSI C
 generation; the &nbsp;<TT>-name</TT>&nbsp; option with Java generation.
 
 &nbsp;<H4>ANSI C generation</H4>
@@ -129,6 +131,13 @@ just replace &nbsp;<TT>char</TT>&nbsp; by &nbsp;<TT>short</TT>&nbsp; here:
 <BR><PRE>
         typedef unsigned short symbol;
 </PRE>
+
+The &nbsp;<TT>-runtime</TT>&nbsp; option is used to prepend a path to any
+<TT>#include</TT> lines in the generated code.  This is used if the runtime
+header files (ie, those files in the <TT>runtime</TT> directory in the standard
+distribution) are not in the same location as the generated source files.  This
+is used when building the libstemmer library, and may be useful for other
+projects.
 
 &nbsp;<H4>Java generation</H4>
 
