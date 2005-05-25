@@ -604,7 +604,7 @@ Snowball makes it easy therefore to add in lists of exceptions. But deciding wha
 exceptions should be is far from easy. Essentially there are two lines of attack, the
 systematic and the piecemeal. One might systematically treat as exceptions the stem changes of
 irregular verbs, for example. The piecemeal approach is to add in exceptions as people notice
-them - like <B><I>gener</I></B> above. The problem with the systematic approach is that it should be
+them &#x2014; like <B><I>gener</I></B> above. The problem with the systematic approach is that it should be
 done by investigating the entire language vocabulary, and that is more than most people are
 prepared to do. The problem with the piecemeal approach is that it is arbitrary, and usually
 yields little.
@@ -655,7 +655,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 
 <DL><DD>
-    If the words begins <B><I>gener</I></B>, set <I>R</I>1 to be the remainder of the word.
+    If the words begins <B><I>gener</I></B> or <B><I>commun</I></B>, set <I>R</I>1 to be the remainder of the word.
 <BR><BR>
     Stem certain special words as follows,
 <BR><BR>
@@ -734,6 +734,7 @@ define mark_regions as (
     do(
         among (
             'gener'
+            'commun'  //  added May 2005
             // ... extensions possible here ...
         ) or (gopast v  gopast non-v)
         setmark p1

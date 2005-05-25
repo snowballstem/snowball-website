@@ -20,7 +20,7 @@
 <BR>&nbsp;<H2>Snowball definition</H2>
 
 Snowball is a small string-handling language, and its name was chosen as a
-tribute to SNOBOL (Farber 1964, Griswold 1968 -
+tribute to SNOBOL (Farber 1964, Griswold 1968 &#x2014;
 see the references at the end of the
 <A HREF="../texts/introduction.html">introduction</A>),
 with which it shares the
@@ -195,25 +195,25 @@ the two commands give <B><I>f</I></B>.
 If &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; and &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; are commands, we can build up the larger commands,
 <DL><DD><DL>
     <DT><TT>C<SUB>1</SUB> or C<SUB>2</SUB></TT>
-        <DD>- Do &nbsp;<TT>C<SUB>1</SUB></TT>. If it gives <B><I>t</I></B> ignore &nbsp;<TT>C<SUB>2</SUB></TT>, otherwise do &nbsp;<TT>C<SUB>2</SUB></TT>. The resulting
+        <DD>&#x2014; Do &nbsp;<TT>C<SUB>1</SUB></TT>. If it gives <B><I>t</I></B> ignore &nbsp;<TT>C<SUB>2</SUB></TT>, otherwise do &nbsp;<TT>C<SUB>2</SUB></TT>. The resulting
         signal is <B><I>t</I></B> if and only &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; or &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; gave <B><I>t</I></B>.
     <DT><TT>C<SUB>1</SUB> and C<SUB>2</SUB></TT>
-        <DD>- Do &nbsp;<TT>C<SUB>1</SUB></TT>. If it gives <B><I>f</I></B> ignore &nbsp;<TT>C<SUB>2</SUB></TT>, otherwise do &nbsp;<TT>C<SUB>2</SUB></TT>. The resulting
+        <DD>&#x2014; Do &nbsp;<TT>C<SUB>1</SUB></TT>. If it gives <B><I>f</I></B> ignore &nbsp;<TT>C<SUB>2</SUB></TT>, otherwise do &nbsp;<TT>C<SUB>2</SUB></TT>. The resulting
         signal is <B><I>t</I></B> if and only &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; and &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; gave <B><I>t</I></B>.
     <DT><TT>not C</TT>
-        <DD>- Do &nbsp;<TT>C</TT>. The resulting signal is <B><I>t</I></B> if &nbsp;<TT>C</TT>&nbsp; gave <B><I>f</I></B>, otherwise <B><I>f</I></B>.
+        <DD>&#x2014; Do &nbsp;<TT>C</TT>. The resulting signal is <B><I>t</I></B> if &nbsp;<TT>C</TT>&nbsp; gave <B><I>f</I></B>, otherwise <B><I>f</I></B>.
     <DT><TT>try C</TT>
-        <DD>- Do &nbsp;<TT>C</TT>. The resulting signal is <B><I>t</I></B> whatever the signal of &nbsp;<TT>C</TT>.
+        <DD>&#x2014; Do &nbsp;<TT>C</TT>. The resulting signal is <B><I>t</I></B> whatever the signal of &nbsp;<TT>C</TT>.
     <DT><TT>fail C</TT>
-        <DD>- Do &nbsp;<TT>C</TT>. The resulting signal is <B><I>f</I></B> whatever the signal of &nbsp;<TT>C</TT>.
+        <DD>&#x2014; Do &nbsp;<TT>C</TT>. The resulting signal is <B><I>f</I></B> whatever the signal of &nbsp;<TT>C</TT>.
 </DL></DL>
 So for example,
 <DL><DD><DL>
     <DT><TT>($x > 0  $y = 1) or ($y = 0)</TT>
-        <DD>- sets &nbsp;<TT>y</TT>&nbsp; to 1 if &nbsp;<TT>x</TT>&nbsp; is greater than zero, otherwise to zero.
+        <DD>&#x2014; sets &nbsp;<TT>y</TT>&nbsp; to 1 if &nbsp;<TT>x</TT>&nbsp; is greater than zero, otherwise to zero.
 
     <DT><TT>try( ($x > 0) and ($z > 0) $y = 1)</TT>
-        <DD>- sets &nbsp;<TT>y</TT>&nbsp; to 1 if both &nbsp;<TT>x</TT>&nbsp; and &nbsp;<TT>z</TT>&nbsp; are greater than 0, and gives <B><I>t</I></B>.
+        <DD>&#x2014; sets &nbsp;<TT>y</TT>&nbsp; to 1 if both &nbsp;<TT>x</TT>&nbsp; and &nbsp;<TT>z</TT>&nbsp; are greater than 0, and gives <B><I>t</I></B>.
 </DL></DL>
 This last example is the same as
 <BR><PRE>
@@ -267,12 +267,12 @@ same as in C.
 As well as integer names and literal numbers, the following may be used in
 AEs:
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD><TT>minint</TT>&nbsp;   <TD></TD><TD>  - the smallest negative number
-<TR><TD><TT>maxint</TT>&nbsp;   <TD></TD><TD>  - the largest positive number
-<TR><TD><TT>sizeof s</TT>&nbsp; <TD></TD><TD>  - the number of characters in &nbsp;<TT>s</TT>, where &nbsp;<TT>s</TT>&nbsp; is the name of a string
-<TR><TD><TT>cursor</TT>&nbsp;   <TD></TD><TD>  - the current value of the string <I>cursor</I>
-<TR><TD><TT>limit</TT>&nbsp;    <TD></TD><TD>  - the current value of the string <I>limit</I>
-<TR><TD><TT>size</TT>&nbsp;     <TD></TD><TD>  - the size of the string, in characters
+<TR><TD><TT>minint</TT>&nbsp;   <TD></TD><TD>  &#x2014; the smallest negative number
+<TR><TD><TT>maxint</TT>&nbsp;   <TD></TD><TD>  &#x2014; the largest positive number
+<TR><TD><TT>sizeof s</TT>&nbsp; <TD></TD><TD>  &#x2014; the number of characters in &nbsp;<TT>s</TT>, where &nbsp;<TT>s</TT>&nbsp; is the name of a string
+<TR><TD><TT>cursor</TT>&nbsp;   <TD></TD><TD>  &#x2014; the current value of the string <I>cursor</I>
+<TR><TD><TT>limit</TT>&nbsp;    <TD></TD><TD>  &#x2014; the current value of the string <I>limit</I>
+<TR><TD><TT>size</TT>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in characters
 </TABLE></DL>
 The <I>cursor</I> and <I>limit</I> concepts are explained below.
 <BR><BR>
@@ -601,7 +601,7 @@ right. But the process can be reversed.
     <DD>A similar idea, but here <B><I>c</I></B> simply moves left instead of moving right,
     with the beginning of the string as the limit, <B><I>l</I></B>. &nbsp;<TT>C</TT>&nbsp; can contain other
     &nbsp;<TT>reverse</TT>&nbsp; commands, but it cannot contain commands to do deletions or
-    insertions - it must be used for testing only. (Without this
+    insertions &#x2014; it must be used for testing only. (Without this
     restriction Snowball's semantics would become very untidy.)
 </DL>
 
@@ -635,7 +635,7 @@ semantics as
 <BR><PRE>
         ('S<SUB>1</SUB>' or 'S<SUB>2</SUB>' or 'S<SUB>3</SUB>' ...)
 </PRE>
-- so long as the &nbsp;<TT>'S<SUB>i</SUB>'</TT>&nbsp; are written out in decreasing order of length.
+&#x2014; so long as the &nbsp;<TT>'S<SUB>i</SUB>'</TT>&nbsp; are written out in decreasing order of length.
 <BR><BR>
 <TT>substring</TT>&nbsp; may be omitted, in which case it is attached to its following
 <TT>among</TT>, so
@@ -747,7 +747,7 @@ to a routine which simply returns signal <B><I>t</I></B>,
 <BR><PRE>
     define null as true
 </PRE>
-- so we can imagine each &nbsp;<TT>'S<SUB>ij</SUB>'</TT>&nbsp; having its associated routine
+&#x2014; so we can imagine each &nbsp;<TT>'S<SUB>ij</SUB>'</TT>&nbsp; having its associated routine
 <TT>R<SUB>ij</SUB></TT>. Then obeying the &nbsp;<TT>among</TT>&nbsp; causes a search for the longest
 <TT>'S<SUB>ij</SUB>'</TT>&nbsp; whose corresponding routine
 <TT>R<SUB>ij</SUB></TT>&nbsp; gives <B><I>t</I></B>. The routines
