@@ -35,28 +35,27 @@ Snowball can then be called up with the following syntax,
 <BR><PRE>
     F1 [-o[utput] F2]
        [-s[yntax]]
-       [-w[idechars]]
-       [-j[ava]] [-n[ame] C]
-       [-ep[refix] S1] [-vp[refix] S2]
+       [-w[idechars]]  [-u[tf8]]
+       [-j[ava]]  [-n[ame] C]
+       [-ep[refix] S1]  [-vp[refix] S2]
        [-i[nclude] D]
        [-r[untime] P]
-       [-u[tf8]]
 </PRE>
 For example,
 <BR><PRE>
-    ./Snowball danish/stem.sbl -o runtime/danish
+    ./Snowball danish/stem.sbl -o q/danish
     ./Snowball danish/stem.sbl -syntax
-    ./Snowball danish/stem.sbl -output runtime/danish -ep danish_
+    ./Snowball danish/stem.sbl -output q/danish -ep danish_
 </PRE>
 The first argument, &nbsp;<TT>F1</TT>, is the name of the Snowball file to be compiled. If
-<TT>-java</TT>&nbsp; option is absent, it
+the &nbsp;<TT>-java</TT>&nbsp; option is absent, it
 produces
 two outputs, an ANSI C module in &nbsp;<TT>F2.c</TT>&nbsp; and a corresponding header file in &nbsp;<TT>F2.h</TT>.
 If option &nbsp;<TT>-java</TT>&nbsp; is present, Java output is produced in &nbsp;<TT>F2.java</TT>.
 
 <BR><BR>
 
-The &nbsp;<TT>-widechars</TT>, &nbsp;<TT>-eprefix</TT>&nbsp;, &nbsp;<TT>-vprefix</TT>&nbsp; and &nbsp;<TT>-runtime</TT>&nbsp; options belong with ANSI C
+The &nbsp;<TT>-widechars</TT>, &nbsp;<TT>-utf8</TT>, &nbsp;<TT>-eprefix</TT>&nbsp; and &nbsp;<TT>-vprefix</TT>&nbsp; options belong with ANSI C
 generation; the &nbsp;<TT>-name</TT>&nbsp; option with Java generation.
 
 &nbsp;<H4>ANSI C generation</H4>
@@ -119,7 +118,6 @@ exceed 65535. So by default one byte characters are assumed, but
 <TT>-widechars</TT>&nbsp; makes the assumptions that characters are two bytes. Note
 that (<I>a</I>) the output from Snowball is the same in both cases, and (<I>b</I>)
 the &nbsp;<TT>-java</TT>&nbsp; option automatically sets the &nbsp;<TT>-widechars</TT>&nbsp; option.
-
 Within the API header file &nbsp;<TT>api.h</TT>, &nbsp;<TT>symbol</TT>&nbsp; is given a typedef of
 <TT>unsigned char</TT>,
 <BR><PRE>
@@ -132,12 +130,20 @@ just replace &nbsp;<TT>char</TT>&nbsp; by &nbsp;<TT>short</TT>&nbsp; here:
         typedef unsigned short symbol;
 </PRE>
 
-The &nbsp;<TT>-runtime</TT>&nbsp; option is used to prepend a path to any
-<TT>#include</TT> lines in the generated code.  This is used if the runtime
-header files (ie, those files in the <TT>runtime</TT> directory in the standard
-distribution) are not in the same location as the generated source files.  This
-is used when building the libstemmer library, and may be useful for other
-projects.
+The &nbsp;<TT>-utf8</TT>&nbsp; option is an alternative to &nbsp;<TT>-widechars</TT>. Again, it allows
+characters in the range 0 to 65535 in &nbsp;<TT>stringdef</TT>s, but these characters
+are then encoded as 2 or 3 byte characters in the UTF-8 encoding scheme.
+The ANSI C program output by Snowball is similarly adjusted to handle
+characters that can occupy multiple bytes. (See section 12 of the
+Snowball manual.)
+
+<BR><BR>
+
+The &nbsp;<TT>-runtime</TT>&nbsp;  option is used to prepend a path to any &nbsp;<TT>#include</TT>
+lines in the generated code, and is useful when the runtime header files (i.e.
+those files in the runtime directory in the standard distribution) are not
+in the same location as the generated source files. It is used when
+building the libstemmer library, and may be useful for other projects.
 
 &nbsp;<H4>Java generation</H4>
 
@@ -245,7 +251,9 @@ tested through a common <A HREF="driver.c">driver</A> program.
 In the rare event that your Snowball script does not run perfectly the first time:
 <BR><BR>
 Remember that the option &nbsp;<TT>-syntax</TT>&nbsp; prints out the syntax tree. A question
-mark can be included in Snowball as a command, and it will cause the
+mark can be included in Snowball as a command, and it will generate a call
+<TT>debug(...)</TT>. The defined &nbsp;<TT>debug</TT>&nbsp; in &nbsp;<TT>runtime/utilities.c</TT>&nbsp; (usually
+commented out) can then be used. It causes the
 current string to sent to &nbsp;<TT>stdout</TT>, with square brackets marking the
 slice and vertical bar the position of <B><I>c</I></B>. Curly brackets mark the
 end-limits of the string, which may be less than the whole string because

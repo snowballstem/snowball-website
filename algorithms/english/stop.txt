@@ -5,16 +5,6 @@
  | Many of the forms below are quite rare (e.g. "yourselves") but included for
  |  completeness.
 
- | An omission here is the various contractions such as
-
- |     I've   she'd   we'll   didn't   couldn't   daren't
-
- | These forms are increasingly encountered nowadays, as written English
- | becomes less formal.
-
-
-
-
            | PRONOUNS FORMS
              | 1st person sing
 
@@ -105,20 +95,91 @@ doing          | -ing form
  |          | AUXILIARIES
  |            | WILL
  |will
- |would
+
+would
+
  |            | SHALL
  |shall
- |should
+
+should
+
  |            | CAN
  |can
- |could
+
+could
+
  |            | MAY
  |may
  |might
  |            | MUST
  |must
  |            | OUGHT
- |ought
+
+ought
+
+           | COMPOUND FORMS, increasingly encountered nowadays in 'formal' writing
+              | pronoun + verb
+
+i'm
+you're
+he's
+she's
+it's
+we're
+they're
+i've
+you've
+we've
+they've
+i'd
+you'd
+he'd
+she'd
+we'd
+they'd
+i'll
+you'll
+he'll
+she'll
+we'll
+they'll
+
+              | verb + negation
+
+isn't
+aren't
+wasn't
+weren't
+hasn't
+haven't
+hadn't
+doesn't
+don't
+didn't
+
+              | auxiliary + negation
+
+won't
+wouldn't
+shan't
+shouldn't
+can't
+cannot
+couldn't
+mustn't
+
+             | miscellaneous forms
+
+let's
+
+              | rarer forms
+
+ | daren't needn't
+
+              | doubtful forms
+
+ | oughtn't mightn't
+
            | ARTICLES
 a
 an

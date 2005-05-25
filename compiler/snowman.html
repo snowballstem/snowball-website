@@ -876,11 +876,37 @@ Anywhere that whitespace can occur, there may also occur:
 <BR><BR>
 (d) &nbsp;<TT>stringdef m 'S'</TT>&nbsp; where &nbsp;<TT>m</TT>&nbsp; is sequence of characters not including
 whitespace and terminated with whitespace, and &nbsp;<TT>'S'</TT>&nbsp; is a literal string.
+
+<BR>&nbsp;<H2>12 Character representation</H2>
+
+In this description of Snowball, it is assumed that strings are composed of
+<I>characters</I>, and that characters can be defined numerically, but the numeric range
+of these characters is not defined. As implemented, three different schemes
+are supported. Characters can either be (<I>a</I>) bytes in the range 0 to 255,
+as in traditional C strings, or (<I>b</I>) byte pairs in the range 0 to 65535,
+as in Java strings, or (<I>c</I>) UTF-8 encoded bytes sequences in the range 0
+to 65535, so that a character may occupy 1, 2 or 3 bytes.
+
 <BR><BR>
 
+For case (<I>c</I>), we need to make a slight separation of the concept of
+<I>characters</I> into <I>symbols</I>, the units of text being represented, and
+<I>slots</I>, the units of space into which they map. (So in case (<I>a</I>), all
+slots are one byte; in case (<I>b</I>) all slots are two bytes.)
+<B><I>c</I></B> and <B><I>l</I></B> have numeric values the can be used in AEs (arithmetic
+expressions). These values count the number of slots. Similarly
+<TT>setmark</TT>, &nbsp;<TT>tomark</TT>&nbsp; and &nbsp;<TT>atmark</TT>&nbsp; are remembering and then using slot
+counts. &nbsp;<TT>size</TT>&nbsp; and &nbsp;<TT>sizeof</TT>&nbsp; measure string size
+in slots, not symbols. However, &nbsp;<TT>hop N</TT>&nbsp; moves <B><I>c</I></B> over &nbsp;<TT>N</TT>&nbsp; symbols,
+not &nbsp;<TT>N</TT>&nbsp; slots, and &nbsp;<TT>next</TT>&nbsp; is equivalent to &nbsp;<TT>hop 1</TT>.
 
+<BR><BR>
 
+So long as these simple distinctions are recognised, the same Snowball
+script can be compiled to work with any of the three encoding schemes.
 
+<BR><BR>
+<BR><BR>
 </TR>
 
 <TR><TD BGCOLOR="lightblue">
