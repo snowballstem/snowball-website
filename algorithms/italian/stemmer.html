@@ -283,7 +283,7 @@ Step 1: Standard suffix removal
 <DL>
     <DT><B><I>anza  &nbsp;  anze  &nbsp;  ico  &nbsp;  ici  &nbsp;  ica  &nbsp;  ice  &nbsp;  iche  &nbsp;  ichi  &nbsp;  ismo  &nbsp;  ismi  &nbsp;  abile  &nbsp;  abili  &nbsp;  ibile  &nbsp;  ibili
      &nbsp;  ista  &nbsp;  iste  &nbsp;  isti  &nbsp;  ist&agrave;  &nbsp;  ist&egrave;  &nbsp;  ist&igrave;  &nbsp;  oso  &nbsp;  osi  &nbsp;  osa  &nbsp;  ose  &nbsp;  mente
-     &nbsp;  atrice  &nbsp;  atrici</I></B>
+     &nbsp;  atrice  &nbsp;  atrici  &nbsp;  ante  &nbsp;  anti</I></B>
         <DD>delete if in <I>R</I>2
 <BR><BR>
     <DT><B><I>azione  &nbsp;  azioni  &nbsp;  atore  &nbsp;  atori</I></B>
@@ -472,6 +472,7 @@ backwardmode (
             'ismi' 'abile' 'abili' 'ibile' 'ibili' 'ista' 'iste' 'isti'
             'ist{a`}' 'ist{e`}' 'ist{i`}' 'oso' 'osi' 'osa' 'ose' 'mente'
             'atrice' 'atrici'
+            'ante' 'anti' // Note 1
                ( R2 delete )
             'azione' 'azioni' 'atore' 'atori'
                ( R2 delete
@@ -552,6 +553,11 @@ define stem as (
     )
     do postlude
 )
+
+/*
+    Note 1: additions of 15 Jun 2005
+*/
+
 </DL>
 </PRE>
 </TABLE>

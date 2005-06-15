@@ -253,7 +253,7 @@ And the two nasalised vowel forms,
 should be treated as a vowel followed by a consonant.
 <BR><BR>
 <B><I>&atilde;</I></B> and <B><I>&otilde;</I></B> are therefore replaced by <B><I>a~</I></B> and <B><I>o~</I></B> in the word, where <B><I>~</I></B> is a
-separate character to be treated as a consonant. And then -
+separate character to be treated as a consonant. And then &#x2014;
 <BR><BR>
 <I>R</I>2
 (see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2)
@@ -269,9 +269,11 @@ Step 1: Standard suffix removal
     action indicated.
 <BR><BR>
 <DL>
-    <DT><B><I>eza  &nbsp;  ezas  &nbsp;  ico  &nbsp;  ica  &nbsp;  icos  &nbsp;  icas  &nbsp;  ismo  &nbsp;  ismos  &nbsp;  &aacute;vel  &nbsp;  &iacute;vel  &nbsp;  ista  &nbsp;  istas  &nbsp;  oso  &nbsp;  osa
-    osos  &nbsp;  osas  &nbsp;  amento  &nbsp;  amentos  &nbsp;  imento  &nbsp;  imentos
-    adora  &nbsp;  ador  &nbsp;  a&ccedil;a~o  &nbsp;  adoras  &nbsp;  adores  &nbsp;  a&ccedil;o~es</I></B>
+    <DT><B><I>eza  &nbsp;  ezas  &nbsp;  ico  &nbsp;  ica  &nbsp;  icos  &nbsp;  icas  &nbsp;  ismo  &nbsp;  ismos  &nbsp;
+    &aacute;vel  &nbsp;  &iacute;vel  &nbsp;  ista  &nbsp;  istas  &nbsp;  oso  &nbsp;  osa  &nbsp;
+    osos  &nbsp;  osas  &nbsp;  amento  &nbsp;  amentos  &nbsp;  imento  &nbsp;  imentos  &nbsp;
+    adora  &nbsp;  ador  &nbsp;  a&ccedil;a~o  &nbsp;  adoras  &nbsp;  adores  &nbsp;  a&ccedil;o~es  &nbsp;
+    ante  &nbsp;  antes  &nbsp;  &acirc;ncia</I></B>
         <DD>delete if in <I>R</I>2
 <BR><BR>
     <DT><B><I>log&iacute;a  &nbsp;  log&iacute;as</I></B>
@@ -291,7 +293,7 @@ Step 1: Standard suffix removal
 <BR><BR>
     <DT><B><I>mente</I></B>
         <DD>delete if in <I>R</I>2
-        <DD>if preceded by <B><I>avel</I></B> or <B><I>&iacute;vel</I></B>, delete if in <I>R</I>2
+        <DD>if preceded by <B><I>ante</I></B>, <B><I>avel</I></B> or <B><I>&iacute;vel</I></B>, delete if in <I>R</I>2
 <BR><BR>
     <DT><B><I>idade  &nbsp;  idades</I></B>
         <DD>delete if in <I>R</I>2
@@ -458,6 +460,7 @@ backwardmode (
 
            'adora' 'ador' 'a{c,}a~o'
            'adoras' 'adores' 'a{c,}o~es'  // no -ic test
+           'ante' 'antes' '{a^}ncia' // Note 1
             (
                 R2 delete
             )
@@ -491,6 +494,7 @@ backwardmode (
                 R2 delete
                 try (
                     [substring] among(
+                        'ante' // Note 1
                         'avel'
                         '{i'}vel' (R2 delete)
                     )
@@ -580,6 +584,10 @@ define stem as (
     )
     do postlude
 )
+
+/*
+    Note 1: additions of 15 Jun 2005
+*/
 </DL>
 </PRE>
 </TABLE>

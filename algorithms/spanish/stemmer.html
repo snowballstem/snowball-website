@@ -293,7 +293,7 @@ Step 1: Standard suffix removal
     imientos</I></B>
         <DD>delete if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>adora  &nbsp;  ador  &nbsp;  aci&oacute;n  &nbsp;  adoras  &nbsp;  adores  &nbsp;  aciones</I></B>
+    <DT><B><I>adora  &nbsp;  ador  &nbsp;  aci&oacute;n  &nbsp;  adoras  &nbsp;  adores  &nbsp;  aciones  &nbsp;  ante  &nbsp;  antes  &nbsp;  ancia  &nbsp;  ancias</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>ic</I></B>, delete if in <I>R</I>2
 <BR><BR>
@@ -314,7 +314,7 @@ Step 1: Standard suffix removal
 <BR><BR>
     <DT><B><I>mente</I></B>
         <DD>delete if in <I>R</I>2
-        <DD>if preceded by <B><I>able</I></B> or <B><I>ible</I></B>, delete if in <I>R</I>2
+        <DD>if preceded by <B><I>ante</I></B>, <B><I>able</I></B> or <B><I>ible</I></B>, delete if in <I>R</I>2
 <BR><BR>
     <DT><B><I>idad  &nbsp;  idades</I></B>
         <DD>delete if in <I>R</I>2
@@ -493,6 +493,7 @@ backwardmode (
             )
             'adora' 'ador' 'aci{o'}n'
             'adoras' 'adores' 'aciones'
+            'ante' 'antes' 'ancia' 'ancias'// Note 1
             (
                 R2 delete
                 try ( ['ic'] R2 delete )
@@ -527,6 +528,7 @@ backwardmode (
                 R2 delete
                 try (
                     [substring] among(
+                        'ante' // Note 1
                         'able'
                         'ible' (R2 delete)
                     )
@@ -615,6 +617,10 @@ define stem as (
     )
     do postlude
 )
+
+/*
+    Note 1: additions of 15 Jun 2005
+*/
 </DL>
 </PRE>
 </TABLE>
