@@ -13,7 +13,7 @@
 <TR><TD><A HREF="../.."> Snowball main page</A>
 <TR><TD><A HREF="stem.sbl">    The stemmer in Snowball</A>
 <TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      - and its header</A>
+<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
 <TR><TD><A HREF="voc.txt">     Sample Norwegian vocabulary</A>
 <TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
 <TR><TD><A HREF="diffs.txt">   Vocabulary + stemmed equivalent in two columns</A>
@@ -23,7 +23,7 @@
 </TABLE></DL>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="stem-MS-DOS-Latin-I.sbl">    The stemmer in Snowball - MS DOS Latin I encodings</A>
+<TR><TD><A HREF="stem-MS-DOS-Latin-I.sbl">    The stemmer in Snowball &#x2014; MS DOS Latin I encodings</A>
 </TABLE></DL>
 
 
@@ -254,9 +254,10 @@ The following letters are vowels:
 <BR><BR>
 Define a valid <B><I>s</I></B>-ending as one of
 <DL><DD>
-<B><I>b</I></B>  &nbsp;  <B><I>c</I></B>  &nbsp;  <B><I>d</I></B>  &nbsp;  <B><I>f</I></B>  &nbsp;  <B><I>g</I></B>  &nbsp;  <B><I>h</I></B>  &nbsp;  <B><I>j</I></B>  &nbsp;  <B><I>k</I></B>  &nbsp;
+<B><I>b</I></B>  &nbsp;  <B><I>c</I></B>  &nbsp;  <B><I>d</I></B>  &nbsp;  <B><I>f</I></B>  &nbsp;  <B><I>g</I></B>  &nbsp;  <B><I>h</I></B>  &nbsp;  <B><I>j</I></B>  &nbsp;
 <B><I>l</I></B>  &nbsp;  <B><I>m</I></B>  &nbsp;  <B><I>n</I></B>  &nbsp;  <B><I>o</I></B>  &nbsp;  <B><I>p</I></B>  &nbsp;  <B><I>r</I></B>  &nbsp;  <B><I>t</I></B>  &nbsp;  <B><I>v</I></B>  &nbsp;
-<B><I>y</I></B>  &nbsp;  <B><I>z</I></B>
+<B><I>y</I></B>  &nbsp;  <B><I>z</I></B>,
+<BR> or <B><I>k</I></B> not preceded by a vowel.
 </DL>
 Do each of steps 1, 2 and 3.
 <BR><BR>
@@ -318,7 +319,7 @@ routines (
 
 externals ( stem )
 
-integers ( p1 )
+integers ( p1 x )
 
 groupings ( v s_ending )
 
@@ -332,14 +333,15 @@ stringdef o/   hex 'F8'
 
 define v 'aeiouy{ae}{ao}{o/}'
 
-define s_ending  'bcdfghjklmnoprtvyz'
+define s_ending  'bcdfghjlmnoprtvyz'
 
 define mark_regions as (
 
     $p1 = limit
 
-    goto v gopast non-v  setmark p1
-    try ( $p1 < 3  $p1 = 3 )
+    test ( hop 3 setmark x )
+    goto v  gopast non-v  setmark p1
+    try ( $p1 < x  $p1 = x )
 )
 
 backwardmode (
@@ -353,7 +355,7 @@ backwardmode (
             'hetens' 'ers' 'ets' 'et' 'het' 'ast'
                 (delete)
             's'
-                (s_ending delete)
+                (s_ending or ('k' non-v) delete)
             'erte' 'ert'
                 (<-'er')
         )

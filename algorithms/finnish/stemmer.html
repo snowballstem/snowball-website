@@ -14,7 +14,7 @@
 <TR><TD><A HREF="../.."> Snowball main page</A>
 <TR><TD><A HREF="stem.sbl">    The stemmer in Snowball</A>
 <TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      - and its header</A>
+<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
 <TR><TD><A HREF="voc.txt">     Sample Finnish vocabulary</A>
 <TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
 <TR><TD><A HREF="diffs.txt">   Vocabulary + stemmed equivalent</A>
@@ -415,7 +415,7 @@ routines (
            R2
            particle_etc possessive
            LONG VI
-           case
+           case_ending
            i_plural
            t_plural
            other_endings
@@ -427,7 +427,7 @@ externals ( stem )
 integers ( p1 p2 )
 strings ( x )
 booleans ( ending_removed )
-groupings ( AEI v V particle_end )
+groupings ( AEI V1 V2 particle_end )
 
 stringescapes {}
 
@@ -437,17 +437,17 @@ stringdef a"   hex 'E4'
 stringdef o"   hex 'F6'
 
 define AEI 'a{a"}ei'
-define v 'aeiouy{a"}{o"}'
-define V 'aeiou{a"}{o"}'
-define particle_end v + 'nt'
+define V1 'aeiouy{a"}{o"}'
+define V2 'aeiou{a"}{o"}'
+define particle_end V1 + 'nt'
 
 define mark_regions as (
 
     $p1 = limit
     $p2 = limit
 
-    goto v  gopast non-v  setmark p1
-    goto v  gopast non-v  setmark p2
+    goto V1  gopast non-V1  setmark p1
+    goto V1  gopast non-V1  setmark p2
 )
 
 backwardmode (
@@ -493,9 +493,9 @@ backwardmode (
     define LONG as
         among('aa' 'ee' 'ii' 'oo' 'uu' '{a"}{a"}' '{o"}{o"}')
 
-    define VI as ('i' V)
+    define VI as ('i' V2)
 
-    define case as (
+    define case_ending as (
         setlimit tomark p1 for ([substring])
         among(
             'han'    ('a')          //-.
@@ -519,7 +519,7 @@ backwardmode (
                 )
 
             'a' '{a"}'              //-.
-                     (v non-v)      // |
+                     (V1 non-V1)    // |
             'tta' 'tt{a"}'          // Partitive  [32]
                      ('e')          // |
             'ta' 't{a"}'            //-'
@@ -562,7 +562,7 @@ backwardmode (
     )
     define t_plural as (            // [26]
         setlimit tomark p1 for (
-            ['t'] test v
+            ['t'] test V1
             delete
         )
         setlimit tomark p2 for ([substring])
@@ -575,11 +575,11 @@ backwardmode (
     define tidy as (
         setlimit tomark p1 for (
             do ( LONG and ([next] delete ) ) // undouble vowel
-            do ( [AEI] non-v delete ) // remove trailing a, a", e, i
+            do ( [AEI] non-V1 delete ) // remove trailing a, a", e, i
             do ( ['j'] 'o' or 'u' delete )
             do ( ['o'] 'j' delete )
         )
-        goto non-v [next] -> x  x delete // undouble consonant
+        goto non-V1 [next] -> x  x delete // undouble consonant
     )
 )
 
@@ -590,7 +590,7 @@ define stem as (
     backwards (
         do particle_etc
         do possessive
-        do case
+        do case_ending
         do other_endings
         (ending_removed do i_plural) or do t_plural
         do tidy
