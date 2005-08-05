@@ -269,7 +269,7 @@ been made
 
 <BR><BR>
 But it is hardly surprising that after twenty years of use of the Porter
-stemmer, certain improvements do suggest themselves, and a new algorithm
+stemmer, certain improvements did suggest themselves, and a new algorithm
 for English is therefore offered here. (It could be called the &#8216;Porter2&#8217;
 stemmer to distinguish it from the Porter stemmer, from which it derives.)
 The changes are not so very extensive: (1) terminating <B><I>y</I></B> is changed to
@@ -280,6 +280,10 @@ December 2001 there were two further adjustments: (5) Steps 5<I>a</I> and 5<I>b<
 of the old Porter stemmer were combined into a single step. This means
 that undoubling final <B><I>ll</I></B> is not done with removal of final <B><I>e</I></B>. (6)
 In Step 3 <B><I>ative</I></B> is removed only when in region <I>R</I>2.
+(7)
+In July
+2005 a small adjustment was made (including a new step 0) to handle
+apostrophe.
 
 <BR><BR>
 
@@ -327,15 +331,30 @@ the word if there is no such non-vowel.
 end of the word if there is no such non-vowel.
 (See <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
 <BR><BR>
+An apostrophe (<B><I>'</I></B>) may be regarded as a letter.
+(See <A HREF="../../texts/apostrophe.html"> note</A> on apostrophes in English.)
+<BR><BR>
 If the word has two letters or less, leave it as it is.
 <BR><BR>
 Otherwise, do each of the following operations,
+<BR><BR>
+Remove initial <B><I>'</I></B>, if present. <TT><FONT COLOR=BLUE>+</FONT></TT> Then,
 <BR><BR>
 Set initial <B><I>y</I></B>, or <B><I>y</I></B> after a vowel, to <B><I>Y</I></B>, and then establish the regions
 <I>R</I>1 and <I>R</I>2.
 (See <A HREF="../../texts/vowelmarking.html"> note</A> on vowel marking.)
 <BR><BR>
 
+Step 0: <TT><FONT COLOR=BLUE>+</FONT></TT>
+<DL><DD>
+    Search for the longest among the suffixes,
+<BR><BR><DL>
+    <DT><B><I>'</I></B>
+    <DT><B><I>'s</I></B>
+    <DT><B><I>'s'</I></B>
+        <DD>and remove if found.
+</DL>
+</DL>
 Step 1<I>a</I>:
 <DL><DD>
     Search for the longest among the following suffixes, and perform the
@@ -717,6 +736,8 @@ externals ( stem )
 
 groupings ( v v_WXY valid_LI )
 
+stringescapes {}
+
 define v        'aeiouy'
 define v_WXY    v + 'wxY'
 
@@ -724,6 +745,7 @@ define valid_LI 'cdeghkmnrt'
 
 define prelude as (
     unset Y_found
+    do ( ['{'}'] delete)
     do ( ['y'] v <-'Y' set Y_found)
     do repeat(goto (v ['y']) <-'Y' set Y_found)
 )
@@ -754,6 +776,12 @@ backwardmode (
     define R2 as $p2 <= cursor
 
     define Step_1a as (
+        try (
+            [substring] among (
+                '{'}' '{'}s' '{'}s{'}'
+                       (delete)
+            )
+        )
         [substring] among (
             'sses' (<-'ss')
             'ied' 'ies'
