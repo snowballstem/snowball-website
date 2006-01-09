@@ -365,7 +365,7 @@ Step 1<I>a</I>:
         <DD>replace by <B><I>ss</I></B>
 <BR><BR>
     <DT><B><I>ied</I></B><TT><FONT COLOR=BLUE>+</FONT></TT>  &nbsp;  <B><I>ies</I></B><TT><FONT COLOR=BLUE>*</FONT></TT>
-        <DD>replace by <B><I>ie</I></B> if preceded by just one letter, otherwise by <B><I>i</I></B>
+        <DD>replace by <B><I>i</I></B> if preceded by more than one letter, otherwise by <B><I>ie</I></B>
         (so <I>ties</I> <TT>-&gt;</TT> <I>tie</I>, <I>cries</I> <TT>-&gt;</TT> <I>cri</I>)
 <BR><BR>
     <DT><B><I>s</I></B>
@@ -746,7 +746,7 @@ define valid_LI 'cdeghkmnrt'
 define prelude as (
     unset Y_found
     do ( ['{'}'] delete)
-    do ( ['y'] v <-'Y' set Y_found)
+    do ( ['y'] <-'Y' set Y_found)
     do repeat(goto (v ['y']) <-'Y' set Y_found)
 )
 
@@ -785,7 +785,7 @@ backwardmode (
         [substring] among (
             'sses' (<-'ss')
             'ied' 'ies'
-                   ((next atlimit <-'ie') or <-'i')
+                   ((hop 2 <-'i') or <-'ie')
             's'    (next gopast v delete)
             'us' 'ss'
         )
@@ -924,9 +924,8 @@ define postlude as (Y_found  repeat(goto (['Y']) <-'y'))
 
 define stem as (
 
-    exception1 or (
-
-        test hop 3
+    exception1 or
+    not hop 3 or (
         do prelude
         do mark_regions
         backwards (
