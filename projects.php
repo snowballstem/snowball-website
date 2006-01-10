@@ -13,6 +13,11 @@ This page lists projects which make use of snowball, or are related in some way.
 A python interface to snowball.
 </p>
 
+<h2><a href="http://weongyo.org/project/PySnowballStemmer/PySnowballStemmer-0.0.1.tar.gz">PySnowballStemmer</a></h2>
+Another python interface to snowball.  (If the above link fails, this is also available, but unsupported, from our website
+<a href="contrib/PySnowballStemmer-0.0.1.tar.gz">here</a>.)
+</p>
+
 <h2><a href="https://sourceforge.net/projects/porterstemmers/">C++ stemmers</a></h2>
 A reimplementation of the snowball stemming algorithms in C++.
 </p>
