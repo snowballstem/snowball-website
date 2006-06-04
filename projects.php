@@ -18,6 +18,10 @@ Another python interface to snowball.  (If the above link fails, this is also av
 <a href="contrib/PySnowballStemmer-0.0.1.tar.gz">here</a>.)
 </p>
 
+<h2><a href="http://wiki.tcl.tk/8699">Tclsnowball</a></h2>
+A simple Tcl binding to some of the stemmers of the snowball project.
+</p>
+
 <h2><a href="https://sourceforge.net/projects/porterstemmers/">C++ stemmers</a></h2>
 A reimplementation of the snowball stemming algorithms in C++.
 </p>
