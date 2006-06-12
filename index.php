@@ -10,6 +10,10 @@
 <h2>Major events</h2>
 
 <p>
+<b>June 2006 - Supported and updated Python bindings</b>
+</p>
+
+<p>
 <b>May 2005 - UTF-8 Unicode support</b>
 </p>
 

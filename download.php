@@ -55,6 +55,22 @@ us and we will add a link to your work from this site.
 </td></tr>
 <tr><td>
 <p>
+<h2>Python</h2>
+
+<p>
+We provide and support python wrappers for Snowball.  The latest version can
+be downloaded from <a
+href="http://snowball.tartarus.org/wrappers/PyStemmer-1.0.tar.gz">our wrappers page</a>.
+</p>
+
+<p>
+Some wrappers for other languages are also available on the wrappers page, but
+are not supported by us. (Though if you ask on the mailing list for help, someone else might be able to assist you.)
+</p>
+
+</td></tr>
+<tr><td>
+<p>
 <h2>Subversion</h2>
 
 <p>
