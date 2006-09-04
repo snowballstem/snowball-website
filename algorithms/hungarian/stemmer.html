@@ -6,6 +6,9 @@
 <BODY BGCOLOR=WHITE>
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
 <H1 ALIGN=CENTER>The Hungarian stemming algorithm</H1>
+<BR><BR>
+<CENTER>Contributed by <A HREF="mailto:atordai@science.uval.nl">Anna Tordai</A></SUP> University of Amsterdam
+</CENTER>
 
 <TR><TD>
 <BR>&nbsp;<H2>Links to resources</H2>
@@ -21,6 +24,10 @@
 <TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
 <BR><BR>
 <TR><TD><A HREF="stop.txt">    A stop word list</A>
+<BR><BR>
+<TR><TD>The <A HREF="http://ilps.science.uva.nl/Resources/HungarianStemmer/">
+isla, Amsterdam</A> page for the Hungarian stemmer
+
 </TABLE></DL>
 
 
@@ -237,12 +244,188 @@ mulat<BR>
 
 
 
-Placeholder page
-
+This stemming algorithm removes the inflectional suffixes of nouns. Nouns are
+inflected for case, person/possession and number.
 <BR><BR>
+Letters in Hungarian include the following accented forms,
+<DL><DD>
+    <B><I>&aacute;  &nbsp;  &eacute;  &nbsp;  &iacute;  &nbsp;  &oacute;  &nbsp;  &ouml;  &nbsp;  &otilde;  &nbsp;  &uacute;  &nbsp;  &uuml;  &nbsp;  &ucirc;</I></B>
+</DL>
+The following letters are vowels:
+<DL><DD>
+    <B><I>a  &nbsp;  &aacute;  &nbsp;  e  &nbsp;  &eacute;  &nbsp;  i  &nbsp;  &iacute;  &nbsp;  o  &nbsp;  &oacute;  &nbsp;  &ouml;  &nbsp;  &otilde;  &nbsp;  u  &nbsp;  &uacute;  &nbsp;
+    &uuml;  &nbsp;  &ucirc;</I></B> </DL>
 
-The Hungarian stemmer was provided by Anna Tordai of .... univerity
+The following letters are <I>digraphs</I>:
+<DL><DD>
+    <B><I>cs  &nbsp;  dz  &nbsp;  dzs  &nbsp;  gy  &nbsp;  ly  &nbsp;  ny  &nbsp;  ty  &nbsp;  zs</I></B>
+</DL>
+A <I>double consonant</I> is defined as:
+<DL><DD>
+    <B><I>bb  &nbsp;  cc  &nbsp;  ccs  &nbsp;  dd  &nbsp;  ff  &nbsp;  gg  &nbsp;  ggy  &nbsp;  jj  &nbsp;  kk  &nbsp;  ll  &nbsp;  lly  &nbsp;  mm
+     &nbsp;  nn  &nbsp;  nny  &nbsp;  pp  &nbsp;  rr  &nbsp;  ss  &nbsp;  ssz  &nbsp;  tt  &nbsp;  tty  &nbsp;  vv  &nbsp;  zz  &nbsp;  zzs</I></B>
+</DL>
+If the word begins with a vowel, <I>R</I>1 is defined as the region after the
+first consonant or digraph in the word. If the word begins with a consonant, it
+is defined as the region after the first vowel in the word. If the word does
+not contain both a vowel and consonant, <I>R</I>1 is the null regian at the end of
+the word.
+<BR><BR>
+For example:
 
+<BR><PRE>
+    t &oacute; b a n           consonant-vowel
+       |.....|          R1 is 'a b a n'
+
+    a b l a k a n       vowel-consonant
+       |.........|      R1 is 'l a k a n'
+
+    a c s o n y         vowel-digraph
+         |.....|        R1 is 'o n y'
+
+    c v s
+     --->|<---          null R1 region
+</PRE>
+&#8216;Delete if in <I>R</I>1&#8217; means that the suffix should be removed if it is in
+region <I>R</I>1 but not if it is outside.
+<BR><BR>
+Do steps 1 to 9 in turn
+<BR><BR>
+Step 1: Remove instrumental case
+<DL><DD>
+    Search for one of the following suffixes and perform the action indicated.
+<BR><BR>
+<DL>
+    <DT><B><I>al  &nbsp;  el</I></B>
+    <DD>delete if in <I>R</I>1 and preceded by a double consonant, and
+    remove one of the double consonants. (In the case of consonant plus digraph, such as <B><I>ccs</I></B>, remove a <B><I>c</I></B>).
+</DL>
+</DL>
+Step 2: Remove frequent cases
+<DL><DD>
+    Search for the longest among the following suffixes and perform the action indicated.
+<BR><BR>
+<DL>
+    <DT><B><I>ban  &nbsp;  ben  &nbsp;  ba  &nbsp;  be  &nbsp;  ra  &nbsp;  re  &nbsp;  nak  &nbsp;  nek  &nbsp;  val  &nbsp;  vel  &nbsp;  t&oacute;l
+     &nbsp;  t&otilde;l  &nbsp;  r&oacute;l  &nbsp;  r&otilde;l  &nbsp;  b&oacute;l  &nbsp;  b&otilde;l  &nbsp;  hoz  &nbsp;  hez  &nbsp;  h&ouml;z  &nbsp;
+    n&aacute;l  &nbsp;  n&eacute;l  &nbsp;  ig  &nbsp;  at  &nbsp;  et  &nbsp;  ot  &nbsp;  &ouml;t  &nbsp;  &eacute;rt  &nbsp;  k&eacute;pp  &nbsp;
+    k&eacute;ppen  &nbsp;  kor  &nbsp;  ul  &nbsp;  &uuml;l  &nbsp;  v&aacute;  &nbsp;  v&eacute;  &nbsp;  onk&eacute;nt  &nbsp;  enk&eacute;nt  &nbsp;
+    ank&eacute;nt  &nbsp;  k&eacute;nt  &nbsp;  en  &nbsp;  on  &nbsp;  an  &nbsp;  &ouml;n  &nbsp;  n  &nbsp;  t</I></B>
+
+
+    <DD>delete if in <I>R</I>1
+    <DD>if the remaining word ends <B><I>&aacute;</I></B> replace by <B><I>a</I></B>
+    <DD>if the remaining word ends <B><I>&eacute;</I></B> replace by <B><I>e</I></B>
+</DL>
+</DL>
+Step 3: Remove special cases:
+<DL><DD>
+    Search for the longest among the following suffixes and perform the action
+    indicated.
+<BR><BR>
+<DL>
+    <DT><B><I>&aacute;n  &nbsp;  &aacute;nk&eacute;nt</I></B>
+    <DD>replace by <B><I>a</I></B> if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&eacute;n</I></B>
+    <DD>replace by e if in <I>R</I>1
+</DL>
+</DL>
+Step 4: Remove other cases:
+<DL><DD>
+    Search for the longest among the following suffixes and perform the action indicated
+<BR><BR>
+<DL>
+    <DT><B><I>astul  &nbsp;  est&uuml;l  &nbsp;  stul  &nbsp;  st&uuml;l</I></B>
+    <DD>delete if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&aacute;stul</I></B>
+    <DD>replace with <B><I>a</I></B> if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&eacute;st&uuml;l</I></B>
+    <DD>replace with <B><I>e</I></B> if in <I>R</I>1
+</DL>
+</DL>
+Step 5: Remove factive case
+<DL><DD>
+    Search for one of the following suffixes and perform the action indicated.
+<BR><BR>
+<DL>
+    <DT><B><I>&aacute;  &nbsp;  &eacute;</I></B>
+    <DD>delete if in <I>R</I>1 and preceded by a double consonant, and
+    remove one of the double consonants (as in step 1).
+</DL>
+</DL>
+Step 6: Remove owned
+<DL><DD>
+    Search for the longest among the following suffixes and perform the action
+    indicated.
+<BR><BR>
+<DL>
+    <DT><B><I>ok&eacute;  &nbsp;  &ouml;k&eacute;  &nbsp;  ak&eacute;  &nbsp;  ek&eacute;  &nbsp;  k&eacute;  &nbsp;  &eacute;i  &nbsp;  &eacute;</I></B>
+    <DD>delete if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&aacute;k&eacute;  &nbsp;  &aacute;&eacute;i</I></B>
+    <DD>replace with <B><I>a</I></B> if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&eacute;k&eacute;  &nbsp;  &eacute;&eacute;i  &nbsp;  &eacute;&eacute;</I></B>
+    <DD>replace with <B><I>e</I></B> if in <I>R</I>1
+</DL>
+</DL>
+Step 7: Remove singular owner suffixes
+<DL><DD>
+    Search for the longest among the following suffixes and perform the action
+    indicated.
+<BR><BR>
+<DL>
+    <DT><B><I>&uuml;nk  &nbsp;  unk  &nbsp;  nk  &nbsp;  juk  &nbsp;  j&uuml;k  &nbsp;  uk  &nbsp;  &uuml;k  &nbsp;  em  &nbsp;  om  &nbsp;  am  &nbsp;  m
+     &nbsp;  od  &nbsp;  ed  &nbsp;  ad  &nbsp;  &ouml;d  &nbsp;  d  &nbsp;  ja  &nbsp;  je  &nbsp;  a  &nbsp;  e o</I></B>
+    <DD>delete if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&aacute;nk &aacute;juk &aacute;m &aacute;d &aacute;</I></B>
+    <DD>replace with <B><I>a</I></B> if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&eacute;nk &eacute;j&uuml;k &eacute;m &eacute;d &eacute;</I></B>
+    <DD>replace with <B><I>e</I></B> if in <I>R</I>1
+</DL>
+</DL>
+Step 8: Remove plural owner suffixes
+<DL><DD>
+    Search for the longest among the following suffixes and perform the action
+    indicated.
+<BR><BR>
+<DL>
+    <DT><B><I>jaim  &nbsp;  jeim  &nbsp;  aim  &nbsp;  eim  &nbsp;  im  &nbsp;  jaid  &nbsp;  jeid  &nbsp;  aid  &nbsp;  eid  &nbsp;  id  &nbsp;
+    jai  &nbsp;  jei  &nbsp;  ai  &nbsp;  ei  &nbsp;  i  &nbsp;  jaink  &nbsp;  jeink  &nbsp;  eink  &nbsp;  aink  &nbsp;  ink  &nbsp;
+    jaitok  &nbsp;  jeitek  &nbsp;  aitok  &nbsp;  eitek  &nbsp;  itek  &nbsp;  jeik  &nbsp;  jaik  &nbsp;  aik  &nbsp;  eik  &nbsp;
+    ik</I></B>
+
+    <DD>delete if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&aacute;im  &nbsp;  &aacute;id  &nbsp;  &aacute;i  &nbsp;  &aacute;ink  &nbsp;  &aacute;itok  &nbsp;  &aacute;ik</I></B>
+    <DD>replace with <B><I>a</I></B> if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&eacute;im  &nbsp;  &eacute;id  &nbsp;    &nbsp;  &eacute;i  &nbsp;  &eacute;ink  &nbsp;  &eacute;itek  &nbsp;   &eacute;ik</I></B>
+    <DD>replace with <B><I>e</I></B> if in <I>R</I>1
+</DL>
+</DL>
+Step 9: Remove plural suffixes
+<DL><DD>
+    Search for the longest among the following suffixes and perform the action
+    indicated.
+<BR><BR>
+<DL>
+    <DT><B><I>&aacute;k</I></B>
+    <DD>replace with <B><I>a</I></B> if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&eacute;k</I></B>
+    <DD>replace with <B><I>e</I></B> if in <I>R</I>1
+<BR><BR>
+    <DT><B><I>&ouml;k  &nbsp;  ok  &nbsp;  ek  &nbsp;  ak  &nbsp;  k</I></B>
+    <DD>delete if in <I>R</I>1
+</DL>
+</DL>
+<BR><BR>
 
 
 </TR>
