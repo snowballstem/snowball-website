@@ -10,7 +10,12 @@
 <h2>Major events</h2>
 
 <p>
-<b>June 2006 - Supported and updated Python bindings</b>
+<b>Sep 2006 - Hungarian stemmer</b>
+Contributed by Anna Tordai
+</p>
+
+<p>
+<b>Jun 2006 - Supported and updated Python bindings</b>
 </p>
 
 <p>
@@ -19,11 +24,11 @@
 
 
 <p>
-<b>September 2002 - Finnish stemmer</b>
+<b>Sep 2002 - Finnish stemmer</b>
 </p>
 
 <p>
-<b>July 2002 - ISO Latin I as default</b>
+<b>Jul 2002 - ISO Latin I as default</b>
 <br>
 The use of MS DOS Latin I is now history, but the old versions of the
 Snowball stemmers are still accessible on the site.
