@@ -36,7 +36,7 @@ function displayMenu()
 ?>
 <br>
 
-<a href="http://cvs.tartarus.org/snowball/">Browse CVS</a><br>
+<a href="http://svn.tartarus.org/?root=Snowball">Browse SVN</a><br>
 <br>
 
 <form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
