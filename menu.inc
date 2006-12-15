@@ -89,7 +89,7 @@ Last modified on <?php
   global $SCRIPT_FILENAME;
   echo date('r', filemtime($SCRIPT_FILENAME));
 ?>.<br>
-<a href="mailto:snowball-discuss@lists.tartarus.org">Write to our mailing list</a> if you have comments or questions about the project.  Note that this mailing list will reject postings from non-subscribers (due to the immense amount of spam received otherwise).
+<a href="mailto:snowball-discuss@lists.tartarus.org">Write to our mailing list</a> if you have comments or questions about the project.  Note that this mailing list will reject postings from non-subscribers (due to the immense amount of spam received otherwise).  The list is fairly low-traffic, but if you don't wish to receive messages (but wish to be able to post), you can disable sending of messages in the mailing list options after subscribing.
 </address>
 </body>
 </html>
