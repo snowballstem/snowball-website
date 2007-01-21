@@ -10,6 +10,11 @@
 <h2>Major events</h2>
 
 <p>
+<b>Jan 2007 - Turkish stemmer</b>
+Contributed by Evren (Kapusuz) Cilden
+</p>
+
+<p>
 <b>Sep 2006 - Hungarian stemmer</b>
 Contributed by Anna Tordai
 </p>

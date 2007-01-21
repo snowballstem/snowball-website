@@ -4,7 +4,7 @@
 ?>
 <TR><TD>
 <p>
-Snowball, and all of the current stemming algorithms were written by
+Snowball, and most of the current stemming algorithms were written by
 Dr Martin Porter, who also prepared the material for the Website.
 The Snowball to Java codegenerator, and supporting Java libraries, were
 contributed by Richard Boulton.
@@ -33,7 +33,19 @@ Various emailers have helped improve the stemmers with their many suggestions
 and comments. We must especially mention Andrei Aksyonoff and
 Oleg Bartunov (Russian), Steve Tolkin and Wendy Reetz (English), and Fred Brault (French).
 Blake Madden found a number of elusive errors in the stemmer descriptions.
+</p>
 
+<p>
+Anna Tordai has provided the Hungarian stemming algorithm.
+</p>
+
+<p>
+Evren (Kapusuz) Cilden has provided the Turkish stemming algorithm.
+</p>
+
+<p>
+Olly Betts has made a significant performance improvement to the C
+codegenerator.
 </p>
 
 <p>
