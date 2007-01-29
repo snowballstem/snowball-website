@@ -377,7 +377,7 @@ static int exception1(struct stemmer * z) {
             if (equals(z, "\04" "howe")) return TRUE;
             return FALSE;
         case 'a':
-            if (equals(z, "\04" "atlas")) return TRUE;
+            if (equals(z, "\05" "atlas")) return TRUE;
             if (equals(z, "\05" "andes")) return TRUE;
             return FALSE;
         case 'c':
