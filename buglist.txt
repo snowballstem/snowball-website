@@ -10,7 +10,7 @@ to when the bugs were fixed.)
      Symptom: '$ s ( C )' causing a compiler crash when s undeclared.
      Modules affected: analyser.c
      Notes: 's undeclared' was reported before the crash, so it looked
-         like a valid termination, albeit with trucated error messages.
+         like a valid termination, albeit with truncated error messages.
 
 
 
