@@ -1,5 +1,5 @@
 /* Stemmer for Turkish 
-	* author: Evren (Kapusuz) Çilden
+	* author: Evren (Kapusuz) Ã‡ilden
 	* email: evren.kapusuz at gmail.com
 	* version: 1.0 (15.01.2007)
 	
@@ -9,17 +9,17 @@
 	* more than one syllable word check
 	* (y,n,s,U) context check
 	* vowel harmony check
-	* last consonent check and conversion (b, c, d, ð to p, ç, t, k)
+	* last consonent check and conversion (b, c, d, ÄŸ to p, Ã§, t, k)
 	
 	* The stemming algorithm is based on the paper "An Affix Stripping 
-	* Morphological Analyzer for Turkish" by Gülþen Eryiðit and
-	* Eþref Adalý (Proceedings of the IAESTED International Conference
+	* Morphological Analyzer for Turkish" by GÃ¼lÅŸen EryiÄŸit and
+	* EÅŸref AdalÄ± (Proceedings of the IAESTED International Conference
 	* ARTIFICIAL INTELLIGENCE AND APPLICATIONS, February 16-18,2004,
 	* Innsbruck, Austria
 	
 	* Turkish is an agglutinative language and has a very rich morphological
 	* structure. In Turkish, you can form many different words from a single stem
-	* by appending a sequence of suffixes. Eg. The word "doktoruymuþsunuz" means
+	* by appending a sequence of suffixes. Eg. The word "doktoruymuÅŸsunuz" means
 	* "You had been the doctor of him". The stem of the word is "doktor" and it 
 	* takes three different suffixes -sU, -ymUs, and -sUnUz. The rules about
 	* the append order of suffixes can be clearly described as FSMs. 
@@ -176,7 +176,7 @@ backwardmode (
 	)
 	
 	define mark_lArI as (
-		among ('leri' 'larý')
+		among ('leri' 'lar{i'}')
 	)
 	
 	define mark_yU as (
