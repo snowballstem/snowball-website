@@ -10,6 +10,10 @@
 <h2>Major events</h2>
 
 <p>
+<b>Mar 2007 - Romanian stemmer</b>
+</p>
+
+<p>
 <b>Jan 2007 - Turkish stemmer</b>
 Contributed by Evren (Kapusuz) Cilden
 </p>
