@@ -54,5 +54,14 @@ owns and runs the machine that hosts the
 <a href="http://www.tartarus.org/">tartarus</a> website.
 </p>
 
+<p>
+We received two Romanian stemming algorithms in 2006, from Erwin
+Glockner, Doina Gliga and Marina Stegarescu, working at Heidelberg,
+and from Irina Tirdea in Bucharest. After some experimentation,
+the Snowball Romanian stemmer has been rewritten from scratch, but the
+basic list of verb endings with their separation into two groups with
+different removal criteria is taken from Irina Tirdea's stemmer.
+</p>
+
 </TD></TR>
 <?php displayFooter(); ?>
