@@ -1,6 +1,7 @@
 
 <HTML>
 <HEAD>
+<META http-equiv="content-type" content="text/html; charset=UTF-8">
 <TITLE>French stemming algorithm</TITLE></HEAD>
 <BODY BGCOLOR=WHITE>
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
@@ -61,7 +62,7 @@ continuait<BR>
 continuant<BR>
 continuation<BR>
 continue<BR>
-continu&eacute;<BR>
+continué<BR>
 continuel<BR>
 continuelle<BR>
 continuellement<BR>
@@ -72,7 +73,7 @@ continuera<BR>
 continuerait<BR>
 continueront<BR>
 continuez<BR>
-continuit&eacute;<BR>
+continuité<BR>
 continuons<BR>
 contorsions<BR>
 contour<BR>
@@ -81,10 +82,10 @@ contournant<BR>
 contourne<BR>
 contours<BR>
 contractait<BR>
-contract&eacute;<BR>
-contract&eacute;e<BR>
+contracté<BR>
+contractée<BR>
 contracter<BR>
-contract&eacute;s<BR>
+contractés<BR>
 contractions<BR>
 contradictoirement<BR>
 contradictoires<BR>
@@ -154,16 +155,16 @@ maire<BR>
 maires<BR>
 mairie<BR>
 mais<BR>
-ma&iuml;s<BR>
+maïs<BR>
 maison<BR>
 maisons<BR>
 maistre<BR>
 maitre<BR>
-ma&icirc;tre<BR>
-ma&icirc;tres<BR>
-ma&icirc;tresse<BR>
-ma&icirc;tresses<BR>
-majest&eacute;<BR>
+maître<BR>
+maîtres<BR>
+maîtresse<BR>
+maîtresses<BR>
+majesté<BR>
 majestueuse<BR>
 majestueusement<BR>
 majestueux<BR>
@@ -172,8 +173,8 @@ majeure<BR>
 major<BR>
 majordome<BR>
 majordomes<BR>
-majorit&eacute;<BR>
-majorit&eacute;s<BR>
+majorité<BR>
+majorités<BR>
 mal<BR>
 malacca<BR>
 malade<BR>
@@ -197,15 +198,15 @@ mair<BR>
 mair<BR>
 mair<BR>
 mais<BR>
-ma&iuml;<BR>
+maï<BR>
 maison<BR>
 maison<BR>
 maistr<BR>
 maitr<BR>
-ma&icirc;tr<BR>
-ma&icirc;tr<BR>
-ma&icirc;tress<BR>
-ma&icirc;tress<BR>
+maîtr<BR>
+maîtr<BR>
+maîtress<BR>
+maîtress<BR>
 majest<BR>
 majestu<BR>
 majestu<BR>
@@ -238,11 +239,11 @@ malad<BR>
 
 Letters in French include the following accented forms,
 <DL><DD>
-    <B><I>&acirc;  &nbsp;  &agrave;  &nbsp;  &ccedil;  &nbsp;  &euml;  &nbsp;  &eacute;  &nbsp;  &ecirc;  &nbsp;  &egrave;  &nbsp;  &iuml;  &nbsp;  &icirc;  &nbsp;  &ocirc;  &nbsp;  &ucirc;  &nbsp;  &ugrave;</I></B>
+    <B><I>â  &nbsp;  à  &nbsp;  ç  &nbsp;  ë  &nbsp;  é  &nbsp;  ê  &nbsp;  è  &nbsp;  ï  &nbsp;  î  &nbsp;  ô  &nbsp;  û  &nbsp;  ù</I></B>
 </DL>
 The following letters are vowels:
 <DL><DD>
-    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  &acirc;  &nbsp;  &agrave;  &nbsp;  &euml;  &nbsp;  &eacute;  &nbsp;  &ecirc;  &nbsp;  &egrave;  &nbsp;  &iuml;  &nbsp;  &icirc;  &nbsp;  &ocirc;  &nbsp;  &ucirc;  &nbsp;  &ugrave;</I></B>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  â  &nbsp;  à  &nbsp;  ë  &nbsp;  é  &nbsp;  ê  &nbsp;  è  &nbsp;  ï  &nbsp;  î  &nbsp;  ô  &nbsp;  û  &nbsp;  ù</I></B>
 </DL>
 Assume the word is in lower case. Then put into upper case <B><I>u</I></B> or <B><I>i</I></B> preceded
 and followed by a vowel, and <B><I>y</I></B> preceded or followed by a vowel. <B><I>u</I></B> after <B><I>q</I></B> is
@@ -258,7 +259,9 @@ marking.)
 <BR><BR>
 If the word begins with two vowels, <I>RV</I> is the region after the third
 letter, otherwise the region after the first vowel not at the beginning of
-the word, or the end of the word if these positions cannot be found.
+the word, or the end of the word if these positions cannot be found. (Exceptionally,
+<B><I>par</I></B>, <B><I>col</I></B> or <B><I>tap</I></B>, at the begining of a word is also taken to be
+the region <I>RV</I>.)
 <BR><BR>
 For example,
 <BR><PRE>
@@ -317,9 +320,9 @@ Step 1: Standard suffix removal
         <DD>if preceded by <B><I>eus</I></B>, delete if in <I>R</I>2, else replace by <B><I>eux</I></B>
           if in <I>R</I>1, otherwise,
         <DD>if preceded by <B><I>abl</I></B> or <B><I>iqU</I></B>, delete if in <I>R</I>2, otherwise,
-        <DD>if preceded by <B><I>i&egrave;r</I></B> or <B><I>I&egrave;r</I></B>, replace by <B><I>i</I></B> if in <I>RV</I>
+        <DD>if preceded by <B><I>ièr</I></B> or <B><I>Ièr</I></B>, replace by <B><I>i</I></B> if in <I>RV</I>
 <BR><BR>
-    <DT><B><I>it&eacute;  &nbsp;  it&eacute;s</I></B>
+    <DT><B><I>ité  &nbsp;  ités</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>abil</I></B>, delete if in <I>R</I>2, else replace by <B><I>abl</I></B>,
         otherwise,
@@ -365,7 +368,7 @@ Step 2<I>a</I>: Verb suffixes beginning <B><I>i</I></B>
     delete if preceded by a non-vowel.
 <BR><BR>
 <DL><DD>
-        <B><I>&icirc;mes  &nbsp;  &icirc;t  &nbsp;  &icirc;tes  &nbsp;  i  &nbsp;  ie  &nbsp;  ies  &nbsp;  ir  &nbsp;  ira  &nbsp;  irai  &nbsp;  iraIent  &nbsp;  irais  &nbsp;  irait  &nbsp;  iras
+        <B><I>îmes  &nbsp;  ît  &nbsp;  îtes  &nbsp;  i  &nbsp;  ie  &nbsp;  ies  &nbsp;  ir  &nbsp;  ira  &nbsp;  irai  &nbsp;  iraIent  &nbsp;  irais  &nbsp;  irait  &nbsp;  iras
          &nbsp;  irent  &nbsp;  irez  &nbsp;  iriez  &nbsp;  irions  &nbsp;  irons  &nbsp;  iront  &nbsp;  is  &nbsp;  issaIent  &nbsp;  issais  &nbsp;  issait
          &nbsp;  issant  &nbsp;  issante  &nbsp;  issantes  &nbsp;  issants  &nbsp;  isse  &nbsp;  issent  &nbsp;  isses  &nbsp;  issez  &nbsp;  issiez
          &nbsp;  issions  &nbsp;  issons  &nbsp;  it</I></B>
@@ -384,11 +387,11 @@ Step 2<I>b</I>: Other verb suffixes
     <DT><B><I>ions</I></B>
         <DD>delete if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>&eacute;  &nbsp;  &eacute;e  &nbsp;  &eacute;es  &nbsp;  &eacute;s  &nbsp;  &egrave;rent  &nbsp;  er  &nbsp;  era  &nbsp;  erai  &nbsp;  eraIent  &nbsp;  erais  &nbsp;  erait  &nbsp;  eras  &nbsp;  erez
+    <DT><B><I>é  &nbsp;  ée  &nbsp;  ées  &nbsp;  és  &nbsp;  èrent  &nbsp;  er  &nbsp;  era  &nbsp;  erai  &nbsp;  eraIent  &nbsp;  erais  &nbsp;  erait  &nbsp;  eras  &nbsp;  erez
      &nbsp;  eriez  &nbsp;  erions  &nbsp;  erons  &nbsp;  eront  &nbsp;  ez  &nbsp;  iez</I></B>
         <DD>delete
 <BR><BR>
-    <DT><B><I>&acirc;mes  &nbsp;  &acirc;t  &nbsp;  &acirc;tes  &nbsp;  a  &nbsp;  ai  &nbsp;  aIent  &nbsp;  ais  &nbsp;  ait  &nbsp;  ant  &nbsp;  ante  &nbsp;  antes  &nbsp;  ants  &nbsp;  as  &nbsp;  asse
+    <DT><B><I>âmes  &nbsp;  ât  &nbsp;  âtes  &nbsp;  a  &nbsp;  ai  &nbsp;  aIent  &nbsp;  ais  &nbsp;  ait  &nbsp;  ant  &nbsp;  ante  &nbsp;  antes  &nbsp;  ants  &nbsp;  as  &nbsp;  asse
      &nbsp;  assent  &nbsp;  asses  &nbsp;  assiez  &nbsp;  assions</I></B>
         <DD>delete
         <DD>if preceded by <B><I>e</I></B>, delete
@@ -402,14 +405,14 @@ do step 3
 <BR><BR>
 Step 3
 <DL><DD>
-    Replace final <B><I>Y</I></B> with <B><I>i</I></B> or final <B><I>&ccedil;</I></B> with <B><I>c</I></B>
+    Replace final <B><I>Y</I></B> with <B><I>i</I></B> or final <B><I>ç</I></B> with <B><I>c</I></B>
 </DL>
 Alternatively, if the last step to be obeyed did not alter the word, do
 step 4
 <BR><BR>
 Step 4: Residual suffix
 <DL><DD>
-    If the word ends <B><I>s</I></B>, not preceded by <B><I>a</I></B>, <B><I>i</I></B>, <B><I>o</I></B>, <B><I>u</I></B>, <B><I>&egrave;</I></B> or <B><I>s</I></B>, delete it.
+    If the word ends <B><I>s</I></B>, not preceded by <B><I>a</I></B>, <B><I>i</I></B>, <B><I>o</I></B>, <B><I>u</I></B>, <B><I>è</I></B> or <B><I>s</I></B>, delete it.
 <BR><BR>
     In the rest of step 4, all tests are confined to the <I>RV</I> region.
 <BR><BR>
@@ -420,13 +423,13 @@ Step 4: Residual suffix
     <DT><B><I>ion</I></B>
         <DD>delete if in <I>R</I>2 and preceded by <B><I>s</I></B> or <B><I>t</I></B>
 <BR><BR>
-    <DT><B><I>ier  &nbsp;  i&egrave;re  &nbsp;  Ier  &nbsp;  I&egrave;re</I></B>
+    <DT><B><I>ier  &nbsp;  ière  &nbsp;  Ier  &nbsp;  Ière</I></B>
         <DD>replace with <B><I>i</I></B>
 <BR><BR>
     <DT><B><I>e</I></B>
         <DD>delete
 <BR><BR>
-    <DT><B><I>&euml;</I></B>
+    <DT><B><I>ë</I></B>
         <DD>if preceded by <B><I>gu</I></B>, delete
 </DL>
 <BR>
@@ -441,7 +444,7 @@ Step 5: Undouble
 </DL>
 Step 6: Un-accent
 <DL><DD>
-    If the words ends <B><I>&eacute;</I></B> or <B><I>&egrave;</I></B> followed by at least one non-vowel, remove
+    If the words ends <B><I>é</I></B> or <B><I>è</I></B> followed by at least one non-vowel, remove
     the accent from the <B><I>e</I></B>.
 </DL>
 And finally:
@@ -514,7 +517,16 @@ define mark_regions as (
     $p2 = limit  // defaults
 
     do (
-        ( v v next ) or ( next gopast v )
+        ( v v next )
+        or
+        among ( // this exception list begun Nov 2006
+            'par'  // paris, parie, pari
+            'col'  // colis
+            'tap'  // tapis
+            // extensions possible here
+        )
+        or
+        ( next gopast v )
         setmark pV
     )
     do (
