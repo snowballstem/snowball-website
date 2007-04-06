@@ -1,6 +1,7 @@
 
 <HTML>
 <HEAD>
+<META http-equiv="content-type" content="text/html; charset=UTF-8">
 <TITLE>Spanish stemming algorithm</TITLE></HEAD>
 <BODY BGCOLOR=WHITE>
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
@@ -75,12 +76,12 @@ cheraw<BR>
 chesca<BR>
 chester<BR>
 chetumal<BR>
-chetumale&ntilde;os<BR>
+chetumaleños<BR>
 chevrolet<BR>
 cheyene<BR>
 cheyenne<BR>
 chi<BR>
-ch&iacute;a<BR>
+chía<BR>
 chiapaneca<BR>
 chiapas<BR>
 chiba<BR>
@@ -118,7 +119,7 @@ cheraw<BR>
 chesc<BR>
 chest<BR>
 chetumal<BR>
-chetumale&ntilde;<BR>
+chetumaleñ<BR>
 chevrolet<BR>
 cheyen<BR>
 cheyenn<BR>
@@ -141,16 +142,16 @@ chic<BR>
 </TD>
 <TD></TD><TD> </TD>
 <TD></TD><TD>
-tor&aacute;<BR>
-t&oacute;rax<BR>
+torá<BR>
+tórax<BR>
 torcer<BR>
 toreado<BR>
 toreados<BR>
-tore&aacute;ndolo<BR>
+toreándolo<BR>
 torear<BR>
 toreara<BR>
 torearlo<BR>
-tore&oacute;<BR>
+toreó<BR>
 torero<BR>
 toreros<BR>
 torio<BR>
@@ -178,7 +179,7 @@ torrencial<BR>
 torrenciales<BR>
 torrente<BR>
 torreon<BR>
-torre&oacute;n<BR>
+torreón<BR>
 torres<BR>
 torrescano<BR>
 </TD>
@@ -238,11 +239,11 @@ torrescan<BR>
 
 Letters in Spanish include the following accented forms,
 <DL><DD>
-    <B><I>&aacute;  &nbsp;  &eacute;  &nbsp;  &iacute;  &nbsp;  &oacute;  &nbsp;  &uacute;  &nbsp;  &uuml;  &nbsp;  &ntilde;</I></B>
+    <B><I>á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  ü  &nbsp;  ñ</I></B>
 </DL>
 The following letters are vowels:
 <DL><DD>
-    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  &aacute;  &nbsp;  &eacute;  &nbsp;  &iacute;  &nbsp;  &oacute;  &nbsp;  &uacute;  &nbsp;  &uuml;</I></B>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  ü</I></B>
 </DL>
 <I>R</I>2 is defined in the usual way &#x2014;
 see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.
@@ -259,7 +260,7 @@ positions cannot be found.
 <BR><BR>
 For example,
 <BR><PRE>
-    m a c h o     o l i v a     t r a b a j o     &aacute; u r e o
+    m a c h o     o l i v a     t r a b a j o     á u r e o
          |...|         |...|         |.......|         |...|
 </PRE>
 Always do steps 0 and 1.
@@ -272,7 +273,7 @@ Step 0: Attached pronoun
 </DL><BR>
     and delete it, if comes after one of
 <BR><BR><DL><DD>
-        (<I>a</I>) <B><I>i&eacute;ndo  &nbsp;  &aacute;ndo  &nbsp;  &aacute;r  &nbsp;  &eacute;r  &nbsp;  &iacute;r</I></B><BR>
+        (<I>a</I>) <B><I>iéndo  &nbsp;  ándo  &nbsp;  ár  &nbsp;  ér  &nbsp;  ír</I></B><BR>
         (<I>b</I>) <B><I>ando  &nbsp;  iendo  &nbsp;  ar  &nbsp;  er  &nbsp;  ir</I></B><BR>
         (<I>c</I>) <B><I>yendo</I></B> following <B><I>u</I></B>
 </DL><BR>
@@ -280,7 +281,7 @@ Step 0: Attached pronoun
     <B><I>u</I></B> can be outside it.
 <BR><BR>
     In the case of (<I>a</I>), deletion is followed by removing the acute accent
-    (for example, <I>haci&eacute;ndola</I> <TT>-&gt;</TT> <I>haciendo</I>).
+    (for example, <I>haciéndola</I> <TT>-&gt;</TT> <I>haciendo</I>).
 </DL>
 Step 1: Standard suffix removal
 <DL><DD>
@@ -293,14 +294,14 @@ Step 1: Standard suffix removal
     imientos</I></B>
         <DD>delete if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>adora  &nbsp;  ador  &nbsp;  aci&oacute;n  &nbsp;  adoras  &nbsp;  adores  &nbsp;  aciones  &nbsp;  ante  &nbsp;  antes  &nbsp;  ancia  &nbsp;  ancias</I></B>
+    <DT><B><I>adora  &nbsp;  ador  &nbsp;  ación  &nbsp;  adoras  &nbsp;  adores  &nbsp;  aciones  &nbsp;  ante  &nbsp;  antes  &nbsp;  ancia  &nbsp;  ancias</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>ic</I></B>, delete if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>log&iacute;a  &nbsp;  log&iacute;as</I></B>
+    <DT><B><I>logía  &nbsp;  logías</I></B>
         <DD>replace with <B><I>log</I></B> if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>uci&oacute;n  &nbsp;  uciones</I></B>
+    <DT><B><I>ución  &nbsp;  uciones</I></B>
         <DD>replace with <B><I>u</I></B> if in <I>R</I>2
 <BR><BR>
     <DT><B><I>encia  &nbsp;  encias</I></B>
@@ -332,7 +333,7 @@ Step 2<I>a</I>: Verb suffixes beginning <B><I>y</I></B>
     Search for the longest among the following suffixes in <I>RV</I>, and if found,
     delete if preceded by <B><I>u</I></B>.
 <BR><BR><DL><DD>
-        <B><I>ya  &nbsp;  ye  &nbsp;  yan  &nbsp;  yen  &nbsp;  yeron  &nbsp;  yendo  &nbsp;  yo  &nbsp;  y&oacute;  &nbsp;  yas  &nbsp;  yes  &nbsp;  yais  &nbsp;
+        <B><I>ya  &nbsp;  ye  &nbsp;  yan  &nbsp;  yen  &nbsp;  yeron  &nbsp;  yendo  &nbsp;  yo  &nbsp;  yó  &nbsp;  yas  &nbsp;  yes  &nbsp;  yais  &nbsp;
         yamos</I></B>
 </DL><BR>
     (Note that the preceding u need not be in <I>RV</I>.)
@@ -345,21 +346,21 @@ Step 2<I>b</I>: Other verb suffixes
     action indicated.
 <BR><BR>
 <DL>
-    <DT><B><I>en  &nbsp;  es  &nbsp;  &eacute;is  &nbsp;  emos</I></B>
+    <DT><B><I>en  &nbsp;  es  &nbsp;  éis  &nbsp;  emos</I></B>
         <DD>delete, and if preceded by <B><I>gu</I></B> delete the <B><I>u</I></B> (the <B><I>gu</I></B> need not be in
         <I>RV</I>)
 <BR><BR>
-    <DT><B><I>ar&iacute;an  &nbsp;  ar&iacute;as  &nbsp;  ar&aacute;n  &nbsp;  ar&aacute;s  &nbsp;  ar&iacute;ais  &nbsp;  ar&iacute;a  &nbsp;  ar&eacute;is  &nbsp;  ar&iacute;amos  &nbsp;  aremos
-     &nbsp;  ar&aacute;  &nbsp;  ar&eacute;
-     &nbsp;  er&iacute;an  &nbsp;  er&iacute;as  &nbsp;  er&aacute;n  &nbsp;  er&aacute;s  &nbsp;  er&iacute;ais  &nbsp;  er&iacute;a  &nbsp;  er&eacute;is  &nbsp;  er&iacute;amos  &nbsp;  eremos
-     &nbsp;  er&aacute;  &nbsp;  er&eacute;
-     &nbsp;  ir&iacute;an  &nbsp;  ir&iacute;as  &nbsp;  ir&aacute;n  &nbsp;  ir&aacute;s  &nbsp;  ir&iacute;ais  &nbsp;  ir&iacute;a  &nbsp;  ir&eacute;is  &nbsp;  ir&iacute;amos  &nbsp;  iremos
-     &nbsp;  ir&aacute;  &nbsp;  ir&eacute;
-     &nbsp;  aba  &nbsp;  ada  &nbsp;  ida  &nbsp;  &iacute;a  &nbsp;  ara  &nbsp;  iera  &nbsp;  ad  &nbsp;  ed  &nbsp;  id  &nbsp;  ase  &nbsp;  iese  &nbsp;  aste  &nbsp;  iste  &nbsp;  an  &nbsp;  aban  &nbsp;  &iacute;an
-     &nbsp;  aran  &nbsp;  ieran  &nbsp;  asen  &nbsp;  iesen  &nbsp;  aron  &nbsp;  ieron  &nbsp;  ado  &nbsp;  ido  &nbsp;  ando  &nbsp;  iendo  &nbsp;  i&oacute;  &nbsp;  ar  &nbsp;  er  &nbsp;  ir  &nbsp;  as
-     &nbsp;  abas  &nbsp;  adas  &nbsp;  idas  &nbsp;  &iacute;as  &nbsp;  aras  &nbsp;  ieras  &nbsp;  ases  &nbsp;  ieses  &nbsp;  &iacute;s  &nbsp;  &aacute;is  &nbsp;  abais  &nbsp;  &iacute;ais
-     &nbsp;  arais  &nbsp;  ierais  &nbsp;    &nbsp;  aseis  &nbsp;  ieseis  &nbsp;  asteis  &nbsp;  isteis  &nbsp;  ados  &nbsp;  idos  &nbsp;  amos  &nbsp;  &aacute;bamos
-     &nbsp;  &iacute;amos  &nbsp;  imos  &nbsp;  &aacute;ramos  &nbsp;  i&eacute;ramos  &nbsp;  i&eacute;semos  &nbsp;  &aacute;semos</I></B>
+    <DT><B><I>arían  &nbsp;  arías  &nbsp;  arán  &nbsp;  arás  &nbsp;  aríais  &nbsp;  aría  &nbsp;  aréis  &nbsp;  aríamos  &nbsp;  aremos
+     &nbsp;  ará  &nbsp;  aré
+     &nbsp;  erían  &nbsp;  erías  &nbsp;  erán  &nbsp;  erás  &nbsp;  eríais  &nbsp;  ería  &nbsp;  eréis  &nbsp;  eríamos  &nbsp;  eremos
+     &nbsp;  erá  &nbsp;  eré
+     &nbsp;  irían  &nbsp;  irías  &nbsp;  irán  &nbsp;  irás  &nbsp;  iríais  &nbsp;  iría  &nbsp;  iréis  &nbsp;  iríamos  &nbsp;  iremos
+     &nbsp;  irá  &nbsp;  iré
+     &nbsp;  aba  &nbsp;  ada  &nbsp;  ida  &nbsp;  ía  &nbsp;  ara  &nbsp;  iera  &nbsp;  ad  &nbsp;  ed  &nbsp;  id  &nbsp;  ase  &nbsp;  iese  &nbsp;  aste  &nbsp;  iste  &nbsp;  an  &nbsp;  aban  &nbsp;  ían
+     &nbsp;  aran  &nbsp;  ieran  &nbsp;  asen  &nbsp;  iesen  &nbsp;  aron  &nbsp;  ieron  &nbsp;  ado  &nbsp;  ido  &nbsp;  ando  &nbsp;  iendo  &nbsp;  ió  &nbsp;  ar  &nbsp;  er  &nbsp;  ir  &nbsp;  as
+     &nbsp;  abas  &nbsp;  adas  &nbsp;  idas  &nbsp;  ías  &nbsp;  aras  &nbsp;  ieras  &nbsp;  ases  &nbsp;  ieses  &nbsp;  ís  &nbsp;  áis  &nbsp;  abais  &nbsp;  íais
+     &nbsp;  arais  &nbsp;  ierais  &nbsp;    &nbsp;  aseis  &nbsp;  ieseis  &nbsp;  asteis  &nbsp;  isteis  &nbsp;  ados  &nbsp;  idos  &nbsp;  amos  &nbsp;  ábamos
+     &nbsp;  íamos  &nbsp;  imos  &nbsp;  áramos  &nbsp;  iéramos  &nbsp;  iésemos  &nbsp;  ásemos</I></B>
         <DD>delete
 </DL>
 </DL>
@@ -371,10 +372,10 @@ Step 3: residual suffix
     action indicated.
 <BR><BR>
 <DL>
-    <DT><B><I>os  &nbsp;  a  &nbsp;  o  &nbsp;  &aacute;  &nbsp;  &iacute;  &nbsp;  &oacute;</I></B>
+    <DT><B><I>os  &nbsp;  a  &nbsp;  o  &nbsp;  á  &nbsp;  í  &nbsp;  ó</I></B>
         <DD>delete if in <I>RV</I>
 <BR><BR>
-    <DT><B><I>e  &nbsp;  &eacute;</I></B>
+    <DT><B><I>e  &nbsp;  é</I></B>
         <DD>delete if in <I>RV</I>, and if preceded by <B><I>gu</I></B> with the <B><I>u</I></B> in <I>RV</I> delete the <B><I>u</I></B>
 </DL>
 </DL>

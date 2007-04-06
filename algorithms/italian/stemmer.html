@@ -1,6 +1,7 @@
 
 <HTML>
 <HEAD>
+<META http-equiv="content-type" content="text/html; charset=UTF-8">
 <TITLE>Italian stemming algorithm</TITLE></HEAD>
 <BODY BGCOLOR=WHITE>
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
@@ -60,11 +61,11 @@ abbandonate<BR>
 abbandonati<BR>
 abbandonato<BR>
 abbandonava<BR>
-abbandoner&agrave;<BR>
+abbandonerà<BR>
 abbandoneranno<BR>
-abbandoner&ograve;<BR>
+abbandonerò<BR>
 abbandono<BR>
-abbandon&ograve;<BR>
+abbandonò<BR>
 abbaruffato<BR>
 abbassamento<BR>
 abbassando<BR>
@@ -78,9 +79,9 @@ abbassassero<BR>
 abbassato<BR>
 abbassava<BR>
 abbassi<BR>
-abbass&ograve;<BR>
+abbassò<BR>
 abbastanza<BR>
-abbatt&eacute;<BR>
+abbatté<BR>
 abbattendo<BR>
 abbattere<BR>
 abbattersi<BR>
@@ -93,7 +94,7 @@ abbattuta<BR>
 abbattuti<BR>
 abbattuto<BR>
 abbellita<BR>
-abbench&eacute;<BR>
+abbenché<BR>
 abbi<BR>
 </TD>
 <TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
@@ -142,7 +143,7 @@ abbi<BR>
 <TD></TD><TD> </TD>
 <TD></TD><TD>
 pronto<BR>
-pronuncer&agrave;<BR>
+pronuncerà<BR>
 pronuncia<BR>
 pronunciamento<BR>
 pronunciare<BR>
@@ -156,7 +157,7 @@ pronunziare<BR>
 pronunziarle<BR>
 pronunziato<BR>
 pronunzio<BR>
-pronunzi&ograve;<BR>
+pronunziò<BR>
 propaga<BR>
 propagamento<BR>
 propaganda<BR>
@@ -238,7 +239,7 @@ propong<BR>
 
 Italian can include the following accented forms:
 <DL><DD>
-    <B><I>&aacute;  &nbsp;  &eacute;  &nbsp;  &iacute;  &nbsp;  &oacute;  &nbsp;  &uacute;  &nbsp;  &agrave;  &nbsp;  &egrave;  &nbsp;  &igrave;  &nbsp;  &ograve;  &nbsp;  &ugrave;</I></B>
+    <B><I>á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  à  &nbsp;  è  &nbsp;  ì  &nbsp;  ò  &nbsp;  ù</I></B>
 </DL>
 
 First, replace all acute accents by grave accents. And, as in French, put <B><I>u</I></B> after
@@ -247,7 +248,7 @@ First, replace all acute accents by grave accents. And, as in French, put <B><I>
 
 The vowels are then
 <DL><DD>
-    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  &agrave;  &nbsp;  &egrave;  &nbsp;  &igrave;  &nbsp;  &ograve;  &nbsp;  &ugrave;</I></B>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  à  &nbsp;  è  &nbsp;  ì  &nbsp;  ò  &nbsp;  ù</I></B>
 </DL>
 <I>R</I>2
 (see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2)
@@ -282,7 +283,7 @@ Step 1: Standard suffix removal
 <BR><BR>
 <DL>
     <DT><B><I>anza  &nbsp;  anze  &nbsp;  ico  &nbsp;  ici  &nbsp;  ica  &nbsp;  ice  &nbsp;  iche  &nbsp;  ichi  &nbsp;  ismo  &nbsp;  ismi  &nbsp;  abile  &nbsp;  abili  &nbsp;  ibile  &nbsp;  ibili
-     &nbsp;  ista  &nbsp;  iste  &nbsp;  isti  &nbsp;  ist&agrave;  &nbsp;  ist&egrave;  &nbsp;  ist&igrave;  &nbsp;  oso  &nbsp;  osi  &nbsp;  osa  &nbsp;  ose  &nbsp;  mente
+     &nbsp;  ista  &nbsp;  iste  &nbsp;  isti  &nbsp;  istà  &nbsp;  istè  &nbsp;  istì  &nbsp;  oso  &nbsp;  osi  &nbsp;  osa  &nbsp;  ose  &nbsp;  mente
      &nbsp;  atrice  &nbsp;  atrici  &nbsp;  ante  &nbsp;  anti</I></B>
         <DD>delete if in <I>R</I>2
 <BR><BR>
@@ -308,7 +309,7 @@ Step 1: Standard suffix removal
         delete if in <I>R</I>2), otherwise,
         <DD>if preceded by <B><I>os</I></B>, <B><I>ic</I></B> or <B><I>abil</I></B>, delete if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>it&agrave;</I></B>
+    <DT><B><I>ità</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>abil</I></B>, <B><I>ic</I></B> or <B><I>iv</I></B>, delete if in <I>R</I>2
 <BR><BR>
@@ -328,12 +329,12 @@ Step 2: Verb suffixes
         <B><I>ammo  &nbsp;  ando  &nbsp;  ano  &nbsp;  are  &nbsp;  arono  &nbsp;
         asse  &nbsp;  assero  &nbsp;  assi  &nbsp;  assimo  &nbsp;  ata  &nbsp;  ate  &nbsp;
         ati  &nbsp;  ato  &nbsp;  ava  &nbsp;  avamo  &nbsp;  avano  &nbsp;  avate  &nbsp;  avi  &nbsp;  avo  &nbsp;  emmo
-         &nbsp;  enda  &nbsp;  ende  &nbsp;  endi  &nbsp;  endo  &nbsp;  er&agrave;  &nbsp;  erai  &nbsp;  eranno  &nbsp;  ere
+         &nbsp;  enda  &nbsp;  ende  &nbsp;  endi  &nbsp;  endo  &nbsp;  erà  &nbsp;  erai  &nbsp;  eranno  &nbsp;  ere
          &nbsp;  erebbe  &nbsp;  erebbero  &nbsp;  erei  &nbsp;  eremmo  &nbsp;  eremo  &nbsp;  ereste  &nbsp;
-        eresti  &nbsp;  erete  &nbsp;  er&ograve;  &nbsp;  erono  &nbsp;  essero  &nbsp;  ete  &nbsp;  eva  &nbsp;  evamo
-         &nbsp;  evano  &nbsp;  evate  &nbsp;  evi  &nbsp;  evo  &nbsp;  Yamo  &nbsp;  iamo  &nbsp;  immo  &nbsp;  ir&agrave;
+        eresti  &nbsp;  erete  &nbsp;  erò  &nbsp;  erono  &nbsp;  essero  &nbsp;  ete  &nbsp;  eva  &nbsp;  evamo
+         &nbsp;  evano  &nbsp;  evate  &nbsp;  evi  &nbsp;  evo  &nbsp;  Yamo  &nbsp;  iamo  &nbsp;  immo  &nbsp;  irà
          &nbsp;  irai  &nbsp;  iranno  &nbsp;  ire  &nbsp;  irebbe  &nbsp;  irebbero  &nbsp;  irei  &nbsp;  iremmo
-         &nbsp;  iremo  &nbsp;  ireste  &nbsp;  iresti  &nbsp;  irete  &nbsp;  ir&ograve;  &nbsp;  irono  &nbsp;  isca  &nbsp;
+         &nbsp;  iremo  &nbsp;  ireste  &nbsp;  iresti  &nbsp;  irete  &nbsp;  irò  &nbsp;  irono  &nbsp;  isca  &nbsp;
         iscano  &nbsp;  isce  &nbsp;  isci  &nbsp;  isco  &nbsp;  iscono  &nbsp;  issero  &nbsp;  ita  &nbsp;  ite
          &nbsp;  iti  &nbsp;  ito  &nbsp;  iva  &nbsp;  ivamo  &nbsp;  ivano  &nbsp;  ivate  &nbsp;  ivi  &nbsp;  ivo  &nbsp;
         ono  &nbsp;  uta  &nbsp;  ute  &nbsp;  uti  &nbsp;  uto  &nbsp;  ar  &nbsp;  ir</I></B>
@@ -342,7 +343,7 @@ Always do steps 3a and 3b.
 </DL>
 Step 3a
 <DL><DD>
-    Delete a final <B><I>a</I></B>, <B><I>e</I></B>, <B><I>i</I></B>, <B><I>o</I></B>, <B><I>&agrave;</I></B>, <B><I>&egrave;</I></B>, <B><I>&igrave;</I></B> or <B><I>&ograve;</I></B> if it is in <I>RV</I>, and a
+    Delete a final <B><I>a</I></B>, <B><I>e</I></B>, <B><I>i</I></B>, <B><I>o</I></B>, <B><I>à</I></B>, <B><I>è</I></B>, <B><I>ì</I></B> or <B><I>ò</I></B> if it is in <I>RV</I>, and a
     preceding <B><I>i</I></B> if it is in <I>RV</I> (<I>crocchi</I> <TT>-&gt;</TT> <I>crocch</I>, <I>crocchio</I> <TT>-&gt;</TT> <I>crocch</I>)
 </DL>
 Step 3b
