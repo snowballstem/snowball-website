@@ -1,6 +1,7 @@
 
 <HTML>
 <HEAD>
+<META http-equiv="content-type" content="text/html; charset=UTF-8">
 <TITLE>Danish stemming algorithm</TITLE></HEAD>
 <BODY BGCOLOR=WHITE>
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
@@ -65,13 +66,13 @@ indtil<BR>
 indtog<BR>
 indtraf<BR>
 indtryk<BR>
-indtr&aelig;de<BR>
-indtr&aelig;der<BR>
-indtr&aelig;ffe<BR>
-indtr&aelig;ffer<BR>
-indtr&aelig;ngende<BR>
-indt&aelig;gt<BR>
-indt&aelig;gter<BR>
+indtræde<BR>
+indtræder<BR>
+indtræffe<BR>
+indtræffer<BR>
+indtrængende<BR>
+indtægt<BR>
+indtægter<BR>
 indvandrede<BR>
 indvandret<BR>
 indvender<BR>
@@ -84,7 +85,7 @@ indvie<BR>
 indviede<BR>
 indvielse<BR>
 indvielsen<BR>
-indvielsesl&oslash;fte<BR>
+indvielsesløfte<BR>
 indvielsestid<BR>
 indvier<BR>
 indvies<BR>
@@ -94,8 +95,8 @@ indvikler<BR>
 indvolde<BR>
 indvoldene<BR>
 indvortes<BR>
-ind&aring;nde<BR>
-ind&aring;ndede<BR>
+indånde<BR>
+indåndede<BR>
 </TD>
 <TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
 <TD></TD><TD>
@@ -108,13 +109,13 @@ indtil<BR>
 indtog<BR>
 indtraf<BR>
 indtryk<BR>
-indtr&aelig;d<BR>
-indtr&aelig;d<BR>
-indtr&aelig;f<BR>
-indtr&aelig;f<BR>
-indtr&aelig;ng<BR>
-indt&aelig;g<BR>
-indt&aelig;g<BR>
+indtræd<BR>
+indtræd<BR>
+indtræf<BR>
+indtræf<BR>
+indtræng<BR>
+indtæg<BR>
+indtæg<BR>
 indvandred<BR>
 indvandr<BR>
 indvend<BR>
@@ -127,7 +128,7 @@ indvi<BR>
 indvied<BR>
 indvi<BR>
 indvi<BR>
-indvielsesl&oslash;ft<BR>
+indvielsesløft<BR>
 indvielsestid<BR>
 indvi<BR>
 indvi<BR>
@@ -137,21 +138,21 @@ indvikl<BR>
 indvold<BR>
 indvold<BR>
 indvort<BR>
-ind&aring;nd<BR>
-ind&aring;nded<BR>
+indånd<BR>
+indånded<BR>
 </TD>
 <TD></TD><TD> </TD>
 <TD></TD><TD>
 underste<BR>
-unders&aring;tter<BR>
-unders&aring;tters<BR>
-unders&oslash;g<BR>
-unders&oslash;ge<BR>
-unders&oslash;gelse<BR>
-unders&oslash;gelsen<BR>
-unders&oslash;ger<BR>
-unders&oslash;gt<BR>
-unders&oslash;gte<BR>
+undersåtter<BR>
+undersåtters<BR>
+undersøg<BR>
+undersøge<BR>
+undersøgelse<BR>
+undersøgelsen<BR>
+undersøger<BR>
+undersøgt<BR>
+undersøgte<BR>
 undertryk<BR>
 undertrykke<BR>
 undertrykkelse<BR>
@@ -176,8 +177,8 @@ undervisning<BR>
 undervisningen<BR>
 undervist<BR>
 underviste<BR>
-underv&aelig;rk<BR>
-underv&aelig;rker<BR>
+underværk<BR>
+underværker<BR>
 undevise<BR>
 undeviste<BR>
 undfange<BR>
@@ -186,15 +187,15 @@ undfanged<BR>
 <TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 underst<BR>
-unders&aring;t<BR>
-unders&aring;t<BR>
-unders&oslash;g<BR>
-unders&oslash;g<BR>
-unders&oslash;g<BR>
-unders&oslash;g<BR>
-unders&oslash;g<BR>
-unders&oslash;g<BR>
-unders&oslash;g<BR>
+undersåt<BR>
+undersåt<BR>
+undersøg<BR>
+undersøg<BR>
+undersøg<BR>
+undersøg<BR>
+undersøg<BR>
+undersøg<BR>
+undersøg<BR>
 undertryk<BR>
 undertryk<BR>
 undertryk<BR>
@@ -219,8 +220,8 @@ undervisning<BR>
 undervisning<BR>
 undervist<BR>
 undervist<BR>
-underv&aelig;rk<BR>
-underv&aelig;rk<BR>
+underværk<BR>
+underværk<BR>
 undevis<BR>
 undevist<BR>
 undfang<BR>
@@ -240,13 +241,13 @@ undfanged<BR>
 
 The Danish alphabet includes the following additional letters,
 <DL><DD>
-    <B><I>&aelig;  &nbsp;  &aring;  &nbsp;  &oslash;</I></B>
+    <B><I>æ  &nbsp;  å  &nbsp;  ø</I></B>
 </DL>
 
 
 The following letters are vowels:
 <DL><DD>
-    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  &aelig;  &nbsp;  &aring;  &nbsp;  &oslash;</I></B>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  æ  &nbsp;  å  &nbsp;  ø</I></B>
 </DL>
 A consonant is defined as a non-vowel.
 <BR><BR>
@@ -257,7 +258,7 @@ A consonant is defined as a non-vowel.
 Define a valid <B><I>s</I></B>-ending as one of
 <DL><DD>
 <B><I>a  &nbsp;  b  &nbsp;  c  &nbsp;  d  &nbsp;  f  &nbsp;  g  &nbsp;  h  &nbsp;  j  &nbsp;  k  &nbsp;  l  &nbsp;  m  &nbsp;  n  &nbsp;  o  &nbsp;  p  &nbsp;  r
- &nbsp;  t  &nbsp;  v  &nbsp;  y  &nbsp;  z  &nbsp;  &aring;</I></B>
+ &nbsp;  t  &nbsp;  v  &nbsp;  y  &nbsp;  z  &nbsp;  å</I></B>
 </DL>
 
 Do each of steps 1, 2, 3 and 4.
@@ -308,8 +309,8 @@ Step 3:
         <DD>delete, and then repeat step 2
 <BR><BR>
     <DT>(<I>b</I>)
-    <B><I>l&oslash;st</I></B>
-        <DD>replace with <B><I>l&oslash;s</I></B>
+    <B><I>løst</I></B>
+        <DD>replace with <B><I>løs</I></B>
 </DL>
 </DL>
 

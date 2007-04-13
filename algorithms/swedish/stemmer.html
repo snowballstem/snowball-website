@@ -1,6 +1,7 @@
 
 <HTML>
 <HEAD>
+<META http-equiv="content-type" content="text/html; charset=UTF-8">
 <TITLE>Swedish stemming algorithm</TITLE></HEAD>
 <BODY BGCOLOR=WHITE>
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
@@ -57,16 +58,16 @@ be generated with this algorithm.
 
 <TR><TD>
 jakt<BR>
-jaktb&ouml;ssa<BR>
+jaktbössa<BR>
 jakten<BR>
 jakthund<BR>
 jaktkarl<BR>
 jaktkarlar<BR>
 jaktkarlarne<BR>
 jaktkarlens<BR>
-jaktl&ouml;jtnant<BR>
-jaktl&ouml;jtnanten<BR>
-jaktl&ouml;jtnantens<BR>
+jaktlöjtnant<BR>
+jaktlöjtnanten<BR>
+jaktlöjtnantens<BR>
 jalusi<BR>
 jalusien<BR>
 jalusier<BR>
@@ -84,32 +85,32 @@ jargong<BR>
 jasmin<BR>
 jasminen<BR>
 jasminer<BR>
-jasminh&auml;ck<BR>
+jasminhäck<BR>
 jaspis<BR>
-jas&aring;<BR>
-jav&auml;l<BR>
+jaså<BR>
+javäl<BR>
 jazzvindens<BR>
 jcrn<BR>
 jcsus<BR>
 je<BR>
-jemf&ouml;ra<BR>
-jemf&ouml;ras<BR>
-jemf&ouml;relse<BR>
-jemf&ouml;relser<BR>
+jemföra<BR>
+jemföras<BR>
+jemförelse<BR>
+jemförelser<BR>
 </TD>
 <TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 jakt<BR>
-jaktb&ouml;ss<BR>
+jaktböss<BR>
 jakt<BR>
 jakthund<BR>
 jaktkarl<BR>
 jaktkarl<BR>
 jaktkarl<BR>
 jaktkarl<BR>
-jaktl&ouml;jtnant<BR>
-jaktl&ouml;jtnant<BR>
-jaktl&ouml;jtnant<BR>
+jaktlöjtnant<BR>
+jaktlöjtnant<BR>
+jaktlöjtnant<BR>
 jalusi<BR>
 jalusi<BR>
 jalusi<BR>
@@ -127,18 +128,18 @@ jargong<BR>
 jasmin<BR>
 jasmin<BR>
 jasmin<BR>
-jasminh&auml;ck<BR>
+jasminhäck<BR>
 jaspis<BR>
-jas&aring;<BR>
-jav&auml;l<BR>
+jaså<BR>
+javäl<BR>
 jazzvind<BR>
 jcrn<BR>
 jcsus<BR>
 je<BR>
-jemf&ouml;r<BR>
-jemf&ouml;r<BR>
-jemf&ouml;r<BR>
-jemf&ouml;r<BR>
+jemför<BR>
+jemför<BR>
+jemför<BR>
+jemför<BR>
 </TD>
 <TD></TD><TD> </TD>
 <TD></TD><TD>
@@ -177,7 +178,7 @@ klor<BR>
 klorna<BR>
 kloroform<BR>
 kloster<BR>
-klosterg&aring;rden<BR>
+klostergården<BR>
 klosterlik<BR>
 klot<BR>
 klotb<BR>
@@ -220,7 +221,7 @@ klor<BR>
 klorn<BR>
 kloroform<BR>
 klost<BR>
-klosterg&aring;rd<BR>
+klostergård<BR>
 klosterlik<BR>
 klot<BR>
 klotb<BR>
@@ -240,13 +241,13 @@ klotrund<BR>
 
 The Swedish alphabet includes the following additional letters,
 <DL><DD>
-    <B><I>&auml;  &nbsp;  &aring;  &nbsp;  &ouml;</I></B>
+    <B><I>ä  &nbsp;  å  &nbsp;  ö</I></B>
 </DL>
 
 
 The following letters are vowels:
 <DL><DD>
-    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  &auml;  &nbsp;  &aring;  &nbsp;  &ouml;</I></B>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  ä  &nbsp;  å  &nbsp;  ö</I></B>
 </DL>
 <I>R</I>2 is not used: <I>R</I>1 is defined in the same way as in the
 <A HREF="../german/stemmer.html">German stemmer</A>.
@@ -290,7 +291,7 @@ Step 2:
         <B><I>dd  &nbsp;  gd  &nbsp;  nn  &nbsp;  dt  &nbsp;  gt  &nbsp;  kt  &nbsp;  tt</I></B>
 </DL>
 <BR>
-    (For example, <I>friskt</I> <TT>-&gt;</TT> <I>frisk</I>, <I>fr&ouml;knarnn</I> <TT>-&gt;</TT> <I>fr&ouml;knarn</I>)
+    (For example, <I>friskt</I> <TT>-&gt;</TT> <I>frisk</I>, <I>fröknarnn</I> <TT>-&gt;</TT> <I>fröknarn</I>)
 </DL>
 
 Step 3:
@@ -302,8 +303,8 @@ Step 3:
     <DT><B><I>lig  &nbsp;  ig  &nbsp;  els</I></B>
         <DD>delete
 <BR><BR>
-    <DT><B><I>l&ouml;st</I></B>
-        <DD>replace with <B><I>l&ouml;s</I></B>
+    <DT><B><I>löst</I></B>
+        <DD>replace with <B><I>lös</I></B>
 <BR><BR>
     <DT><B><I>fullt</I></B>
         <DD>replace with <B><I>full</I></B>
@@ -388,7 +389,7 @@ define stem as (
         do main_suffix
         do consonant_pair
         do other_suffix
-        )
+    )
 )
 </DL>
 </PRE>

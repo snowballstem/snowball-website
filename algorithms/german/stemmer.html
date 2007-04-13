@@ -1,6 +1,7 @@
 
 <HTML>
 <HEAD>
+<META http-equiv="content-type" content="text/html; charset=UTF-8">
 <TITLE>German stemming algorithm</TITLE></HEAD>
 <BODY BGCOLOR=WHITE>
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
@@ -65,7 +66,7 @@ aufeinanderfolgenden<BR>
 aufeinanderfolgender<BR>
 aufeinanderfolgt<BR>
 aufeinanderfolgten<BR>
-aufeinanderschl&uuml;gen<BR>
+aufeinanderschlügen<BR>
 aufenthalt<BR>
 aufenthalten<BR>
 aufenthaltes<BR>
@@ -77,7 +78,7 @@ auferstanden<BR>
 auferstehen<BR>
 aufersteht<BR>
 auferstehung<BR>
-auferst&uuml;nde<BR>
+auferstünde<BR>
 auferwecken<BR>
 auferweckt<BR>
 auferzogen<BR>
@@ -87,14 +88,14 @@ auffallen<BR>
 auffallend<BR>
 auffallenden<BR>
 auffallender<BR>
-auff&auml;llig<BR>
-auff&auml;lligen<BR>
-auff&auml;lliges<BR>
+auffällig<BR>
+auffälligen<BR>
+auffälliges<BR>
 auffassen<BR>
 auffasst<BR>
-auffa&szlig;t<BR>
+auffaßt<BR>
 auffassung<BR>
-auffassungsverm&ouml;gen<BR>
+auffassungsvermögen<BR>
 </TD>
 <TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
 <TD></TD><TD>
@@ -151,7 +152,7 @@ kater<BR>
 katerliede<BR>
 katern<BR>
 katers<BR>
-k&auml;thchen<BR>
+käthchen<BR>
 kathedrale<BR>
 kathinka<BR>
 katholik<BR>
@@ -159,28 +160,28 @@ katholische<BR>
 katholischen<BR>
 katholischer<BR>
 kattun<BR>
-kattunhalst&uuml;cher<BR>
+kattunhalstücher<BR>
 katz<BR>
-k&auml;tzchen<BR>
-k&auml;tzchens<BR>
+kätzchen<BR>
+kätzchens<BR>
 katze<BR>
 katzen<BR>
 katzenschmer<BR>
 katzensprung<BR>
-katzenw&uuml;rde<BR>
-k&auml;tzin<BR>
-k&auml;tzlein<BR>
+katzenwürde<BR>
+kätzin<BR>
+kätzlein<BR>
 katzmann<BR>
 kauen<BR>
 kauerte<BR>
 kauf<BR>
 kaufe<BR>
 kaufen<BR>
-k&auml;ufer<BR>
+käufer<BR>
 kauffahrer<BR>
 kaufherr<BR>
 kaufleute<BR>
-k&auml;uflich<BR>
+käuflich<BR>
 </TD>
 <TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
 <TD></TD><TD>
@@ -238,15 +239,15 @@ kauflich<BR>
 
 German includes the following accented forms,
 <DL><DD>
-    <B><I>&auml;  &nbsp;  &ouml;  &nbsp;  &uuml;</I></B>
+    <B><I>ä  &nbsp;  ö  &nbsp;  ü</I></B>
 </DL>
-and a special letter, <B><I>&szlig;</I></B>, equivalent to double <B><I>s</I></B>.
+and a special letter, <B><I>ß</I></B>, equivalent to double <B><I>s</I></B>.
 <BR><BR>
 The following letters are vowels:
 <DL><DD>
-    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  &auml;  &nbsp;  &ouml;  &nbsp;  &uuml;</I></B>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  ä  &nbsp;  ö  &nbsp;  ü</I></B>
 </DL>
-First, replace <B><I>&szlig;</I></B> by <B><I>ss</I></B>, and put <B><I>u</I></B> and <B><I>y</I></B> between vowels into upper case.
+First, replace <B><I>ß</I></B> by <B><I>ss</I></B>, and put <B><I>u</I></B> and <B><I>y</I></B> between vowels into upper case.
 <I>R</I>1 and <I>R</I>2 are first set up in the standard way
 (see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2),
 but then <I>R</I>1 is
@@ -268,7 +269,7 @@ Step 1:
     and delete if in <I>R</I>1. (Of course the letter of the valid <B><I>s</I></B>-ending is
     not necessarily in <I>R</I>1)
 <BR><BR>
-    (For example, <I>&auml;ckern</I> <TT>-&gt;</TT> <I>&auml;ck</I>, <I>ackers</I> <TT>-&gt;</TT> <I>acker</I>, <I>armes</I> <TT>-&gt;</TT> <I>arm</I>)
+    (For example, <I>äckern</I> <TT>-&gt;</TT> <I>äck</I>, <I>ackers</I> <TT>-&gt;</TT> <I>acker</I>, <I>armes</I> <TT>-&gt;</TT> <I>arm</I>)
 </DL>
 Step 2:
 <DL><DD>
