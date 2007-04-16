@@ -1,5 +1,6 @@
 <HTML>
 <HEAD>
+<META http-equiv="content-type" content="text/html; charset=UTF-8">
 <TITLE>German stemming algorithm variant</TITLE></HEAD>
 <BODY BGCOLOR=WHITE>
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
@@ -27,7 +28,7 @@
 <BR><BR>
 <BR>&nbsp;<H2>Representation of umlaut by following <I>e</I></H2>
 
-The German letters <B><I>&auml;</I></B>, <B><I>&ouml;</I></B> and <B><I>&uuml;</I></B>, are occasionally represented
+The German letters <B><I>ä</I></B>, <B><I>ö</I></B> and <B><I>ü</I></B>, are occasionally represented
 by <B><I>ae</I></B>, <B><I>oe</I></B> and <B><I>ue</I></B> respectively. The stemmer here is a variant of the
 main German stemmer to take this into account.<BR><BR>
 
@@ -35,7 +36,7 @@ The main German stemmer begins with the rule,
 
 
 <DL><DD>
-First, replace <B><I>&szlig;</I></B> by <B><I>ss</I></B>, and put <B><I>u</I></B> and <B><I>y</I></B> between vowels into
+First, replace <B><I>ß</I></B> by <B><I>ss</I></B>, and put <B><I>u</I></B> and <B><I>y</I></B> between vowels into
 upper case.
 </DL>
 
@@ -46,14 +47,14 @@ Put <B><I>u</I></B> and <B><I>y</I></B> between vowels into
 upper case, and then do the following mappings,
 
 <BR><BR><DL><DD>
-        (<I>a</I>) replace <B><I>&szlig;</I></B> with <B><I>ss</I></B>,<BR>
-        (<I>a</I>) replace <B><I>ae</I></B> with <B><I>&auml;</I></B>,<BR>
-        (<I>a</I>) replace <B><I>oe</I></B> with <B><I>&ouml;</I></B>,<BR>
-        (<I>a</I>) replace <B><I>ue</I></B> with <B><I>&uuml;</I></B> unless preceded by <B><I>q</I></B>.
+        (<I>a</I>) replace <B><I>ß</I></B> with <B><I>ss</I></B>,<BR>
+        (<I>a</I>) replace <B><I>ae</I></B> with <B><I>ä</I></B>,<BR>
+        (<I>a</I>) replace <B><I>oe</I></B> with <B><I>ö</I></B>,<BR>
+        (<I>a</I>) replace <B><I>ue</I></B> with <B><I>ü</I></B> unless preceded by <B><I>q</I></B>.
 </DL>
 <BR><BR>
 
-So in <I>quelle</I>, <B><I>ue</I></B> is not mapped to <B><I>&uuml;</I></B> because it follows <B><I>q</I></B>, and
+So in <I>quelle</I>, <B><I>ue</I></B> is not mapped to <B><I>ü</I></B> because it follows <B><I>q</I></B>, and
 in <I>feuer</I> it is not mapped because the first part of the rule changes it to
 <I>feUer</I>, so the <B><I>u</I></B> is not found.
 </DL>
@@ -86,7 +87,7 @@ routines (
 
 externals ( stem )
 
-integers ( p1 p2 )
+integers ( p1 p2 x )
 
 groupings ( v s_ending st_ending )
 
@@ -129,8 +130,10 @@ define mark_regions as (
     $p1 = limit
     $p2 = limit
 
+    test(hop 3 setmark x)
+
     gopast v  gopast non-v  setmark p1
-    try($p1 < 3  $p1 = 3)  // at least 3
+    try($p1 < x  $p1 = x)  // at least 3
     gopast v  gopast non-v  setmark p2
 
 )
