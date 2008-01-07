@@ -1,14 +1,14 @@
 <?php
 // Redirect to SVN
-list($rev, $file, $rev2) = explode('?', $QUERY_STRING);
+list($start, $rev, $file) = explode('?', $QUERY_STRING);
 
 $redirect = 'http://svn.tartarus.org/';
-if ($rev2 != '' && $file != '') {
+if ($rev != '' && $file != '') {
     $redirect .= $file . '?rev=' . $rev . '&view=markup';
-} else if ($file != '') {
-    $redirect .= $file . '?r1=' . ($rev-1) . '&r2=' . $rev;
-} else {
+} else if ($rev != '') {
     $redirect .= '?rev=' . $rev;
+} else {
+    $redirect .= '?';
 }
 $redirect .= '&root=Snowball';
 header('Location: ' . $redirect);
