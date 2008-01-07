@@ -2,7 +2,7 @@
 // Redirect to SVN
 list($rev, $file, $rev2) = explode('?', $QUERY_STRING);
 
-$redirect = 'http://snowball.tartarus.org/viewcvs.cgi/';
+$redirect = 'http://svn.tartarus.org/';
 if ($rev2 != '' && $file != '') {
     $redirect .= $file . '?rev=' . $rev . '&view=markup';
 } else if ($file != '') {
