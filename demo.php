@@ -31,7 +31,7 @@ if ($words != '')
   # Have a limit of 10000 bytes, just in case.
   fwrite($tmpfile, $words, 10000);
   fclose($tmpfile);
-  passthru ("/s1/snowball-svn/pub/compiled/stemwords -p -i $tmpname");
+  passthru ("/home/snowball-svn/pub/compiled/stemwords -p -i $tmpname");
   unlink($tmpname);
   echo "</pre>";
   echo "</TR></TD>";
