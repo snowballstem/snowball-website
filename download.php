@@ -86,7 +86,7 @@ svn co svn://snowball.tartarus.org/snowball/trunk snowball
 <h2>Web interface to subversion</h2>
 
 <p>
-The subversion code repository can also be <a href="http://snowball.tartarus.org/viewcvs.cgi/?root=Snowball">browsed online</a>.
+The subversion code repository can also be <a href="http://svn.tartarus.org/?root=Snowball">browsed online</a>.
 </p>
 
 </td></tr>

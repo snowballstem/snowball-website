@@ -7,6 +7,7 @@
 <form method="POST" action="demo.php">
 Enter some words to stem, using the English stemming algorithm, and then click on Submit:<br>
 <textarea name="words" rows="10" cols="50"><?php
+$words = $_POST['words'];
 $tmp = preg_replace('|\\\\|', '', $words);
 echo "$tmp";
 ?></textarea>
