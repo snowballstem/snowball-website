@@ -39,6 +39,7 @@ function displayMenu()
 <a href="http://svn.tartarus.org/?root=Snowball">Browse SVN</a><br>
 <br>
 
+<!--
 <form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
 <center>
 <input NAME=P VALUE="" SIZE=12>
@@ -47,6 +48,7 @@ function displayMenu()
 <input TYPE=hidden NAME=FMT VALUE="snquery">
 </form>
 <br>
+-->
 
 </td>
 <?php
