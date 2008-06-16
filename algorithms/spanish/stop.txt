@@ -120,8 +120,8 @@ tu             |  thy
 tus            |  tu plural
 ellas          |  they
 nosotras       |  we
-vosostros      |  you
-vosostras      |  you
+vosotros       |  you
+vosotras       |  you
 os             |  you
 mío            |  mine
 mía            |
@@ -291,13 +291,9 @@ fueses
 fuésemos
 fueseis
 fuesen
-sintiendo
-sentido
-sentida
-sentidos
-sentidas
-siente
-sentid
+siendo
+sido
+  |  sed also means 'thirst'
 
                | forms of tener, to have (not including the infinitive):
 tengo
