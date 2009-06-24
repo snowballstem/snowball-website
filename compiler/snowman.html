@@ -10,7 +10,7 @@
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><A HREF=".."> Snowball main page</A>
 <TR><TD><A HREF="../runtime/use.html">          Using Snowball</A>
-<TR><TD><A HREF="../algorithms/porter/stemmer.html"> Porter stemmer - a case study</A>
+<TR><TD><A HREF="../algorithms/porter/stemmer.html"> Porter stemmer &#x2014; a case study</A>
 </TABLE></DL>
 </TR>
 
@@ -235,7 +235,7 @@ would mean
 because &nbsp;<TT>$x < 1</TT>&nbsp; is the shortest valid command following &nbsp;<TT>not</TT>, and then
 <TT>not $x < 1</TT>&nbsp; is the shortest valid command following &nbsp;<TT>try</TT>.
 <BR><BR>
-The &#8216;diadic&#8217; constructs like &nbsp;<TT>and</TT>&nbsp; and &nbsp;<TT>or</TT>&nbsp; must sit in a bracketed list
+The &#8216;dyadic&#8217; constructs like &nbsp;<TT>and</TT>&nbsp; and &nbsp;<TT>or</TT>&nbsp; must sit in a bracketed list
 of commands anyway, for example,
 <BR><PRE>
     ( C<SUB>1</SUB> C<SUB>2</SUB> and C<SUB>3</SUB> C<SUB>4</SUB> or C<SUB>5</SUB> )
@@ -255,13 +255,13 @@ so &nbsp;<TT>C<SUB>1</SUB> or C<SUB>2</SUB> and C<SUB>3</SUB></TT>&nbsp; means &
 <BR>&nbsp;<H2>6 AEs and integer commands</H2>
 
 An AE (arithmetic expression) consists of integer names and literal
-numbers connected by diadic &nbsp;<TT>+</TT>, &nbsp;<TT>-</TT>, &nbsp;<TT>*</TT>&nbsp; and &nbsp;<TT>/</TT>, and monadic &nbsp;<TT>-</TT>, with the same
+numbers connected by dyadic &nbsp;<TT>+</TT>, &nbsp;<TT>-</TT>, &nbsp;<TT>*</TT>&nbsp; and &nbsp;<TT>/</TT>, and monadic &nbsp;<TT>-</TT>, with the same
 binding powers and semantics as C. An integer command has the form
 <BR><PRE>
     $X <I>op</I> AE
 </PRE>
 where &nbsp;<TT>X</TT>&nbsp; is an integer name and <I>op</I> is one of the six tests &nbsp;<TT>==</TT>, &nbsp;<TT>!=</TT>, &nbsp;<TT>>=</TT>, &nbsp;<TT>></TT>,
-<TT>&lt;=</TT>, &nbsp;<TT>&lt;</TT>, or five assignments &nbsp;<TT>=</TT>, &nbsp;<TT>+=</TT>, &nbsp;<TT>-=</TT>, &nbsp;<TT>*=</TT>, &nbsp;<TT>/=</TT>. Again, the meanings are the
+<TT><=</TT>, &nbsp;<TT><</TT>, or five assignments &nbsp;<TT>=</TT>, &nbsp;<TT>+=</TT>, &nbsp;<TT>-=</TT>, &nbsp;<TT>*=</TT>, &nbsp;<TT>/=</TT>. Again, the meanings are the
 same as in C.
 <BR><BR>
 As well as integer names and literal numbers, the following may be used in
@@ -476,7 +476,7 @@ or <I>slice</I> of the string being tested. Then
 
 <DT><TT>-> s</TT>
     <DD>moves the slice to variable &nbsp;<TT>s</TT>,
-<DT><TT>&lt;- S</TT>
+<DT><TT><- S</TT>
     <DD>replaces the slice with variable (or literal) &nbsp;<TT>S</TT>.
 </DL>
 For example
@@ -513,7 +513,7 @@ More simply, text can be inserted at <B><I>c</I></B>.
 <DL>
 <DT><TT>insert S</TT>
     <DD>insert variable or literal &nbsp;<TT>S</TT>&nbsp; before <B><I>c</I></B>, moving <B><I>c</I></B> to the right of the
-    insert. &nbsp;<TT>&lt;+</TT>&nbsp; is a synonym for &nbsp;<TT>insert</TT>.
+    insert. &nbsp;<TT><+</TT>&nbsp; is a synonym for &nbsp;<TT>insert</TT>.
 
 <DT><TT>attach S</TT>
     <DD>the same, but leave <B><I>c</I></B> at the left of the insert.
@@ -769,8 +769,8 @@ otherwise. For example,
     do ( ['y'] <-'Y' set Y_found )
        /* if c:l begins 'y' replace it by 'Y' and set Y_found */
 
-    do repeat(goto (v ['y']) &lt;-'Y' set Y_found)
-       /* repeatedly move down the string looking for v 'y' and
+    do repeat(goto (v ['y']) <-'Y' set Y_found)
+       /* repeatedy move down the string looking for v 'y' and
           replacing 'y' with 'Y'. Whenever the replacement takes
           place set Y_found. v is a test for a vowel, defined as
           a grouping (see below). */
@@ -782,7 +782,7 @@ otherwise. For example,
 
     ....
 
-    do (Y_found repeat(goto (['Y']) &lt;- 'y')
+    do (Y_found repeat(goto (['Y']) <- 'y')
 </PRE>
 <BR>&nbsp;<H2>9 Groupings</H2>
 
@@ -893,7 +893,7 @@ For case (<I>c</I>), we need to make a slight separation of the concept of
 <I>characters</I> into <I>symbols</I>, the units of text being represented, and
 <I>slots</I>, the units of space into which they map. (So in case (<I>a</I>), all
 slots are one byte; in case (<I>b</I>) all slots are two bytes.)
-<B><I>c</I></B> and <B><I>l</I></B> have numeric values that can be used in AEs (arithmetic
+<B><I>c</I></B> and <B><I>l</I></B> have numeric values the can be used in AEs (arithmetic
 expressions). These values count the number of slots. Similarly
 <TT>setmark</TT>, &nbsp;<TT>tomark</TT>&nbsp; and &nbsp;<TT>atmark</TT>&nbsp; are remembering and then using slot
 counts. &nbsp;<TT>size</TT>&nbsp; and &nbsp;<TT>sizeof</TT>&nbsp; measure string size
@@ -914,7 +914,7 @@ script can be compiled to work with any of the three encoding schemes.
 
 <DL><DD>
 <TT>||</TT>&nbsp; is used for alternatives, &nbsp;<TT>[<I>X</I>]</TT>&nbsp; means that <I>X</I> is
-optional, and &nbsp;<TT>[<I>X</I>]*</TT>&nbsp; means that <I>X</I> is repeated zero or more
+optional, and &nbsp;<TT>[<I>X</I>]*</TT>&nbsp; means that <I>X</I> is repreated zero or more
 times. meta-symbols are defined on the left. &nbsp;<TT>&lt;char></TT>&nbsp; means any
 character.
 <BR><BR>
