@@ -267,8 +267,8 @@ same as in C.
 As well as integer names and literal numbers, the following may be used in
 AEs:
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD><TT>minint</TT>&nbsp;   <TD></TD><TD>  &#x2014; the smallest negative number
-<TR><TD><TT>maxint</TT>&nbsp;   <TD></TD><TD>  &#x2014; the largest positive number
+<TR><TD><TT>minint</TT>&nbsp;   <TD></TD><TD>  &#x2014; the minimum negative number
+<TR><TD><TT>maxint</TT>&nbsp;   <TD></TD><TD>  &#x2014; the maximum positive number
 <TR><TD><TT>sizeof s</TT>&nbsp; <TD></TD><TD>  &#x2014; the number of characters in &nbsp;<TT>s</TT>, where &nbsp;<TT>s</TT>&nbsp; is the name of a string
 <TR><TD><TT>cursor</TT>&nbsp;   <TD></TD><TD>  &#x2014; the current value of the string <I>cursor</I>
 <TR><TD><TT>limit</TT>&nbsp;    <TD></TD><TD>  &#x2014; the current value of the string <I>limit</I>
@@ -340,6 +340,14 @@ Here is a list of the commands that can be used to operate on strings.
         $t = 'anim'
         $x t        /* ditto */
 </PRE>
+<DT><TT>true</TT>, &nbsp;<TT>false</TT>
+    <DD><TT>true</TT>&nbsp; is a dummy command that generates signal <B><I>t</I></B>. &nbsp;<TT>false</TT>&nbsp; generates
+    signal <B><I>f</I></B>. They are sometimes useful for emphasis,
+<BR><PRE>
+        define start_off as true       // nothing to do
+        define exception_list as false // put in among(...) list later
+</PRE>
+        &nbsp;<TT>true</TT>&nbsp;      is equivalent to     &nbsp;<TT>()</TT>
 <DT><TT>C<SUB>1</SUB> or C<SUB>2</SUB></TT>
     <DD>This is like the case for integers described above, but the extra
     touch is that if &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; gives <B><I>f</I></B>, <B><I>c</I></B> is set back to its old position after
@@ -352,15 +360,6 @@ Here is a list of the commands that can be used to operate on strings.
            ( 'an'   /* signal t - from the beginning */
            )
 </PRE>
-<DT><TT>true</TT>, &nbsp;<TT>false</TT>
-    <DD><TT>true</TT>&nbsp; is a dummy command that generates signal <B><I>t</I></B>. &nbsp;<TT>false</TT>&nbsp; generates
-    signal <B><I>f</I></B>. They are sometimes useful for emphasis,
-<BR><PRE>
-        define start_off as true       // nothing to do
-        define exception_list as false // put in among(...) list later
-
-</PRE>
-        &nbsp;<TT>true</TT>&nbsp;      is equivalent to     &nbsp;<TT>()</TT>
 <DT><TT>C<SUB>1</SUB> and C<SUB>2</SUB></TT>
     <DD>And similarly <B><I>c</I></B> is set back to its old position after &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; has given <B><I>t</I></B>
     and before &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; is tried. So,
@@ -566,10 +565,15 @@ In this account of string commands we see <B><I>c</I></B> moving right towards <
 
 <DL>
 <DT><TT>setlimit C<SUB>1</SUB> for C<SUB>2</SUB></TT>
-    <DD><TT>C<SUB>1</SUB></TT>&nbsp; is obeyed, and if it gives <B><I>f</I></B> the final value of <B><I>c</I></B> becomes the new
+    <DD><TT>C<SUB>1</SUB></TT>&nbsp; is obeyed, and if it gives <B><I>f</I></B> the signal from &nbsp;<TT>setlimit</TT>
+     is <B><I>f</I></B> with no further action.
+<BR><BR>
+    Otherwise, the final value of <B><I>c</I></B> becomes the new
     position of <B><I>l</I></B>. <B><I>c</I></B> is then set back to its old value before &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; was
-    obeyed, and &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; is obeyed. Finally <B><I>l</I></B> is set back to its old position.
-    The signal is <B><I>f</I></B> if either &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; or &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; gives <B><I>f</I></B>, otherwise <B><I>t</I></B>.
+    obeyed, and &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; is obeyed. Finally <B><I>l</I></B> is set back to its old position,
+    and the signal of &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; becomes the signal of &nbsp;<TT>setlimit</TT>.
+<BR><BR>
+    So the signal is <B><I>f</I></B> if either &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; or &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; gives <B><I>f</I></B>, otherwise <B><I>t</I></B>.
     For example,
 <BR><PRE>
     $x ( setlimit goto 's'  // 'animadver}sion' new l as marked '}'
@@ -606,7 +610,7 @@ right. But the process can be reversed.
 </DL>
 
 Forward and backward processing are entirely symmetric, except that forward
-processing is the default direction, and literals strings are always
+processing is the default direction, and literal strings are always
 written out forwards, even when they are being tested backwards. So the
 following are equivalent,
 <BR><PRE>
@@ -893,7 +897,7 @@ For case (<I>c</I>), we need to make a slight separation of the concept of
 <I>characters</I> into <I>symbols</I>, the units of text being represented, and
 <I>slots</I>, the units of space into which they map. (So in case (<I>a</I>), all
 slots are one byte; in case (<I>b</I>) all slots are two bytes.)
-<B><I>c</I></B> and <B><I>l</I></B> have numeric values the can be used in AEs (arithmetic
+<B><I>c</I></B> and <B><I>l</I></B> have numeric values that can be used in AEs (arithmetic
 expressions). These values count the number of slots. Similarly
 <TT>setmark</TT>, &nbsp;<TT>tomark</TT>&nbsp; and &nbsp;<TT>atmark</TT>&nbsp; are remembering and then using slot
 counts. &nbsp;<TT>size</TT>&nbsp; and &nbsp;<TT>sizeof</TT>&nbsp; measure string size
