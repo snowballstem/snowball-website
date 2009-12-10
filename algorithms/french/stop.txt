@@ -76,9 +76,6 @@ y              |  there
 étées
 étés
 étant
-étante
-étants
-étantes
 suis
 es
 est
@@ -120,9 +117,6 @@ fussent
 
                | forms of avoir (not including the infinitive):
 ayant
-ayante
-ayantes
-ayants
 eu
 eue
 eues
@@ -165,4 +159,19 @@ eussions
 eussiez
 eussent
 
+               | Later additions (from Jean-Christophe Deschamps)
+ceci           |  this
+celà           |  that
+cet            |  this
+cette          |  this
+ici            |  here
+ils            |  they
+les            |  the (pl)
+leurs          |  their (pl)
+quel           |  which
+quels          |  which
+quelle         |  which
+quelles        |  which
+sans           |  without
+soi            |  oneself
 
