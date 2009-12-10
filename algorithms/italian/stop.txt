@@ -1,5 +1,5 @@
 
- | A French stop word list. Comments begin with vertical bar. Each stop
+ | An Italian stop word list. Comments begin with vertical bar. Each stop
  | word is at the start of a line.
 
 ad             |  a (to) before vowel
