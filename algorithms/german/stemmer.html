@@ -263,13 +263,16 @@ Step 1:
 <DL><DD>
     Search for the longest among the following suffixes,
 <BR><BR><DL><DD>
-        (<I>a</I>) <B><I>e  &nbsp;  em  &nbsp;  en  &nbsp;  ern  &nbsp;  er  &nbsp;  es</I></B><BR>
-        (<I>b</I>) <B><I>s</I></B> (preceded by a valid <B><I>s</I></B>-ending)
+        (<I>a</I>) <B><I>em  &nbsp;  ern  &nbsp;  er</I></B><BR>
+        (<I>b</I>) <B><I>e  &nbsp;  en  &nbsp;  es</I></B><BR>
+        (<I>c</I>) <B><I>s</I></B> (preceded by a valid <B><I>s</I></B>-ending)
 </DL><BR>
     and delete if in <I>R</I>1. (Of course the letter of the valid <B><I>s</I></B>-ending is
-    not necessarily in <I>R</I>1)
+    not necessarily in <I>R</I>1.) If an ending of group (<I>b</I>) is deleted, and the ending
+    is preceded by <B><I>niss</I></B>, delete the final <B><I>s</I></B>.
 <BR><BR>
-    (For example, <I>äckern</I> <TT>-&gt;</TT> <I>äck</I>, <I>ackers</I> <TT>-&gt;</TT> <I>acker</I>, <I>armes</I> <TT>-&gt;</TT> <I>arm</I>)
+    (For example, <I>äckern</I> <TT>-&gt;</TT> <I>äck</I>, <I>ackers</I> <TT>-&gt;</TT> <I>acker</I>,
+    <I>armes</I> <TT>-&gt;</TT> <I>arm</I>, <I>bedürfnissen</I> <TT>-&gt;</TT> <I>bedürfnis</I>)
 </DL>
 Step 2:
 <DL><DD>
@@ -320,6 +323,11 @@ Finally,
 
 <BR><PRE>
 <DL><DD>
+
+/*
+    Extra rule for -nisse ending added 11 Dec 2009
+*/
+
 routines (
            prelude postlude
            mark_regions
@@ -395,8 +403,12 @@ backwardmode (
     define standard_suffix as (
         do (
             [substring] R1 among(
-                'e' 'em' 'en' 'ern' 'er' 'es'
+                'em' 'ern' 'er'
                 (   delete
+                )
+                'e' 'en' 'es'
+                (   delete
+                    try (['s'] 'nis' delete)
                 )
                 's'
                 (   s_ending delete

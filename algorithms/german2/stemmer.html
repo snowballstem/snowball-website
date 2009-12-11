@@ -78,6 +78,11 @@ thousand among the native German words.
 
 <BR><PRE>
 <DL><DD>
+
+/*
+    Extra rule for -nisse ending added 11 Dec 2009
+*/
+
 routines (
            prelude postlude
            mark_regions
@@ -159,8 +164,12 @@ backwardmode (
     define standard_suffix as (
         do (
             [substring] R1 among(
-                'e' 'em' 'en' 'ern' 'er' 'es'
+                'em' 'ern' 'er'
                 (   delete
+                )
+                'e' 'en' 'es'
+                (   delete
+                    try (['s'] 'nis' delete)
                 )
                 's'
                 (   s_ending delete
