@@ -3,6 +3,7 @@
 
 #include <stdlib.h>  /* for malloc, free */
 #include <string.h>  /* for memcmp, memmove */
+#include <ctype.h>   /* for tolower */
 
 /*  A direct encoding of the English (Porter2) stemmer defined at
 
@@ -312,6 +313,7 @@ static void step4(struct stemmer * z) {
             if (ends(z, "\03" "ent")) break; return;
         case 'o':
             if (ends(z, "\03" "ion") && (z->b[z->j] == 's' || z->b[z->j] == 't')) break;
+            return;
         case 's':
             if (ends(z, "\03" "ism")) break; return;
         case 't': if (ends(z, "\03" "ate")) break;
@@ -344,7 +346,7 @@ static int exception1(struct stemmer * z) {
             if (equals(z, "\05" "skies")) { setto(z, "\03" "sky"); return TRUE; }
             if (equals(z, "\04" "skis")) { setto(z, "\03" "ski"); return TRUE; }
             if (equals(z, "\03" "sky")) return TRUE;
-            if (equals(z, "\06" "singly")) { setto(z, "\06" "singl"); return TRUE; }
+            if (equals(z, "\06" "singly")) { setto(z, "\05" "singl"); return TRUE; }
             return FALSE;
         case 'd':
             if (equals(z, "\05" "dying")) { setto(z, "\03" "die"); return TRUE; }
@@ -500,14 +502,13 @@ extern int stem(struct stemmer * z, char * b, int k) {
 
 #include <stdio.h>
 #include <stdlib.h>      /* for malloc, free */
-#include <ctype.h>       /* for isupper, islower, tolower */
 
 static char * s;         /* buffer for words tobe stemmed */
 
 #define INC 50           /* size units in which s is increased */
 static int i_max = INC;  /* maximum offset in s */
 
-#define LETTER(ch) (isupper(ch) || islower(ch) || ch == '\'')
+#define LETTER(ch) (isalpha(ch) || ch == '\'')
 
 void stemfile(struct stemmer * z, FILE * f) {
     while(TRUE) {
