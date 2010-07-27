@@ -10,6 +10,10 @@
 <h2>Major events</h2>
 
 <p>
+<b>Jul 2010 - Contributed stemmers for Armenian, Basque, Catalan</b>
+</p>
+
+<p>
 <b>Mar 2007 - Romanian stemmer</b>
 </p>
 
