@@ -22,8 +22,18 @@ A reimplementation of the snowball stemming algorithms in C++.
 A probabilistic search engine which supports stemming using Snowball.
 </p>
 
-<h2><a href="http://www.zopyx.com/OpenSource/TextIndexNG">TextIndexNG</a></h2>
-A fulltext indexing solution for Zope with supports stemming using Snowball.
+<h2><a href="http://www.zopyx.com/projects/TextIndexNG3/">TextIndexNG</a></h2>
+A fulltext indexing solution for Zope with support for stemming using Snowball.
+</p>
+
+<h2><a href="http://code.google.com/p/urim/">urim</a></h2>
+(added Sept 2010) Developed by Oleg Mazko, <B>Urim</B> is a standalone,
+offline tag-cloud builder engine, fully written in JavaScript and so
+capable of integration into all Internet browsers. Available as
+a Firefox add-on. With a JavaScript port of the Snowball stemmers (danish,
+dutch, english, finnish, french, german, hungarian, italian,
+norwegian, portuguese, russian, spanish, swedish, romanian, turkish)
+also avaliable as a separate library ready for developers.
 </p>
 
 <hr>
