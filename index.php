@@ -10,6 +10,11 @@
 <h2>Major events</h2>
 
 <p>
+<b>May 2012 - Contributed stemmers for Irish and Czech</b>
+</p>
+
+
+<p>
 <b>Jul 2010 - Contributed stemmers for Armenian, Basque, Catalan</b>
 </p>
 
