@@ -40,6 +40,14 @@ also avaliable as a separate library ready for developers.
 (added Feb 2013) Miki Tebeka has ported libstemmer_c to the Go programming
 language.
 
+</p>
+
+<h2><a href="http://speechact.de/edu">XML tagger incorporating snowball</a></h2>
+(added Feb 2013) Sebastian Bopp has incorporated the snowball stemmers into his
+XML-tagger, freely available at speechat.de/edu.
+
+</p>
+
 <hr>
 <a href="mailto:snowball-discuss@lists.tartarus.org">Contact us</a> if
 you have a project that you would like to be listed here.
