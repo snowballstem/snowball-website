@@ -27,7 +27,7 @@ A fulltext indexing solution for Zope with support for stemming using Snowball.
 </p>
 
 <h2><a href="http://code.google.com/p/urim/">urim</a></h2>
-(added Sept 2010) Developed by Oleg Mazko, <B>Urim</B> is a standalone,
+(added Sep 2010) Developed by Oleg Mazko, <B>Urim</B> is a standalone,
 offline tag-cloud builder engine, fully written in JavaScript and so
 capable of integration into all Internet browsers. Available as
 a Firefox add-on. With a JavaScript port of the Snowball stemmers (danish,
@@ -35,6 +35,10 @@ dutch, english, finnish, french, german, hungarian, italian,
 norwegian, portuguese, russian, spanish, swedish, romanian, turkish)
 also avaliable as a separate library ready for developers.
 </p>
+
+<h2><a href="http://bitbucket.org/tebeka/snowball">libstemmer in Go</a></h2>
+(added Feb 2013) Miki Tebeka has ported libstemmer_c to the Go programming
+language.
 
 <hr>
 <a href="mailto:snowball-discuss@lists.tartarus.org">Contact us</a> if
