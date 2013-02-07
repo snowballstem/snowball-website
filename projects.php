@@ -44,7 +44,7 @@ language.
 
 <h2><a href="http://speechact.de/edu">XML tagger incorporating snowball</a></h2>
 (added Feb 2013) Sebastian Bopp has incorporated the snowball stemmers into his
-XML-tagger, freely available at speechat.de/edu.
+XML-tagger, freely available at speechact.de/edu.
 
 </p>
 
