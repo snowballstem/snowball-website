@@ -283,9 +283,9 @@ at the top of this page, but here it is,
 </TR>
 <TR><TD BGCOLOR="wheat">
 <BR><PRE>
-    #include <stdio.h>
-    #include <stdlib.h> /* for malloc, free */
-    #include <string.h> /* for memmove */
+    #include &lt;stdio.h>
+    #include &lt;stdlib.h> /* for malloc, free */
+    #include &lt;string.h> /* for memmove */
 
     #include "api.h"
     #include "hungarian.h"
@@ -339,7 +339,7 @@ at the top of this page, but here it is,
                 H_stem(z);
                 {
                     int j;
-                    for (j = 0; j < z->l; j++) fprintf(f_out, "%c", z->p[j]);
+                    for (j = 0; j &lt; z->l; j++) fprintf(f_out, "%c", z->p[j]);
                     fprintf(f_out, "\n");
                 }
             }
