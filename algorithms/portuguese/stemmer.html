@@ -277,10 +277,10 @@ Step 1: Standard suffix removal
     ante  &nbsp;  antes  &nbsp;  ância</I></B>
         <DD>delete if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>logía  &nbsp;  logías</I></B>
+    <DT><B><I>logia  &nbsp;  logias</I></B>
         <DD>replace with <B><I>log</I></B> if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>ución  &nbsp;  uciones</I></B>
+    <DT><B><I>ução  &nbsp;  uções</I></B>
         <DD>replace with <B><I>u</I></B> if in <I>R</I>2
 <BR><BR>
     <DT><B><I>ência  &nbsp;  ências</I></B>
@@ -465,12 +465,12 @@ backwardmode (
             (
                 R2 delete
             )
-            'log{i'}a'
-            'log{i'}as'
+            'logia'
+            'logias'
             (
                 R2 <- 'log'
             )
-            'uci{o'}n' 'uciones'
+            'u{c,}a~o' 'u{c,}o~es'
             (
                 R2 <- 'u'
             )
