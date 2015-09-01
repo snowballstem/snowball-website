@@ -1,0 +1,129 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Template;
+
+# some useful options (see below for full list)
+my $config = {
+#    INCLUDE_PATH => '/search/path',  # or list ref
+#	INTERPOLATE  => 1,               # expand "$var" in plain text
+	POST_CHOMP   => 1,               # cleanup whitespace
+#	PRE_PROCESS  => 'header',        # prefix each template
+	EVAL_PERL    => 1,               # evaluate Perl code blocks
+};
+
+my $outpath = '../snowballstem.github.io/';
+
+my $template = Template->new($config);
+
+1;
+# define template variables for replacement
+my $vars = {};
+
+# The footer of the page.
+# There should be no output after this.
+$$vars{footer} = <<'__END__';
+</table>
+</td></tr></table>
+<address>
+
+<br>
+<a href="mailto:snowball-discuss@lists.tartarus.org">Write to our mailing list</a> if you have comments or questions about the project.  Note that this mailing list will reject postings from non-subscribers (due to the immense amount of spam received otherwise).  The list is fairly low-traffic, but if you don't wish to receive messages (but wish to be able to post), you can disable sending of messages in the mailing list options after subscribing.
+</address>
+</body>
+</html>
+__END__
+
+my @pages = (
+    [ "index" => "Introduction" ],
+    [ "demo" => "Demo" ],
+    [ "download" => "Download" ],
+    [ "lists" => "Mailing Lists" ],
+    [ "license" => "License" ],
+    [ "credits" => "Credits" ],
+    [ "projects" => "Projects" ]
+);
+
+# specify input filename, or file handle, text reference, etc.
+for my $in (<*.tt>) {
+    ((my $page = $in) =~ s/\.tt$//) or next;
+    my $out = "$outpath$page.html";
+    my $pretty_name = "\u$page";
+    if ($page eq 'index') {
+	$pretty_name = '';
+    } elsif ($page eq 'lists') {
+	$pretty_name = 'Mailing Lists';
+    }
+
+    my $menu = "<td valign=top bgcolor=cyan width=128>";
+    for (@pages) {
+	my ($link, $desc) = @{$_};
+	if ($link eq $page) {
+	    $menu .= "<b>$desc</b>";
+	} else {
+	    if ($link eq "index") {
+		$link = '.';
+	    } else {
+		$link .= '.html';
+	    }
+	    $menu .= '<a href="'.$link.'">'.$desc.'</a>';
+	}
+	$menu .= "<br>\n";
+    }
+    $menu .= <<'__END__';
+<a href="http://svn.tartarus.org/?root=snowball">Browse SVN</a><br>
+<br>
+
+<!--
+<form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
+<center>
+<input NAME=P VALUE="" SIZE=12>
+<input TYPE=SUBMIT VALUE="Search" BORDER=0>
+<input TYPE=hidden NAME=DB VALUE="snowball-website">
+<input TYPE=hidden NAME=FMT VALUE="snquery">
+</form>
+<br>
+-->
+
+</td>
+__END__
+    # Title is the title of the page: it will be prefixed with "Snowball - ".
+    my $title = "Snowball";
+    if ($pretty_name ne "") {
+	$title = "$title - $pretty_name";
+    }
+    # Header of the page, including the menu.
+    # This should be output first.
+    $$vars{header} = <<__END__;
+<html>
+<head>
+<title>$title</title>
+</head>
+<body bgcolor=white>
+<table><tr><td valign=center>
+<center><img src="snub-dodecahedron.gif"></center>
+</td><td>
+<h1 align=center>$title</h1>
+</td></tr>
+<tr>$menu<td valign=top>
+<table width=95% align=center cols=1>
+__END__
+    $template->process($in, $vars, $out) || die $template->error();
+}
+
+foreach my $f (qw(
+    CNAME
+    robots.txt
+    snub-dodecahedron.gif
+    codesets
+    algorithms
+    otherapps
+    texts
+    runtime
+    otherlangs
+    wrappers
+    compiler
+)) {
+    system("rm", "-rf", $outpath.$f) == 0 or die "Failed to delete '$outpath$f'\n";
+    system("cp", "-a", $f, $outpath.$f) == 0 or die "Failed to copy '$f'\n";
+}

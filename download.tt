@@ -1,8 +1,4 @@
-<?php
-  require "menu.inc";
-  displayHeader("Download");
-?>
-
+[% header %]
 <tr><td>
 <h2>Tarballs</h2>
 
@@ -90,4 +86,4 @@ The subversion code repository can also be <a href="http://svn.tartarus.org/?roo
 </p>
 
 </td></tr>
-<?php displayFooter(); ?>
+[% footer %]

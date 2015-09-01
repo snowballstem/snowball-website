@@ -1,7 +1,4 @@
-<?php
-  require "menu.inc";
-  displayHeader("Projects");
-?>
+[% header %]
 <TR><TD>
 <p>
 
@@ -53,4 +50,4 @@ XML-tagger, freely available at speechact.de/edu.
 you have a project that you would like to be listed here.
 
 <TD><TR>
-<?php displayFooter(); ?>
+[% footer %]

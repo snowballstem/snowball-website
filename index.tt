@@ -1,9 +1,6 @@
-<?php
-  require "menu.inc";
-  displayHeader("");
-?>
+[% header %]
 
-<?php include "index_body.html" ?>
+[% INSERT index_body.html %]
 
 <TR><TD>
 <p>
@@ -66,4 +63,4 @@ snowball stemmers.
 
 </TR></TD>
 
-<?php displayFooter(); ?>
+[% footer %]

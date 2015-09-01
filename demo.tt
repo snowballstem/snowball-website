@@ -1,9 +1,8 @@
-<?php
-  require "menu.inc";
-  displayHeader("Demo");
-?>
+[% header %]
 <TR><TD>
 
+[The demo will return...]
+<!--
 <form method="POST" action="demo.php">
 Enter some words to stem, using the English stemming algorithm, and then click on Submit:<br>
 <textarea name="words" rows="10" cols="50"><?php
@@ -14,8 +13,10 @@ echo "$tmp";
 <br>
 <input type="submit" name="Submit" value="Submit">
 </form>
+-->
 </TD></TR>
 
+<!--
 <?php
 if ($words != '')
 {
@@ -38,5 +39,6 @@ if ($words != '')
   echo "</TR></TD>";
 }
 ?>
+-->
 
-<?php displayFooter(); ?>
+[% footer %]

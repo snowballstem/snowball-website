@@ -1,7 +1,4 @@
-<?php
-  require "menu.inc";
-  displayHeader("Mailing Lists");
-?>
+[% header %]
 <TR><TD>
 <p>
 
@@ -30,4 +27,4 @@ only of interest to people actively working on Snowball.
 
 </p>
 </TD></TR>
-<?php displayFooter(); ?>
+[% footer %]

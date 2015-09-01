@@ -1,7 +1,4 @@
-<?php
-  require "menu.inc";
-  displayHeader("Credits");
-?>
+[% header %]
 <TR><TD>
 <p>
 Snowball, and most of the current stemming algorithms were written by
@@ -64,4 +61,4 @@ different removal criteria is taken from Irina Tirdea's stemmer.
 </p>
 
 </TD></TR>
-<?php displayFooter(); ?>
+[% footer %]

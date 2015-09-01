@@ -1,7 +1,4 @@
-<?php
-  require "menu.inc";
-  displayHeader("License");
-?>
+[% header %]
 <TR><TD>
 <p>
 
@@ -30,4 +27,4 @@ text of the Snowball software.
 
 </p>
 </TD></TR>
-<?php displayFooter(); ?>
+[% footer %]
