@@ -1,6 +1,2 @@
 User-agent: *
-Allow: /viewcvs.cgi/
-Crawl-delay: 120
-
-User-agent: Googlebot
-Disallow: /viewcvs.cgi/
+Allow: /
