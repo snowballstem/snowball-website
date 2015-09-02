@@ -71,7 +71,7 @@ for my $in (<*.tt>) {
 	$menu .= "<br>\n";
     }
     $menu .= <<'__END__';
-<a href="https://github.com/snowballstem/snowball">git repo</a><br>
+<a href="https://github.com/snowballstem">Source on github</a><br>
 <br>
 
 <!--

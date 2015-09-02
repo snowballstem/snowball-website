@@ -239,8 +239,7 @@ quiosqu<BR>
 <BR><BR>
 Letters in Portuguese include the following accented forms,
 <DL><DD>
-    <B><I>á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  â  &nbsp;  ê  &nbsp;  ô  &nbsp;  ç  &nbsp;  ã  &nbsp;  õ  &nbsp;  ü  &nbsp;
-    ñ</I></B>
+    <B><I>á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  â  &nbsp;  ê  &nbsp;  ô  &nbsp;  ç  &nbsp;  ã  &nbsp;  õ  &nbsp;  ü</I></B>
 </DL>
 The following letters are vowels:
 <DL><DD>
@@ -276,10 +275,10 @@ Step 1: Standard suffix removal
     ante  &nbsp;  antes  &nbsp;  ância</I></B>
         <DD>delete if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>logía  &nbsp;  logías</I></B>
+    <DT><B><I>logia  &nbsp;  logias</I></B>
         <DD>replace with <B><I>log</I></B> if in <I>R</I>2
 <BR><BR>
-    <DT><B><I>ución  &nbsp;  uciones</I></B>
+    <DT><B><I>ução  &nbsp;  uções</I></B>
         <DD>replace with <B><I>u</I></B> if in <I>R</I>2
 <BR><BR>
     <DT><B><I>ência  &nbsp;  ências</I></B>
@@ -464,12 +463,12 @@ backwardmode (
             (
                 R2 delete
             )
-            'log{i'}a'
-            'log{i'}as'
+            'logia'
+            'logias'
             (
                 R2 <- 'log'
             )
-            'uci{o'}n' 'uciones'
+            'u{c,}a~o' 'u{c,}o~es'
             (
                 R2 <- 'u'
             )
