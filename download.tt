@@ -74,7 +74,7 @@ Developers may wish to access the latest source using the command:
 <br>
 <p>
 <tt>
-git clone git@github.com:snowballstem/snowball.git
+git clone git&#64;github.com:snowballstem/snowball.git
 </tt>
 </td></tr>
 <tr><td>
