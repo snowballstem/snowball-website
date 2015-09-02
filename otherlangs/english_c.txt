@@ -5,7 +5,7 @@
 
 /*  A direct encoding of the English (Porter2) stemmer defined at
 
-    http://snowball.tartarus.org/algorithms/english/stemmer.html
+    http://snowballstem.org/algorithms/english/stemmer.html
 
     -- see this webpage for an explanation.
     (Encoded by Martin Porter, improvements by Olly Betts.)

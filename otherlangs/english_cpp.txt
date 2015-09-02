@@ -8,7 +8,7 @@
  * 
  * 
  * This is a C# implementation of the Porter2 algorithm as described on:
- * http://snowball.tartarus.org/algorithms/english/stemmer.html
+ * http://snowballstem.org/algorithms/english/stemmer.html
  * 
  * It is provided as a ready-to-use class with only a single public method:
  * 

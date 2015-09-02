@@ -4,13 +4,13 @@ function w = porterStemmer2(w)
    % shared on http://tartarus.org/~martin/PorterStemmer/
    %
    % This is implementation of Porter 2 as presented here
-   % http://snowball.tartarus.org/algorithms/english/stemmer.html
+   % http://snowballstem.org/algorithms/english/stemmer.html
    % No exceptions are impemented.
    %
    % This matlab implementation is based on great previous one done by Juan
    % Carlos Lopez http://tartarus.org/~martin/PorterStemmer/matlab.txt it
    % is slightly faster (13-33%) when using test words here
-   % http://snowball.tartarus.org/algorithms/english/diffs.txt and about
+   % http://snowballstem.org/algorithms/english/diffs.txt and about
    % 33% faster when used in real life text form a book with 124'370 words
    % - mainly due to the fact that smaller words (less than 6 letters) are
    % handled little bit more effectively, skipping some argument passing

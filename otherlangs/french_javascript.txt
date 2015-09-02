@@ -5,7 +5,7 @@
  *
  * usage: stemmer(word);
  * ex: var stem = stemmer("foobar");
- * Implementation of the stemming algorithm at http://snowball.tartarus.org/algorithms/french/stemmer.html
+ * Implementation of the stemming algorithm at http://snowballstem.org/algorithms/french/stemmer.html
  *
  * LICENSE:
  *

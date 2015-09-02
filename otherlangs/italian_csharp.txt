@@ -6,7 +6,7 @@
  * 
  * This is a C# implementation of M.F.Porter's "Italian Stemming Algorithm" as described on:
  * 
- * http://snowball.tartarus.org/algorithms/italian/stemmer.html
+ * http://snowballstem.org/algorithms/italian/stemmer.html
  * 
  * The class has just one public static method:
  * 

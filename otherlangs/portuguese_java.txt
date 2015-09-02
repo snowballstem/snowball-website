@@ -7,7 +7,7 @@ import java.util.HashSet;
  * <br>
  *
  * Portuguese Porter Stemming algorithm as defined in:<br>
- * http://snowball.tartarus.org/algorithms/portuguese/stemmer.html
+ * http://snowballstem.org/algorithms/portuguese/stemmer.html
  * @author Pedro Oliveira (http://student.dei.uc.pt/~pcoliv)
  *
  */

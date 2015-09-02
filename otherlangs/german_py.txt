@@ -3,11 +3,11 @@ Hash: SHA1
 
 ###
 #
-#   Eine Pythonimplementation des Porter-Stemmers für Deutsch (Orginal unter http://snowball.tartarus.org/texts/germanic.html)
+#   Eine Pythonimplementation des Porter-Stemmers für Deutsch (Orginal unter http://snowballstem.org/texts/germanic.html)
 #
 #   Ersteller dieser Version: (c) by kristall 'ät' c-base.org       http://kristall.crew.c-base.org/porter_de.py
 #
-#   Der Algorithmus in (englischem) Prosa unter http://snowball.tartarus.org/algorithms/german/stemmer.html
+#   Der Algorithmus in (englischem) Prosa unter http://snowballstem.org/algorithms/german/stemmer.html
 #
 #   Wikipedia zum Porter-Stemmer: http://de.wikipedia.org/wiki/Porter-Stemmer-Algorithmus
 #
@@ -30,7 +30,7 @@ def stem(wort, stop = False):
     s_endung = 'bdfghklmnrt'
     #   Konsonanten die vor einer 'st'-Endung stehen dürfen.
     st_endung = 'bdfghklmnt'
-    #   Zu r1 & r2 siehe http://snowball.tartarus.org/texts/r1r2.html, p1 & p2 sind die Start'p'ositionen von r1 & r2 im String
+    #   Zu r1 & r2 siehe http://snowballstem.org/texts/r1r2.html, p1 & p2 sind die Start'p'ositionen von r1 & r2 im String
     r1 =''
     p1 = 0
     r2 = ''

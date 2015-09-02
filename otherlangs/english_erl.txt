@@ -9,7 +9,7 @@
 -export([stem/1]).
 
 % This is an implementation of Porter2, as described at
-% http://snowball.tartarus.org/algorithms/english/stemmer.html
+% http://snowballstem.org/algorithms/english/stemmer.html
 
 %stem(Word) ->
 %    LWord = string:to_lower(Word),
