@@ -96,7 +96,7 @@ boi<BR>
 bóia<BR>
 boiando<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 boa<BR>
 boainain<BR>
@@ -182,7 +182,7 @@ quinze<BR>
 quinzena<BR>
 quiosque<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 quiab<BR>
 quic<BR>
@@ -406,8 +406,8 @@ define v 'aeiou{a'}{e'}{i'}{o'}{u'}{a^}{e^}{o^}'
 
 define prelude as repeat (
     [substring] among(
-        '{a~}' (<- 'a~')
-        '{o~}' (<- 'o~')
+        '{a~}' (&lt;- 'a~')
+        '{o~}' (&lt;- 'o~')
         ''     (next)
     ) //or next
 )
@@ -432,17 +432,17 @@ define mark_regions as (
 
 define postlude as repeat (
     [substring] among(
-        'a~' (<- '{a~}')
-        'o~' (<- '{o~}')
+        'a~' (&lt;- '{a~}')
+        'o~' (&lt;- '{o~}')
         ''   (next)
     ) //or next
 )
 
 backwardmode (
 
-    define RV as $pV <= cursor
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define RV as $pV &lt;= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define standard_suffix as (
         [substring] among(
@@ -466,15 +466,15 @@ backwardmode (
             'logia'
             'logias'
             (
-                R2 <- 'log'
+                R2 &lt;- 'log'
             )
             'u{c,}a~o' 'u{c,}o~es'
             (
-                R2 <- 'u'
+                R2 &lt;- 'u'
             )
             '{e^}ncia' '{e^}ncias'
             (
-                R2 <- 'ente'
+                R2 &lt;- 'ente'
             )
             'amente'
             (
@@ -522,7 +522,7 @@ backwardmode (
             'ira' 'iras'
             (
                 RV 'e'  // -eira -eiras usually non-verbal
-                <- 'ir'
+                &lt;- 'ir'
             )
         )
     )
@@ -564,7 +564,7 @@ backwardmode (
             'e' '{e'}' '{e^}'
                 ( RV delete [('u'] test 'g') or
                              ('i'] test 'c') RV delete )
-            '{c,}' (<-'c')
+            '{c,}' (&lt;-'c')
         )
     )
 )

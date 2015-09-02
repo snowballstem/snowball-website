@@ -99,7 +99,7 @@ bajbajutottakon<BR>
 bajl&oacute;djanak<BR>
 bajl&oacute;dni<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 babah&aacute;z<BR>
 babakocs<BR>
@@ -185,7 +185,7 @@ mulats&aacute;got<BR>
 mulats&aacute;gos<BR>
 mulatt<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 muattt<BR>
 muk<BR>
@@ -283,7 +283,7 @@ For example:
          |.....|        R1 is 'o n y'
 
     c v s
-     --->|<---          null R1 region
+     ---&gt;|&lt;---          null R1 region
 </PRE>
 &#8216;Delete if in <I>R</I>1&#8217; means that the suffix should be removed if it is in
 region <I>R</I>1 but not if it is outside.
@@ -491,12 +491,12 @@ define mark_regions as (
 
 backwardmode (
 
-    define R1 as $p1 <= cursor
+    define R1 as $p1 &lt;= cursor
 
     define v_ending as (
         [substring] R1 among(
-            '{a'}' (<- 'a')
-            '{e'}' (<- 'e')
+            '{a'}' (&lt;- 'a')
+            '{e'}' (&lt;- 'e')
         )
     )
 
@@ -550,9 +550,9 @@ backwardmode (
 
     define case_special as(
         [substring] R1 among(
-            '{e'}n' (<- 'e')
-            '{a'}n' (<- 'a')
-            '{a'}nk{e'}nt' (<- 'a')
+            '{e'}n' (&lt;- 'e')
+            '{a'}n' (&lt;- 'a')
+            '{a'}nk{e'}nt' (&lt;- 'a')
         )
     )
 
@@ -560,8 +560,8 @@ backwardmode (
         [substring] R1 among(
             'astul' 'est{u"}l' (delete)
             'stul' 'st{u"}l' (delete)
-            '{a'}stul' (<- 'a')
-            '{e'}st{u"}l' (<- 'e')
+            '{a'}stul' (&lt;- 'a')
+            '{e'}st{u"}l' (&lt;- 'e')
         )
     )
 
@@ -576,8 +576,8 @@ backwardmode (
 
     define plural as (
         [substring] R1 among(
-            '{a'}k' (<- 'a')
-            '{e'}k' (<- 'e')
+            '{a'}k' (&lt;- 'a')
+            '{e'}k' (&lt;- 'e')
             '{o"}k' (delete)
             'ak' (delete)
             'ok' (delete)
@@ -589,13 +589,13 @@ backwardmode (
     define owned as (
         [substring] R1 among (
             'ok{e'}' '{o"}k{e'}' 'ak{e'}' 'ek{e'}' (delete)
-            '{e'}k{e'}' (<- 'e')
-            '{a'}k{e'}' (<- 'a')
+            '{e'}k{e'}' (&lt;- 'e')
+            '{a'}k{e'}' (&lt;- 'a')
             'k{e'}' (delete)
-            '{e'}{e'}i' (<- 'e')
-            '{a'}{e'}i' (<- 'a')
+            '{e'}{e'}i' (&lt;- 'e')
+            '{a'}{e'}i' (&lt;- 'a')
             '{e'}i'  (delete)
-            '{e'}{e'}' (<- 'e')
+            '{e'}{e'}' (&lt;- 'e')
             '{e'}' (delete)
         )
     )
@@ -603,59 +603,59 @@ backwardmode (
     define sing_owner as (
         [substring] R1 among(
             '{u"}nk' 'unk' (delete)
-            '{a'}nk' (<- 'a')
-            '{e'}nk' (<- 'e')
+            '{a'}nk' (&lt;- 'a')
+            '{e'}nk' (&lt;- 'e')
             'nk' (delete)
-            '{a'}juk' (<- 'a')
-            '{e'}j{u"}k' (<- 'e')
+            '{a'}juk' (&lt;- 'a')
+            '{e'}j{u"}k' (&lt;- 'e')
             'juk' 'j{u"}k' (delete)
             'uk' '{u"}k' (delete)
             'em' 'om' 'am' (delete)
-            '{a'}m' (<- 'a')
-            '{e'}m' (<- 'e')
+            '{a'}m' (&lt;- 'a')
+            '{e'}m' (&lt;- 'e')
             'm' (delete)
             'od' 'ed' 'ad' '{o"}d' (delete)
-            '{a'}d' (<- 'a')
-            '{e'}d' (<- 'e')
+            '{a'}d' (&lt;- 'a')
+            '{e'}d' (&lt;- 'e')
             'd' (delete)
             'ja' 'je' (delete)
             'a' 'e' 'o' (delete)
-            '{a'}' (<- 'a')
-            '{e'}' (<- 'e')
+            '{a'}' (&lt;- 'a')
+            '{e'}' (&lt;- 'e')
         )
     )
 
     define plur_owner as (
         [substring] R1 among(
             'jaim' 'jeim' (delete)
-            '{a'}im' (<- 'a')
-            '{e'}im' (<- 'e')
+            '{a'}im' (&lt;- 'a')
+            '{e'}im' (&lt;- 'e')
             'aim' 'eim' (delete)
             'im' (delete)
             'jaid' 'jeid' (delete)
-            '{a'}id' (<- 'a')
-            '{e'}id' (<- 'e')
+            '{a'}id' (&lt;- 'a')
+            '{e'}id' (&lt;- 'e')
             'aid' 'eid' (delete)
             'id' (delete)
             'jai' 'jei' (delete)
-            '{a'}i' (<- 'a')
-            '{e'}i' (<- 'e')
+            '{a'}i' (&lt;- 'a')
+            '{e'}i' (&lt;- 'e')
             'ai' 'ei' (delete)
             'i' (delete)
             'jaink' 'jeink' (delete)
             'eink' 'aink' (delete)
-            '{a'}ink' (<- 'a')
-            '{e'}ink' (<- 'e')
+            '{a'}ink' (&lt;- 'a')
+            '{e'}ink' (&lt;- 'e')
             'ink'
             'jaitok' 'jeitek' (delete)
             'aitok' 'eitek' (delete)
-            '{a'}itok' (<- 'a')
-            '{e'}itek' (<- 'e')
+            '{a'}itok' (&lt;- 'a')
+            '{e'}itek' (&lt;- 'e')
             'itek' (delete)
             'jeik' 'jaik' (delete)
             'aik' 'eik' (delete)
-            '{a'}ik' (<- 'a')
-            '{e'}ik' (<- 'e')
+            '{a'}ik' (&lt;- 'a')
+            '{e'}ik' (&lt;- 'e')
             'ik' (delete)
         )
     )

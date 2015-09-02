@@ -106,8 +106,8 @@ define AIOU     'aiou'
 
 backwardmode (
 
-    define R1 as (setmark x $x >= p1)
-    define R2 as (setmark x $x >= p2)
+    define R1 as (setmark x $x &gt;= p1)
+    define R2 as (setmark x $x &gt;= p2)
 
     define V  as test (v or 'ij')
     define VX as test (next v or 'ij')
@@ -118,7 +118,7 @@ backwardmode (
                    ('e'] test (non-v or atlimit
                                not AIOU
                                not (next AIOU non-v)))
-        ->ch insert ch
+        -&gt;ch insert ch
     )
 
     define Step_1 as
@@ -127,19 +127,19 @@ backwardmode (
 
             '{'}s' (delete)
             's'    (R1 not ('t' R1) C delete)
-            'ies'  (R1 <-'ie')
+            'ies'  (R1 &lt;-'ie')
             'es'
                    (('ar' R1 C ] delete lengthen_V) or
                     ('er' R1 C ] delete) or
-                    (R1 C <-'e'))
+                    (R1 C &lt;-'e'))
 
-            'aus'  (R1 V <-'au')
-            'en'   (('hed' R1 ] <-'heid') or
+            'aus'  (R1 V &lt;-'au')
+            'en'   (('hed' R1 ] &lt;-'heid') or
                     ('nd' delete) or
                     ('d' R1 C ] delete) or
                     ('i' or 'j' V delete) or
                     (R1 C delete lengthen_V))
-            'nde'  (<-'nd')
+            'nde'  (&lt;-'nd')
         )
     )
 
@@ -148,57 +148,57 @@ backwardmode (
         [among ( (])
             'je'   (('{'}t' ] delete) or
                     ('et'   ] R1 C delete) or
-                    ('rnt'  ] <-'rn') or
+                    ('rnt'  ] &lt;-'rn') or
                     ('t'    ] R1 VX delete) or
-                    ('ink'  ] <-'ing') or
-                    ('mp'   ] <-'m') or
+                    ('ink'  ] &lt;-'ing') or
+                    ('mp'   ] &lt;-'m') or
                     ('{'}'  ] R1 delete) or
                     (] R1 C delete))
-            'ge'   (R1 <-'g')
-            'lijke'(R1 <-'lijk')
-            'ische'(R1 <-'isch')
+            'ge'   (R1 &lt;-'g')
+            'lijke'(R1 &lt;-'lijk')
+            'ische'(R1 &lt;-'isch')
             'de'   (R1 C delete)
-            'te'   (R1 <-'t')
-            'se'   (R1 <-'s')
-            're'   (R1 <-'r')
+            'te'   (R1 &lt;-'t')
+            'se'   (R1 &lt;-'s')
+            're'   (R1 &lt;-'r')
             'le'   (R1 delete attach 'l' lengthen_V)
             'ene'  (R1 C delete attach 'en' lengthen_V)
-            'ieve' (R1 C <-'ief')
+            'ieve' (R1 C &lt;-'ief')
         )
     )
 
     define Step_3 as
     (
         [among ( (])
-            'atie'  (R1 <-'eer')
+            'atie'  (R1 &lt;-'eer')
             'iteit' (R1 delete lengthen_V)
             'heid'
             'sel'
             'ster'  (R1 delete)
-            'rder'  (<-'r')
+            'rder'  (&lt;-'r')
             'ing'
             'isme'
             'erij'  (R1 delete lengthen_V)
-            'arij'  (R1 C <-'aar')
+            'arij'  (R1 C &lt;-'aar')
             'fie'   (R2 delete attach 'f' lengthen_V)
             'gie'   (R2 delete attach 'g' lengthen_V)
-            'tst'   (R1 C <-'t')
-            'dst'   (R1 C <-'d')
+            'tst'   (R1 C &lt;-'t')
+            'dst'   (R1 C &lt;-'d')
         )
     )
 
     define Step_4 as
     (
         (   [among ( (])
-                'ioneel'  (R1 <-'ie')
-                'atief'   (R1 <-'eer')
+                'ioneel'  (R1 &lt;-'ie')
+                'atief'   (R1 &lt;-'eer')
                 'baar'    (R1 delete)
-                'naar'    (R1 V <-'n')
-                'laar'    (R1 V <-'l')
-                'raar'    (R1 V <-'r')
-                'tant'    (R1 <-'teer')
+                'naar'    (R1 V &lt;-'n')
+                'laar'    (R1 V &lt;-'l')
+                'raar'    (R1 V &lt;-'r')
+                'tant'    (R1 &lt;-'teer')
                 'lijker'
-                'lijkst'  (R1 <-'lijk')
+                'lijkst'  (R1 &lt;-'lijk')
                 'achtig'
                 'achtiger'
                 'achtigst'(R1 delete)
@@ -220,37 +220,37 @@ backwardmode (
     define Step_7 as
     (
         [among ( (])
-            'kt'   (<-'k')
-            'ft'   (<-'f')
-            'pt'   (<-'p')
+            'kt'   (&lt;-'k')
+            'ft'   (&lt;-'f')
+            'pt'   (&lt;-'p')
         )
     )
 
     define Step_6 as
     (
         [among ( (])
-            'bb'   (<-'b')
-            'cc'   (<-'c')
-            'dd'   (<-'d')
-            'ff'   (<-'f')
-            'gg'   (<-'g')
-            'hh'   (<-'h')
-            'jj'   (<-'j')
-            'kk'   (<-'k')
-            'll'   (<-'l')
-            'mm'   (<-'m')
-            'nn'   (<-'n')
-            'pp'   (<-'p')
-            'qq'   (<-'q')
-            'rr'   (<-'r')
-            'ss'   (<-'s')
-            'tt'   (<-'t')
-            'vv'   (<-'v')
-            'ww'   (<-'w')
-            'xx'   (<-'x')
-            'zz'   (<-'z')
-            'v'    (<-'f')
-            'z'    (<-'s')
+            'bb'   (&lt;-'b')
+            'cc'   (&lt;-'c')
+            'dd'   (&lt;-'d')
+            'ff'   (&lt;-'f')
+            'gg'   (&lt;-'g')
+            'hh'   (&lt;-'h')
+            'jj'   (&lt;-'j')
+            'kk'   (&lt;-'k')
+            'll'   (&lt;-'l')
+            'mm'   (&lt;-'m')
+            'nn'   (&lt;-'n')
+            'pp'   (&lt;-'p')
+            'qq'   (&lt;-'q')
+            'rr'   (&lt;-'r')
+            'ss'   (&lt;-'s')
+            'tt'   (&lt;-'t')
+            'vv'   (&lt;-'v')
+            'ww'   (&lt;-'w')
+            'xx'   (&lt;-'x')
+            'zz'   (&lt;-'z')
+            'v'    (&lt;-'f')
+            'z'    (&lt;-'s')
         )
     )
 
@@ -292,8 +292,8 @@ define stem as (
 
     unset Y_found
     unset stemmed
-    do ( ['y'] <-'Y' set Y_found )
-    do repeat(goto (v  ['y'])<-'Y' set Y_found )
+    do ( ['y'] &lt;-'Y' set Y_found )
+    do repeat(goto (v  ['y'])&lt;-'Y' set Y_found )
 
     measure
 
@@ -317,7 +317,7 @@ define stem as (
             do (Step_7 set stemmed )
             do (stemmed or GE_removed Step_6)
         )
-    do(Y_found  repeat(goto (['Y']) <-'y'))
+    do(Y_found  repeat(goto (['Y']) &lt;-'y'))
 )
 
 

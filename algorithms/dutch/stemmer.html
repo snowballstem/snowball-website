@@ -96,7 +96,7 @@ lidmaatschap<BR>
 lidstaten<BR>
 lidvereniging<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 lichaamsziek<BR>
 licham<BR>
@@ -182,7 +182,7 @@ ophopen<BR>
 ophoping<BR>
 ophouden<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 opging<BR>
 opglanz<BR>
@@ -374,22 +374,22 @@ define prelude as (
     test repeat (
         [substring] among(
             '{a"}' '{a'}'
-                (<- 'a')
+                (&lt;- 'a')
             '{e"}' '{e'}'
-                (<- 'e')
+                (&lt;- 'e')
             '{i"}' '{i'}'
-                (<- 'i')
+                (&lt;- 'i')
             '{o"}' '{o'}'
-                (<- 'o')
+                (&lt;- 'o')
             '{u"}' '{u'}'
-                (<- 'u')
+                (&lt;- 'u')
             ''  (next)
         ) //or next
     )
-    try(['y'] <- 'Y')
+    try(['y'] &lt;- 'Y')
     repeat goto (
-        v [('i'] v <- 'I') or
-           ('y']   <- 'Y')
+        v [('i'] v &lt;- 'I') or
+           ('y']   &lt;- 'Y')
     )
 )
 
@@ -399,7 +399,7 @@ define mark_regions as (
     $p2 = limit
 
     gopast v  gopast non-v  setmark p1
-    try($p1 < 3  $p1 = 3)  // at least 3
+    try($p1 &lt; 3  $p1 = 3)  // at least 3
     gopast v  gopast non-v  setmark p2
 
 )
@@ -407,8 +407,8 @@ define mark_regions as (
 define postlude as repeat (
 
     [substring] among(
-        'Y'  (<- 'y')
-        'I'  (<- 'i')
+        'Y'  (&lt;- 'y')
+        'I'  (&lt;- 'i')
         ''   (next)
     ) //or next
 
@@ -416,8 +416,8 @@ define postlude as repeat (
 
 backwardmode (
 
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define undouble as (
         test among('kk' 'dd' 'tt') [next] delete
@@ -439,7 +439,7 @@ backwardmode (
         do (
             [substring] among(
                 'heden'
-                (   R1 <- 'heid'
+                (   R1 &lt;- 'heid'
                 )
                 'en' 'ene'
                 (   en_ending

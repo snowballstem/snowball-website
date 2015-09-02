@@ -97,7 +97,7 @@ havnemessig<BR>
 havnemyndighetene<BR>
 havnemyndigheter<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 havnedistrikt<BR>
 havnedistrikt<BR>
@@ -183,7 +183,7 @@ oppebærer<BR>
 oppfarende<BR>
 oppfatning<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 opning<BR>
 opning<BR>
@@ -341,7 +341,7 @@ define mark_regions as (
 
     test ( hop 3 setmark x )
     goto v  gopast non-v  setmark p1
-    try ( $p1 < x  $p1 = x )
+    try ( $p1 &lt; x  $p1 = x )
 )
 
 backwardmode (
@@ -357,7 +357,7 @@ backwardmode (
             's'
                 (s_ending or ('k' non-v) delete)
             'erte' 'ert'
-                (<-'er')
+                (&lt;-'er')
         )
     )
 

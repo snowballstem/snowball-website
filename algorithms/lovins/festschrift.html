@@ -872,35 +872,35 @@ define second_conjugation_form as (
 
     [substring] prefix among (
 
-        'cept'    (<-'ceiv')    //-e    con de re
-        'cess'    (<-'ced')     //-e    con ex inter pre re se suc
-        'cis'     (<-'cid')     //-e    de (20)
-        'clus'    (<-'clud')    //-e    con ex in oc (26)
-        'curs'    (<-'cur')     //      re (6)
-        'dempt'   (<-'deem')    //      re
-        'duct'    (<-'duc')     //-e    de in re pro (3)
-        'fens'    (<-'fend')    //      de of
-        'hes'     (<-'her')     //-e    ad (28)
-        'lis'     (<-'lid')     //-e    e col (21)
-        'lus'     (<-'lud')     //-e    al de e
-        'miss'    (<-'mit')     //      ad com o per re sub trans (29)
-        'pans'    (<-'pand')    //      ex (23)
-        'plos'    (<-'plod')    //-e    ex
-        'prehens' (<-'prehend') //      ap com
-        'ris'     (<-'rid')     //-e    de (22)
-        'ros'     (<-'rod')     //-e    cor e
-        'scens'   (<-'scend')   //      a
-        'script'  (<-'scrib')   //-e    de in pro
-        'solut'   (<-'solv')    //-e    dis re (8)
-        'sorpt'   (<-'sorb')    //      ab (5)
-        'spons'   (<-'spond')   //      re (25)
-        'sumpt'   (<-'sum')     //      con pre re (4)
-        'suas'    (<-'suad')    //-e    dis per (18)
-        'tens'    (<-'tend')    //      ex in pre (24)
-        'trus'    (<-'trud')    //-e    ob (27)
-        'vas'     (<-'vad')     //-e    e (19)
-        'vers'    (<-'vert')    //      con in re (31)
-        'vis'     (<-'vid')     //-e    di pro
+        'cept'    (&lt;-'ceiv')    //-e    con de re
+        'cess'    (&lt;-'ced')     //-e    con ex inter pre re se suc
+        'cis'     (&lt;-'cid')     //-e    de (20)
+        'clus'    (&lt;-'clud')    //-e    con ex in oc (26)
+        'curs'    (&lt;-'cur')     //      re (6)
+        'dempt'   (&lt;-'deem')    //      re
+        'duct'    (&lt;-'duc')     //-e    de in re pro (3)
+        'fens'    (&lt;-'fend')    //      de of
+        'hes'     (&lt;-'her')     //-e    ad (28)
+        'lis'     (&lt;-'lid')     //-e    e col (21)
+        'lus'     (&lt;-'lud')     //-e    al de e
+        'miss'    (&lt;-'mit')     //      ad com o per re sub trans (29)
+        'pans'    (&lt;-'pand')    //      ex (23)
+        'plos'    (&lt;-'plod')    //-e    ex
+        'prehens' (&lt;-'prehend') //      ap com
+        'ris'     (&lt;-'rid')     //-e    de (22)
+        'ros'     (&lt;-'rod')     //-e    cor e
+        'scens'   (&lt;-'scend')   //      a
+        'script'  (&lt;-'scrib')   //-e    de in pro
+        'solut'   (&lt;-'solv')    //-e    dis re (8)
+        'sorpt'   (&lt;-'sorb')    //      ab (5)
+        'spons'   (&lt;-'spond')   //      re (25)
+        'sumpt'   (&lt;-'sum')     //      con pre re (4)
+        'suas'    (&lt;-'suad')    //-e    dis per (18)
+        'tens'    (&lt;-'tend')    //      ex in pre (24)
+        'trus'    (&lt;-'trud')    //-e    ob (27)
+        'vas'     (&lt;-'vad')     //-e    e (19)
+        'vers'    (&lt;-'vert')    //      con in re (31)
+        'vis'     (&lt;-'vid')     //-e    di pro
     )
 )
 </PRE>
@@ -927,9 +927,9 @@ define final_respell as (
 
     [substring] atlimit among(
 
-        'exced'     (<-'exceed')
-        'proced'    (<-'proceed')
-        'succed'    (<-'succeed')
+        'exced'     (&lt;-'exceed')
+        'proced'    (&lt;-'proceed')
+        'succed'    (&lt;-'succeed')
         /* extra forms here perhaps */
     )
 )
@@ -1334,18 +1334,18 @@ natural process, but in P its removal condition is A. This goes back to step
 3 as originally presented in the paper of 1980:
 
 <DL><DD>
-    (<I>m</I>>0) ICATE <TT>-&gt;</TT> IC<BR>
-    (<I>m</I>>0) ATIVE <TT>-&gt;</TT><BR>
-    (<I>m</I>>0) ALIZE <TT>-&gt;</TT> AL<BR>
-    (<I>m</I>>0) ICITI <TT>-&gt;</TT> IC<BR>
-    (<I>m</I>>0) ICAL <TT>-&gt;</TT> IC<BR>
-    (<I>m</I>>0) FUL <TT>-&gt;</TT><BR>
-    (<I>m</I>>0) NESS <TT>-&gt;</TT>
+    (<I>m</I>&gt;0) ICATE <TT>-&gt;</TT> IC<BR>
+    (<I>m</I>&gt;0) ATIVE <TT>-&gt;</TT><BR>
+    (<I>m</I>&gt;0) ALIZE <TT>-&gt;</TT> AL<BR>
+    (<I>m</I>&gt;0) ICITI <TT>-&gt;</TT> IC<BR>
+    (<I>m</I>&gt;0) ICAL <TT>-&gt;</TT> IC<BR>
+    (<I>m</I>&gt;0) FUL <TT>-&gt;</TT><BR>
+    (<I>m</I>&gt;0) NESS <TT>-&gt;</TT>
 </DL>
-(<I>m</I>>0) corresponds to A. With removal condition B, the second line would be
+(<I>m</I>&gt;0) corresponds to A. With removal condition B, the second line would be
 
 <DL><DD>
-    (<I>m</I>>1) ATIVE <TT>-&gt;</TT>
+    (<I>m</I>&gt;1) ATIVE <TT>-&gt;</TT>
 </DL>
 
 which looks slightly incongruous. Nevertheless it is probably correct, because we
@@ -1630,41 +1630,41 @@ backwardmode (
 
   define respell as (
     [substring] among (
-      'iev'  (<-'ief')
-      'uct'  (<-'uc')
-      'umpt' (<-'um')
-      'rpt'  (<-'rb')
-      'urs'  (<-'ur')
-      'istr' (<-'ister')
-      'metr' (<-'meter')
-      'olv'  (<-'olut')
-      'ul'   (not 'a' not 'i' not 'o' <-'l')
-      'bex'  (<-'bic')
-      'dex'  (<-'dic')
-      'pex'  (<-'pic')
-      'tex'  (<-'tic')
-      'ax'   (<-'ac')
-      'ex'   (<-'ec')
-      'ix'   (<-'ic')
-      'lux'  (<-'luc')
-      'uad'  (<-'uas')
-      'vad'  (<-'vas')
-      'cid'  (<-'cis')
-      'lid'  (<-'lis')
-      'erid' (<-'eris')
-      'pand' (<-'pans')
-      'end'  (not 's' <-'ens')
-      'ond'  (<-'ons')
-      'lud'  (<-'lus')
-      'rud'  (<-'rus')
-      'her'  (not 'p' not 't' <-'hes')
-      'mit'  (<-'mis')
-      'ent'  (not 'm' <-'ens')
+      'iev'  (&lt;-'ief')
+      'uct'  (&lt;-'uc')
+      'umpt' (&lt;-'um')
+      'rpt'  (&lt;-'rb')
+      'urs'  (&lt;-'ur')
+      'istr' (&lt;-'ister')
+      'metr' (&lt;-'meter')
+      'olv'  (&lt;-'olut')
+      'ul'   (not 'a' not 'i' not 'o' &lt;-'l')
+      'bex'  (&lt;-'bic')
+      'dex'  (&lt;-'dic')
+      'pex'  (&lt;-'pic')
+      'tex'  (&lt;-'tic')
+      'ax'   (&lt;-'ac')
+      'ex'   (&lt;-'ec')
+      'ix'   (&lt;-'ic')
+      'lux'  (&lt;-'luc')
+      'uad'  (&lt;-'uas')
+      'vad'  (&lt;-'vas')
+      'cid'  (&lt;-'cis')
+      'lid'  (&lt;-'lis')
+      'erid' (&lt;-'eris')
+      'pand' (&lt;-'pans')
+      'end'  (not 's' &lt;-'ens')
+      'ond'  (&lt;-'ons')
+      'lud'  (&lt;-'lus')
+      'rud'  (&lt;-'rus')
+      'her'  (not 'p' not 't' &lt;-'hes')
+      'mit'  (&lt;-'mis')
+      'ent'  (not 'm' &lt;-'ens')
         /* 'ent' was 'end' in the 1968 paper - a typo. */
-      'ert'  (<-'ers')
-      'et'   (not 'n' <-'es')
-      'yt'   (<-'ys')
-      'yz'   (<-'ys')
+      'ert'  (&lt;-'ers')
+      'et'   (not 'n' &lt;-'es')
+      'yt'   (&lt;-'ys')
+      'yz'   (&lt;-'ys')
     )
   )
 )
@@ -1714,8 +1714,8 @@ backwardmode (
         and ([next] delete)
     )
 
-    define A as $p1 <= cursor
-    define B as $p2 <= cursor
+    define A as $p1 &lt;= cursor
+    define B as $p2 &lt;= cursor
     define C as (B 's' or 't')
     define D as (B not 'm')
     define E as ('e' or 'ous' A)
@@ -1735,7 +1735,7 @@ backwardmode (
             'ings' H
 
                    (delete
-                    undouble or (atmark p1  test shortv  <+ 'e')
+                    undouble or (atmark p1  test shortv  &lt;+ 'e')
                    )
 
             'd'    J
@@ -1752,20 +1752,20 @@ backwardmode (
             'e'     (B or (A not shortv) delete)
             'l'     (B 'l' delete)
             'enci'
-            'ency'  ((A <- 'enc') or <- 'enci')
+            'ency'  ((A &lt;- 'enc') or &lt;- 'enci')
             'anci'
-            'ancy'  ((A <- 'anc') or <- 'anci')
-            'ally'  ((A <- 'al') or <- 'alli')
-            'ently' ((A <- 'ent') or <- 'entli')
-            'ator'  (A <- 'at')
+            'ancy'  ((A &lt;- 'anc') or &lt;- 'anci')
+            'ally'  ((A &lt;- 'al') or &lt;- 'alli')
+            'ently' ((A &lt;- 'ent') or &lt;- 'entli')
+            'ator'  (A &lt;- 'at')
 
             'logi'
-            'logy'  ((A <- 'log') or <- 'logi')
+            'logy'  ((A &lt;- 'log') or &lt;- 'logi')
             'bli'
-            'bly'   ((A <- 'bl') or <- 'bli')
-            'bil'   (v A <- 'bl')
+            'bly'   ((A &lt;- 'bl') or &lt;- 'bli')
+            'bil'   (v A &lt;- 'bl')
             'y' 'Y'
-                    (gopast v  <-'i')
+                    (gopast v  &lt;-'i')
 
         )
     )
@@ -1774,8 +1774,8 @@ backwardmode (
 define stem as (
     test hop 3
     unset Y_found
-    do ( ['y'] <-'Y' set Y_found)
-    do repeat(goto (v ['y']) <-'Y' set Y_found)
+    do ( ['y'] &lt;-'Y' set Y_found)
+    do repeat(goto (v ['y']) &lt;-'Y' set Y_found)
 
     $p1 = limit
     $p2 = limit
@@ -1788,7 +1788,7 @@ define stem as (
         do endings
         do respell
     )
-    do(Y_found  repeat(goto (['Y']) <-'y'))
+    do(Y_found  repeat(goto (['Y']) &lt;-'y'))
 
 )
 </PRE>
@@ -1997,8 +1997,8 @@ constructed.
 
 <BR><PRE>
 
-#include &lt;stdio.h>
-#include &lt;stdlib.h>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
 static char * p;
 static k = 0;
@@ -2038,7 +2038,7 @@ static void wv(int code)
 }
 
 static void f(void (*gen)(), int i, int code)
-{   if (depth > 2) return;
+{   if (depth &gt; 2) return;
     depth++; gen(i, code); depth--;
 }
 

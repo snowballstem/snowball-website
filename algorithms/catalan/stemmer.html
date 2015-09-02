@@ -24,7 +24,7 @@ Israel Olalla of <A HREF="http://www.isoco.com">iSOCO</A> with this accompanying
 
 <BR><PRE>
 <DL><DD>
-From: Israel Olalla <iolalla&#64;isoco.com>
+From: Israel Olalla &lt;iolalla&#64;isoco.com&gt;
 Date: Mon, 26 Jul 2010 12:25:44 +0200
 Subject: Catalan Snowball Stemmer
 
@@ -115,26 +115,26 @@ define mark_regions as (
 
 define cleaning as repeat (
     [substring] among(
-        '{a'}' (<- 'a')
-        '{a`}' (<- 'a')
-        '{e'}' (<- 'e')
-        '{e`}' (<- 'e')
-        '{i'}' (<- 'i')
-        '{i`}' (<- 'i')
-        '{o'}' (<- 'o')
-        '{o`}' (<- 'o')
-        '{u'}' (<- 'u')
-        '{u"}' (<- 'u')
-        '{i"}' (<- 'i')
-        '{.}' (<- '.')
+        '{a'}' (&lt;- 'a')
+        '{a`}' (&lt;- 'a')
+        '{e'}' (&lt;- 'e')
+        '{e`}' (&lt;- 'e')
+        '{i'}' (&lt;- 'i')
+        '{i`}' (&lt;- 'i')
+        '{o'}' (&lt;- 'o')
+        '{o`}' (&lt;- 'o')
+        '{u'}' (&lt;- 'u')
+        '{u"}' (&lt;- 'u')
+        '{i"}' (&lt;- 'i')
+        '{.}' (&lt;- '.')
         ''     (next)
     ) //or next
 )
 
 backwardmode (
 
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define attached_pronoun as (
     [substring] among (
@@ -180,11 +180,11 @@ backwardmode (
             'acions' 'ada' 'ades'
             (R2 delete)
             'log{i'}a' 'log{i'}es''logia' 'logies' 'logi' 'logis' 'l{o'}gica' 'l{o'}gics' 'l{o'}giques'
-            (R2 <- 'log')
+            (R2 &lt;- 'log')
             'ic' 'ica' 'ics' 'iques'
-            (R2 <- 'ic')
+            (R2 &lt;- 'ic')
             'qu{i'}ssim' 'qu{i'}ssims' 'qu{i'}ssimes' 'qu{i'}ssima'
-            (R1 <- 'c')
+            (R1 &lt;- 'c')
         )
     )
 
@@ -246,7 +246,7 @@ backwardmode (
             'is' 'i' 'ir'  's' '{i`}' 'itz' '{i"}' '{i"}n' '{i"}s' 'it'
             (R1 delete)
             'iqu'
-            (R1 <- 'ic')
+            (R1 &lt;- 'ic')
         )
     )
 )

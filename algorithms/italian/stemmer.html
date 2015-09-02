@@ -96,7 +96,7 @@ abbellita<BR>
 abbenché<BR>
 abbi<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 abbandon<BR>
 abbandon<BR>
@@ -182,7 +182,7 @@ proponeva<BR>
 proponevano<BR>
 proponga<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 pront<BR>
 pronunc<BR>
@@ -399,18 +399,18 @@ define v 'aeiou{a`}{e`}{i`}{o`}{u`}'
 define prelude as (
     test repeat (
         [substring] among(
-            '{a'}' (<- '{a`}')
-            '{e'}' (<- '{e`}')
-            '{i'}' (<- '{i`}')
-            '{o'}' (<- '{o`}')
-            '{u'}' (<- '{u`}')
-            'qu'   (<- 'qU')
+            '{a'}' (&lt;- '{a`}')
+            '{e'}' (&lt;- '{e`}')
+            '{i'}' (&lt;- '{i`}')
+            '{o'}' (&lt;- '{o`}')
+            '{u'}' (&lt;- '{u`}')
+            'qu'   (&lt;- 'qU')
             ''     (next)
         )
     )
     repeat goto (
-        v [ ('u' ] v <- 'U') or
-            ('i' ] v <- 'I')
+        v [ ('u' ] v &lt;- 'U') or
+            ('i' ] v &lt;- 'I')
     )
 )
 
@@ -435,8 +435,8 @@ define mark_regions as (
 define postlude as repeat (
 
     [substring] among(
-        'I'  (<- 'i')
-        'U'  (<- 'u')
+        'I'  (&lt;- 'i')
+        'U'  (&lt;- 'u')
         ''   (next)
     )
 
@@ -444,9 +444,9 @@ define postlude as repeat (
 
 backwardmode (
 
-    define RV as $pV <= cursor
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define RV as $pV &lt;= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define attached_pronoun as (
         [substring] among(
@@ -461,7 +461,7 @@ backwardmode (
         )
         among( (RV)
             'ando' 'endo'   (delete)
-            'ar' 'er' 'ir'  (<- 'e')
+            'ar' 'er' 'ir'  (&lt;- 'e')
         )
     )
 
@@ -479,11 +479,11 @@ backwardmode (
                  try ( ['ic'] R2 delete )
                )
             'logia' 'logie'
-               ( R2 <- 'log' )
+               ( R2 &lt;- 'log' )
             'uzione' 'uzioni' 'usione' 'usioni'
-               ( R2 <- 'u' )
+               ( R2 &lt;- 'u' )
             'enza' 'enze'
-               ( R2 <- 'ente' )
+               ( R2 &lt;- 'ente' )
             'amento' 'amenti' 'imento' 'imenti'
                ( RV delete )
             'amente' (

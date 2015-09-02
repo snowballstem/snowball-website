@@ -97,7 +97,7 @@ jemföras<BR>
 jemförelse<BR>
 jemförelser<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 jakt<BR>
 jaktböss<BR>
@@ -183,7 +183,7 @@ klot<BR>
 klotb<BR>
 klotrund<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 klo<BR>
 kloak<BR>
@@ -348,7 +348,7 @@ define mark_regions as (
     $p1 = limit
     test ( hop 3 setmark x )
     goto v gopast non-v  setmark p1
-    try ( $p1 < x  $p1 = x )
+    try ( $p1 &lt; x  $p1 = x )
 )
 
 backwardmode (
@@ -375,8 +375,8 @@ backwardmode (
     define other_suffix as setlimit tomark p1 for (
         [substring] among(
             'lig' 'ig' 'els' (delete)
-            'l{o"}st'        (<-'l{o"}s')
-            'fullt'          (<-'full')
+            'l{o"}st'        (&lt;-'l{o"}s')
+            'fullt'          (&lt;-'full')
         )
     )
 )

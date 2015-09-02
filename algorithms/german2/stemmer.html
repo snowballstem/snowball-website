@@ -113,16 +113,16 @@ define st_ending s_ending - 'r'
 define prelude as (
 
     test repeat goto (
-        v [('u'] v <- 'U') or
-           ('y'] v <- 'Y')
+        v [('u'] v &lt;- 'U') or
+           ('y'] v &lt;- 'Y')
     )
 
     repeat (
         [substring] among(
-            '{ss}' (<- 'ss')
-            'ae'   (<- '{a"}')
-            'oe'   (<- '{o"}')
-            'ue'   (<- '{u"}')
+            '{ss}' (&lt;- 'ss')
+            'ae'   (&lt;- '{a"}')
+            'oe'   (&lt;- '{o"}')
+            'ue'   (&lt;- '{u"}')
             'qu'   (hop 2)
             ''     (next)
         )
@@ -138,7 +138,7 @@ define mark_regions as (
     test(hop 3 setmark x)
 
     gopast v  gopast non-v  setmark p1
-    try($p1 < x  $p1 = x)  // at least 3
+    try($p1 &lt; x  $p1 = x)  // at least 3
     gopast v  gopast non-v  setmark p2
 
 )
@@ -146,11 +146,11 @@ define mark_regions as (
 define postlude as repeat (
 
     [substring] among(
-        'Y'    (<- 'y')
-        'U'    (<- 'u')
-        '{a"}' (<- 'a')
-        '{o"}' (<- 'o')
-        '{u"}' (<- 'u')
+        'Y'    (&lt;- 'y')
+        'U'    (&lt;- 'u')
+        '{a"}' (&lt;- 'a')
+        '{o"}' (&lt;- 'o')
+        '{u"}' (&lt;- 'u')
         ''     (next)
     )
 
@@ -158,8 +158,8 @@ define postlude as repeat (
 
 backwardmode (
 
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define standard_suffix as (
         do (

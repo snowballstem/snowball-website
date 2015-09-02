@@ -115,7 +115,7 @@ be generated with this algorithm.
 вам<BR>
 вами<BR>
 </TD>
-<TD></TD><TD>  <TT><B> => </B></TT>  </TD>
+<TD></TD><TD>  <TT><B> =&gt; </B></TT>  </TD>
 <TD></TD><TD>
 в<BR>
 вавиловк<BR>
@@ -241,7 +241,7 @@ be generated with this algorithm.
 пакостно<BR>
 пал<BR>
 </TD>
-<TD></TD><TD>  <TT><B> => </B></TT>  </TD>
+<TD></TD><TD>  <TT><B> =&gt; </B></TT>  </TD>
 <TD></TD><TD>
 п<BR>
 па<BR>
@@ -384,9 +384,9 @@ end of the word if there is no such non-vowel.
 For example:
 <BR><PRE>
     p r o t i v o e s t e s t v e n n o m
-         |<------       RV        ------>|
-           |<-----       R1       ------>|
-               |<-----     R2     ------>|
+         |&lt;------       RV        ------&gt;|
+           |&lt;-----       R1       ------&gt;|
+               |&lt;-----     R2     ------&gt;|
 </PRE>
 (See <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
 <BR><BR>
@@ -588,7 +588,7 @@ define mark_regions as (
 
 backwardmode (
 
-    define R2 as $p2 <= cursor
+    define R2 as $p2 &lt;= cursor
 
     define perfective_gerund as (
         [substring] among (

@@ -226,23 +226,23 @@ To release the space raised by z back to the system. You can do this for a
 number of Snowball modules at the same time: you will need a separate
 <TT>struct SN_env * z;</TT>&nbsp; for each module.
 
-The current string is given by the &nbsp;<TT>z->l</TT>&nbsp; bytes of data starting at &nbsp;<TT>z->p</TT>.
+The current string is given by the &nbsp;<TT>z-&gt;l</TT>&nbsp; bytes of data starting at &nbsp;<TT>z-&gt;p</TT>.
 The string is not zero-terminated, but you can zero terminate it yourself with
 <BR><PRE>
-    z->p[z->l] = 0;
+    z-&gt;p[z-&gt;l] = 0;
 </PRE>
 (There is always room for this last zero byte.) For example,
 <BR><PRE>
     SN_set_current(z, strlen(s), s);
     Khotanese_stem_1(z);
-    z->p[z->l] = 0;
-    printf("Khotanese-1 stems '%s' to '%s'\n", s, z->p);
+    z-&gt;p[z-&gt;l] = 0;
+    printf("Khotanese-1 stems '%s' to '%s'\n", s, z-&gt;p);
 </PRE>
 The values of the other variables can be accessed via the &nbsp;<TT>#define</TT>
 settings that result from the &nbsp;<TT>-vprefix</TT>&nbsp; option, although this should not
 usually be necessary:
 <BR><PRE>
-    printf("p1 is %d\n", z->Khotanese_variable_p1);
+    printf("p1 is %d\n", z-&gt;Khotanese_variable_p1);
 </PRE>
 The stemming scripts on this Web site use Snowball very simply.
 <TT>-vprefix</TT>&nbsp; is left unset, and &nbsp;<TT>-eprefix</TT>&nbsp; is set to the name of the
@@ -282,9 +282,9 @@ at the top of this page, but here it is,
 </TR>
 <TR><TD BGCOLOR="wheat">
 <BR><PRE>
-    #include &lt;stdio.h>
-    #include &lt;stdlib.h> /* for malloc, free */
-    #include &lt;string.h> /* for memmove */
+    #include &lt;stdio.h&gt;
+    #include &lt;stdlib.h&gt; /* for malloc, free */
+    #include &lt;string.h&gt; /* for memmove */
 
     #include "api.h"
     #include "hungarian.h"
@@ -338,7 +338,7 @@ at the top of this page, but here it is,
                 H_stem(z);
                 {
                     int j;
-                    for (j = 0; j &lt; z->l; j++) fprintf(f_out, "%c", z->p[j]);
+                    for (j = 0; j &lt; z-&gt;l; j++) fprintf(f_out, "%c", z-&gt;p[j]);
                     fprintf(f_out, "\n");
                 }
             }
@@ -362,11 +362,11 @@ at the top of this page, but here it is,
         {   char * s;
             int i = 1;
             while(1) {
-                if (i >= argc) break;
+                if (i &gt;= argc) break;
                 s = argv[i++];
                 if (s[0] == '-') {
                     if (eq(s, "-output") || eq(s, "-o")) {
-                        if (i >= argc) {
+                        if (i &gt;= argc) {
                             fprintf(stderr, "%s requires an argument\n", s);
                             exit(1);
                         }

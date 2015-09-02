@@ -97,7 +97,7 @@ indvortes<BR>
 indånde<BR>
 indåndede<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 indtag<BR>
 indtag<BR>
@@ -183,7 +183,7 @@ undeviste<BR>
 undfange<BR>
 undfanged<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 underst<BR>
 undersåt<BR>
@@ -366,7 +366,7 @@ define mark_regions as (
 
     test ( hop 3 setmark x )
     goto v gopast non-v  setmark p1
-    try ( $p1 < x  $p1 = x )
+    try ( $p1 &lt; x  $p1 = x )
 )
 
 backwardmode (
@@ -403,11 +403,11 @@ backwardmode (
             'ig' 'lig' 'elig' 'els'
                 (delete do consonant_pair)
             'l{o/}st'
-                (<-'l{o/}s')
+                (&lt;-'l{o/}s')
         )
     )
     define undouble as (
-        setlimit tomark p1 for ([non-v] ->ch)
+        setlimit tomark p1 for ([non-v] -&gt;ch)
         ch
         delete
     )

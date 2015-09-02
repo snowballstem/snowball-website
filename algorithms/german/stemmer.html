@@ -96,7 +96,7 @@ auffaßt<BR>
 auffassung<BR>
 auffassungsvermögen<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 aufeinand<BR>
 aufeinanderbiss<BR>
@@ -182,7 +182,7 @@ kaufherr<BR>
 kaufleute<BR>
 käuflich<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 kategori<BR>
 kategori<BR>
@@ -358,13 +358,13 @@ define prelude as (
 
     test repeat (
         (
-            ['{ss}'] <- 'ss'
+            ['{ss}'] &lt;- 'ss'
         ) or next
     )
 
     repeat goto (
-        v [('u'] v <- 'U') or
-           ('y'] v <- 'Y')
+        v [('u'] v &lt;- 'U') or
+           ('y'] v &lt;- 'Y')
     )
 )
 
@@ -376,7 +376,7 @@ define mark_regions as (
     test(hop 3 setmark x)
 
     gopast v  gopast non-v  setmark p1
-    try($p1 < x  $p1 = x)  // at least 3
+    try($p1 &lt; x  $p1 = x)  // at least 3
     gopast v  gopast non-v  setmark p2
 
 )
@@ -384,11 +384,11 @@ define mark_regions as (
 define postlude as repeat (
 
     [substring] among(
-        'Y'    (<- 'y')
-        'U'    (<- 'u')
-        '{a"}' (<- 'a')
-        '{o"}' (<- 'o')
-        '{u"}' (<- 'u')
+        'Y'    (&lt;- 'y')
+        'U'    (&lt;- 'u')
+        '{a"}' (&lt;- 'a')
+        '{o"}' (&lt;- 'o')
+        '{u"}' (&lt;- 'u')
         ''     (next)
     )
 
@@ -396,8 +396,8 @@ define postlude as repeat (
 
 backwardmode (
 
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define standard_suffix as (
         do (

@@ -120,10 +120,10 @@ led to the following email correspondence,
 <BR><BR><B><I>Re: Stemming algorithms</I></B>
 <DL><DD><PRE>
 
- > ... I'm no longer working in the IR area,
- >spending all of my time on computational chemistry/drug discovery
- >research but I guess that Mark Sanderson would be interested in
- >Snowball - do you mind if I pass your email onto him?
+ &gt; ... I'm no longer working in the IR area,
+ &gt;spending all of my time on computational chemistry/drug discovery
+ &gt;research but I guess that Mark Sanderson would be interested in
+ &gt;Snowball - do you mind if I pass your email onto him?
 
  Peter,
 
@@ -162,8 +162,8 @@ led to the following email correspondence,
 
  define map_letters as (
 
-     do repeat ( goto ( ['j'] ) <- 'i' )
-     do repeat ( goto ( ['v'] ) <- 'u' )
+     do repeat ( goto ( ['j'] ) &lt;- 'i' )
+     do repeat ( goto ( ['v'] ) &lt;- 'u' )
  )
 
  backwardmode (
@@ -181,8 +181,8 @@ led to the following email correspondence,
                  'obtor' 'optor' 'retor' 'reco' 'attor' 'inco' 'intor'
                  'praetor'
              ) atlimit ]
-             => noun_form
-             => verb_form
+             =&gt; noun_form
+             =&gt; verb_form
          ) or fail(delete)
      )
  )
@@ -193,8 +193,8 @@ led to the following email correspondence,
 
      backwards (
          que_word or (
-             => noun_form
-             => verb_form
+             =&gt; noun_form
+             =&gt; verb_form
 
              $noun_form backwards try (
                  [substring] hop 2
@@ -209,11 +209,11 @@ led to the following email correspondence,
                  [substring] hop 2
                  among (
                      'iuntur' 'erunt' 'untur' 'iunt' 'unt'
-                          (<-'i')
+                          (&lt;-'i')
                      'beris' 'bor' 'bo'
-                          (<-'bi')
+                          (&lt;-'bi')
                      'ero'
-                          (<-'eri')
+                          (&lt;-'eri')
                      'mini' 'ntur' 'stis' 'mur' 'mus' 'ris' 'sti' 'tis'
                      'tur' 'ns' 'nt' 'ri' 'm' 'r' 's' 't'
                           (delete)
@@ -223,7 +223,7 @@ led to the following email correspondence,
      )
 
      /* the stemmed words are left in noun-form and verb-form, and can
-        be picked up as C strings at z->S[0] and z->S[1] through the API. */
+        be picked up as C strings at z-&gt;S[0] and z-&gt;S[1] through the API. */
  )
 
 </PRE></DL>

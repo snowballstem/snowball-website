@@ -22,7 +22,7 @@ Mikel Otxandorena of <A HREF="http://www.isoco.com">iSOCO</A> with this accompan
 
 <BR><PRE>
 <DL><DD>
-From: Mikel Otxandorena <motxandorena&#64;isoco.com>
+From: Mikel Otxandorena &lt;motxandorena&#64;isoco.com&gt;
 Date: Mon, 26 Jul 2010 13:04:19 +0200
 Subject: Basque Snowball Stemmer
 
@@ -107,9 +107,9 @@ define mark_regions as (
 
 backwardmode (
 
-    define RV as $pV <= cursor
-    define R2 as $p2 <= cursor
-    define R1 as $p1 <= cursor
+    define RV as $pV &lt;= cursor
+    define R2 as $p2 &lt;= cursor
+    define R1 as $p1 &lt;= cursor
 
     define aditzak as (
         [substring] among(
@@ -127,11 +127,11 @@ backwardmode (
             'garri' 'garria' 'tza'
             (R2 delete)
             'atseden'
-            (<- 'atseden')
+            (&lt;- 'atseden')
             'arabera'
-            (<- 'arabera')
+            (&lt;- 'arabera')
             'baditu'
-            (<- 'baditu')
+            (&lt;- 'baditu')
 
         )
     )
@@ -171,21 +171,21 @@ backwardmode (
             'ora' 'garri' 'garria' 'or' 'buru' 'ren' 'tza'
             ( R2 delete )
             'joka'
-            (<- 'jok')
+            (&lt;- 'jok')
             'tzen' 'ten' 'en' 'tatu'
             (R1 delete)
             'trako'
-            (<- 'tra')
+            (&lt;- 'tra')
             'minutuko'
-            (<- 'minutu')
+            (&lt;- 'minutu')
             'zehar'
-            (<- 'zehar')
+            (&lt;- 'zehar')
             'geldi'
-            (<- 'geldi')
+            (&lt;- 'geldi')
             'igaro'
-            (<- 'igaro')
+            (&lt;- 'igaro')
             'aurka'
-            (<- 'aurka')
+            (&lt;- 'aurka')
         )
     )
 
@@ -195,7 +195,7 @@ backwardmode (
             'ki' 'to' 'ro' 'la' 'gi' 'larik' 'lanik' 'ik' 'ztik' 'rik'
             ( RV delete )
             'zlea'
-            (<- 'z')
+            (&lt;- 'z')
         )
     )
 

@@ -43,27 +43,27 @@ like this:
 
 define tolower_irish as (
  [substring] among (
-   'nA' (<- 'n-a')
-   'nE' (<- 'n-e')
-   'nI' (<- 'n-i')
-   'nO' (<- 'n-o')
-   'nU' (<- 'n-u')
-   'nÁ' (<- 'n-á')
-   'nÉ' (<- 'n-é')
-   'nÍ' (<- 'n-í')
-   'nÓ' (<- 'n-ó')
-   'nÚ' (<- 'n-ú')
+   'nA' (&lt;- 'n-a')
+   'nE' (&lt;- 'n-e')
+   'nI' (&lt;- 'n-i')
+   'nO' (&lt;- 'n-o')
+   'nU' (&lt;- 'n-u')
+   'nÁ' (&lt;- 'n-á')
+   'nÉ' (&lt;- 'n-é')
+   'nÍ' (&lt;- 'n-í')
+   'nÓ' (&lt;- 'n-ó')
+   'nÚ' (&lt;- 'n-ú')
 
-   'tA' (<- 't-a')
-   'tE' (<- 't-e')
-   'tI' (<- 't-i')
-   'tO' (<- 't-o')
-   'tU' (<- 't-u')
-   'tÁ' (<- 't-á')
-   'tÉ' (<- 't-é')
-   'tÍ' (<- 't-í')
-   'tÓ' (<- 't-ó')
-   'tÚ' (<- 't-ú')
+   'tA' (&lt;- 't-a')
+   'tE' (&lt;- 't-e')
+   'tI' (&lt;- 't-i')
+   'tO' (&lt;- 't-o')
+   'tU' (&lt;- 't-u')
+   'tÁ' (&lt;- 't-á')
+   'tÉ' (&lt;- 't-é')
+   'tÍ' (&lt;- 't-í')
+   'tÓ' (&lt;- 't-ó')
+   'tÚ' (&lt;- 't-ú')
  )
 )
 
@@ -125,63 +125,63 @@ define mark_regions as (
 
 define initial_morph as (
   [substring] among (
-    'h-' 'n-' 't-' //nAthair -> n-athair, but alone are problematic
+    'h-' 'n-' 't-' //nAthair -&gt; n-athair, but alone are problematic
     (delete)
 
     // verbs
     'd{'}'
     (delete)
     'd{'}fh'
-    (<- 'f')
+    (&lt;- 'f')
     // other contractions
     'm{'}' 'b{'}'
     (delete)
 
     'sh'
-    (<- 's')
+    (&lt;- 's')
 
     'mb'
-    (<- 'b')
+    (&lt;- 'b')
     'gc'
-    (<- 'c')
+    (&lt;- 'c')
     'nd'
-    (<- 'd')
+    (&lt;- 'd')
     'bhf'
-    (<- 'f')
+    (&lt;- 'f')
     'ng'
-    (<- 'g')
+    (&lt;- 'g')
     'bp'
-    (<- 'p')
+    (&lt;- 'p')
     'ts'
-    (<- 's')
+    (&lt;- 's')
     'dt'
-    (<- 't')
+    (&lt;- 't')
 
     // Lenition
     'bh'
-    (<- 'b')
+    (&lt;- 'b')
     'ch'
-    (<- 'c')
+    (&lt;- 'c')
     'dh'
-    (<- 'd')
+    (&lt;- 'd')
     'fh'
-    (<- 'f')
+    (&lt;- 'f')
     'gh'
-    (<- 'g')
+    (&lt;- 'g')
     'mh'
-    (<- 'm')
+    (&lt;- 'm')
     'ph'
-    (<- 'p')
+    (&lt;- 'p')
     'th'
-    (<- 't')
+    (&lt;- 't')
   )
 )
 
 backwardmode (
 
-  define RV as $pV <= cursor
-  define R1 as $p1 <= cursor
-  define R2 as $p2 <= cursor
+  define RV as $pV &lt;= cursor
+  define R1 as $p1 &lt;= cursor
+  define R2 as $p2 &lt;= cursor
 
   define noun_sfx as (
     [substring] among (
@@ -196,17 +196,17 @@ backwardmode (
   define deriv as (
     [substring] among (
       'acht' 'eacht' 'ach' 'each' 'eacht{u'}il' 'eachta' 'acht{u'}il' 'achta'
-      (R2 delete)  //siopadóireacht -> siopadóir but not poblacht -> pobl
+      (R2 delete)  //siopadóireacht -&gt; siopadóir but not poblacht -&gt; pobl
       'arcacht' 'arcachta{i'}' 'arcachta'
-      (<- 'arc') // monarcacht -> monarc
+      (&lt;- 'arc') // monarcacht -&gt; monarc
       'gineach' 'gineas' 'ginis'
-      (<- 'gin')
+      (&lt;- 'gin')
       'grafa{i'}och' 'grafa{i'}ocht' 'grafa{i'}ochta' 'grafa{i'}ochta{i'}'
-      (<- 'graf')
+      (&lt;- 'graf')
       'paite' 'patach' 'pataigh' 'patacha'
-      (<- 'paite')
+      (&lt;- 'paite')
       '{o'}ideach' '{o'}ideacha' '{o'}idigh'
-      (<- '{o'}id')
+      (&lt;- '{o'}id')
     )
   )
   define verb_sfx as (
@@ -300,19 +300,19 @@ define mark_regions as (
 
 backwardmode (
 
-  define RV as $pV <= cursor
-  define R1 as $p1 <= cursor
+  define RV as $pV &lt;= cursor
+  define R1 as $p1 &lt;= cursor
 
   define palatalise as (
     [substring] RV among (
       'ci' 'ce' '{c^}i' '{c^}'
-      (<- 'k')
+      (&lt;- 'k')
       'zi' 'ze' '{z^}i' '{z^}e'
-      (<- 'h')
+      (&lt;- 'h')
       '{c^}t{e^}' '{c^}ti' '{c^}t{e'}'
-      (<- 'ck')
+      (&lt;- 'ck')
       '{s^}t{e^}' '{s^}ti' '{s^}t{e'}'
-      (<- 'sk')
+      (&lt;- 'sk')
     )
   )
 
@@ -348,7 +348,7 @@ backwardmode (
       )
       'em'
       (
-        <- 'e'
+        &lt;- 'e'
         try palatalise
       )
     )
@@ -370,28 +370,28 @@ backwardmode (
       'i{a'}n' 'ist' 'isk' 'i{s^}k' 'itb'
       'ic' 'in' 'it' 'iv'
       (
-        <- 'i'
+        &lt;- 'i'
         palatalise
       )
       'enic' 'ec' 'en'
       (
-        <- 'e'
+        &lt;- 'e'
         palatalise
       )
       '{e'}{r^}'
       (
-        <- '{e'}'
+        &lt;- '{e'}'
         palatalise
       )
       '{e^}n'
       (
-        <- '{e^}'
+        &lt;- '{e^}'
         palatalise
       )
       '{i'}rn'
       '{i'}{r^}' '{i'}n'
       (
-        <- '{i'}'
+        &lt;- '{i'}'
         palatalise
       )
     )
@@ -410,7 +410,7 @@ backwardmode (
       (delete)
       'izn' 'isk'
       (
-        <- 'i'
+        &lt;- 'i'
         palatalise
       )
     )
@@ -427,32 +427,32 @@ backwardmode (
       (delete)
       'e{c^}ek' 'enek' 'ek'
       (
-        <- 'e'
+        &lt;- 'e'
         palatalise
       )
       '{e'}{c^}ek' '{e'}k'
       (
-        <- '{e'}'
+        &lt;- '{e'}'
         palatalise
       )
       'i{c^}ek' 'inek' 'ik'
       (
-        <- 'i'
+        &lt;- 'i'
         palatalise
       )
       '{i'}{c^}ek' '{i'}k'
       (
-        <- '{i'}'
+        &lt;- '{i'}'
         palatalise
       )
       '{a'}k'
-       (<- '{a'}')
+       (&lt;- '{a'}')
       'ak'
-       (<- 'a')
+       (&lt;- 'a')
       'ok'
-       (<- 'o')
+       (&lt;- 'o')
       'uk'
-       (<- 'u')
+       (&lt;- 'u')
     )
   )
 
@@ -460,12 +460,12 @@ backwardmode (
     [substring] among (
       '{e^}j{s^}'
       (
-        <- '{e^}'
+        &lt;- '{e^}'
         palatalise
       )
       'ej{s^}'
       (
-        <- 'e'
+        &lt;- 'e'
         palatalise
       )
     )

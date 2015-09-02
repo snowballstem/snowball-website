@@ -96,7 +96,7 @@ chichimecas<BR>
 chicles<BR>
 chico<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 che<BR>
 chec<BR>
@@ -182,7 +182,7 @@ torreón<BR>
 torres<BR>
 torrescano<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 tor<BR>
 torax<BR>
@@ -441,21 +441,21 @@ define mark_regions as (
 
 define postlude as repeat (
     [substring] among(
-        '{a'}' (<- 'a')
-        '{e'}' (<- 'e')
-        '{i'}' (<- 'i')
-        '{o'}' (<- 'o')
-        '{u'}' (<- 'u')
-        // and possibly {u"}->u here, or in prelude
+        '{a'}' (&lt;- 'a')
+        '{e'}' (&lt;- 'e')
+        '{i'}' (&lt;- 'i')
+        '{o'}' (&lt;- 'o')
+        '{u'}' (&lt;- 'u')
+        // and possibly {u"}-&gt;u here, or in prelude
         ''     (next)
     ) //or next
 )
 
 backwardmode (
 
-    define RV as $pV <= cursor
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define RV as $pV &lt;= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define attached_pronoun as (
         [substring] among(
@@ -463,11 +463,11 @@ backwardmode (
             'las' 'les' 'los' 'nos'
         )
         substring RV among(
-            'i{e'}ndo' (] <- 'iendo')
-            '{a'}ndo'  (] <- 'ando')
-            '{a'}r'    (] <- 'ar')
-            '{e'}r'    (] <- 'er')
-            '{i'}r'    (] <- 'ir')
+            'i{e'}ndo' (] &lt;- 'iendo')
+            '{a'}ndo'  (] &lt;- 'ando')
+            '{a'}r'    (] &lt;- 'ar')
+            '{e'}r'    (] &lt;- 'er')
+            '{i'}r'    (] &lt;- 'ir')
             'ando'
             'iendo'
             'ar' 'er' 'ir'
@@ -501,15 +501,15 @@ backwardmode (
             'log{i'}a'
             'log{i'}as'
             (
-                R2 <- 'log'
+                R2 &lt;- 'log'
             )
             'uci{o'}n' 'uciones'
             (
-                R2 <- 'u'
+                R2 &lt;- 'u'
             )
             'encia' 'encias'
             (
-                R2 <- 'ente'
+                R2 &lt;- 'ente'
             )
             'amente'
             (

@@ -92,7 +92,7 @@ edeltävä<BR>
 edeltävälle<BR>
 edeltävällä<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 edeltäj<BR>
 edeltäjie<BR>
@@ -178,7 +178,7 @@ innostusta<BR>
 innostustaan<BR>
 innostutaan<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 innostu<BR>
 innostu<BR>
@@ -456,7 +456,7 @@ define mark_regions as (
 
 backwardmode (
 
-    define R2 as $p2 <= cursor
+    define R2 as $p2 &lt;= cursor
 
     define particle_etc as (
         setlimit tomark p1 for ([substring])
@@ -478,7 +478,7 @@ backwardmode (
             'si'
                 (not 'k' delete)  // take 'ksi' as the Comitative case
             'ni'
-                (delete ['kse'] <- 'ksi') // kseni = ksi + ni
+                (delete ['kse'] &lt;- 'ksi') // kseni = ksi + ni
             'nsa' 'ns{a"}'
             'mme'
             'nne'
@@ -583,7 +583,7 @@ backwardmode (
             do ( ['j'] 'o' or 'u' delete )
             do ( ['o'] 'j' delete )
         )
-        goto non-V1 [next] -> x  x delete // undouble consonant
+        goto non-V1 [next] -&gt; x  x delete // undouble consonant
     )
 )
 

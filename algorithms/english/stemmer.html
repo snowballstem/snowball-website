@@ -89,7 +89,7 @@ constance<BR>
 constancy<BR>
 constant<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 consign<BR>
 consign<BR>
@@ -175,7 +175,7 @@ knopp<BR>
 knot<BR>
 knots<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 knack<BR>
 knackeri<BR>
@@ -490,8 +490,8 @@ and putting in a routine &nbsp;<TT>exception</TT>:
 <BR><PRE>
     define exception as (
         [substring] atlimit among(
-            'W<SUB>1</SUB>'  ( <- 'X<SUB>1</SUB>' )
-            'W<SUB>2</SUB>'  ( <- 'X<SUB>2</SUB>' )
+            'W<SUB>1</SUB>'  ( &lt;- 'X<SUB>1</SUB>' )
+            'W<SUB>2</SUB>'  ( &lt;- 'X<SUB>2</SUB>' )
             ...
         )
     )
@@ -507,10 +507,10 @@ that need to be mapped to &nbsp;<TT>X<SUB>1</SUB></TT>, another group &nbsp;<TT>
 <TT>exception</TT>&nbsp; routine may then be written as follows:
 
 <BR><PRE>
-    among( 'W<SUB>11</SUB>' 'W<SUB>12</SUB>' ... (<- 'X<SUB>1</SUB>')
-           'W<SUB>21</SUB>' 'W<SUB>22</SUB>' ... (<- 'X<SUB>2</SUB>')
+    among( 'W<SUB>11</SUB>' 'W<SUB>12</SUB>' ... (&lt;- 'X<SUB>1</SUB>')
+           'W<SUB>21</SUB>' 'W<SUB>22</SUB>' ... (&lt;- 'X<SUB>2</SUB>')
            ...
-           'W<SUB>n1</SUB>' 'W<SUB>n2</SUB>' ... (<- 'X<SUB>n</SUB>')
+           'W<SUB>n1</SUB>' 'W<SUB>n2</SUB>' ... (&lt;- 'X<SUB>n</SUB>')
            'V<SUB>1</SUB>' 'V<SUB>2</SUB>' ... 'V<SUB>k</SUB>'
          )
 </PRE>
@@ -523,20 +523,20 @@ shape:
 
             /* special changes: */
 
-            'skis'      (<-'ski')
-            'skies'     (<-'sky')
-            'dying'     (<-'die')
-            'lying'     (<-'lie')
-            'tying'     (<-'tie')
+            'skis'      (&lt;-'ski')
+            'skies'     (&lt;-'sky')
+            'dying'     (&lt;-'die')
+            'lying'     (&lt;-'lie')
+            'tying'     (&lt;-'tie')
 
             /* special -LY cases */
 
-            'idly'      (<-'idl')
-            'gently'    (<-'gentl')
-            'ugly'      (<-'ugli')
-            'early'     (<-'earli')
-            'only'      (<-'onli')
-            'singly'    (<-'singl')
+            'idly'      (&lt;-'idl')
+            'gently'    (&lt;-'gentl')
+            'ugly'      (&lt;-'ugli')
+            'early'     (&lt;-'earli')
+            'only'      (&lt;-'onli')
+            'singly'    (&lt;-'singl')
 
             // ... extensions possible here ...
 
@@ -750,8 +750,8 @@ define valid_LI 'cdeghkmnrt'
 define prelude as (
     unset Y_found
     do ( ['{'}'] delete)
-    do ( ['y'] <-'Y' set Y_found)
-    do repeat(goto (v ['y']) <-'Y' set Y_found)
+    do ( ['y'] &lt;-'Y' set Y_found)
+    do repeat(goto (v ['y']) &lt;-'Y' set Y_found)
 )
 
 define mark_regions as (
@@ -777,8 +777,8 @@ backwardmode (
         ( non-v v atlimit )
     )
 
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define Step_1a as (
         try (
@@ -788,9 +788,9 @@ backwardmode (
             )
         )
         [substring] among (
-            'sses' (<-'ss')
+            'sses' (&lt;-'ss')
             'ied' 'ies'
-                   ((hop 2 <-'i') or <-'ie')
+                   ((hop 2 &lt;-'i') or &lt;-'ie')
             's'    (next gopast v delete)
             'us' 'ss'
         )
@@ -799,17 +799,17 @@ backwardmode (
     define Step_1b as (
         [substring] among (
             'eed' 'eedly'
-                (R1 <-'ee')
+                (R1 &lt;-'ee')
             'ed' 'edly' 'ing' 'ingly'
                 (
                 test gopast v  delete
                 test substring among(
                     'at' 'bl' 'iz'
-                         (<+ 'e')
+                         (&lt;+ 'e')
                     'bb' 'dd' 'ff' 'gg' 'mm' 'nn' 'pp' 'rr' 'tt'
                     // ignoring double c, h, j, k, q, v, w, and x
                          ([next]  delete)
-                    ''   (atmark p1  test shortv  <+ 'e')
+                    ''   (atmark p1  test shortv  &lt;+ 'e')
                 )
             )
         )
@@ -818,43 +818,43 @@ backwardmode (
     define Step_1c as (
         ['y' or 'Y']
         non-v not atlimit
-        <-'i'
+        &lt;-'i'
     )
 
     define Step_2 as (
         [substring] R1 among (
-            'tional'  (<-'tion')
-            'enci'    (<-'ence')
-            'anci'    (<-'ance')
-            'abli'    (<-'able')
-            'entli'   (<-'ent')
+            'tional'  (&lt;-'tion')
+            'enci'    (&lt;-'ence')
+            'anci'    (&lt;-'ance')
+            'abli'    (&lt;-'able')
+            'entli'   (&lt;-'ent')
             'izer' 'ization'
-                      (<-'ize')
+                      (&lt;-'ize')
             'ational' 'ation' 'ator'
-                      (<-'ate')
+                      (&lt;-'ate')
             'alism' 'aliti' 'alli'
-                      (<-'al')
-            'fulness' (<-'ful')
+                      (&lt;-'al')
+            'fulness' (&lt;-'ful')
             'ousli' 'ousness'
-                      (<-'ous')
+                      (&lt;-'ous')
             'iveness' 'iviti'
-                      (<-'ive')
+                      (&lt;-'ive')
             'biliti' 'bli'
-                      (<-'ble')
-            'ogi'     ('l' <-'og')
-            'fulli'   (<-'ful')
-            'lessli'  (<-'less')
+                      (&lt;-'ble')
+            'ogi'     ('l' &lt;-'og')
+            'fulli'   (&lt;-'ful')
+            'lessli'  (&lt;-'less')
             'li'      (valid_LI delete)
         )
     )
 
     define Step_3 as (
         [substring] R1 among (
-            'tional'  (<- 'tion')
-            'ational' (<- 'ate')
-            'alize'   (<-'al')
+            'tional'  (&lt;- 'tion')
+            'ational' (&lt;- 'ate')
+            'alize'   (&lt;-'al')
             'icate' 'iciti' 'ical'
-                      (<-'ic')
+                      (&lt;-'ic')
             'ful' 'ness'
                       (delete)
             'ative'
@@ -896,20 +896,20 @@ define exception1 as (
 
         /* special changes: */
 
-        'skis'      (<-'ski')
-        'skies'     (<-'sky')
-        'dying'     (<-'die')
-        'lying'     (<-'lie')
-        'tying'     (<-'tie')
+        'skis'      (&lt;-'ski')
+        'skies'     (&lt;-'sky')
+        'dying'     (&lt;-'die')
+        'lying'     (&lt;-'lie')
+        'tying'     (&lt;-'tie')
 
         /* special -LY cases */
 
-        'idly'      (<-'idl')
-        'gently'    (<-'gentl')
-        'ugly'      (<-'ugli')
-        'early'     (<-'earli')
-        'only'      (<-'onli')
-        'singly'    (<-'singl')
+        'idly'      (&lt;-'idl')
+        'gently'    (&lt;-'gentl')
+        'ugly'      (&lt;-'ugli')
+        'early'     (&lt;-'earli')
+        'only'      (&lt;-'onli')
+        'singly'    (&lt;-'singl')
 
         // ... extensions possible here ...
 
@@ -925,7 +925,7 @@ define exception1 as (
     )
 )
 
-define postlude as (Y_found  repeat(goto (['Y']) <-'y'))
+define postlude as (Y_found  repeat(goto (['Y']) &lt;-'y'))
 
 define stem as (
 

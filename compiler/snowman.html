@@ -153,8 +153,8 @@ Snowball routines do not (at present) take parameters. For example,
         delete               // delete is one command
     )
 
-    define R1 as $p1 <= cursor
-        /* R1 is defined as the single command "$p1 <= cursor" */
+    define R1 as $p1 &lt;= cursor
+        /* R1 is defined as the single command "$p1 &lt;= cursor" */
 </PRE>
 A routine is called simply by using its name, &nbsp;<TT>R</TT>, as a command.
 
@@ -170,7 +170,7 @@ integers. The command
 </PRE>
 sets &nbsp;<TT>x</TT>&nbsp; to 1. The command
 <BR><PRE>
-    $x > 0
+    $x &gt; 0
 </PRE>
 tests if &nbsp;<TT>x</TT>&nbsp; is greater than zero. Both commands give a signal <B><I>t</I></B> or <B><I>f</I></B>,
 (<I>true</I> or <I>false</I>), but while the second command gives <B><I>t</I></B> if &nbsp;<TT>x</TT>&nbsp; is greater
@@ -186,7 +186,7 @@ When this is obeyed, &nbsp;<TT>C<SUB>i+1</SUB></TT>&nbsp; will be obeyed if each
 are ignored, and the whole sequence gives signal <B><I>f</I></B>. If all the &nbsp;<TT>C<SUB>i</SUB></TT>&nbsp; give <B><I>t</I></B>,
 however, the bracketed command sequence also gives <B><I>t</I></B>. So,
 <BR><PRE>
-    $x > 0  $y = 1
+    $x &gt; 0  $y = 1
 </PRE>
 sets &nbsp;<TT>y</TT>&nbsp; to 1 if &nbsp;<TT>x</TT>&nbsp; is greater than zero. If &nbsp;<TT>x</TT>&nbsp; is less than or equal to zero
 the two commands give <B><I>f</I></B>.
@@ -208,15 +208,15 @@ If &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; and &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; are
 </DL></DL>
 So for example,
 <DL><DD><DL>
-    <DT><TT>($x > 0  $y = 1) or ($y = 0)</TT>
+    <DT><TT>($x &gt; 0  $y = 1) or ($y = 0)</TT>
         <DD>&#x2014; sets &nbsp;<TT>y</TT>&nbsp; to 1 if &nbsp;<TT>x</TT>&nbsp; is greater than zero, otherwise to zero.
 
-    <DT><TT>try( ($x > 0) and ($z > 0) $y = 1)</TT>
+    <DT><TT>try( ($x &gt; 0) and ($z &gt; 0) $y = 1)</TT>
         <DD>&#x2014; sets &nbsp;<TT>y</TT>&nbsp; to 1 if both &nbsp;<TT>x</TT>&nbsp; and &nbsp;<TT>z</TT>&nbsp; are greater than 0, and gives <B><I>t</I></B>.
 </DL></DL>
 This last example is the same as
 <BR><PRE>
-    try($x > 0  $z > 0  $y = 1)
+    try($x &gt; 0  $z &gt; 0  $y = 1)
 </PRE>
 so that &nbsp;<TT>and</TT>&nbsp; seems unnecessary here. But we will see that &nbsp;<TT>and</TT>&nbsp; has a
 particular significance in string commands.
@@ -225,14 +225,14 @@ When a &#8216;monadic&#8217; construct like &nbsp;<TT>not</TT>, &nbsp;<TT>try</T
 round bracket, the construct applies to the shortest following valid command.
 So for example
 <BR><PRE>
-    try not $x < 1 $z > 0
+    try not $x &lt; 1 $z &gt; 0
 </PRE>
 would mean
 <BR><PRE>
-    try ( not ( $x < 1 ) ) $z > 0
+    try ( not ( $x &lt; 1 ) ) $z &gt; 0
 </PRE>
-because &nbsp;<TT>$x < 1</TT>&nbsp; is the shortest valid command following &nbsp;<TT>not</TT>, and then
-<TT>not $x < 1</TT>&nbsp; is the shortest valid command following &nbsp;<TT>try</TT>.
+because &nbsp;<TT>$x &lt; 1</TT>&nbsp; is the shortest valid command following &nbsp;<TT>not</TT>, and then
+<TT>not $x &lt; 1</TT>&nbsp; is the shortest valid command following &nbsp;<TT>try</TT>.
 <BR><BR>
 The &#8216;dyadic&#8217; constructs like &nbsp;<TT>and</TT>&nbsp; and &nbsp;<TT>or</TT>&nbsp; must sit in a bracketed list
 of commands anyway, for example,
@@ -242,11 +242,11 @@ of commands anyway, for example,
 And then in this case &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; and &nbsp;<TT>C<SUB>3</SUB></TT>&nbsp; are connected by the &nbsp;<TT>and</TT>; &nbsp;<TT>C<SUB>4</SUB></TT>&nbsp; and &nbsp;<TT>C<SUB>5</SUB></TT>&nbsp; are
 connected by the &nbsp;<TT>or</TT>. So
 <BR><PRE>
-    $x > 0  not $y > 0 or not $z > 0  $t > 0
+    $x &gt; 0  not $y &gt; 0 or not $z &gt; 0  $t &gt; 0
 </PRE>
 means
 <BR><PRE>
-    $x > 0  ((not ($y > 0)) or (not ($z > 0)))  $t > 0
+    $x &gt; 0  ((not ($y &gt; 0)) or (not ($z &gt; 0)))  $t &gt; 0
 </PRE>
 <TT>and</TT>&nbsp; and &nbsp;<TT>or</TT>&nbsp; are equally binding, and bind from left to right,
 so &nbsp;<TT>C<SUB>1</SUB> or C<SUB>2</SUB> and C<SUB>3</SUB></TT>&nbsp; means &nbsp;<TT>(C<SUB>1</SUB> or C<SUB>2</SUB>) and C<SUB>3</SUB></TT>&nbsp; etc.
@@ -259,8 +259,8 @@ binding powers and semantics as C. An integer command has the form
 <BR><PRE>
     $X <I>op</I> AE
 </PRE>
-where &nbsp;<TT>X</TT>&nbsp; is an integer name and <I>op</I> is one of the six tests &nbsp;<TT>==</TT>, &nbsp;<TT>!=</TT>, &nbsp;<TT>>=</TT>, &nbsp;<TT>></TT>,
-<TT><=</TT>, &nbsp;<TT><</TT>, or five assignments &nbsp;<TT>=</TT>, &nbsp;<TT>+=</TT>, &nbsp;<TT>-=</TT>, &nbsp;<TT>*=</TT>, &nbsp;<TT>/=</TT>. Again, the meanings are the
+where &nbsp;<TT>X</TT>&nbsp; is an integer name and <I>op</I> is one of the six tests &nbsp;<TT>==</TT>, &nbsp;<TT>!=</TT>, &nbsp;<TT>&gt;=</TT>, &nbsp;<TT>&gt;</TT>,
+<TT>&lt;=</TT>, &nbsp;<TT>&lt;</TT>, or five assignments &nbsp;<TT>=</TT>, &nbsp;<TT>+=</TT>, &nbsp;<TT>-=</TT>, &nbsp;<TT>*=</TT>, &nbsp;<TT>/=</TT>. Again, the meanings are the
 same as in C.
 <BR><BR>
 As well as integer names and literal numbers, the following may be used in
@@ -277,7 +277,7 @@ The <I>cursor</I> and <I>limit</I> concepts are explained below.
 <BR><BR>
 Examples of integer commands are,
 <BR><PRE>
-    $p1 <= cursor  // signal is f if the cursor is before position p1
+    $p1 &lt;= cursor  // signal is f if the cursor is before position p1
     $p1 = limit    // set p1 to the string limit
 </PRE>
 
@@ -434,7 +434,7 @@ Here is a list of the commands that can be used to operate on strings.
 <BR><PRE>
         {    int i;
              int limit = AE;
-             for (i = 0; i < limit; i++) C;
+             for (i = 0; i &lt; limit; i++) C;
         }
 </PRE>
 <DT><TT>atleast AE C</TT>
@@ -459,7 +459,7 @@ Here is a list of the commands that can be used to operate on strings.
 We have seen in (a) that &nbsp;<TT>$x = y</TT>, when &nbsp;<TT>x</TT>&nbsp; and &nbsp;<TT>y</TT>&nbsp; are strings, sets <B><I>c:l</I></B> of &nbsp;<TT>x</TT>
 to the value of &nbsp;<TT>y</TT>. Conversely
 <BR><PRE>
-        $x => y
+        $x =&gt; y
 </PRE>
 sets the value of &nbsp;<TT>y</TT>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<TT>x</TT>.
 <BR><BR>
@@ -472,9 +472,9 @@ or <I>slice</I> of the string being tested. Then
 <DT><TT>]</TT>
     <DD>sets the right-end of the slice to <B><I>c</I></B>,
 
-<DT><TT>-> s</TT>
+<DT><TT>-&gt; s</TT>
     <DD>moves the slice to variable &nbsp;<TT>s</TT>,
-<DT><TT><- S</TT>
+<DT><TT>&lt;- S</TT>
     <DD>replaces the slice with variable (or literal) &nbsp;<TT>S</TT>.
 </DL>
 For example
@@ -484,7 +484,7 @@ For example
              loop 2 gopast 'a'
                        // '[anima|dversion' - c is marked by '|'
              ]         // '[anima]dversion' - ] set as indicated
-             -> y      // y is 'anima'
+             -&gt; y      // y is 'anima'
            )
 </PRE>
 For any string, the slice ends should be assumed to be unset until they are
@@ -493,7 +493,7 @@ the same values until altered.
 
 <DL>
 <DT><TT>delete</TT>
-    <DD>is equivalent to &nbsp;<TT><- ''</TT>
+    <DD>is equivalent to &nbsp;<TT>&lt;- ''</TT>
 </DL>
 
 This next example deletes all vowels in x,
@@ -511,7 +511,7 @@ More simply, text can be inserted at <B><I>c</I></B>.
 <DL>
 <DT><TT>insert S</TT>
     <DD>insert variable or literal &nbsp;<TT>S</TT>&nbsp; before <B><I>c</I></B>, moving <B><I>c</I></B> to the right of the
-    insert. &nbsp;<TT><+</TT>&nbsp; is a synonym for &nbsp;<TT>insert</TT>.
+    insert. &nbsp;<TT>&lt;+</TT>&nbsp; is a synonym for &nbsp;<TT>insert</TT>.
 
 <DT><TT>attach S</TT>
     <DD>the same, but leave <B><I>c</I></B> at the left of the insert.
@@ -769,10 +769,10 @@ otherwise. For example,
     ....
 
     unset Y_found          // unset it
-    do ( ['y'] <-'Y' set Y_found )
+    do ( ['y'] &lt;-'Y' set Y_found )
        /* if c:l begins 'y' replace it by 'Y' and set Y_found */
 
-    do repeat(goto (v ['y']) <-'Y' set Y_found)
+    do repeat(goto (v ['y']) &lt;-'Y' set Y_found)
        /* repeatedy move down the string looking for v 'y' and
           replacing 'y' with 'Y'. Whenever the replacement takes
           place set Y_found. v is a test for a vowel, defined as
@@ -785,7 +785,7 @@ otherwise. For example,
 
     ....
 
-    do (Y_found repeat(goto (['Y']) <- 'y')
+    do (Y_found repeat(goto (['Y']) &lt;- 'y')
 </PRE>
 <BR>&nbsp;<H2>9 Groupings</H2>
 
@@ -918,7 +918,7 @@ script can be compiled to work with any of the three encoding schemes.
 <DL><DD>
 <TT>||</TT>&nbsp; is used for alternatives, &nbsp;<TT>[<I>X</I>]</TT>&nbsp; means that <I>X</I> is
 optional, and &nbsp;<TT>[<I>X</I>]*</TT>&nbsp; means that <I>X</I> is repreated zero or more
-times. meta-symbols are defined on the left. &nbsp;<TT>&lt;char></TT>&nbsp; means any
+times. meta-symbols are defined on the left. &nbsp;<TT>&lt;char&gt;</TT>&nbsp; means any
 character.
 <BR><BR>
 The definition of &nbsp;<TT>literal string</TT>&nbsp; does not allow for the escaping
@@ -927,65 +927,65 @@ conventions established by the &nbsp;<TT>stringescapes</TT>&nbsp; directive. The
 <BR><BR>
 
 <BR><PRE>
-&lt;letter>        ::= a || b || ... || z || A || B || ... || Z
-&lt;digit>         ::= 0 || 1 || ... || 9
-&lt;name>          ::= &lt;letter> [ &lt;letter> || &lt;digit> || _ ]*
-&lt;s_name>        ::= &lt;name>
-&lt;i_name>        ::= &lt;name>
-&lt;b_name>        ::= &lt;name>
-&lt;r_name>        ::= &lt;name>
-&lt;g_name>        ::= &lt;name>
-&lt;literal string>::= '[&lt;char>]*'
-&lt;number>        ::= &lt;digit> [ &lt;digit> ]*
+&lt;letter&gt;        ::= a || b || ... || z || A || B || ... || Z
+&lt;digit&gt;         ::= 0 || 1 || ... || 9
+&lt;name&gt;          ::= &lt;letter&gt; [ &lt;letter&gt; || &lt;digit&gt; || _ ]*
+&lt;s_name&gt;        ::= &lt;name&gt;
+&lt;i_name&gt;        ::= &lt;name&gt;
+&lt;b_name&gt;        ::= &lt;name&gt;
+&lt;r_name&gt;        ::= &lt;name&gt;
+&lt;g_name&gt;        ::= &lt;name&gt;
+&lt;literal string&gt;::= '[&lt;char&gt;]*'
+&lt;number&gt;        ::= &lt;digit&gt; [ &lt;digit&gt; ]*
 
-S               ::= &lt;s_name> || &lt;literal string>
-G               ::= &lt;g_name> || &lt;literal string>
+S               ::= &lt;s_name&gt; || &lt;literal string&gt;
+G               ::= &lt;g_name&gt; || &lt;literal string&gt;
 
-&lt;declaration>   ::= strings ( [&lt;s_name>]* ) ||
-                    integers ( [&lt;i_name>]* ) ||
-                    booleans ( [&lt;b_name>]* ) ||
-                    routines ( [&lt;r_name>]* ) ||
-                    externals ( [&lt;r_name>]* ) ||
-                    groupings ( [&lt;g_name>]* )
+&lt;declaration&gt;   ::= strings ( [&lt;s_name&gt;]* ) ||
+                    integers ( [&lt;i_name&gt;]* ) ||
+                    booleans ( [&lt;b_name&gt;]* ) ||
+                    routines ( [&lt;r_name&gt;]* ) ||
+                    externals ( [&lt;r_name&gt;]* ) ||
+                    groupings ( [&lt;g_name&gt;]* )
 
-&lt;r_definition>  ::= define &lt;r_name> as C
-&lt;plus_or_minus> ::= + || -
-&lt;g_definition>  ::= define &lt;g_name> G [ &lt;plus_or_minus> G ]*
+&lt;r_definition&gt;  ::= define &lt;r_name&gt; as C
+&lt;plus_or_minus&gt; ::= + || -
+&lt;g_definition&gt;  ::= define &lt;g_name&gt; G [ &lt;plus_or_minus&gt; G ]*
 
 AE              ::= (AE) ||
                     AE + AE || AE - AE || AE * AE || AE / AE || - AE ||
                     maxint || minint || cursor || limit || size ||
-                    sizeof &lt;s_name> || &lt;i_name> || &lt;number>
+                    sizeof &lt;s_name&gt; || &lt;i_name&gt; || &lt;number&gt;
 
-&lt;i_command>     ::= $ &lt;i_name> = AE ||
-                    $ &lt;i_name> += AE || $ &lt;i_name> -= AE ||
-                    $ &lt;i_name> *= AE || $ &lt;i_name> /= AE ||
-                    $ &lt;i_name> == AE || $ &lt;i_name> != AE ||
-                    $ &lt;i_name> > AE || $ &lt;i_name> >= AE ||
-                    $ &lt;i_name> &lt; AE || $ &lt;i_name> &lt;= AE ||
+&lt;i_command&gt;     ::= $ &lt;i_name&gt; = AE ||
+                    $ &lt;i_name&gt; += AE || $ &lt;i_name&gt; -= AE ||
+                    $ &lt;i_name&gt; *= AE || $ &lt;i_name&gt; /= AE ||
+                    $ &lt;i_name&gt; == AE || $ &lt;i_name&gt; != AE ||
+                    $ &lt;i_name&gt; &gt; AE || $ &lt;i_name&gt; &gt;= AE ||
+                    $ &lt;i_name&gt; &lt; AE || $ &lt;i_name&gt; &lt;= AE ||
 
-&lt;s_command>     ::= $ &lt;s_name> C
+&lt;s_command&gt;     ::= $ &lt;s_name&gt; C
 
 C               ::= ( [C]* ) ||
-                    &lt;i_command> || &lt;s_command> || C or C || C and C ||
+                    &lt;i_command&gt; || &lt;s_command&gt; || C or C || C and C ||
                     not C || test C || try C || do C || fail C ||
                     goto C || gopast C || repeat C || loop AE C ||
                     atleast AE C || S || = S || insert S || attach S ||
                     &lt;- S || delete ||  hop AE || next ||
-                    => &lt;s_name> || [ || ] || -> &lt;s_name> ||
-                    setmark &lt;i_name> || tomark AE || atmark AE ||
+                    =&gt; &lt;s_name&gt; || [ || ] || -&gt; &lt;s_name&gt; ||
+                    setmark &lt;i_name&gt; || tomark AE || atmark AE ||
                     tolimit || atlimit || setlimit C for C ||
                     backwards C || reverse C || substring ||
-                    among ( [&lt;literal string> [&lt;r_name>] || (C)]* ) ||
-                    set &lt;b_name> || unset &lt;b_name> || &lt;b_name> ||
-                    &lt;r_name> || &lt;g_name> || non [-] &lt;g_name> ||
+                    among ( [&lt;literal string&gt; [&lt;r_name&gt;] || (C)]* ) ||
+                    set &lt;b_name&gt; || unset &lt;b_name&gt; || &lt;b_name&gt; ||
+                    &lt;r_name&gt; || &lt;g_name&gt; || non [-] &lt;g_name&gt; ||
                     true || false || ?
 
-P              ::=  [P]* || &lt;declaration> ||
-                    &lt;r_definition> || &lt;g_definition> ||
+P              ::=  [P]* || &lt;declaration&gt; ||
+                    &lt;r_definition&gt; || &lt;g_definition&gt; ||
                     backwardmode ( P )
 
-&lt;program>      ::=  P
+&lt;program&gt;      ::=  P
 
 
 

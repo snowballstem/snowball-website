@@ -95,7 +95,7 @@ abstracto<BR>
 abstracţia<BR>
 abstracţii<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 abrupt<BR>
 absent<BR>
@@ -181,7 +181,7 @@ ocupanţii<BR>
 ocupase<BR>
 ocupat<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 ocol<BR>
 ocol<BR>
@@ -453,8 +453,8 @@ define v 'aeiou{a^}{i^}{a+}'
 
 define prelude as (
     repeat goto (
-        v [ ('u' ] v <- 'U') or
-            ('i' ] v <- 'I')
+        v [ ('u' ] v &lt;- 'U') or
+            ('i' ] v &lt;- 'I')
     )
 )
 
@@ -479,8 +479,8 @@ define mark_regions as (
 define postlude as repeat (
 
     [substring] among(
-        'I'  (<- 'i')
-        'U'  (<- 'u')
+        'I'  (&lt;- 'i')
+        'U'  (&lt;- 'u')
         ''   (next)
     )
 
@@ -488,26 +488,26 @@ define postlude as repeat (
 
 backwardmode (
 
-    define RV as $pV <= cursor
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define RV as $pV &lt;= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define step_0 as (
         [substring] R1 among(
             'ul' 'ului'
                 ( delete )
             'aua'
-                ( <-'a' )
+                ( &lt;-'a' )
             'ea' 'ele' 'elor'
-                ( <-'e' )
+                ( &lt;-'e' )
             'ii' 'iua' 'iei' 'iile' 'iilor' 'ilor'
-                ( <-'i')
+                ( &lt;-'i')
             'ile'
-                ( not 'ab' <- 'i' )
+                ( not 'ab' &lt;- 'i' )
             'atei'
-                ( <- 'at' )
+                ( &lt;- 'at' )
             'a{t,}ie' 'a{t,}ia'
-                ( <- 'a{t,}i' )
+                ( &lt;- 'a{t,}i' )
         )
     )
 
@@ -517,32 +517,32 @@ backwardmode (
             /* 'IST'. alternative: include the following
                 'alism' 'alisme'
                 'alist' 'alista' 'aliste' 'alisti' 'alist{a+}' 'ali{s,}ti' (
-                    <- 'al'
+                    &lt;- 'al'
                 )
             */
                 'abilitate' 'abilitati' 'abilit{a+}i' 'abilit{a+}{t,}i' (
-                    <- 'abil'
+                    &lt;- 'abil'
                 )
                 'ibilitate' (
-                    <- 'ibil'
+                    &lt;- 'ibil'
                 )
                 'ivitate' 'ivitati' 'ivit{a+}i' 'ivit{a+}{t,}i' (
-                    <- 'iv'
+                    &lt;- 'iv'
                 )
                 'icitate' 'icitati' 'icit{a+}i' 'icit{a+}{t,}i'
                 'icator' 'icatori'
                 'iciv' 'iciva' 'icive' 'icivi' 'iciv{a+}'
                 'ical' 'icala' 'icale' 'icali' 'ical{a+}' (
-                    <- 'ic'
+                    &lt;- 'ic'
                 )
                 'ativ' 'ativa' 'ative' 'ativi' 'ativ{a+}' 'a{t,}iune'
                 'atoare' 'ator' 'atori'
                 '{a+}toare' '{a+}tor' '{a+}tori' (
-                    <- 'at'
+                    &lt;- 'at'
                 )
                 'itiv' 'itiva' 'itive' 'itivi' 'itiv{a+}' 'i{t,}iune'
                 'itoare' 'itor' 'itori' (
-                    <- 'it'
+                    &lt;- 'it'
                 )
             )
             set standard_suffix_removed
@@ -572,12 +572,12 @@ backwardmode (
                     delete
                 )
                 'iune' 'iuni' (
-                    '{t,}'] <- 't'
+                    '{t,}'] &lt;- 't'
                 )
                 'ism' 'isme'
                 'ist' 'ista' 'iste' 'isti' 'ist{a+}' 'i{s,}ti' (
-                    <- 'ist'
-                    /* 'IST'. alternative: remove with <- '' */
+                    &lt;- 'ist'
+                    /* 'IST'. alternative: remove with &lt;- '' */
                 )
             )
             set standard_suffix_removed

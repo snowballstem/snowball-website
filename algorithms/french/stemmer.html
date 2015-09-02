@@ -96,7 +96,7 @@ contraire<BR>
 contraires<BR>
 contraria<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 continu<BR>
 continu<BR>
@@ -182,7 +182,7 @@ maladie<BR>
 maladies<BR>
 maladive<BR>
 </TD>
-<TD></TD><TD> &nbsp;<TT><B> => </B></TT>&nbsp; </TD>
+<TD></TD><TD> &nbsp;<TT><B> =&gt; </B></TT>&nbsp; </TD>
 <TD></TD><TD>
 main<BR>
 main<BR>
@@ -499,14 +499,14 @@ define v 'aeiouy{a^}{a`}{e"}{e'}{e^}{e`}{i"}{i^}{o^}{u^}{u`}'
 
 define prelude as repeat goto (
 
-    (  v [ ('u' ] v <- 'U') or
-           ('i' ] v <- 'I') or
-           ('y' ] <- 'Y')
+    (  v [ ('u' ] v &lt;- 'U') or
+           ('i' ] v &lt;- 'I') or
+           ('y' ] &lt;- 'Y')
     )
     or
-    (  ['y'] v <- 'Y' )
+    (  ['y'] v &lt;- 'Y' )
     or
-    (  'q' ['u'] <- 'U' )
+    (  'q' ['u'] &lt;- 'U' )
 )
 
 define mark_regions as (
@@ -537,18 +537,18 @@ define mark_regions as (
 define postlude as repeat (
 
     [substring] among(
-        'I' (<- 'i')
-        'U' (<- 'u')
-        'Y' (<- 'y')
+        'I' (&lt;- 'i')
+        'U' (&lt;- 'u')
+        'Y' (&lt;- 'y')
         ''  (next)
     )
 )
 
 backwardmode (
 
-    define RV as $pV <= cursor
-    define R1 as $p1 <= cursor
-    define R2 as $p2 <= cursor
+    define RV as $pV &lt;= cursor
+    define R1 as $p1 &lt;= cursor
+    define R2 as $p2 &lt;= cursor
 
     define standard_suffix as (
         [substring] among(
@@ -559,17 +559,17 @@ backwardmode (
             'atrice' 'ateur' 'ation'
             'atrices' 'ateurs' 'ations'
                ( R2 delete
-                 try ( ['ic'] (R2 delete) or <-'iqU' )
+                 try ( ['ic'] (R2 delete) or &lt;-'iqU' )
                )
             'logie'
             'logies'
-               ( R2 <- 'log' )
+               ( R2 &lt;- 'log' )
             'usion' 'ution'
             'usions' 'utions'
-               ( R2 <- 'u' )
+               ( R2 &lt;- 'u' )
             'ence'
             'ences'
-               ( R2 <- 'ent' )
+               ( R2 &lt;- 'ent' )
             'ement'
             'ements'
             (
@@ -577,11 +577,11 @@ backwardmode (
                 try (
                     [substring] among(
                         'iv'   (R2 delete ['at'] R2 delete)
-                        'eus'  ((R2 delete) or (R1<-'eux'))
+                        'eus'  ((R2 delete) or (R1&lt;-'eux'))
                         'abl' 'iqU'
                                (R2 delete)
                         'i{e`}r' 'I{e`}r'      //)
-                               (RV <-'i')      //)--new 2 Sept 02
+                               (RV &lt;-'i')      //)--new 2 Sept 02
                     )
                 )
             )
@@ -591,8 +591,8 @@ backwardmode (
                 R2 delete
                 try (
                     [substring] among(
-                        'abil' ((R2 delete) or <-'abl')
-                        'ic'   ((R2 delete) or <-'iqU')
+                        'abil' ((R2 delete) or &lt;-'abl')
+                        'ic'   ((R2 delete) or &lt;-'iqU')
                         'iv'   (R2 delete)
                     )
                 )
@@ -601,12 +601,12 @@ backwardmode (
             'ifs' 'ives'
             (
                 R2 delete
-                try ( ['at'] R2 delete ['ic'] (R2 delete) or <-'iqU' )
+                try ( ['at'] R2 delete ['ic'] (R2 delete) or &lt;-'iqU' )
             )
-            'eaux' (<- 'eau')
-            'aux'  (R1 <- 'al')
+            'eaux' (&lt;- 'eau')
+            'aux'  (R1 &lt;- 'al')
             'euse'
-            'euses'((R2 delete) or (R1<-'eux'))
+            'euses'((R2 delete) or (R1&lt;-'eux'))
 
             'issement'
             'issements'(R1 non-v delete) // verbal
@@ -614,8 +614,8 @@ backwardmode (
             // fail(...) below forces entry to verb_suffix. -ment typically
             // follows the p.p., e.g 'confus{e'}ment'.
 
-            'amment'   (RV fail(<- 'ant'))
-            'emment'   (RV fail(<- 'ent'))
+            'amment'   (RV fail(&lt;- 'ant'))
+            'emment'   (RV fail(&lt;- 'ent'))
             'ment'
             'ments'    (test(v RV) fail(delete))
                        // v is e,i,u,{e'},I or U
@@ -663,7 +663,7 @@ backwardmode (
             [substring] among(
                 'ion'           (R2 's' or 't' delete)
                 'ier' 'i{e`}re'
-                'Ier' 'I{e`}re' (<-'i')
+                'Ier' 'I{e`}re' (&lt;-'i')
                 'e'             (delete)
                 '{e"}'          ('gu' delete)
             )
@@ -676,7 +676,7 @@ backwardmode (
 
     define un_accent as (
         atleast 1 non-v
-        [ '{e'}' or '{e`}' ] <-'e'
+        [ '{e'}' or '{e`}' ] &lt;-'e'
     )
 )
 
@@ -693,8 +693,8 @@ define stem as (
                    verb_suffix
                  )
                  and
-                 try( [ ('Y'   ] <- 'i' ) or
-                        ('{c,}'] <- 'c' )
+                 try( [ ('Y'   ] &lt;- 'i' ) or
+                        ('{c,}'] &lt;- 'c' )
                  )
             ) or
             residual_suffix
