@@ -22,7 +22,7 @@ function w = porterStemmer2(w)
    % http://www.cs.cmu.edu/afs/cs.cmu.edu/project/listen/NLP/
    % Parsers/Stanford/stanford-parser-2005-07-21/MCALL/tsurgeon/MCALL/
    % WordNet/prolog/misc/PREFIXES/BAR120.pdf
-   % to reorder switch case conditions so that more freqent ones are
+   % to reorder switch case conditions so that more frequent ones are
    % checked first.
    
    l = length(w);
