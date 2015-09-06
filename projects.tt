@@ -19,7 +19,7 @@ A reimplementation of the snowball stemming algorithms in C++.
 A probabilistic search engine which supports stemming using Snowball.
 </p>
 
-<h2><a href="http://www.zopyx.com/projects/TextIndexNG3/">TextIndexNG</a></h2>
+<h2><a href="https://plone.org/products/textindexng3">TextIndexNG</a></h2>
 A fulltext indexing solution for Zope with support for stemming using Snowball.
 </p>
 
