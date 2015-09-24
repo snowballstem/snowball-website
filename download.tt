@@ -1,5 +1,5 @@
 [% header %]
-<tr><td>
+
 <h2>Tarballs</h2>
 
 Several tarballs of the snowball sources are available.
@@ -48,9 +48,6 @@ least some measure of support for ensuring that they work, feel free to contact
 us and we will add a link to your work from this site.
 </p>
 
-</td></tr>
-<tr><td>
-<p>
 <h2>Python</h2>
 
 <p>
@@ -64,9 +61,6 @@ Some wrappers for other languages are also available on the wrappers page, but
 are not supported by us. (Though if you ask on the mailing list for help, someone else might be able to assist you.)
 </p>
 
-</td></tr>
-<tr><td>
-<p>
 <h2>Git</h2>
 
 <p>
@@ -76,14 +70,11 @@ Developers may wish to access the latest source using the command:
 <tt>
 git clone git&#64;github.com:snowballstem/snowball.git
 </tt>
-</td></tr>
-<tr><td>
-<p>
+
 <h3>Web interface</h3>
 
 <p>
 The git repository can also be <a href="https://github.com/snowballstem/snowball">browsed online</a>.
 </p>
 
-</td></tr>
 [% footer %]

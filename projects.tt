@@ -1,29 +1,34 @@
 [% header %]
-<TR><TD>
-<p>
 
+<p>
 This page lists projects which make use of snowball, or are related in some way.
+</p>
 
 <hr>
 
 <h2><a href="http://wiki.tcl.tk/8699">Tclsnowball</a></h2>
+<p>
 A simple Tcl binding to some of the stemmers of the snowball project.
 </p>
 
 <h2><a href="https://sourceforge.net/projects/porterstemmers/">C++ stemmers</a></h2>
+<p>
 A reimplementation of the snowball stemming algorithms in C++.
 </p>
 
 
 <h2><a href="http://www.xapian.org/">Xapian</a></h2>
+<p>
 A probabilistic search engine which supports stemming using Snowball.
 </p>
 
 <h2><a href="https://plone.org/products/textindexng3">TextIndexNG</a></h2>
+<p>
 A fulltext indexing solution for Zope with support for stemming using Snowball.
 </p>
 
 <h2><a href="http://code.google.com/p/urim/">urim</a></h2>
+<p>
 (added Sep 2010) Developed by Oleg Mazko, <B>Urim</B> is a standalone,
 offline tag-cloud builder engine, fully written in JavaScript and so
 capable of integration into all Internet browsers. Available as
@@ -34,13 +39,14 @@ also available as a separate library ready for developers.
 </p>
 
 <h2><a href="http://bitbucket.org/tebeka/snowball">libstemmer in Go</a></h2>
+<p>
 (added Feb 2013) Miki Tebeka has ported libstemmer_c to the Go programming
 language.
-
 </p>
 
 <hr>
+<p>
 <a href="lists.html">Contact us</a> if you have a project that you would like to be listed here.
+</p>
 
-<TD><TR>
 [% footer %]

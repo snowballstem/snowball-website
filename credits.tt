@@ -1,5 +1,5 @@
 [% header %]
-<TR><TD>
+
 <p>
 Snowball, and most of the current stemming algorithms were written by
 Dr Martin Porter, who also prepared the material for the Website.
@@ -60,5 +60,4 @@ basic list of verb endings with their separation into two groups with
 different removal criteria is taken from Irina Tirdea's stemmer.
 </p>
 
-</TD></TR>
 [% footer %]

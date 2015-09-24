@@ -23,12 +23,19 @@ my $vars = {};
 # The footer of the page.
 # There should be no output after this.
 $$vars{footer} = <<'__END__';
-</table>
-</td></tr></table>
-<address>
-<a href="lists.html">Write to our mailing list</a> if you have comments or questions about the project.
-</address>
-</body>
+      </div><!-- /.col-md-9 -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
 </html>
 __END__
 
@@ -53,24 +60,20 @@ for my $in (<*.tt>) {
 	$pretty_name = 'Mailing Lists';
     }
 
-    my $menu = "<td valign=top bgcolor=cyan width=128>";
+    my $menu = "<div class='list-group'>";
     for (@pages) {
 	my ($link, $desc) = @{$_};
-	if ($link eq $page) {
-	    $menu .= "<b>$desc</b>";
+	my $class = $link eq $page ? 'list-group-item active' : 'list-group-item';
+	if ($link eq "index") {
+		$link = '/';
 	} else {
-	    if ($link eq "index") {
-		$link = '.';
-	    } else {
 		$link .= '.html';
-	    }
-	    $menu .= '<a href="'.$link.'">'.$desc.'</a>';
 	}
-	$menu .= "<br>\n";
-    }
+	$menu .= '<a class="'.$class.'" href="'.$link.'">'.$desc.'</a>';
+	}
     $menu .= <<'__END__';
-<a href="https://github.com/snowballstem">Source on github</a><br>
-<br>
+<a class="list-group-item" href="https://github.com/snowballstem">Source on github</a><br>
+</div>
 
 <!--
 <form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
@@ -83,28 +86,69 @@ for my $in (<*.tt>) {
 <br>
 -->
 
-</td>
 __END__
-    # Title is the title of the page: it will be prefixed with "Snowball - ".
+    # Title is the title of the page: it will be postfixed with " - Snowball".
     my $title = "Snowball";
-    if ($pretty_name ne "") {
-	$title = "$title - $pretty_name";
+    if ($pretty_name eq "") {
+	$pretty_name = $title;
+    }
+    else {
+	$title = "$pretty_name - $title";
     }
     # Header of the page, including the menu.
     # This should be output first.
     $$vars{header} = <<__END__;
-<html>
-<head>
-<title>$title</title>
-</head>
-<body bgcolor=white>
-<table><tr><td valign=center>
-<center><img src="snub-dodecahedron.gif"></center>
-</td><td>
-<h1 align=center>$title</h1>
-</td></tr>
-<tr>$menu<td valign=top>
-<table width=95% align=center cols=1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>$title</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+            <li><a href="https://github.com/snowballstem">Source</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          $menu
+        </div>
+        <div class="col-md-10">
+          <h1>$pretty_name</h1>
+
 __END__
     $template->process($in, $vars, $out) || die $template->error();
 }
@@ -113,6 +157,7 @@ foreach my $f (qw(
     CNAME
     robots.txt
     snub-dodecahedron.gif
+    styles.css
     codesets
     algorithms
     otherapps

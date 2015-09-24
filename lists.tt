@@ -1,5 +1,5 @@
 [% header %]
-<tr><td>
+
 <p>
 There's one active mailing list related to Snowball:
 </p>
@@ -12,10 +12,12 @@ Release announcements will also be posted to this list.
 <a href="http://news.gmane.org/gmane.comp.search.snowball">Archives</a>
 </ul>
 
+<p>
 Note that this mailing list will reject postings from non-subscribers (due to
 the immense amount of spam received otherwise).  The list is fairly
 low-traffic, but if you don't wish to receive messages (but wish to be able to
 post), you can disable sending of messages in the mailing list options after
 subscribing.
-</td></tr>
+</p>
+
 [% footer %]
