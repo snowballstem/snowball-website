@@ -13,7 +13,6 @@ echo "$tmp";
 <input type="submit" name="Submit" value="Submit">
 </form>
 -->
-</TD></TR>
 
 <!--
 <?php
