@@ -65,11 +65,11 @@ are not supported by us. (Though if you ask on the mailing list for help, someon
 
 <p>
 Developers may wish to access the latest source using the command:
-<br>
-<p>
-<tt>
+</p>
+
+<pre>
 git clone git&#64;github.com:snowballstem/snowball.git
-</tt>
+</pre>
 
 <h3>Web interface</h3>
 
