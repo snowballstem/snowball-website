@@ -95,7 +95,7 @@ The following forms are equivalent,
 <TT>stringdef</TT>s define special <I>string macros</I>, to handle unusual
 character combinations.
 <BR><BR>
-Macro &nbsp;<TT>m</TT>&nbsp; may is defined in the form &nbsp;<TT>stringdef m 'S'</TT>, where &nbsp;<TT>'S'</TT>&nbsp; is a
+Macro &nbsp;<TT>m</TT>&nbsp; is defined in the form &nbsp;<TT>stringdef m 'S'</TT>, where &nbsp;<TT>'S'</TT>&nbsp; is a
 string, and &nbsp;<TT>m</TT>&nbsp; a sequence of one or more printing characters terminating
 with whitespace.
 <BR><BR>
@@ -773,7 +773,7 @@ otherwise. For example,
        /* if c:l begins 'y' replace it by 'Y' and set Y_found */
 
     do repeat(goto (v ['y']) &lt;-'Y' set Y_found)
-       /* repeatedy move down the string looking for v 'y' and
+       /* repeatedly move down the string looking for v 'y' and
           replacing 'y' with 'Y'. Whenever the replacement takes
           place set Y_found. v is a test for a vowel, defined as
           a grouping (see below). */
