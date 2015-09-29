@@ -68,13 +68,13 @@ this form. The case m = 0 covers the null word. Here are some examples:
 </TABLE></DL>
 The <I>rules</I> for removing a suffix will be given in the form
 <DL><DD>
-    (condition) S1 <TT>-&gt;</TT> S2
+    (condition) S1 <code>-&gt;</code> S2
 </DL>
 This means that if a word ends with the suffix S1, and the stem before S1
 satisfies the given condition, S1 is replaced by S2. The condition is
 usually given in terms of m, e.g.
 <DL><DD>
-    (m &gt; 1) EMENT <TT>-&gt;</TT>
+    (m &gt; 1) EMENT <code>-&gt;</code>
 </DL>
 Here S1 is &#8216;EMENT&#8217; and S2 is null. This would map REPLACEMENT to REPLAC,
 since REPLAC is a word part for which m = 2.
@@ -106,10 +106,10 @@ In a set of rules written beneath each other, only one is obeyed, and this
 will be the one with the longest matching S1 for the given word. For
 example, with
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>    SSES <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> SS
-<TR><TD>    IES  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> I
-<TR><TD>    SS   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> SS
-<TR><TD>    S    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>
+<TR><TD>    SSES <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> SS
+<TR><TD>    IES  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> I
+<TR><TD>    SS   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> SS
+<TR><TD>    S    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>
 </TABLE></DL>
 (here the conditions are all null) CARESSES maps to CARESS since SSES is
 the longest match for S1. Equally CARESS maps to CARESS (S1=&#8216;SS&#8217;) and CARES
@@ -120,36 +120,36 @@ are given on the right in lower case. The algorithm now follows:
 <BR><BR>
 Step 1a
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD> SSES <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> SS <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  caresses  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  caress
-<TR><TD> IES  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> I  <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  ponies    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  poni
-<TR><TD>      <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  ties      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  ti
-<TR><TD> SS   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> SS <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  caress    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  caress
-<TR><TD> S    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  cats      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  cat
+<TR><TD> SSES <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> SS <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  caresses  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  caress
+<TR><TD> IES  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> I  <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  ponies    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  poni
+<TR><TD>      <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  ties      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  ti
+<TR><TD> SS   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> SS <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  caress    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  caress
+<TR><TD> S    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  cats      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  cat
 </TABLE></DL>
 Step 1b
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD> (m&gt;0) EED <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> EE <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> feed      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  feed
-<TR><TD>           <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> agreed    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  agree
-<TR><TD> (*v*) ED  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> plastered <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  plaster
-<TR><TD>           <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> bled      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  bled
-<TR><TD> (*v*) ING <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> motoring  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  motor
-<TR><TD>           <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>        <TD></TD><TD> sing      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  sing
+<TR><TD> (m&gt;0) EED <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> EE <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> feed      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  feed
+<TR><TD>           <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> agreed    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  agree
+<TR><TD> (*v*) ED  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> plastered <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  plaster
+<TR><TD>           <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> bled      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  bled
+<TR><TD> (*v*) ING <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> motoring  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  motor
+<TR><TD>           <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>        <TD></TD><TD> sing      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  sing
 </TABLE></DL>
 If the second or third of the rules in Step 1b is successful, the following
 is done:
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD> AT <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> ATE           <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> conflat(ed)  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  conflate
-<TR><TD> BL <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> BLE           <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> troubl(ed)   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  trouble
-<TR><TD> IZ <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> IZE           <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> siz(ed)      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  size
+<TR><TD> AT <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> ATE           <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> conflat(ed)  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  conflate
+<TR><TD> BL <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> BLE           <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> troubl(ed)   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  trouble
+<TR><TD> IZ <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> IZE           <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> siz(ed)      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  size
 <TR><TD> (*d and not (*L or *S or *Z))
-      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> single letter <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> hopp(ing)    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  hop
-<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> tann(ed)     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  tan
-<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> fall(ing)    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  fall
-<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> hiss(ing)    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  hiss
-<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> fizz(ed)     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  fizz
+      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> single letter <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> hopp(ing)    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  hop
+<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> tann(ed)     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  tan
+<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> fall(ing)    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  fall
+<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> hiss(ing)    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  hiss
+<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> fizz(ed)     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  fizz
 <TR><TD> (m=1 and *o)
-      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> E             <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> fail(ing)    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  fail
-<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> fil(ing)     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  file
+      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> E             <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> fail(ing)    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  fail
+<TR><TD>    <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> fil(ing)     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  file
 </TABLE></DL>
 The rule to map to a single letter causes the removal of one of the double
 letter pair. The -E is put back on -AT, -BL and -IZ, so that the suffixes
@@ -158,35 +158,35 @@ letter pair. The -E is put back on -AT, -BL and -IZ, so that the suffixes
 <BR><BR>
 Step 1c
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>    (*v*) Y <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> I     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> happy        <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  happi
-<TR><TD>            <TD></TD><TD>     <TD></TD><TD>       <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> sky          <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  sky
+<TR><TD>    (*v*) Y <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> I     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> happy        <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  happi
+<TR><TD>            <TD></TD><TD>     <TD></TD><TD>       <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> sky          <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  sky
 </TABLE></DL>
 Step 1 deals with plurals and past participles. The subsequent steps are
 much more straightforward.
 <BR><BR>
 Step 2
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>    (m&gt;0) ATIONAL <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  ATE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> relational     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  relate
-<TR><TD>    (m&gt;0) TIONAL  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  TION   <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> conditional    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  condition
-<TR><TD>                  <TD></TD><TD>     <TD></TD><TD>         <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> rational       <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  rational
-<TR><TD>    (m&gt;0) ENCI    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  ENCE   <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> valenci        <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  valence
-<TR><TD>    (m&gt;0) ANCI    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  ANCE   <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> hesitanci      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  hesitance
-<TR><TD>    (m&gt;0) IZER    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  IZE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> digitizer      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  digitize
-<TR><TD>    (m&gt;0) ABLI    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  ABLE   <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> conformabli    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  conformable
-<TR><TD>    (m&gt;0) ALLI    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  AL     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> radicalli      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  radical
-<TR><TD>    (m&gt;0) ENTLI   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  ENT    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> differentli    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  different
-<TR><TD>    (m&gt;0) ELI     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  E      <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> vileli         <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  vile
-<TR><TD>    (m&gt;0) OUSLI   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  OUS    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> analogousli    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  analogous
-<TR><TD>    (m&gt;0) IZATION <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  IZE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> vietnamization <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  vietnamize
-<TR><TD>    (m&gt;0) ATION   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  ATE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> predication    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  predicate
-<TR><TD>    (m&gt;0) ATOR    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  ATE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> operator       <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  operate
-<TR><TD>    (m&gt;0) ALISM   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  AL     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> feudalism      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  feudal
-<TR><TD>    (m&gt;0) IVENESS <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  IVE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> decisiveness   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  decisive
-<TR><TD>    (m&gt;0) FULNESS <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  FUL    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> hopefulness    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  hopeful
-<TR><TD>    (m&gt;0) OUSNESS <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  OUS    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> callousness    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  callous
-<TR><TD>    (m&gt;0) ALITI   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  AL     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> formaliti      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  formal
-<TR><TD>    (m&gt;0) IVITI   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  IVE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> sensitiviti    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  sensitive
-<TR><TD>    (m&gt;0) BILITI  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  BLE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> sensibiliti    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  sensible
+<TR><TD>    (m&gt;0) ATIONAL <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  ATE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> relational     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  relate
+<TR><TD>    (m&gt;0) TIONAL  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  TION   <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> conditional    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  condition
+<TR><TD>                  <TD></TD><TD>     <TD></TD><TD>         <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> rational       <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  rational
+<TR><TD>    (m&gt;0) ENCI    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  ENCE   <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> valenci        <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  valence
+<TR><TD>    (m&gt;0) ANCI    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  ANCE   <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> hesitanci      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  hesitance
+<TR><TD>    (m&gt;0) IZER    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  IZE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> digitizer      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  digitize
+<TR><TD>    (m&gt;0) ABLI    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  ABLE   <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> conformabli    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  conformable
+<TR><TD>    (m&gt;0) ALLI    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  AL     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> radicalli      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  radical
+<TR><TD>    (m&gt;0) ENTLI   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  ENT    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> differentli    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  different
+<TR><TD>    (m&gt;0) ELI     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  E      <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> vileli         <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  vile
+<TR><TD>    (m&gt;0) OUSLI   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  OUS    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> analogousli    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  analogous
+<TR><TD>    (m&gt;0) IZATION <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  IZE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> vietnamization <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  vietnamize
+<TR><TD>    (m&gt;0) ATION   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  ATE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> predication    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  predicate
+<TR><TD>    (m&gt;0) ATOR    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  ATE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> operator       <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  operate
+<TR><TD>    (m&gt;0) ALISM   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  AL     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> feudalism      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  feudal
+<TR><TD>    (m&gt;0) IVENESS <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  IVE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> decisiveness   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  decisive
+<TR><TD>    (m&gt;0) FULNESS <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  FUL    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> hopefulness    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  hopeful
+<TR><TD>    (m&gt;0) OUSNESS <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  OUS    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> callousness    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  callous
+<TR><TD>    (m&gt;0) ALITI   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  AL     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> formaliti      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  formal
+<TR><TD>    (m&gt;0) IVITI   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  IVE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> sensitiviti    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  sensitive
+<TR><TD>    (m&gt;0) BILITI  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  BLE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> sensibiliti    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  sensible
 </TABLE></DL>
 The test for the string S1 can be made fast by doing a program switch on
 the penultimate letter of the word being tested. This gives a fairly even
@@ -197,51 +197,51 @@ steps.
 <BR><BR>
 Step 3
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>    (m&gt;0) ICATE <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  IC <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  triplicate     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  triplic
-<TR><TD>    (m&gt;0) ATIVE <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  formative      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  form
-<TR><TD>    (m&gt;0) ALIZE <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  AL <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  formalize      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  formal
-<TR><TD>    (m&gt;0) ICITI <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  IC <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  electriciti    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  electric
-<TR><TD>    (m&gt;0) ICAL  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  IC <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  electrical     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  electric
-<TR><TD>    (m&gt;0) FUL   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  hopeful        <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  hope
-<TR><TD>    (m&gt;0) NESS  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  goodness       <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  good
+<TR><TD>    (m&gt;0) ICATE <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  IC <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  triplicate     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  triplic
+<TR><TD>    (m&gt;0) ATIVE <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  formative      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  form
+<TR><TD>    (m&gt;0) ALIZE <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  AL <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  formalize      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  formal
+<TR><TD>    (m&gt;0) ICITI <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  IC <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  electriciti    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  electric
+<TR><TD>    (m&gt;0) ICAL  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  IC <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  electrical     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  electric
+<TR><TD>    (m&gt;0) FUL   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  hopeful        <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  hope
+<TR><TD>    (m&gt;0) NESS  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  goodness       <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  good
 </TABLE></DL>
 Step 4
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>    (m&gt;1) AL    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  revival        <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  reviv
-<TR><TD>    (m&gt;1) ANCE  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  allowance      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  allow
-<TR><TD>    (m&gt;1) ENCE  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  inference      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  infer
-<TR><TD>    (m&gt;1) ER    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  airliner       <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  airlin
-<TR><TD>    (m&gt;1) IC    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  gyroscopic     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  gyroscop
-<TR><TD>    (m&gt;1) ABLE  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  adjustable     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  adjust
-<TR><TD>    (m&gt;1) IBLE  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  defensible     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  defens
-<TR><TD>    (m&gt;1) ANT   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  irritant       <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  irrit
-<TR><TD>    (m&gt;1) EMENT <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  replacement    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  replac
-<TR><TD>    (m&gt;1) MENT  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  adjustment     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  adjust
-<TR><TD>    (m&gt;1) ENT   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  dependent      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  depend
+<TR><TD>    (m&gt;1) AL    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  revival        <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  reviv
+<TR><TD>    (m&gt;1) ANCE  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  allowance      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  allow
+<TR><TD>    (m&gt;1) ENCE  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  inference      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  infer
+<TR><TD>    (m&gt;1) ER    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  airliner       <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  airlin
+<TR><TD>    (m&gt;1) IC    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  gyroscopic     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  gyroscop
+<TR><TD>    (m&gt;1) ABLE  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  adjustable     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  adjust
+<TR><TD>    (m&gt;1) IBLE  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  defensible     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  defens
+<TR><TD>    (m&gt;1) ANT   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  irritant       <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  irrit
+<TR><TD>    (m&gt;1) EMENT <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  replacement    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  replac
+<TR><TD>    (m&gt;1) MENT  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  adjustment     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  adjust
+<TR><TD>    (m&gt;1) ENT   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  dependent      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  depend
 <TR><TD>    (m&gt;1 and (*S or *T)) ION
-                  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  adoption       <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  adopt
-<TR><TD>    (m&gt;1) OU    <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  homologou      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  homolog
-<TR><TD>    (m&gt;1) ISM   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  communism      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  commun
-<TR><TD>    (m&gt;1) ATE   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  activate       <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  activ
-<TR><TD>    (m&gt;1) ITI   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  angulariti     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  angular
-<TR><TD>    (m&gt;1) OUS   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  homologous     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  homolog
-<TR><TD>    (m&gt;1) IVE   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  effective      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  effect
-<TR><TD>    (m&gt;1) IZE   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  bowdlerize     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  bowdler
+                  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  adoption       <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  adopt
+<TR><TD>    (m&gt;1) OU    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  homologou      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  homolog
+<TR><TD>    (m&gt;1) ISM   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  communism      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  commun
+<TR><TD>    (m&gt;1) ATE   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  activate       <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  activ
+<TR><TD>    (m&gt;1) ITI   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  angulariti     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  angular
+<TR><TD>    (m&gt;1) OUS   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  homologous     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  homolog
+<TR><TD>    (m&gt;1) IVE   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  effective      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  effect
+<TR><TD>    (m&gt;1) IZE   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  bowdlerize     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  bowdler
 </TABLE></DL>
 The suffixes are now removed. All that remains is a little tidying up.
 <BR><BR>
 Step 5a
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>    (m&gt;1) E     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>       probate   <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  probat
-<TR><TD>                <TD></TD><TD>     <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>       rate      <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  rate
+<TR><TD>    (m&gt;1) E     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>       probate   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  probat
+<TR><TD>                <TD></TD><TD>     <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>       rate      <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  rate
 <TR><TD>    (m=1 and not *o) E
-                  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>       cease     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  ceas
+                  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>       cease     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  ceas
 </TABLE></DL>
 Step 5b
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>    (m &gt; 1 and *d and *L)
-                  <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD> single letter <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> controll <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  control
-<TR><TD>                <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> roll     <TD></TD><TD> <TT>-&gt;</TT> <TD></TD><TD>  roll
+                  <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD> single letter <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> controll <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  control
+<TR><TD>                <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> roll     <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  roll
 </TABLE></DL>
 </TR>
 
@@ -268,7 +268,7 @@ measure would be 4.
 Most of the rules for suffix removal involve leaving behind a stem whose
 measure exceeds some value, for example,
 <DL><DD>
-    (<I>m</I> &gt; 0) <B><I>eed</I></B> <TT>-&gt;</TT> <B><I>ee</I></B>
+    (<I>m</I> &gt; 0) <B><I>eed</I></B> <code>-&gt;</code> <B><I>ee</I></B>
 </DL>
 means &#8216;replace <B><I>eed</I></B> with <B><I>ee</I></B> if the stem before <B><I>eed</I></B> has measure
 <I>m</I> &gt; 0&#8217;. Implementations of the Porter stemmer usually have a routine that
@@ -302,7 +302,7 @@ right of <I>p</I>2 by <I>R</I>2:
            &lt;---  R1  ---&gt;
                &lt;-- R2 --&gt;
 </PRE>
-We can test for being in these regions with calls to &nbsp;<TT>R1</TT>&nbsp; and &nbsp;<TT>R2</TT>, defined by,
+We can test for being in these regions with calls to &nbsp;<code>R1</code>&nbsp; and &nbsp;<code>R2</code>, defined by,
 <BR><PRE>
     define R1 as $p1 &lt;= cursor
     define R2 as $p2 &lt;= cursor
@@ -354,9 +354,9 @@ with its Snowball equivalent,
     )
 </PRE>
 The word to be stemmed is being scanned right to left from the end. The
-longest of &nbsp;<TT>'sses'</TT>, &nbsp;<TT>'ies'</TT>, &nbsp;<TT>'ss'</TT>&nbsp; or &nbsp;<TT>'s'</TT>&nbsp; is searched for and defined as the
-slice. (If none are found, Step_1a signals <B><I>f</I></B>.) If &nbsp;<TT>'sses'</TT>&nbsp; is found, it is
-replaced by &nbsp;<TT>'ss'</TT>, and so on. Of course, replacing &nbsp;<TT>'ss'</TT>&nbsp; by &nbsp;<TT>'ss'</TT>&nbsp; is a dummy
+longest of &nbsp;<code>'sses'</code>, &nbsp;<code>'ies'</code>, &nbsp;<code>'ss'</code>&nbsp; or &nbsp;<code>'s'</code>&nbsp; is searched for and defined as the
+slice. (If none are found, Step_1a signals <B><I>f</I></B>.) If &nbsp;<code>'sses'</code>&nbsp; is found, it is
+replaced by &nbsp;<code>'ss'</code>, and so on. Of course, replacing &nbsp;<code>'ss'</code>&nbsp; by &nbsp;<code>'ss'</code>&nbsp; is a dummy
 action, so we can write
 <BR><PRE>
             'ss'   ()
@@ -365,7 +365,7 @@ instead of
 <BR><PRE>
             'ss'   (&lt;-'ss')
 </PRE>
-Remember that &nbsp;<TT>delete</TT>&nbsp; just means &nbsp;<TT>&lt;- ''</TT>.
+Remember that &nbsp;<code>delete</code>&nbsp; just means &nbsp;<code>&lt;- ''</code>.
 <BR><BR>
 The really tricky part of the whole algorithm is step 1<I>b</I>,
 which may be worth looking at in detail. Here it is, without the
@@ -416,11 +416,11 @@ and a test for a short vowel,
 <BR><PRE>
     define shortv as ( non-v_WXY v non-v )
 </PRE>
-(The &nbsp;<TT>v_WXY</TT>&nbsp; test comes first because we are scanning backwards, from right to
+(The &nbsp;<code>v_WXY</code>&nbsp; test comes first because we are scanning backwards, from right to
 left.)
 <BR><BR>
 The double to single letter map can be done as follows: first define the
-slice as the next &nbsp;<TT>non-v_LSZ</TT>&nbsp; and copy it to a string, &nbsp;<TT>ch</TT>, as a single
+slice as the next &nbsp;<code>non-v_LSZ</code>&nbsp; and copy it to a string, &nbsp;<code>ch</code>, as a single
 character,
 <BR><PRE>
     strings ( ch )
@@ -429,12 +429,12 @@ character,
 
     [non-v_LSZ] -&gt;ch
 </PRE>
-A further test, &nbsp;<TT>ch</TT>, tests that the next letter of the string is the same
-as the one in &nbsp;<TT>ch</TT>, and if this gives signal <B><I>t</I></B>, &nbsp;<TT>delete</TT>&nbsp; deletes the slice,
+A further test, &nbsp;<code>ch</code>, tests that the next letter of the string is the same
+as the one in &nbsp;<code>ch</code>, and if this gives signal <B><I>t</I></B>, &nbsp;<code>delete</code>&nbsp; deletes the slice,
 <BR><PRE>
     [non-v_LSZ] -&gt;ch  ch  delete
 </PRE>
-<TT>Step_1b</TT>&nbsp; can then be written like this,
+<code>Step_1b</code>&nbsp; can then be written like this,
 <BR><PRE>
     define Step_1b as (
         [substring] among (
@@ -452,7 +452,7 @@ as the one in &nbsp;<TT>ch</TT>, and if this gives signal <B><I>t</I></B>, &nbsp
     )
 </PRE>
 But we can improve the appearance, and speed, of this by turning the
-second part of the rule into another &nbsp;<TT>among</TT>&nbsp; command, noting that the only
+second part of the rule into another &nbsp;<code>among</code>&nbsp; command, noting that the only
 letters that need undoubling are <B><I>b</I></B>, <B><I>d</I></B>, <B><I>f</I></B>, <B><I>g</I></B>, <B><I>m</I></B>, <B><I>n</I></B>, <B><I>p</I></B>, <B><I>r</I></B>
 and <B><I>t</I></B>,
 <BR><PRE>
@@ -474,7 +474,7 @@ and <B><I>t</I></B>,
         )
     )
 </PRE>
-Note the null string in the second &nbsp;<TT>among</TT>, which acts as a default case.
+Note the null string in the second &nbsp;<code>among</code>, which acts as a default case.
 <BR><BR>
 The Porter stemmer in Snowball is given below. This is an exact
 implementation of the algorithm described in the 1980 paper, unlike the

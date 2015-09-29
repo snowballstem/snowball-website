@@ -43,7 +43,7 @@ declaration has the form
 <BR><PRE>
     Ts ( ... )
 </PRE>
-where symbol &nbsp;<TT>T</TT>&nbsp; is one of &nbsp;<TT>string</TT>, &nbsp;<TT>integer</TT>&nbsp; etc, and the region in
+where symbol &nbsp;<code>T</code>&nbsp; is one of &nbsp;<code>string</code>, &nbsp;<code>integer</code>&nbsp; etc, and the region in
 brackets contains a list of names separated by whitespace. For example,
 <BR><PRE>
     integers ( p1 p2 )
@@ -59,7 +59,7 @@ brackets contains a list of names separated by whitespace. For example,
 
     groupings ( v v_WXY v_LSZ )
 </PRE>
-<TT>p1</TT>&nbsp; and &nbsp;<TT>p2</TT>&nbsp; are integers, &nbsp;<TT>Y_found</TT>&nbsp; is boolean, and so on. Snowball is quite
+<code>p1</code>&nbsp; and &nbsp;<code>p2</code>&nbsp; are integers, &nbsp;<code>Y_found</code>&nbsp; is boolean, and so on. Snowball is quite
 strict about the declarations, so all the names go in the same name space,
 no name may be declared twice, all used names must be declared, no two
 routine definitions can have the same name, etc. Names declared and
@@ -73,8 +73,8 @@ decimal. A literal string is written between single quotes, for example,
 <BR><PRE>
     'aeiouy'
 </PRE>
-In a &nbsp;<TT>stringdef</TT>&nbsp; (see below), string may be preceded by the word &nbsp;<TT>hex</TT>,
-or the word &nbsp;<TT>decimal</TT>,
+In a &nbsp;<code>stringdef</code>&nbsp; (see below), string may be preceded by the word &nbsp;<code>hex</code>,
+or the word &nbsp;<code>decimal</code>,
 in which case the contents are
 interpreted as characters written out in hexadecimal, or decimal, notation.
 The characters should be separated by spaces. For example,
@@ -92,16 +92,16 @@ The following forms are equivalent,
     hex '0D 000A'  /* leading zeroes ignored */
     hex ' D  A  '  /* extra spacing is harmless */
 </PRE>
-<TT>stringdef</TT>s define special <I>string macros</I>, to handle unusual
+<code>stringdef</code>s define special <I>string macros</I>, to handle unusual
 character combinations.
 <BR><BR>
-Macro &nbsp;<TT>m</TT>&nbsp; is defined in the form &nbsp;<TT>stringdef m 'S'</TT>, where &nbsp;<TT>'S'</TT>&nbsp; is a
-string, and &nbsp;<TT>m</TT>&nbsp; a sequence of one or more printing characters terminating
+Macro &nbsp;<code>m</code>&nbsp; is defined in the form &nbsp;<code>stringdef m 'S'</code>, where &nbsp;<code>'S'</code>&nbsp; is a
+string, and &nbsp;<code>m</code>&nbsp; a sequence of one or more printing characters terminating
 with whitespace.
 <BR><BR>
 Two special <I>insert characters</I> are defined by the directive
-<TT>stringescapes AB</TT>, where &nbsp;<TT>A</TT>&nbsp; and &nbsp;<TT>B</TT>&nbsp; are printing characters, and &nbsp;<TT>A</TT>&nbsp; is not
-single quote. (<TT>B</TT>&nbsp; may equal &nbsp;<TT>A</TT>, but then &nbsp;<TT>A</TT>&nbsp; itself can never be escaped.) For
+<code>stringescapes AB</code>, where &nbsp;<code>A</code>&nbsp; and &nbsp;<code>B</code>&nbsp; are printing characters, and &nbsp;<code>A</code>&nbsp; is not
+single quote. (<code>B</code>&nbsp; may equal &nbsp;<code>A</code>, but then &nbsp;<code>A</code>&nbsp; itself can never be escaped.) For
 example,
 <BR><PRE>
     stringescapes []
@@ -109,11 +109,11 @@ example,
 A subsequent occurrence of the same directive redefines the insert
 characters.
 <BR><BR>
-Thereafter, &nbsp;<TT>[m]</TT>&nbsp; inside a string causes &nbsp;<TT>S</TT>&nbsp; to be substituted in place of &nbsp;<TT>m</TT>.
+Thereafter, &nbsp;<code>[m]</code>&nbsp; inside a string causes &nbsp;<code>S</code>&nbsp; to be substituted in place of &nbsp;<code>m</code>.
 <BR><BR>
-Immediately after the stringescapes directive, &nbsp;<TT>[']</TT>&nbsp; will substitute &nbsp;<TT>'</TT>&nbsp; and
-<TT>[[]</TT>&nbsp; will substitute &nbsp;<TT>[</TT>, although macros &nbsp;<TT>'</TT>&nbsp; and &nbsp;<TT>[</TT>&nbsp; may subsequently be
-redefined. A further feature is that &nbsp;<TT>[<I>W</I>]</TT>&nbsp; inside a string, where &nbsp;<TT><I>W</I></TT>&nbsp; is a
+Immediately after the stringescapes directive, &nbsp;<code>[']</code>&nbsp; will substitute &nbsp;<code>'</code>&nbsp; and
+<code>[[]</code>&nbsp; will substitute &nbsp;<code>[</code>, although macros &nbsp;<code>'</code>&nbsp; and &nbsp;<code>[</code>&nbsp; may subsequently be
+redefined. A further feature is that &nbsp;<code>[<I>W</I>]</code>&nbsp; inside a string, where &nbsp;<code><I>W</I></code>&nbsp; is a
 sequence of whitespace characters including one or more newlines, is
 ignored. This enables long strings to be written over a number of lines.
 <BR><BR>
@@ -143,7 +143,7 @@ A routine definition has the form
 <BR><PRE>
     define R as C
 </PRE>
-where &nbsp;<TT>R</TT>&nbsp; is the routine name and &nbsp;<TT>C</TT>&nbsp; is a command, or bracketed group of
+where &nbsp;<code>R</code>&nbsp; is the routine name and &nbsp;<code>C</code>&nbsp; is a command, or bracketed group of
 commands. So a routine is defined as a sequence of zero or more commands.
 Snowball routines do not (at present) take parameters. For example,
 <BR><PRE>
@@ -156,24 +156,24 @@ Snowball routines do not (at present) take parameters. For example,
     define R1 as $p1 &lt;= cursor
         /* R1 is defined as the single command "$p1 &lt;= cursor" */
 </PRE>
-A routine is called simply by using its name, &nbsp;<TT>R</TT>, as a command.
+A routine is called simply by using its name, &nbsp;<code>R</code>, as a command.
 
 <BR>&nbsp;<H2>5 Commands and signals</H2>
 
 The flow of control in Snowball is arranged by the implicit use of
-<I>signals</I>, rather than the explicit use of constructs like the &nbsp;<TT>if</TT>,
-<TT>then</TT>, &nbsp;<TT>break</TT>&nbsp; of C. The scheme is designed for handling strings, but is
-perhaps easier to introduce using integers. Suppose &nbsp;<TT>x</TT>, &nbsp;<TT>y</TT>, &nbsp;<TT>z</TT>&nbsp; ... are
+<I>signals</I>, rather than the explicit use of constructs like the &nbsp;<code>if</code>,
+<code>then</code>, &nbsp;<code>break</code>&nbsp; of C. The scheme is designed for handling strings, but is
+perhaps easier to introduce using integers. Suppose &nbsp;<code>x</code>, &nbsp;<code>y</code>, &nbsp;<code>z</code>&nbsp; ... are
 integers. The command
 <BR><PRE>
     $x = 1
 </PRE>
-sets &nbsp;<TT>x</TT>&nbsp; to 1. The command
+sets &nbsp;<code>x</code>&nbsp; to 1. The command
 <BR><PRE>
     $x &gt; 0
 </PRE>
-tests if &nbsp;<TT>x</TT>&nbsp; is greater than zero. Both commands give a signal <B><I>t</I></B> or <B><I>f</I></B>,
-(<I>true</I> or <I>false</I>), but while the second command gives <B><I>t</I></B> if &nbsp;<TT>x</TT>&nbsp; is greater
+tests if &nbsp;<code>x</code>&nbsp; is greater than zero. Both commands give a signal <B><I>t</I></B> or <B><I>f</I></B>,
+(<I>true</I> or <I>false</I>), but while the second command gives <B><I>t</I></B> if &nbsp;<code>x</code>&nbsp; is greater
 than zero and <B><I>f</I></B> otherwise, the first command always gives <B><I>t</I></B>. In Snowball,
 every command gives a <B><I>t</I></B> or <B><I>f</I></B> signal. A sequence of commands can be turned
 into as a single command by putting them in a list surrounded by round
@@ -181,47 +181,47 @@ brackets:
 <BR><PRE>
     ( C<SUB>1</SUB> C<SUB>2</SUB> C<SUB>3</SUB> ... C<SUB>i</SUB> C<SUB>i+1</SUB> ... )
 </PRE>
-When this is obeyed, &nbsp;<TT>C<SUB>i+1</SUB></TT>&nbsp; will be obeyed if each of the preceding &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; ...
-<TT>C<SUB>i</SUB></TT>&nbsp; give <B><I>t</I></B>, but as soon as a &nbsp;<TT>C<SUB>i</SUB></TT>&nbsp; gives <B><I>f</I></B>, the subsequent &nbsp;<TT>C<SUB>i+1</SUB> C<SUB>i+2</SUB></TT>&nbsp; ...
-are ignored, and the whole sequence gives signal <B><I>f</I></B>. If all the &nbsp;<TT>C<SUB>i</SUB></TT>&nbsp; give <B><I>t</I></B>,
+When this is obeyed, &nbsp;<code>C<SUB>i+1</SUB></code>&nbsp; will be obeyed if each of the preceding &nbsp;<code>C<SUB>1</SUB></code>&nbsp; ...
+<code>C<SUB>i</SUB></code>&nbsp; give <B><I>t</I></B>, but as soon as a &nbsp;<code>C<SUB>i</SUB></code>&nbsp; gives <B><I>f</I></B>, the subsequent &nbsp;<code>C<SUB>i+1</SUB> C<SUB>i+2</SUB></code>&nbsp; ...
+are ignored, and the whole sequence gives signal <B><I>f</I></B>. If all the &nbsp;<code>C<SUB>i</SUB></code>&nbsp; give <B><I>t</I></B>,
 however, the bracketed command sequence also gives <B><I>t</I></B>. So,
 <BR><PRE>
     $x &gt; 0  $y = 1
 </PRE>
-sets &nbsp;<TT>y</TT>&nbsp; to 1 if &nbsp;<TT>x</TT>&nbsp; is greater than zero. If &nbsp;<TT>x</TT>&nbsp; is less than or equal to zero
+sets &nbsp;<code>y</code>&nbsp; to 1 if &nbsp;<code>x</code>&nbsp; is greater than zero. If &nbsp;<code>x</code>&nbsp; is less than or equal to zero
 the two commands give <B><I>f</I></B>.
 <BR><BR>
-If &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; and &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; are commands, we can build up the larger commands,
+If &nbsp;<code>C<SUB>1</SUB></code>&nbsp; and &nbsp;<code>C<SUB>2</SUB></code>&nbsp; are commands, we can build up the larger commands,
 <DL><DD><DL>
-    <DT><TT>C<SUB>1</SUB> or C<SUB>2</SUB></TT>
-        <DD>&#x2014; Do &nbsp;<TT>C<SUB>1</SUB></TT>. If it gives <B><I>t</I></B> ignore &nbsp;<TT>C<SUB>2</SUB></TT>, otherwise do &nbsp;<TT>C<SUB>2</SUB></TT>. The resulting
-        signal is <B><I>t</I></B> if and only &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; or &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; gave <B><I>t</I></B>.
-    <DT><TT>C<SUB>1</SUB> and C<SUB>2</SUB></TT>
-        <DD>&#x2014; Do &nbsp;<TT>C<SUB>1</SUB></TT>. If it gives <B><I>f</I></B> ignore &nbsp;<TT>C<SUB>2</SUB></TT>, otherwise do &nbsp;<TT>C<SUB>2</SUB></TT>. The resulting
-        signal is <B><I>t</I></B> if and only &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; and &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; gave <B><I>t</I></B>.
-    <DT><TT>not C</TT>
-        <DD>&#x2014; Do &nbsp;<TT>C</TT>. The resulting signal is <B><I>t</I></B> if &nbsp;<TT>C</TT>&nbsp; gave <B><I>f</I></B>, otherwise <B><I>f</I></B>.
-    <DT><TT>try C</TT>
-        <DD>&#x2014; Do &nbsp;<TT>C</TT>. The resulting signal is <B><I>t</I></B> whatever the signal of &nbsp;<TT>C</TT>.
-    <DT><TT>fail C</TT>
-        <DD>&#x2014; Do &nbsp;<TT>C</TT>. The resulting signal is <B><I>f</I></B> whatever the signal of &nbsp;<TT>C</TT>.
+    <DT><code>C<SUB>1</SUB> or C<SUB>2</SUB></code>
+        <DD>&#x2014; Do &nbsp;<code>C<SUB>1</SUB></code>. If it gives <B><I>t</I></B> ignore &nbsp;<code>C<SUB>2</SUB></code>, otherwise do &nbsp;<code>C<SUB>2</SUB></code>. The resulting
+        signal is <B><I>t</I></B> if and only &nbsp;<code>C<SUB>1</SUB></code>&nbsp; or &nbsp;<code>C<SUB>2</SUB></code>&nbsp; gave <B><I>t</I></B>.
+    <DT><code>C<SUB>1</SUB> and C<SUB>2</SUB></code>
+        <DD>&#x2014; Do &nbsp;<code>C<SUB>1</SUB></code>. If it gives <B><I>f</I></B> ignore &nbsp;<code>C<SUB>2</SUB></code>, otherwise do &nbsp;<code>C<SUB>2</SUB></code>. The resulting
+        signal is <B><I>t</I></B> if and only &nbsp;<code>C<SUB>1</SUB></code>&nbsp; and &nbsp;<code>C<SUB>2</SUB></code>&nbsp; gave <B><I>t</I></B>.
+    <DT><code>not C</code>
+        <DD>&#x2014; Do &nbsp;<code>C</code>. The resulting signal is <B><I>t</I></B> if &nbsp;<code>C</code>&nbsp; gave <B><I>f</I></B>, otherwise <B><I>f</I></B>.
+    <DT><code>try C</code>
+        <DD>&#x2014; Do &nbsp;<code>C</code>. The resulting signal is <B><I>t</I></B> whatever the signal of &nbsp;<code>C</code>.
+    <DT><code>fail C</code>
+        <DD>&#x2014; Do &nbsp;<code>C</code>. The resulting signal is <B><I>f</I></B> whatever the signal of &nbsp;<code>C</code>.
 </DL></DL>
 So for example,
 <DL><DD><DL>
-    <DT><TT>($x &gt; 0  $y = 1) or ($y = 0)</TT>
-        <DD>&#x2014; sets &nbsp;<TT>y</TT>&nbsp; to 1 if &nbsp;<TT>x</TT>&nbsp; is greater than zero, otherwise to zero.
+    <DT><code>($x &gt; 0  $y = 1) or ($y = 0)</code>
+        <DD>&#x2014; sets &nbsp;<code>y</code>&nbsp; to 1 if &nbsp;<code>x</code>&nbsp; is greater than zero, otherwise to zero.
 
-    <DT><TT>try( ($x &gt; 0) and ($z &gt; 0) $y = 1)</TT>
-        <DD>&#x2014; sets &nbsp;<TT>y</TT>&nbsp; to 1 if both &nbsp;<TT>x</TT>&nbsp; and &nbsp;<TT>z</TT>&nbsp; are greater than 0, and gives <B><I>t</I></B>.
+    <DT><code>try( ($x &gt; 0) and ($z &gt; 0) $y = 1)</code>
+        <DD>&#x2014; sets &nbsp;<code>y</code>&nbsp; to 1 if both &nbsp;<code>x</code>&nbsp; and &nbsp;<code>z</code>&nbsp; are greater than 0, and gives <B><I>t</I></B>.
 </DL></DL>
 This last example is the same as
 <BR><PRE>
     try($x &gt; 0  $z &gt; 0  $y = 1)
 </PRE>
-so that &nbsp;<TT>and</TT>&nbsp; seems unnecessary here. But we will see that &nbsp;<TT>and</TT>&nbsp; has a
+so that &nbsp;<code>and</code>&nbsp; seems unnecessary here. But we will see that &nbsp;<code>and</code>&nbsp; has a
 particular significance in string commands.
 <BR><BR>
-When a &#8216;monadic&#8217; construct like &nbsp;<TT>not</TT>, &nbsp;<TT>try</TT>&nbsp; or &nbsp;<TT>fail</TT>&nbsp; is not followed by a
+When a &#8216;monadic&#8217; construct like &nbsp;<code>not</code>, &nbsp;<code>try</code>&nbsp; or &nbsp;<code>fail</code>&nbsp; is not followed by a
 round bracket, the construct applies to the shortest following valid command.
 So for example
 <BR><PRE>
@@ -231,16 +231,16 @@ would mean
 <BR><PRE>
     try ( not ( $x &lt; 1 ) ) $z &gt; 0
 </PRE>
-because &nbsp;<TT>$x &lt; 1</TT>&nbsp; is the shortest valid command following &nbsp;<TT>not</TT>, and then
-<TT>not $x &lt; 1</TT>&nbsp; is the shortest valid command following &nbsp;<TT>try</TT>.
+because &nbsp;<code>$x &lt; 1</code>&nbsp; is the shortest valid command following &nbsp;<code>not</code>, and then
+<code>not $x &lt; 1</code>&nbsp; is the shortest valid command following &nbsp;<code>try</code>.
 <BR><BR>
-The &#8216;dyadic&#8217; constructs like &nbsp;<TT>and</TT>&nbsp; and &nbsp;<TT>or</TT>&nbsp; must sit in a bracketed list
+The &#8216;dyadic&#8217; constructs like &nbsp;<code>and</code>&nbsp; and &nbsp;<code>or</code>&nbsp; must sit in a bracketed list
 of commands anyway, for example,
 <BR><PRE>
     ( C<SUB>1</SUB> C<SUB>2</SUB> and C<SUB>3</SUB> C<SUB>4</SUB> or C<SUB>5</SUB> )
 </PRE>
-And then in this case &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; and &nbsp;<TT>C<SUB>3</SUB></TT>&nbsp; are connected by the &nbsp;<TT>and</TT>; &nbsp;<TT>C<SUB>4</SUB></TT>&nbsp; and &nbsp;<TT>C<SUB>5</SUB></TT>&nbsp; are
-connected by the &nbsp;<TT>or</TT>. So
+And then in this case &nbsp;<code>C<SUB>2</SUB></code>&nbsp; and &nbsp;<code>C<SUB>3</SUB></code>&nbsp; are connected by the &nbsp;<code>and</code>; &nbsp;<code>C<SUB>4</SUB></code>&nbsp; and &nbsp;<code>C<SUB>5</SUB></code>&nbsp; are
+connected by the &nbsp;<code>or</code>. So
 <BR><PRE>
     $x &gt; 0  not $y &gt; 0 or not $z &gt; 0  $t &gt; 0
 </PRE>
@@ -248,30 +248,30 @@ means
 <BR><PRE>
     $x &gt; 0  ((not ($y &gt; 0)) or (not ($z &gt; 0)))  $t &gt; 0
 </PRE>
-<TT>and</TT>&nbsp; and &nbsp;<TT>or</TT>&nbsp; are equally binding, and bind from left to right,
-so &nbsp;<TT>C<SUB>1</SUB> or C<SUB>2</SUB> and C<SUB>3</SUB></TT>&nbsp; means &nbsp;<TT>(C<SUB>1</SUB> or C<SUB>2</SUB>) and C<SUB>3</SUB></TT>&nbsp; etc.
+<code>and</code>&nbsp; and &nbsp;<code>or</code>&nbsp; are equally binding, and bind from left to right,
+so &nbsp;<code>C<SUB>1</SUB> or C<SUB>2</SUB> and C<SUB>3</SUB></code>&nbsp; means &nbsp;<code>(C<SUB>1</SUB> or C<SUB>2</SUB>) and C<SUB>3</SUB></code>&nbsp; etc.
 
 <BR>&nbsp;<H2>6 AEs and integer commands</H2>
 
 An AE (arithmetic expression) consists of integer names and literal
-numbers connected by dyadic &nbsp;<TT>+</TT>, &nbsp;<TT>-</TT>, &nbsp;<TT>*</TT>&nbsp; and &nbsp;<TT>/</TT>, and monadic &nbsp;<TT>-</TT>, with the same
+numbers connected by dyadic &nbsp;<code>+</code>, &nbsp;<code>-</code>, &nbsp;<code>*</code>&nbsp; and &nbsp;<code>/</code>, and monadic &nbsp;<code>-</code>, with the same
 binding powers and semantics as C. An integer command has the form
 <BR><PRE>
     $X <I>op</I> AE
 </PRE>
-where &nbsp;<TT>X</TT>&nbsp; is an integer name and <I>op</I> is one of the six tests &nbsp;<TT>==</TT>, &nbsp;<TT>!=</TT>, &nbsp;<TT>&gt;=</TT>, &nbsp;<TT>&gt;</TT>,
-<TT>&lt;=</TT>, &nbsp;<TT>&lt;</TT>, or five assignments &nbsp;<TT>=</TT>, &nbsp;<TT>+=</TT>, &nbsp;<TT>-=</TT>, &nbsp;<TT>*=</TT>, &nbsp;<TT>/=</TT>. Again, the meanings are the
+where &nbsp;<code>X</code>&nbsp; is an integer name and <I>op</I> is one of the six tests &nbsp;<code>==</code>, &nbsp;<code>!=</code>, &nbsp;<code>&gt;=</code>, &nbsp;<code>&gt;</code>,
+<code>&lt;=</code>, &nbsp;<code>&lt;</code>, or five assignments &nbsp;<code>=</code>, &nbsp;<code>+=</code>, &nbsp;<code>-=</code>, &nbsp;<code>*=</code>, &nbsp;<code>/=</code>. Again, the meanings are the
 same as in C.
 <BR><BR>
 As well as integer names and literal numbers, the following may be used in
 AEs:
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD><TT>minint</TT>&nbsp;   <TD></TD><TD>  &#x2014; the minimum negative number
-<TR><TD><TT>maxint</TT>&nbsp;   <TD></TD><TD>  &#x2014; the maximum positive number
-<TR><TD><TT>sizeof s</TT>&nbsp; <TD></TD><TD>  &#x2014; the number of characters in &nbsp;<TT>s</TT>, where &nbsp;<TT>s</TT>&nbsp; is the name of a string
-<TR><TD><TT>cursor</TT>&nbsp;   <TD></TD><TD>  &#x2014; the current value of the string <I>cursor</I>
-<TR><TD><TT>limit</TT>&nbsp;    <TD></TD><TD>  &#x2014; the current value of the string <I>limit</I>
-<TR><TD><TT>size</TT>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in characters
+<TR><TD><code>minint</code>&nbsp;   <TD></TD><TD>  &#x2014; the minimum negative number
+<TR><TD><code>maxint</code>&nbsp;   <TD></TD><TD>  &#x2014; the maximum positive number
+<TR><TD><code>sizeof s</code>&nbsp; <TD></TD><TD>  &#x2014; the number of characters in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string
+<TR><TD><code>cursor</code>&nbsp;   <TD></TD><TD>  &#x2014; the current value of the string <I>cursor</I>
+<TR><TD><code>limit</code>&nbsp;    <TD></TD><TD>  &#x2014; the current value of the string <I>limit</I>
+<TR><TD><code>size</code>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in characters
 </TABLE></DL>
 The <I>cursor</I> and <I>limit</I> concepts are explained below.
 <BR><BR>
@@ -283,16 +283,16 @@ Examples of integer commands are,
 
 <BR>&nbsp;<H2>7 String commands</H2>
 
-If &nbsp;<TT>s</TT>&nbsp; is a string name, a string command has the form
+If &nbsp;<code>s</code>&nbsp; is a string name, a string command has the form
 <BR><PRE>
     $s C
 </PRE>
-where &nbsp;<TT>C</TT>&nbsp; is a command that operate on the string. Strings can be processed
+where &nbsp;<code>C</code>&nbsp; is a command that operate on the string. Strings can be processed
 left-to-right or right-to-left, but we will describe only the
 left-to-right case for now. The string has a <I>cursor</I>, which we will
 denote by <B><I>c</I></B>, and a limit point, or <I>limit</I>, which we will denote by <B><I>l</I></B>. <B><I>c</I></B>
 advances towards <B><I>l</I></B> in the course of a string command, but the various
-constructs &nbsp;<TT>and</TT>, &nbsp;<TT>or</TT>, &nbsp;<TT>not</TT>&nbsp; etc have side-effects which keep moving it
+constructs &nbsp;<code>and</code>, &nbsp;<code>or</code>, &nbsp;<code>not</code>&nbsp; etc have side-effects which keep moving it
 backwards. Initially <B><I>c</I></B> is at the start and <B><I>l</I></B> the end of the string. For
 example,
 <BR><PRE>
@@ -304,9 +304,9 @@ example,
 characters themselves. The characters between <B><I>c</I></B> and <B><I>l</I></B> will be denoted by
 <B><I>c:l</I></B>.
 <BR><BR>
-If &nbsp;<TT>C</TT>&nbsp; gives <B><I>t</I></B>, the cursor <B><I>c</I></B> will have a new, well-defined value. But if &nbsp;<TT>C</TT>
+If &nbsp;<code>C</code>&nbsp; gives <B><I>t</I></B>, the cursor <B><I>c</I></B> will have a new, well-defined value. But if &nbsp;<code>C</code>
 gives <B><I>f</I></B>, <B><I>c</I></B> is undefined. Its later value will in fact be determined by the
-outer context of commands in which &nbsp;<TT>C</TT>&nbsp; came to be obeyed, not by &nbsp;<TT>C</TT>&nbsp; itself.
+outer context of commands in which &nbsp;<code>C</code>&nbsp; came to be obeyed, not by &nbsp;<code>C</code>&nbsp; itself.
 <BR><BR>
 Here is a list of the commands that can be used to operate on strings.
 
@@ -314,9 +314,9 @@ Here is a list of the commands that can be used to operate on strings.
 
 
 <DL>
-<DT><TT>= S</TT>
-    <DD>where &nbsp;<TT>S</TT>&nbsp; is the name of a string or a literal string. <B><I>c:l</I></B> is set equal
-    to &nbsp;<TT>S</TT>, and <B><I>l</I></B> is adjusted to point to the end of the copied string. The
+<DT><code>= S</code>
+    <DD>where &nbsp;<code>S</code>&nbsp; is the name of a string or a literal string. <B><I>c:l</I></B> is set equal
+    to &nbsp;<code>S</code>, and <B><I>l</I></B> is adjusted to point to the end of the copied string. The
     signal is <B><I>t</I></B>. For example,
 <BR><PRE>
         $x = 'animadversion'    /* literal string */
@@ -327,9 +327,9 @@ Here is a list of the commands that can be used to operate on strings.
 &nbsp;<H4>b) Basic tests</H4>
 
 <DL>
-<DT><TT>S</TT>
-    <DD>here and below, &nbsp;<TT>S</TT>&nbsp; is the name of a string or a literal string. If <B><I>c:l</I></B>
-    begins with the substring &nbsp;<TT>S</TT>, <B><I>c</I></B> is repositioned to the end of this
+<DT><code>S</code>
+    <DD>here and below, &nbsp;<code>S</code>&nbsp; is the name of a string or a literal string. If <B><I>c:l</I></B>
+    begins with the substring &nbsp;<code>S</code>, <B><I>c</I></B> is repositioned to the end of this
     substring, and the signal is <B><I>t</I></B>. Otherwise the signal is <B><I>f</I></B>. For example,
 <BR><PRE>
         $x 'anim'   /* gives t, assuming the string is 'animadversion' */
@@ -339,18 +339,18 @@ Here is a list of the commands that can be used to operate on strings.
         $t = 'anim'
         $x t        /* ditto */
 </PRE>
-<DT><TT>true</TT>, &nbsp;<TT>false</TT>
-    <DD><TT>true</TT>&nbsp; is a dummy command that generates signal <B><I>t</I></B>. &nbsp;<TT>false</TT>&nbsp; generates
+<DT><code>true</code>, &nbsp;<code>false</code>
+    <DD><code>true</code>&nbsp; is a dummy command that generates signal <B><I>t</I></B>. &nbsp;<code>false</code>&nbsp; generates
     signal <B><I>f</I></B>. They are sometimes useful for emphasis,
 <BR><PRE>
         define start_off as true       // nothing to do
         define exception_list as false // put in among(...) list later
 </PRE>
-        &nbsp;<TT>true</TT>&nbsp;      is equivalent to     &nbsp;<TT>()</TT>
-<DT><TT>C<SUB>1</SUB> or C<SUB>2</SUB></TT>
+        &nbsp;<code>true</code>&nbsp;      is equivalent to     &nbsp;<code>()</code>
+<DT><code>C<SUB>1</SUB> or C<SUB>2</SUB></code>
     <DD>This is like the case for integers described above, but the extra
-    touch is that if &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; gives <B><I>f</I></B>, <B><I>c</I></B> is set back to its old position after
-    &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; has given <B><I>f</I></B> and before &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; is tried, so that the test takes place on
+    touch is that if &nbsp;<code>C<SUB>1</SUB></code>&nbsp; gives <B><I>f</I></B>, <B><I>c</I></B> is set back to its old position after
+    &nbsp;<code>C<SUB>1</SUB></code>&nbsp; has given <B><I>f</I></B> and before &nbsp;<code>C<SUB>2</SUB></code>&nbsp; is tried, so that the test takes place on
     the same point in the string. So we have
 <BR><PRE>
         $x ('anim'  /* signal t */
@@ -359,15 +359,15 @@ Here is a list of the commands that can be used to operate on strings.
            ( 'an'   /* signal t - from the beginning */
            )
 </PRE>
-<DT><TT>C<SUB>1</SUB> and C<SUB>2</SUB></TT>
-    <DD>And similarly <B><I>c</I></B> is set back to its old position after &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; has given <B><I>t</I></B>
-    and before &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; is tried. So,
+<DT><code>C<SUB>1</SUB> and C<SUB>2</SUB></code>
+    <DD>And similarly <B><I>c</I></B> is set back to its old position after &nbsp;<code>C<SUB>1</SUB></code>&nbsp; has given <B><I>t</I></B>
+    and before &nbsp;<code>C<SUB>2</SUB></code>&nbsp; is tried. So,
 <BR><PRE>
         $x 'anim' and 'an'   /* signal t */
         $x ('anim'  'an')    /* signal f, since 'an' and 'ad' mis-match */
 </PRE>
-<DT><TT>not C</TT>
-<DT><TT>try C</TT>
+<DT><code>not C</code>
+<DT><code>try C</code>
     <DD>These are like the integer tests, with the added feature that <B><I>c</I></B> is set
     back to its old position after an <B><I>f</I></B> signal is turned into <B><I>t</I></B>. So,
 <BR><PRE>
@@ -379,52 +379,52 @@ Here is a list of the commands that can be used to operate on strings.
             /* - gives t */
 </PRE>
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>        &nbsp;<TT>try C</TT>&nbsp;     <TD></TD><TD> is equivalent to <TD></TD><TD>    &nbsp;<TT>C or true</TT>
+<TR><TD>        &nbsp;<code>try C</code>&nbsp;     <TD></TD><TD> is equivalent to <TD></TD><TD>    &nbsp;<code>C or true</code>
 </TABLE></DL>
-<DT><TT>test C</TT>
-    <DD>This does command &nbsp;<TT>C</TT>&nbsp; but without advancing <B><I>c</I></B>. Its signal is the same as
-    the signal of &nbsp;<TT>C</TT>, but following signal <B><I>t</I></B>, <B><I>c</I></B> is set back to its old
+<DT><code>test C</code>
+    <DD>This does command &nbsp;<code>C</code>&nbsp; but without advancing <B><I>c</I></B>. Its signal is the same as
+    the signal of &nbsp;<code>C</code>, but following signal <B><I>t</I></B>, <B><I>c</I></B> is set back to its old
     value.
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>        &nbsp;<TT>test C</TT>&nbsp;       <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<TT>not not C</TT>
-<TR><TD>        &nbsp;<TT>test C<SUB>1</SUB> C<SUB>2</SUB></TT>&nbsp; <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<TT>C<SUB>1</SUB> and C<SUB>2</SUB></TT>
+<TR><TD>        &nbsp;<code>test C</code>&nbsp;       <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<code>not not C</code>
+<TR><TD>        &nbsp;<code>test C<SUB>1</SUB> C<SUB>2</SUB></code>&nbsp; <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<code>C<SUB>1</SUB> and C<SUB>2</SUB></code>
 </TABLE></DL>
-<DT><TT>fail C</TT>
-    <DD>This does &nbsp;<TT>C</TT>&nbsp; and gives signal <B><I>f</I></B>. It is equivalent to &nbsp;<TT>C false</TT>. Like
-    &nbsp;<TT>false</TT>&nbsp; it is useful, but only rarely.
+<DT><code>fail C</code>
+    <DD>This does &nbsp;<code>C</code>&nbsp; and gives signal <B><I>f</I></B>. It is equivalent to &nbsp;<code>C false</code>. Like
+    &nbsp;<code>false</code>&nbsp; it is useful, but only rarely.
 
-<DT><TT>do C</TT>
-    <DD>This does &nbsp;<TT>C</TT>, puts <B><I>c</I></B> back to its old value and gives signal <B><I>t</I></B>. It is
+<DT><code>do C</code>
+    <DD>This does &nbsp;<code>C</code>, puts <B><I>c</I></B> back to its old value and gives signal <B><I>t</I></B>. It is
     very useful as a way of suppressing the side effect of <B><I>f</I></B> signals and
     cursor movement.
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>        &nbsp;<TT>do C</TT>&nbsp;     <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<TT>try test C</TT>
-<TR><TD>                     <TD></TD><TD>  or                 <TD></TD><TD>  &nbsp;<TT>test try C</TT>
+<TR><TD>        &nbsp;<code>do C</code>&nbsp;     <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<code>try test C</code>
+<TR><TD>                     <TD></TD><TD>  or                 <TD></TD><TD>  &nbsp;<code>test try C</code>
 </TABLE></DL>
-<DT><TT>goto C</TT>
-    <DD><B><I>c</I></B> is moved right until obeying &nbsp;<TT>C</TT>&nbsp; gives <B><I>t</I></B>. But if <B><I>c</I></B> cannot be moved
+<DT><code>goto C</code>
+    <DD><B><I>c</I></B> is moved right until obeying &nbsp;<code>C</code>&nbsp; gives <B><I>t</I></B>. But if <B><I>c</I></B> cannot be moved
     right because it is at <B><I>l</I></B> the signal is <B><I>f</I></B>. <B><I>c</I></B> is set back to the position
-    it had before the last obeying of &nbsp;<TT>C</TT>, so the effect is to leave <B><I>c</I></B> before
-    the pattern which matched against &nbsp;<TT>C</TT>.
+    it had before the last obeying of &nbsp;<code>C</code>, so the effect is to leave <B><I>c</I></B> before
+    the pattern which matched against &nbsp;<code>C</code>.
 <BR><PRE>
         $x goto 'ad'         /* positions c after 'anim' */
         $x goto 'ax'         /* signal f */
 </PRE>
-<DT><TT>gopast C</TT>
+<DT><code>gopast C</code>
     <DD>Like goto, but <B><I>c</I></B> is not set back, so the effect is to leave <B><I>c</I></B> after
-    the pattern which matched against &nbsp;<TT>C</TT>.
+    the pattern which matched against &nbsp;<code>C</code>.
 <BR><PRE>
         $x gopast 'ad'       /* positions c after 'animad' */
 </PRE>
-<DT><TT>repeat C</TT>
-    <DD><TT>C</TT>&nbsp; is repeated until it gives <B><I>f</I></B>. When this happens <B><I>c</I></B> is set back to the
-    position it had before the last repetition of &nbsp;<TT>C</TT>, and &nbsp;<TT>repeat C</TT>&nbsp; gives
+<DT><code>repeat C</code>
+    <DD><code>C</code>&nbsp; is repeated until it gives <B><I>f</I></B>. When this happens <B><I>c</I></B> is set back to the
+    position it had before the last repetition of &nbsp;<code>C</code>, and &nbsp;<code>repeat C</code>&nbsp; gives
     signal <B><I>t</I></B>. For example,
 <BR><PRE>
         $x repeat gopast 'a' /* position c after the last 'a' */
 </PRE>
-<DT><TT>loop AE C</TT>
-    <DD>This is like &nbsp;<TT>C C ... C</TT>&nbsp; written out AE times, where AE is an arithmetic
+<DT><code>loop AE C</code>
+    <DD>This is like &nbsp;<code>C C ... C</code>&nbsp; written out AE times, where AE is an arithmetic
     expression. For example,
 <BR><PRE>
         $x loop 2 gopast ('a' or 'e' or 'i' or 'o' or 'u')
@@ -437,10 +437,10 @@ Here is a list of the commands that can be used to operate on strings.
              for (i = 0; i &lt; limit; i++) C;
         }
 </PRE>
-<DT><TT>atleast AE C</TT>
-    <DD>This is equivalent to &nbsp;<TT>loop AE C repeat C</TT>.
+<DT><code>atleast AE C</code>
+    <DD>This is equivalent to &nbsp;<code>loop AE C repeat C</code>.
 
-<DT><TT>hop AE</TT>
+<DT><code>hop AE</code>
     <DD>moves <B><I>c</I></B> AE character positions towards <B><I>l</I></B>, but if AE is negative, or if
     there are less than AE characters between <B><I>c</I></B> and <B><I>l</I></B> the signal is <B><I>f</I></B>.
     For example,
@@ -449,33 +449,33 @@ Here is a list of the commands that can be used to operate on strings.
 </PRE>
     tests that <B><I>c:l</I></B> contains more than 2 characters.
 
-<DT><TT>next</TT>
-    <DD>is equivalent to &nbsp;<TT>hop 1</TT>.
+<DT><code>next</code>
+    <DD>is equivalent to &nbsp;<code>hop 1</code>.
 </DL>
 
 &nbsp;<H4>c) Moving text about</H4>
 
 
-We have seen in (a) that &nbsp;<TT>$x = y</TT>, when &nbsp;<TT>x</TT>&nbsp; and &nbsp;<TT>y</TT>&nbsp; are strings, sets <B><I>c:l</I></B> of &nbsp;<TT>x</TT>
-to the value of &nbsp;<TT>y</TT>. Conversely
+We have seen in (a) that &nbsp;<code>$x = y</code>, when &nbsp;<code>x</code>&nbsp; and &nbsp;<code>y</code>&nbsp; are strings, sets <B><I>c:l</I></B> of &nbsp;<code>x</code>
+to the value of &nbsp;<code>y</code>. Conversely
 <BR><PRE>
         $x =&gt; y
 </PRE>
-sets the value of &nbsp;<TT>y</TT>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<TT>x</TT>.
+sets the value of &nbsp;<code>y</code>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<code>x</code>.
 <BR><BR>
 A more delicate mechanism for pushing text around is to define a substring,
 or <I>slice</I> of the string being tested. Then
 
 <DL>
-<DT><TT>[</TT>
+<DT><code>[</code>
     <DD>sets the left-end of the slice to <B><I>c</I></B>,
-<DT><TT>]</TT>
+<DT><code>]</code>
     <DD>sets the right-end of the slice to <B><I>c</I></B>,
 
-<DT><TT>-&gt; s</TT>
-    <DD>moves the slice to variable &nbsp;<TT>s</TT>,
-<DT><TT>&lt;- S</TT>
-    <DD>replaces the slice with variable (or literal) &nbsp;<TT>S</TT>.
+<DT><code>-&gt; s</code>
+    <DD>moves the slice to variable &nbsp;<code>s</code>,
+<DT><code>&lt;- S</code>
+    <DD>replaces the slice with variable (or literal) &nbsp;<code>S</code>.
 </DL>
 For example
 <BR><PRE>
@@ -488,12 +488,12 @@ For example
            )
 </PRE>
 For any string, the slice ends should be assumed to be unset until they are
-set with the two commands &nbsp;<TT>[</TT>, &nbsp;<TT>]</TT>. Thereafter the slice ends will retain
+set with the two commands &nbsp;<code>[</code>, &nbsp;<code>]</code>. Thereafter the slice ends will retain
 the same values until altered.
 
 <DL>
-<DT><TT>delete</TT>
-    <DD>is equivalent to &nbsp;<TT>&lt;- ''</TT>
+<DT><code>delete</code>
+    <DD>is equivalent to &nbsp;<code>&lt;- ''</code>
 </DL>
 
 This next example deletes all vowels in x,
@@ -502,18 +502,18 @@ This next example deletes all vowels in x,
         ....
         $ x repeat ( gopast([vowel]) delete )
 </PRE>
-As this example shows, the slice markers &nbsp;<TT>[</TT>&nbsp; and &nbsp;<TT>]</TT>&nbsp; often appear as
+As this example shows, the slice markers &nbsp;<code>[</code>&nbsp; and &nbsp;<code>]</code>&nbsp; often appear as
 pairs in a bracketed style, which makes for easy reading of the Snowball
 scripts. But it must be remembered that, unusually in a computer
 programming language, they are not true brackets.
 <BR><BR>
 More simply, text can be inserted at <B><I>c</I></B>.
 <DL>
-<DT><TT>insert S</TT>
-    <DD>insert variable or literal &nbsp;<TT>S</TT>&nbsp; before <B><I>c</I></B>, moving <B><I>c</I></B> to the right of the
-    insert. &nbsp;<TT>&lt;+</TT>&nbsp; is a synonym for &nbsp;<TT>insert</TT>.
+<DT><code>insert S</code>
+    <DD>insert variable or literal &nbsp;<code>S</code>&nbsp; before <B><I>c</I></B>, moving <B><I>c</I></B> to the right of the
+    insert. &nbsp;<code>&lt;+</code>&nbsp; is a synonym for &nbsp;<code>insert</code>.
 
-<DT><TT>attach S</TT>
+<DT><code>attach S</code>
     <DD>the same, but leave <B><I>c</I></B> at the left of the insert.
 </DL>
 
@@ -527,31 +527,31 @@ value, from zero upwards:
          0   1   2   3   4   5   6   7   8   9  10  11  12  13
 </PRE>
 It is these numeric values of <B><I>c</I></B> and <B><I>l</I></B> which are accessible through
-<TT>cursor</TT>&nbsp; and &nbsp;<TT>limit</TT>&nbsp; in arithmetic expressions.
+<code>cursor</code>&nbsp; and &nbsp;<code>limit</code>&nbsp; in arithmetic expressions.
 <DL>
-<DT><TT>setmark X</TT>
-    <DD>sets &nbsp;<TT>X</TT>&nbsp; to the current value of <B><I>c</I></B>, where &nbsp;<TT>X</TT>&nbsp; is an integer variable.
+<DT><code>setmark X</code>
+    <DD>sets &nbsp;<code>X</code>&nbsp; to the current value of <B><I>c</I></B>, where &nbsp;<code>X</code>&nbsp; is an integer variable.
 
-<DT><TT>tomark AE</TT>
+<DT><code>tomark AE</code>
     <DD>moves <B><I>c</I></B> forward to the position given by AE,
 
-<DT><TT>atmark AE</TT>
+<DT><code>atmark AE</code>
     <DD>tests if <B><I>c</I></B> is at position AE (<B><I>t</I></B> or <B><I>f</I></B> signal).
 </DL>
-In the case of &nbsp;<TT>tomark AE</TT>, a similar fail condition occurs as with &nbsp;<TT>hop AE</TT>.
+In the case of &nbsp;<code>tomark AE</code>, a similar fail condition occurs as with &nbsp;<code>hop AE</code>.
 If <B><I>c</I></B> is already beyond AE, or if position <B><I>l</I></B> is before position AE, the
 signal is <B><I>f</I></B>.
 <BR><BR>
 In the stemming algorithms, certain regions of the word are defined by
-setting marks, and later the failure condition of &nbsp;<TT>tomark</TT>&nbsp; is used to see if
+setting marks, and later the failure condition of &nbsp;<code>tomark</code>&nbsp; is used to see if
 <B><I>c</I></B> is inside a particular region.
 <BR><BR>
 Two other commands put <B><I>c</I></B> at <B><I>l</I></B>, and test if <B><I>c</I></B> is at <B><I>l</I></B>,
 <DL>
-<DT><TT>tolimit</TT>
+<DT><code>tolimit</code>
     <DD>moves <B><I>c</I></B> forward to <B><I>l</I></B> (signal <B><I>t</I></B> always),
 
-<DT><TT>atlimit</TT>
+<DT><code>atlimit</code>
     <DD>tests if <B><I>c</I></B> is at <B><I>l</I></B> (<B><I>t</I></B> or <B><I>f</I></B> signal).
 </DL>
 
@@ -563,16 +563,16 @@ In this account of string commands we see <B><I>c</I></B> moving right towards <
 <B><I>c</I></B> and its old position, to act as a shorter barrier for the movement of <B><I>c</I></B>.
 
 <DL>
-<DT><TT>setlimit C<SUB>1</SUB> for C<SUB>2</SUB></TT>
-    <DD><TT>C<SUB>1</SUB></TT>&nbsp; is obeyed, and if it gives <B><I>f</I></B> the signal from &nbsp;<TT>setlimit</TT>
+<DT><code>setlimit C<SUB>1</SUB> for C<SUB>2</SUB></code>
+    <DD><code>C<SUB>1</SUB></code>&nbsp; is obeyed, and if it gives <B><I>f</I></B> the signal from &nbsp;<code>setlimit</code>
      is <B><I>f</I></B> with no further action.
 <BR><BR>
     Otherwise, the final value of <B><I>c</I></B> becomes the new
-    position of <B><I>l</I></B>. <B><I>c</I></B> is then set back to its old value before &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; was
-    obeyed, and &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; is obeyed. Finally <B><I>l</I></B> is set back to its old position,
-    and the signal of &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; becomes the signal of &nbsp;<TT>setlimit</TT>.
+    position of <B><I>l</I></B>. <B><I>c</I></B> is then set back to its old value before &nbsp;<code>C<SUB>1</SUB></code>&nbsp; was
+    obeyed, and &nbsp;<code>C<SUB>2</SUB></code>&nbsp; is obeyed. Finally <B><I>l</I></B> is set back to its old position,
+    and the signal of &nbsp;<code>C<SUB>2</SUB></code>&nbsp; becomes the signal of &nbsp;<code>setlimit</code>.
 <BR><BR>
-    So the signal is <B><I>f</I></B> if either &nbsp;<TT>C<SUB>1</SUB></TT>&nbsp; or &nbsp;<TT>C<SUB>2</SUB></TT>&nbsp; gives <B><I>f</I></B>, otherwise <B><I>t</I></B>.
+    So the signal is <B><I>f</I></B> if either &nbsp;<code>C<SUB>1</SUB></code>&nbsp; or &nbsp;<code>C<SUB>2</SUB></code>&nbsp; gives <B><I>f</I></B>, otherwise <B><I>t</I></B>.
     For example,
 <BR><PRE>
     $x ( setlimit goto 's'  // 'animadver}sion' new l as marked '}'
@@ -593,17 +593,17 @@ String commands have been described with <B><I>c</I></B> to the left of <B><I>l<
 right. But the process can be reversed.
 
 <DL>
-<DT><TT>backwards C</TT>
-    <DD><B><I>c</I></B> and <B><I>l</I></B> are swapped over, and <B><I>c</I></B> moves left towards <B><I>l</I></B>. &nbsp;<TT>C</TT>&nbsp; is obeyed, the
-    signal given by &nbsp;<TT>C</TT>&nbsp; becomes the signal of &nbsp;<TT>backwards C</TT>, and <B><I>c</I></B> and <B><I>l</I></B> are
+<DT><code>backwards C</code>
+    <DD><B><I>c</I></B> and <B><I>l</I></B> are swapped over, and <B><I>c</I></B> moves left towards <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; is obeyed, the
+    signal given by &nbsp;<code>C</code>&nbsp; becomes the signal of &nbsp;<code>backwards C</code>, and <B><I>c</I></B> and <B><I>l</I></B> are
     swapped back to their old values (except that <B><I>l</I></B> may have been adjusted
-    because of deletions and insertions). &nbsp;<TT>C</TT>&nbsp; cannot contain another
-    &nbsp;<TT>backwards</TT>&nbsp; command.
+    because of deletions and insertions). &nbsp;<code>C</code>&nbsp; cannot contain another
+    &nbsp;<code>backwards</code>&nbsp; command.
 
-<DT><TT>reverse C</TT>
+<DT><code>reverse C</code>
     <DD>A similar idea, but here <B><I>c</I></B> simply moves left instead of moving right,
-    with the beginning of the string as the limit, <B><I>l</I></B>. &nbsp;<TT>C</TT>&nbsp; can contain other
-    &nbsp;<TT>reverse</TT>&nbsp; commands, but it cannot contain commands to do deletions or
+    with the beginning of the string as the limit, <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; can contain other
+    &nbsp;<code>reverse</code>&nbsp; commands, but it cannot contain commands to do deletions or
     insertions &#x2014; it must be used for testing only. (Without this
     restriction Snowball's semantics would become very untidy.)
 </DL>
@@ -622,36 +622,36 @@ following are equivalent,
     )
 </PRE>
 If a routine is defined for backwards mode processing, it must be included
-inside a &nbsp;<TT>backwardmode(...)</TT>&nbsp; declaration.
+inside a &nbsp;<code>backwardmode(...)</code>&nbsp; declaration.
 
-&nbsp;<H4>g) &nbsp;<TT>substring</TT>&nbsp; and &nbsp;<TT>among</TT></H4>
+&nbsp;<H4>g) &nbsp;<code>substring</code>&nbsp; and &nbsp;<code>among</code></H4>
 
-The use of &nbsp;<TT>substring</TT>&nbsp; and &nbsp;<TT>among</TT>&nbsp; is central to the implementation of the
+The use of &nbsp;<code>substring</code>&nbsp; and &nbsp;<code>among</code>&nbsp; is central to the implementation of the
 stemming algorithms. It is like a case switch on strings. In its simpler
 form,
 <BR><PRE>
         substring among('S<SUB>1</SUB>' 'S<SUB>2</SUB>' 'S<SUB>3</SUB>' ...)
 </PRE>
-searches for the longest matching substring &nbsp;<TT>'S<SUB>1</SUB>'</TT>&nbsp; or &nbsp;<TT>'S<SUB>2</SUB>'</TT>&nbsp; or &nbsp;<TT>'S<SUB>3</SUB>'</TT>&nbsp; ... from
-position <B><I>c</I></B>. (The &nbsp;<TT>'S<SUB>i</SUB>'</TT>&nbsp; must all be different.) So this has the same
+searches for the longest matching substring &nbsp;<code>'S<SUB>1</SUB>'</code>&nbsp; or &nbsp;<code>'S<SUB>2</SUB>'</code>&nbsp; or &nbsp;<code>'S<SUB>3</SUB>'</code>&nbsp; ... from
+position <B><I>c</I></B>. (The &nbsp;<code>'S<SUB>i</SUB>'</code>&nbsp; must all be different.) So this has the same
 semantics as
 <BR><PRE>
         ('S<SUB>1</SUB>' or 'S<SUB>2</SUB>' or 'S<SUB>3</SUB>' ...)
 </PRE>
-&#x2014; so long as the &nbsp;<TT>'S<SUB>i</SUB>'</TT>&nbsp; are written out in decreasing order of length.
+&#x2014; so long as the &nbsp;<code>'S<SUB>i</SUB>'</code>&nbsp; are written out in decreasing order of length.
 <BR><BR>
-<TT>substring</TT>&nbsp; may be omitted, in which case it is attached to its following
-<TT>among</TT>, so
+<code>substring</code>&nbsp; may be omitted, in which case it is attached to its following
+<code>among</code>, so
 <BR><PRE>
     among(...)
 </PRE>
-without a preceding &nbsp;<TT>substring</TT>&nbsp; is equivalent to
+without a preceding &nbsp;<code>substring</code>&nbsp; is equivalent to
 <BR><PRE>
     (substring among(...))
 </PRE>
-<TT>substring</TT>&nbsp; may also be detached from its &nbsp;<TT>among</TT>, although it must
-precede it textually in the same routine in which the &nbsp;<TT>among</TT>&nbsp; appears.
-The more general form of &nbsp;<TT>substring ... among</TT>&nbsp; is,
+<code>substring</code>&nbsp; may also be detached from its &nbsp;<code>among</code>, although it must
+precede it textually in the same routine in which the &nbsp;<code>among</code>&nbsp; appears.
+The more general form of &nbsp;<code>substring ... among</code>&nbsp; is,
 <BR><PRE>
     substring
     ...
@@ -662,24 +662,24 @@ The more general form of &nbsp;<TT>substring ... among</TT>&nbsp; is,
            'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
          )
 </PRE>
-Obeying &nbsp;<TT>substring</TT>&nbsp; searches for a longest match among the &nbsp;<TT>'S<SUB>ij</SUB>'</TT>. The
-signal from &nbsp;<TT>substring</TT>&nbsp; is <B><I>t</I></B> if a match is found, otherwise <B><I>f</I></B>. When the
-<TT>among</TT>&nbsp; comes to be obeyed, the &nbsp;<TT>C<SUB>i</SUB></TT>&nbsp; corresponding to the matched &nbsp;<TT>'S<SUB>ij</SUB>'</TT>&nbsp; is
-obeyed, and its signal becomes the signal of the &nbsp;<TT>among</TT>&nbsp; command.
+Obeying &nbsp;<code>substring</code>&nbsp; searches for a longest match among the &nbsp;<code>'S<SUB>ij</SUB>'</code>. The
+signal from &nbsp;<code>substring</code>&nbsp; is <B><I>t</I></B> if a match is found, otherwise <B><I>f</I></B>. When the
+<code>among</code>&nbsp; comes to be obeyed, the &nbsp;<code>C<SUB>i</SUB></code>&nbsp; corresponding to the matched &nbsp;<code>'S<SUB>ij</SUB>'</code>&nbsp; is
+obeyed, and its signal becomes the signal of the &nbsp;<code>among</code>&nbsp; command.
 <BR><BR>
-<TT>substring/among</TT>&nbsp; pairs must match up textually inside each routine
-definition. But there is no problem with an &nbsp;<TT>among</TT>&nbsp; containing other
-<TT>substring/among</TT>&nbsp; pairs, and &nbsp;<TT>substring</TT>&nbsp; is optional before &nbsp;<TT>among</TT>&nbsp; anyway.
-The essential constraint is that two &nbsp;<TT>substring</TT>s must be separated by an
-<TT>among</TT>, and each &nbsp;<TT>substring</TT>&nbsp; must be followed by an &nbsp;<TT>among</TT>.
+<code>substring/among</code>&nbsp; pairs must match up textually inside each routine
+definition. But there is no problem with an &nbsp;<code>among</code>&nbsp; containing other
+<code>substring/among</code>&nbsp; pairs, and &nbsp;<code>substring</code>&nbsp; is optional before &nbsp;<code>among</code>&nbsp; anyway.
+The essential constraint is that two &nbsp;<code>substring</code>s must be separated by an
+<code>among</code>, and each &nbsp;<code>substring</code>&nbsp; must be followed by an &nbsp;<code>among</code>.
 <BR><BR>
-The effect of obeying &nbsp;<TT>among</TT>&nbsp; when the preceding &nbsp;<TT>substring</TT>&nbsp; is not obeyed
+The effect of obeying &nbsp;<code>among</code>&nbsp; when the preceding &nbsp;<code>substring</code>&nbsp; is not obeyed
 is undefined. This would happen for example here,
 <BR><PRE>
     try($x != 617 substring)
     among(...) // 'substring' is bypassed in the exceptional case where x == 617
 </PRE>
-The significance of separating the &nbsp;<TT>substring</TT>&nbsp; from the &nbsp;<TT>among</TT>&nbsp; is to allow
+The significance of separating the &nbsp;<code>substring</code>&nbsp; from the &nbsp;<code>among</code>&nbsp; is to allow
 them to work in different contexts. For example,
 <BR><PRE>
     setlimit tomark L for substring
@@ -690,8 +690,8 @@ them to work in different contexts. For example,
            'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
          )
 </PRE>
-Here the test for the longest &nbsp;<TT>'S<SUB>ij</SUB>'</TT>&nbsp; is constrained to the region between <B><I>c</I></B>
-and the mark point given by integer &nbsp;<TT>L</TT>. But the commands &nbsp;<TT>C<SUB>i</SUB></TT>&nbsp; operate outside
+Here the test for the longest &nbsp;<code>'S<SUB>ij</SUB>'</code>&nbsp; is constrained to the region between <B><I>c</I></B>
+and the mark point given by integer &nbsp;<code>L</code>. But the commands &nbsp;<code>C<SUB>i</SUB></code>&nbsp; operate outside
 this limit. Another example is
 <BR><PRE>
     reverse substring
@@ -703,11 +703,11 @@ this limit. Another example is
          )
 </PRE>
 The substring test is in the opposite direction in the string to the
-direction of the commands &nbsp;<TT>C<SUB>i</SUB></TT>.
+direction of the commands &nbsp;<code>C<SUB>i</SUB></code>.
 <BR><BR>
-The last &nbsp;<TT>(C<SUB>n</SUB>)</TT>&nbsp; may be omitted, in which case &nbsp;<TT>(true)</TT>&nbsp; is assumed.
+The last &nbsp;<code>(C<SUB>n</SUB>)</code>&nbsp; may be omitted, in which case &nbsp;<code>(true)</code>&nbsp; is assumed.
 <BR><BR>
-Another possible abbreviation is that when &nbsp;<TT>substring</TT>&nbsp; is omitted, a
+Another possible abbreviation is that when &nbsp;<code>substring</code>&nbsp; is omitted, a
 construct such as
 <BR><PRE>
     among( 'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C C<SUB>1</SUB>)
@@ -735,7 +735,7 @@ and this is just equivalent to
          )
 </PRE>
 
-In its most general form, each string &nbsp;<TT>'S<SUB>ij</SUB>'</TT>&nbsp; may be optionally followed by a
+In its most general form, each string &nbsp;<code>'S<SUB>ij</SUB>'</code>&nbsp; may be optionally followed by a
 routine name,
 <BR><PRE>
     among( (C)
@@ -745,23 +745,23 @@ routine name,
            'S<SUB>n1</SUB>' R<SUB>n1</SUB> 'S<SUB>n2</SUB>' R<SUB>n1</SUB> ... (C<SUB>n</SUB>)
          )
 </PRE>
-So here each &nbsp;<TT>R<SUB>ij</SUB></TT>&nbsp; is either a routine name or is null. If null, it is equivalent
+So here each &nbsp;<code>R<SUB>ij</SUB></code>&nbsp; is either a routine name or is null. If null, it is equivalent
 to a routine which simply returns signal <B><I>t</I></B>,
 <BR><PRE>
     define null as true
 </PRE>
-&#x2014; so we can imagine each &nbsp;<TT>'S<SUB>ij</SUB>'</TT>&nbsp; having its associated routine
-<TT>R<SUB>ij</SUB></TT>. Then obeying the &nbsp;<TT>among</TT>&nbsp; causes a search for the longest
-<TT>'S<SUB>ij</SUB>'</TT>&nbsp; whose corresponding routine
-<TT>R<SUB>ij</SUB></TT>&nbsp; gives <B><I>t</I></B>. The routines
-<TT>R<SUB>ij</SUB></TT>&nbsp; should be written without any side-effects, other than the inevitable cursor
+&#x2014; so we can imagine each &nbsp;<code>'S<SUB>ij</SUB>'</code>&nbsp; having its associated routine
+<code>R<SUB>ij</SUB></code>. Then obeying the &nbsp;<code>among</code>&nbsp; causes a search for the longest
+<code>'S<SUB>ij</SUB>'</code>&nbsp; whose corresponding routine
+<code>R<SUB>ij</SUB></code>&nbsp; gives <B><I>t</I></B>. The routines
+<code>R<SUB>ij</SUB></code>&nbsp; should be written without any side-effects, other than the inevitable cursor
 movement. (<B><I>c</I></B> is in any case set back to its old value following a call of
-<TT>R<SUB>ij</SUB></TT>.)
+<code>R<SUB>ij</SUB></code>.)
 
 <BR>&nbsp;<H2>8 Booleans</H2>
 
-<TT>set B</TT>&nbsp; and &nbsp;<TT>unset B</TT>&nbsp; set &nbsp;<TT>B</TT>&nbsp; to true and false respectively, where &nbsp;<TT>B</TT>&nbsp; is a
-boolean name. &nbsp;<TT>B</TT>&nbsp; as a command gives a signal <B><I>t</I></B> if it is set true, <B><I>f</I></B>
+<code>set B</code>&nbsp; and &nbsp;<code>unset B</code>&nbsp; set &nbsp;<code>B</code>&nbsp; to true and false respectively, where &nbsp;<code>B</code>&nbsp; is a
+boolean name. &nbsp;<code>B</code>&nbsp; as a command gives a signal <B><I>t</I></B> if it is set true, <B><I>f</I></B>
 otherwise. For example,
 <BR><PRE>
     booleans ( Y_found )   // declare the boolean
@@ -792,11 +792,11 @@ otherwise. For example,
 A grouping brings characters together and enables them to be looked for
 with a single test.
 <BR><BR>
-If &nbsp;<TT>G</TT>&nbsp; is declared as a grouping, it can be defined by
+If &nbsp;<code>G</code>&nbsp; is declared as a grouping, it can be defined by
 <BR><PRE>
     define G G<SUB>1</SUB> <I>op</I> G<SUB>2</SUB> <I>op</I> G<SUB>3</SUB> ...
 </PRE>
-where <I>op</I> is &nbsp;<TT>+</TT>&nbsp; or &nbsp;<TT>-</TT>, and &nbsp;<TT>G<SUB>1</SUB></TT>, &nbsp;<TT>G<SUB>2</SUB></TT>, &nbsp;<TT>G<SUB>3</SUB></TT>&nbsp; are literal strings, or groupings that
+where <I>op</I> is &nbsp;<code>+</code>&nbsp; or &nbsp;<code>-</code>, and &nbsp;<code>G<SUB>1</SUB></code>, &nbsp;<code>G<SUB>2</SUB></code>, &nbsp;<code>G<SUB>3</SUB></code>&nbsp; are literal strings, or groupings that
 have already been defined. (There can be zero or more of these additional
 <I>op</I> components). For example,
 <BR><PRE>
@@ -808,18 +808,18 @@ have already been defined. (There can be zero or more of these additional
     define digit           '0123456789'
     define alphanumeric    letter + digit
 </PRE>
-Once &nbsp;<TT>G</TT>&nbsp; is defined, it can be used as a command, and is equivalent to a test
+Once &nbsp;<code>G</code>&nbsp; is defined, it can be used as a command, and is equivalent to a test
 <BR><PRE>
     'ch1' or 'ch2' or ...
 </PRE>
-where &nbsp;<TT>ch1</TT>, &nbsp;<TT>ch2</TT>&nbsp; ... list all the characters in the grouping.
+where &nbsp;<code>ch1</code>, &nbsp;<code>ch2</code>&nbsp; ... list all the characters in the grouping.
 <BR><BR>
-<TT>non G</TT>&nbsp; is the converse test, and matches any character except the
-characters of &nbsp;<TT>G</TT>. Note that &nbsp;<TT>non G</TT>&nbsp; is not the same as &nbsp;<TT>not G</TT>, in fact
+<code>non G</code>&nbsp; is the converse test, and matches any character except the
+characters of &nbsp;<code>G</code>. Note that &nbsp;<code>non G</code>&nbsp; is not the same as &nbsp;<code>not G</code>, in fact
 <BR><PRE>
     non G    is equivalent to     (not G next)
 </PRE>
-<TT>non</TT>&nbsp; may be optionally followed by hyphen, so one may write
+<code>non</code>&nbsp; may be optionally followed by hyphen, so one may write
 <BR><PRE>
     non-vowel
     non-digit
@@ -832,7 +832,7 @@ etc.
 A complete program consists of a sequence of declarations followed by a
 sequence of definitions of groupings and routines. Routines which are
 implicitly defined as operating on <B><I>c:l</I></B> from right to left must be included
-in a &nbsp;<TT>backwardmode(...)</TT>&nbsp; declaration.
+in a &nbsp;<code>backwardmode(...)</code>&nbsp; declaration.
 <BR><BR>
 A Snowball program is called up via a simple
 <A HREF="../runtime/use.html">API</A>
@@ -860,25 +860,25 @@ tokens. Various symbols, made up of non-alphanumerics, are also tokens.
 <BR><BR>
 A name, reserved word or number is terminated by the first character that
 cannot form part of it. A symbol is recognised as the longest sequence of
-characters that forms a valid symbol. So &nbsp;<TT>+=-</TT>&nbsp; is two symbols, &nbsp;<TT>+=</TT>&nbsp; and
-<TT>-</TT>, because &nbsp;<TT>+=</TT>&nbsp; is a valid symbol in the language while &nbsp;<TT>+=-</TT>&nbsp; is not.
+characters that forms a valid symbol. So &nbsp;<code>+=-</code>&nbsp; is two symbols, &nbsp;<code>+=</code>&nbsp; and
+<code>-</code>, because &nbsp;<code>+=</code>&nbsp; is a valid symbol in the language while &nbsp;<code>+=-</code>&nbsp; is not.
 Whitespace separates tokens but is otherwise ignored. This of course is
 like C.
 <BR><BR>
 Anywhere that whitespace can occur, there may also occur:
 <BR><BR>
-(a) Comments, in the usual multi-line &nbsp;<TT>/* .... */</TT>&nbsp; or single line
-<TT>// ...</TT>&nbsp; format.
+(a) Comments, in the usual multi-line &nbsp;<code>/* .... */</code>&nbsp; or single line
+<code>// ...</code>&nbsp; format.
 <BR><BR>
-(b) Get directives. These are like &nbsp;<TT>#include</TT>&nbsp; commands in C, and have the form
-<TT>get 'S'</TT>, where &nbsp;<TT>'S'</TT>&nbsp; is a literal string. For example,
+(b) Get directives. These are like &nbsp;<code>#include</code>&nbsp; commands in C, and have the form
+<code>get 'S'</code>, where &nbsp;<code>'S'</code>&nbsp; is a literal string. For example,
 <BR><PRE>
     get '/home/martin/snowball/main-hdr' // include the file contents
 </PRE>
-(c) &nbsp;<TT>stringescapes XY</TT>&nbsp; where &nbsp;<TT>X</TT>&nbsp; and &nbsp;<TT>Y</TT>&nbsp; are any two printing characters.
+(c) &nbsp;<code>stringescapes XY</code>&nbsp; where &nbsp;<code>X</code>&nbsp; and &nbsp;<code>Y</code>&nbsp; are any two printing characters.
 <BR><BR>
-(d) &nbsp;<TT>stringdef m 'S'</TT>&nbsp; where &nbsp;<TT>m</TT>&nbsp; is sequence of characters not including
-whitespace and terminated with whitespace, and &nbsp;<TT>'S'</TT>&nbsp; is a literal string.
+(d) &nbsp;<code>stringdef m 'S'</code>&nbsp; where &nbsp;<code>m</code>&nbsp; is sequence of characters not including
+whitespace and terminated with whitespace, and &nbsp;<code>'S'</code>&nbsp; is a literal string.
 
 <BR>&nbsp;<H2>12 Character representation</H2>
 
@@ -898,10 +898,10 @@ For case (<I>c</I>), we need to make a slight separation of the concept of
 slots are one byte; in case (<I>b</I>) all slots are two bytes.)
 <B><I>c</I></B> and <B><I>l</I></B> have numeric values that can be used in AEs (arithmetic
 expressions). These values count the number of slots. Similarly
-<TT>setmark</TT>, &nbsp;<TT>tomark</TT>&nbsp; and &nbsp;<TT>atmark</TT>&nbsp; are remembering and then using slot
-counts. &nbsp;<TT>size</TT>&nbsp; and &nbsp;<TT>sizeof</TT>&nbsp; measure string size
-in slots, not symbols. However, &nbsp;<TT>hop N</TT>&nbsp; moves <B><I>c</I></B> over &nbsp;<TT>N</TT>&nbsp; symbols,
-not &nbsp;<TT>N</TT>&nbsp; slots, and &nbsp;<TT>next</TT>&nbsp; is equivalent to &nbsp;<TT>hop 1</TT>.
+<code>setmark</code>, &nbsp;<code>tomark</code>&nbsp; and &nbsp;<code>atmark</code>&nbsp; are remembering and then using slot
+counts. &nbsp;<code>size</code>&nbsp; and &nbsp;<code>sizeof</code>&nbsp; measure string size
+in slots, not symbols. However, &nbsp;<code>hop N</code>&nbsp; moves <B><I>c</I></B> over &nbsp;<code>N</code>&nbsp; symbols,
+not &nbsp;<code>N</code>&nbsp; slots, and &nbsp;<code>next</code>&nbsp; is equivalent to &nbsp;<code>hop 1</code>.
 
 <BR><BR>
 
@@ -916,14 +916,14 @@ script can be compiled to work with any of the three encoding schemes.
 <BR>&nbsp;<H2>Snowball syntax</H2>
 
 <DL><DD>
-<TT>||</TT>&nbsp; is used for alternatives, &nbsp;<TT>[<I>X</I>]</TT>&nbsp; means that <I>X</I> is
-optional, and &nbsp;<TT>[<I>X</I>]*</TT>&nbsp; means that <I>X</I> is repeated zero or more
-times. meta-symbols are defined on the left. &nbsp;<TT>&lt;char&gt;</TT>&nbsp; means any
+<code>||</code>&nbsp; is used for alternatives, &nbsp;<code>[<I>X</I>]</code>&nbsp; means that <I>X</I> is
+optional, and &nbsp;<code>[<I>X</I>]*</code>&nbsp; means that <I>X</I> is repeated zero or more
+times. meta-symbols are defined on the left. &nbsp;<code>&lt;char&gt;</code>&nbsp; means any
 character.
 <BR><BR>
-The definition of &nbsp;<TT>literal string</TT>&nbsp; does not allow for the escaping
-conventions established by the &nbsp;<TT>stringescapes</TT>&nbsp; directive. The command
-<TT>?</TT>&nbsp; is a debugging aid.
+The definition of &nbsp;<code>literal string</code>&nbsp; does not allow for the escaping
+conventions established by the &nbsp;<code>stringescapes</code>&nbsp; directive. The command
+<code>?</code>&nbsp; is a debugging aid.
 <BR><BR>
 
 <BR><PRE>
