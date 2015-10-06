@@ -74,19 +74,22 @@ Snowball headers, you should adhere to the following conventions:
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD> <I>accent</I> <TD></TD><TD> <I>ASCII form</I> <TD></TD><TD> <I>example</I>
-<TR><TD> acute  <TD></TD><TD> single quote <TD></TD><TD> &nbsp;<code>e'</code>
-<TR><TD> grave  <TD></TD><TD> grave <TD></TD><TD> &nbsp;<code>a`</code>
-<TR><TD> umlaut <TD></TD><TD> double quote <TD></TD><TD> &nbsp;<code>u"</code>
-<TR><TD> circumflex  <TD></TD><TD> circumflex <TD></TD><TD> &nbsp;<code>i^</code>
-<TR><TD> cedilla  <TD></TD><TD> comma <TD></TD><TD> &nbsp;<code>c,</code>
-<TR><TD> tilde  <TD></TD><TD> tilde <TD></TD><TD> &nbsp;<code>n~</code>
-<TR><TD> ring  <TD></TD><TD> letter o <TD></TD><TD> &nbsp;<code>ao</code>
-<TR><TD> line through  <TD></TD><TD> solidus <TD></TD><TD> &nbsp;<code>o/</code>
+<TR><TD> acute  <TD></TD><TD> single quote <TD></TD><TD> &nbsp;<code>e'</code> for &eacute;
+<TR><TD> grave  <TD></TD><TD> grave <TD></TD><TD> &nbsp;<code>a`</code> for &agrave;
+<TR><TD> umlaut <TD></TD><TD> double quote <TD></TD><TD> &nbsp;<code>u"</code> for &uuml;
+<TR><TD> circumflex  <TD></TD><TD> circumflex <TD></TD><TD> &nbsp;<code>i^</code> for &icirc;
+<TR><TD> cedilla  <TD></TD><TD> comma <TD></TD><TD> &nbsp;<code>c,</code> for &ccedil;
+<TR><TD> tilde  <TD></TD><TD> tilde <TD></TD><TD> &nbsp;<code>n~</code> for &ntilde;
+<TR><TD> ring  <TD></TD><TD> letter o <TD></TD><TD> &nbsp;<code>ao</code> for &aring;
+<TR><TD> line through  <TD></TD><TD> solidus <TD></TD><TD> &nbsp;<code>o/</code> for &oslash;
+<!-- Martin originally proposed 'b' here for any future use, but the Romanian stemmer
+     as implemented uses '+'. -->
+<TR><TD> breve <TD></TD><TD> plus <TD></TD><TD> &nbsp;<code>a+</code> for &#x103;
+<TR><TD> double acute <TD></TD><TD> letter q <TD></TD><TD> &nbsp;<code>oq</code> for &#x151;
 </TABLE></DL>
 
-And, should they ever arise, use &nbsp;<code>b</code>&nbsp; for breve (as in Rumanian), &nbsp;<code>l</code>
-and &nbsp;<code>r</code>&nbsp; for left and right hook (as in Polish), &nbsp;<code>q</code>&nbsp; for double acute
-(as in Hungarian) and &nbsp;<code>v</code>&nbsp; for hacek (as in Czech).
+And, should they ever arise, use &nbsp;<code>r</code>&nbsp; for left and right
+hook (as in Polish), and &nbsp;<code>v</code>&nbsp; for hacek (as in Czech).
 
 <BR><BR>
 
