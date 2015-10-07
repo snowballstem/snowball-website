@@ -64,9 +64,51 @@ algorithms, are well implemented, etc.  These projects aren't endorsed
 or recommended as such, but we hope they may be of interest.
 </p>
 
+<p>
+If you want to use one of these stemmers, we suggest you take the sample
+vocabulary for the corresponding natural language, and check that the
+stemmer produces the corresponding stemmed output.
+</p>
+
 <h3><a href="http://www.oleandersolutions.com/stemming/stemming.html">Oleander Stemming Library</a></h3>
 <p>
 A reimplementation of the snowball stemming algorithms in C++.
+</p>
+
+<h3><a href="https://bitbucket.org/smassung/porter2_stemmer">English (porter2) Stemmer in C++11</a></h3>
+<p>
+(added Oct 2012) Sean Massung of the University of Illinois has implemented the porter2 stemmer in
+C++11.
+</p>
+
+<h3><a href="http://code.google.com/p/nltk/issues/detail?id=567">NLTK</a><h3>
+<p>
+(added June 2010) Python versions of nearly all the stemmers have been made
+available by Peter Stahl at NLTK&#8217;s code repository.
+</p>
+
+<h3><a href="http://code.google.com/p/urim/source/browse/#svn/trunk/Firefox/modules/analysis/stemmer/ext">URIM Javascript stemmers</a></h3>
+<p>
+Javascript versions of nearly all the stemmers have appeared in Oleg Mazko&#8217;s
+<a href="https://code.google.com/p/urim/">Urim</a> project. Oleg created the stemmers by hand
+from the C/java output of the snowball compiler.
+</p>
+
+<h3><a href="https://code.google.com/p/js-lingua-stem-ru">js-lingua-stem-ru</a></h3>
+<p>
+This is a different implementation of the Russian stemmer in Javascript,
+created by Mark A. Prisyazhnyuk.
+</p>
+
+<h3><a href="http://www.iveonik.com/blog/2011/08/snowball-stemmers-on-csharp-free-download/">Iveonik Systems C# stemmers</a></h3>
+<p>
+(added Aug 2011) These were ported from the Java Snowball stemmers.
+</p>
+
+<h3><a href="http://snowball.tartarus.org/otherlangs/">Contributed Stemmers on the old Snowball Websit</a></h3>
+<p>
+Martin and Richard collected and hosted contributed stemmers in a number
+of programming languages, which you can still find on the old website.
 </p>
 
 <hr>

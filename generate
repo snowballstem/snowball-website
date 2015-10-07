@@ -163,7 +163,6 @@ foreach my $f (qw(
     otherapps
     texts
     runtime
-    otherlangs
     compiler
 )) {
     system("rm", "-rf", $outpath.$f) == 0 or die "Failed to delete '$outpath$f'\n";
