@@ -19,8 +19,6 @@ the Snowball-generated code, are well implemented, etc.  These projects aren't
 endorsed or recommended as such, but we hope they may be of interest.
 </p>
 
-</p>
-
 <h3><a href="https://bitbucket.org/tebeka/snowball">libstemmer in Go</a></h3>
 <p>
 (added Feb 2013) Miki Tebeka has ported libstemmer_c to the Go programming
