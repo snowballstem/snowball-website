@@ -6,11 +6,6 @@ This page lists projects which make use of snowball, or are related in some way.
 
 <hr>
 
-<h2><a href="http://wiki.tcl.tk/8699">Tclsnowball</a></h2>
-<p>
-A simple Tcl binding to some of the stemmers of the snowball project.
-</p>
-
 <h2><a href="https://sourceforge.net/projects/porterstemmers/">C++ stemmers</a></h2>
 <p>
 A reimplementation of the snowball stemming algorithms in C++.
