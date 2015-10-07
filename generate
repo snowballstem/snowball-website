@@ -164,7 +164,6 @@ foreach my $f (qw(
     texts
     runtime
     otherlangs
-    wrappers
     compiler
 )) {
     system("rm", "-rf", $outpath.$f) == 0 or die "Failed to delete '$outpath$f'\n";

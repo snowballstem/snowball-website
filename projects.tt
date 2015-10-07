@@ -1,28 +1,93 @@
 [% header %]
 
 <p>
-This page lists projects which make use of snowball, or are related in some way.
+This page lists projects which wrap, reimplement or make use of Snowball.
 </p>
 
 <hr>
 
-<h2><a href="https://sourceforge.net/projects/porterstemmers/">C++ stemmers</a></h2>
+<h2>Wrappers</h2>
+
+<p>
+These projects allow Snowball-generated stemmers to be used from other
+languages.
+</p>
+
+<p>
+Aside from PyStemmer, we've not tested them to see if they successfully wrap
+the Snowball-generated code, are well implemented, etc.  These projects aren't
+endorsed or recommended as such, but we hope they may be of interest.
+</p>
+
+</p>
+
+<h3><a href="https://bitbucket.org/tebeka/snowball">libstemmer in Go</a></h3>
+<p>
+(added Feb 2013) Miki Tebeka has ported libstemmer_c to the Go programming
+language.
+</p>
+
+<h3><a href="https://github.com/snowballstem/pystemmer">PyStemmer</a></h3>
+
+<p>
+Richard Boulton put together some new Python bindings for snowball, inspired by
+Andreas Jung's initial implementation of PyStemmer from 2001, but with a
+different API.  PyStemmer's current home is as part of the snowballstem github
+project.
+</p>
+
+<h3><a href="http://search.cpan.org/perldoc?Lingua%3A%3AStem%3A%3ASnowball">Lingua::Stem::Snowball</a></h3>
+<p>
+Lingua::Stem::Snowball is an XS module which provides a Perl interface to the
+C versions of the Snowball stemmers.  The Snowball stopwords lists are also
+wrapped by <a href="http://search.cpan.org/perldoc?Lingua%3A%3AStopWords"
+>Lingua::StopWords</a>.
+</p>
+
+<h3><a href="http://pecl.php.net/package/stem">PHP stem extensions</a></h3>
+<p>
+This is a PHP interface, developed by Jay Smith.
+</p>
+
+<hr>
+
+<h2>Reimplementations of the Stemming Algorithms</h2>
+
+<p>
+These projects reimplement the Snowball algorithms, either in hand-written
+code, or in code manually translated from the generated output for a language.
+</p>
+
+<p>
+We've not tested them to see if they correctly implement the stemming
+algorithms, are well implemented, etc.  These projects aren't endorsed
+or recommended as such, but we hope they may be of interest.
+</p>
+
+<h3><a href="http://www.oleandersolutions.com/stemming/stemming.html">Oleander Stemming Library</a></h3>
 <p>
 A reimplementation of the snowball stemming algorithms in C++.
 </p>
 
+<hr>
 
-<h2><a href="http://xapian.org/">Xapian</a></h2>
+<h2>Consumers</h2>
+
+<p>
+These projects use Snowball stemmers:
+</p>
+
+<h3><a href="http://xapian.org/">Xapian</a></h3>
 <p>
 A probabilistic search engine which supports stemming using Snowball.
 </p>
 
-<h2><a href="https://plone.org/products/textindexng3">TextIndexNG</a></h2>
+<h3><a href="https://plone.org/products/textindexng3">TextIndexNG</a></h3>
 <p>
 A fulltext indexing solution for Zope with support for stemming using Snowball.
 </p>
 
-<h2><a href="https://code.google.com/p/urim/">urim</a></h2>
+<h3><a href="https://code.google.com/p/urim/">urim</a></h3>
 <p>
 (added Sep 2010) Developed by Oleg Mazko, <B>Urim</B> is a standalone,
 offline tag-cloud builder engine, fully written in JavaScript and so
@@ -33,10 +98,10 @@ norwegian, portuguese, russian, spanish, swedish, romanian, turkish)
 also available as a separate library ready for developers.
 </p>
 
-<h2><a href="https://bitbucket.org/tebeka/snowball">libstemmer in Go</a></h2>
+<h3><a href="http://openfts.sourceforge.net">OpenFTS</a></h3>
 <p>
-(added Feb 2013) Miki Tebeka has ported libstemmer_c to the Go programming
-language.
+OpenFTS is an advanced PostgreSQL-based search engine, which supports using
+Snowball for stemming.
 </p>
 
 <hr>

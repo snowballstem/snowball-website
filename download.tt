@@ -51,14 +51,9 @@ us and we will add a link to your work from this site.
 <h2>Python</h2>
 
 <p>
-We provide and support python wrappers for Snowball.  The latest version can
-be downloaded from <a
-href="/wrappers/guide.html">our wrappers page</a>.
-</p>
-
-<p>
-Some wrappers for other languages are also available on the wrappers page, but
-are not supported by us. (Though if you ask on the mailing list for help, someone else might be able to assist you.)
+We provide and support python wrappers for Snowball.  The latest code can
+be downloaded from the <a
+href="https://github.com/snowballstem/pystemmer">PyStemmer repo</a>.
 </p>
 
 <h2>Git</h2>
