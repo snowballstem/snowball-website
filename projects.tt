@@ -22,7 +22,7 @@ A probabilistic search engine which supports stemming using Snowball.
 A fulltext indexing solution for Zope with support for stemming using Snowball.
 </p>
 
-<h2><a href="http://code.google.com/p/urim/">urim</a></h2>
+<h2><a href="https://code.google.com/p/urim/">urim</a></h2>
 <p>
 (added Sep 2010) Developed by Oleg Mazko, <B>Urim</B> is a standalone,
 offline tag-cloud builder engine, fully written in JavaScript and so
@@ -33,7 +33,7 @@ norwegian, portuguese, russian, spanish, swedish, romanian, turkish)
 also available as a separate library ready for developers.
 </p>
 
-<h2><a href="http://bitbucket.org/tebeka/snowball">libstemmer in Go</a></h2>
+<h2><a href="https://bitbucket.org/tebeka/snowball">libstemmer in Go</a></h2>
 <p>
 (added Feb 2013) Miki Tebeka has ported libstemmer_c to the Go programming
 language.
