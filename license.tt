@@ -1,7 +1,8 @@
 [% header %]
 
 <p>
-All the software given out on this Snowball site is covered by the 3-clause BSD License:
+Except where explicitly noted, all the software given out on this Snowball site
+is covered by the 3-clause BSD License:
 </p>
 
 <pre class="license">
