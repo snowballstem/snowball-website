@@ -107,8 +107,6 @@ snowball stemmers.
     <DD><A HREF="compiler/snowman.html">the manual</A>
     <DD><A HREF="runtime/use.html">how to run it</A>
     <BR><BR>
-    <DD><A HREF="download.html">Tar gzipped files of Snowball sources</A>
-    <BR><BR>
 <DT><A HREF="texts/stemmersoverview.html">stemmers</A>
     <DD><A HREF="algorithms/porter/stemmer.html">English (porter)</A>
     <DD><A HREF="algorithms/english/stemmer.html">English (porter2)</A>
