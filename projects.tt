@@ -12,7 +12,7 @@ A reimplementation of the snowball stemming algorithms in C++.
 </p>
 
 
-<h2><a href="http://www.xapian.org/">Xapian</a></h2>
+<h2><a href="http://xapian.org/">Xapian</a></h2>
 <p>
 A probabilistic search engine which supports stemming using Snowball.
 </p>
