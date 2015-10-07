@@ -23,7 +23,8 @@ my $vars = {};
 # The footer of the page.
 # There should be no output after this.
 $$vars{footer} = <<'__END__';
-      </div><!-- /.col-md-9 -->
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
     </div><!-- /.container -->
 
     <div class="container">
