@@ -81,7 +81,7 @@ A reimplementation of the snowball stemming algorithms in C++.
 C++11.
 </p>
 
-<h3><a href="http://code.google.com/p/nltk/issues/detail?id=567">NLTK</a><h3>
+<h3><a href="http://code.google.com/p/nltk/issues/detail?id=567">NLTK</a></h3>
 <p>
 (added June 2010) Python versions of nearly all the stemmers have been made
 available by Peter Stahl at NLTK&#8217;s code repository.
@@ -131,7 +131,7 @@ A fulltext indexing solution for Zope with support for stemming using Snowball.
 
 <h3><a href="https://code.google.com/p/urim/">urim</a></h3>
 <p>
-(added Sep 2010) Developed by Oleg Mazko, <B>Urim</B> is a standalone,
+(added Sep 2010) Developed by Oleg Mazko, Urim is a standalone,
 offline tag-cloud builder engine, fully written in JavaScript and so
 capable of integration into all Internet browsers. Available as
 a Firefox add-on. With a JavaScript port of the Snowball stemmers (danish,
