@@ -30,126 +30,124 @@ speedily, and in any case they reserve the right to post their answers on snowba
 
 <h2>Major events</h2>
 
-<p>
-<b>September 2015 - New home for snowball on snowballstem.org</b>
-</p>
 
-<p>
-<b>September 2014 - Martin Porter retires from snowball development.</b>
-</p>
-
-<p>
-<b>May 2012 - Contributed stemmers for Irish and Czech</b>
-</p>
-
-
-<p>
-<b>Jul 2010 - Contributed stemmers for Armenian, Basque, Catalan</b>
-</p>
-
-<p>
-<b>Mar 2007 - Romanian stemmer</b>
-</p>
-
-<p>
-<b>Jan 2007 - Turkish stemmer</b>
-Contributed by Evren (Kapusuz) Cilden
-</p>
-
-<p>
-<b>Sep 2006 - Hungarian stemmer</b>
-Contributed by Anna Tordai
-</p>
-
-<p>
-<b>Jun 2006 - Supported and updated Python bindings</b>
-</p>
-
-<p>
-<b>May 2005 - UTF-8 Unicode support</b>
-</p>
-
-
-<p>
-<b>Sep 2002 - Finnish stemmer</b>
-</p>
-
-<p>
-<b>Jul 2002 - ISO Latin I as default</b>
-<br>
-The use of MS DOS Latin I is now history, but the old versions of the
-Snowball stemmers are still accessible on the site.
-</p>
-
-<p>
-<b>May 2002 - Unicode support</b>
-</p>
-
-<p>
-<b>Feb 2002 - Java support</b>
-<br>
-Richard has modified the snowball code generator to produce Java output as
-well as ANSI C output.  This means that pure Java systems can now use the
-snowball stemmers.
-</p>
+<ul>
+  <li>
+    <strong>September 2015</strong> - New home for snowball on snowballstem.org.
+  </li>
+  <li>
+    <strong>September 2014</strong> - Martin Porter retires from snowball development.
+  </li>
+  <li>
+    <strong>May 2012</strong> - Contributed stemmers for Irish and Czech.
+  </li>
+  <li>
+    <strong>Jul 2010</strong> - Contributed stemmers for Armenian, Basque, Catalan.
+  </li>
+  <li>
+    <strong>Mar 2007</strong> - Romanian stemmer.
+  </li>
+  <li>
+    <strong>Jan 2007</strong> - Turkish stemmer. Contributed by Evren (Kapusuz) Cilden.
+  </li>
+  <li>
+    <strong>Sep 2006</strong> - Hungarian stemmer. Contributed by Anna Tordai.
+  </li>
+  <li>
+    <strong>Jun 2006</strong> - Supported and updated Python bindings.
+  </li>
+  <li>
+    <strong>May 2005</strong> - UTF-8 Unicode support.
+  </li>
+  <li>
+    <strong>Sep 2002</strong> - Finnish stemmer.
+  </li>
+  <li>
+    <strong>Jul 2002 - ISO Latin I as default</strong>
+    The use of MS DOS Latin I is now history, but the old versions of the
+    Snowball stemmers are still accessible on the site.
+  </li>
+  <li>
+    <strong>May 2002 - Unicode support</strong>
+  </li>
+  <li>
+    <strong>Feb 2002 - Java support</strong>
+    Richard has modified the snowball code generator to produce Java output as
+    well as ANSI C output.  This means that pure Java systems can now use the
+    snowball stemmers.
+  </li>
+</ul>
 
   </div>
   <div class="col-md-4">
 
-<H2>Links to resources</H2>
+    <h2>Links to resources</h2>
 
-<DL>
-<DT><A HREF="texts/quickintro.html">Quick Introduction</A>
-<DT><A HREF="texts/introduction.html">An account of Snowball</A>
-<DT><A HREF="texts/howtohelp.html">How You Can Help</A>
-<BR><BR>
-<DT>Snowball compiler
-    <DD><A HREF="compiler/snowman.html">the manual</A>
-    <DD><A HREF="runtime/use.html">how to run it</A>
-    <BR><BR>
-<DT><A HREF="texts/stemmersoverview.html">stemmers</A>
-    <DD><A HREF="algorithms/porter/stemmer.html">English (porter)</A>
-    <DD><A HREF="algorithms/english/stemmer.html">English (porter2)</A>
-    <DD><A HREF="texts/earlyenglish.html">A note on early English</A>
-    <DD><A HREF="texts/romance.html">Romance stemmers:</A>
-    <DL>
-        <DD><A HREF="algorithms/french/stemmer.html">French</A>
-        <DD><A HREF="algorithms/spanish/stemmer.html">Spanish</A>
-        <DD><A HREF="algorithms/portuguese/stemmer.html">Portuguese</A>
-        <DD><A HREF="algorithms/italian/stemmer.html">Italian</A>
-        <DD><A HREF="algorithms/romanian/stemmer.html">Romanian</A>
-    </DL>
-    <DD><A HREF="texts/germanic.html">Germanic stemmers</A>
-    <DL>
-        <DD><A HREF="algorithms/german/stemmer.html">German</A>
-        <DD><A HREF="algorithms/german2/stemmer.html">(German variant)</A>
-        <DD><A HREF="algorithms/dutch/stemmer.html">Dutch</A>
-    </DL>
-    <DD><A HREF="texts/scandinavian.html">Scandinavian stemmers</A>
-    <DL>
-        <DD><A HREF="algorithms/swedish/stemmer.html">Swedish</A>
-        <DD><A HREF="algorithms/norwegian/stemmer.html">Norwegian</A>
-        <DD><A HREF="algorithms/danish/stemmer.html">Danish</A>
-    </DL>
-    <DD><A HREF="algorithms/russian/stemmer.html">Russian</A>
-    <DD><A HREF="algorithms/finnish/stemmer.html">Finnish</A>
-<DT><A HREF="codesets/guide.html">Character codes</A>
-<BR><BR>
-<DT>External Contributions
-    <DD><A HREF="otherapps/oregan/intro.html">Irish and Czech</A>
-    <DD><A HREF="otherapps/pascal/intro.html">Object Pascal codegenerator for Snowball</A>
-    <DD><A HREF="otherapps/romanian/intro.html">Two stemmers for Romanian</A>
-    <DD><A HREF="algorithms/hungarian/stemmer.html">Hungarian</A>
-    <DD><A HREF="algorithms/turkish/stemmer.html">Turkish</A>
-    <DD><A HREF="algorithms/armenian/stemmer.html">Armenian</A>
-    <DD><A HREF="algorithms/basque/stemmer.html">Basque (Euskera)</A>
-    <DD><A HREF="algorithms/catalan/stemmer.html">Catalan</A>
-<BR><BR>
-<DT>Other work
-    <DD><A HREF="otherapps/schinke/intro.html">The Schinke Latin stemmer</A>
-    <DD><A HREF="algorithms/lovins/stemmer.html">The Lovins English stemmer</A>
-    <DD><A HREF="algorithms/kraaij_pohlmann/stemmer.html">The Kraaij/Pohlmann Dutch stemmer</A>
-</DL>
+    <ul class="list-unstyled">
+      <li><a href="texts/quickintro.html">Quick Introduction</a></li>
+      <li><a href="texts/introduction.html">An account of Snowball</a></li>
+      <li><a href="texts/howtohelp.html">How You Can Help</a></li>
+    </ul>
+
+    <h3>Snowball compiler</h3>
+
+    <ul class="list-unstyled">
+      <li><a href="compiler/snowman.html">The Manual</a></li>
+      <li><a href="runtime/use.html">How To Run It</a></li>
+      <li><a href="texts/stemmersoverview.html">Stemmers</a>
+        <ul>
+          <li><a href="algorithms/porter/stemmer.html">English (porter)</a></li>
+          <li><a href="algorithms/english/stemmer.html">English (porter2)</a></li>
+          <li><a href="texts/earlyenglish.html">A note on early English</a></li>
+          <li><a href="texts/romance.html">Romance stemmers:</a>
+            <ul>
+              <li><a href="algorithms/french/stemmer.html">French</a></li>
+              <li><a href="algorithms/spanish/stemmer.html">Spanish</a></li>
+              <li><a href="algorithms/portuguese/stemmer.html">Portuguese</a></li>
+              <li><a href="algorithms/italian/stemmer.html">Italian</a></li>
+              <li><a href="algorithms/romanian/stemmer.html">Romanian</a></li>
+            </ul>
+          </li>
+          <li><a href="texts/germanic.html">Germanic stemmers</a>
+            <ul>
+              <li><a href="algorithms/german/stemmer.html">German</a></li>
+              <li><a href="algorithms/german2/stemmer.html">(German variant)</a></li>
+              <li><a href="algorithms/dutch/stemmer.html">Dutch</a></li>
+            </ul>
+          </li>
+          <li><a href="texts/scandinavian.html">Scandinavian stemmers</a>
+            <ul>
+              <li><a href="algorithms/swedish/stemmer.html">Swedish</a></li>
+              <li><a href="algorithms/norwegian/stemmer.html">Norwegian</a></li>
+              <li><a href="algorithms/danish/stemmer.html">Danish</a></li>
+            </ul>
+          </li>
+          <li><a href="algorithms/russian/stemmer.html">Russian</a></li>
+          <li><a href="algorithms/finnish/stemmer.html">Finnish</a></li>
+        </ul>
+      </li>
+      <li><a href="codesets/guide.html">Character codes</a></li>
+    </ul>
+
+    <h3>External Contributions</h3>
+    <ul class="list-unstyled">
+      <li><a href="otherapps/oregan/intro.html">Irish and Czech</a></li>
+      <li><a href="otherapps/pascal/intro.html">Object Pascal codegenerator for Snowball</a></li>
+      <li><a href="otherapps/romanian/intro.html">Two stemmers for Romanian</a></li>
+      <li><a href="algorithms/hungarian/stemmer.html">Hungarian</a></li>
+      <li><a href="algorithms/turkish/stemmer.html">Turkish</a></li>
+      <li><a href="algorithms/armenian/stemmer.html">Armenian</a></li>
+      <li><a href="algorithms/basque/stemmer.html">Basque (Euskera)</a></li>
+      <li><a href="algorithms/catalan/stemmer.html">Catalan</a></li>
+    </ul>
+
+    <h3>Other work</h3>
+
+    <ul class="list-unstyled">
+      <li><a href="otherapps/schinke/intro.html">The Schinke Latin stemmer</a></li>
+      <li><a href="algorithms/lovins/stemmer.html">The Lovins English stemmer</a></li>
+      <li><a href="algorithms/kraaij_pohlmann/stemmer.html">The Kraaij/Pohlmann Dutch stemmer</a></li>
+    </ul>
 
   </div>
 </div>
