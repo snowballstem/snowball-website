@@ -1,0 +1,77 @@
+[% header('The Kraaij-Pohlmann stemming algorithm') %]
+<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
+<H1 ALIGN=CENTER>The Kraaij-Pohlmann stemming algorithm</H1>
+
+<TR><TD>
+<BR>&nbsp;<H2>Links to resources</H2>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><A HREF="../.."> Snowball main page</A>
+<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
+<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
+<TR><TD><A HREF="voc.txt">     Sample vocabulary</A>
+<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
+<BR><BR>
+<TR><TD><A HREF="http://www-uilots.let.uu.nl/uplift">
+The UPLIFT project page, from where the original stemmer can be downloaded</A>
+</TABLE></DL>
+
+The Kraaij-Pohlmann stemming algorithm is an ANSI C program for stemming in Dutch. Although
+advertised as an algorithm, it is in fact a program without an accompanying
+algorithmic description. It is possible to produce a fairly clean Snowball
+version, but only by sacrificing exact functional equivalence. But that does not
+matter too much, since in the demonstration vocabulary only 32 words out of over
+45,000 stem differently. Here they are:
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>
+<B>source</B>           <TD></TD><TD><B>ANSI C stemmer</B>       <TD></TD><TD> <B>Snowball stemmer</B>
+<TR><TD> airways           <TD></TD><TD>         airways         <TD></TD><TD>            airway
+<TR><TD> algerije          <TD></TD><TD>         algerije        <TD></TD><TD>            alrije
+<TR><TD> assays            <TD></TD><TD>         assays          <TD></TD><TD>            assay
+<TR><TD> bruys             <TD></TD><TD>         bruys           <TD></TD><TD>            bruy
+<TR><TD> cleanaways        <TD></TD><TD>         cleanaways      <TD></TD><TD>            cleanaway
+<TR><TD> creys             <TD></TD><TD>         creys           <TD></TD><TD>            crey
+<TR><TD> croyden           <TD></TD><TD>         croyd           <TD></TD><TD>            croy
+<TR><TD> edele             <TD></TD><TD>         edel            <TD></TD><TD>            edeel
+<TR><TD> essays            <TD></TD><TD>         essays          <TD></TD><TD>            essay
+<TR><TD> gedijen           <TD></TD><TD>         gedij           <TD></TD><TD>            dij
+<TR><TD> geoff             <TD></TD><TD>         of              <TD></TD><TD>            off
+<TR><TD> gevrey            <TD></TD><TD>         gevrey          <TD></TD><TD>            vrey
+<TR><TD> geysels           <TD></TD><TD>         ysel            <TD></TD><TD>            gey
+<TR><TD> grootmeesteres    <TD></TD><TD>         grootmee        <TD></TD><TD>            grootmeest
+<TR><TD> gr•otmeesteres    <TD></TD><TD>         gr•otmee        <TD></TD><TD>            gr•otmeest
+<TR><TD> hectares          <TD></TD><TD>         hectaar         <TD></TD><TD>            hect
+<TR><TD> huys              <TD></TD><TD>         huys            <TD></TD><TD>            huy
+<TR><TD> kayen             <TD></TD><TD>         kayen           <TD></TD><TD>            kaay
+<TR><TD> lagerwey          <TD></TD><TD>         lagerwey        <TD></TD><TD>            larwey
+<TR><TD> mayen             <TD></TD><TD>         mayen           <TD></TD><TD>            maay
+<TR><TD> meesteres         <TD></TD><TD>         meester         <TD></TD><TD>            meest
+<TR><TD> oppasseres        <TD></TD><TD>         oppasser        <TD></TD><TD>            oppas
+<TR><TD> pays              <TD></TD><TD>         pays            <TD></TD><TD>            pay
+<TR><TD> royale            <TD></TD><TD>         royale          <TD></TD><TD>            royaal
+<TR><TD> schilderes        <TD></TD><TD>         schilder        <TD></TD><TD>            schild
+<TR><TD> summerhayes       <TD></TD><TD>         summerhayes     <TD></TD><TD>            summerhaye
+<TR><TD> tyumen            <TD></TD><TD>         tyuum           <TD></TD><TD>            tyum
+<TR><TD> verheyen          <TD></TD><TD>         verheyen        <TD></TD><TD>            verheey
+<TR><TD> verleideres       <TD></TD><TD>         verleider       <TD></TD><TD>            verleid
+<TR><TD> ytsen             <TD></TD><TD>         yts             <TD></TD><TD>            ytsen
+<TR><TD> yves              <TD></TD><TD>         yve             <TD></TD><TD>            yves
+<TR><TD> zangeres          <TD></TD><TD>         zanger          <TD></TD><TD>            zang
+</TABLE></DL>
+
+The Kraaij-Pohmann stemmer can make fairly drastic reductions to a word. For
+example, infixed <B><I>ge</I></B> is removed, so <I>geluidgevoelige</I> stems to
+<I>luidvoel</I>. Often, therefore, the original word cannot be easily guessed from
+the stemmed form.
+<BR><BR>
+Here then is the Snowball equivalent of the Kraaij-Pohlmann algorithm.
+<BR><BR>
+<TR><TD>
+
+[% highlight_file('kraaij_pohlmann') %]
+</TR>
+
+</TABLE>
+[% footer %]

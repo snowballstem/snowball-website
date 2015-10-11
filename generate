@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Template;
+use IPC::Run qw(run);
 
 # some useful options (see below for full list)
 my $config = {
@@ -13,6 +14,35 @@ my $config = {
 };
 
 my $outpath = '../snowballstem.github.io/';
+
+$ENV{PYTHONPATH} = 'pygments-snowball';
+$ENV{PYTHONIOENCODING} = 'UTF-8';
+
+my $code_path_prefix = 'code/';
+my $code_path_suffix = '.sbl';
+#my $code_path_prefix = '../snowball/algorithms/';
+#my $code_path_suffix = '/stem_Unicode.sbl';
+
+# Stuff that just gets copied over.
+foreach my $f (qw(
+    CNAME
+    robots.txt
+    snub-dodecahedron.gif
+    styles.css
+    codesets
+    algorithms
+    otherapps
+    texts
+    runtime
+    compiler
+)) {
+    system("rm", "-rf", $outpath.$f) == 0 or die "Failed to delete '$outpath$f'\n";
+    system("cp", "-a", $f, $outpath.$f) == 0 or die "Failed to copy '$f'\n";
+
+    # Currently needed for .tt files in algorithms - can be removed once we
+    # generate everything there.
+    system('find', $outpath, '-name', '*.tt', '-delete') == 0 or die "Failed to remove .tt files from generated website\n";
+}
 
 my $template = Template->new($config);
 
@@ -154,18 +184,62 @@ __END__
     $template->process($in, $vars, $out) || die $template->error();
 }
 
-foreach my $f (qw(
-    CNAME
-    robots.txt
-    snub-dodecahedron.gif
-    styles.css
-    codesets
-    algorithms
-    otherapps
-    texts
-    runtime
-    compiler
-)) {
-    system("rm", "-rf", $outpath.$f) == 0 or die "Failed to delete '$outpath$f'\n";
-    system("cp", "-a", $f, $outpath.$f) == 0 or die "Failed to copy '$f'\n";
+# The footer of the page.
+# There should be no output after this.
+$$vars{footer} = <<'__END__';
+  </body>
+</html>
+__END__
+
+$$vars{highlight} = sub {
+    my $in = shift;
+    # Remove leading and trailing whitespace-only lines.
+    $in =~ s/\A\s*\n//;
+    $in =~ s/\n\s+\z/\n/;
+    $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
+    my $out = '<pre>';
+    run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
+	or die "python: $?";
+    $out .= '</pre>';
+    return $out;
+};
+
+$$vars{highlight_file} = sub {
+    my $file = shift;
+    if ($file =~ /\.\w+$/) {
+	return '<pre>'.`pygmentize -fhtml \Qcode/$file\E`.'</pre>';
+    }
+    return '<pre>'.`python highlight_snowball.py < \Q$code_path_prefix$file$code_path_suffix\E`.'</pre>';
+};
+
+# FIXME: Sort out navigation and styling.
+for my $in (<*/*/*.tt>) {
+    ((my $page = $in) =~ s/\.tt$//) or next;
+    my $out = "$outpath$page.html";
+    # Header of the page.
+    # This should be output first.
+    $$vars{header} = sub {
+	my $title = shift;
+	$title =~ s/\&/\&amp;/g;
+	$title =~ s/</\&lt;/g;
+	$title =~ s/>/\&gt;/g;
+	return <<__END__;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <link href="../../styles.css" rel="stylesheet">
+    <title>$title</title>
+  </head>
+
+  <body bgcolor="white">
+__END__
+    };
+
+    $template->process($in, $vars, $out) || die $template->error();
 }

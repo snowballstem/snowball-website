@@ -1,0 +1,104 @@
+integers ( p1 p2 )
+booleans ( Y_found )
+
+routines (
+    endings respell
+    shortv
+    undouble
+    A B C D E F G H I J
+)
+
+externals ( stem )
+
+groupings ( v v_WXY )
+
+define v        'aeiouy'
+define v_WXY    v + 'wxY'
+
+backwardmode (
+
+    define shortv as ( non-v_WXY v non-v )
+
+    define undouble as (
+        among ('bb' 'dd' 'ff' 'gg' 'mm' 'nn' 'pp' 'rr' 'tt')
+        and ([next] delete)
+    )
+
+    define A as $p1 <= cursor
+    define B as $p2 <= cursor
+    define C as (B 's' or 't')
+    define D as (B not 'm')
+    define E as ('e' or 'ous' A)
+
+    define F as ('ss' or 'i')
+    define G as not 's'
+    define H as gopast v
+    define I as (not 'e' gopast v)
+    define J as ('ee' A)
+
+    define endings as (
+
+        [substring] among (
+
+            'ed'   I
+            'ing'  H
+            'ings' H
+
+                   (delete
+                    undouble or (atmark p1  test shortv  <+ 'e')
+                   )
+
+            'd'    J
+            'es'   F
+            's'    G
+
+            get '/home/martin/Snowball/festschrift/endings'
+                   (delete)
+        )
+    )
+
+    define respell as (
+        [substring] among (
+            'e'     (B or (A not shortv) delete)
+            'l'     (B 'l' delete)
+            'enci'
+            'ency'  ((A <- 'enc') or <- 'enci')
+            'anci'
+            'ancy'  ((A <- 'anc') or <- 'anci')
+            'ally'  ((A <- 'al') or <- 'alli')
+            'ently' ((A <- 'ent') or <- 'entli')
+            'ator'  (A <- 'at')
+
+            'logi'
+            'logy'  ((A <- 'log') or <- 'logi')
+            'bli'
+            'bly'   ((A <- 'bl') or <- 'bli')
+            'bil'   (v A <- 'bl')
+            'y' 'Y'
+                    (gopast v  <-'i')
+
+        )
+    )
+)
+
+define stem as (
+    test hop 3
+    unset Y_found
+    do ( ['y'] <-'Y' set Y_found)
+    do repeat(goto (v ['y']) <-'Y' set Y_found)
+
+    $p1 = limit
+    $p2 = limit
+    do(
+        gopast v  gopast non-v  setmark p1
+        gopast v  gopast non-v  setmark p2
+    )
+
+    backwards (
+        do endings
+        do respell
+    )
+    do(Y_found  repeat(goto (['Y']) <-'y'))
+
+)
+

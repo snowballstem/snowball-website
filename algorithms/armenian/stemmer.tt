@@ -1,0 +1,41 @@
+[% header('An Armenian stemming algorithm') %]
+<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
+<H1 ALIGN=CENTER>An Armenian stemming algorithm</H1>
+
+<TR><TD>
+<BR>&nbsp;<H2>Links to resources</H2>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><A HREF="../.."> Snowball main page</A>
+<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of the delivery from Astghik Mkrtchyan</A>
+</TABLE></DL>
+
+<BR><BR>
+
+A stemmer for Armenian was sent to us by Astghik Mkrtchyan with this accompanying
+email:
+
+<BR><PRE>
+<DL><DD>
+From: astghik mkrtchyan &lt;mkrtch.ast&#64;mail.ru&gt;
+Date: Sat, 12 Jun 2010 20:27:02 +0400
+Subject: Armenian Stemmer
+Hello,
+
+I newbie here. Recently I've googled for Armenian stemmer. So I have found
+nothing, decided to write one. And now I'm sending Armenian stemmer
+(stem_Unicode.sbl) and generated java file.
+
+Regards,
+Astghik
+</DL>
+</PRE>
+
+<TR><TD>
+<H2>The algorithm in Snowball</H2>
+
+[% highlight_file('armenian') %]
+</TR>
+
+</TABLE>
+[% footer %]

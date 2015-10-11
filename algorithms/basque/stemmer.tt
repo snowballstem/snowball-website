@@ -1,0 +1,61 @@
+[% header('A Basque stemming algorithm') %]
+<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
+<H1 ALIGN=CENTER>A Basque stemming algorithm</H1>
+
+<TR><TD>
+<BR>&nbsp;<H2>Links to resources</H2>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><A HREF="../.."> Snowball main page</A>
+<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of the delivered resources</A>
+<TR><TD><A HREF="http://www.santurtzieus.com/gelairekia/unitateak/3/lagun/atzizkien_zerrenda.htm"> Basque suffixes</A> (as referenced below)
+</TABLE></DL>
+
+<BR><BR>
+A stemmer for the Basque (Euskera) language was sent us by
+Mikel Otxandorena of <A HREF="http://www.isoco.com">iSOCO</A> with this accompanying email:
+
+<BR><PRE>
+<DL><DD>
+From: Mikel Otxandorena &lt;motxandorena&#64;isoco.com&gt;
+Date: Mon, 26 Jul 2010 13:04:19 +0200
+Subject: Basque Snowball Stemmer
+
+Hi,
+
+As I told you the other day, I am sending you a valid version of a
+Basque stemmer.
+
+I have tested it with a dictionary that I attach in the
+email and it works well.
+
+For our use of suffixes see the following table:
+
+http://www.santurtzieus.com/gelairekia/unitateak/3/lagun/atzizkien_zerrenda.htm
+
+We are open to feedback and discussion about the linguistics,
+and about the final form of the snowball implementation.
+
+Please distribute this freely, with a mention of the author and
+of the company iSOCO, that has let us share our work freely with the
+Snowball community.
+
+Kind Regards,
+
+Mikel Otxandorena
+
+</DL>
+</PRE>
+
+Mikel has confirmed that he wishes <A HREF="http://www.isoco.com">iSOCO</A> to be
+duly acknowledged on the Snowball site, and that the stemmer itself is
+free for use under the BSD license.
+
+<TR><TD>
+<H2>The algorithm in Snowball</H2>
+
+[% highlight_file('basque') %]
+</TR>
+
+</TABLE>
+[% footer %]

@@ -1,0 +1,77 @@
+[% header('German stemming algorithm variant') %]
+<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
+<H1 ALIGN=CENTER>German stemming algorithm variant</H1>
+
+<TR><TD>
+<BR>&nbsp;<H2>Links to resources</H2>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><A HREF="../.."> Snowball main page</A>
+<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
+<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
+</TABLE></DL>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><A HREF="../german/stemmer.html">
+                  The main German stemmer</A>
+</TABLE></DL>
+
+</TR>
+
+<TR><TD>
+
+<BR><BR>
+<BR>&nbsp;<H2>Representation of umlaut by following <I>e</I></H2>
+
+The German letters <B><I>ä</I></B>, <B><I>ö</I></B> and <B><I>ü</I></B>, are occasionally represented
+by <B><I>ae</I></B>, <B><I>oe</I></B> and <B><I>ue</I></B> respectively. The stemmer here is a variant of the
+main German stemmer to take this into account.<BR><BR>
+
+The main German stemmer begins with the rule,
+
+
+<DL><DD>
+First, replace <B><I>ß</I></B> by <B><I>ss</I></B>, and put <B><I>u</I></B> and <B><I>y</I></B> between vowels into
+upper case.
+</DL>
+
+This is replaced with the rule,
+
+<DL><DD>
+Put <B><I>u</I></B> and <B><I>y</I></B> between vowels into
+upper case, and then do the following mappings,
+
+<BR><BR><DL><DD>
+        (<I>a</I>) replace <B><I>ß</I></B> with <B><I>ss</I></B>,<BR>
+        (<I>a</I>) replace <B><I>ae</I></B> with <B><I>ä</I></B>,<BR>
+        (<I>a</I>) replace <B><I>oe</I></B> with <B><I>ö</I></B>,<BR>
+        (<I>a</I>) replace <B><I>ue</I></B> with <B><I>ü</I></B> unless preceded by <B><I>q</I></B>.
+</DL>
+<BR><BR>
+
+So in <I>quelle</I>, <B><I>ue</I></B> is not mapped to <B><I>ü</I></B> because it follows <B><I>q</I></B>, and
+in <I>feuer</I> it is not mapped because the first part of the rule changes it to
+<I>feUer</I>, so the <B><I>u</I></B> is not found.
+</DL>
+<BR><BR>
+
+In the sample German vocabulary of 35,000 words, the main stemmer and the
+variant stemmer exhibit about 90 differences. Of these about half are in words
+of foreign language origin (<I>raphael</I>, <I>poesie</I> etc). Of the native German
+words, about half seem to be improved by the variant stemming, and the other
+half made worse. In any case the differences are little more than one word per
+thousand among the native German words.
+
+<BR><BR>
+
+</TR>
+
+<TR><TD>
+<H2>The algorithm in Snowball</H2>
+
+[% highlight_file('german2') %]
+</TR>
+
+</TABLE>
+[% footer %]
