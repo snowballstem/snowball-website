@@ -193,14 +193,34 @@ __END__
 
 $$vars{highlight} = sub {
     my $in = shift;
+    my $lang = shift;
     # Remove leading and trailing whitespace-only lines.
     $in =~ s/\A\s*\n//;
     $in =~ s/\n\s+\z/\n/;
     $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
     my $out = '<pre>';
+    if (defined $lang) {
+	run ['pygmentize', "-l$lang", '-fhtml'], \$in, \$out, \*STDERR
+	    or die "python: $?";
+    } else {
+	run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
+	    or die "python: $?";
+    }
+    $out .= '</pre>';
+    return $out;
+};
+
+$$vars{highlight_inline} = sub {
+    my $in = shift;
+    # Remove leading and trailing whitespace-only lines.
+    $in =~ s/\A\s*\n//;
+    $in =~ s/\n\s+\z/\n/;
+    $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
+    $in =~ /\n/ and warn "Newline in inline Snowball code? [$in]";
+    my $out = '<code>';
     run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
 	or die "python: $?";
-    $out .= '</pre>';
+    $out .= '</code>';
     return $out;
 };
 
@@ -213,7 +233,7 @@ $$vars{highlight_file} = sub {
 };
 
 # FIXME: Sort out navigation and styling.
-for my $in (<*/*/*.tt>) {
+for my $in (<*/*.tt */*/*.tt>) {
     ((my $page = $in) =~ s/\.tt$//) or next;
     my $out = "$outpath$page.html";
     # Header of the page.
@@ -233,7 +253,7 @@ for my $in (<*/*/*.tt>) {
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
-    <link href="../../styles.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
     <title>$title</title>
   </head>
 

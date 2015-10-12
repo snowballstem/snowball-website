@@ -1,7 +1,4 @@
-<HTML>
-<HEAD>
-<TITLE>Snowball Manual</TITLE></HEAD>
-<BODY BGCOLOR=WHITE>
+[% header('Snowball Manual') %]
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
 <H1 ALIGN=CENTER>Snowball Manual</H1>
 <TR><TD BGCOLOR="wheat">
@@ -45,7 +42,8 @@ declaration has the form
 </PRE>
 where symbol &nbsp;<code>T</code>&nbsp; is one of &nbsp;<code>string</code>, &nbsp;<code>integer</code>&nbsp; etc, and the region in
 brackets contains a list of names separated by whitespace. For example,
-<BR><PRE>
+<BR>
+[% highlight("
     integers ( p1 p2 )
     booleans ( Y_found )
 
@@ -58,7 +56,7 @@ brackets contains a list of names separated by whitespace. For example,
     externals ( stem )
 
     groupings ( v v_WXY v_LSZ )
-</PRE>
+") %]
 <code>p1</code>&nbsp; and &nbsp;<code>p2</code>&nbsp; are integers, &nbsp;<code>Y_found</code>&nbsp; is boolean, and so on. Snowball is quite
 strict about the declarations, so all the names go in the same name space,
 no name may be declared twice, all used names must be declared, no two
@@ -70,28 +68,34 @@ not be one of the reserved words of Snowball.
 
 A literal integer is a digit sequence, and is always interpreted as
 decimal. A literal string is written between single quotes, for example,
-<BR><PRE>
+
+[% highlight("
     'aeiouy'
-</PRE>
+") %]
+
 In a &nbsp;<code>stringdef</code>&nbsp; (see below), string may be preceded by the word &nbsp;<code>hex</code>,
 or the word &nbsp;<code>decimal</code>,
 in which case the contents are
 interpreted as characters written out in hexadecimal, or decimal, notation.
 The characters should be separated by spaces. For example,
-<BR><PRE>
+
+[% highlight("
     hex 'DA'        /* is character hex DA */
     hex 'D A'       /* is the two characters, hex D and A (carriage
                        return, and line feed) */
     decimal '10'    /* character 10 (line feed) */
     decimal '13 10' /* characters 13 and 10 (carriage return, and
                        line feed) */
-</PRE>
+") %]
+
 The following forms are equivalent,
-<BR><PRE>
+
+[% highlight("
     hex 'd a'      /* lower case also allowed */
     hex '0D 000A'  /* leading zeroes ignored */
     hex ' D  A  '  /* extra spacing is harmless */
-</PRE>
+") %]
+
 <code>stringdef</code>s define special <I>string macros</I>, to handle unusual
 character combinations.
 <BR><BR>
@@ -100,12 +104,14 @@ string, and &nbsp;<code>m</code>&nbsp; a sequence of one or more printing charac
 with whitespace.
 <BR><BR>
 Two special <I>insert characters</I> are defined by the directive
-<code>stringescapes AB</code>, where &nbsp;<code>A</code>&nbsp; and &nbsp;<code>B</code>&nbsp; are printing characters, and &nbsp;<code>A</code>&nbsp; is not
+[% hilight_inline("stringescapes AB") %], where &nbsp;<code>A</code>&nbsp; and &nbsp;<code>B</code>&nbsp; are printing characters, and &nbsp;<code>A</code>&nbsp; is not
 single quote. (<code>B</code>&nbsp; may equal &nbsp;<code>A</code>, but then &nbsp;<code>A</code>&nbsp; itself can never be escaped.) For
 example,
-<BR><PRE>
+
+[% highlight("
     stringescapes []
-</PRE>
+") %]
+
 A subsequent occurrence of the same directive redefines the insert
 characters.
 <BR><BR>
@@ -118,7 +124,8 @@ sequence of whitespace characters including one or more newlines, is
 ignored. This enables long strings to be written over a number of lines.
 <BR><BR>
 For example,
-<BR><PRE>
+
+[% highlight("
     stringescapes []
 
     /* special Spanish characters (in MS-DOS Latin I) */
@@ -128,34 +135,39 @@ For example,
     stringdef i'   hex 'A1'  // i-acute
     stringdef o'   hex 'A2'  // o-acute
     stringdef u'   hex 'A3'  // u-acute
-    stringdef u"   hex '81'  // u-diaeresis
+    stringdef u\"   hex '81'  // u-diaeresis
     stringdef n~   hex 'A4'  // n-tilde
 
     /* and in the next string we define all the characters in Spanish
        used to represent vowels
     */
 
-    define v 'aeiou[a'][e'][i'][o'][u'][u"]'
-</PRE>
+    define v 'aeiou[a'][e'][i'][o'][u'][u\"]'
+") %]
+
 <BR>&nbsp;<H2>4 Routines</H2>
 
 A routine definition has the form
-<BR><PRE>
+
+[% highlight("
     define R as C
-</PRE>
+") %]
+
 where &nbsp;<code>R</code>&nbsp; is the routine name and &nbsp;<code>C</code>&nbsp; is a command, or bracketed group of
 commands. So a routine is defined as a sequence of zero or more commands.
 Snowball routines do not (at present) take parameters. For example,
-<BR><PRE>
+
+[% highlight("
     define Step_5b as (      // this defines Step_5b
         ['l']                // three commands here: [, 'l' and ]
         R2 'l'               // two commands, R2 and 'l'
         delete               // delete is one command
     )
+" _ '
+    define R1 as $p1 <= cursor
+        /* R1 is defined as the single command "$p1 <= cursor" */
+') %]
 
-    define R1 as $p1 &lt;= cursor
-        /* R1 is defined as the single command "$p1 &lt;= cursor" */
-</PRE>
 A routine is called simply by using its name, &nbsp;<code>R</code>, as a command.
 
 <BR>&nbsp;<H2>5 Commands and signals</H2>
@@ -165,13 +177,17 @@ The flow of control in Snowball is arranged by the implicit use of
 <code>then</code>, &nbsp;<code>break</code>&nbsp; of C. The scheme is designed for handling strings, but is
 perhaps easier to introduce using integers. Suppose &nbsp;<code>x</code>, &nbsp;<code>y</code>, &nbsp;<code>z</code>&nbsp; ... are
 integers. The command
-<BR><PRE>
+
+[% highlight('
     $x = 1
-</PRE>
+') %]
+
 sets &nbsp;<code>x</code>&nbsp; to 1. The command
-<BR><PRE>
-    $x &gt; 0
-</PRE>
+
+[% highlight('
+    $x > 0
+') %]
+
 tests if &nbsp;<code>x</code>&nbsp; is greater than zero. Both commands give a signal <B><I>t</I></B> or <B><I>f</I></B>,
 (<I>true</I> or <I>false</I>), but while the second command gives <B><I>t</I></B> if &nbsp;<code>x</code>&nbsp; is greater
 than zero and <B><I>f</I></B> otherwise, the first command always gives <B><I>t</I></B>. In Snowball,
@@ -185,9 +201,11 @@ When this is obeyed, &nbsp;<code>C<SUB>i+1</SUB></code>&nbsp; will be obeyed if 
 <code>C<SUB>i</SUB></code>&nbsp; give <B><I>t</I></B>, but as soon as a &nbsp;<code>C<SUB>i</SUB></code>&nbsp; gives <B><I>f</I></B>, the subsequent &nbsp;<code>C<SUB>i+1</SUB> C<SUB>i+2</SUB></code>&nbsp; ...
 are ignored, and the whole sequence gives signal <B><I>f</I></B>. If all the &nbsp;<code>C<SUB>i</SUB></code>&nbsp; give <B><I>t</I></B>,
 however, the bracketed command sequence also gives <B><I>t</I></B>. So,
-<BR><PRE>
-    $x &gt; 0  $y = 1
-</PRE>
+
+[% highlight('
+    $x > 0  $y = 1
+') %]
+
 sets &nbsp;<code>y</code>&nbsp; to 1 if &nbsp;<code>x</code>&nbsp; is greater than zero. If &nbsp;<code>x</code>&nbsp; is less than or equal to zero
 the two commands give <B><I>f</I></B>.
 <BR><BR>
@@ -208,30 +226,36 @@ If &nbsp;<code>C<SUB>1</SUB></code>&nbsp; and &nbsp;<code>C<SUB>2</SUB></code>&n
 </DL></DL>
 So for example,
 <DL><DD><DL>
-    <DT><code>($x &gt; 0  $y = 1) or ($y = 0)</code>
+    <DT>[% hilight_inline('($x > 0  $y = 1) or ($y = 0)') %]
         <DD>&#x2014; sets &nbsp;<code>y</code>&nbsp; to 1 if &nbsp;<code>x</code>&nbsp; is greater than zero, otherwise to zero.
 
-    <DT><code>try( ($x &gt; 0) and ($z &gt; 0) $y = 1)</code>
+    <DT>[% hilight_inline('try( ($x > 0) and ($z > 0) $y = 1)') %]
         <DD>&#x2014; sets &nbsp;<code>y</code>&nbsp; to 1 if both &nbsp;<code>x</code>&nbsp; and &nbsp;<code>z</code>&nbsp; are greater than 0, and gives <B><I>t</I></B>.
 </DL></DL>
 This last example is the same as
-<BR><PRE>
-    try($x &gt; 0  $z &gt; 0  $y = 1)
-</PRE>
+
+[% highlight('
+    try($x > 0  $z > 0  $y = 1)
+') %]
+
 so that &nbsp;<code>and</code>&nbsp; seems unnecessary here. But we will see that &nbsp;<code>and</code>&nbsp; has a
 particular significance in string commands.
 <BR><BR>
 When a &#8216;monadic&#8217; construct like &nbsp;<code>not</code>, &nbsp;<code>try</code>&nbsp; or &nbsp;<code>fail</code>&nbsp; is not followed by a
 round bracket, the construct applies to the shortest following valid command.
 So for example
-<BR><PRE>
-    try not $x &lt; 1 $z &gt; 0
-</PRE>
+
+[% highlight('
+    try not $x < 1 $z > 0
+') %]
+
 would mean
-<BR><PRE>
-    try ( not ( $x &lt; 1 ) ) $z &gt; 0
-</PRE>
-because &nbsp;<code>$x &lt; 1</code>&nbsp; is the shortest valid command following &nbsp;<code>not</code>, and then
+
+[% highlight('
+    try ( not ( $x < 1 ) ) $z > 0
+') %]
+
+because [% hilight_inline('$x < 1') %] is the shortest valid command following &nbsp;<code>not</code>, and then
 <code>not $x &lt; 1</code>&nbsp; is the shortest valid command following &nbsp;<code>try</code>.
 <BR><BR>
 The &#8216;dyadic&#8217; constructs like &nbsp;<code>and</code>&nbsp; and &nbsp;<code>or</code>&nbsp; must sit in a bracketed list
@@ -241,13 +265,17 @@ of commands anyway, for example,
 </PRE>
 And then in this case &nbsp;<code>C<SUB>2</SUB></code>&nbsp; and &nbsp;<code>C<SUB>3</SUB></code>&nbsp; are connected by the &nbsp;<code>and</code>; &nbsp;<code>C<SUB>4</SUB></code>&nbsp; and &nbsp;<code>C<SUB>5</SUB></code>&nbsp; are
 connected by the &nbsp;<code>or</code>. So
-<BR><PRE>
-    $x &gt; 0  not $y &gt; 0 or not $z &gt; 0  $t &gt; 0
-</PRE>
+
+[% highlight('
+    $x > 0  not $y > 0 or not $z > 0  $t > 0
+') %]
+
 means
-<BR><PRE>
-    $x &gt; 0  ((not ($y &gt; 0)) or (not ($z &gt; 0)))  $t &gt; 0
-</PRE>
+
+[% highlight('
+    $x > 0  ((not ($y > 0)) or (not ($z > 0)))  $t > 0
+') %]
+
 <code>and</code>&nbsp; and &nbsp;<code>or</code>&nbsp; are equally binding, and bind from left to right,
 so &nbsp;<code>C<SUB>1</SUB> or C<SUB>2</SUB> and C<SUB>3</SUB></code>&nbsp; means &nbsp;<code>(C<SUB>1</SUB> or C<SUB>2</SUB>) and C<SUB>3</SUB></code>&nbsp; etc.
 
@@ -276,10 +304,12 @@ AEs:
 The <I>cursor</I> and <I>limit</I> concepts are explained below.
 <BR><BR>
 Examples of integer commands are,
-<BR><PRE>
-    $p1 &lt;= cursor  // signal is f if the cursor is before position p1
+
+[% highlight('
+    $p1 <= cursor  // signal is f if the cursor is before position p1
     $p1 = limit    // set p1 to the string limit
-</PRE>
+') %]
+
 
 <BR>&nbsp;<H2>7 String commands</H2>
 
@@ -318,10 +348,12 @@ Here is a list of the commands that can be used to operate on strings.
     <DD>where &nbsp;<code>S</code>&nbsp; is the name of a string or a literal string. <B><I>c:l</I></B> is set equal
     to &nbsp;<code>S</code>, and <B><I>l</I></B> is adjusted to point to the end of the copied string. The
     signal is <B><I>t</I></B>. For example,
-<BR><PRE>
-        $x = 'animadversion'    /* literal string */
+
+[% highlight('
+        $x ' _ " = 'animadversion'    /* literal string */" _ '
         $y = x                  /* string name */
-</PRE>
+') %]
+
 </DL>
 
 &nbsp;<H4>b) Basic tests</H4>
@@ -331,53 +363,63 @@ Here is a list of the commands that can be used to operate on strings.
     <DD>here and below, &nbsp;<code>S</code>&nbsp; is the name of a string or a literal string. If <B><I>c:l</I></B>
     begins with the substring &nbsp;<code>S</code>, <B><I>c</I></B> is repositioned to the end of this
     substring, and the signal is <B><I>t</I></B>. Otherwise the signal is <B><I>f</I></B>. For example,
-<BR><PRE>
-        $x 'anim'   /* gives t, assuming the string is 'animadversion' */
-        $x ('anim' 'ad' 'vers')
+
+[% highlight('
+        $x ' _ "'anim'   /* gives t, assuming the string is 'animadversion' */" _ '
+        $x ' _ "('anim' 'ad' 'vers')" _ '
                     /* ditto */
 
-        $t = 'anim'
+        $t ' _ "= 'anim'" _ '
         $x t        /* ditto */
-</PRE>
+') %]
+
 <DT><code>true</code>, &nbsp;<code>false</code>
     <DD><code>true</code>&nbsp; is a dummy command that generates signal <B><I>t</I></B>. &nbsp;<code>false</code>&nbsp; generates
     signal <B><I>f</I></B>. They are sometimes useful for emphasis,
-<BR><PRE>
+
+[% highlight("
         define start_off as true       // nothing to do
         define exception_list as false // put in among(...) list later
-</PRE>
+") %]
+
         &nbsp;<code>true</code>&nbsp;      is equivalent to     &nbsp;<code>()</code>
 <DT><code>C<SUB>1</SUB> or C<SUB>2</SUB></code>
     <DD>This is like the case for integers described above, but the extra
     touch is that if &nbsp;<code>C<SUB>1</SUB></code>&nbsp; gives <B><I>f</I></B>, <B><I>c</I></B> is set back to its old position after
     &nbsp;<code>C<SUB>1</SUB></code>&nbsp; has given <B><I>f</I></B> and before &nbsp;<code>C<SUB>2</SUB></code>&nbsp; is tried, so that the test takes place on
     the same point in the string. So we have
-<BR><PRE>
-        $x ('anim'  /* signal t */
+
+[% highlight('
+        $x ' _ "('anim'  /* signal t */
             'ation' /* signal f */
            ) or
            ( 'an'   /* signal t - from the beginning */
            )
-</PRE>
+") %]
+
 <DT><code>C<SUB>1</SUB> and C<SUB>2</SUB></code>
     <DD>And similarly <B><I>c</I></B> is set back to its old position after &nbsp;<code>C<SUB>1</SUB></code>&nbsp; has given <B><I>t</I></B>
     and before &nbsp;<code>C<SUB>2</SUB></code>&nbsp; is tried. So,
-<BR><PRE>
-        $x 'anim' and 'an'   /* signal t */
-        $x ('anim'  'an')    /* signal f, since 'an' and 'ad' mis-match */
-</PRE>
+
+[% highlight('
+        $x ' _ "'anim' and 'an'   /* signal t */" _ '
+        $x ' _ "('anim'  'an')    /* signal f, since 'an' and 'ad' mis-match */
+") %]
+
 <DT><code>not C</code>
 <DT><code>try C</code>
     <DD>These are like the integer tests, with the added feature that <B><I>c</I></B> is set
     back to its old position after an <B><I>f</I></B> signal is turned into <B><I>t</I></B>. So,
-<BR><PRE>
-        $x (not 'animation' not 'immersion')
-            /* both tests are done at the start of the string */
 
-        $x (try 'animus' try 'an'
+[% highlight('
+        $x ' _ "(not 'animation' not 'immersion')
+            /* both tests are done at the start of the string */
+" _ '
+        $x ' _ "(try 'animus' try 'an'
             'imad')
             /* - gives t */
-</PRE>
+") %]
+
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>        &nbsp;<code>try C</code>&nbsp;     <TD></TD><TD> is equivalent to <TD></TD><TD>    &nbsp;<code>C or true</code>
 </TABLE></DL>
@@ -406,37 +448,47 @@ Here is a list of the commands that can be used to operate on strings.
     right because it is at <B><I>l</I></B> the signal is <B><I>f</I></B>. <B><I>c</I></B> is set back to the position
     it had before the last obeying of &nbsp;<code>C</code>, so the effect is to leave <B><I>c</I></B> before
     the pattern which matched against &nbsp;<code>C</code>.
-<BR><PRE>
-        $x goto 'ad'         /* positions c after 'anim' */
-        $x goto 'ax'         /* signal f */
-</PRE>
+
+[% highlight('
+        $x goto' _ " 'ad'         /* positions c after 'anim' */" _ '
+        $x goto' _ " 'ax'         /* signal f */
+") %]
+
 <DT><code>gopast C</code>
     <DD>Like goto, but <B><I>c</I></B> is not set back, so the effect is to leave <B><I>c</I></B> after
     the pattern which matched against &nbsp;<code>C</code>.
-<BR><PRE>
-        $x gopast 'ad'       /* positions c after 'animad' */
-</PRE>
+
+[% highlight('
+        $x gopast' _ " 'ad'       /* positions c after 'animad' */
+") %]
+
 <DT><code>repeat C</code>
     <DD><code>C</code>&nbsp; is repeated until it gives <B><I>f</I></B>. When this happens <B><I>c</I></B> is set back to the
     position it had before the last repetition of &nbsp;<code>C</code>, and &nbsp;<code>repeat C</code>&nbsp; gives
     signal <B><I>t</I></B>. For example,
-<BR><PRE>
-        $x repeat gopast 'a' /* position c after the last 'a' */
-</PRE>
+
+[% highlight('
+        $x repeat gopast' _ " 'a' /* position c after the last 'a' */
+") %]
+
 <DT><code>loop AE C</code>
     <DD>This is like &nbsp;<code>C C ... C</code>&nbsp; written out AE times, where AE is an arithmetic
     expression. For example,
-<BR><PRE>
-        $x loop 2 gopast ('a' or 'e' or 'i' or 'o' or 'u')
+
+[% highlight('
+        $x loop 2 gopast' _ " ('a' or 'e' or 'i' or 'o' or 'u')
             /* position c after the second vowel */
-</PRE>
+") %]
+
     The equivalent expression in C has the shape,
-<BR><PRE>
+
+[% highlight("
         {    int i;
              int limit = AE;
-             for (i = 0; i &lt; limit; i++) C;
+             for (i = 0; i < limit; i++) C;
         }
-</PRE>
+", "c") %]
+
 <DT><code>atleast AE C</code>
     <DD>This is equivalent to &nbsp;<code>loop AE C repeat C</code>.
 
@@ -444,9 +496,11 @@ Here is a list of the commands that can be used to operate on strings.
     <DD>moves <B><I>c</I></B> AE character positions towards <B><I>l</I></B>, but if AE is negative, or if
     there are less than AE characters between <B><I>c</I></B> and <B><I>l</I></B> the signal is <B><I>f</I></B>.
     For example,
-<BR><PRE>
+
+[% highlight("
         test hop 3
-</PRE>
+") %]
+
     tests that <B><I>c:l</I></B> contains more than 2 characters.
 
 <DT><code>next</code>
@@ -458,9 +512,11 @@ Here is a list of the commands that can be used to operate on strings.
 
 We have seen in (a) that &nbsp;<code>$x = y</code>, when &nbsp;<code>x</code>&nbsp; and &nbsp;<code>y</code>&nbsp; are strings, sets <B><I>c:l</I></B> of &nbsp;<code>x</code>
 to the value of &nbsp;<code>y</code>. Conversely
-<BR><PRE>
-        $x =&gt; y
-</PRE>
+
+[% highlight('
+        $x => y
+') %]
+
 sets the value of &nbsp;<code>y</code>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<code>x</code>.
 <BR><BR>
 A more delicate mechanism for pushing text around is to define a substring,
@@ -472,36 +528,40 @@ or <I>slice</I> of the string being tested. Then
 <DT><code>]</code>
     <DD>sets the right-end of the slice to <B><I>c</I></B>,
 
-<DT><code>-&gt; s</code>
+<DT>[% hilight_inline("-> s") %]
     <DD>moves the slice to variable &nbsp;<code>s</code>,
-<DT><code>&lt;- S</code>
+<DT>[% hilight_inline("<- S") %]
     <DD>replaces the slice with variable (or literal) &nbsp;<code>S</code>.
 </DL>
 For example
-<BR><PRE>
-        /* assume x holds 'animadversion' */
-        $x ( [         // '[animadversion' - [ set as indicated
+
+[% highlight("
+        /* assume x holds 'animadversion' */" _ '
+        $x ( [ ' _ "         // '[animadversion' - [ set as indicated
              loop 2 gopast 'a'
                        // '[anima|dversion' - c is marked by '|'
              ]         // '[anima]dversion' - ] set as indicated
-             -&gt; y      // y is 'anima'
+             -> y      // y is 'anima'
            )
-</PRE>
+") %]
+
 For any string, the slice ends should be assumed to be unset until they are
 set with the two commands &nbsp;<code>[</code>, &nbsp;<code>]</code>. Thereafter the slice ends will retain
 the same values until altered.
 
 <DL>
-<DT><code>delete</code>
-    <DD>is equivalent to &nbsp;<code>&lt;- ''</code>
+<DT>[% hilight_inline("delete") %]
+    <DD>is equivalent to [% hilight_inline("<- ''") %]
 </DL>
 
 This next example deletes all vowels in x,
-<BR><PRE>
+
+[% highlight("
         define vowel ('a' or 'e' or 'i' or 'o' or 'u')
-        ....
+        /* ... */" _ '
         $ x repeat ( gopast([vowel]) delete )
-</PRE>
+') %]
+
 As this example shows, the slice markers &nbsp;<code>[</code>&nbsp; and &nbsp;<code>]</code>&nbsp; often appear as
 pairs in a bracketed style, which makes for easy reading of the Snowball
 scripts. But it must be remembered that, unusually in a computer
@@ -509,11 +569,11 @@ programming language, they are not true brackets.
 <BR><BR>
 More simply, text can be inserted at <B><I>c</I></B>.
 <DL>
-<DT><code>insert S</code>
+<DT>[% hilight_inline("insert S") %]
     <DD>insert variable or literal &nbsp;<code>S</code>&nbsp; before <B><I>c</I></B>, moving <B><I>c</I></B> to the right of the
     insert. &nbsp;<code>&lt;+</code>&nbsp; is a synonym for &nbsp;<code>insert</code>.
 
-<DT><code>attach S</code>
+<DT>[% hilight_inline("attach S") %]
     <DD>the same, but leave <B><I>c</I></B> at the left of the insert.
 </DL>
 
@@ -529,29 +589,29 @@ value, from zero upwards:
 It is these numeric values of <B><I>c</I></B> and <B><I>l</I></B> which are accessible through
 <code>cursor</code>&nbsp; and &nbsp;<code>limit</code>&nbsp; in arithmetic expressions.
 <DL>
-<DT><code>setmark X</code>
+<DT>[% hilight_inline("setmark X") %]
     <DD>sets &nbsp;<code>X</code>&nbsp; to the current value of <B><I>c</I></B>, where &nbsp;<code>X</code>&nbsp; is an integer variable.
 
-<DT><code>tomark AE</code>
+<DT>[% hilight_inline("tomark AE") %]
     <DD>moves <B><I>c</I></B> forward to the position given by AE,
 
-<DT><code>atmark AE</code>
+<DT>[% hilight_inline("atmark AE") %]
     <DD>tests if <B><I>c</I></B> is at position AE (<B><I>t</I></B> or <B><I>f</I></B> signal).
 </DL>
-In the case of &nbsp;<code>tomark AE</code>, a similar fail condition occurs as with &nbsp;<code>hop AE</code>.
+In the case of [% hilight_inline("tomark AE") %], a similar fail condition occurs as with [% hilight_inline("hop AE") %].
 If <B><I>c</I></B> is already beyond AE, or if position <B><I>l</I></B> is before position AE, the
 signal is <B><I>f</I></B>.
 <BR><BR>
 In the stemming algorithms, certain regions of the word are defined by
-setting marks, and later the failure condition of &nbsp;<code>tomark</code>&nbsp; is used to see if
+setting marks, and later the failure condition of [% hilight_inline("tomark") %] is used to see if
 <B><I>c</I></B> is inside a particular region.
 <BR><BR>
 Two other commands put <B><I>c</I></B> at <B><I>l</I></B>, and test if <B><I>c</I></B> is at <B><I>l</I></B>,
 <DL>
-<DT><code>tolimit</code>
+<DT>[% hilight_inline("tolimit") %]
     <DD>moves <B><I>c</I></B> forward to <B><I>l</I></B> (signal <B><I>t</I></B> always),
 
-<DT><code>atlimit</code>
+<DT>[% hilight_inline("atlimit") %]
     <DD>tests if <B><I>c</I></B> is at <B><I>l</I></B> (<B><I>t</I></B> or <B><I>f</I></B> signal).
 </DL>
 
@@ -574,15 +634,17 @@ In this account of string commands we see <B><I>c</I></B> moving right towards <
 <BR><BR>
     So the signal is <B><I>f</I></B> if either &nbsp;<code>C<SUB>1</SUB></code>&nbsp; or &nbsp;<code>C<SUB>2</SUB></code>&nbsp; gives <B><I>f</I></B>, otherwise <B><I>t</I></B>.
     For example,
-<BR><PRE>
-    $x ( setlimit goto 's'  // 'animadver}sion' new l as marked '}'
+
+[% highlight('
+    $x ( setlimit goto' _ " 's'  // 'animadver}sion' new l as marked '}'
          for                // below, '|' marks c after each goto
          ( goto 'a' and     // '|animadver}sion'
            goto 'e' and     // 'animadv|er}sion'
            goto 'i' and     // 'an|imadver}sion'
          )
        )
-</PRE>
+") %]
+
     This checks that x has characters &#8216;a&#8217;, &#8216;e&#8217; and &#8216;i&#8217; before the first
     &#8216;s&#8217;.
 </DL>
@@ -593,17 +655,17 @@ String commands have been described with <B><I>c</I></B> to the left of <B><I>l<
 right. But the process can be reversed.
 
 <DL>
-<DT><code>backwards C</code>
+<DT>[% hilight_inline("backwards C") %]
     <DD><B><I>c</I></B> and <B><I>l</I></B> are swapped over, and <B><I>c</I></B> moves left towards <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; is obeyed, the
     signal given by &nbsp;<code>C</code>&nbsp; becomes the signal of &nbsp;<code>backwards C</code>, and <B><I>c</I></B> and <B><I>l</I></B> are
     swapped back to their old values (except that <B><I>l</I></B> may have been adjusted
     because of deletions and insertions). &nbsp;<code>C</code>&nbsp; cannot contain another
-    &nbsp;<code>backwards</code>&nbsp; command.
+    [% hilight_inline("backwards") %] command.
 
-<DT><code>reverse C</code>
+<DT>[% hilight_inline("reverse C") %]
     <DD>A similar idea, but here <B><I>c</I></B> simply moves left instead of moving right,
     with the beginning of the string as the limit, <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; can contain other
-    &nbsp;<code>reverse</code>&nbsp; commands, but it cannot contain commands to do deletions or
+    [% hilight_inline("reverse") %] commands, but it cannot contain commands to do deletions or
     insertions &#x2014; it must be used for testing only. (Without this
     restriction Snowball's semantics would become very untidy.)
 </DL>
@@ -612,21 +674,23 @@ Forward and backward processing are entirely symmetric, except that forward
 processing is the default direction, and literal strings are always
 written out forwards, even when they are being tested backwards. So the
 following are equivalent,
-<BR><PRE>
-    $x (
+
+[% highlight('
+    $x (' _ "
         'ani' 'mad' 'version' atlimit
     )
-
-    $x backwards (
+" _ '
+    $x backwards (' _ "
         'version' 'mad' 'ani' atlimit
     )
-</PRE>
+") %]
+
 If a routine is defined for backwards mode processing, it must be included
 inside a &nbsp;<code>backwardmode(...)</code>&nbsp; declaration.
 
-&nbsp;<H4>g) &nbsp;<code>substring</code>&nbsp; and &nbsp;<code>among</code></H4>
+&nbsp;<H4>g) [% hilight_inline("substring") %] and [% hilight_inline("among") %]</H4>
 
-The use of &nbsp;<code>substring</code>&nbsp; and &nbsp;<code>among</code>&nbsp; is central to the implementation of the
+The use of [% hilight_inline("substring") %] and [% hilight_inline("among") %] is central to the implementation of the
 stemming algorithms. It is like a case switch on strings. In its simpler
 form,
 <BR><PRE>
@@ -642,16 +706,20 @@ semantics as
 <BR><BR>
 <code>substring</code>&nbsp; may be omitted, in which case it is attached to its following
 <code>among</code>, so
-<BR><PRE>
-    among(...)
-</PRE>
-without a preceding &nbsp;<code>substring</code>&nbsp; is equivalent to
-<BR><PRE>
-    (substring among(...))
-</PRE>
-<code>substring</code>&nbsp; may also be detached from its &nbsp;<code>among</code>, although it must
-precede it textually in the same routine in which the &nbsp;<code>among</code>&nbsp; appears.
-The more general form of &nbsp;<code>substring ... among</code>&nbsp; is,
+
+[% highlight("
+    among(/*...*/)
+") %]
+
+without a preceding [% hilight_inline("substring") %] is equivalent to
+
+[% highlight("
+    (substring among(/*...*/))
+") %]
+
+[% hilight_inline("substring") %] may also be detached from its [% hilight_inline("among") %], although it must
+precede it textually in the same routine in which the [% hilight_inline("among") %] appears.
+The more general form of [% hilight_inline("substring /* ... */ among") %] is,
 <BR><PRE>
     substring
     ...
@@ -675,10 +743,12 @@ The essential constraint is that two &nbsp;<code>substring</code>s must be separ
 <BR><BR>
 The effect of obeying &nbsp;<code>among</code>&nbsp; when the preceding &nbsp;<code>substring</code>&nbsp; is not obeyed
 is undefined. This would happen for example here,
-<BR><PRE>
-    try($x != 617 substring)
+
+[% highlight('
+    try($x != 617 substring)' _ "
     among(...) // 'substring' is bypassed in the exceptional case where x == 617
-</PRE>
+") %]
+
 The significance of separating the &nbsp;<code>substring</code>&nbsp; from the &nbsp;<code>among</code>&nbsp; is to allow
 them to work in different contexts. For example,
 <BR><PRE>
@@ -747,9 +817,11 @@ routine name,
 </PRE>
 So here each &nbsp;<code>R<SUB>ij</SUB></code>&nbsp; is either a routine name or is null. If null, it is equivalent
 to a routine which simply returns signal <B><I>t</I></B>,
-<BR><PRE>
+
+[% highlight("
     define null as true
-</PRE>
+") %]
+
 &#x2014; so we can imagine each &nbsp;<code>'S<SUB>ij</SUB>'</code>&nbsp; having its associated routine
 <code>R<SUB>ij</SUB></code>. Then obeying the &nbsp;<code>among</code>&nbsp; causes a search for the longest
 <code>'S<SUB>ij</SUB>'</code>&nbsp; whose corresponding routine
@@ -760,19 +832,20 @@ movement. (<B><I>c</I></B> is in any case set back to its old value following a 
 
 <BR>&nbsp;<H2>8 Booleans</H2>
 
-<code>set B</code>&nbsp; and &nbsp;<code>unset B</code>&nbsp; set &nbsp;<code>B</code>&nbsp; to true and false respectively, where &nbsp;<code>B</code>&nbsp; is a
-boolean name. &nbsp;<code>B</code>&nbsp; as a command gives a signal <B><I>t</I></B> if it is set true, <B><I>f</I></B>
+[% hilight_inline("set B") %] and [% hilight_inline("unset B") %] set &nbsp;<code>B</code>&nbsp; to true and false respectively, where &nbsp;<code>B</code>&nbsp; is a
+boolean name. [% hilight_inline("B") %] as a command gives a signal <B><I>t</I></B> if it is set true, <B><I>f</I></B>
 otherwise. For example,
-<BR><PRE>
+
+[% highlight("
     booleans ( Y_found )   // declare the boolean
 
-    ....
+    /* ... */
 
     unset Y_found          // unset it
-    do ( ['y'] &lt;-'Y' set Y_found )
+    do ( ['y'] <-'Y' set Y_found )
        /* if c:l begins 'y' replace it by 'Y' and set Y_found */
 
-    do repeat(goto (v ['y']) &lt;-'Y' set Y_found)
+    do repeat(goto (v ['y']) <-'Y' set Y_found)
        /* repeatedly move down the string looking for v 'y' and
           replacing 'y' with 'Y'. Whenever the replacement takes
           place set Y_found. v is a test for a vowel, defined as
@@ -783,10 +856,11 @@ otherwise. For example,
        Later we can use this to trigger a conversion back to
        lower case y. */
 
-    ....
+    /* ... */
 
-    do (Y_found repeat(goto (['Y']) &lt;- 'y')
-</PRE>
+    do (Y_found repeat(goto (['Y']) <- 'y')
+") %]
+
 <BR>&nbsp;<H2>9 Groupings</H2>
 
 A grouping brings characters together and enables them to be looked for
@@ -799,7 +873,8 @@ If &nbsp;<code>G</code>&nbsp; is declared as a grouping, it can be defined by
 where <I>op</I> is &nbsp;<code>+</code>&nbsp; or &nbsp;<code>-</code>, and &nbsp;<code>G<SUB>1</SUB></code>, &nbsp;<code>G<SUB>2</SUB></code>, &nbsp;<code>G<SUB>3</SUB></code>&nbsp; are literal strings, or groupings that
 have already been defined. (There can be zero or more of these additional
 <I>op</I> components). For example,
-<BR><PRE>
+
+[% highlight("
     define capital_letter  'ABDEFGHIJKLMNOPQRSTUVWXYZ'
     define small_letter    'abdefghijklmnopqrstuvwxyz'
     define letter          capital_letter + small_letter
@@ -807,23 +882,26 @@ have already been defined. (There can be zero or more of these additional
     define consonant       letter - vowel
     define digit           '0123456789'
     define alphanumeric    letter + digit
-</PRE>
+") %]
+
 Once &nbsp;<code>G</code>&nbsp; is defined, it can be used as a command, and is equivalent to a test
 <BR><PRE>
     'ch1' or 'ch2' or ...
 </PRE>
 where &nbsp;<code>ch1</code>, &nbsp;<code>ch2</code>&nbsp; ... list all the characters in the grouping.
 <BR><BR>
-<code>non G</code>&nbsp; is the converse test, and matches any character except the
-characters of &nbsp;<code>G</code>. Note that &nbsp;<code>non G</code>&nbsp; is not the same as &nbsp;<code>not G</code>, in fact
+[% hilight_inline("non G") %] is the converse test, and matches any character except the
+characters of &nbsp;<code>G</code>. Note that [% hilight_inline("non G") %] is not the same as [% hilight_inline("not G") %], in fact
 <BR><PRE>
     non G    is equivalent to     (not G next)
 </PRE>
-<code>non</code>&nbsp; may be optionally followed by hyphen, so one may write
-<BR><PRE>
+[% hilight_inline("non") %] may be optionally followed by hyphen, so one may write
+
+[% highlight("
     non-vowel
     non-digit
-</PRE>
+") %]
+
 etc.
 
 <BR>&nbsp;<H2>10 A Snowball program</H2>
@@ -838,12 +916,14 @@ A Snowball program is called up via a simple
 <A HREF="../runtime/use.html">API</A>
 through its defined
 externals. For example,
-<BR><PRE>
+
+[% highlight("
     externals ( stem1 stem2 )
-    ....
-    define stem1 as ( ... /* stem1 commands */ )
-    define stem2 as ( ... /* stem2 commands */ )
-</PRE>
+    /* ... */
+    define stem1 as ( /* stem1 commands */ )
+    define stem2 as ( /* stem2 commands */ )
+") %]
+
 The API also allows a current string to be defined, and this becomes the
 <B><I>c:l</I></B> string for the external routine to work on. Its final value is the
 result handed back through the API.
@@ -871,13 +951,15 @@ Anywhere that whitespace can occur, there may also occur:
 <code>// ...</code>&nbsp; format.
 <BR><BR>
 (b) Get directives. These are like &nbsp;<code>#include</code>&nbsp; commands in C, and have the form
-<code>get 'S'</code>, where &nbsp;<code>'S'</code>&nbsp; is a literal string. For example,
-<BR><PRE>
+[% hilight_inline("get 'S'") %], where &nbsp;<code>'S'</code>&nbsp; is a literal string. For example,
+
+[% highlight("
     get '/home/martin/snowball/main-hdr' // include the file contents
-</PRE>
-(c) &nbsp;<code>stringescapes XY</code>&nbsp; where &nbsp;<code>X</code>&nbsp; and &nbsp;<code>Y</code>&nbsp; are any two printing characters.
+") %]
+
+(c) [% hilight_inline("stringescapes XY") %] where &nbsp;<code>X</code>&nbsp; and &nbsp;<code>Y</code>&nbsp; are any two printing characters.
 <BR><BR>
-(d) &nbsp;<code>stringdef m 'S'</code>&nbsp; where &nbsp;<code>m</code>&nbsp; is sequence of characters not including
+(d) [% hilight_inline("stringdef m 'S'") %] where &nbsp;<code>m</code>&nbsp; is sequence of characters not including
 whitespace and terminated with whitespace, and &nbsp;<code>'S'</code>&nbsp; is a literal string.
 
 <BR>&nbsp;<H2>12 Character representation</H2>
@@ -997,7 +1079,5 @@ synonyms:      &lt;+ for insert
 
 </TR>
 
-
 </TABLE>
-</BODY>
-</HTML>
+[% footer %]
