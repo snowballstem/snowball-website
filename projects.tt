@@ -79,7 +79,7 @@ A reimplementation of the snowball stemming algorithms in C++.
 C++11.
 </p>
 
-<h3><a href="http://code.google.com/p/nltk/issues/detail?id=567">NLTK</a></h3>
+<h3><a href="http://www.nltk.org/">NLTK</a></h3>
 <p>
 (added June 2010) Python versions of nearly all the stemmers have been made
 available by Peter Stahl at NLTK&#8217;s code repository.
@@ -92,7 +92,7 @@ Javascript versions of nearly all the stemmers have appeared in Oleg Mazko&#8217
 from the C/java output of the snowball compiler.
 </p>
 
-<h3><a href="https://code.google.com/p/js-lingua-stem-ru">js-lingua-stem-ru</a></h3>
+<h3><a href="https://code.google.com/p/js-lingua-stem-ru/">js-lingua-stem-ru</a></h3>
 <p>
 This is a different implementation of the Russian stemmer in Javascript,
 created by Mark A. Prisyazhnyuk.

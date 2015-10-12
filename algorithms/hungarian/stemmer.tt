@@ -19,7 +19,7 @@
 <BR><BR>
 <TR><TD><A HREF="stop.txt">    A stop word list</A>
 <BR><BR>
-<TR><TD>The <A HREF="http://ilps.science.uva.nl/Resources/HungarianStemmer/">
+<TR><TD>The <A HREF="http://ilps.science.uva.nl/resources/snowball-hun/">
 isla, Amsterdam</A> page for the Hungarian stemmer
 
 </TABLE></DL>
