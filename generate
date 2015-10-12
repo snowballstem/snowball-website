@@ -26,6 +26,7 @@ my $code_path_suffix = '.sbl';
 # Stuff that just gets copied over.
 foreach my $f (qw(
     CNAME
+    favicon.ico
     robots.txt
     snub-dodecahedron.gif
     styles.css
