@@ -199,7 +199,7 @@ $$vars{highlight} = sub {
     $in =~ s/\A\s*\n//;
     $in =~ s/\n\s+\z/\n/;
     $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
-    my $out = '<pre>';
+    my $out;
     if (defined $lang) {
 	run ['pygmentize', "-l$lang", '-fhtml'], \$in, \$out, \*STDERR
 	    or die "python: $?";
@@ -207,7 +207,6 @@ $$vars{highlight} = sub {
 	run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
 	    or die "python: $?";
     }
-    $out .= '</pre>';
     return $out;
 };
 
@@ -218,19 +217,20 @@ $$vars{highlight_inline} = sub {
     $in =~ s/\n\s+\z/\n/;
     $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
     $in =~ /\n/ and warn "Newline in inline Snowball code? [$in]";
-    my $out = '<code>';
+    my $out;
     run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
 	or die "python: $?";
-    $out .= '</code>';
+    $out =~ s!<div([^.]*)><pre>!<span$1><code>!;
+    $out =~ s!</pre></div>!</code></span>!;
     return $out;
 };
 
 $$vars{highlight_file} = sub {
     my $file = shift;
     if ($file =~ /\.\w+$/) {
-	return '<pre>'.`pygmentize -fhtml \Qcode/$file\E`.'</pre>';
+	return scalar(`pygmentize -fhtml \Qcode/$file\E`);
     }
-    return '<pre>'.`python highlight_snowball.py < \Q$code_path_prefix$file$code_path_suffix\E`.'</pre>';
+    return scalar(`python highlight_snowball.py < \Q$code_path_prefix$file$code_path_suffix\E`);
 };
 
 # FIXME: Sort out navigation and styling.
