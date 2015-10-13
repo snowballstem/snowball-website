@@ -688,7 +688,7 @@ following are equivalent,
 If a routine is defined for backwards mode processing, it must be included
 inside a &nbsp;<code>backwardmode(...)</code>&nbsp; declaration.
 
-&nbsp;<H4>g) [% highlight_inline("substring") %] and [% highlight_inline("among") %]</H4>
+&nbsp;<H4>g) substring and among</H4>
 
 The use of [% highlight_inline("substring") %] and [% highlight_inline("among") %] is central to the implementation of the
 stemming algorithms. It is like a case switch on strings. In its simpler
