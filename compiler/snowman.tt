@@ -104,7 +104,7 @@ string, and &nbsp;<code>m</code>&nbsp; a sequence of one or more printing charac
 with whitespace.
 <BR><BR>
 Two special <I>insert characters</I> are defined by the directive
-[% hilight_inline("stringescapes AB") %], where &nbsp;<code>A</code>&nbsp; and &nbsp;<code>B</code>&nbsp; are printing characters, and &nbsp;<code>A</code>&nbsp; is not
+[% highlight_inline("stringescapes AB") %], where &nbsp;<code>A</code>&nbsp; and &nbsp;<code>B</code>&nbsp; are printing characters, and &nbsp;<code>A</code>&nbsp; is not
 single quote. (<code>B</code>&nbsp; may equal &nbsp;<code>A</code>, but then &nbsp;<code>A</code>&nbsp; itself can never be escaped.) For
 example,
 
@@ -226,10 +226,10 @@ If &nbsp;<code>C<SUB>1</SUB></code>&nbsp; and &nbsp;<code>C<SUB>2</SUB></code>&n
 </DL></DL>
 So for example,
 <DL><DD><DL>
-    <DT>[% hilight_inline('($x > 0  $y = 1) or ($y = 0)') %]
+    <DT>[% highlight_inline('($x > 0  $y = 1) or ($y = 0)') %]
         <DD>&#x2014; sets &nbsp;<code>y</code>&nbsp; to 1 if &nbsp;<code>x</code>&nbsp; is greater than zero, otherwise to zero.
 
-    <DT>[% hilight_inline('try( ($x > 0) and ($z > 0) $y = 1)') %]
+    <DT>[% highlight_inline('try( ($x > 0) and ($z > 0) $y = 1)') %]
         <DD>&#x2014; sets &nbsp;<code>y</code>&nbsp; to 1 if both &nbsp;<code>x</code>&nbsp; and &nbsp;<code>z</code>&nbsp; are greater than 0, and gives <B><I>t</I></B>.
 </DL></DL>
 This last example is the same as
@@ -255,7 +255,7 @@ would mean
     try ( not ( $x < 1 ) ) $z > 0
 ') %]
 
-because [% hilight_inline('$x < 1') %] is the shortest valid command following &nbsp;<code>not</code>, and then
+because [% highlight_inline('$x < 1') %] is the shortest valid command following &nbsp;<code>not</code>, and then
 <code>not $x &lt; 1</code>&nbsp; is the shortest valid command following &nbsp;<code>try</code>.
 <BR><BR>
 The &#8216;dyadic&#8217; constructs like &nbsp;<code>and</code>&nbsp; and &nbsp;<code>or</code>&nbsp; must sit in a bracketed list
@@ -528,9 +528,9 @@ or <I>slice</I> of the string being tested. Then
 <DT><code>]</code>
     <DD>sets the right-end of the slice to <B><I>c</I></B>,
 
-<DT>[% hilight_inline("-> s") %]
+<DT>[% highlight_inline("-> s") %]
     <DD>moves the slice to variable &nbsp;<code>s</code>,
-<DT>[% hilight_inline("<- S") %]
+<DT>[% highlight_inline("<- S") %]
     <DD>replaces the slice with variable (or literal) &nbsp;<code>S</code>.
 </DL>
 For example
@@ -550,8 +550,8 @@ set with the two commands &nbsp;<code>[</code>, &nbsp;<code>]</code>. Thereafter
 the same values until altered.
 
 <DL>
-<DT>[% hilight_inline("delete") %]
-    <DD>is equivalent to [% hilight_inline("<- ''") %]
+<DT>[% highlight_inline("delete") %]
+    <DD>is equivalent to [% highlight_inline("<- ''") %]
 </DL>
 
 This next example deletes all vowels in x,
@@ -569,11 +569,11 @@ programming language, they are not true brackets.
 <BR><BR>
 More simply, text can be inserted at <B><I>c</I></B>.
 <DL>
-<DT>[% hilight_inline("insert S") %]
+<DT>[% highlight_inline("insert S") %]
     <DD>insert variable or literal &nbsp;<code>S</code>&nbsp; before <B><I>c</I></B>, moving <B><I>c</I></B> to the right of the
     insert. &nbsp;<code>&lt;+</code>&nbsp; is a synonym for &nbsp;<code>insert</code>.
 
-<DT>[% hilight_inline("attach S") %]
+<DT>[% highlight_inline("attach S") %]
     <DD>the same, but leave <B><I>c</I></B> at the left of the insert.
 </DL>
 
@@ -589,29 +589,29 @@ value, from zero upwards:
 It is these numeric values of <B><I>c</I></B> and <B><I>l</I></B> which are accessible through
 <code>cursor</code>&nbsp; and &nbsp;<code>limit</code>&nbsp; in arithmetic expressions.
 <DL>
-<DT>[% hilight_inline("setmark X") %]
+<DT>[% highlight_inline("setmark X") %]
     <DD>sets &nbsp;<code>X</code>&nbsp; to the current value of <B><I>c</I></B>, where &nbsp;<code>X</code>&nbsp; is an integer variable.
 
-<DT>[% hilight_inline("tomark AE") %]
+<DT>[% highlight_inline("tomark AE") %]
     <DD>moves <B><I>c</I></B> forward to the position given by AE,
 
-<DT>[% hilight_inline("atmark AE") %]
+<DT>[% highlight_inline("atmark AE") %]
     <DD>tests if <B><I>c</I></B> is at position AE (<B><I>t</I></B> or <B><I>f</I></B> signal).
 </DL>
-In the case of [% hilight_inline("tomark AE") %], a similar fail condition occurs as with [% hilight_inline("hop AE") %].
+In the case of [% highlight_inline("tomark AE") %], a similar fail condition occurs as with [% highlight_inline("hop AE") %].
 If <B><I>c</I></B> is already beyond AE, or if position <B><I>l</I></B> is before position AE, the
 signal is <B><I>f</I></B>.
 <BR><BR>
 In the stemming algorithms, certain regions of the word are defined by
-setting marks, and later the failure condition of [% hilight_inline("tomark") %] is used to see if
+setting marks, and later the failure condition of [% highlight_inline("tomark") %] is used to see if
 <B><I>c</I></B> is inside a particular region.
 <BR><BR>
 Two other commands put <B><I>c</I></B> at <B><I>l</I></B>, and test if <B><I>c</I></B> is at <B><I>l</I></B>,
 <DL>
-<DT>[% hilight_inline("tolimit") %]
+<DT>[% highlight_inline("tolimit") %]
     <DD>moves <B><I>c</I></B> forward to <B><I>l</I></B> (signal <B><I>t</I></B> always),
 
-<DT>[% hilight_inline("atlimit") %]
+<DT>[% highlight_inline("atlimit") %]
     <DD>tests if <B><I>c</I></B> is at <B><I>l</I></B> (<B><I>t</I></B> or <B><I>f</I></B> signal).
 </DL>
 
@@ -655,17 +655,17 @@ String commands have been described with <B><I>c</I></B> to the left of <B><I>l<
 right. But the process can be reversed.
 
 <DL>
-<DT>[% hilight_inline("backwards C") %]
+<DT>[% highlight_inline("backwards C") %]
     <DD><B><I>c</I></B> and <B><I>l</I></B> are swapped over, and <B><I>c</I></B> moves left towards <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; is obeyed, the
     signal given by &nbsp;<code>C</code>&nbsp; becomes the signal of &nbsp;<code>backwards C</code>, and <B><I>c</I></B> and <B><I>l</I></B> are
     swapped back to their old values (except that <B><I>l</I></B> may have been adjusted
     because of deletions and insertions). &nbsp;<code>C</code>&nbsp; cannot contain another
-    [% hilight_inline("backwards") %] command.
+    [% highlight_inline("backwards") %] command.
 
-<DT>[% hilight_inline("reverse C") %]
+<DT>[% highlight_inline("reverse C") %]
     <DD>A similar idea, but here <B><I>c</I></B> simply moves left instead of moving right,
     with the beginning of the string as the limit, <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; can contain other
-    [% hilight_inline("reverse") %] commands, but it cannot contain commands to do deletions or
+    [% highlight_inline("reverse") %] commands, but it cannot contain commands to do deletions or
     insertions &#x2014; it must be used for testing only. (Without this
     restriction Snowball's semantics would become very untidy.)
 </DL>
@@ -688,9 +688,9 @@ following are equivalent,
 If a routine is defined for backwards mode processing, it must be included
 inside a &nbsp;<code>backwardmode(...)</code>&nbsp; declaration.
 
-&nbsp;<H4>g) [% hilight_inline("substring") %] and [% hilight_inline("among") %]</H4>
+&nbsp;<H4>g) [% highlight_inline("substring") %] and [% highlight_inline("among") %]</H4>
 
-The use of [% hilight_inline("substring") %] and [% hilight_inline("among") %] is central to the implementation of the
+The use of [% highlight_inline("substring") %] and [% highlight_inline("among") %] is central to the implementation of the
 stemming algorithms. It is like a case switch on strings. In its simpler
 form,
 <BR><PRE>
@@ -711,15 +711,15 @@ semantics as
     among(/*...*/)
 ") %]
 
-without a preceding [% hilight_inline("substring") %] is equivalent to
+without a preceding [% highlight_inline("substring") %] is equivalent to
 
 [% highlight("
     (substring among(/*...*/))
 ") %]
 
-[% hilight_inline("substring") %] may also be detached from its [% hilight_inline("among") %], although it must
-precede it textually in the same routine in which the [% hilight_inline("among") %] appears.
-The more general form of [% hilight_inline("substring /* ... */ among") %] is,
+[% highlight_inline("substring") %] may also be detached from its [% highlight_inline("among") %], although it must
+precede it textually in the same routine in which the [% highlight_inline("among") %] appears.
+The more general form of [% highlight_inline("substring /* ... */ among") %] is,
 <BR><PRE>
     substring
     ...
@@ -832,8 +832,8 @@ movement. (<B><I>c</I></B> is in any case set back to its old value following a 
 
 <BR>&nbsp;<H2>8 Booleans</H2>
 
-[% hilight_inline("set B") %] and [% hilight_inline("unset B") %] set &nbsp;<code>B</code>&nbsp; to true and false respectively, where &nbsp;<code>B</code>&nbsp; is a
-boolean name. [% hilight_inline("B") %] as a command gives a signal <B><I>t</I></B> if it is set true, <B><I>f</I></B>
+[% highlight_inline("set B") %] and [% highlight_inline("unset B") %] set &nbsp;<code>B</code>&nbsp; to true and false respectively, where &nbsp;<code>B</code>&nbsp; is a
+boolean name. [% highlight_inline("B") %] as a command gives a signal <B><I>t</I></B> if it is set true, <B><I>f</I></B>
 otherwise. For example,
 
 [% highlight("
@@ -890,12 +890,12 @@ Once &nbsp;<code>G</code>&nbsp; is defined, it can be used as a command, and is 
 </PRE>
 where &nbsp;<code>ch1</code>, &nbsp;<code>ch2</code>&nbsp; ... list all the characters in the grouping.
 <BR><BR>
-[% hilight_inline("non G") %] is the converse test, and matches any character except the
-characters of &nbsp;<code>G</code>. Note that [% hilight_inline("non G") %] is not the same as [% hilight_inline("not G") %], in fact
+[% highlight_inline("non G") %] is the converse test, and matches any character except the
+characters of &nbsp;<code>G</code>. Note that [% highlight_inline("non G") %] is not the same as [% highlight_inline("not G") %], in fact
 <BR><PRE>
     non G    is equivalent to     (not G next)
 </PRE>
-[% hilight_inline("non") %] may be optionally followed by hyphen, so one may write
+[% highlight_inline("non") %] may be optionally followed by hyphen, so one may write
 
 [% highlight("
     non-vowel
@@ -951,15 +951,15 @@ Anywhere that whitespace can occur, there may also occur:
 <code>// ...</code>&nbsp; format.
 <BR><BR>
 (b) Get directives. These are like &nbsp;<code>#include</code>&nbsp; commands in C, and have the form
-[% hilight_inline("get 'S'") %], where &nbsp;<code>'S'</code>&nbsp; is a literal string. For example,
+[% highlight_inline("get 'S'") %], where &nbsp;<code>'S'</code>&nbsp; is a literal string. For example,
 
 [% highlight("
     get '/home/martin/snowball/main-hdr' // include the file contents
 ") %]
 
-(c) [% hilight_inline("stringescapes XY") %] where &nbsp;<code>X</code>&nbsp; and &nbsp;<code>Y</code>&nbsp; are any two printing characters.
+(c) [% highlight_inline("stringescapes XY") %] where &nbsp;<code>X</code>&nbsp; and &nbsp;<code>Y</code>&nbsp; are any two printing characters.
 <BR><BR>
-(d) [% hilight_inline("stringdef m 'S'") %] where &nbsp;<code>m</code>&nbsp; is sequence of characters not including
+(d) [% highlight_inline("stringdef m 'S'") %] where &nbsp;<code>m</code>&nbsp; is sequence of characters not including
 whitespace and terminated with whitespace, and &nbsp;<code>'S'</code>&nbsp; is a literal string.
 
 <BR>&nbsp;<H2>12 Character representation</H2>
