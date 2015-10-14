@@ -109,24 +109,24 @@ single quote. (<code>B</code>&nbsp; may equal &nbsp;<code>A</code>, but then &nb
 example,
 
 [% highlight("
-    stringescapes []
+    stringescapes {}
 ") %]
 
 A subsequent occurrence of the same directive redefines the insert
 characters.
 <BR><BR>
-Thereafter, &nbsp;<code>[m]</code>&nbsp; inside a string causes &nbsp;<code>S</code>&nbsp; to be substituted in place of &nbsp;<code>m</code>.
+Thereafter, &nbsp;<code>{m}</code>&nbsp; inside a string causes &nbsp;<code>S</code>&nbsp; to be substituted in place of &nbsp;<code>m</code>.
 <BR><BR>
-Immediately after the stringescapes directive, &nbsp;<code>[']</code>&nbsp; will substitute &nbsp;<code>'</code>&nbsp; and
-<code>[[]</code>&nbsp; will substitute &nbsp;<code>[</code>, although macros &nbsp;<code>'</code>&nbsp; and &nbsp;<code>[</code>&nbsp; may subsequently be
-redefined. A further feature is that &nbsp;<code>[<I>W</I>]</code>&nbsp; inside a string, where &nbsp;<code><I>W</I></code>&nbsp; is a
+Immediately after the stringescapes directive, &nbsp;<code>{'}</code>&nbsp; will substitute &nbsp;<code>'</code>&nbsp; and
+<code>{{}</code>&nbsp; will substitute &nbsp;<code>{</code>, although macros &nbsp;<code>'</code>&nbsp; and &nbsp;<code>{</code>&nbsp; may subsequently be
+redefined. A further feature is that &nbsp;<code>{<I>W</I>}</code>&nbsp; inside a string, where &nbsp;<code><I>W</I></code>&nbsp; is a
 sequence of whitespace characters including one or more newlines, is
 ignored. This enables long strings to be written over a number of lines.
 <BR><BR>
 For example,
 
 [% highlight("
-    stringescapes []
+    stringescapes {}
 
     /* special Spanish characters (in MS-DOS Latin I) */
 
@@ -142,8 +142,12 @@ For example,
        used to represent vowels
     */
 
-    define v 'aeiou[a'][e'][i'][o'][u'][u\"]'
+    define v 'aeiou{a'}{e'}{i'}{o'}{u'}{u\"}'
 ") %]
+
+<p>Conventionally <code>{</code> and <code>}</code> are used as the insert
+characters.  We'd recommend following this convention unless you want to use
+these as literal characters in your strings.</p>
 
 <BR>&nbsp;<H2>4 Routines</H2>
 
