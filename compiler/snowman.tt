@@ -128,15 +128,15 @@ For example,
 [% highlight("
     stringescapes {}
 
-    /* special Spanish characters (in MS-DOS Latin I) */
+    /* special Spanish characters */
 
-    stringdef a'   hex 'A0'  // a-acute
-    stringdef e'   hex '82'  // e-acute
-    stringdef i'   hex 'A1'  // i-acute
-    stringdef o'   hex 'A2'  // o-acute
-    stringdef u'   hex 'A3'  // u-acute
-    stringdef u\"   hex '81'  // u-diaeresis
-    stringdef n~   hex 'A4'  // n-tilde
+    stringdef a'   hex '00E1'  // a-acute
+    stringdef e'   hex '00E9'  // e-acute
+    stringdef i'   hex '00ED'  // i-acute
+    stringdef o'   hex '00F3'  // o-acute
+    stringdef u'   hex '00FA'  // u-acute
+    stringdef u\"   hex '00FC'  // u-diaeresis
+    stringdef n~   hex '00F1'  // n-tilde
 
     /* and in the next string we define all the characters in Spanish
        used to represent vowels
