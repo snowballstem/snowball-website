@@ -1,7 +1,5 @@
 [% header('Romanian stemming algorithm') %]
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<H1 ALIGN=CENTER>Romanian stemming algorithm</H1>
-
 <TR><TD>
 <BR>&nbsp;<H2>Links to resources</H2>
 

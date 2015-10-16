@@ -1,7 +1,5 @@
 [% header('The Lovins stemming algorithm') %]
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<H1 ALIGN=CENTER>The Lovins stemming algorithm</H1>
-
 <TR><TD>
 <h2>Links to resources</h2>
 

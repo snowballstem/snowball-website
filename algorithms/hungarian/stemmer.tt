@@ -1,7 +1,5 @@
 [% header('Hungarian stemming algorithm') %]
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<H1 ALIGN=CENTER>The Hungarian stemming algorithm</H1>
-<BR><BR>
 <CENTER>Contributed by <A HREF="mailto:atordai&#64;science.uval.nl">Anna Tordai</A></SUP> University of Amsterdam
 </CENTER>
 

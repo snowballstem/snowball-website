@@ -259,6 +259,7 @@ for my $in (<*/*.tt */*/*.tt>) {
   </head>
 
   <body bgcolor="white">
+    <h1>$title</h1>
 __END__
     };
 

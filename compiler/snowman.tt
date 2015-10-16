@@ -1,6 +1,5 @@
 [% header('Snowball Manual') %]
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<H1 ALIGN=CENTER>Snowball Manual</H1>
 <TR><TD BGCOLOR="wheat">
 <h2>Links to resources</h2>
 <DL><DD><TABLE CELLPADDING=0>
