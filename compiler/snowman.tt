@@ -2,7 +2,7 @@
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
 <H1 ALIGN=CENTER>Snowball Manual</H1>
 <TR><TD BGCOLOR="wheat">
-<BR>&nbsp;<H2>Links to resources</H2>
+<h2>Links to resources</h2>
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><A HREF=".."> Snowball main page</A>
 <TR><TD><A HREF="../runtime/use.html">          Using Snowball</A>
@@ -13,7 +13,7 @@
 <TR><TD>
 <BR><BR>
 
-<BR>&nbsp;<H2>Snowball definition</H2>
+<h2>Snowball definition</h2>
 
 Snowball is a small string-handling language, and its name was chosen as a
 tribute to SNOBOL (Farber 1964, Griswold 1968 &#x2014;
@@ -23,7 +23,7 @@ with which it shares the
 concept of string patterns delivering signals that are used to control the
 flow of the program.
 
-<BR>&nbsp;<H2>1 Data types</H2>
+<h2>1 Data types</h2>
 
 The basic data types handled by Snowball are strings of characters, signed
 integers, and boolean truth values, or more simply <I>strings</I>, <I>integers</I>
@@ -31,7 +31,7 @@ and <I>booleans</I>. Snowball's characters are either 8-bit wide, or
 16-bit, depending on the mode of use. In particular, both 8-bit
 ASCII and 16-bit Unicode are supported.
 
-<BR>&nbsp;<H2>2 Names</H2>
+<h2>2 Names</h2>
 
 A name in Snowball is a letter followed by zero or more letters, digits
 and underlines. A name can be of type <I>string</I>, <I>integer</I>, <I>boolean</I>,
@@ -64,7 +64,7 @@ routine definitions can have the same name, etc. Names declared and
 subsequently not used are merely reported in a warning message. A name may
 not be one of the reserved words of Snowball.
 
-<BR>&nbsp;<H2>3 Literals</H2>
+<h2>3 Literals</h2>
 
 A literal integer is a digit sequence, and is always interpreted as
 decimal. A literal string is written between single quotes, for example,
@@ -149,7 +149,7 @@ For example,
 characters.  We'd recommend following this convention unless you want to use
 these as literal characters in your strings.</p>
 
-<BR>&nbsp;<H2>4 Routines</H2>
+<h2>4 Routines</h2>
 
 A routine definition has the form
 
@@ -174,7 +174,7 @@ Snowball routines do not (at present) take parameters. For example,
 
 A routine is called simply by using its name, &nbsp;<code>R</code>, as a command.
 
-<BR>&nbsp;<H2>5 Commands and signals</H2>
+<h2>5 Commands and signals</h2>
 
 The flow of control in Snowball is arranged by the implicit use of
 <I>signals</I>, rather than the explicit use of constructs like the &nbsp;<code>if</code>,
@@ -283,7 +283,7 @@ means
 <code>and</code>&nbsp; and &nbsp;<code>or</code>&nbsp; are equally binding, and bind from left to right,
 so &nbsp;<code>C<SUB>1</SUB> or C<SUB>2</SUB> and C<SUB>3</SUB></code>&nbsp; means &nbsp;<code>(C<SUB>1</SUB> or C<SUB>2</SUB>) and C<SUB>3</SUB></code>&nbsp; etc.
 
-<BR>&nbsp;<H2>6 AEs and integer commands</H2>
+<h2>6 AEs and integer commands</h2>
 
 An AE (arithmetic expression) consists of integer names and literal
 numbers connected by dyadic &nbsp;<code>+</code>, &nbsp;<code>-</code>, &nbsp;<code>*</code>&nbsp; and &nbsp;<code>/</code>, and monadic &nbsp;<code>-</code>, with the same
@@ -315,7 +315,7 @@ Examples of integer commands are,
 ') %]
 
 
-<BR>&nbsp;<H2>7 String commands</H2>
+<h2>7 String commands</h2>
 
 If &nbsp;<code>s</code>&nbsp; is a string name, a string command has the form
 <BR><PRE>
@@ -344,7 +344,7 @@ outer context of commands in which &nbsp;<code>C</code>&nbsp; came to be obeyed,
 <BR><BR>
 Here is a list of the commands that can be used to operate on strings.
 
-&nbsp;<H4>a) Setting a value</H4>
+<h4>a) Setting a value</h4>
 
 
 <DL>
@@ -360,7 +360,7 @@ Here is a list of the commands that can be used to operate on strings.
 
 </DL>
 
-&nbsp;<H4>b) Basic tests</H4>
+<h4>b) Basic tests</h4>
 
 <DL>
 <DT><code>S</code>
@@ -511,7 +511,7 @@ Here is a list of the commands that can be used to operate on strings.
     <DD>is equivalent to &nbsp;<code>hop 1</code>.
 </DL>
 
-&nbsp;<H4>c) Moving text about</H4>
+<h4>c) Moving text about</h4>
 
 
 We have seen in (a) that &nbsp;<code>$x = y</code>, when &nbsp;<code>x</code>&nbsp; and &nbsp;<code>y</code>&nbsp; are strings, sets <B><I>c:l</I></B> of &nbsp;<code>x</code>
@@ -581,7 +581,7 @@ More simply, text can be inserted at <B><I>c</I></B>.
     <DD>the same, but leave <B><I>c</I></B> at the left of the insert.
 </DL>
 
-&nbsp;<H4>d) Marks</H4>
+<h4>d) Marks</h4>
 
 
 The cursor, <B><I>c</I></B>, (and the limit, <B><I>l</I></B>) can be thought of as having a numeric
@@ -619,7 +619,7 @@ Two other commands put <B><I>c</I></B> at <B><I>l</I></B>, and test if <B><I>c</
     <DD>tests if <B><I>c</I></B> is at <B><I>l</I></B> (<B><I>t</I></B> or <B><I>f</I></B> signal).
 </DL>
 
-&nbsp;<H4>e) Changing <B><I>l</I></B></H4>
+<h4>e) Changing <B><I>l</I></B></h4>
 
 
 In this account of string commands we see <B><I>c</I></B> moving right towards <B><I>l</I></B>, while
@@ -653,7 +653,7 @@ In this account of string commands we see <B><I>c</I></B> moving right towards <
     &#8216;s&#8217;.
 </DL>
 
-&nbsp;<H4>f) Backward processing</H4>
+<h4>f) Backward processing</h4>
 
 String commands have been described with <B><I>c</I></B> to the left of <B><I>l</I></B> and moving
 right. But the process can be reversed.
@@ -692,7 +692,7 @@ following are equivalent,
 If a routine is defined for backwards mode processing, it must be included
 inside a &nbsp;<code>backwardmode(...)</code>&nbsp; declaration.
 
-&nbsp;<H4>g) substring and among</H4>
+<h4>g) substring and among</h4>
 
 The use of [% highlight_inline("substring") %] and [% highlight_inline("among") %] is central to the implementation of the
 stemming algorithms. It is like a case switch on strings. In its simpler
@@ -834,7 +834,7 @@ to a routine which simply returns signal <B><I>t</I></B>,
 movement. (<B><I>c</I></B> is in any case set back to its old value following a call of
 <code>R<SUB>ij</SUB></code>.)
 
-<BR>&nbsp;<H2>8 Booleans</H2>
+<h2>8 Booleans</h2>
 
 [% highlight_inline("set B") %] and [% highlight_inline("unset B") %] set &nbsp;<code>B</code>&nbsp; to true and false respectively, where &nbsp;<code>B</code>&nbsp; is a
 boolean name. [% highlight_inline("B") %] as a command gives a signal <B><I>t</I></B> if it is set true, <B><I>f</I></B>
@@ -865,7 +865,7 @@ otherwise. For example,
     do (Y_found repeat(goto (['Y']) <- 'y')
 ") %]
 
-<BR>&nbsp;<H2>9 Groupings</H2>
+<h2>9 Groupings</h2>
 
 A grouping brings characters together and enables them to be looked for
 with a single test.
@@ -908,7 +908,7 @@ characters of &nbsp;<code>G</code>. Note that [% highlight_inline("non G") %] is
 
 etc.
 
-<BR>&nbsp;<H2>10 A Snowball program</H2>
+<h2>10 A Snowball program</h2>
 
 
 A complete program consists of a sequence of declarations followed by a
@@ -936,7 +936,7 @@ The strings, integers and booleans are accessible from any point in the
 program, and exist throughout the running of the Snowball program. They are
 therefore like static declarations in C.
 
-<BR>&nbsp;<H2>11 Comments, and other whitespace fillers</H2>
+<h2>11 Comments, and other whitespace fillers</h2>
 
 At a deeper level, a program is a sequence of <I>tokens</I>, interspersed with
 whitespace. Names, reserved words, literal numbers and strings are all
@@ -966,7 +966,7 @@ Anywhere that whitespace can occur, there may also occur:
 (d) [% highlight_inline("stringdef m 'S'") %] where &nbsp;<code>m</code>&nbsp; is sequence of characters not including
 whitespace and terminated with whitespace, and &nbsp;<code>'S'</code>&nbsp; is a literal string.
 
-<BR>&nbsp;<H2>12 Character representation</H2>
+<h2>12 Character representation</h2>
 
 In this description of Snowball, it is assumed that strings are composed of
 <I>characters</I>, and that characters can be defined numerically, but the numeric range
@@ -999,7 +999,7 @@ script can be compiled to work with any of the three encoding schemes.
 </TR>
 
 <TR><TD BGCOLOR="lightblue">
-<BR>&nbsp;<H2>Snowball syntax</H2>
+<h2>Snowball syntax</h2>
 
 <DL><DD>
 <code>||</code>&nbsp; is used for alternatives, &nbsp;<code>[<I>X</I>]</code>&nbsp; means that <I>X</I> is

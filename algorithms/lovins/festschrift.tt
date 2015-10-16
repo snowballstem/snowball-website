@@ -17,12 +17,12 @@ by John Tait, Amsterdam: Kluwer, 2005.
 
 <BR><BR>
 
-<BR>&nbsp;<H2>Lovins Revisited</H2>
+<h2>Lovins Revisited</h2>
 
 <BR><BR>
 Martin Porter, December 2001 (revised November 2008).
 
-&nbsp;<H4>Abstract</H4>
+<h4>Abstract</h4>
 <DL><DD>
     The Lovins stemming algorithm for English is analysed, and compared
     with the Porter stemming algorithm, using Snowball, a language designed
@@ -34,7 +34,7 @@ Martin Porter, December 2001 (revised November 2008).
 
 </DL>
 
-<BR>&nbsp;<H2>Preamble</H2>
+<h2>Preamble</h2>
 
 This is a festschrift paper, so I am allowed to begin on a personal note.
 In 1979 I was working with Keith van Rijsbergen and Stephen Robertson on a
@@ -152,7 +152,7 @@ Lovins form, and so run faster?
 This paper is about the answers for these questions. In discovering them, I
 have learned a lot more about my own stemmer.
 
-<BR>&nbsp;<H2>Why stem?</H2>
+<h2>Why stem?</h2>
 
 It may be worth saying a little on what stemming is all about. We can imagine
 a document with the title,
@@ -245,7 +245,7 @@ An evaluative comparison between the Lovins and later stemmers lies in any case
 outside the scope of this paper, but it is important to
 bear in mind that it is not a straightforward undertaking.
 
-<BR>&nbsp;<H2>The Lovins Stemmer</H2>
+<h2>The Lovins Stemmer</h2>
 
 Structurally, the Lovins stemmer is in four parts, collected together in
 four Appendices A, B, C and D in her paper. Part A is a list of 294
@@ -401,7 +401,7 @@ we can regard that as not being part of the stemmer proper.
 
 <BR><BR>
 
-<BR>&nbsp;<H2>The Lovins stemmer in Snowball</H2>
+<h2>The Lovins stemmer in Snowball</h2>
 
 Snowball is a string processing language designed with the idea of making
 the definition of stemming algorithms much more rigorous. The Snowball
@@ -628,7 +628,7 @@ Her reply was a most pleasant surprise.
 </DL>
 
 
-<BR>&nbsp;<H2>An analysis of the Lovins stemmer</H2>
+<h2>An analysis of the Lovins stemmer</h2>
 
 
 It is very important in understanding the Lovins stemmer to know something
@@ -963,7 +963,7 @@ have a damaging effect.
 
 <BR><BR>
 
-<BR>&nbsp;<H2>A Lovins shape for the Porter stemmer</H2>
+<h2>A Lovins shape for the Porter stemmer</h2>
 
 The 1980 paper (Porter, 1980) may be said to define the &#8216;pure&#8217; Porter stemmer.
 The stemmer distributed at (7) can be called the &#8216;real&#8217; Porter
@@ -1362,7 +1362,7 @@ be more appropriate. In fact putting in this adjustment to Porter2 results in an
 improvement in the small class of words thereby affected.
 
 
-<BR>&nbsp;<H2>Conclusion</H2>
+<h2>Conclusion</h2>
 
 You never learn all there is to know about a computer program, unless the
 program is really very simple. So even after 20 years of regular use,
@@ -1381,7 +1381,7 @@ place it the context of the development of stemmers since then.
 
 <BR><BR>
 
-&nbsp;<H4>Notes</H4>
+<h4>Notes</h4>
 
 The http addresses below have a &#8216;last visited&#8217; date of December 2001.
 <BR><BR>
@@ -1416,7 +1416,7 @@ but without a past participle (there is no *<I>stridden</I>).&#8217;
  James L. Dolby in California used a two-syllable minimum stem length as a
  condition for most of the stemming.
 
-&nbsp;<H4>Bibiliography</H4>
+<h4>Bibiliography</h4>
 
 Andrews K (1971) The development of a fast conflation algorithm for English.
 <I>Dissertation for the Diploma in Computer Science</I>, Computer Laboratory,
@@ -1469,7 +1469,7 @@ Porter MF (1980) An algorithm for suffix stripping. <I>Program</I>, 14:
 </TR>
 
 <TR><TD>
-<BR>&nbsp;<H2>Appendix 1</H2>
+<h2>Appendix 1</h2>
 
 The Lovins stemmer in Snowball.
 
@@ -1478,7 +1478,7 @@ The Lovins stemmer in Snowball.
 </TR>
 
 <TR><TD>
-<BR>&nbsp;<H2>Appendix 2</H2>
+<h2>Appendix 2</h2>
 
 The Porter stemmer, cast, as far as is possible, into Lovins form.
 <BR><BR>
@@ -1487,7 +1487,7 @@ The Porter stemmer, cast, as far as is possible, into Lovins form.
 </TR>
 
 <TR><TD>
-<BR>&nbsp;<H2>Appendix 3</H2>
+<h2>Appendix 3</h2>
 
 The list of 181 endings included by the &nbsp;<code>get</code>&nbsp; directive in the program
 of Appendix 2. The numbers to the right show their frequency of occurrence
@@ -1681,7 +1681,7 @@ in the sample vocabulary. The 75 rare endings are shown commented out.
 </TR>
 
 <TR><TD>
-<BR>&nbsp;<H2>Appendix 4</H2>
+<h2>Appendix 4</h2>
 
 An ANSI C program which will generate on &nbsp;<code>stdout</code>&nbsp; the raw ending list
 (endings with condition letters) from which the list of Appendix 3 is

@@ -3,7 +3,7 @@
 <H1 ALIGN=CENTER>The Lovins stemming algorithm</H1>
 
 <TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
+<h2>Links to resources</h2>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><A HREF="../.."> Snowball main page</A>
@@ -84,7 +84,7 @@ followed by its condition code.
 
 <TR><TD BGCOLOR="silver">
 <BR><BR>
-&nbsp;<H4>Appendix A. The list of endings</H4>
+<h4>Appendix A. The list of endings</h4>
 <DL><DD><DL><DD><TABLE CELLPADDING=0>
 <TR><TD></TR>
 <TR><TD><TD></TD><TD> .11. </TD></TR>
@@ -200,8 +200,8 @@ Here are the 29 conditions, called A to Z, AA, BB and CC (* stands for any lette
 
 <TR><TD BGCOLOR="silver">
 <BR><BR>
-&nbsp;<H4>Appendix B. Codes for context-sensitive rules associated with
-certain endings</H4>
+<h4>Appendix B. Codes for context-sensitive rules associated with
+certain endings</h4>
 <DL><DD>
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><TD></TD><TD>A </TD><TD></TD><TD>  No restrictions on stem </TD></TR>
@@ -252,7 +252,7 @@ Finally, here are the 35 transformation rules.
 
 <TR><TD BGCOLOR="silver">
 <BR><BR>
-&nbsp;<H4>Appendix C. Transformation rules used in recoding stem terminations</H4>
+<h4>Appendix C. Transformation rules used in recoding stem terminations</h4>
 <DL><DD>
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><TD></TD><TD> 1  &nbsp;  &nbsp;  &nbsp;  </TD><TD></TD><TD> remove one of double <I>b, d, g, l, m, n, p, r, s, t</I> </TD></TR>
@@ -349,7 +349,7 @@ The following examples show the intentions behind these rules.
 
 <TR><TD>
 
-&nbsp;<H4>The Lovins algorithm in Snowball</H4>
+<h4>The Lovins algorithm in Snowball</h4>
 
 And here is the Lovins algorithm in Snowball. The natural representation
 of the Lovins endings, conditions and rules in Snowball, is, I believe, a

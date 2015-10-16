@@ -12,7 +12,7 @@
 
 
 <TR><TD BGCOLOR="wheat">
-<BR>&nbsp;<H2>Links</H2>
+<h2>Links</h2>
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><A HREF=".."> Snowball main page</A>
 <TR><TD><A HREF="http://tartarus.org/~martin/PorterStemmer/"> Porter stemmer page</A>
@@ -47,7 +47,7 @@ October 2001<BR><BR><BR><BR>
 
 
 
-<BR>&nbsp;<H2>1 Introduction</H2>
+<h2>1 Introduction</h2>
 
 There are two main reasons for creating Snowball. One is the lack of
 readily available stemming algorithms for languages
@@ -110,7 +110,7 @@ hoped that Snowball itself will be a useful resource in creating stemmers
 in the future.
 
 
-<BR>&nbsp;<H2>2 Some ideas underlying stemming</H2>
+<h2>2 Some ideas underlying stemming</h2>
 
 Work in stemming has produced a number of different approaches, albeit tied
 together by a number of common assumptions. It is worthwhile looking at some
@@ -321,7 +321,7 @@ If the stemming process reduces two words to the same stem, they are said
 to be <I>conflated</I>.
 
 
-<BR>&nbsp;<H2>3 Stemming errors, and the use of dictionaries</H2>
+<h2>3 Stemming errors, and the use of dictionaries</h2>
 
 One way of thinking of the relation between terms and documents in an IR
 system is to see the documents as being about concepts, and the terms as
@@ -595,7 +595,7 @@ using a dictionary does not eliminate all over-stemmings, but does reduce their
 incidence.
 
 
-<BR>&nbsp;<H2>4 Stemming as part of an indexing process</H2>
+<h2>4 Stemming as part of an indexing process</h2>
 
 Stemming is part of a composite process of extracting words from text and
 turning them into index terms in an IR system. Because stemming is somewhat
@@ -681,7 +681,7 @@ process. See section 7.
 4) Conflating irregular forms. More will be said on this in section 6.
 
 
-<BR>&nbsp;<H2>5 The use of stemmed words</H2>
+<h2>5 The use of stemmed words</h2>
 
 The idea of how stemmed words might be employed in an IR system has
 evolved slightly over the years. The Lovins stemmer (Lovins 1968) was
@@ -728,7 +728,7 @@ trying to achieve this effect acts as a useful control. Similarly with the
 other stemmers presented here, an attempt has been made to keep the
 appearance of the stemmed forms as familiar as possible.
 
-<BR>&nbsp;<H2>6 Irregular grammatical forms</H2>
+<h2>6 Irregular grammatical forms</h2>
 
 All languages contain irregularities, but to what extent should they be
 accommodated in a stemming algorithm? An English stemmer, for example, can
@@ -775,7 +775,7 @@ plugged in as necessary. This is more serviceable than attempting to
 embed special lists of these irregular forms into software.
 
 
-<BR>&nbsp;<H2>7 Stopwords</H2>
+<h2>7 Stopwords</h2>
 
 We have suggested that stemming stopwords is not useful. There is a
 grammatical connection between <I>being</I> and <I>be</I>, but conflation of the two
@@ -816,7 +816,7 @@ Usually we present Snowball stemmers in their unadorned form. Thereafter,
 the addition of stopword tables is quite easy.
 
 
-<BR>&nbsp;<H2>8 Rare forms</H2>
+<h2>8 Rare forms</h2>
 
 Stemmers do not need to handle linguistic forms that turn up only very
 rarely, but in practice it is hard to design a stemmer with all rare forms
@@ -838,7 +838,7 @@ word in English.
 
 
 
-&nbsp;<H4>References</H4>
+<h4>References</h4>
 
 Farber DJ, Griswold RE and Polonsky IP (1964) SNOBOL, a string manipulation
 language. <I>Journal of the Association for Computing Machinery</I>, <B>11</B>: 21-30.

@@ -5,7 +5,7 @@
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
 <H1 ALIGN=CENTER>Using Snowball</H1>
 <TR><TD BGCOLOR="wheat">
-<BR>&nbsp;<H2>Links to resources</H2>
+<h2>Links to resources</h2>
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><A HREF=".."> Snowball main page</A>
 <TR><TD><A HREF="../compiler/snowman.html">     Snowball manual</A>
@@ -20,7 +20,7 @@
 <BR><BR>
 
 <TR><TD>
-<BR>&nbsp;<H2>Compiling and running Snowball</H2>
+<h2>Compiling and running Snowball</h2>
 
 When you download Snowball
 (<A HREF="../dist/snowball_code.tgz">from here</A>),
@@ -61,7 +61,7 @@ If option &nbsp;<code>-java</code>&nbsp; is present, Java output is produced in 
 The &nbsp;<code>-widechars</code>, &nbsp;<code>-utf8</code>, &nbsp;<code>-eprefix</code>&nbsp; and &nbsp;<code>-vprefix</code>&nbsp; options belong with ANSI C
 generation; the &nbsp;<code>-name</code>&nbsp; option with Java generation.
 
-&nbsp;<H4>ANSI C generation</H4>
+<h4>ANSI C generation</h4>
 
 In the absence of the &nbsp;<code>-eprefix</code>&nbsp; and &nbsp;<code>-vprefix</code>&nbsp; options, the list of
 declared externals in the Snowball program, for example,
@@ -148,7 +148,7 @@ those files in the runtime directory in the standard distribution) are not
 in the same location as the generated source files. It is used when
 building the libstemmer library, and may be useful for other projects.
 
-&nbsp;<H4>Java generation</H4>
+<h4>Java generation</h4>
 
 The &nbsp;<code>-java</code>&nbsp; option automatically sets the &nbsp;<code>-widechars</code>&nbsp; option.
 
@@ -159,7 +159,7 @@ To run Java, download the
 which will unpack into an
 appropriate directory structure.
 
-&nbsp;<H4>Other options</H4>
+<h4>Other options</h4>
 
 
 If &nbsp;<code>-syntax</code>&nbsp; is used the other options are ignored, and the syntax tree
@@ -189,7 +189,7 @@ causes &nbsp;<code>F</code>&nbsp; to be searched for in the successive locations
 &#x2014; that is, the current directory, followed in turn by directories &nbsp;<code>D1</code>&nbsp; to
 <code>Dn</code>.
 
-<BR>&nbsp;<H2>The Snowball API</H2>
+<h2>The Snowball API</h2>
 
 To access Snowball from C, include the header &nbsp;<code>api.h</code>, and any headers
 generated from the Snowball scripts you wish to use. &nbsp;<code>api.h</code>&nbsp; declares
@@ -249,7 +249,7 @@ The stemming scripts on this Web site use Snowball very simply.
 script (usually the language the script is for). All the programs are
 tested through a common <A HREF="driver.c">driver</A> program.
 
-<BR>&nbsp;<H2>Getting started</H2>
+<h2>Getting started</h2>
 
 The complete apparatus of the libstemmer download plus the make files can
 obscure the essential simplicity of the Snowball system. Just to get a bit of
@@ -427,7 +427,7 @@ In summary therefore,
 </PRE>
 (Not so hard.)
 
-<BR>&nbsp;<H2>Debugging snowball scripts</H2>
+<h2>Debugging snowball scripts</h2>
 
 In the rare event that your Snowball script does not run perfectly the first time:
 <BR><BR>
@@ -445,12 +445,12 @@ At present there is no way of reporting the value of an integer or boolean.
 If desperate, you can put debugging lines into the generated C program. This is not so
 hard, since running comments show the correspondence with the Snowball source.
 <BR><BR>
-<BR>&nbsp;<H2>Compiler bugs</H2>
+<h2>Compiler bugs</h2>
 
 If you hit a snowball compiler bug, try to
 capture it in a small script before notifying us.
 
-<BR>&nbsp;<H2>Known problems in Snowball</H2>
+<h2>Known problems in Snowball</h2>
 
 The main one is that it is possible to &#8216;pull the rug from under your own feet&#8217; in
 constructions like this:
