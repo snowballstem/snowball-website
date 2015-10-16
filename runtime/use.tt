@@ -1,11 +1,7 @@
-<HTML>
-<HEAD>
-<TITLE>Using Snowball</TITLE></HEAD>
-<BODY BGCOLOR=WHITE>
+[% header('Using Snowball') %]
 <TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<H1 ALIGN=CENTER>Using Snowball</H1>
 <TR><TD BGCOLOR="wheat">
-<h2>Links to resources</h2>
+<BR>&nbsp;<H2>Links to resources</H2>
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><A HREF=".."> Snowball main page</A>
 <TR><TD><A HREF="../compiler/snowman.html">     Snowball manual</A>
@@ -20,7 +16,7 @@
 <BR><BR>
 
 <TR><TD>
-<h2>Compiling and running Snowball</h2>
+<BR>&nbsp;<H2>Compiling and running Snowball</H2>
 
 When you download Snowball
 (<A HREF="../dist/snowball_code.tgz">from here</A>),
@@ -61,43 +57,47 @@ If option &nbsp;<code>-java</code>&nbsp; is present, Java output is produced in 
 The &nbsp;<code>-widechars</code>, &nbsp;<code>-utf8</code>, &nbsp;<code>-eprefix</code>&nbsp; and &nbsp;<code>-vprefix</code>&nbsp; options belong with ANSI C
 generation; the &nbsp;<code>-name</code>&nbsp; option with Java generation.
 
-<h4>ANSI C generation</h4>
+&nbsp;<H4>ANSI C generation</H4>
 
 In the absence of the &nbsp;<code>-eprefix</code>&nbsp; and &nbsp;<code>-vprefix</code>&nbsp; options, the list of
 declared externals in the Snowball program, for example,
-<BR><PRE>
+<BR>
+[% highlight("
     externals ( stem_1 stem_2 moderate )
-</PRE>
+") %]
 gives rise to a header file containing,
-<BR><PRE>
+<BR>
+[% highlight("
     extern struct SN_env * create_env(void);
     extern void close_env(struct SN_env * z);
 
     extern int moderate(struct SN_env * z);
     extern int stem_2(struct SN_env * z);
     extern int stem_1(struct SN_env * z);
-</PRE>
+", "c") %]
 If &nbsp;<code>-eprefix</code>&nbsp; is used, its string, &nbsp;<code>S1</code>, is prefixed to each external
 name, for example
 <BR><PRE>
     -eprefix Khotanese_
 </PRE>
 would give rise to the header file,
-<BR><PRE>
+<BR>
+[% highlight("
     extern struct SN_env * Khotanese_create_env(void);
     extern void Khotanese_close_env(struct SN_env * z);
 
     extern int Khotanese_moderate(struct SN_env * z);
     extern int Khotanese_stem_2(struct SN_env * z);
     extern int Khotanese_stem_1(struct SN_env * z);
-</PRE>
+", "c") %]
 If &nbsp;<code>-vprefix</code>&nbsp; is used, all Snowball strings, integers and booleans give
 rise to a &nbsp;<code>#define</code>&nbsp; line in the header file. For example
 <BR><PRE>
     -eprefix Khotanese_ -vprefix Khotanese_variable
 </PRE>
 would give rise the header file,
-<BR><PRE>
+<BR>
+[% highlight("
     extern struct SN_env * Khotanese_create_env(void);
     extern void Khotanese_close_env(struct SN_env * z);
 
@@ -106,14 +106,15 @@ would give rise the header file,
     #define Khotanese_variable_p2 (I[1])
     #define Khotanese_variable_p1 (I[0])
     extern int Khotanese_stem(struct SN_env * z);
-</PRE>
+", "c") %]
 
 The &nbsp;<code>-widechars</code>&nbsp; option affects interpretation of Snowball <I>hex</I> and
 <I>decimal</I> strings, as in
-<BR><PRE>
+<BR>
+[% highlight("
     stringdef m hex 'H1 H2 ...'
     stringdef m decimal 'D1 D2 ...'
-</PRE>
+") %]
 where &nbsp;<code>H1</code>, &nbsp;<code>H2</code>&nbsp; ... are hex numbers and &nbsp;<code>D1</code>, &nbsp;<code>D2</code>&nbsp; ... are decimal
 numbers. Without the &nbsp;<code>-widechars</code>&nbsp; option it is an error for these numbers
 to exceed 255. With the &nbsp;<code>-widechars</code>&nbsp; option it is only an error if they
@@ -123,15 +124,17 @@ that (<I>a</I>) the output from Snowball is the same in both cases, and (<I>b</I
 the &nbsp;<code>-java</code>&nbsp; option automatically sets the &nbsp;<code>-widechars</code>&nbsp; option.
 Within the API header file &nbsp;<code>api.h</code>, &nbsp;<code>symbol</code>&nbsp; is given a typedef of
 <code>unsigned char</code>,
-<BR><PRE>
+<BR>
+[% highlight("
         typedef unsigned char symbol;
-</PRE>
+", "c") %]
 &#x2014; and a sequence of characters representing a word to be stemmed is then
 held in a &nbsp;<code>symbol</code>&nbsp; array. To switch to a 16 bit representation of characters,
 just replace &nbsp;<code>char</code>&nbsp; by &nbsp;<code>short</code>&nbsp; here:
-<BR><PRE>
+<BR>
+[% highlight("
         typedef unsigned short symbol;
-</PRE>
+", "c") %]
 
 The &nbsp;<code>-utf8</code>&nbsp; option is an alternative to &nbsp;<code>-widechars</code>. Again, it allows
 characters in the range 0 to 65535 in &nbsp;<code>stringdef</code>s, but these characters
@@ -148,7 +151,7 @@ those files in the runtime directory in the standard distribution) are not
 in the same location as the generated source files. It is used when
 building the libstemmer library, and may be useful for other projects.
 
-<h4>Java generation</h4>
+&nbsp;<H4>Java generation</H4>
 
 The &nbsp;<code>-java</code>&nbsp; option automatically sets the &nbsp;<code>-widechars</code>&nbsp; option.
 
@@ -159,7 +162,7 @@ To run Java, download the
 which will unpack into an
 appropriate directory structure.
 
-<h4>Other options</h4>
+&nbsp;<H4>Other options</H4>
 
 
 If &nbsp;<code>-syntax</code>&nbsp; is used the other options are ignored, and the syntax tree
@@ -175,9 +178,10 @@ Any number of &nbsp;<code>-include</code>&nbsp; options may be present, for exam
 </PRE>
 Each &nbsp;<code>-include</code>&nbsp; is followed by a directory name. With a chain of
 directories &nbsp;<code>D1</code>, &nbsp;<code>D2</code>&nbsp; ... &nbsp;<code>Dn</code>, a Snowball &nbsp;<code>get</code>&nbsp; directive,
-<BR><PRE>
+<BR>
+[% highlight("
     get 'F'
-</PRE>
+") %]
 causes &nbsp;<code>F</code>&nbsp; to be searched for in the successive locations,
 <BR><PRE>
     F
@@ -189,67 +193,75 @@ causes &nbsp;<code>F</code>&nbsp; to be searched for in the successive locations
 &#x2014; that is, the current directory, followed in turn by directories &nbsp;<code>D1</code>&nbsp; to
 <code>Dn</code>.
 
-<h2>The Snowball API</h2>
+<BR>&nbsp;<H2>The Snowball API</H2>
 
 To access Snowball from C, include the header &nbsp;<code>api.h</code>, and any headers
 generated from the Snowball scripts you wish to use. &nbsp;<code>api.h</code>&nbsp; declares
-<BR><PRE>
-    struct SN_env { ... };
+<BR>
+[% highlight("
+    struct SN_env { /* ... */ };
     extern void SN_set_current(struct SN_env * z, int size, char * s);
-</PRE>
+", "c") %]
 Continuing the previous example, you set up an environment to call the
 resources of the Khotanese module with
-<BR><PRE>
+<BR>
+[% highlight("
     struct SN_env * z;
     z = Khotanese_create_env();
-</PRE>
+", "c") %]
 Snowball has the concept of a &#8216;current string&#8217;.
 This can be set up by,
-<BR><PRE>
+<BR>
+[% highlight("
     SN_set_current(z, i, b);
-</PRE>
+", "c") %]
 This defines the current string as the &nbsp;<code>i</code>&nbsp; bytes of data starting at
 address &nbsp;<code>b</code>. The externals can then be called,
-<BR><PRE>
+<BR>
+[% highlight("
     Khotanese_moderate(z);
-    ...
+    /* ... */
     Khotanese_stem_1(z);
-</PRE>
+", "c") %]
 They give a 1 or 0 result, corresponding to the <B><I>t</I></B> or <B><I>f</I></B> result of
 the Snowball routine.
 <BR><BR>
 And later,
-<BR><PRE>
+<BR>
+[% highlight("
     Khotanese_close_env(z);
-</PRE>
+", "c") %]
 To release the space raised by z back to the system. You can do this for a
 number of Snowball modules at the same time: you will need a separate
 <code>struct SN_env * z;</code>&nbsp; for each module.
 
 The current string is given by the &nbsp;<code>z-&gt;l</code>&nbsp; bytes of data starting at &nbsp;<code>z-&gt;p</code>.
 The string is not zero-terminated, but you can zero terminate it yourself with
-<BR><PRE>
-    z-&gt;p[z-&gt;l] = 0;
-</PRE>
+<BR>
+[% highlight("
+    z->p[z->l] = 0;
+", "c") %]
 (There is always room for this last zero byte.) For example,
-<BR><PRE>
+<BR>
+[% highlight('
     SN_set_current(z, strlen(s), s);
     Khotanese_stem_1(z);
-    z-&gt;p[z-&gt;l] = 0;
-    printf("Khotanese-1 stems '%s' to '%s'\n", s, z-&gt;p);
-</PRE>
+    z->p[z->l] = 0;
+    printf("Khotanese-1' _ " stems '%s' to '%s'" _ '\n", s, z->p);
+', "c") %]
 The values of the other variables can be accessed via the &nbsp;<code>#define</code>
 settings that result from the &nbsp;<code>-vprefix</code>&nbsp; option, although this should not
 usually be necessary:
-<BR><PRE>
-    printf("p1 is %d\n", z-&gt;Khotanese_variable_p1);
-</PRE>
+<BR>
+[% highlight('
+    printf("p1 is %d\n", z->Khotanese_variable_p1);
+', "c") %]
 The stemming scripts on this Web site use Snowball very simply.
 <code>-vprefix</code>&nbsp; is left unset, and &nbsp;<code>-eprefix</code>&nbsp; is set to the name of the
 script (usually the language the script is for). All the programs are
 tested through a common <A HREF="driver.c">driver</A> program.
 
-<h2>Getting started</h2>
+<BR>&nbsp;<H2>Getting started</H2>
 
 The complete apparatus of the libstemmer download plus the make files can
 obscure the essential simplicity of the Snowball system. Just to get a bit of
@@ -280,11 +292,11 @@ snowball script,
 at the top of this page, but here it is,
 <BR>
 </TR>
-<TR><TD BGCOLOR="wheat">
-<BR><PRE>
-    #include &lt;stdio.h&gt;
-    #include &lt;stdlib.h&gt; /* for malloc, free */
-    #include &lt;string.h&gt; /* for memmove */
+<TR><TD>
+[% highlight('
+    #include <stdio.h>
+    #include <stdlib.h> /* for malloc, free */
+    #include <string.h> /* for memmove */
 
     #include "api.h"
     #include "hungarian.h"
@@ -314,7 +326,7 @@ at the top of this page, but here it is,
     #define INC 10
         int lim = INC;
         symbol * b = (symbol *) malloc(lim * sizeof(symbol));
-
+' _ "
         while(1) {
             int ch = getc(f_in);
             if (ch == EOF) {
@@ -323,7 +335,7 @@ at the top of this page, but here it is,
             {
                 int i = 0;
                 while(1) {
-                    if (ch == '\n' || ch == EOF) break;
+                    if (ch == '" _ '\n' _ "' || ch == EOF) break;
                     if (i == lim) {  /* make b bigger */
                         symbol * q = (symbol *) malloc((lim + INC) * sizeof(symbol));
                         memmove(q, b, lim * sizeof(symbol));
@@ -333,12 +345,12 @@ at the top of this page, but here it is,
                     b[i] = ch; i++;
                     ch = getc(f_in);
                 }
-
+" _ '
                 SN_set_current(z, i, b);
                 H_stem(z);
                 {
                     int j;
-                    for (j = 0; j &lt; z-&gt;l; j++) fprintf(f_out, "%c", z-&gt;p[j]);
+                    for (j = 0; j < z->l; j++) fprintf(f_out, "%c", z->p[j]);
                     fprintf(f_out, "\n");
                 }
             }
@@ -348,25 +360,26 @@ at the top of this page, but here it is,
     static int eq(char * s1, char * s2) {
         int s1_len = strlen(s1);
         int s2_len = strlen(s2);
-        return s1_len == s2_len &amp;&amp; memcmp(s1, s2, s1_len) == 0;
+        return s1_len == s2_len && memcmp(s1, s2, s1_len) == 0;
     }
 
     static void show_options(int n) {
         printf("options are: file [-o[utput] file] [-h[elp]]\n");
         exit(n);
     }
-
+' _ "
     int main(int argc, char * argv[])
     {   char * in = 0;
         char * out = 0;
         {   char * s;
             int i = 1;
             while(1) {
-                if (i &gt;= argc) break;
+                if (i >= argc) break;
                 s = argv[i++];
                 if (s[0] == '-') {
+" _ '
                     if (eq(s, "-output") || eq(s, "-o")) {
-                        if (i &gt;= argc) {
+                        if (i >= argc) {
                             fprintf(stderr, "%s requires an argument\n", s);
                             exit(1);
                         }
@@ -402,6 +415,7 @@ at the top of this page, but here it is,
 
         return 0;
     }
+', "c") %]
 </PRE>
 </TR>
 <TR><TD>
@@ -427,7 +441,7 @@ In summary therefore,
 </PRE>
 (Not so hard.)
 
-<h2>Debugging snowball scripts</h2>
+<BR>&nbsp;<H2>Debugging snowball scripts</H2>
 
 In the rare event that your Snowball script does not run perfectly the first time:
 <BR><BR>
@@ -445,12 +459,12 @@ At present there is no way of reporting the value of an integer or boolean.
 If desperate, you can put debugging lines into the generated C program. This is not so
 hard, since running comments show the correspondence with the Snowball source.
 <BR><BR>
-<h2>Compiler bugs</h2>
+<BR>&nbsp;<H2>Compiler bugs</H2>
 
 If you hit a snowball compiler bug, try to
 capture it in a small script before notifying us.
 
-<h2>Known problems in Snowball</h2>
+<BR>&nbsp;<H2>Known problems in Snowball</H2>
 
 The main one is that it is possible to &#8216;pull the rug from under your own feet&#8217; in
 constructions like this:
@@ -472,5 +486,4 @@ occasional side-effect.) It may be addressed in the future.
 </TR>
 
 </TABLE>
-</BODY>
-</HTML>
+[% footer %]
