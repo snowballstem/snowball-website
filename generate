@@ -185,13 +185,6 @@ __END__
     $template->process($in, $vars, $out) || die $template->error();
 }
 
-# The footer of the page.
-# There should be no output after this.
-$$vars{footer} = <<'__END__';
-  </body>
-</html>
-__END__
-
 $$vars{highlight} = sub {
     my $in = shift;
     my $lang = shift;
@@ -254,12 +247,26 @@ for my $in (<*/*.tt */*/*.tt>) {
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
-    <link href="/styles.css" rel="stylesheet">
     <title>$title</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
 
-  <body bgcolor="white">
+  <body>
     <h1>$title</h1>
+
+    <!-- Static navbar removed for now-->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <!--\$menu-->
+        </div>
+        <div class="col-md-10">
 __END__
     };
 

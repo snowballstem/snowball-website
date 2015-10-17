@@ -1,37 +1,24 @@
 [% header('French stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample French vocabulary</A>
-<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<BR><BR>
-<TR><TD><A HREF="stop.txt">    French stop word list</A>
-</TABLE></DL>
+<h2>Links to resources</h2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../../texts/romance.html">
-                  Romance language stemmers</A>
-</TABLE></DL>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="../../texts/romance.html"> Romance language stemmers</A>
+<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      &#x2014; and its header</A>
+<li> <A HREF="voc.txt">     Sample French vocabulary</A>
+<li> <A HREF="output.txt">  Its stemmed equivalent</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+<li> <A HREF="stop.txt">    French stop word list</A>
+</ul>
 
-</TR>
-
-<TR><TD BGCOLOR="lightpink">
-
-<BR><BR>
-
+<div style="background-color:lightpink">
+<p>
 Here is a sample of French vocabulary, with the stemmed forms that will
 be generated with this algorithm.
-
-<BR><BR>
-
-
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>  <B>word</B> </TD>
@@ -216,16 +203,14 @@ malad<BR>
 </TD>
 </TR>
 </TABLE></DL>
+</div>
 
+<h2>The stemming algorithm</h2>
 
-</TR>
-
-<TR><TD>
-
-<BR><BR>
-<BR>&nbsp;<H2>The stemming algorithm</H2>
-
+<p>
 Letters in French include the following accented forms,
+</p>
+
 <DL><DD>
     <B><I>â  &nbsp;  à  &nbsp;  ç  &nbsp;  ë  &nbsp;  é  &nbsp;  ê  &nbsp;  è  &nbsp;  ï  &nbsp;  î  &nbsp;  ô  &nbsp;  û  &nbsp;  ù</I></B>
 </DL>
@@ -242,65 +227,83 @@ also put into upper case. For example,
 <TR><TD>    yeux    <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  Yeux
 <TR><TD>    quand   <TD></TD><TD> <code>-&gt;</code> <TD></TD><TD>  qUand
 </TABLE></DL>
+
+<p>
 (The upper case forms are not then classed as vowels &#x2014; see <A HREF="../../texts/vowelmarking.html"> note</A> on vowel
 marking.)
-<BR><BR>
+</p>
+
+<p>
 If the word begins with two vowels, <I>RV</I> is the region after the third
 letter, otherwise the region after the first vowel not at the beginning of
 the word, or the end of the word if these positions cannot be found. (Exceptionally,
 <B><I>par</I></B>, <B><I>col</I></B> or <B><I>tap</I></B>, at the beginning of a word is also taken to define
 <I>RV</I> as the region to their right.)
-<BR><BR>
+</p>
+
+<p>
 For example,
-<BR><PRE>
+</p>
+
+<PRE>
     a i m e r     a d o r e r     v o l e r    t a p i s
          |...|         |.....|       |.....|        |...|
 </PRE>
+
+<p>
 <I>R</I>1 is the region after the first non-vowel following a vowel, or the end of
 the word if there is no such non-vowel.
+</p>
 
+<p>
 <I>R</I>2 is the region after the first non-vowel following a vowel in <I>R</I>1, or the
 end of the word if there is no such non-vowel.
 (See <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
-<BR><BR>
+</p>
+
+<p>
 For example:
-<BR><PRE>
+</p>
+
+<PRE>
     f a m e u s e m e n t
          |......R1.......|
                |...R2....|
 </PRE>
+
+<p>
 Note that <I>R</I>1 can contain <I>RV</I> (<I>adorer</I>), and <I>RV</I> can contain <I>R</I>1 (<I>voler</I>).
-<BR><BR>
+</p>
+
+<p>
 Below, &#8216;delete if in <I>R</I>2&#8217; means that a found suffix should be removed if it
 lies entirely in <I>R</I>2, but not if it overlaps <I>R</I>2 and the rest of the word.
 &#8216;delete if in <I>R</I>1 and preceded by <I>X</I>&#8217; means that <I>X</I> itself does not have to
 come in <I>R</I>1, while &#8216;delete if preceded by <I>X</I> in <I>R</I>1&#8217; means that <I>X</I>, like the
 suffix, must be entirely in <I>R</I>1.
-<BR><BR>
+</p>
+
+<p>
 Start with step 1
-<BR><BR>
+</p>
+
+<p>
 Step 1: Standard suffix removal
 <DL><DD>
     Search for the longest among the following suffixes, and perform the
     action indicated.
-<BR><BR>
 <DL>
     <DT><B><I>ance  &nbsp;  iqUe  &nbsp;  isme  &nbsp;  able  &nbsp;  iste  &nbsp;  eux  &nbsp;  ances  &nbsp;  iqUes  &nbsp;  ismes  &nbsp;  ables  &nbsp;  istes</I></B>
         <DD>delete if in <I>R</I>2
-<BR><BR>
     <DT><B><I>atrice  &nbsp;  ateur  &nbsp;  ation  &nbsp;  atrices  &nbsp;  ateurs  &nbsp;  ations</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>ic</I></B>, delete if in <I>R</I>2, else replace by <B><I>iqU</I></B>
-<BR><BR>
     <DT><B><I>logie  &nbsp;  logies</I></B>
         <DD>replace with <B><I>log</I></B> if in <I>R</I>2
-<BR><BR>
     <DT><B><I>usion  &nbsp;  ution  &nbsp;  usions  &nbsp;  utions</I></B>
         <DD>replace with <B><I>u</I></B> if in <I>R</I>2
-<BR><BR>
     <DT><B><I>ence  &nbsp;  ences</I></B>
         <DD>replace with <B><I>ent</I></B> if in <I>R</I>2
-<BR><BR>
     <DT><B><I>ement  &nbsp;  ements</I></B>
         <DD>delete if in <I>RV</I>
         <DD>if preceded by <B><I>iv</I></B>, delete if in <I>R</I>2 (and if further preceded by <B><I>at</I></B>,
@@ -309,52 +312,49 @@ Step 1: Standard suffix removal
           if in <I>R</I>1, otherwise,
         <DD>if preceded by <B><I>abl</I></B> or <B><I>iqU</I></B>, delete if in <I>R</I>2, otherwise,
         <DD>if preceded by <B><I>ièr</I></B> or <B><I>Ièr</I></B>, replace by <B><I>i</I></B> if in <I>RV</I>
-<BR><BR>
     <DT><B><I>ité  &nbsp;  ités</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>abil</I></B>, delete if in <I>R</I>2, else replace by <B><I>abl</I></B>,
         otherwise,
         <DD>if preceded by <B><I>ic</I></B>, delete if in <I>R</I>2, else replace by <B><I>iqU</I></B>, otherwise,
         <DD>if preceded by <B><I>iv</I></B>, delete if in <I>R</I>2
-<BR><BR>
     <DT><B><I>if  &nbsp;  ive  &nbsp;  ifs  &nbsp;  ives</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>at</I></B>, delete if in <I>R</I>2 (and if further preceded by <B><I>ic</I></B>,
         delete if in <I>R</I>2, else replace by <B><I>iqU</I></B>)
-<BR><BR>
     <DT><B><I>eaux</I></B>
         <DD>replace with <B><I>eau</I></B>
-<BR><BR>
     <DT><B><I>aux</I></B>
         <DD>replace with <B><I>al</I></B> if in <I>R</I>1
-<BR><BR>
     <DT><B><I>euse  &nbsp;  euses</I></B>
         <DD>delete if in <I>R</I>2, else replace by <B><I>eux</I></B> if in <I>R</I>1
-<BR><BR>
     <DT><B><I>issement  &nbsp;  issements</I></B>
         <DD>delete if in <I>R</I>1 and preceded by a non-vowel
-<BR><BR>
     <DT><B><I>amment</I></B>
         <DD>replace with <B><I>ant</I></B> if in <I>RV</I>
-<BR><BR>
     <DT><B><I>emment</I></B>
         <DD>replace with <B><I>ent</I></B> if in <I>RV</I>
-<BR><BR>
     <DT><B><I>ment  &nbsp;  ments</I></B>
         <DD>delete if preceded by a vowel in <I>RV</I>
 </DL>
 </DL>
 
+<p>
 In steps 2<I>a</I> and 2<I>b</I> all tests are confined to the <I>RV</I> region.
-<BR><BR>
+</p>
+
+<p>
 Do step 2<I>a</I> if either no ending was removed by step 1, or if one of endings
 <B><I>amment</I></B>, <B><I>emment</I></B>, <B><I>ment</I></B>, <B><I>ments</I></B> was found.
-<BR><BR>
+</p>
+
+<p>
 Step 2<I>a</I>: Verb suffixes beginning <B><I>i</I></B>
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes and if found,
     delete if preceded by a non-vowel.
-<BR><BR>
 <DL><DD>
         <B><I>îmes  &nbsp;  ît  &nbsp;  îtes  &nbsp;  i  &nbsp;  ie  &nbsp;  ies  &nbsp;  ir  &nbsp;  ira  &nbsp;  irai  &nbsp;  iraIent  &nbsp;  irais  &nbsp;  irait  &nbsp;  iras
          &nbsp;  irent  &nbsp;  irez  &nbsp;  iriez  &nbsp;  irions  &nbsp;  irons  &nbsp;  iront  &nbsp;  is  &nbsp;  issaIent  &nbsp;  issais  &nbsp;  issait
@@ -364,21 +364,24 @@ Step 2<I>a</I>: Verb suffixes beginning <B><I>i</I></B>
 <BR>
     (Note that the non-vowel itself must also be in <I>RV</I>.)
 </DL>
+
+<p>
 Do step 2<I>b</I> if step 2<I>a</I> was done, but failed to remove a suffix.
-<BR><BR>
+</p>
+
+<p>
 Step 2<I>b</I>: Other verb suffixes
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes, and perform the
     action indicated.
-<BR><BR>
 <DL>
     <DT><B><I>ions</I></B>
         <DD>delete if in <I>R</I>2
-<BR><BR>
     <DT><B><I>é  &nbsp;  ée  &nbsp;  ées  &nbsp;  és  &nbsp;  èrent  &nbsp;  er  &nbsp;  era  &nbsp;  erai  &nbsp;  eraIent  &nbsp;  erais  &nbsp;  erait  &nbsp;  eras  &nbsp;  erez
      &nbsp;  eriez  &nbsp;  erions  &nbsp;  erons  &nbsp;  eront  &nbsp;  ez  &nbsp;  iez</I></B>
         <DD>delete
-<BR><BR>
     <DT><B><I>âmes  &nbsp;  ât  &nbsp;  âtes  &nbsp;  a  &nbsp;  ai  &nbsp;  aIent  &nbsp;  ais  &nbsp;  ait  &nbsp;  ant  &nbsp;  ante  &nbsp;  antes  &nbsp;  ants  &nbsp;  as  &nbsp;  asse
      &nbsp;  assent  &nbsp;  asses  &nbsp;  assiez  &nbsp;  assions</I></B>
         <DD>delete
@@ -388,35 +391,48 @@ Step 2<I>b</I>: Other verb suffixes
     (Note that the <B><I>e</I></B> that may be deleted in this last step must also be in
     <I>RV</I>.)
 </DL>
+
+<p>
 If the last step to be obeyed &#x2014; either step 1, 2<I>a</I> or 2<I>b</I> &#x2014; altered the word,
 do step 3
-<BR><BR>
+</p>
+
+<p>
 Step 3
+</p>
 <DL><DD>
     Replace final <B><I>Y</I></B> with <B><I>i</I></B> or final <B><I>ç</I></B> with <B><I>c</I></B>
 </DL>
+<p>
 Alternatively, if the last step to be obeyed did not alter the word, do
 step 4
-<BR><BR>
+</p>
+
+<p>
 Step 4: Residual suffix
+</p>
+
 <DL><DD>
+    <p>
     If the word ends <B><I>s</I></B>, not preceded by <B><I>a</I></B>, <B><I>i</I></B>, <B><I>o</I></B>, <B><I>u</I></B>, <B><I>è</I></B> or <B><I>s</I></B>, delete it.
-<BR><BR>
+    </p>
+
+    <p>
     In the rest of step 4, all tests are confined to the <I>RV</I> region.
-<BR><BR>
+    </p>
+
+    <p>
     Search for the longest among the following suffixes, and perform the
     action indicated.
-<BR><BR>
+    </p>
+
 <DL>
     <DT><B><I>ion</I></B>
         <DD>delete if in <I>R</I>2 and preceded by <B><I>s</I></B> or <B><I>t</I></B>
-<BR><BR>
     <DT><B><I>ier  &nbsp;  ière  &nbsp;  Ier  &nbsp;  Ière</I></B>
         <DD>replace with <B><I>i</I></B>
-<BR><BR>
     <DT><B><I>e</I></B>
         <DD>delete
-<BR><BR>
     <DT><B><I>ë</I></B>
         <DD>if preceded by <B><I>gu</I></B>, delete
 </DL>
@@ -424,30 +440,38 @@ Step 4: Residual suffix
     (So note that <B><I>ion</I></B> is removed only when it is in <I>R</I>2 &#x2014; as well as being
     in <I>RV</I> &#x2014; and preceded by <B><I>s</I></B> or <B><I>t</I></B> which must be in <I>RV</I>.)
 </DL>
+
+<p>
 Always do steps 5 and 6.
-<BR><BR>
+</p>
+
+<p>
 Step 5: Undouble
+</p>
+
 <DL><DD>
     If the word ends <B><I>enn</I></B>, <B><I>onn</I></B>, <B><I>ett</I></B>, <B><I>ell</I></B> or <B><I>eill</I></B>, delete the last letter
 </DL>
+
+<p>
 Step 6: Un-accent
+</p>
+
 <DL><DD>
     If the words ends <B><I>é</I></B> or <B><I>è</I></B> followed by at least one non-vowel, remove
     the accent from the <B><I>e</I></B>.
 </DL>
+
+<p>
 And finally:
+</p>
+
 <DL><DD>
     Turn any remaining <B><I>I</I></B>, <B><I>U</I></B> and <B><I>Y</I></B> letters in the word back into lower case.
 </DL>
 
-
-</TR>
-
-<TR><TD>
-<H2>The same algorithm in Snowball</H2>
+<h2>The same algorithm in Snowball</h2>
 
 [% highlight_file('french') %]
-</TR>
 
-</TABLE>
 [% footer %]

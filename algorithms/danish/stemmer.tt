@@ -1,39 +1,25 @@
 [% header('Danish stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
+<h2>Links to resources</h2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Danish vocabulary</A>
-<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<BR><BR>
-<TR><TD><A HREF="stop.txt">     Danish stop word list</A>
-</TABLE></DL>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="../../texts/scandinavian.html">Scandinavian language stemmers</A>
+<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      &#x2014; and its header</A>
+<li> <A HREF="voc.txt">     Sample Danish vocabulary</A>
+<li> <A HREF="output.txt">  Its stemmed equivalent</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+<li> <A HREF="stop.txt">     Danish stop word list</A>
+</ul>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../../texts/scandinavian.html">
-                  Scandinavian language stemmers</A>
-</TABLE></DL>
-
-</TR>
-
-<TR><TD BGCOLOR="lightpink">
-
-<BR><BR>
-
+<div style="background-color:lightpink">
+<p>
 Here is a sample of Danish vocabulary, with the stemmed forms that will
 be generated with this algorithm.
+</p>
 
-<BR><BR>
-
-
-
-<DL><DD><TABLE CELLPADDING=0>
+<TABLE CELLPADDING=0>
 <TR><TD>  <B>word</B> </TD>
  <TD></TD><TD> </TD>
  <TD></TD><TD> <B>stem</B> </TD>
@@ -215,86 +201,103 @@ undfang<BR>
 undfanged<BR>
 </TD>
 </TR>
-</TABLE></DL>
+</TABLE>
+</div>
 
+<h2>The stemming algorithm</h2>
 
-</TR>
-
-<TR><TD>
-
-<BR><BR>
-<BR>&nbsp;<H2>The stemming algorithm</H2>
-
-
+<p>
 The Danish alphabet includes the following additional letters,
+</p>
+
 <DL><DD>
     <B><I>æ  &nbsp;  å  &nbsp;  ø</I></B>
 </DL>
 
-
+<p>
 The following letters are vowels:
+</p>
+
 <DL><DD>
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  æ  &nbsp;  å  &nbsp;  ø</I></B>
 </DL>
+
+<p>
 A consonant is defined as a non-vowel.
-<BR><BR>
+</p>
+
+<p>
 <I>R</I>2 is not used: <I>R</I>1 is defined in the same way as in the
 <A HREF="../german/stemmer.html">German stemmer</A>.
 (See the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
-<BR><BR>
+</p>
+
+<p>
 Define a valid <B><I>s</I></B>-ending as one of
+</p>
+
 <DL><DD>
 <B><I>a  &nbsp;  b  &nbsp;  c  &nbsp;  d  &nbsp;  f  &nbsp;  g  &nbsp;  h  &nbsp;  j  &nbsp;  k  &nbsp;  l  &nbsp;  m  &nbsp;  n  &nbsp;  o  &nbsp;  p  &nbsp;  r
  &nbsp;  t  &nbsp;  v  &nbsp;  y  &nbsp;  z  &nbsp;  å</I></B>
 </DL>
 
+<p>
 Do each of steps 1, 2, 3 and 4.
+</p>
 
-<BR><BR>
+<p>
 Step 1:
+</p>
 <DL><DD>
+    <p>
     Search for the longest among the following suffixes in <I>R</I>1, and
     perform the action indicated.
-<BR><BR><DL>
+    </p>
+    <DL>
         <DT>(<I>a</I>)
             <B><I>hed  &nbsp;  ethed  &nbsp;  ered  &nbsp;  e  &nbsp;  erede  &nbsp;  ende  &nbsp;  erende  &nbsp;  ene
              &nbsp;  erne  &nbsp;  ere  &nbsp;  en  &nbsp;  heden  &nbsp;  eren  &nbsp;  er  &nbsp;  heder  &nbsp;  erer
              &nbsp;  heds  &nbsp;  es  &nbsp;  endes  &nbsp;  erendes  &nbsp;  enes  &nbsp;  ernes  &nbsp;  eres  &nbsp;
             ens  &nbsp;  hedens  &nbsp;  erens  &nbsp;  ers  &nbsp;  ets  &nbsp;  erets  &nbsp;  et  &nbsp;  eret</I></B>
                 <DD>delete
-<BR><BR>
         <DT>(<I>b</I>)
             <B><I>s</I></B>
                 <DD>delete if preceded by a valid <B><I>s</I></B>-ending
 </DL>
-<BR>
+<p>
     (Of course the letter of the valid <B><I>s</I></B>-ending is
     not necessarily in <I>R</I>1)
+</p>
 </DL>
 
+<p>
 Step 2:
+</p>
 <DL><DD>
+    <p>
     Search for one of the following suffixes in <I>R</I>1, and if found
     delete the last letter.
-<BR><BR><DL><DD>
+    </p>
+    <DL><DD>
         <B><I>gd  &nbsp;  dt  &nbsp;  gt  &nbsp;  kt</I></B>
-</DL>
-<BR>
+    </DL>
     (For example, <I>friskt</I> <code>-&gt;</code> <I>frisk</I>)
 </DL>
 
 Step 3:
 <DL><DD>
+    <p>
     If the word ends <B><I>igst</I></B>, remove the final <B><I>st</I></B>.
-<BR><BR>
+    </p>
+
+    <p>
     Search for the longest among the following suffixes in <I>R</I>1, and
     perform the action indicated.
-<BR><BR>
+    </p>
 <DL>
     <DT>(<I>a</I>)
     <B><I>ig  &nbsp;  lig  &nbsp;  elig  &nbsp;  els</I></B>
         <DD>delete, and then repeat step 2
-<BR><BR>
     <DT>(<I>b</I>)
     <B><I>løst</I></B>
         <DD>replace with <B><I>løs</I></B>
@@ -303,21 +306,20 @@ Step 3:
 
 Step 4: undouble
 <DL><DD>
+    <p>
     If the word ends with double consonant in <I>R</I>1, remove one of the
     consonants.
-<BR><BR>
+    </p>
+
+    <p>
     (For example, <I>bestemmelse</I> <code>-&gt;</code> <I>bestemmels</I> (step 1)
     <code>-&gt;</code> <I>bestemm</I> (step 3<I>a</I>)
     <code>-&gt;</code> <I>bestem</I> in this step.)
+    </p>
 </DL>
 
-</TR>
-
-<TR><TD>
-<H2>The same algorithm in Snowball</H2>
+<h2>The same algorithm in Snowball</h2>
 
 [% highlight_file('danish') %]
-</TR>
 
-</TABLE>
 [% footer %]

@@ -1,37 +1,24 @@
 [% header('Dutch stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Dutch vocabulary</A>
-<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<BR><BR>
-<TR><TD><A HREF="stop.txt">     Dutch stop word list</A>
-</TABLE></DL>
+<h2>Links to resources</h2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../../texts/germanic.html">
-                  Germanic language stemmers</A>
-</TABLE></DL>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="../../texts/germanic.html"> Germanic language stemmers</A>
+<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      &#x2014; and its header</A>
+<li> <A HREF="voc.txt">     Sample Dutch vocabulary</A>
+<li> <A HREF="output.txt">  Its stemmed equivalent</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+<li> <A HREF="stop.txt">     Dutch stop word list</A>
+</ul>
 
-</TR>
-
-<TR><TD BGCOLOR="lightpink">
-
-<BR><BR>
-
+<div style="background-color:lightpink">
+<p>
 Here is a sample of Dutch vocabulary, with the stemmed forms that will
 be generated with this algorithm.
-
-<BR><BR>
-
-
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>  <B>word</B> </TD>
@@ -216,14 +203,9 @@ ophoud<BR>
 </TD>
 </TR>
 </TABLE></DL>
+</div>
 
-
-</TR>
-
-<TR><TD>
-
-<BR><BR>
-<BR>&nbsp;<H2>The stemming algorithm</H2>
+<h2>The stemming algorithm</h2>
 
 Dutch includes the following accented forms
 <DL><DD>
@@ -310,13 +292,8 @@ Finally,
     Turn <B><I>I</I></B> and <B><I>Y</I></B> back into lower case.
 </DL>
 
-</TR>
-
-<TR><TD>
-<H2>The same algorithm in Snowball</H2>
+<h2>The same algorithm in Snowball</h2>
 
 [% highlight_file('dutch') %]
-</TR>
 
-</TABLE>
 [% footer %]

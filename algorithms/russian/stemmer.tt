@@ -1,39 +1,31 @@
 [% header('Russian stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_KOI8_R.sbl">    The stemmer in Snowball (KOI8-R encoding)</A>
-<TR><TD><A HREF="stem_Unicode.sbl">    The stemmer in Snowball (Unicode encoding) </A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      — and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Russian vocabulary</A>
-<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<BR><BR>
-<TR><TD><A HREF="stop.txt">     Russian stop word list</A>
-</TABLE></DL>
+<h2>Links to resources</h2>
 
-<BR><BR>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="stem_KOI8_R.sbl">    The stemmer in Snowball (KOI8-R encoding)</A>
+<li> <A HREF="stem_Unicode.sbl">    The stemmer in Snowball (Unicode encoding) </A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      — and its header</A>
+<li> <A HREF="voc.txt">     Sample Russian vocabulary</A>
+<li> <A HREF="output.txt">  Its stemmed equivalent</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+<li> <A HREF="stop.txt">     Russian stop word list</A>
+</ul>
+
+<p>
 The Snowball stemmer represents the Cyrillic alphabet with ASCII characters,
 following the standard Library of Congress transliteration scheme.
 <!-- The vocabulary + stemmed
     equivalent is also viewable in this transliterated form. -->
+</p>
 
-</TR>
-
-<TR><TD BGCOLOR="lightpink">
-
-<BR><BR>
-
+<div style="background-color:lightpink">
+<p>
 Here is a sample of Russian vocabulary, with the stemmed forms that will
 be generated with this algorithm.
-
-<BR><BR>
-
-
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>  <B>word</B> </TD>
@@ -298,15 +290,11 @@ be generated with this algorithm.
 </TD>
 </TR>
 </TABLE></DL>
+</div>
 
+<h2>The stemming algorithm</h2>
 
-</TR>
-
-<TR><TD>
-
-<BR><BR>
-<BR> <H2>The stemming algorithm</H2>
-
+<p>
 <I>i</I>-suffixes <A HREF="../../texts/glossary.html">(*)</A> of Russian tend to be quite regular, with irregularities of
 declension involving a change to the stem. Irregular forms therefore
 usually just generate two or more possible stems. Stems in Russian can
@@ -315,9 +303,12 @@ be very short, and many of the suffixes are also particle words that make
 minimum stem length of zero, and thereby reduce to null all words which
 are made up entirely of suffix parts. We have been a little more cautious,
 and have insisted that a minimum stem contains one vowel.
-<BR><BR>
+</p>
+
+<p>
 The 32 letters of the Russian alphabet are as follows, with the
 transliterated forms that we will use here shown in brackets:
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD> а (<B><I>a</I></B>)
@@ -357,43 +348,77 @@ transliterated forms that we will use here shown in brackets:
 <TD></TD><TD> я (<B><I><U>ia</U></I></B>)
 
 </TABLE></DL>
+
+<p>
 There is a 33rd letter, ё (<B><I>ë</I></B>), but it is rarely used, and we assume it is mapped into е (<B><I>e</I></B>).
-<BR><BR>
+</p>
+
+<p>
 The following are vowels:
+</p>
+
 <DL><DD>
     а (<B><I>a</I></B>)      е (<B><I>e</I></B>)      и (<B><I>i</I></B>)      о (<B><I>o</I></B>)      у (<B><I>u</I></B>)      ы (<B><I>y</I></B>)   
     э (<B><I>è</I></B>)      ю (<B><I><U>iu</U></I></B>)      я (<B><I><U>ia</U></I></B>)
 </DL>
+
+<p>
 In any word, <I>RV</I> is the region after the first vowel, or the end of the word
 if it contains no vowel.
-<BR><BR>
+</p>
+
+<p>
 <I>R</I>1 is the region after the first non-vowel following a vowel, or the end of
 the word if there is no such non-vowel.
-<BR><BR>
+</p>
+
+<p>
 <I>R</I>2 is the region after the first non-vowel following a vowel in <I>R</I>1, or the
 end of the word if there is no such non-vowel.
-<BR><BR>
+</p>
+
+<p>
 For example:
-<BR><PRE>
+</p>
+
+<PRE>
     p r o t i v o e s t e s t v e n n o m
          |&lt;------       RV        ------&gt;|
            |&lt;-----       R1       ------&gt;|
                |&lt;-----     R2     ------&gt;|
 </PRE>
+
+<p>
 (See <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
-<BR><BR>
+</p>
+
+<p>
 We now define the following classes of ending:
-<BR><BR>
+</p>
+
+<p>
 <FONT SIZE=-1>PERFECTIVE GERUND</FONT>:
+</p>
+
 <DL><DD>
+    <p>
     group 1:     в (<B><I>v</I></B>)     вши (<B><I>vshi</I></B>)     вшись (<B><I>vshis'</I></B>)
-<BR><BR>
+    </p>
+
+    <p>
     group 2:     ив (<B><I>iv</I></B>)     ивши (<B><I>ivshi</I></B>)     ившись (<B><I>ivshis'</I></B>)   
                 ыв (<B><I>yv</I></B>)     ывши (<B><I>yvshi</I></B>)     ывшись (<B><I>yvshis'</I></B>)
+    </p>
 </DL>
+
+<p>
 group 1 endings must follow а (<B><I>a</I></B>) or я (<B><I><U>ia</U></I></B>)
-<BR><BR>
+</p>
+
+<p>
 <FONT SIZE=-1>ADJECTIVE</FONT>:
+</p>
+
 <DL><DD>
     ее (<B><I>ee</I></B>)      ие (<B><I>ie</I></B>)      ые (<B><I>ye</I></B>)      ое (<B><I>oe</I></B>)      ими (<B><I>imi</I></B>)      ыми
     (<B><I>ymi</I></B>)      ей (<B><I>eì</I></B>)      ий (<B><I>iì</I></B>)      ый (<B><I>yì</I></B>)      ой (<B><I>oì</I></B>)      ем
@@ -403,24 +428,47 @@ group 1 endings must follow а (<B><I>a</I></B>) or я (<B><I><U>ia</U></I></B>)
          ою (<B><I>o<U>iu</U></I></B>)
          ею (<B><I>e<U>iu</U></I></B>)
 </DL>
+
+<p>
 <FONT SIZE=-1>PARTICIPLE</FONT>:
+</p>
+
 <DL><DD>
+    <p>
     group 1:     ем (<B><I>em</I></B>)     нн (<B><I>nn</I></B>)     вш (<B><I>vsh</I></B>)     ющ (<B><I><U>iu</U>shch</I></B>)     щ (<B><I>shch</I></B>)
-<BR><BR>
+    </p>
+
+    <p>
     group 2:     ивш (<B><I>ivsh</I></B>)     ывш (<B><I>yvsh</I></B>)     ующ (<B><I>u<U>iu</U>shch</I></B>)
+    </p>
 </DL>
+
+<p>
 group 1 endings must follow а (<B><I>a</I></B>) or я (<B><I><U>ia</U></I></B>)
-<BR><BR>
+</p>
+
+<p>
 <FONT SIZE=-1>REFLEXIVE</FONT>:
+</p>
+
 <DL><DD>
+    <p>
     ся (<B><I>s<U>ia</U></I></B>)     сь (<B><I>s'</I></B>)
+    </p>
 </DL>
+
+<p>
 <FONT SIZE=-1>VERB</FONT>:
+</p>
+
 <DL><DD>
+    <p>
     group 1: ла (<B><I>la</I></B>)     на (<B><I>na</I></B>)     ете (<B><I>ete</I></B>)     йте (<B><I>ìte</I></B>)     ли (<B><I>li</I></B>)
         й (<B><I>ì</I></B>)     л (<B><I>l</I></B>)     ем (<B><I>em</I></B>)     н (<B><I>n</I></B>)     ло (<B><I>lo</I></B>)     но (<B><I>no</I></B>)     ет
     (<B><I>et</I></B>)     ют (<B><I><U>iu</U>t</I></B>)     ны (<B><I>ny</I></B>)     ть (<B><I>t'</I></B>)     ешь (<B><I>esh'</I></B>)     нно (<B><I>nno</I></B>)
-<BR><BR>
+    </p>
+
+    <p>
     group 2: ила (<B><I>ila</I></B>)     ыла (<B><I>yla</I></B>)     ена (<B><I>ena</I></B>)     ейте (<B><I>eìte</I></B>)   
     уйте (<B><I>uìte</I></B>)     ите (<B><I>ite</I></B>)     или (<B><I>ili</I></B>)     ыли
     (<B><I>yli</I></B>)     ей (<B><I>eì</I></B>)     уй (<B><I>uì</I></B>)     ил (<B><I>il</I></B>)     ыл (<B><I>yl</I></B>)     им (<B><I>im</I></B>)   
@@ -428,11 +476,19 @@ group 1 endings must follow а (<B><I>a</I></B>) or я (<B><I><U>ia</U></I></B>)
     (<B><I><U>ia</U>t</I></B>)     ует (<B><I>uet</I></B>)     уют (<B><I>u<U>iu</U>t</I></B>)     ит (<B><I>it</I></B>)     ыт (<B><I>yt</I></B>)     ены
     (<B><I>eny</I></B>)     ить (<B><I>it'</I></B>)     ыть (<B><I>yt'</I></B>)     ишь (<B><I>ish'</I></B>)   
     ую (<B><I>u<U>iu</U></I></B>)     ю (<B><I><U>iu</U></I></B>)
+    </p>
 </DL>
+
+<p>
 group 1 endings must follow а (<B><I>a</I></B>) or я (<B><I><U>ia</U></I></B>)
-<BR><BR>
+</p>
+
+<p>
 <FONT SIZE=-1>NOUN</FONT>:
+</p>
+
 <DL><DD>
+<p>
 а (<B><I>a</I></B>)     ев (<B><I>ev</I></B>)     ов (<B><I>ov</I></B>)     ие (<B><I>ie</I></B>)     ье (<B><I>'e</I></B>)     е (<B><I>e</I></B>)     иями
 (<B><I>i<U>ia</U>mi</I></B>)     ями (<B><I><U>ia</U>mi</I></B>)     ами (<B><I>ami</I></B>)     еи (<B><I>ei</I></B>)     ии (<B><I>ii</I></B>)     и (<B><I>i</I></B>)   
 ией (<B><I>ieì</I></B>)     ей (<B><I>eì</I></B>)     ой (<B><I>oì</I></B>)     ий (<B><I>iì</I></B>)     й (<B><I>ì</I></B>)   
@@ -440,19 +496,38 @@ group 1 endings must follow а (<B><I>a</I></B>) or я (<B><I><U>ia</U></I></B>)
 (<B><I>om</I></B>)     о (<B><I>o</I></B>)     у (<B><I>u</I></B>)     ах (<B><I>akh</I></B>)     иях (<B><I>i<U>ia</U>kh</I></B>)     ях (<B><I><U>ia</U>kh</I></B>)     ы
 (<B><I>y</I></B>)     ь (<B><I>'</I></B>)     ию (<B><I>i<U>iu</U></I></B>)     ью (<B><I>'<U>iu</U></I></B>)     ю (<B><I><U>iu</U></I></B>)     ия (<B><I>i<U>ia</U></I></B>)     ья
 (<B><I>'<U>ia</U></I></B>)     я (<B><I><U>ia</U></I></B>)
+</p>
 </DL>
+
+<p>
 <FONT SIZE=-1>SUPERLATIVE</FONT>:
+</p>
+
 <DL><DD>
+    <p>
     ейш (<B><I>eìsh</I></B>)      ейше (<B><I>eìshe</I></B>)
+    </p>
 </DL>
+
+<p>
 These are all <I>i</I>-suffixes. The list of <I>d</I>-suffixes is very short,
-<BR><BR>
+</p>
+
+<p>
 <FONT SIZE=-1>DERIVATIONAL</FONT>:
+</p>
+
 <DL><DD>
+    <p>
     ост (<B><I>ost</I></B>)      ость (<B><I>ost'</I></B>)
+    </p>
 </DL>
+
+<p>
 Define an <FONT SIZE=-1>ADJECTIVAL</FONT> ending as an <FONT SIZE=-1>ADJECTIVE</FONT> ending optionally preceded
 by a <FONT SIZE=-1>PARTICIPLE</FONT> ending.
+</p>
+
 <DL><DD>
     For example, in
 <DL><DD><TABLE CELLPADDING=0>
@@ -464,49 +539,63 @@ by a <FONT SIZE=-1>PARTICIPLE</FONT> ending.
     adjectival ending.
 </DL>
 
+<p>
 In searching for an ending in a class, always choose the longest one
 from the class.
+</p>
+
 <DL><DD>
     So in seaching for a <FONT SIZE=-1>NOUN</FONT> ending for величие (<I>velichie</I>), choose ие (<B><I>ie</I></B>) rather than
     е (<B><I>e</I></B>).
 </DL>
+
+<p>
 Undouble н (<B><I>n</I></B>) means, if the word ends нн (<B><I>nn</I></B>), remove the last letter.
-<BR><BR>
+</p>
+
+<p>
 Here now are the stemming rules.
-<BR><BR>
+</p>
+
+<p>
 All tests take place in the <I>RV</I> part of the word.
+</p>
+
 <DL><DD>
     So in the test for perfective gerund, the а (<B><I>a</I></B>) or я (<B><I><U>ia</U></I></B>) which the group 1
     endings must follow must itself be in <I>RV</I>. In other words the letters
     before the <I>RV</I> region are never examined in the stemming process.
 </DL>
 
+<p>
 Do each of steps 1, 2, 3 and 4.
-<BR><BR>
-Step 1:
+</p>
 
+<p>
+Step 1:
 Search for a <FONT SIZE=-1>PERFECTIVE GERUND</FONT> ending. If one is found remove it, and that
 is then the end of step 1. Otherwise try and remove a <FONT SIZE=-1>REFLEXIVE</FONT> ending,
 and then search in turn for (1) an <FONT SIZE=-1>ADJECTIVAL</FONT>, (2) a <FONT SIZE=-1>VERB</FONT> or (3) a
 <FONT SIZE=-1>NOUN</FONT> ending. As soon as one of the endings (1) to (3) is found remove it,
 and terminate step 1.
-<BR><BR>
+</p>
+
+<p>
 Step 2: If the word ends with и (<B><I>i</I></B>), remove it.
-<BR><BR>
+</p>
+
+<p>
 Step 3: Search for a <FONT SIZE=-1>DERIVATIONAL</FONT> ending in <I>R</I>2 (i.e. the entire ending
 must lie in <I>R</I>2), and if one is found, remove it.
-<BR><BR>
+</p>
+
+<p>
 Step 4: (1) Undouble н (<B><I>n</I></B>), or, (2) if the word ends with a <FONT SIZE=-1>SUPERLATIVE</FONT> ending,
 remove it and undouble н (<B><I>n</I></B>), or (3) if the word ends ь (<B><I>'</I></B>) (soft sign) remove it.
-<BR><BR>
+</p>
 
-</TR>
-
-<TR><TD>
-<H2>The same algorithm in Snowball</H2>
+<h2>The same algorithm in Snowball</h2>
 
 [% highlight_file('russian') %]
-</TR>
 
-</TABLE>
 [% footer %]

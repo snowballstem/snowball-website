@@ -1,37 +1,24 @@
 [% header('Norwegian stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Norwegian vocabulary</A>
-<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<BR><BR>
-<TR><TD><A HREF="stop.txt">     Norwegian stop word list</A>
-</TABLE></DL>
+<h2>Links to resources</h2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../../texts/scandinavian.html">
-                  Scandinavian language stemmers</A>
-</TABLE></DL>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="../../texts/scandinavian.html"> Scandinavian language stemmers</A>
+<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      &#x2014; and its header</A>
+<li> <A HREF="voc.txt">     Sample Norwegian vocabulary</A>
+<li> <A HREF="output.txt">  Its stemmed equivalent</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+<li> <A HREF="stop.txt">     Norwegian stop word list</A>
+</ul>
 
-</TR>
-
-<TR><TD BGCOLOR="lightpink">
-
-<BR><BR>
-
+<div style="background-color:lightpink">
+<p>
 Here is a sample of Norwegian vocabulary, with the stemmed forms that will
 be generated with this algorithm.
-
-<BR><BR>
-
-
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>  <B>word</B> </TD>
@@ -216,87 +203,103 @@ oppfatning<BR>
 </TD>
 </TR>
 </TABLE></DL>
+</div>
 
+<h2>The stemming algorithm</h2>
 
-</TR>
-
-<TR><TD>
-
-<BR><BR>
-<BR>&nbsp;<H2>The stemming algorithm</H2>
-
-
+<p>
 The Norwegian alphabet includes the following additional letters,
+</p>
+
 <DL><DD>
     <B><I>æ  &nbsp;  å  &nbsp;  ø</I></B>
 </DL>
 
-
+<p>
 The following letters are vowels:
+</p>
+
 <DL><DD>
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  æ  &nbsp;  å  &nbsp;  ø</I></B>
 </DL>
+
+<p>
 <I>R</I>2 is not used: <I>R</I>1 is defined in the same way as in the
 <A HREF="../german/stemmer.html">German stemmer</A>.
 (See the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
-<BR><BR>
+</p>
+
+<p>
 Define a valid <B><I>s</I></B>-ending as one of
+</p>
+
 <DL><DD>
 <B><I>b</I></B>  &nbsp;  <B><I>c</I></B>  &nbsp;  <B><I>d</I></B>  &nbsp;  <B><I>f</I></B>  &nbsp;  <B><I>g</I></B>  &nbsp;  <B><I>h</I></B>  &nbsp;  <B><I>j</I></B>  &nbsp;
 <B><I>l</I></B>  &nbsp;  <B><I>m</I></B>  &nbsp;  <B><I>n</I></B>  &nbsp;  <B><I>o</I></B>  &nbsp;  <B><I>p</I></B>  &nbsp;  <B><I>r</I></B>  &nbsp;  <B><I>t</I></B>  &nbsp;  <B><I>v</I></B>  &nbsp;
 <B><I>y</I></B>  &nbsp;  <B><I>z</I></B>,
 <BR> or <B><I>k</I></B> not preceded by a vowel.
 </DL>
+
+<p>
 Do each of steps 1, 2 and 3.
-<BR><BR>
+</p>
+
+<p>
 Step 1:
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes in <I>R</I>1, and
     perform the action indicated.
-<BR><BR><DL>
+    <DL>
         <DT>(<I>a</I>)
             <B><I>a  &nbsp;  e  &nbsp;  ede  &nbsp;  ande  &nbsp;  ende  &nbsp;  ane  &nbsp;  ene  &nbsp;  hetene  &nbsp;  en
              &nbsp;  heten  &nbsp;  ar  &nbsp;  er  &nbsp;  heter  &nbsp;  as  &nbsp;  es  &nbsp;  edes  &nbsp;  endes  &nbsp;
             enes  &nbsp;  hetenes  &nbsp;  ens  &nbsp;  hetens  &nbsp;  ers  &nbsp;  ets  &nbsp;  et  &nbsp;  het  &nbsp;
             ast</I></B>
                 <DD>delete
-<BR><BR>
         <DT>(<I>b</I>)
             <B><I>s</I></B>
                 <DD>delete if preceded by a valid <B><I>s</I></B>-ending
-<BR><BR>
         <DT>(<I>c</I>)
             <B><I>erte  &nbsp;  ert</I></B>
                 <DD>replace with <B><I>er</I></B>
-</DL>
-<BR>
+    </DL>
+<p>
     (Of course the letter of the valid <B><I>s</I></B>-ending is
     not necessarily in <I>R</I>1)
+</p>
 </DL>
+
+<p>
 Step 2:
+</p>
+
 <DL><DD>
+    <p>
     If the word ends <B><I>dt</I></B> or <B><I>vt</I></B> in <I>R</I>1, delete the <B><I>t</I></B>.
-<BR><BR>
+    </p>
+
+    <p>
     (For example, <I>meldt</I> <code>-&gt;</code> <I>meld</I>, <I>operativt</I> <code>-&gt;</code> <I>operativ</I>)
+    </p>
 </DL>
+
+<p>
 Step 3:
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes in <I>R</I>1, and if found,
     delete.
-<BR><BR>
 <DL><DD>
     <B><I>leg  &nbsp;  eleg  &nbsp;  ig  &nbsp;  eig  &nbsp;  lig  &nbsp;  elig  &nbsp;  els
      &nbsp;  lov  &nbsp;  elov  &nbsp;  slov  &nbsp;   hetslov</I></B>
 </DL>
 </DL>
 
-</TR>
-
-<TR><TD>
-<H2>The same algorithm in Snowball</H2>
+<h2>The same algorithm in Snowball</h2>
 
 [% highlight_file('norwegian') %]
-</TR>
 
-</TABLE>
 [% footer %]

@@ -1,37 +1,25 @@
 [% header('German stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample German vocabulary</A>
-<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<BR><BR>
-<TR><TD><A HREF="stop.txt">     German stop word list</A>
-</TABLE></DL>
+<h2>Links to resources</h2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../../texts/germanic.html">
-                  Germanic language stemmers</A>
-</TABLE></DL>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="../../texts/germanic.html"> Germanic language stemmers</A>
+<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      &#x2014; and its header</A>
+<li> <A HREF="voc.txt">     Sample German vocabulary</A>
+<li> <A HREF="output.txt">  Its stemmed equivalent</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+<li> <A HREF="stop.txt">     German stop word list</A>
+</ul>
 
-</TR>
+<div style="background-color:lightpink">
 
-<TR><TD BGCOLOR="lightpink">
-
-<BR><BR>
-
+<p>
 Here is a sample of German vocabulary, with the stemmed forms that will
 be generated with this algorithm.
-
-<BR><BR>
-
-
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>  <B>word</B> </TD>
@@ -216,100 +204,120 @@ kauflich<BR>
 </TD>
 </TR>
 </TABLE></DL>
+</div>
 
+<h2>The stemming algorithm</h2>
 
-</TR>
-
-<TR><TD>
-
-<BR><BR>
-<BR>&nbsp;<H2>The stemming algorithm</H2>
-
+<p>
 German includes the following accented forms,
+</p>
+
 <DL><DD>
     <B><I>ä  &nbsp;  ö  &nbsp;  ü</I></B>
 </DL>
+
+<p>
 and a special letter, <B><I>ß</I></B>, equivalent to double <B><I>s</I></B>.
-<BR><BR>
+</p>
+
+<p>
 The following letters are vowels:
+</p>
+
 <DL><DD>
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  ä  &nbsp;  ö  &nbsp;  ü</I></B>
 </DL>
+
+<p>
 First, replace <B><I>ß</I></B> by <B><I>ss</I></B>, and put <B><I>u</I></B> and <B><I>y</I></B> between vowels into upper case.
 <I>R</I>1 and <I>R</I>2 are first set up in the standard way
 (see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2),
-but then <I>R</I>1 is
-adjusted so that the region before it contains at least 3 letters.
-<BR><BR>
+but then <I>R</I>1 is adjusted so that the region before it contains at least 3 letters.
+</p>
+
+<p>
 Define a valid <B><I>s</I></B>-ending as one of <B><I>b</I></B>, <B><I>d</I></B>, <B><I>f</I></B>, <B><I>g</I></B>, <B><I>h</I></B>, <B><I>k</I></B>, <B><I>l</I></B>, <B><I>m</I></B>, <B><I>n</I></B>, <B><I>r</I></B> or <B><I>t</I></B>.
-<BR><BR>
+</p>
+
+<p>
 Define a valid <B><I>st</I></B>-ending as the same list, excluding letter <B><I>r</I></B>.
-<BR><BR>
+</p>
+
+<p>
 Do each of steps 1, 2 and 3.
-<BR><BR>
+</p>
+
+<p>
 Step 1:
 <DL><DD>
     Search for the longest among the following suffixes,
-<BR><BR><DL><DD>
+        <DL><DD>
         (<I>a</I>) <B><I>em  &nbsp;  ern  &nbsp;  er</I></B><BR>
         (<I>b</I>) <B><I>e  &nbsp;  en  &nbsp;  es</I></B><BR>
         (<I>c</I>) <B><I>s</I></B> (preceded by a valid <B><I>s</I></B>-ending)
-</DL><BR>
+</DL>
+    <p>
     and delete if in <I>R</I>1. (Of course the letter of the valid <B><I>s</I></B>-ending is
     not necessarily in <I>R</I>1.) If an ending of group (<I>b</I>) is deleted, and the ending
     is preceded by <B><I>niss</I></B>, delete the final <B><I>s</I></B>.
-<BR><BR>
+    </p>
+
+    <p>
     (For example, <I>äckern</I> <code>-&gt;</code> <I>äck</I>, <I>ackers</I> <code>-&gt;</code> <I>acker</I>,
     <I>armes</I> <code>-&gt;</code> <I>arm</I>, <I>bedürfnissen</I> <code>-&gt;</code> <I>bedürfnis</I>)
+    </p>
 </DL>
 Step 2:
 <DL><DD>
+    <p>
     Search for the longest among the following suffixes,
-<BR><BR><DL><DD>
+    </p>
+        <DL><DD>
         (<I>a</I>) <B><I>en  &nbsp;  er  &nbsp;  est</I></B><BR>
         (<I>b</I>) <B><I>st</I></B> (preceded by a valid <B><I>st</I></B>-ending, itself preceded by at least 3
         letters)
-</DL><BR>
+</DL>i
+    <p>
     and delete if in <I>R</I>1.
-<BR><BR>
+    </p>
+
+    <p>
     (For example, <I>derbsten</I> <code>-&gt;</code> <I>derbst</I> by step 1, and <I>derbst</I> <code>-&gt;</code> <I>derb</I> by step
     2, since <B><I>b</I></B> is a valid <B><I>st</I></B>-ending, and is preceded by just 3 letters)
+    </p>
 </DL>
 Step 3: <I>d</I>-suffixes <A HREF="../../texts/glossary.html">(*)</A>
 <DL><DD>
+    <p>
     Search for the longest among the following suffixes, and perform the
     action indicated.
-<BR><BR>
+    </p>
 <DL>
     <DT><B><I>end  &nbsp;  ung</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>ig</I></B>, delete if in <I>R</I>2 and not preceded by <B><I>e</I></B>
-<BR><BR>
     <DT><B><I>ig  &nbsp;  ik  &nbsp;  isch</I></B>
         <DD>delete if in <I>R</I>2 and not preceded by <B><I>e</I></B>
-<BR><BR>
     <DT><B><I>lich  &nbsp;  heit</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>er</I></B> or <B><I>en</I></B>, delete if in <I>R</I>1
-<BR><BR>
     <DT><B><I>keit</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>lich</I></B> or <B><I>ig</I></B>, delete if in <I>R</I>2
 </DL>
 </DL>
+
+<p>
 Finally,
+</p>
+
 <DL><DD>
     turn <B><I>U</I></B> and <B><I>Y</I></B> back into lower case, and remove the umlaut accent from <B><I>a</I></B>,
     <B><I>o</I></B> and <B><I>u</I></B>.
 </DL>
 
-</TR>
-
-<TR><TD>
-<H2>The same algorithm in Snowball</H2>
+<h2>The same algorithm in Snowball</h2>
 
 [% highlight_file('german') %]
-</TR>
 
-</TABLE>
 [% footer %]

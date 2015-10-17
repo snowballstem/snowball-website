@@ -1,37 +1,24 @@
 [% header('Spanish stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Spanish vocabulary</A>
-<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<BR><BR>
-<TR><TD><A HREF="stop.txt">    Spanish stop word list</A>
-</TABLE></DL>
+<h2>Links to resources</h2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../../texts/romance.html">
-                  Romance language stemmers</A>
-</TABLE></DL>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="../../texts/romance.html"> Romance language stemmers</A>
+<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      &#x2014; and its header</A>
+<li> <A HREF="voc.txt">     Sample Spanish vocabulary</A>
+<li> <A HREF="output.txt">  Its stemmed equivalent</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+<li> <A HREF="stop.txt">    Spanish stop word list</A>
+</ul>
 
-</TR>
-
-<TR><TD BGCOLOR="lightpink">
-
-<BR><BR>
-
+<div style="background-color:lightpink">
+<p>
 Here is a sample of Spanish vocabulary, with the stemmed forms that will
 be generated with this algorithm.
-
-<BR><BR>
-
-
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>  <B>word</B> </TD>
@@ -216,128 +203,155 @@ torrescan<BR>
 </TD>
 </TR>
 </TABLE></DL>
+</div>
 
+<h2>The stemming algorithm</h2>
 
-</TR>
-
-<TR><TD>
-
-<BR><BR>
-<BR>&nbsp;<H2>The stemming algorithm</H2>
-
+<p>
 Letters in Spanish include the following accented forms,
+</p>
+
 <DL><DD>
     <B><I>á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  ü  &nbsp;  ñ</I></B>
 </DL>
+
+<p>
 The following letters are vowels:
+</p>
+
 <DL><DD>
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  ü</I></B>
 </DL>
+
+<p>
 <I>R</I>2 is defined in the usual way &#x2014;
 see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.
-<BR><BR>
+</p>
+
+<p>
 <I>RV</I> is defined as follows (and this is not the same as the
  <A HREF="../french/stemmer.html">French stemmer</A>
 definition):
-<BR><BR>
+</p>
+
+<p>
 If the second letter is a consonant, <I>RV</I> is the region after the next
 following vowel, or if the first two letters are vowels, <I>RV</I> is the region
 after the next consonant, and otherwise (consonant-vowel case) <I>RV</I> is the
 region after the third letter. But <I>RV</I> is the end of the word if these
 positions cannot be found.
-<BR><BR>
+</p>
+
+<p>
 For example,
-<BR><PRE>
+</p>
+
+<PRE>
     m a c h o     o l i v a     t r a b a j o     á u r e o
          |...|         |...|         |.......|         |...|
 </PRE>
+
+<p>
 Always do steps 0 and 1.
-<BR><BR>
+</p>
+
+<p>
 Step 0: Attached pronoun
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes
-<BR><BR><DL><DD>
+    <DL><DD>
         <B><I>me  &nbsp;  se  &nbsp;  sela  &nbsp;  selo  &nbsp;  selas  &nbsp;  selos  &nbsp;  la  &nbsp;  le  &nbsp;  lo  &nbsp;  las  &nbsp;  les  &nbsp;  los  &nbsp;  nos</I></B>
 </DL><BR>
     and delete it, if comes after one of
-<BR><BR><DL><DD>
+    <DL><DD>
         (<I>a</I>) <B><I>iéndo  &nbsp;  ándo  &nbsp;  ár  &nbsp;  ér  &nbsp;  ír</I></B><BR>
         (<I>b</I>) <B><I>ando  &nbsp;  iendo  &nbsp;  ar  &nbsp;  er  &nbsp;  ir</I></B><BR>
         (<I>c</I>) <B><I>yendo</I></B> following <B><I>u</I></B>
-</DL><BR>
+</DL>
+    <p>
     in <I>RV</I>. In the case of (<I>c</I>), <B><I>yendo</I></B> must lie in <I>RV</I>, but the preceding
     <B><I>u</I></B> can be outside it.
-<BR><BR>
+    </p>
+
+    <p>
     In the case of (<I>a</I>), deletion is followed by removing the acute accent
     (for example, <I>haciéndola</I> <code>-&gt;</code> <I>haciendo</I>).
+    </p>
 </DL>
+
+<p>
 Step 1: Standard suffix removal
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes, and perform the
     action indicated.
-<BR><BR>
 <DL>
     <DT><B><I>anza  &nbsp;  anzas  &nbsp;  ico  &nbsp;  ica  &nbsp;  icos  &nbsp;  icas  &nbsp;  ismo  &nbsp;  ismos  &nbsp;  able  &nbsp;  ables  &nbsp;  ible  &nbsp;  ibles  &nbsp;  ista
      &nbsp;  istas  &nbsp;  oso  &nbsp;  osa  &nbsp;  osos  &nbsp;  osas  &nbsp;  amiento  &nbsp;  amientos  &nbsp;  imiento  &nbsp;
     imientos</I></B>
         <DD>delete if in <I>R</I>2
-<BR><BR>
     <DT><B><I>adora  &nbsp;  ador  &nbsp;  ación  &nbsp;  adoras  &nbsp;  adores  &nbsp;  aciones  &nbsp;  ante  &nbsp;  antes  &nbsp;  ancia  &nbsp;  ancias</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>ic</I></B>, delete if in <I>R</I>2
-<BR><BR>
     <DT><B><I>logía  &nbsp;  logías</I></B>
         <DD>replace with <B><I>log</I></B> if in <I>R</I>2
-<BR><BR>
     <DT><B><I>ución  &nbsp;  uciones</I></B>
         <DD>replace with <B><I>u</I></B> if in <I>R</I>2
-<BR><BR>
     <DT><B><I>encia  &nbsp;  encias</I></B>
         <DD>replace with <B><I>ente</I></B> if in <I>R</I>2
-<BR><BR>
     <DT><B><I>amente</I></B>
         <DD>delete if in <I>R</I>1
         <DD>if preceded by <B><I>iv</I></B>, delete if in <I>R</I>2 (and if further preceded by <B><I>at</I></B>,
         delete if in <I>R</I>2), otherwise,
         <DD>if preceded by <B><I>os</I></B>, <B><I>ic</I></B> or <B><I>ad</I></B>, delete if in <I>R</I>2
-<BR><BR>
     <DT><B><I>mente</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>ante</I></B>, <B><I>able</I></B> or <B><I>ible</I></B>, delete if in <I>R</I>2
-<BR><BR>
     <DT><B><I>idad  &nbsp;  idades</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>abil</I></B>, <B><I>ic</I></B> or <B><I>iv</I></B>, delete if in <I>R</I>2
-<BR><BR>
     <DT><B><I>iva  &nbsp;  ivo  &nbsp;  ivas  &nbsp;  ivos</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>at</I></B>, delete if in <I>R</I>2
 </DL>
 </DL>
+
+<p>
 Do step 2<I>a</I> if no ending was removed by step 1.
-<BR><BR>
+</p>
+
+<p>
 Step 2<I>a</I>: Verb suffixes beginning <B><I>y</I></B>
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes in <I>RV</I>, and if found,
     delete if preceded by <B><I>u</I></B>.
-<BR><BR><DL><DD>
+    <DL><DD>
         <B><I>ya  &nbsp;  ye  &nbsp;  yan  &nbsp;  yen  &nbsp;  yeron  &nbsp;  yendo  &nbsp;  yo  &nbsp;  yó  &nbsp;  yas  &nbsp;  yes  &nbsp;  yais  &nbsp;
         yamos</I></B>
-</DL><BR>
+    </DL>
     (Note that the preceding u need not be in <I>RV</I>.)
 </DL>
+
+<p>
 Do Step 2<I>b</I> if step 2<I>a</I> was done, but failed to remove a suffix.
-<BR><BR>
+</p>
+
+<p>
 Step 2<I>b</I>: Other verb suffixes
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes in <I>RV</I>, and perform the
     action indicated.
-<BR><BR>
-<DL>
+    <DL>
     <DT><B><I>en  &nbsp;  es  &nbsp;  éis  &nbsp;  emos</I></B>
         <DD>delete, and if preceded by <B><I>gu</I></B> delete the <B><I>u</I></B> (the <B><I>gu</I></B> need not be in
         <I>RV</I>)
-<BR><BR>
     <DT><B><I>arían  &nbsp;  arías  &nbsp;  arán  &nbsp;  arás  &nbsp;  aríais  &nbsp;  aría  &nbsp;  aréis  &nbsp;  aríamos  &nbsp;  aremos
      &nbsp;  ará  &nbsp;  aré
      &nbsp;  erían  &nbsp;  erías  &nbsp;  erán  &nbsp;  erás  &nbsp;  eríais  &nbsp;  ería  &nbsp;  eréis  &nbsp;  eríamos  &nbsp;  eremos
@@ -350,35 +364,38 @@ Step 2<I>b</I>: Other verb suffixes
      &nbsp;  arais  &nbsp;  ierais  &nbsp;    &nbsp;  aseis  &nbsp;  ieseis  &nbsp;  asteis  &nbsp;  isteis  &nbsp;  ados  &nbsp;  idos  &nbsp;  amos  &nbsp;  ábamos
      &nbsp;  íamos  &nbsp;  imos  &nbsp;  áramos  &nbsp;  iéramos  &nbsp;  iésemos  &nbsp;  ásemos</I></B>
         <DD>delete
+    </DL>
 </DL>
-</DL>
+
+<p>
 Always do step 3.
-<BR><BR>
+</p>
+
+<p>
 Step 3: residual suffix
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes in <I>RV</I>, and perform the
     action indicated.
-<BR><BR>
-<DL>
+    <DL>
     <DT><B><I>os  &nbsp;  a  &nbsp;  o  &nbsp;  á  &nbsp;  í  &nbsp;  ó</I></B>
         <DD>delete if in <I>RV</I>
-<BR><BR>
     <DT><B><I>e  &nbsp;  é</I></B>
         <DD>delete if in <I>RV</I>, and if preceded by <B><I>gu</I></B> with the <B><I>u</I></B> in <I>RV</I> delete the <B><I>u</I></B>
+    </DL>
 </DL>
-</DL>
+
+<p>
 And finally:
+</p>
+
 <DL><DD>
     Remove acute accents
 </DL>
 
-</TR>
-
-<TR><TD>
-<H2>The same algorithm in Snowball</H2>
+<h2>The same algorithm in Snowball</h2>
 
 [% highlight_file('spanish') %]
-</TR>
 
-</TABLE>
 [% footer %]

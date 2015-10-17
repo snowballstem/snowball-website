@@ -1,22 +1,20 @@
 [% header('A Catalan stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
+<h2>Links to resources</h2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of the delivered resources</A>
-<TR><TD><A HREF="https://ca.wikipedia.org/wiki/Llista_de_sufixos"> Catalan suffixes</A> (as referenced below)
-<TR><TD><A HREF="https://ca.wikipedia.org/wiki/Flexi%C3%B3_verbal_del_catal%C3%A0"> Catalan irregular verbs</A>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of the delivered resources</A>
+<li> <A HREF="https://ca.wikipedia.org/wiki/Llista_de_sufixos"> Catalan suffixes</A> (as referenced below)
+<li> <A HREF="https://ca.wikipedia.org/wiki/Flexi%C3%B3_verbal_del_catal%C3%A0"> Catalan irregular verbs</A>
 (as referenced below)
-</TABLE></DL>
+</ul>
 
-<BR><BR>
+<p>
 A stemmer for Catalan was sent us by
 Israel Olalla of <A HREF="http://www.isoco.com">iSOCO</A> with this accompanying email:
+</p>
 
-<BR><PRE>
-<DL><DD>
+<blockquote><pre>
 From: Israel Olalla &lt;iolalla&#64;isoco.com&gt;
 Date: Mon, 26 Jul 2010 12:25:44 +0200
 Subject: Catalan Snowball Stemmer
@@ -44,17 +42,15 @@ Snowball community.
 Kind Regards,
 
 Israel Olalla
-</DL>
-</PRE>
+</pre></blockquote>
 
+<p>
 [For distribution, see the note for the <A HREF="../basque/stemmer.html">Basque stemmer</A>.
 Our thanks to <A HREF="http://www.isoco.com">iSOCO</A>!]
+</p>
 
-<TR><TD>
-<H2>The algorithm in Snowball</H2>
+<h2>The algorithm in Snowball</h2>
 
 [% highlight_file('catalan') %]
-</TR>
 
-</TABLE>
 [% footer %]

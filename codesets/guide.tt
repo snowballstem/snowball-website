@@ -1,73 +1,68 @@
-<HTML>
-<HEAD>
-<TITLE>Character codes</TITLE></HEAD>
-<BODY BGCOLOR=WHITE>
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
+[% header('Character codes') %]
 
-<TR><TD>
-<BR><BR>
-<H1>Character codes</H1>
-<BR><BR>
-</TR>
+<h2>Links</h2>
 
+<ul>
+<li> <A HREF=".."> Snowball main page</A>
+<li> Snowball header files for <A HREF="ISO-Latin-1-hex.txt"> ISO Latin 1 (hex form)</A>
+</ul>
 
-<TR><TD BGCOLOR="wheat">
-<BR>&nbsp;<H2>Links</H2>
-<DL>
-<DT><A HREF=".."> Snowball main page</A>
-<BR><BR>
-<DT>Snowball header files for
-    <DD><A HREF="ISO-Latin-1-hex.txt"> ISO Latin 1 (hex form)</A>
-</DL>
-</TR>
-
-<TR><TD>
-<BR><BR>
-
+<p>
 The Snowball scripts on this site define the codings of accented letters and
 other non-ASCII forms in a series of explicit declarations. For example, the
 German stemmer includes the lines
-<BR><PRE>
+</p>
+
+[% highlight('
     /* special characters (in ISO Latin I) */
 
-    stringdef a"   hex 'E4'
-    stringdef o"   hex 'F6'
-    stringdef u"   hex 'FC'
+    stringdef a"   ' _ "hex 'E4'" _ '
+    stringdef o"   ' _ "hex 'F6'" _ '
+    stringdef u"   ' _ "hex 'FC'
     stringdef ss   hex 'DF'
+") %]
 
-</PRE>
+<p>
 In the ISO Latin I code set, hex E4, F6, FC and DF are the numeric values
 of characters <B><I>&auml;</I></B>, <B><I>&ouml;</I></B>, <B><I>&uuml;</I></B> and <B><I>&szlig;</I></B> respectively. These codings
 in the stemmer scripts then correspond to the codings used in the sample
 data.
+</p>
 
-<BR><BR>
-
+<p>
 For a more general approach, you may wish to replace the set of &nbsp;<code>stringdef</code>s
 by a &nbsp;<code>get</code>&nbsp; directive of the form,
-<BR><PRE>
+</p>
+
+[% highlight("
     get 'ISO-Latin-1'
-</PRE>
+") %]
+
+<p>
 possibly compiling with an &nbsp;<code>-include</code>&nbsp; option that declares the
 directory where this and other files are held,
-<BR><PRE>
+</p>
+
+<PRE>
     Snowball gstem.sbl -o gstem ... -include /home/shazzer/snowball/codesets
 </PRE>
 
+<p>
 Appropriate code sets for ISO Latin I are provided via the links
 above, and others will be added on demand or if submitted to us.
+</p>
 
-<BR><BR>
-
+<p>
 For Russian, two sets of &nbsp;<code>stringdef</code>s are given in the script &#x2014; KOI8-R,
 and (commented out) Unicode. For the other stemmers currently on offer the
 Unicode placings correspond to the ISO-Latin I placings, so no extra headers
 for Unicode need, at present, be given.
+</p>
 
-<BR><BR>
-
+<p>
 If you wish to describe other Latin-alphabet based codesets for use in
 Snowball headers, you should adhere to the following conventions:
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD> <I>accent</I> <TD></TD><TD> <I>ASCII form</I> <TD></TD><TD> <I>example</I>
@@ -85,23 +80,20 @@ Snowball headers, you should adhere to the following conventions:
 <TR><TD> double acute <TD></TD><TD> letter q <TD></TD><TD> &nbsp;<code>oq</code> for &#x151;
 </TABLE></DL>
 
+<p>
 And, should they ever arise, use &nbsp;<code>r</code>&nbsp; for left and right
 hook (as in Polish), and &nbsp;<code>v</code>&nbsp; for hacek (as in Czech).
+</p>
 
-<BR><BR>
-
+<p>
 The &#8216;line-through&#8217; accent covers a numbers of miscellaneous cases: the
 Scandinavian &nbsp;<code>o/</code>, Icelandic &nbsp;<code>d/</code>&nbsp; and Polish &nbsp;<code>l/</code>.
+</p>
 
-<BR><BR>
-
+<p>
 Use &nbsp;<code>ae</code>&nbsp; and &nbsp;<code>ss</code>&nbsp; for <B><I>&aelig;</I></B> ligature and the German
 <B><I>&szlig;</I></B>, with
 upper case forms &nbsp;<code>AE</code>&nbsp; and &nbsp;<code>SS</code>. Use &nbsp;<code>th</code>&nbsp; for Icelandic thorn.
+</p>
 
-
-</TR>
-
-</TABLE>
-</BODY>
-</HTML>
+[% footer %]

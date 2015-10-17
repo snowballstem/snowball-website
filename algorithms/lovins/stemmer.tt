@@ -1,33 +1,26 @@
 [% header('The Lovins stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
+
 <h2>Links to resources</h2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
-<BR><BR>
-<TR><TD><A HREF="festschrift.html"> (in more depth)</A>
-<BR><BR>
-<TR><TD><A HREF="http://www.cs.waikato.ac.nz/~eibe/stemmers/index.html">
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="stem.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      &#x2014; and its header</A>
+<li> <A HREF="festschrift.html"> (in more depth)</A>
+<li> <A HREF="http://www.cs.waikato.ac.nz/~eibe/stemmers/index.html">
 An &#8216;unofficial&#8217; home page of the Lovins stemming algorithm</A>
-</TABLE></DL>
+</ul>
 
-<BR><BR>
-
-
-<TR><TD>
-
+<p>
 The first ever published stemming algorithm was: Lovins JB (1968) Development of
 a stemming algorithm. Mechanical Translation and Computational Linguistics,
 11: 22-31. Julie Beth Lovins&#8217; paper was remarkable for the early date at which
 it was done, and for its seminal influence on later work in
 this area.
+</p>
 
-<BR><BR>
-
+<p>
 The design of the algorithm was much influenced by the technical vocabulary
 with which Lovins found herself working (subject term keywords attached to
 documents in the materials science and engineering field). The subject term
@@ -36,34 +29,33 @@ are not represented (<B><I>ements</I></B> and <B><I>ents</I></B> for example, co
 the singular forms <B><I>ement</I></B> and <B><I>ent</I></B>), and also in that the algorithm's
 treatment of short words, or words with short stems, can be rather
 destructive.
+</p>
 
-<BR><BR>
-
+<p>
 The Lovins algorithm is noticeably bigger than the Porter algorithm,
 because of its very extensive endings list. But in one way that is used to
 advantage: it is faster. It has effectively traded space for time, and with
 its large suffix set it needs just two major steps to remove a suffix,
 compared with the eight of the Porter algorithm.
+</p>
 
-<BR><BR>
-
-The Lovins stemmer has 294 <I>endings</I>, 29 <I>conditions</I> and 35
+<p>
 <I>transformation rules</I>. Each ending is associated with one of the
 conditions. In the first step the longest ending is found which satisfies
 its associated condition, and is removed. In the second step the 35 rules
 are applied to transform the ending. The second step is done whether or not
 an ending is removed in the first step.
+</p>
 
-<BR><BR>
-
+<p>
 For example, <I>nationally</I> has the ending <B><I>ationally</I></B>, with associated
 condition, B, &#8216;minimum stem length = 3&#8217;. Since removing <B><I>ationally</I></B>
 would leave a stem of length 1 this is rejected. But it also has ending
 <B><I>ionally</I></B> with associated condition A. Condition A is &#8216;no restriction on
 stem length&#8217;, so <B><I>ionally</I></B> is removed, leaving <B><I>nat</I></B>.
+</p>
 
-<BR><BR>
-
+<p>
 The transformation rules handle features like letter undoubling (<I>sitting</I>
 <code>-&gt;</code> <I>sitt</I> <code>-&gt;</code> <I>sit</I>), irregular plurals (<I>matrix</I> and <I>matrices</I>),
 and English morphological oddities ultimately caused by the behaviour of
@@ -71,18 +63,17 @@ Latin verbs of the second conjugation (<I>assume</I> / <I>assumption</I>,
 <I>commit</I> / <I>commission</I> etc). Although they are described as being
 applied in turn, they can be broken into two stages, rule 1 being done in
 stage 1, and either zero or one of rules 2 to 35 being done in stage 2.
+</p>
 
-<BR><BR>
-
+<p>
 Here is the list of endings as given in Appendix A of Lovins&#8217; paper. They
 are grouped by length, from 11 characters down to 1. Each ending is
 followed by its condition code.
+</p>
 
-<BR><BR>
-
-<TR><TD BGCOLOR="silver">
-<BR><BR>
+<div style="background-color:silver">
 <h4>Appendix A. The list of endings</h4>
+
 <DL><DD><DL><DD><TABLE CELLPADDING=0>
 <TR><TD></TR>
 <TR><TD><TD></TD><TD> .11. </TD></TR>
@@ -184,22 +175,16 @@ followed by its condition code.
 <TR><TD><TD></TD><TD>      a A    </TD><TD></TD><TD> e A     </TD><TD></TD><TD> i A     </TD><TD></TD><TD> o A </TD></TR>
 <TR><TD><TD></TD><TD>      s W    </TD><TD></TD><TD> y B </TD></TR>
 </TABLE></DL></DL>
-<BR><BR>
-</TR>
+</div>
 
-<TR><TD>
-<BR><BR>
-
+<p>
 Here are the 29 conditions, called A to Z, AA, BB and CC (* stands for any letter):
+</p>
 
-<BR><BR>
-</TR>
-
-
-<TR><TD BGCOLOR="silver">
-<BR><BR>
+<div style="background-color:silver">
 <h4>Appendix B. Codes for context-sensitive rules associated with
 certain endings</h4>
+
 <DL><DD>
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><TD></TD><TD>A </TD><TD></TD><TD>  No restrictions on stem </TD></TR>
@@ -232,25 +217,20 @@ certain endings</h4>
 <TR><TD><TD></TD><TD>BB </TD><TD></TD><TD> Minimum stem length = 3 and do not remove ending after <I>met</I> or <I>ryst</I> </TD></TR>
 <TR><TD><TD></TD><TD>CC </TD><TD></TD><TD> Remove ending only after <I>l</I> </TD></TR>
 </TABLE></DL>
-</DL>
-</TR>
+</div>
 
-<TR><TD>
-<BR><BR>
+<p>
 There is an implicit assumption in each condition, A included, that the minimum
 stem length is 2.
+</p>
 
-<BR><BR>
-
+<p>
 Finally, here are the 35 transformation rules.
+</p>
 
-<TR><TD>
-</TR>
-
-
-<TR><TD BGCOLOR="silver">
-<BR><BR>
+<div style="background-color:silver">
 <h4>Appendix C. Transformation rules used in recoding stem terminations</h4>
+
 <DL><DD>
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><TD></TD><TD> 1  &nbsp;  &nbsp;  &nbsp;  </TD><TD></TD><TD> remove one of double <I>b, d, g, l, m, n, p, r, s, t</I> </TD></TR>
@@ -289,19 +269,16 @@ Finally, here are the 35 transformation rules.
 <TR><TD><TD></TD><TD> 33 </TD><TD></TD><TD>     yt    &nbsp;  <code>-&gt;</code>  &nbsp;  ys </TD></TR>
 <TR><TD><TD></TD><TD> 34 </TD><TD></TD><TD>     yz    &nbsp;  <code>-&gt;</code>  &nbsp;  ys </TD></TR>
 </TABLE></DL>
-</DL>
-</TR>
+</div>
 
-<TR><TD>
-
+<p>
 (Rule 30 as given here corrects a typographical error in the published
 paper of 1968.)
+</p>
 
-<BR><BR>
-
+<p>
 The following examples show the intentions behind these rules.
-
-<BR><BR>
+</p>
 
 <DL><DD>
 <DL><DD><TABLE CELLPADDING=0>
@@ -343,26 +320,16 @@ The following examples show the intentions behind these rules.
 </TABLE></DL>
 </DL>
 
-</TR>
-
-<TR><TD>
-
 <h4>The Lovins algorithm in Snowball</h4>
 
+<p>
 And here is the Lovins algorithm in Snowball. The natural representation
 of the Lovins endings, conditions and rules in Snowball, is, I believe, a
 vindication of the appropriateness of Snowball for stemming work. Once the
 tables had been established, getting the Snowball version running was the
 work of a few minutes.
-
-<BR><BR>
-
-</TR>
-
-<TR><TD>
+</p>
 
 [% highlight_file('lovins') %]
-</TR>
 
-</TABLE>
 [% footer %]

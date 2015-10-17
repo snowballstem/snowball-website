@@ -1,37 +1,24 @@
 [% header('Finnish stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Finnish vocabulary</A>
-<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<BR><BR>
-<TR><TD><A HREF="stop.txt">    A stop word list</A>
-</TABLE></DL>
+<h2>Links to resources</h2>
 
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      &#x2014; and its header</A>
+<li> <A HREF="voc.txt">     Sample Finnish vocabulary</A>
+<li> <A HREF="output.txt">  Its stemmed equivalent</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+<li> <A HREF="stop.txt">    A stop word list</A>
+</ul>
 
+<div style="background-color:lightpink">
 
-
-<BR><BR>
-
-
-
-<TR><TD BGCOLOR="lightpink">
-
-<BR><BR>
-
+<p>
 Here is a sample of vocabulary, with the stemmed forms that will
 be generated with the algorithm.
-
-<BR><BR>
-
-
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>  <B>word</B> </TD>
@@ -216,19 +203,9 @@ innostu<BR>
 </TD>
 </TR>
 </TABLE></DL>
+</div>
 
-
-</TR>
-
-<TR><TD>
-
-<BR><BR>
-
-
-
-
-
-
+<p>
 Finnish is not an Indo-European language, but belongs to the Finno-Ugric
 group, which again belongs to the Uralic group <A HREF="../../texts/glossary.html">(*)</A>. Distinctions between
 <I>a</I>-, <I>i</I>- and <I>d</I>-suffixes can be made in Finnish, but they are much
@@ -237,9 +214,9 @@ endings is extremely elaborate, but strictly defined, and applies equally to
 all nominals, that is, to nouns, adjectives and pronouns. Verb endings have a
 close similarity to nominal endings, which again makes Finnish very different
 from any Indo-European language.
+</p>
 
-<BR><BR>
-
+<p>
 More problematical than the endings themselves is the change that can be
 effected in a stem as a result of taking a particular ending. A stem typically
 has two forms, <I>strong</I> and <I>weak</I>, where one class of ending follows the
@@ -247,29 +224,38 @@ strong form and the complementary class the weak. Normalising strong and weak
 forms after ending removal is not generally possible, although the common case
 where strong and weak forms only differ in the single or double form of a
 final consonant can be dealt with.
+</p>
 
-<BR><BR>
-
-
-
+<p>
 Finnish includes the following accented forms,
+</p>
+
 <DL><DD>
     <B><I>ä  &nbsp;  ö</I></B>
 </DL>
+
+<p>
 The following letters are vowels:
+</p>
+
 <DL><DD>
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  ä  &nbsp;  ö</I></B>
 </DL>
+
+<p>
 <I>R</I>1 and
 <I>R</I>2 are then defined in the usual way
 (see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2).
-<BR><BR>
+</p>
 
+<p>
 Do each of steps 1, 2, 3, 4, 5 and 6.
-<BR><BR>
+</p>
 
-
+<p>
 Step 1: particles etc
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes in <I>R</I>1, and perform the
     action indicated
@@ -282,11 +268,15 @@ Step 1: particles etc
 </DL>
 </DL>
 
+<p>
 (Of course, the <B><I>n</I></B>, <B><I>t</I></B> or vowel of 1(<I>a</I>) need not be in <I>R</I>1: only
 the suffix removed must be in <I>R</I>1. And similarly below.
+</p>
 
-<BR><BR>
+<p>
 Step 2: possessives
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes in <I>R</I>1, and perform the
     action indicated
@@ -308,8 +298,11 @@ Step 2: possessives
 </DL>
 </DL>
 
+<p>
 The remaining steps require a few definitions.
-<BR><BR>
+</p>
+
+<p>
 Define a <I>v</I> (vowel) as one of  &nbsp; <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  ä  &nbsp;  ö</I></B>.
 <BR>
 Define a <I>V</I> (restricted vowel) as one of  &nbsp; <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  ä  &nbsp;  ö</I></B>.
@@ -321,13 +314,16 @@ Define <I>LV</I> (long vowel) as one of  &nbsp; <B><I>aa  &nbsp;  ee  &nbsp;  ii
 Define a <I>c</I> (consonant) as a character other than a <I>v</I>.
 <BR>
 So <I>cv</I> means a <I>c</I> followed by a <I>v</I>.
+</p>
 
-<BR><BR>
+<p>
 Step 3: cases
+</p>
 <DL><DD>
     Search for the longest among the following suffixes in <I>R</I>1, and perform the
     action indicated
-<BR><BR>
+</p>
+
 <DL>
     <DT><B><I>h</I></B><I>X</I><B><I>n</I></B>  &nbsp;  preceded by <I>X</I>, where <I>X</I> is a <I>V</I> other than <B><I>u</I></B> (<B><I>a/han</I></B>, <B><I>e/hen</I></B> etc)
     <DT><B><I>siin  &nbsp;  den  &nbsp;  tten</I></B>  &nbsp;  preceded by <I>V</I><B><I>i</I></B>
@@ -341,14 +337,17 @@ Step 3: cases
 </DL>
 </DL>
 
+<p>
 So <I>aarteisiin</I> <code>-&gt;</code> <I>aartei</I>, the longest matching suffix being <B><I>siin</I></B>,
 preceded as it is by <I>V</I><B><I>i</I></B>. But <I>adressiin</I> <code>-&gt;</code> <I>adressi</I>. The longest
 matching suffix is not <B><I>siin</I></B>, because there is no preceding <I>V</I><B><I>i</I></B>, but <B><I>n</I></B>,
 and then the last vowel of the preceding <I>LV</I> is removed.
+</p>
 
-<BR><BR>
-
+<p>
 Step 4: other endings
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes in <I>R</I>2, and perform the
     action indicated
@@ -361,7 +360,9 @@ Step 4: other endings
 </DL>
 </DL>
 
+<p>
 Step 5: plurals
+</p>
 
 <DL><DD>
 If an ending was removed in step 3, delete a final <B><I>i</I></B> or <B><I>j</I></B> if in <I>R</I>1;
@@ -370,31 +371,36 @@ otherwise, if an ending was not removed in step 3, delete a final <B><I>t</I></B
 <B><I>imma</I></B> in <I>R</I>2, unless the <B><I>mma</I></B> is preceded by <B><I>po</I></B>.
 </DL>
 
+<p>
 Step 6: tidying up
+</p>
+
 <DL><DD>
 Do in turn steps (<I>a</I>), (<I>b</I>), (<I>c</I>), (<I>d</I>), restricting all tests to the region
 <I>R</I>1.
-<BR><BR>
+</p>
+
+<p>
 <I>a</I>) If <I>R</I>1 ends <I>LV</I> delete the last letter<BR>
 <I>b</I>) If <I>R</I>1 ends <I>cX</I>, <I>c</I> a consonant and <I>X</I> one of  &nbsp; <B><I>a  &nbsp;  ä  &nbsp;  e  &nbsp;  i</I></B>, delete the last
 letter<BR>
 <I>c</I>) If <I>R</I>1 ends <B><I>oj</I></B> or <B><I>uj</I></B> delete the last letter<BR>
 <I>d</I>) If <I>R</I>1 ends <B><I>jo</I></B> delete the last letter
-<BR><BR>
+</p>
+
+<p>
 Do step (<I>e</I>), which is not restricted to <I>R</I>1.
-<BR><BR>
+</p>
+
+<p>
 <I>e</I>) If the word ends with a double consonant followed by zero or more vowels,
 remove the last consonant (so <I>eläkk</I> <code>-&gt;</code> <I>eläk</I>, <I>aatonaatto</I> <code>-&gt;</code>
 <I>aatonaato</I>)
+</p>
 </DL>
 
-</TR>
-
-<TR><TD>
-<H2>The full algorithm in Snowball</H2>
+<h2>The full algorithm in Snowball</h2>
 
 [% highlight_file('finnish') %]
-</TR>
 
-</TABLE>
 [% footer %]

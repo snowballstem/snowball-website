@@ -1,7 +1,4 @@
 [% header('Lovins revisited') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-
-<TR><TD>
 
 <p>
 This is a revised version of Martin Porter&#8217;s paper which was published as part
@@ -1522,9 +1519,6 @@ Porter MF (1980) An algorithm for suffix stripping. <I>Program</I>, 14:
 130-137.
 </p>
 
-</TR>
-
-<TR><TD>
 <h2>Appendix 1</h2>
 
 <p>
@@ -1532,9 +1526,7 @@ The Lovins stemmer in Snowball.
 </p>
 
 [% highlight_file('lovins') %]
-</TR>
 
-<TR><TD>
 <h2>Appendix 2</h2>
 
 <p>
@@ -1542,9 +1534,7 @@ The Porter stemmer, cast, as far as is possible, into Lovins form.
 </p>
 
 [% highlight_file('porter_recast_as_lovins') %]
-</TR>
 
-<TR><TD>
 <h2>Appendix 3</h2>
 
 <p>
@@ -1736,9 +1726,7 @@ in the sample vocabulary. The 75 rare endings are shown commented out.
     'ousness'       B /*  (22) */
 //  'ousnesses'     B /*   (-) */
 ") %]
-</TR>
 
-<TR><TD>
 <h2>Appendix 4</h2>
 
 <p>
@@ -1748,7 +1736,5 @@ constructed.
 </p>
 
 [% highlight_file('porter_recast_as_lovins_generator.c') %]
-</TR>
 
-</TABLE>
 [% footer %]

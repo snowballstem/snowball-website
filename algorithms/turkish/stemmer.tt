@@ -1,37 +1,30 @@
 [% header('Turkish stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_Unicode.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="accompanying_paper.doc">  Accompanying description</A> (this is a &nbsp;<code>.doc</code>&nbsp; file)
-</TABLE></DL>
+<h2>Links to resources</h2>
 
-<BR><BR>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="stem_Unicode.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="accompanying_paper.doc">  Accompanying description</A> (this is a &nbsp;<code>.doc</code>&nbsp; file)
+</ul>
 
+<p>
 This page is a &#8216;placeholder&#8217; for the Turkish stemming algorithm provided by
 Evren Kapusuz Cilden. Evren explains that she has been following the paper,
+</p>
 
 <DL><DD>
-
+<p>
 Gulsen Eryigit and Esref Adali.
 <B><I>An Affix Stripping Morphological Analyzer for Turkish</I></B>
 Proceedings of the <FONT SIZE=-1>IAESTED</FONT> International
 Conference
 <FONT SIZE=-1>ARTIFICIAL INTELLIGENCE AND APPLICATIONS</FONT>, February 16-18,2004, Innsbruck, Austria.
-
+</p>
 </DL>
 
-
-</TR>
-
-<TR><TD>
-<H2>The algorithm in Snowball</H2>
+<h2>The algorithm in Snowball</h2>
 
 [% highlight_file('turkish') %]
-</TR>
 
-</TABLE>
 [% footer %]

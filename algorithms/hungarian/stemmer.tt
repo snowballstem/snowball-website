@@ -1,40 +1,28 @@
 [% header('Hungarian stemming algorithm') %]
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<CENTER>Contributed by <A HREF="mailto:atordai&#64;science.uval.nl">Anna Tordai</A></SUP> University of Amsterdam
-</CENTER>
 
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
+<p>Contributed by <A HREF="mailto:atordai&#64;science.uval.nl">Anna Tordai</A></SUP> University of Amsterdam
+</p>
 
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<TR><TD><A HREF="stem.c">      The ANSI C stemmer</A>
-<TR><TD><A HREF="stem.h">      &#x2014; and its header</A>
-<TR><TD><A HREF="voc.txt">     Sample Hungarian vocabulary</A>
-<TR><TD><A HREF="output.txt">  Its stemmed equivalent</A>
-<TR><TD><A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<BR><BR>
-<TR><TD><A HREF="stop.txt">    A stop word list</A>
-<BR><BR>
-<TR><TD>The <A HREF="http://ilps.science.uva.nl/resources/snowball-hun/">
+<h2>Links to resources</h2>
+
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
+<li> <A HREF="stem.c">      The ANSI C stemmer</A>
+<li> <A HREF="stem.h">      &#x2014; and its header</A>
+<li> <A HREF="voc.txt">     Sample Hungarian vocabulary</A>
+<li> <A HREF="output.txt">  Its stemmed equivalent</A>
+<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+<li> <A HREF="stop.txt">    A stop word list</A>
+<li> The <A HREF="http://ilps.science.uva.nl/resources/snowball-hun/">
 isla, Amsterdam</A> page for the Hungarian stemmer
+</ul>
 
-</TABLE></DL>
-
-
-</TR>
-
-<TR><TD BGCOLOR="lightpink">
-
-<BR><BR>
-
+<div style="background-color:lightpink">
+<p>
 Here is a sample of vocabulary, with the stemmed forms that will
 be generated with the algorithm.
-
-<BR><BR>
-
-
+</p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>  <B>word</B> </TD>
@@ -219,49 +207,60 @@ mulat<BR>
 </TD>
 </TR>
 </TABLE></DL>
+</div>
 
-
-</TR>
-
-<TR><TD>
-
-<BR><BR>
-
-
-
-
-
-
+<p>
 This stemming algorithm removes the inflectional suffixes of nouns. Nouns are
 inflected for case, person/possession and number.
-<BR><BR>
+</p>
+
+<p>
 Letters in Hungarian include the following accented forms,
+</p>
+
 <DL><DD>
     <B><I>&aacute;  &nbsp;  &eacute;  &nbsp;  &iacute;  &nbsp;  &oacute;  &nbsp;  &ouml;  &nbsp;  &otilde;  &nbsp;  &uacute;  &nbsp;  &uuml;  &nbsp;  &ucirc;</I></B>
 </DL>
+
+<p>
 The following letters are vowels:
+</p>
+
 <DL><DD>
     <B><I>a  &nbsp;  &aacute;  &nbsp;  e  &nbsp;  &eacute;  &nbsp;  i  &nbsp;  &iacute;  &nbsp;  o  &nbsp;  &oacute;  &nbsp;  &ouml;  &nbsp;  &otilde;  &nbsp;  u  &nbsp;  &uacute;  &nbsp;
-    &uuml;  &nbsp;  &ucirc;</I></B> </DL>
+    &uuml;  &nbsp;  &ucirc;</I></B>
+</DL>
 
+<p>
 The following letters are <I>digraphs</I>:
+</p>
+
 <DL><DD>
     <B><I>cs  &nbsp;  dz  &nbsp;  dzs  &nbsp;  gy  &nbsp;  ly  &nbsp;  ny  &nbsp;  ty  &nbsp;  zs</I></B>
 </DL>
+
+<p>
 A <I>double consonant</I> is defined as:
+</p>
+
 <DL><DD>
     <B><I>bb  &nbsp;  cc  &nbsp;  ccs  &nbsp;  dd  &nbsp;  ff  &nbsp;  gg  &nbsp;  ggy  &nbsp;  jj  &nbsp;  kk  &nbsp;  ll  &nbsp;  lly  &nbsp;  mm
      &nbsp;  nn  &nbsp;  nny  &nbsp;  pp  &nbsp;  rr  &nbsp;  ss  &nbsp;  ssz  &nbsp;  tt  &nbsp;  tty  &nbsp;  vv  &nbsp;  zz  &nbsp;  zzs</I></B>
 </DL>
+
+<p>
 If the word begins with a vowel, <I>R</I>1 is defined as the region after the
 first consonant or digraph in the word. If the word begins with a consonant, it
 is defined as the region after the first vowel in the word. If the word does
 not contain both a vowel and consonant, <I>R</I>1 is the null region at the end of
 the word.
-<BR><BR>
-For example:
+</p>
 
-<BR><PRE>
+<p>
+For example:
+</p>
+
+<PRE>
     t &oacute; b a n           consonant-vowel
        |.....|          R1 is 'a b a n'
 
@@ -274,25 +273,35 @@ For example:
     c v s
      ---&gt;|&lt;---          null R1 region
 </PRE>
+
+<p>
 &#8216;Delete if in <I>R</I>1&#8217; means that the suffix should be removed if it is in
 region <I>R</I>1 but not if it is outside.
-<BR><BR>
+</p>
+
+<p>
 Do steps 1 to 9 in turn
-<BR><BR>
+</p>
+
+<p>
 Step 1: Remove instrumental case
+</p>
+
 <DL><DD>
     Search for one of the following suffixes and perform the action indicated.
-<BR><BR>
 <DL>
     <DT><B><I>al  &nbsp;  el</I></B>
     <DD>delete if in <I>R</I>1 and preceded by a double consonant, and
     remove one of the double consonants. (In the case of consonant plus digraph, such as <B><I>ccs</I></B>, remove a <B><I>c</I></B>).
 </DL>
 </DL>
+
+<p>
 Step 2: Remove frequent cases
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes and perform the action indicated.
-<BR><BR>
 <DL>
     <DT><B><I>ban  &nbsp;  ben  &nbsp;  ba  &nbsp;  be  &nbsp;  ra  &nbsp;  re  &nbsp;  nak  &nbsp;  nek  &nbsp;  val  &nbsp;  vel  &nbsp;  t&oacute;l
      &nbsp;  t&otilde;l  &nbsp;  r&oacute;l  &nbsp;  r&otilde;l  &nbsp;  b&oacute;l  &nbsp;  b&otilde;l  &nbsp;  hoz  &nbsp;  hez  &nbsp;  h&ouml;z  &nbsp;
@@ -306,82 +315,93 @@ Step 2: Remove frequent cases
     <DD>if the remaining word ends <B><I>&eacute;</I></B> replace by <B><I>e</I></B>
 </DL>
 </DL>
+
+<p>
 Step 3: Remove special cases:
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes and perform the action
     indicated.
-<BR><BR>
 <DL>
     <DT><B><I>&aacute;n  &nbsp;  &aacute;nk&eacute;nt</I></B>
     <DD>replace by <B><I>a</I></B> if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&eacute;n</I></B>
     <DD>replace by <B><I>e</I></B> if in <I>R</I>1
 </DL>
 </DL>
+
+<p>
 Step 4: Remove other cases:
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes and perform the action indicated
-<BR><BR>
 <DL>
     <DT><B><I>astul  &nbsp;  est&uuml;l  &nbsp;  stul  &nbsp;  st&uuml;l</I></B>
     <DD>delete if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&aacute;stul</I></B>
     <DD>replace with <B><I>a</I></B> if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&eacute;st&uuml;l</I></B>
     <DD>replace with <B><I>e</I></B> if in <I>R</I>1
 </DL>
 </DL>
+
+<p>
 Step 5: Remove factive case
+</p>
+
 <DL><DD>
     Search for one of the following suffixes and perform the action indicated.
-<BR><BR>
 <DL>
     <DT><B><I>&aacute;  &nbsp;  &eacute;</I></B>
     <DD>delete if in <I>R</I>1 and preceded by a double consonant, and
     remove one of the double consonants (as in step 1).
 </DL>
 </DL>
+
+<p>
 Step 6: Remove owned
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes and perform the action
     indicated.
-<BR><BR>
 <DL>
     <DT><B><I>ok&eacute;  &nbsp;  &ouml;k&eacute;  &nbsp;  ak&eacute;  &nbsp;  ek&eacute;  &nbsp;  k&eacute;  &nbsp;  &eacute;i  &nbsp;  &eacute;</I></B>
     <DD>delete if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&aacute;k&eacute;  &nbsp;  &aacute;&eacute;i</I></B>
     <DD>replace with <B><I>a</I></B> if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&eacute;k&eacute;  &nbsp;  &eacute;&eacute;i  &nbsp;  &eacute;&eacute;</I></B>
     <DD>replace with <B><I>e</I></B> if in <I>R</I>1
 </DL>
 </DL>
+
+<p>
 Step 7: Remove singular owner suffixes
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes and perform the action
     indicated.
-<BR><BR>
 <DL>
     <DT><B><I>&uuml;nk  &nbsp;  unk  &nbsp;  nk  &nbsp;  juk  &nbsp;  j&uuml;k  &nbsp;  uk  &nbsp;  &uuml;k  &nbsp;  em  &nbsp;  om  &nbsp;  am  &nbsp;  m
      &nbsp;  od  &nbsp;  ed  &nbsp;  ad  &nbsp;  &ouml;d  &nbsp;  d  &nbsp;  ja  &nbsp;  je  &nbsp;  a  &nbsp;  e o</I></B>
     <DD>delete if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&aacute;nk &aacute;juk &aacute;m &aacute;d &aacute;</I></B>
     <DD>replace with <B><I>a</I></B> if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&eacute;nk &eacute;j&uuml;k &eacute;m &eacute;d &eacute;</I></B>
     <DD>replace with <B><I>e</I></B> if in <I>R</I>1
 </DL>
 </DL>
+
+<p>
 Step 8: Remove plural owner suffixes
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes and perform the action
     indicated.
-<BR><BR>
 <DL>
     <DT><B><I>jaim  &nbsp;  jeim  &nbsp;  aim  &nbsp;  eim  &nbsp;  im  &nbsp;  jaid  &nbsp;  jeid  &nbsp;  aid  &nbsp;  eid  &nbsp;  id  &nbsp;
     jai  &nbsp;  jei  &nbsp;  ai  &nbsp;  ei  &nbsp;  i  &nbsp;  jaink  &nbsp;  jeink  &nbsp;  eink  &nbsp;  aink  &nbsp;  ink  &nbsp;
@@ -389,38 +409,31 @@ Step 8: Remove plural owner suffixes
     ik</I></B>
 
     <DD>delete if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&aacute;im  &nbsp;  &aacute;id  &nbsp;  &aacute;i  &nbsp;  &aacute;ink  &nbsp;  &aacute;itok  &nbsp;  &aacute;ik</I></B>
     <DD>replace with <B><I>a</I></B> if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&eacute;im  &nbsp;  &eacute;id  &nbsp;    &nbsp;  &eacute;i  &nbsp;  &eacute;ink  &nbsp;  &eacute;itek  &nbsp;   &eacute;ik</I></B>
     <DD>replace with <B><I>e</I></B> if in <I>R</I>1
 </DL>
 </DL>
+
+<p>
 Step 9: Remove plural suffixes
+</p>
+
 <DL><DD>
     Search for the longest among the following suffixes and perform the action
     indicated.
-<BR><BR>
 <DL>
     <DT><B><I>&aacute;k</I></B>
     <DD>replace with <B><I>a</I></B> if in <I>R</I>1
-<BR><BR>
-    <DT><B><I>&eacute;k</I></B>
     <DD>replace with <B><I>e</I></B> if in <I>R</I>1
-<BR><BR>
     <DT><B><I>&ouml;k  &nbsp;  ok  &nbsp;  ek  &nbsp;  ak  &nbsp;  k</I></B>
     <DD>delete if in <I>R</I>1
 </DL>
 </DL>
 
-</TR>
-
-<TR><TD>
-<H2>The full algorithm in Snowball</H2>
+<h2>The full algorithm in Snowball</h2>
 
 [% highlight_file('hungarian') %]
-</TR>
 
-</TABLE>
 [% footer %]
