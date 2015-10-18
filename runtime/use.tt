@@ -63,7 +63,7 @@ The &nbsp;<code>-widechars</code>, &nbsp;<code>-utf8</code>, &nbsp;<code>-eprefi
 generation; the &nbsp;<code>-name</code>&nbsp; option with Java generation.
 </p>
 
-<H4>ANSI C generation</H4>
+<h4>ANSI C generation</h4>
 
 <p>
 In the absence of the &nbsp;<code>-eprefix</code>&nbsp; and &nbsp;<code>-vprefix</code>&nbsp; options, the list of
@@ -186,7 +186,7 @@ in the same location as the generated source files. It is used when
 building the libstemmer library, and may be useful for other projects.
 </p>
 
-<H4>Java generation</H4>
+<h4>Java generation</h4>
 
 <p>
 The &nbsp;<code>-java</code>&nbsp; option automatically sets the &nbsp;<code>-widechars</code>&nbsp; option.
@@ -199,7 +199,7 @@ which will unpack into an
 appropriate directory structure.
 </p>
 
-<H4>Other options</H4>
+<h4>Other options</h4>
 
 <p>
 If &nbsp;<code>-syntax</code>&nbsp; is used the other options are ignored, and the syntax tree

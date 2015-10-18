@@ -1,51 +1,49 @@
-<HTML>
-<HEAD>
-<TITLE>Romance language stemmers</TITLE></HEAD>
-<BODY BGCOLOR=WHITE>
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<H1 ALIGN=CENTER>Romance language stemmers</H1>
-<TR><TD BGCOLOR="wheat">
-<BR>&nbsp;<H2>Links to resources</H2>
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF=".."> Snowball main page</A>
-<TR><TD><A HREF="../algorithms/french/stemmer.html">     French stemmer</A>
-<TR><TD><A HREF="../algorithms/spanish/stemmer.html">    Spanish stemmer</A>
-<TR><TD><A HREF="../algorithms/portuguese/stemmer.html"> Portuguese stemmer</A>
-<TR><TD><A HREF="../algorithms/italian/stemmer.html">    Italian stemmer</A>
-</TABLE></DL>
+[% header('Romance language stemmers') %]
 
-</TR>
+<h2>Links to resources</h2>
 
-<TR><TD>
+<ul>
+<li> <A HREF=".."> Snowball main page</A>
+<li> <A HREF="../algorithms/french/stemmer.html">     French stemmer</A>
+<li> <A HREF="../algorithms/spanish/stemmer.html">    Spanish stemmer</A>
+<li> <A HREF="../algorithms/portuguese/stemmer.html"> Portuguese stemmer</A>
+<li> <A HREF="../algorithms/italian/stemmer.html">    Italian stemmer</A>
+</ul>
 
-<BR><BR>
-
-
+<p>
 The Romance languages have a wealth of different <I>i</I>-suffixes <A HREF="glossary.html">(*)</A> among the verb
 forms, and relatively few for the other parts of speech. In addition to
 this, many verbs exhibit irregularities. Many also have short stems,
 leading to dangers of over-stemming. The verb, therefore, tends to
 dominate initial thinking about stemming in these languages.
-<BR><BR>
+</p>
+
+<p>
 An algorithmic stemmer can usually reduce the multiple forms of a verb to at
 most two or three, and often just one. This is probably
 adequate for standard IR use, where the verb is used rather less than other
 parts of speech in short queries.
-<BR><BR>
+</p>
+
+<p>
 In French the verb endings <B><I>ent</I></B> and <B><I>ons</I></B> cannot be removed without
 unacceptable overstemming. The <B><I>ons</I></B> form is rarer, but <B><I>ent</I></B> forms
-are quite common, and will
-appear
-regularly throughout a stemmed vocabulary.
-<BR><BR>
+are quite common, and will appear regularly throughout a stemmed vocabulary.
+</p>
+
+<p>
 In Italian, the final vowel of nouns and adjectives indicates number and
 gender (<I>amico</I> is male friend, <I>amica</I> is female friend) and its removal is a
 necessary part of stemming, but the final vowel sometimes separates words
 of different meanings (<I>banco</I> is bench, <I>banca</I> is bank), which leads to some
 over-stemming.
-<BR><BR>
+</p>
+
+<p>
 The <I>d</I>-suffixes of all four languages follow a similar pattern. They can be
 tabulated as follows,
+</p>
+
 <DL><DD><TABLE CELLPADDING=0>
 
 <TR><TD>     <TD></TD><TD>              <TD></TD><TD>   French   <TD></TD><TD>   Spanish  <TD></TD><TD>   Portug.  <TD></TD><TD>   Italian
@@ -76,14 +74,18 @@ tabulated as follows,
 <TR><TD> verb      <TD></TD><TD> <FONT SIZE=-1>ATE</FONT>    <TD></TD><TD> <B><I>at</I></B>       <TD></TD><TD> <B><I>at</I></B>       <TD></TD><TD> <B><I>at</I></B>       <TD></TD><TD> <B><I>at</I></B>
 </TABLE></DL>
 
+<p>
 Equivalent English forms are shown in upper case. In English, <FONT SIZE=-1>ATE</FONT> is a valid ending, but
 in the Romance languages it only exists in combinations. The endings can appear in a
 number of styles. In Italian, <B><I>oso</I></B> can also be <B><I>osa</I></B>, <B><I>osi</I></B> or <B><I>ose</I></B>, French
 <B><I>ique</I></B> becomes <B><I>ic</I></B> in combinations.
+</p>
 
-<BR><BR>
+<p>
 The important combining forms are summarised in the following picture:
-<BR><PRE>
+</p>
+
+<PRE>
                                OUS
 
                                 |
@@ -105,6 +107,8 @@ The important combining forms are summarised in the following picture:
          `-----------------&gt;   ITY   &lt;-----'
 
 </PRE>
+
+<p>
 In English, <FONT SIZE=-1>ABLE</FONT> combines with <FONT SIZE=-1>LY</FONT> to form <FONT SIZE=-1>ABLY</FONT>. So in French, for example,
 <B><I>able</I></B> combines with (<B><I>e</I></B>)<B><I>ment</I></B> to form <B><I>ablement</I></B>.
 In some languages particular combinations are rare. In Italian, for example,
@@ -116,12 +120,6 @@ instance a few English words with these endings (<I>communicatively</I> for
 example).
 But in practice three is the maximum number of derivational
 suffixes that one need consider in combination.
+</p>
 
-<BR><BR>
-<BR><BR>
-
-</TR>
-
-</TABLE>
-</BODY>
-</HTML>
+[% footer %]

@@ -1,7 +1,4 @@
-<HTML>
-<HEAD>
-
-<TITLE>The Schinke Latin stemming algorithm</TITLE></HEAD>
+[% header('The Schinke Latin stemming algorithm') %]
 
 <!--
 
@@ -10,48 +7,43 @@ I've altered "latin.tgz" to "schinke.tgz" near the end.
 
 -->
 
+<h2>Links to resources</h2>
 
-<BODY BGCOLOR=WHITE>
-<TABLE WIDTH=75% ALIGN=CENTER COLS=1>
-<H1 ALIGN=CENTER>The Schinke Latin stemming algorithm</H1>
+<ul>
+<li> <A HREF="../.."> Snowball main page</A>
+<li> <A HREF="schinke.tgz">zip file</A>
+</ul>
 
-<TR><TD>
-<BR>&nbsp;<H2>Links to resources</H2>
-
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD><A HREF="../.."> Snowball main page</A>
-<TR><TD><A HREF="schinke.tgz">zip file</A>
-</TABLE></DL>
-
-<BR><BR>
-
-
-
-
-
-
+<p>
 (A note by Martin Porter.)
-<P>
+</p>
+
+<p>
 The Schinke Latin stemming algorithm is described in,
-<P>
-<BLOCKQUOTE>
+</p>
+
+<blockquote>
     Schinke R, Greengrass M, Robertson AM and Willett P (1996) A stemming algorithm for Latin text
     databases. <I>Journal of Documentation</I>, <B>52</B>: 172-187.
-</BLOCKQUOTE>
+</blockquote>
 
+<p>
 It has the feature that it stems each word to two forms, noun and verb. For example,
-<PRE>
+</p>
+
+<pre>
                 NOUN        VERB
                 ----        ----
     aquila      aquil       aquila
     portat      portat      porta
     portis      port        por
-</PRE>
+</pre>
 
+<p>
 Here (slightly reformatted) are the rules of the stemmer,
+</p>
 
-<BLOCKQUOTE>
-<PRE>
+<blockquote><pre>
 1. (start)
 
 2.  Convert all occurrences of the letters 'j' or 'v' to 'i' or 'u',
@@ -107,41 +99,40 @@ Here (slightly reformatted) are the rules of the stemmer,
     to the verb-based stem dictionary.
 
 8.  (end)
-</PRE>
-</BLOCKQUOTE>
+</pre></blockquote>
 
+<p>
 Unfortunately I was not able to make the rules match the examples given, which
 led to the following email correspondence,
+</p>
 
-<BR><BR>FROM <B>Martin Porter</B>
-<BR>TO <B>Peter Willett</B>
-    <BR>ON <B>Mon Sep 10 15:11:51 2001</B>
+<blockquote><pre>
+From: <B>Martin Porter</B>
+To: <B>Peter Willett</B>
+Date: <B>Mon Sep 10 15:11:51 2001</B>
+Subject: <B><I>Re: Stemming algorithms</I></B>
 
-<BR><BR><B><I>Re: Stemming algorithms</I></B>
-<DL><DD><PRE>
+&gt; ... I'm no longer working in the IR area,
+&gt;spending all of my time on computational chemistry/drug discovery
+&gt;research but I guess that Mark Sanderson would be interested in
+&gt;Snowball - do you mind if I pass your email onto him?
 
- &gt; ... I'm no longer working in the IR area,
- &gt;spending all of my time on computational chemistry/drug discovery
- &gt;research but I guess that Mark Sanderson would be interested in
- &gt;Snowball - do you mind if I pass your email onto him?
+Peter,
 
- Peter,
+Well, actually, I do have a question, if you can cast your mind back. I've
+implemented the Latin Stemmer in Snowball (see below: you'll have to guess the
+semantics, but I'm sure you'll agree the syntax looks nice), and find that Fig
+5 of the 1996 Schinke paper doesn't correspond to the algorithm of fig 7, but to
+the algorithm with the extra rules concerning -ba-, -bi-, -sse- mentioned on
+page 182. Which is the "correct" algorithm - with or without those rules? If
+with, what is the exact criterion for their removal? A bigger problem is why
+the -nt is not removed from 'Apparebunt', given -nt as an ending in 6(a). Is
+-nt a misprint?
 
- Well, actually, I do have a question, if you can cast your mind back. I've
- implemented the Latin Stemmer in Snowball (see below: you'll have to guess the
- semantics, but I'm sure you'll agree the syntax looks nice), and find that Fig
- 5 of the 1996 Schinke paper doesn't correspond to the algorithm of fig 7, but to
- the algorithm with the extra rules concerning -ba-, -bi-, -sse- mentioned on
- page 182. Which is the "correct" algorithm - with or without those rules? If
- with, what is the exact criterion for their removal? A bigger problem is why
- the -nt is not removed from 'Apparebunt', given -nt as an ending in 6(a). Is
- -nt a misprint?
+Sorry to bother you with this, but the paper says you are the one "to whom all
+correspondence should be addressed" :-)
 
- Sorry to bother you with this, but the paper says you are the one "to whom all
- correspondence should be addressed" :-)
-
- Martin
-
+Martin
 
 
  Here is your algorithm in Snowball. The generated code will do about 1 million
@@ -149,7 +140,8 @@ led to the following email correspondence,
 
  -------
 
-
+</pre>
+[% highlight("
  strings ( noun_form  verb_form )
 
  routines (
@@ -162,8 +154,8 @@ led to the following email correspondence,
 
  define map_letters as (
 
-     do repeat ( goto ( ['j'] ) &lt;- 'i' )
-     do repeat ( goto ( ['v'] ) &lt;- 'u' )
+     do repeat ( goto ( ['j'] ) <- 'i' )
+     do repeat ( goto ( ['v'] ) <- 'u' )
  )
 
  backwardmode (
@@ -181,8 +173,8 @@ led to the following email correspondence,
                  'obtor' 'optor' 'retor' 'reco' 'attor' 'inco' 'intor'
                  'praetor'
              ) atlimit ]
-             =&gt; noun_form
-             =&gt; verb_form
+             => noun_form
+             => verb_form
          ) or fail(delete)
      )
  )
@@ -193,10 +185,10 @@ led to the following email correspondence,
 
      backwards (
          que_word or (
-             =&gt; noun_form
-             =&gt; verb_form
-
-             $noun_form backwards try (
+             => noun_form
+             => verb_form
+" _ '
+             $noun_form backwards try (' _ "
                  [substring] hop 2
                  among (
                      'ibus' 'ius' 'ae' 'am' 'as' 'em' 'es' 'ia' 'is' 'nt'
@@ -204,16 +196,16 @@ led to the following email correspondence,
                          (delete)
                  )
              )
-
-             $verb_form backwards try (
+" _ '
+             $verb_form backwards try (' _ "
                  [substring] hop 2
                  among (
                      'iuntur' 'erunt' 'untur' 'iunt' 'unt'
-                          (&lt;-'i')
+                          (<-'i')
                      'beris' 'bor' 'bo'
-                          (&lt;-'bi')
+                          (<-'bi')
                      'ero'
-                          (&lt;-'eri')
+                          (<-'eri')
                      'mini' 'ntur' 'stis' 'mur' 'mus' 'ris' 'sti' 'tis'
                      'tur' 'ns' 'nt' 'ri' 'm' 'r' 's' 't'
                           (delete)
@@ -223,35 +215,31 @@ led to the following email correspondence,
      )
 
      /* the stemmed words are left in noun-form and verb-form, and can
-        be picked up as C strings at z-&gt;S[0] and z-&gt;S[1] through the API. */
+        be picked up as C strings at z->S[0] and z->S[1] through the API. */
  )
+") %]
+</blockquote>
 
-</PRE></DL>
+<blockquote><pre>
+From: <B>Peter Willett</B>
+To: <B>Martin Porter</B>
+Date: <B>Mon Sep 10 20:25:24 2001</B>
+Subject: <B><I>Re: Stemming algorithms</I></B>
 
-<BR><BR>FROM <B>Peter Willett</B>
-<BR>TO <B>Martin Porter</B>
-    <BR>ON <B>Mon Sep 10 20:25:24 2001</B>
+Martin
 
-<BR><BR><B><I>Re: Stemming algorithms</I></B>
-<DL><DD><PRE>
+Sorry - I just cannot answer.  Robertson has retired to Dorset while
+Schinke is now in - I think - Canada
 
- Martin
+Peter
+</pre></blockquote>
 
- Sorry - I just cannot answer.  Robertson has retired to Dorset while
- Schinke is now in - I think - Canada
-
- Peter
-
-</PRE></DL>
-
-<BR><BR>
-
-
-
+<p>
 Following this, I was unable to contact Schinke, and so the problems have
 remained unresolved.
-<P>
+</p>
 
+<p>
 The linked <A HREF="schinke.tgz">zip file</A> contains the stemmer,
 generated C version, and sample data.
 (The stemmer differs slightly from the version in the email above in that
@@ -259,11 +247,6 @@ it assembles the noun- and verb-forms of the stem in a single string with
 space separation.)
 <code>voc.txt</code> is a sample vocabulary, and <code>joined.txt</code> the vocabulary
 joined with the two stemmed forms as three column output.
+</p>
 
-<BR><BR><BR><BR>
-
-
-</TABLE>
-</BODY>
-</HTML>
-
+[% footer %]

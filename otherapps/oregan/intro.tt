@@ -1,6 +1,6 @@
 [% header('Stemmers for Irish Gaelic and Czech') %]
 
-<H2>Links to resources</H2>
+<h2>Links to resources</h2>
 
 <ul>
 <li> <A HREF="../..">Snowball main page</A>

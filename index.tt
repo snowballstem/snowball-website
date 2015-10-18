@@ -9,6 +9,71 @@ algorithms for use in Information Retrieval. This site describes Snowball, and p
 several useful stemmers which have been implemented using it.
 </p>
 
+<p>
+The Snowball compiler translates a Snowball script into another language -
+currently ISO C, Java and Python are supported.
+<!-- FIXME: JSX too, but the name JSX is more commonly associated with a
+different project, so needs careful wording -->
+<p>
+
+<!--
+FIXME: Incorporate this text from quickintro here:
+
+Discuss somewhere appropriate: thread-safety
+
+<BR><BR>
+- You can look at the stemming algorithm definitions themselves, and use
+them as templates for coding your own versions of stemmers in the computer
+language of your choice.
+
+<BR><BR>
+- You can use the various ANSI C
+and Java stemmers in programs of your own,
+without bothering yourself
+with the Snowball system that generated them. To do that,
+download either the
+
+<A HREF="../dist/libstemmer_c.tgz">C</A>
+or the
+<A HREF="../dist/libstemmer_java.tgz">Java</A>
+
+version of the libstemmer library, and follow the instructions
+contained in the &nbsp;<code>README</code>&nbsp; files within these tarballs.
+The tarballs also contain simple example
+programs which allow you to run the stemmers from the command line.
+<BR><BR>
+
+- You can get involved in Snowball itself. This is particularly worthwhile
+if you want to adjust the stemmers or develop new stemmers. A typical reason
+for adjusting the stemmers is that you are working with a different encoding
+of accented letters from the ISO Latin I encoding assumed in most of the scripts
+here. Then you need to make your own version of the Snowball compiler and
+work with the Snowball scripts.
+
+Add new backends to the Snowball compiler...
+
+<DL><DD>
+
+ The language has a full
+
+    <A HREF="../compiler/snowman.html"> manual</A>,
+
+and the various stemming scripts act as example programs.
+
+</DL>
+
+- You can get deeply interested in stemming. If you do, read the
+
+    <A HREF="../texts/introduction.html"> introductory paper</A>
+
+about Snowball. It is a bit heavyweight, but provides essential background.
+And look at the
+
+    <A HREF="../texts/howtohelp.html"> notes</A>
+
+on how you can help.
+-->
+
 <blockquote>
 <p>
 Since it effectively provides a &#8216;<I>suffix STRIPPER GRAMmar</I>&#8217;, I had toyed with the
@@ -84,7 +149,6 @@ speedily, and in any case they reserve the right to post their answers on snowba
     <h2>Links to resources</h2>
 
     <ul class="list-unstyled">
-      <li><a href="texts/quickintro.html">Quick Introduction</a></li>
       <li><a href="texts/introduction.html">An account of Snowball</a></li>
       <li><a href="texts/howtohelp.html">How You Can Help</a></li>
     </ul>
