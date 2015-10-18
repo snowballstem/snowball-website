@@ -53,19 +53,19 @@ define mark_regions as (
 
 backwardmode (
 
-  define RV as $pV &lt;= cursor
-  define R1 as $p1 &lt;= cursor
+  define RV as $pV <= cursor
+  define R1 as $p1 <= cursor
 
   define palatalise as (
     [substring] RV among (
       'ci' 'ce' '{c^}i' '{c^}'
-      (&lt;- 'k')
+      (<- 'k')
       'zi' 'ze' '{z^}i' '{z^}e'
-      (&lt;- 'h')
+      (<- 'h')
       '{c^}t{e^}' '{c^}ti' '{c^}t{e'}'
-      (&lt;- 'ck')
+      (<- 'ck')
       '{s^}t{e^}' '{s^}ti' '{s^}t{e'}'
-      (&lt;- 'sk')
+      (<- 'sk')
     )
   )
 
@@ -101,7 +101,7 @@ backwardmode (
       )
       'em'
       (
-	&lt;- 'e'
+	<- 'e'
 	try palatalise
       )
     )
@@ -123,28 +123,28 @@ backwardmode (
       'i{a'}n' 'ist' 'isk' 'i{s^}k' 'itb'
       'ic' 'in' 'it' 'iv'
       (
-	&lt;- 'i'
+	<- 'i'
 	palatalise
       )
       'enic' 'ec' 'en'
       (
-	&lt;- 'e'
+	<- 'e'
 	palatalise
       )
       '{e'}{r^}'
       (
-	&lt;- '{e'}'
+	<- '{e'}'
 	palatalise
       )
       '{e^}n'
       (
-	&lt;- '{e^}'
+	<- '{e^}'
 	palatalise
       )
       '{i'}rn'
       '{i'}{r^}' '{i'}n'
       (
-	&lt;- '{i'}'
+	<- '{i'}'
 	palatalise
       )
     )
@@ -163,7 +163,7 @@ backwardmode (
       (delete)
       'izn' 'isk'
       (
-	&lt;- 'i'
+	<- 'i'
 	palatalise
       )
     )
@@ -180,32 +180,32 @@ backwardmode (
       (delete)
       'e{c^}ek' 'enek' 'ek'
       (
-	&lt;- 'e'
+	<- 'e'
 	palatalise
       )
       '{e'}{c^}ek' '{e'}k'
       (
-	&lt;- '{e'}'
+	<- '{e'}'
 	palatalise
       )
       'i{c^}ek' 'inek' 'ik'
       (
-	&lt;- 'i'
+	<- 'i'
 	palatalise
       )
       '{i'}{c^}ek' '{i'}k'
       (
-	&lt;- '{i'}'
+	<- '{i'}'
 	palatalise
       )
       '{a'}k'
-       (&lt;- '{a'}')
+       (<- '{a'}')
       'ak'
-       (&lt;- 'a')
+       (<- 'a')
       'ok'
-       (&lt;- 'o')
+       (<- 'o')
       'uk'
-       (&lt;- 'u')
+       (<- 'u')
     )
   )
 
@@ -213,12 +213,12 @@ backwardmode (
     [substring] among (
       '{e^}j{s^}'
       (
-	&lt;- '{e^}'
+	<- '{e^}'
 	palatalise
       )
       'ej{s^}'
       (
-	&lt;- 'e'
+	<- 'e'
 	palatalise
       )
     )
