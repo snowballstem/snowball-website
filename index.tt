@@ -195,9 +195,9 @@ speedily, and in any case they reserve the right to post their answers on snowba
 
     <h3>External Contributions</h3>
     <ul class="list-unstyled">
-      <li><a href="otherapps/oregan/intro.html">Irish and Czech</a></li>
-      <li><a href="otherapps/pascal/intro.html">Object Pascal codegenerator for Snowball</a></li>
-      <li><a href="otherapps/romanian/intro.html">Two stemmers for Romanian</a></li>
+      <li><a href="otherapps/oregan/">Irish and Czech</a></li>
+      <li><a href="otherapps/pascal/">Object Pascal codegenerator for Snowball</a></li>
+      <li><a href="otherapps/romanian/">Two stemmers for Romanian</a></li>
       <li><a href="algorithms/hungarian/stemmer.html">Hungarian</a></li>
       <li><a href="algorithms/turkish/stemmer.html">Turkish</a></li>
       <li><a href="algorithms/armenian/stemmer.html">Armenian</a></li>
@@ -208,7 +208,7 @@ speedily, and in any case they reserve the right to post their answers on snowba
     <h3>Other work</h3>
 
     <ul class="list-unstyled">
-      <li><a href="otherapps/schinke/intro.html">The Schinke Latin stemmer</a></li>
+      <li><a href="otherapps/schinke/">The Schinke Latin stemmer</a></li>
       <li><a href="algorithms/lovins/stemmer.html">The Lovins English stemmer</a></li>
       <li><a href="algorithms/kraaij_pohlmann/stemmer.html">The Kraaij/Pohlmann Dutch stemmer</a></li>
     </ul>
