@@ -3,7 +3,6 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="../.."> Snowball main page</A>
 <li> <A HREF="../../texts/romance.html"> Romance language stemmers</A>
 <li> <A HREF="stem_Unicode.sbl">    The stemmer in Snowball (Unicode)</A>
 <li> <A HREF="stem_ISO_8859_2.sbl">    The stemmer in Snowball (ISO Latin 2)</A>

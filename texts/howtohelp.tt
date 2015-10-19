@@ -1,9 +1,5 @@
 [% header('Snowball: How You Can Help') %]
 
-<ul>
-<li> <A HREF=".."> Snowball main page</A>
-</ul>
-
 <p>
 For the work on this site there are two possible lines of development, one is
 Snowball itself &#x2014; the language and compiler &#x2014; and the other is the

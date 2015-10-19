@@ -3,7 +3,6 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="../..">Snowball main page</A>
 <li> <A HREF="oregan.tgz">       &nbsp;<code>oregan.tgz</code>, Tar-gzipped file of resources</A>
 <li> <A HREF="irish.sbl">        irish stemmer</A>
 <li> <A HREF="tolower_irish.sbl">lower case script</A>

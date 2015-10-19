@@ -3,7 +3,6 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF=".."> Snowball main page</A>
 <li> <A HREF="../algorithms/french/stemmer.html">     French stemmer</A>
 <li> <A HREF="../algorithms/spanish/stemmer.html">    Spanish stemmer</A>
 <li> <A HREF="../algorithms/portuguese/stemmer.html"> Portuguese stemmer</A>
