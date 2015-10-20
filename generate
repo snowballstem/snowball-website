@@ -138,7 +138,6 @@ for my $in (<*.tt */*.tt */*/*.tt>) {
     for (@menu) {
 	my ($link, $desc) = @{$_};
 	my $class = 'list-group-item';
-	print "? $link eq $page ?\n";
 	if ($link eq $page || "$link/index" eq $page) {
 	    $class .= ' active';
 	}
