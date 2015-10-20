@@ -171,7 +171,7 @@ __END__
 	$menu = '';
     }
 
-    # $default title is the title of the page if one isn't explcitly specified.
+    # $default title is the title of the page if one isn't explicitly specified.
     my $default_title;
     if ($pretty_name eq "") {
 	$pretty_name = "Snowball";
