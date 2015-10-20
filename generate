@@ -135,11 +135,13 @@ for my $in (<*.tt */*.tt */*/*.tt>) {
     }
 
     my $menu = "<div class='list-group'>";
+    my $found_entry = 0;
     for (@menu) {
 	my ($link, $desc) = @{$_};
 	my $class = 'list-group-item';
 	if ($link eq $page || "$link/index" eq $page) {
 	    $class .= ' active';
+	    ++$found_entry;
 	}
 	if ($link eq "index") {
 	    $link = '/';
@@ -167,7 +169,11 @@ for my $in (<*.tt */*.tt */*/*.tt>) {
 
 __END__
     # FIXME: Sort out sub-level navigation.
-    if (0) {
+    if ($found_entry > 1) {
+	print "$in: error: $found_entry menu entries highlighted\n";
+	$menu = '';
+    } elsif ($found_entry == 0) {
+	print "$in: warning: No corresponding menu entry\n";
 	$menu = '';
     }
 
