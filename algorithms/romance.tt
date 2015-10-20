@@ -85,28 +85,8 @@ number of styles. In Italian, <B><I>oso</I></B> can also be <B><I>osa</I></B>, <
 The important combining forms are summarised in the following picture:
 </p>
 
-<PRE>
-                               OUS
-
-                                |
-                                |
-                                v
-
-         .-----------------&gt;    LY   &lt;---------  ANT
-         |                           &lt;-----.
-         |                      ^          |
-         |                      |          |
-         |                      |          |
-
-        IVE   &lt;--   ATE   &lt;--   IC        ABLE
-
-         |                      |          |
-         |                      |          |
-         |                      v          |
-         |                                 |
-         `-----------------&gt;   ITY   &lt;-----'
-
-</PRE>
+<img alt="Graph showing important combining forms in English"
+ src="english-combining-forms.png">
 
 <p>
 In English, <FONT SIZE=-1>ABLE</FONT> combines with <FONT SIZE=-1>LY</FONT> to form <FONT SIZE=-1>ABLY</FONT>. So in French, for example,

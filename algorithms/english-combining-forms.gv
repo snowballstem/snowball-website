@@ -1,0 +1,20 @@
+strict digraph romance {
+    splines=ortho;
+    ous [label="OUS",pos="2,3!"];
+    ly [label="LY",pos="2,2!"];
+    ant [label="ANT",pos="3,3!"];
+    ic [label="IC",pos="2,1!"];
+    ate [label="ATE",pos="1,1!"];
+    ive [label="IVE",pos="0,1!"];
+    ity [label="ITY",pos="2,0!"];
+    able [label="ABLE",pos="3,1!"];
+    ous -> ly;
+    ant -> ly;
+    ic -> ly;
+    ic -> ate -> ive;
+    ic -> ity;
+    ive -> ly;
+    ive -> ity;
+    able -> ly;
+    able -> ity;
+}

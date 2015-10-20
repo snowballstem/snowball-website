@@ -247,3 +247,8 @@ __END__
     };
     $template->process($in, $vars, $out) || die $template->error();
 }
+for my $in (<*.gv */*.gv */*.gv>) {
+    ((my $base = $in) =~ s/\.gv$//) or next;
+    my $out = "$outpath$base.png";
+    run ['neato', '-Tpng', $in], \undef, '>', $out, '2>', \*STDERR;
+}
