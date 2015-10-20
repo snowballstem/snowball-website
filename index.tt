@@ -158,7 +158,7 @@ speedily, and in any case they reserve the right to post their answers on snowba
     <ul class="list-unstyled">
       <li><a href="compiler/snowman.html">The Manual</a></li>
       <li><a href="runtime/use.html">How To Run It</a></li>
-      <li><a href="texts/stemmersoverview.html">Stemmers</a>
+      <li><a href="algorithms/">Stemmers</a>
         <ul>
           <li><a href="algorithms/porter/stemmer.html">English (porter)</a></li>
           <li><a href="algorithms/english/stemmer.html">English (porter2)</a></li>

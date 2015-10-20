@@ -71,9 +71,10 @@ $$vars{footer} = <<'__END__';
 </html>
 __END__
 
-my @pages = (
+my @menu = (
     [ "index" => "Introduction" ],
     [ "demo" => "Demo" ],
+    [ "algorithms" => "Algorithms" ],
     [ "download" => "Download" ],
     [ "lists" => "Mailing Lists" ],
     [ "license" => "License" ],
@@ -82,7 +83,7 @@ my @pages = (
 );
 
 # specify input filename, or file handle, text reference, etc.
-for my $in (<*.tt>) {
+for my $in (<*.tt */*.tt */*/*.tt>) {
     ((my $page = $in) =~ s/\.tt$//) or next;
     my $out = "$outpath$page.html";
     my $pretty_name = "\u$page";
@@ -93,13 +94,19 @@ for my $in (<*.tt>) {
     }
 
     my $menu = "<div class='list-group'>";
-    for (@pages) {
+    for (@menu) {
 	my ($link, $desc) = @{$_};
-	my $class = $link eq $page ? 'list-group-item active' : 'list-group-item';
+	my $class = 'list-group-item';
+	print "? $link eq $page ?\n";
+	if ($link eq $page || "$link/index" eq $page) {
+	    $class .= ' active';
+	}
 	if ($link eq "index") {
 	    $link = '/';
+	} elsif (-d $link) {
+	    $link = "/$link/";
 	} else {
-	    $link .= '.html';
+	    $link = "/$link.html";
 	}
 	$menu .= '<a class="'.$class.'" href="'.$link.'">'.$desc.'</a>';
     }
@@ -119,17 +126,32 @@ for my $in (<*.tt>) {
 -->
 
 __END__
-    # Title is the title of the page: it will be postfixed with " - Snowball".
-    my $title = "Snowball";
-    if ($pretty_name eq "") {
-	$pretty_name = $title;
+    # FIXME: Sort out sub-level navigation.
+    if (0) {
+	$menu = '';
     }
-    else {
-	$title = "$pretty_name - $title";
+
+    # $default title is the title of the page if one isn't explcitly specified.
+    my $default_title;
+    if ($pretty_name eq "") {
+	$pretty_name = "Snowball";
+    } else {
+	$default_title = $pretty_name;
     }
     # Header of the page, including the menu.
     # This should be output first.
-    $$vars{header} = <<__END__;
+    $$vars{header} = sub {
+	my $title = shift // $default_title;
+	my $heading = $title;
+	if (defined $title) {
+	    $title .= ' - Snowball';
+	} else {
+	    $heading = $title = 'Snowball';
+	}
+	$title =~ s/\&/\&amp;/g;
+	$title =~ s/</\&lt;/g;
+	$title =~ s/>/\&gt;/g;
+	return <<__END__;
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -141,7 +163,7 @@ __END__
     <link rel="icon" href="/favicon.ico">
     <title>$title</title>
     <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
@@ -179,9 +201,10 @@ __END__
           $menu
         </div>
         <div class="col-md-10">
-          <h1>$pretty_name</h1>
+          <h1>$heading</h1>
 
 __END__
+    };
     $template->process($in, $vars, $out) || die $template->error();
 }
 
@@ -225,73 +248,3 @@ $$vars{highlight_file} = sub {
     }
     return scalar(`python highlight_snowball.py < \Q$code_path_prefix$file$code_path_suffix\E`);
 };
-
-# FIXME: Sort out navigation and styling.
-for my $in (<*/*.tt */*/*.tt>) {
-    ((my $page = $in) =~ s/\.tt$//) or next;
-    my $out = "$outpath$page.html";
-    # Header of the page.
-    # This should be output first.
-    $$vars{header} = sub {
-	my $title = shift;
-	$title =~ s/\&/\&amp;/g;
-	$title =~ s/</\&lt;/g;
-	$title =~ s/>/\&gt;/g;
-	return <<__END__;
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/favicon.ico">
-    <title>$title</title>
-    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/styles.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" style="margin: 4px; height: 42px;"></a>
-          <a class="navbar-brand" href="/">Snowball</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/credits.html">Credits</a></li>
-            <li><a href="https://github.com/snowballstem">Source</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <!-- Side navbar needs sorting out -->
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2">
-          <!--\$menu-->
-        </div>
-        <div class="col-md-10">
-
-        <h1>$title</h1>
-__END__
-    };
-
-    $template->process($in, $vars, $out) || die $template->error();
-}
