@@ -12,31 +12,27 @@
 <p>
 When you download Snowball
 (<A HREF="../dist/snowball_code.tgz">from here</A>),
-it already has in place a make file that you
-can call to build it. But in any case, Snowball has a very simple
-structure, comprising the traditional tokeniser, syntax analyser and code
-generator modules, with two extra modules for space management and an
-internal merge sort, and a small driver module, all sharing a common header
-file.  You will find them in the directory &nbsp;<code>compiler/</code>. Copy it out,
-and you can compile Snowball at once (Linux or Unix) with
+it already contains a make file to allow you to build and install it,
+like so:
 </p>
 
 <PRE>
-    gcc -O -o Snowball compiler/*.c
+    make
+    sudo make install
 </PRE>
 
 <p>
-Snowball can then be called up with the following syntax,
+The snowball compiler can then be called up with the following syntax,
 </p>
 
 <PRE>
-    F1 [-o[utput] F2]
-       [-s[yntax]]
-       [-w[idechars]]  [-u[tf8]]
-       [-j[ava]]  [-n[ame] C]
-       [-ep[refix] S1]  [-vp[refix] S2]
-       [-i[nclude] D]
-       [-r[untime] P]
+    snowball F1 [-o[utput] F2]
+                [-s[yntax]]
+                [-w[idechars]]  [-u[tf8]]
+                [-j[ava]]  [-n[ame] C]
+                [-ep[refix] S1]  [-vp[refix] S2]
+                [-i[nclude] D]
+                [-r[untime] P]
 </PRE>
 
 <p>
@@ -44,9 +40,9 @@ For example,
 </p>
 
 <PRE>
-    ./Snowball danish/stem.sbl -o q/danish
-    ./Snowball danish/stem.sbl -syntax
-    ./Snowball danish/stem.sbl -output q/danish -ep danish_
+    snowball danish/stem.sbl -o q/danish
+    snowball danish/stem.sbl -syntax
+    snowball danish/stem.sbl -output q/danish -ep danish_
 </PRE>
 
 <p>
@@ -212,9 +208,9 @@ Any number of &nbsp;<code>-include</code>&nbsp; options may be present, for exam
 </p>
 
 <PRE>
-    ./Snowball testfile -output test -ep danish_  \
-               -include /home/martin/Snowball/codesets  \
-               -include extras
+    snowball testfile -output test -ep danish_  \
+             -include /home/martin/Snowball/codesets  \
+             -include extras
 </PRE>
 
 <p>
@@ -350,13 +346,8 @@ confidence in using it, here is something you can try safely at home.
 </p>
 
 <p>
-First, get the compiler out of the snowball code download, and build it.
-We have seen above how you do this:
+First, install the compiler, as documented above.
 </p>
-
-<PRE>
-    gcc -O -o Snowball compiler/*.c
-</PRE>
 
 <p>
 Then copy the files &nbsp;<code>stem_ISO_8859_1.sbl</code>, &nbsp;<code>voc.txt</code>&nbsp; and &nbsp;<code>output.txt</code>&nbsp; from the page for
@@ -379,7 +370,7 @@ snowball script,
 </p>
 
 <PRE>
-    ./Snowball hungarian.sbl -o q/hungarian -ep H_ -utf8
+    snowball hungarian.sbl -o q/hungarian -ep H_ -utf8
 </PRE>
 
 <p>
@@ -536,8 +527,7 @@ In summary therefore,
 </p>
 
 <PRE>
-    gcc -O -o Snowball compiler/*.c
-    ./Snowball hungarian.sbl -o q/hungarian -ep H_ -utf8
+    snowball hungarian.sbl -o q/hungarian -ep H_ -utf8
     gcc -o H_prog q/*.c
     ./H_prog voc.txt -o TEMP.txt
     diff output.txt TEMP.txt

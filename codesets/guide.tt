@@ -43,7 +43,7 @@ directory where this and other files are held,
 </p>
 
 <PRE>
-    Snowball gstem.sbl -o gstem ... -include /home/shazzer/snowball/codesets
+    snowball gstem.sbl -o gstem ... -include /home/shazzer/snowball/codesets
 </PRE>
 
 <p>
