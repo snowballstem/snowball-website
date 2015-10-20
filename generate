@@ -51,6 +51,47 @@ my $template = Template->new($config);
 # define template variables for replacement
 my $vars = {};
 
+$$vars{highlight} = sub {
+    my $in = shift;
+    my $lang = shift;
+    # Remove leading and trailing whitespace-only lines.
+    $in =~ s/\A\s*\n//;
+    $in =~ s/\n\s+\z/\n/;
+    $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
+    my $out;
+    if (defined $lang) {
+	run ['pygmentize', "-l$lang", '-fhtml'], \$in, \$out, \*STDERR
+	    or die "python: $?";
+    } else {
+	run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
+	    or die "python: $?";
+    }
+    return $out;
+};
+
+$$vars{highlight_inline} = sub {
+    my $in = shift;
+    # Remove leading and trailing whitespace-only lines.
+    $in =~ s/\A\s*\n//;
+    $in =~ s/\n\s+\z/\n/;
+    $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
+    $in =~ /\n/ and warn "Newline in inline Snowball code? [$in]";
+    my $out;
+    run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
+	or die "python: $?";
+    $out =~ s!<div([^.]*)><pre>!<span$1><code>!;
+    $out =~ s!</pre></div>!</code></span>!;
+    return $out;
+};
+
+$$vars{highlight_file} = sub {
+    my $file = shift;
+    if ($file =~ /\.\w+$/) {
+	return scalar(`pygmentize -fhtml \Qcode/$file\E`);
+    }
+    return scalar(`python highlight_snowball.py < \Q$code_path_prefix$file$code_path_suffix\E`);
+};
+
 # The footer of the page.
 # There should be no output after this.
 $$vars{footer} = <<'__END__';
@@ -207,44 +248,3 @@ __END__
     };
     $template->process($in, $vars, $out) || die $template->error();
 }
-
-$$vars{highlight} = sub {
-    my $in = shift;
-    my $lang = shift;
-    # Remove leading and trailing whitespace-only lines.
-    $in =~ s/\A\s*\n//;
-    $in =~ s/\n\s+\z/\n/;
-    $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
-    my $out;
-    if (defined $lang) {
-	run ['pygmentize', "-l$lang", '-fhtml'], \$in, \$out, \*STDERR
-	    or die "python: $?";
-    } else {
-	run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
-	    or die "python: $?";
-    }
-    return $out;
-};
-
-$$vars{highlight_inline} = sub {
-    my $in = shift;
-    # Remove leading and trailing whitespace-only lines.
-    $in =~ s/\A\s*\n//;
-    $in =~ s/\n\s+\z/\n/;
-    $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
-    $in =~ /\n/ and warn "Newline in inline Snowball code? [$in]";
-    my $out;
-    run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
-	or die "python: $?";
-    $out =~ s!<div([^.]*)><pre>!<span$1><code>!;
-    $out =~ s!</pre></div>!</code></span>!;
-    return $out;
-};
-
-$$vars{highlight_file} = sub {
-    my $file = shift;
-    if ($file =~ /\.\w+$/) {
-	return scalar(`pygmentize -fhtml \Qcode/$file\E`);
-    }
-    return scalar(`python highlight_snowball.py < \Q$code_path_prefix$file$code_path_suffix\E`);
-};
