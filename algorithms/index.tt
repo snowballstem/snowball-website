@@ -5,16 +5,19 @@
 <ul>
     <li><A HREF="../algorithms/porter/stemmer.html">English (porter)</A>
     <li><A HREF="../algorithms/english/stemmer.html">English (porter2)</A>
+    <li><a href="../texts/earlyenglish.html">A note on early English</a></li>
     <li><A HREF="../texts/romance.html">Romance stemmers:</A>
     <ul>
         <li><A HREF="../algorithms/french/stemmer.html">French</A>
         <li><A HREF="../algorithms/spanish/stemmer.html">Spanish</A>
         <li><A HREF="../algorithms/portuguese/stemmer.html">Portuguese</A>
         <li><A HREF="../algorithms/italian/stemmer.html">Italian</A>
+	<li><a href="../algorithms/romanian/stemmer.html">Romanian</a></li>
     </ul>
     <li><A HREF="../texts/germanic.html">Germanic stemmers</A>
     <ul>
         <li><A HREF="../algorithms/german/stemmer.html">German</A>
+	<li><a href="../algorithms/german2/stemmer.html">(German variant)</a></li>
         <li><A HREF="../algorithms/dutch/stemmer.html">Dutch</A>
     </ul>
     <li><A HREF="../texts/scandinavian.html">Scandinavian stemmers</A>
@@ -29,7 +32,7 @@
 
 <p>
 We present stemming algorithms, and Snowball stemmers, for English, for Russian,
-for the Romance languages French, Spanish, Portuguese and Italian, for
+for the Romance languages French, Spanish, Portuguese, Italian and Romanian, for
 German and Dutch, for Swedish, Norwegian (bokm&aring;l dialect)
 and Danish, and for Finnish.
 </p>
