@@ -158,38 +158,6 @@ speedily, and in any case they reserve the right to post their answers on snowba
     <ul class="list-unstyled">
       <li><a href="compiler/snowman.html">The Manual</a></li>
       <li><a href="runtime/use.html">How To Run It</a></li>
-      <li><a href="algorithms/">Stemmers</a>
-        <ul>
-          <li><a href="algorithms/porter/stemmer.html">English (porter)</a></li>
-          <li><a href="algorithms/english/stemmer.html">English (porter2)</a></li>
-          <li><a href="texts/earlyenglish.html">A note on early English</a></li>
-          <li><a href="texts/romance.html">Romance stemmers:</a>
-            <ul>
-              <li><a href="algorithms/french/stemmer.html">French</a></li>
-              <li><a href="algorithms/spanish/stemmer.html">Spanish</a></li>
-              <li><a href="algorithms/portuguese/stemmer.html">Portuguese</a></li>
-              <li><a href="algorithms/italian/stemmer.html">Italian</a></li>
-              <li><a href="algorithms/romanian/stemmer.html">Romanian</a></li>
-            </ul>
-          </li>
-          <li><a href="texts/germanic.html">Germanic stemmers</a>
-            <ul>
-              <li><a href="algorithms/german/stemmer.html">German</a></li>
-              <li><a href="algorithms/german2/stemmer.html">(German variant)</a></li>
-              <li><a href="algorithms/dutch/stemmer.html">Dutch</a></li>
-            </ul>
-          </li>
-          <li><a href="texts/scandinavian.html">Scandinavian stemmers</a>
-            <ul>
-              <li><a href="algorithms/swedish/stemmer.html">Swedish</a></li>
-              <li><a href="algorithms/norwegian/stemmer.html">Norwegian</a></li>
-              <li><a href="algorithms/danish/stemmer.html">Danish</a></li>
-            </ul>
-          </li>
-          <li><a href="algorithms/russian/stemmer.html">Russian</a></li>
-          <li><a href="algorithms/finnish/stemmer.html">Finnish</a></li>
-        </ul>
-      </li>
       <li><a href="codesets/guide.html">Character codes</a></li>
     </ul>
 
