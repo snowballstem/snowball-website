@@ -6,6 +6,11 @@ This is the source for generating the website: http://snowballstem.org/
 Setup
 -----
 
+You'll need the Perl `Template Toolkit`, `neato` from `graphviz`, and
+`pngcrush` - on Debian you can install these with::
+
+ apt-get install libtemplate-perl graphviz pngcrush
+
 You need the `pygments-snowball` repo as a subdirectory, for syntax highlighting
 Snowball code on the website:
 
@@ -21,6 +26,6 @@ Generating the website
 
 Run::
 
-./generate
+ ./generate
 
 This will create the website in `../snowballstem.github.io`.
