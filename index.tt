@@ -173,14 +173,6 @@ speedily, and in any case they reserve the right to post their answers on snowba
       <li><a href="algorithms/catalan/stemmer.html">Catalan</a></li>
     </ul>
 
-    <h3>Other work</h3>
-
-    <ul class="list-unstyled">
-      <li><a href="otherapps/schinke/">The Schinke Latin stemmer</a></li>
-      <li><a href="algorithms/lovins/stemmer.html">The Lovins English stemmer</a></li>
-      <li><a href="algorithms/kraaij_pohlmann/stemmer.html">The Kraaij/Pohlmann Dutch stemmer</a></li>
-    </ul>
-
   </div>
 </div>
 

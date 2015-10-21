@@ -39,11 +39,11 @@ foreach my $f (qw(
 )) {
     system("rm", "-rf", $outpath.$f) == 0 or die "Failed to delete '$outpath$f'\n";
     system("cp", "-a", $f, $outpath.$f) == 0 or die "Failed to copy '$f'\n";
-
-    # Currently needed for .tt files in algorithms - can be removed once we
-    # generate everything there.
-    system('find', $outpath, '-name', '*.tt', '-delete') == 0 or die "Failed to remove .tt files from generated website\n";
 }
+
+# Currently needed for .tt files in algorithms - can be removed once we
+# generate everything there.
+system('find', $outpath, '-name', '*.tt', '-o', '-name', '*.gv', '-delete') == 0 or die "Failed to remove .tt files from generated website\n";
 
 my $template = Template->new($config);
 
