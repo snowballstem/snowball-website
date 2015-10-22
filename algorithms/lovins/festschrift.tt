@@ -1063,7 +1063,7 @@ the suffixes in steps 2 to 4 of the Porter stemmer we can construct
 the following diagram:
 </p>
 
-<IMG SRC="porter-1.jpg">
+<img alt="Diagram showing ending combinations for the Porter stemmer" src="porter-1.png">
 
 <p>
 This is not meant to be a linguistic analysis of the suffix structure of
