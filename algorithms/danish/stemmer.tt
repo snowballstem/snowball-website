@@ -280,7 +280,7 @@ Step 2:
     <DL><DD>
         <B><I>gd  &nbsp;  dt  &nbsp;  gt  &nbsp;  kt</I></B>
     </DL>
-    (For example, <I>friskt</I> <code>-&gt;</code> <I>frisk</I>)
+    (For example, <I>friskt</I> &#x2192; <I>frisk</I>)
 </DL>
 
 Step 3:
@@ -311,9 +311,9 @@ Step 4: undouble
     </p>
 
     <p>
-    (For example, <I>bestemmelse</I> <code>-&gt;</code> <I>bestemmels</I> (step 1)
-    <code>-&gt;</code> <I>bestemm</I> (step 3<I>a</I>)
-    <code>-&gt;</code> <I>bestem</I> in this step.)
+    (For example, <I>bestemmelse</I> &#x2192; <I>bestemmels</I> (step 1)
+    &#x2192; <I>bestemm</I> (step 3<I>a</I>)
+    &#x2192; <I>bestem</I> in this step.)
     </p>
 </DL>
 

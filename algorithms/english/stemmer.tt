@@ -364,7 +364,7 @@ Step 1<I>a</I>:
         <DD>replace by <B><I>ss</I></B>
     <DT><B><I>ied</I></B><code><FONT COLOR=BLUE>+</FONT></code>  &nbsp;  <B><I>ies</I></B><code><FONT COLOR=BLUE>*</FONT></code>
         <DD>replace by <B><I>i</I></B> if preceded by more than one letter, otherwise by <B><I>ie</I></B>
-        (so <I>ties</I> <code>-&gt;</code> <I>tie</I>, <I>cries</I> <code>-&gt;</code> <I>cri</I>)
+        (so <I>ties</I> &#x2192; <I>tie</I>, <I>cries</I> &#x2192; <I>cri</I>)
     <DT><B><I>s</I></B>
         <DD>delete if the preceding word part contains a vowel not immediately before the
 <B><I>s</I></B> (so <I>gas</I> and <I>this</I> retain the <B><I>s</I></B>, <I>gaps</I> and <I>kiwis</I> lose it)
@@ -384,17 +384,17 @@ Step 1<I>b</I>:
         <DD>replace by <B><I>ee</I></B> if in <I>R</I>1
     <DT><B><I>ed  &nbsp;  edly</I></B><code><FONT COLOR=BLUE>+</FONT></code>  &nbsp;  <B><I>ing  &nbsp;  ingly</I></B><code><FONT COLOR=BLUE>+</FONT></code>
         <DD>delete if the preceding word part contains a vowel, and after the deletion:
-        <DD>if the word ends <B><I>at</I></B>, <B><I>bl</I></B> or <B><I>iz</I></B> add <B><I>e</I></B> (so <I>luxuriat</I> <code>-&gt;</code> <I>luxuriate</I>), or
+        <DD>if the word ends <B><I>at</I></B>, <B><I>bl</I></B> or <B><I>iz</I></B> add <B><I>e</I></B> (so <I>luxuriat</I> &#x2192; <I>luxuriate</I>), or
         <DD>if the word ends with a double
-        remove the last letter (so <I>hopp</I> <code>-&gt;</code> <I>hop</I>), or
-        <DD>if the word is short, add <B><I>e</I></B> (so <I>hop</I> <code>-&gt;</code> <I>hope</I>)
+        remove the last letter (so <I>hopp</I> &#x2192; <I>hop</I>), or
+        <DD>if the word is short, add <B><I>e</I></B> (so <I>hop</I> &#x2192; <I>hope</I>)
 </DL>
 </DL>
 
 Step 1<I>c</I>: <code><FONT COLOR=BLUE>*</FONT></code>
 <DL><DD>
     replace suffix <B><I>y</I></B> or <B><I>Y</I></B> by <B><I>i</I></B> if preceded by a non-vowel which is not the
-    first letter of the word (so <I>cry</I> <code>-&gt;</code> <I>cri</I>, <I>by</I> <code>-&gt;</code> <I>by</I>, <I>say</I> <code>-&gt;</code> <I>say</I>)
+    first letter of the word (so <I>cry</I> &#x2192; <I>cri</I>, <I>by</I> &#x2192; <I>by</I>, <I>say</I> &#x2192; <I>say</I>)
 </DL>
 
 Step 2:
@@ -589,7 +589,7 @@ Porter stemmer:
          generic<BR>
          generically<BR>
          generous<BR>
-         generously</I> <TD></TD><TD>  &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>gener</I>
+         generously</I> <TD></TD><TD>  &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>gener</I>
 
 </TABLE></DL>
 
@@ -623,17 +623,17 @@ after which the words beginning <B><I>gener</I></B> stem as follows:
          generates<BR>
          generated<BR>
          generating</I>
-                      <TD></TD><TD>  &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>generat</I>
+                      <TD></TD><TD>  &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>generat</I>
 
     <TR><TD> <I>general<BR>
          generally</I>
-                      <TD></TD><TD>  &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>general</I>
+                      <TD></TD><TD>  &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>general</I>
     <TR><TD> <I>generic<BR>
          generically</I>
-                      <TD></TD><TD>  &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>generic</I>
+                      <TD></TD><TD>  &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>generic</I>
     <TR><TD> <I>generous<BR>
          generously</I>
-                      <TD></TD><TD>  &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>generous</I>
+                      <TD></TD><TD>  &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>generous</I>
 </TABLE></DL>
 
 <p>
@@ -738,16 +738,16 @@ The definition of the English stemmer above is therefore supplemented by the fol
     </p>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD> <I>skis</I>      <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>ski</I>
-<TR><TD> <I>skies</I>     <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>sky</I>
+<TR><TD> <I>skis</I>      <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>ski</I>
+<TR><TD> <I>skies</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>sky</I>
 
 <TR><TD> <I>dying <BR> lying <BR> tying</I>
-                 <TD></TD><TD>  <code>-&gt;</code>
+                 <TD></TD><TD>  &#x2192;
                                <TD></TD><TD> <I>die <BR> lie <BR> tie</I>
 
 
 <TR><TD> <I>idly <BR> gently <BR> ugly <BR> early <BR> only <BR> singly</I>
-                 <TD></TD><TD>  <code>-&gt;</code>
+                 <TD></TD><TD>  &#x2192;
                                <TD></TD><TD> <I>idl <BR> gentl <BR> ugli <BR> earli <BR> onli <BR> singl</I>
 
 </TABLE></DL>

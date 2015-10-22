@@ -262,8 +262,8 @@ Step 1:
     </p>
 
     <p>
-    (For example, <I>äckern</I> <code>-&gt;</code> <I>äck</I>, <I>ackers</I> <code>-&gt;</code> <I>acker</I>,
-    <I>armes</I> <code>-&gt;</code> <I>arm</I>, <I>bedürfnissen</I> <code>-&gt;</code> <I>bedürfnis</I>)
+    (For example, <I>äckern</I> &#x2192; <I>äck</I>, <I>ackers</I> &#x2192; <I>acker</I>,
+    <I>armes</I> &#x2192; <I>arm</I>, <I>bedürfnissen</I> &#x2192; <I>bedürfnis</I>)
     </p>
 </DL>
 Step 2:
@@ -281,7 +281,7 @@ Step 2:
     </p>
 
     <p>
-    (For example, <I>derbsten</I> <code>-&gt;</code> <I>derbst</I> by step 1, and <I>derbst</I> <code>-&gt;</code> <I>derb</I> by step
+    (For example, <I>derbsten</I> &#x2192; <I>derbst</I> by step 1, and <I>derbst</I> &#x2192; <I>derb</I> by step
     2, since <B><I>b</I></B> is a valid <B><I>st</I></B>-ending, and is preceded by just 3 letters)
     </p>
 </DL>

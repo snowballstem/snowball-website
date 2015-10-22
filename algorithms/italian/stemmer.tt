@@ -263,7 +263,7 @@ Step 0: Attached pronoun
     </DL>
     <p>
     in <I>RV</I>. In case of (<I>a</I>) the suffix is deleted, in case (<I>b</I>) it is replace
-    by <B><I>e</I></B> (<I>guardandogli</I> <code>-&gt;</code> <I>guardando</I>, <I>accomodarci</I> <code>-&gt;</code> <I>accomodare</I>)
+    by <B><I>e</I></B> (<I>guardandogli</I> &#x2192; <I>guardando</I>, <I>accomodarci</I> &#x2192; <I>accomodare</I>)
     </p>
 </DL>
 
@@ -343,7 +343,7 @@ Step 3a
 
 <DL><DD>
     Delete a final <B><I>a</I></B>, <B><I>e</I></B>, <B><I>i</I></B>, <B><I>o</I></B>, <B><I>à</I></B>, <B><I>è</I></B>, <B><I>ì</I></B> or <B><I>ò</I></B> if it is in <I>RV</I>, and a
-    preceding <B><I>i</I></B> if it is in <I>RV</I> (<I>crocchi</I> <code>-&gt;</code> <I>crocch</I>, <I>crocchio</I> <code>-&gt;</code> <I>crocch</I>)
+    preceding <B><I>i</I></B> if it is in <I>RV</I> (<I>crocchi</I> &#x2192; <I>crocch</I>, <I>crocchio</I> &#x2192; <I>crocch</I>)
 </DL>
 
 <p>
@@ -351,7 +351,7 @@ Step 3b
 </p>
 
 <DL><DD>
-    Replace final <B><I>ch</I></B> (or <B><I>gh</I></B>) with <B><I>c</I></B> (or <B><I>g</I></B>) if in <I>RV</I> (<I>crocch</I> <code>-&gt;</code> <I>crocc</I>)
+    Replace final <B><I>ch</I></B> (or <B><I>gh</I></B>) with <B><I>c</I></B> (or <B><I>g</I></B>) if in <I>RV</I> (<I>crocch</I> &#x2192; <I>crocc</I>)
 </DL>
 
 <p>

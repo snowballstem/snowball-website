@@ -337,8 +337,8 @@ Step 3: cases
 </DL>
 
 <p>
-So <I>aarteisiin</I> <code>-&gt;</code> <I>aartei</I>, the longest matching suffix being <B><I>siin</I></B>,
-preceded as it is by <I>V</I><B><I>i</I></B>. But <I>adressiin</I> <code>-&gt;</code> <I>adressi</I>. The longest
+So <I>aarteisiin</I> &#x2192; <I>aartei</I>, the longest matching suffix being <B><I>siin</I></B>,
+preceded as it is by <I>V</I><B><I>i</I></B>. But <I>adressiin</I> &#x2192; <I>adressi</I>. The longest
 matching suffix is not <B><I>siin</I></B>, because there is no preceding <I>V</I><B><I>i</I></B>, but <B><I>n</I></B>,
 and then the last vowel of the preceding <I>LV</I> is removed.
 </p>
@@ -393,7 +393,7 @@ Do step (<I>e</I>), which is not restricted to <I>R</I>1.
 
 <p>
 <I>e</I>) If the word ends with a double consonant followed by zero or more vowels,
-remove the last consonant (so <I>eläkk</I> <code>-&gt;</code> <I>eläk</I>, <I>aatonaatto</I> <code>-&gt;</code>
+remove the last consonant (so <I>eläkk</I> &#x2192; <I>eläk</I>, <I>aatonaatto</I> &#x2192;
 <I>aatonaato</I>)
 </p>
 </DL>

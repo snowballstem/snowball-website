@@ -17,12 +17,12 @@ giving rise to the following changes,
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD> <I>youth</I>      <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>Youth</I>
-<TR><TD> <I>boy</I>        <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>boY</I>
-<TR><TD> <I>boyish</I>     <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>boYish</I>
-<TR><TD> <I>fly</I>        <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>fly</I>
-<TR><TD> <I>flying</I>     <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>flying</I>
-<TR><TD> <I>syzygy</I>     <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>syzygy</I>
+<TR><TD> <I>youth</I>      <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>Youth</I>
+<TR><TD> <I>boy</I>        <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>boY</I>
+<TR><TD> <I>boyish</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>boYish</I>
+<TR><TD> <I>fly</I>        <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>fly</I>
+<TR><TD> <I>flying</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>flying</I>
+<TR><TD> <I>syzygy</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>syzygy</I>
 </TABLE></DL>
 
 <p>
@@ -39,7 +39,7 @@ foreign words:
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD> <I>sayyid</I>      <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>sayYid</I>
+<TR><TD> <I>sayyid</I>      <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>sayYid</I>
 </TABLE></DL>
 
 <p>
@@ -59,8 +59,8 @@ which gives rise to,
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD> <I>ennuie</I>       <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>ennuIe</I>
-<TR><TD> <I>inqui&eacute;tude</I> <TD></TD><TD>   &nbsp;  <code>-&gt;</code>  &nbsp;  <TD></TD><TD> <I>inqUi&eacute;tude</I>
+<TR><TD> <I>ennuie</I>       <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>ennuIe</I>
+<TR><TD> <I>inqui&eacute;tude</I> <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>inqUi&eacute;tude</I>
 </TABLE></DL>
 
 <p>

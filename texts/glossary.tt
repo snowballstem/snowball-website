@@ -32,8 +32,8 @@ in the stem:
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>    fit + <B><I>ed</I></B>   <TD></TD><TD> <code>-&gt;</code>  <TD></TD><TD> fitted (double <B><I>t</I></B>)
-<TR><TD>    love + <B><I>ed</I></B>  <TD></TD><TD> <code>-&gt;</code>  <TD></TD><TD> loved (drop the final <B><I>e</I></B> of love)
+<TR><TD>    fit + <B><I>ed</I></B>   <TD></TD><TD> &#x2192;  <TD></TD><TD> fitted (double <B><I>t</I></B>)
+<TR><TD>    love + <B><I>ed</I></B>  <TD></TD><TD> &#x2192;  <TD></TD><TD> loved (drop the final <B><I>e</I></B> of love)
 </TABLE></DL>
 </DL>
 

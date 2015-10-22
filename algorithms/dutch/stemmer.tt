@@ -284,7 +284,7 @@ Step 4: undouble vowel
 <DL><DD>
     If the words ends <I>CVD</I>, where <I>C</I> is a non-vowel, <I>D</I> is a non-vowel other
     than <B><I>I</I></B>, and <I>V</I> is double <B><I>a</I></B>, <B><I>e</I></B>, <B><I>o</I></B> or <B><I>u</I></B>, remove one of the vowels from
-    <I>V</I> (for example, <I>maan</I> <code>-&gt;</code> <I>man</I>, <I>brood</I> <code>-&gt;</code> <I>brod</I>).
+    <I>V</I> (for example, <I>maan</I> &#x2192; <I>man</I>, <I>brood</I> &#x2192; <I>brod</I>).
 </DL>
 Finally,
 <DL><DD>

@@ -231,8 +231,8 @@ in the stem:
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>    fit + <B><I>ed</I></B>   <TD></TD><TD> <code>-&gt;</code>  <TD></TD><TD> fitted (double <B><I>t</I></B>)
-<TR><TD>    love + <B><I>ed</I></B>  <TD></TD><TD> <code>-&gt;</code>  <TD></TD><TD> loved (drop the final <B><I>e</I></B> of love)
+<TR><TD>    fit + <B><I>ed</I></B>   <TD></TD><TD> &#x2192;  <TD></TD><TD> fitted (double <B><I>t</I></B>)
+<TR><TD>    love + <B><I>ed</I></B>  <TD></TD><TD> &#x2192;  <TD></TD><TD> loved (drop the final <B><I>e</I></B> of love)
 </TABLE></DL>
 
 <p>
@@ -579,8 +579,8 @@ ending. No false conflations arise, and so there is no over-stemming here.
 
 <p>
 To summarise, one can say that just as a word can be over-stemmed
-but not mis-stemmed (<I>relativity</I> <code>-&gt;</code> <I>relative</I>), so it can be
-mis-stemmed but not over-stemmed (<I>enervate</I> <code>-&gt;</code> <I>enerv</I>). And, of
+but not mis-stemmed (<I>relativity</I> &#x2192; <I>relative</I>), so it can be
+mis-stemmed but not over-stemmed (<I>enervate</I> &#x2192; <I>enerv</I>). And, of
 course, even over-stemming does not matter, if the over-stemmed word falsely
 conflates with other words that exist in the language, but are not
 encountered in the IR
