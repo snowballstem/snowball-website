@@ -30,6 +30,7 @@ foreach my $f (qw(
     robots.txt
     snub-dodecahedron.gif
     styles.css
+    js
     codesets
     algorithms
     otherapps

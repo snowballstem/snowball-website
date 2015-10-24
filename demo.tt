@@ -1,6 +1,6 @@
 [% header %]
-<script language=javascript src="base-stemmer.js"></script>
-<script language=javascript src="english-stemmer.js"></script>
+<script language=javascript src="js/base-stemmer.js"></script>
+<script language=javascript src="js/english-stemmer.js"></script>
 
 <div>
 Enter some words to stem, using the English stemming algorithm, and then click on Submit:<br>
