@@ -54,7 +54,7 @@ Each formal algorithm should be compared with the corresponding Snowball program
 </p>
 
 <p>
-Surprisingly, among the Indo-European languages <A HREF="glossary.html">(*)</A>, the French stemmer turns out to be the most complicated, whereas
+Surprisingly, among the Indo-European languages <A HREF="../texts/glossary.html">(*)</A>, the French stemmer turns out to be the most complicated, whereas
 the Russian stemmer, despite its large number of suffixes, is very simple. In
 fact it is interesting that English, with its minimal use of <I>i</I>-suffixes,
 has such a complex stemmer. This is partly due to the delicate nature of
@@ -65,7 +65,7 @@ the mixed Romance and Germanic ancestry of the language.
 
 <p>
 Note that by <I>i</I>-suffix we mean inflexional suffix, and by <I>d</I>-suffix,
-derivational suffix <A HREF="glossary.html">(*)</A>.
+derivational suffix <A HREF="../texts/glossary.html">(*)</A>.
 </p>
 
 [% footer %]
