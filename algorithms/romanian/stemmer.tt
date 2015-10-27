@@ -4,14 +4,8 @@
 
 <ul>
 <li> <A HREF="/algorithms/romance.html"> Romance language stemmers</A>
-<li> <A HREF="stem_Unicode.sbl">    The stemmer in Snowball (Unicode)</A>
-<li> <A HREF="stem_ISO_8859_2.sbl">    The stemmer in Snowball (ISO Latin 2)</A>
-<li> <A HREF="stem.c">      The ANSI C stemmer</A>
-<li> <A HREF="stem.h">      &#x2014; and its header</A>
-<li> <A HREF="voc.txt">     Sample Romanian vocabulary</A>
-<li> <A HREF="output.txt">  Its stemmed equivalent</A>
-<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<li> <A HREF="stop.txt">    Romanian stop word list is not yet in place</A>
+[% algorithm_lis('romanian', 'stem_Unicode.sbl', 'Romanian') %]
+<!-- <li> <A HREF="stop.txt">    Romanian stop word list is not yet in place</A> -->
 <li> <A HREF="http://seelrc.org:8080/grammar/mainframe.jsp?nLanguageID=5">
 Dana Cojocaru&#8217;s Romanian Grammar</A>
 </ul>

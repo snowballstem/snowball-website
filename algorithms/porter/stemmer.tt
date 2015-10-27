@@ -3,12 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<li> <A HREF="stem.c">      The ANSI C stemmer</A>
-<li> <A HREF="stem.h">      &#x2014; and its header</A>
-<li> <A HREF="voc.txt">     Sample English vocabulary</A>
-<li> <A HREF="output.txt">  Its stemmed equivalent</A>
-<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
+[% algorithm_lis('porter', 'stem_ISO_8859_1.sbl', 'English') %]
 <li> <A HREF="http://tartarus.org/~martin/PorterStemmer/">
 The &#8216;official&#8217; home page of the Porter stemming algorithm</A>
 </ul>

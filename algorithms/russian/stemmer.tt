@@ -3,14 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="stem_KOI8_R.sbl">    The stemmer in Snowball (KOI8-R encoding)</A>
-<li> <A HREF="stem_Unicode.sbl">    The stemmer in Snowball (Unicode encoding) </A>
-<li> <A HREF="stem.c">      The ANSI C stemmer</A>
-<li> <A HREF="stem.h">      — and its header</A>
-<li> <A HREF="voc.txt">     Sample Russian vocabulary</A>
-<li> <A HREF="output.txt">  Its stemmed equivalent</A>
-<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<li> <A HREF="stop.txt">     Russian stop word list</A>
+[% algorithm_lis('russian', 'stem_Unicode.sbl', 'Russian') %]
 </ul>
 
 <p>

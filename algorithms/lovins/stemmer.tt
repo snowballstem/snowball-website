@@ -3,9 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="stem.sbl">    The stemmer in Snowball</A>
-<li> <A HREF="stem.c">      The ANSI C stemmer</A>
-<li> <A HREF="stem.h">      &#x2014; and its header</A>
+[% algorithm_lis('lovins', 'stem_ISO_8859_1.sbl', '') %]
 <li> <A HREF="festschrift.html"> (in more depth)</A>
 <li> <A HREF="http://www.cs.waikato.ac.nz/~eibe/stemmers/index.html">
 An &#8216;unofficial&#8217; home page of the Lovins stemming algorithm</A>

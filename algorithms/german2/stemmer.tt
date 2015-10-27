@@ -4,9 +4,7 @@
 
 <ul>
 <li> <A HREF="../german/stemmer.html"> The main German stemmer</A>
-<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<li> <A HREF="stem.c">      The ANSI C stemmer</A>
-<li> <A HREF="stem.h">      &#x2014; and its header</A>
+[% algorithm_lis('german2', 'stem_ISO_8859_1.sbl', 'German') %]
 </ul>
 
 <h2>Representation of umlaut by following <I>e</I></h2>

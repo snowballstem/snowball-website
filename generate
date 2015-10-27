@@ -93,6 +93,22 @@ $$vars{highlight_file} = sub {
     return scalar(`python highlight_snowball.py < \Q$code_path_prefix$file$code_path_suffix\E`);
 };
 
+# <li> tags for a stemming algorithm.
+$$vars{algorithm_lis} = sub {
+    my ($id, $sbl_file, $lang_name) = @_;
+    my $out = << "__END__";
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/$id/$sbl_file">The stemmer in Snowball</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/$id/voc.txt">Sample $lang_name vocabulary</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/$id/output.txt">Its stemmed equivalent</a></li>
+__END__
+    if (-f "algorithms/$id/stop.txt") {
+	$out .= << "__END__";
+<li> <a href="stop.txt">$lang_name stop word list</a>
+__END__
+    }
+    return $out;
+};
+
 # The footer of the page.
 # There should be no output after this.
 $$vars{footer} = <<'__END__';

@@ -5,12 +5,7 @@
 <ul>
 <li> <A HREF="/algorithms/germanic.html"> Germanic language stemmers</A>
 <li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
-<li> <A HREF="stem.c">      The ANSI C stemmer</A>
-<li> <A HREF="stem.h">      &#x2014; and its header</A>
-<li> <A HREF="voc.txt">     Sample Dutch vocabulary</A>
-<li> <A HREF="output.txt">  Its stemmed equivalent</A>
-<li> <A HREF="tarball.tgz"> Tar-gzipped file of all of the above</A>
-<li> <A HREF="stop.txt">     Dutch stop word list</A>
+[% algorithm_lis('dutch', 'stem_ISO_8859_1.sbl', 'Dutch') %]
 </ul>
 
 <div style="background-color:lightpink">
