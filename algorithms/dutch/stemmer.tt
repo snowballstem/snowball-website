@@ -4,7 +4,6 @@
 
 <ul>
 <li> <A HREF="/algorithms/germanic.html"> Germanic language stemmers</A>
-<li> <A HREF="stem_ISO_8859_1.sbl">    The stemmer in Snowball</A>
 [% algorithm_lis('dutch', 'stem_ISO_8859_1.sbl', 'Dutch') %]
 </ul>
 
