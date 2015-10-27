@@ -6,7 +6,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('hungarian', 'stem_ISO_8859_1.sbl', 'Hungarian') %]
+[% algorithm_lis('hungarian', 'stem_Unicode.sbl', 'Hungarian') %]
 <li> The <A HREF="http://ilps.science.uva.nl/resources/snowball-hun/">
 isla, Amsterdam</A> page for the Hungarian stemmer
 </ul>
