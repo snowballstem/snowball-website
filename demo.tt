@@ -2,13 +2,14 @@
 <script language=javascript src="js/base-stemmer.js"></script>
 <script language=javascript src="js/english-stemmer.js"></script>
 
-<div>
-Enter some words to stem, using the English stemming algorithm, and then click on Submit:<br>
-<textarea id="words" rows="10" cols="50">
+<p>
+Enter some words to stem, then click "Stem":
+</p>
+
+<textarea id="words" rows="5" cols="50">
 </textarea>
 <br>
-<button onclick="stem_demo();">Submit</button
-</div>
+<button onclick="stem_demo();">Stem</button
 
 <div id="results"></div>
 
