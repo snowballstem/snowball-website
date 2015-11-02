@@ -201,7 +201,19 @@ __END__
     } else {
 	$default_title = $pretty_name;
     }
-    # Header of the page, including the menu.
+    my @stemmer_js_files;
+    my $stemmer_select = '<select id="lang">';
+    for (sort glob('js/*-stemmer.js')) {
+	next if m!/base-!;
+	if (m!/(.*)-!) {
+	    push @stemmer_js_files, $_;
+	    my $default = $1 eq 'english' ? ' selected' : '';
+	    $stemmer_select .= "<option value='\u$1'$default>\u$1</option>";
+	}
+    }
+    $stemmer_select .= "</select>";
+    $$vars{stemmer_js_files} = \@stemmer_js_files;
+    $$vars{stemmer_select} = $stemmer_select;
     # This should be output first.
     $$vars{header} = sub {
 	my $title = shift // $default_title;

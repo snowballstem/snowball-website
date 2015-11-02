@@ -156,12 +156,6 @@ function EnglishStemmer() {
     var /** number */ I_p2 = 0;
     var /** number */ I_p1 = 0;
 
-    this.copy_from = function(/** !EnglishStemmer */ other) {
-        B_Y_found = other.B_Y_found;
-        I_p2 = other.I_p2;
-        I_p1 = other.I_p1;
-        base.copy_from(other);
-    };
 
     /** @return {boolean} */
     function r_prelude() {
@@ -175,7 +169,7 @@ function EnglishStemmer() {
             // [, line 27
             base.bra = base.cursor;
             // literal, line 27
-            if (!(base.eq_s(1, "'")))
+            if (!(base.eq_s("'")))
             {
                 break lab0;
             }
@@ -195,7 +189,7 @@ function EnglishStemmer() {
             // [, line 28
             base.bra = base.cursor;
             // literal, line 28
-            if (!(base.eq_s(1, "y")))
+            if (!(base.eq_s("y")))
             {
                 break lab1;
             }
@@ -232,7 +226,7 @@ function EnglishStemmer() {
                             // [, line 29
                             base.bra = base.cursor;
                             // literal, line 29
-                            if (!(base.eq_s(1, "y")))
+                            if (!(base.eq_s("y")))
                             {
                                 break lab6;
                             }
@@ -672,7 +666,7 @@ function EnglishStemmer() {
             var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 // literal, line 94
-                if (!(base.eq_s_b(1, "y")))
+                if (!(base.eq_s_b("y")))
                 {
                     break lab1;
                 }
@@ -680,7 +674,7 @@ function EnglishStemmer() {
             }
             base.cursor = base.limit - v_1;
             // literal, line 94
-            if (!(base.eq_s_b(1, "Y")))
+            if (!(base.eq_s_b("Y")))
             {
                 return false;
             }
@@ -833,7 +827,7 @@ function EnglishStemmer() {
             case 13:
                 // (, line 119
                 // literal, line 119
-                if (!(base.eq_s_b(1, "l")))
+                if (!(base.eq_s_b("l")))
                 {
                     return false;
                 }
@@ -991,7 +985,7 @@ function EnglishStemmer() {
                     var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         // literal, line 145
-                        if (!(base.eq_s_b(1, "s")))
+                        if (!(base.eq_s_b("s")))
                         {
                             break lab1;
                         }
@@ -999,7 +993,7 @@ function EnglishStemmer() {
                     }
                     base.cursor = base.limit - v_1;
                     // literal, line 145
-                    if (!(base.eq_s_b(1, "t")))
+                    if (!(base.eq_s_b("t")))
                     {
                         return false;
                     }
@@ -1079,7 +1073,7 @@ function EnglishStemmer() {
                     return false;
                 }
                 // literal, line 152
-                if (!(base.eq_s_b(1, "l")))
+                if (!(base.eq_s_b("l")))
                 {
                     return false;
                 }
@@ -1250,7 +1244,7 @@ function EnglishStemmer() {
                         // [, line 203
                         base.bra = base.cursor;
                         // literal, line 203
-                        if (!(base.eq_s(1, "Y")))
+                        if (!(base.eq_s("Y")))
                         {
                             break lab3;
                         }

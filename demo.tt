@@ -1,6 +1,4 @@
 [% header %]
-<script language=javascript src="js/base-stemmer.js"></script>
-<script language=javascript src="js/english-stemmer.js"></script>
 
 <p>
 Enter some words to stem, then click "Stem":
@@ -9,13 +7,21 @@ Enter some words to stem, then click "Stem":
 <textarea id="words" rows="5" cols="50">
 </textarea>
 <br>
-<button onclick="stem_demo();">Stem</button
+[% stemmer_select %]
+<button onclick="stem_demo();">Stem</button>
 
 <div id="results"></div>
 
+<script language=javascript src="js/base-stemmer.js"></script>
+[% FOREACH js IN stemmer_js_files %]
+<script language=javascript src="[% js %]"></script>
+[% END %]
 <script>
 function stem_demo() {
-  var s = new EnglishStemmer();
+  var lang = document.getElementById('lang').value;
+  if (lang.search(/[^-A-Za-z0-9_]/) >= 0) return;
+  lang += "Stemmer";
+  var s = eval("new "+lang+"()");
   var words = document.getElementById('words').value;
   var result = '';
   var a = words.split(/[^\w]+/);
