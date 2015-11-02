@@ -342,7 +342,7 @@ function DanishStemmer() {
         // ], line 76
         base.bra = base.cursor;
         // -> ch, line 76
-        S_ch = base.slice_to(S_ch);
+        S_ch = base.slice_to();
         if (S_ch == '')
         {
             return false;

@@ -923,7 +923,7 @@ function FinnishStemmer() {
         // ], line 179
         base.bra = base.cursor;
         // -> x, line 179
-        S_x = base.slice_to(S_x);
+        S_x = base.slice_to();
         if (S_x == '')
         {
             return false;
