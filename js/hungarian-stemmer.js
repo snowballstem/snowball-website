@@ -1,6 +1,7 @@
 // This file was generated automatically by the Snowball to JSX compiler
 // http://snowballstem.org/
 
+/**@constructor*/
 function HungarianStemmer() {
     var base = new BaseStemmer();
     /** @const */ var a_0 = [
@@ -1378,9 +1379,11 @@ function HungarianStemmer() {
         base.cursor = base.limit_backward;        return true;
     };
 
+    /**@export @return{string}*/
     this.stemWord = function(word) {
 	base.setCurrent(word);
 	this.stem();
         return base.getCurrent();
     };
 };
+window['HungarianStemmer'] = HungarianStemmer;

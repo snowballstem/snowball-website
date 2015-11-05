@@ -140,6 +140,28 @@ my @menu = (
     [ "projects" => "Projects" ]
 );
 
+    my @stemmer_js_files;
+    my $stemmer_select = '<select id="lang" onchange="lang_changed(this);">';
+    for (sort glob('js/*-stemmer.js')) {
+	if (m!/(.*)-!) {
+	    push @stemmer_js_files, $_;
+	    if ($1 ne 'base') {
+		my $default = $1 eq 'english' ? ' selected' : '';
+		$stemmer_select .= "<option value='\u$1'$default>\u$1</option>";
+	    }
+	}
+    }
+
+run ['closure-compiler',
+     qw(--compilation_level ADVANCED_OPTIMIZATIONS),
+     qw(--warning_level VERBOSE),
+     @stemmer_js_files],
+     \undef, '>', $outpath."/js/stemmers.js", '2>', \*STDERR;
+
+$stemmer_select .= "</select>";
+$$vars{stemmer_js_files} = ['js/stemmers.js']; #\@stemmer_js_files;
+$$vars{stemmer_select} = $stemmer_select;
+
 # specify input filename, or file handle, text reference, etc.
 for my $in (<*.tt */*.tt */*/*.tt>) {
     ((my $page = $in) =~ s/\.tt$//) or next;
@@ -201,19 +223,6 @@ __END__
     } else {
 	$default_title = $pretty_name;
     }
-    my @stemmer_js_files;
-    my $stemmer_select = '<select id="lang">';
-    for (sort glob('js/*-stemmer.js')) {
-	next if m!/base-!;
-	if (m!/(.*)-!) {
-	    push @stemmer_js_files, $_;
-	    my $default = $1 eq 'english' ? ' selected' : '';
-	    $stemmer_select .= "<option value='\u$1'$default>\u$1</option>";
-	}
-    }
-    $stemmer_select .= "</select>";
-    $$vars{stemmer_js_files} = \@stemmer_js_files;
-    $$vars{stemmer_select} = $stemmer_select;
     # This should be output first.
     $$vars{header} = sub {
 	my $title = shift // $default_title;

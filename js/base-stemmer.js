@@ -1,11 +1,5 @@
+/**@constructor*/
 function BaseStemmer() {
-    var current;
-    var cursor;
-    var limit;
-    var limit_backward;
-    var bra;
-    var ket;
-
     this.setCurrent = function(value) {
         this.current = value;
 	this.cursor = 0;
@@ -100,7 +94,7 @@ function BaseStemmer() {
 	return true;
     };
 
-    /** @return {int} */ this.find_among = function(v)
+    /** @return {number} */ this.find_among = function(v)
     {
 	var i = 0;
 	var j = v.length;
@@ -169,7 +163,6 @@ function BaseStemmer() {
 	    i = w[1];
 	    if (i < 0) return 0;
 	}
-        return -1; // not reachable
     };
 
     // find_among_b is for backwards processing. Same comments apply
@@ -236,7 +229,6 @@ function BaseStemmer() {
 	    i = w[1];
 	    if (i < 0) return 0;
 	}
-        return -1; // not reachable
     };
 
     /* to replace chars between c_bra and c_ket in this.current by the
@@ -287,7 +279,7 @@ function BaseStemmer() {
 	if (c_bra <= this.ket) this.ket += adjustment;
     };
 
-    this.slice_to = function(s)
+    this.slice_to = function()
     {
         var result = '';
 	if (this.slice_check())
@@ -297,7 +289,7 @@ function BaseStemmer() {
         return result;
     };
 
-    this.assign_to = function(s)
+    this.assign_to = function()
     {
         return this.current.slice(0, this.limit);
     };

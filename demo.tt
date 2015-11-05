@@ -1,38 +1,61 @@
 [% header %]
 
 <p>
-Enter some words to stem, then click "Stem":
-</p>
-
-<textarea id="words" rows="5" cols="50">
-</textarea>
-<br>
+Try the
 [% stemmer_select %]
-<button onclick="stem_demo();">Stem</button>
+stemming algorithm:
+</p>
+<table border='0'><tr><td width="50%">
+<textarea id="words" rows=1 cols=50 placeholder="Enter some English text" oninput="stem_demo(this);">
+</textarea>
+</td>
+<td id="results" class="license" style='border:1px;border-style:solid;'></td>
+</tr></table>
 
-<div id="results"></div>
-
-<script language=javascript src="js/base-stemmer.js"></script>
 [% FOREACH js IN stemmer_js_files %]
 <script language=javascript src="[% js %]"></script>
 [% END %]
 <script>
-function stem_demo() {
+var old_words;
+function stem_demo(elt) {
+  if (elt === undefined) elt = document.getElementById('words');
+  var words = elt.value;
+  if (words === old_words) return;
+  old_words = words;
+  // Auto-expand height of the textarea
+  var lines = 1;
+  words.replace(/\n/g, function(){++lines;});
+  elt.rows = lines;
   var lang = document.getElementById('lang').value;
   if (lang.search(/[^-A-Za-z0-9_]/) >= 0) return;
   lang += "Stemmer";
   var s = eval("new "+lang+"()");
-  var words = document.getElementById('words').value;
   var result = '';
-  var a = words.split(/[^\w]+/);
+  var a = words.split(/([^\w']+)/);
   var i;
   for (i = 0; i < a.length; ++i) {
     var w = a[i];
     if (w === '') continue;
-    if (result !== '') result += ' ';
-    result += s.stemWord(w.toLowerCase());
+    if (w.match(/^[\w']/)) {
+	result += '<span style="background-color:#dfd" title="' + lang + '(' + w + ')">' + s.stemWord(w.toLowerCase()) + '</span>';
+    } else {
+	result += w.replace(/[ &<>\n]/g, function(c){
+	    if (c === ' ') return '&nbsp;';
+	    if (c === '<') return '&lt;';
+	    if (c === '>') return '&gt;';
+	    if (c === '&') return '&amp;';
+	    // Zero width space means a trailing newline will get rendered.
+	    return '<br>&#8203;';
+	});
+    }
   }
-  document.getElementById('results').innerHTML = '<h2>Results</h2><pre>' + result + '</pre>';
+  document.getElementById('results').innerHTML = result;
+}
+function lang_changed(elt) {
+    old_words = undefined;
+    var lang = elt.value;
+    if (lang === 'Porter') lang = 'English';
+    document.getElementById('words').placeholder = "Enter some " + lang + " text";
 }
 </script>
 

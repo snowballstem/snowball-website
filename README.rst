@@ -6,10 +6,10 @@ This is the source for generating the website: http://snowballstem.org/
 Setup
 -----
 
-You'll need the Perl `Template Toolkit`, `neato` from `graphviz`, and
-`pngcrush` - on Debian you can install these with::
+You'll need the Perl `Template Toolkit`, `neato` from `graphviz`, the
+`Closure Compiler` and `pngcrush` - on Debian you can install these with::
 
- apt-get install libtemplate-perl graphviz pngcrush
+ apt-get install libtemplate-perl graphviz closure-compiler pngcrush
 
 You need the `pygments-snowball` repo as a subdirectory, for syntax highlighting
 Snowball code on the website:

@@ -1,6 +1,7 @@
 // This file was generated automatically by the Snowball to JSX compiler
 // http://snowballstem.org/
 
+/**@constructor*/
 function PorterStemmer() {
     var base = new BaseStemmer();
     /** @const */ var a_0 = [
@@ -971,9 +972,11 @@ function PorterStemmer() {
         return true;
     };
 
-    this.stemWord = function(word) {
+    /**@return{string}*/
+    this['stemWord'] = function(/**string*/word) {
 	base.setCurrent(word);
 	this.stem();
         return base.getCurrent();
     };
 };
+window['PorterStemmer'] = PorterStemmer;

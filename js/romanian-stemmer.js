@@ -1,6 +1,7 @@
 // This file was generated automatically by the Snowball to JSX compiler
 // http://snowballstem.org/
 
+/**@constructor*/
 function RomanianStemmer() {
     var base = new BaseStemmer();
     /** @const */ var a_0 = [
@@ -1064,9 +1065,11 @@ function RomanianStemmer() {
         return true;
     };
 
-    this.stemWord = function(word) {
+    /**@return{string}*/
+    this['stemWord'] = function(/**string*/word) {
 	base.setCurrent(word);
 	this.stem();
         return base.getCurrent();
     };
 };
+window['RomanianStemmer'] = RomanianStemmer;
