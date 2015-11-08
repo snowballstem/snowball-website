@@ -56,6 +56,7 @@ function lang_changed(elt) {
     var lang = elt.value;
     if (lang === 'Porter') lang = 'English';
     document.getElementById('words').placeholder = "Enter some " + lang + " text";
+    stem_demo();
 }
 </script>
 
