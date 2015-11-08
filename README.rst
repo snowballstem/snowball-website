@@ -7,9 +7,9 @@ Setup
 -----
 
 You'll need the Perl `Template Toolkit`, `neato` from `graphviz`, the
-`Closure Compiler` and `pngcrush` - on Debian you can install these with::
+`Closure Compiler`, `pngcrush` and `pygments` - on Debian you can install these with::
 
- apt-get install libtemplate-perl graphviz closure-compiler pngcrush
+ apt-get install libtemplate-perl graphviz closure-compiler pngcrush python-pygments
 
 You need the `pygments-snowball` repo as a subdirectory, for syntax highlighting
 Snowball code on the website:

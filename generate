@@ -14,6 +14,7 @@ my $config = {
 };
 
 my $outpath = '../snowballstem.github.io/';
+print "Generating output in '$outpath'\n";
 
 $ENV{PYTHONPATH} = 'pygments-snowball';
 $ENV{PYTHONIOENCODING} = 'UTF-8';
@@ -22,6 +23,8 @@ my $code_path_prefix = 'code/';
 my $code_path_suffix = '.sbl';
 #my $code_path_prefix = '../snowball/algorithms/';
 #my $code_path_suffix = '/stem_Unicode.sbl';
+
+system("mkdir", "-p", $outpath) == 0 or die "Failed to ensure '$outpath' exists\n";
 
 # Stuff that just gets copied over.
 foreach my $f (qw(
