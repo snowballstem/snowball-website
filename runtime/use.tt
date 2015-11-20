@@ -10,8 +10,7 @@
 <h2>Compiling and running Snowball</h2>
 
 <p>
-When you download Snowball
-(<A HREF="../dist/snowball_code.tgz">from here</A>),
+When you <a href="/download.html">download Snowball</a>,
 it already contains a make file to allow you to build and install it,
 like so:
 </p>
@@ -187,12 +186,14 @@ building the libstemmer library, and may be useful for other projects.
 The &nbsp;<code>-java</code>&nbsp; option automatically sets the &nbsp;<code>-widechars</code>&nbsp; option.
 </p>
 
+<!--
 <p>
 To run Java, download the
 <A HREF="../dist/libstemmer_java.tgz">tarball</A>,
 which will unpack into an
 appropriate directory structure.
 </p>
+-->
 
 <h4>Other options</h4>
 

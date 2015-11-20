@@ -2,6 +2,13 @@
 
 <h2>Tarballs</h2>
 
+<p>
+We've not made a release since forking off, but you can download tarballs of
+the last release from the (now frozen)
+<a href="http://snowball.tartarus.org/download.php">original snowball website</a>.
+
+<!--
+
 <p>Several tarballs of the snowball sources are available:</p>
 
 <ul>
@@ -47,6 +54,8 @@ you are willing to make such binaries available for others, and can provide at
 least some measure of support for ensuring that they work, feel free to contact
 us and we will add a link to your work from this site.
 </p>
+
+-->
 
 <h2>Python</h2>
 
