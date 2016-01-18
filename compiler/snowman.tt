@@ -381,11 +381,19 @@ AEs:
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD><code>minint</code>&nbsp;   <TD></TD><TD>  &#x2014; the minimum negative number
 <TR><TD><code>maxint</code>&nbsp;   <TD></TD><TD>  &#x2014; the maximum positive number
-<TR><TD><code>sizeof s</code>&nbsp; <TD></TD><TD>  &#x2014; the number of characters in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string
 <TR><TD><code>cursor</code>&nbsp;   <TD></TD><TD>  &#x2014; the current value of the string <I>cursor</I>
 <TR><TD><code>limit</code>&nbsp;    <TD></TD><TD>  &#x2014; the current value of the string <I>limit</I>
-<TR><TD><code>size</code>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in characters
+<TR><TD><code>size</code>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in "slots"
+<TR><TD><code>sizeof s</code>&nbsp; <TD></TD><TD>  &#x2014; the number of "slots" in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string
+<TR><TH colspan="2">New in Snowball 2.0:</TH></TR>
+<TR><TD><code>len</code>&nbsp;      <TD></TD><TD>  &#x2014; the length of the string, in Unicode characters
+<TR><TD><code>lenof s</code>&nbsp;  <TD></TD><TD>  &#x2014; the number of Unicode characters in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string
 </TABLE></DL>
+
+<p>
+[% highlight_inline('size') %] and [% highlight_inline('sizeof') %] count in
+"slots" - see the "Character representation" section below for details.
+</p>
 
 <p>
 The <I>cursor</I> and <I>limit</I> concepts are explained below.
@@ -1182,6 +1190,17 @@ like C.
 </p>
 
 <p>
+Occasionally a newer version of Snowball may add a new token.  So as not to
+break existing programs, any such tokens declared as a name (via
+[% highlight_inline('integers') %], [% highlight_inline('routines') %], etc)
+will lose their token status for the rest of the program.  This applies
+to the tokens
+[% highlight_inline('len') %]
+and
+[% highlight_inline('lenof') %].
+</p>
+
+<p>
 Anywhere that whitespace can occur, there may also occur:
 </p>
 
@@ -1234,6 +1253,12 @@ not &nbsp;<code>N</code>&nbsp; slots, and &nbsp;<code>next</code>&nbsp; is equiv
 </p>
 
 <p>
+Snowball 2.0 adds <code>len</code> and <code>lenof</code>, which measure string length in symbols
+(so they're the same as <code>size</code> and <code>sizeof</code> in cases (<i>a</i>) and (<i>b</i>), but
+different in case (<i>c</i>)).
+</p>
+
+<p>
 So long as these simple distinctions are recognised, the same Snowball
 script can be compiled to work with any of the three encoding schemes.
 </p>
@@ -1282,8 +1307,10 @@ G               ::= &lt;g_name&gt; || &lt;literal string&gt;
 
 AE              ::= (AE) ||
                     AE + AE || AE - AE || AE * AE || AE / AE || - AE ||
-                    maxint || minint || cursor || limit || size ||
-                    sizeof &lt;s_name&gt; || &lt;i_name&gt; || &lt;number&gt;
+                    maxint || minint || cursor || limit ||
+                    size || sizeof &lt;s_name&gt; ||
+                    len || lenof &lt;s_name&gt; ||
+                    &lt;i_name&gt; || &lt;number&gt;
 
 &lt;i_command&gt;     ::= $ &lt;i_name&gt; = AE ||
                     $ &lt;i_name&gt; += AE || $ &lt;i_name&gt; -= AE ||
