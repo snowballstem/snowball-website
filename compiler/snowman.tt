@@ -1317,7 +1317,7 @@ AE              ::= (AE) ||
                     $ &lt;i_name&gt; *= AE || $ &lt;i_name&gt; /= AE ||
                     $ &lt;i_name&gt; == AE || $ &lt;i_name&gt; != AE ||
                     $ &lt;i_name&gt; &gt; AE || $ &lt;i_name&gt; &gt;= AE ||
-                    $ &lt;i_name&gt; &lt; AE || $ &lt;i_name&gt; &lt;= AE ||
+                    $ &lt;i_name&gt; &lt; AE || $ &lt;i_name&gt; &lt;= AE
 
 &lt;s_command&gt;     ::= $ &lt;s_name&gt; C
 
