@@ -117,7 +117,7 @@ of programming languages, which you can still find on the old website.
 These projects use Snowball stemmers:
 </p>
 
-<h3><a href="http://xapian.org/">Xapian</a></h3>
+<h3><a href="https://xapian.org/">Xapian</a></h3>
 <p>
 A probabilistic search engine which supports stemming using Snowball.
 </p>
