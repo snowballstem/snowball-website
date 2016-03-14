@@ -54,8 +54,15 @@ function stem_demo(elt) {
 function lang_changed(elt) {
     old_words = undefined;
     var lang = elt.value;
-    if (lang === 'Porter') lang = 'English';
-    document.getElementById('words').placeholder = "Enter some " + lang + " text";
+    var words_elt = document.getElementById('words');
+    var results_elt = document.getElementById('results');
+    if (lang === 'Arabic') {
+        words_elt.dir = results_elt.dir = 'rtl';
+    } else {
+	if (lang === 'Porter') lang = 'English';
+        words_elt.dir = results_elt.dir = 'ltr';
+    }
+    words_elt.placeholder = "Enter some " + lang + " text";
     stem_demo();
 }
 </script>
