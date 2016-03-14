@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -250,9 +250,9 @@ function PorterStemmer() {
                         // (, line 41
                         // <+, line 41
                         {
-                            var /** number */ c = base.cursor;
+                            var /** number */ c1 = base.cursor;
                             base.insert(base.cursor, base.cursor, "e");
-                            base.cursor = c;
+                            base.cursor = c1;
                         }
                         break;
                     case 2:
@@ -290,9 +290,9 @@ function PorterStemmer() {
                         base.cursor = base.limit - v_4;
                         // <+, line 45
                         {
-                            var /** number */ c = base.cursor;
+                            var /** number */ c2 = base.cursor;
                             base.insert(base.cursor, base.cursor, "e");
-                            base.cursor = c;
+                            base.cursor = c2;
                         }
                         break;
                 }
@@ -922,7 +922,7 @@ function PorterStemmer() {
         lab23: {
             // (, line 137
             // Boolean test Y_found, line 137
-            if (!(B_Y_found))
+            if (!B_Y_found)
             {
                 break lab23;
             }
@@ -974,8 +974,8 @@ function PorterStemmer() {
 
     /**@return{string}*/
     this['stemWord'] = function(/**string*/word) {
-	base.setCurrent(word);
-	this.stem();
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };

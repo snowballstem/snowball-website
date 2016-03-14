@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -774,7 +774,7 @@ function DutchStemmer() {
                         break lab4;
                     }
                     // Boolean test e_found, line 142
-                    if (!(B_e_found))
+                    if (!B_e_found)
                     {
                         break lab4;
                     }
@@ -877,8 +877,8 @@ function DutchStemmer() {
 
     /**@return{string}*/
     this['stemWord'] = function(/**string*/word) {
-	base.setCurrent(word);
-	this.stem();
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };

@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -755,8 +755,8 @@ function RussianStemmer() {
 
     /**@return{string}*/
     this['stemWord'] = function(/**string*/word) {
-	base.setCurrent(word);
-	this.stem();
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };

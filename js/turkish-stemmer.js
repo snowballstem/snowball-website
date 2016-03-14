@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -2750,9 +2750,9 @@ function TurkishStemmer() {
                 base.cursor = base.limit - v_4;
                 // <+, line 432
                 {
-                    var /** number */ c = base.cursor;
+                    var /** number */ c1 = base.cursor;
                     base.insert(base.cursor, base.cursor, "\u0131");
-                    base.cursor = c;
+                    base.cursor = c1;
                 }
                 break lab2;
             }
@@ -2803,9 +2803,9 @@ function TurkishStemmer() {
                 base.cursor = base.limit - v_7;
                 // <+, line 434
                 {
-                    var /** number */ c1 = base.cursor;
+                    var /** number */ c2 = base.cursor;
                     base.insert(base.cursor, base.cursor, "i");
-                    base.cursor = c1;
+                    base.cursor = c2;
                 }
                 break lab2;
             }
@@ -2856,9 +2856,9 @@ function TurkishStemmer() {
                 base.cursor = base.limit - v_10;
                 // <+, line 436
                 {
-                    var /** number */ c2 = base.cursor;
+                    var /** number */ c3 = base.cursor;
                     base.insert(base.cursor, base.cursor, "u");
-                    base.cursor = c2;
+                    base.cursor = c3;
                 }
                 break lab2;
             }
@@ -2908,9 +2908,9 @@ function TurkishStemmer() {
             base.cursor = base.limit - v_13;
             // <+, line 438
             {
-                var /** number */ c3 = base.cursor;
+                var /** number */ c4 = base.cursor;
                 base.insert(base.cursor, base.cursor, "\u00FC");
-                base.cursor = c3;
+                base.cursor = c4;
             }
         }
         return true;
@@ -3098,7 +3098,7 @@ function TurkishStemmer() {
         }
         base.cursor = base.limit - v_1;
         // Boolean test continue_stemming_noun_suffixes, line 469
-        if (!(B_continue_stemming_noun_suffixes))
+        if (!B_continue_stemming_noun_suffixes)
         {
             return false;
         }
@@ -3122,8 +3122,8 @@ function TurkishStemmer() {
 
     /**@return{string}*/
     this['stemWord'] = function(/**string*/word) {
-	base.setCurrent(word);
-	this.stem();
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };

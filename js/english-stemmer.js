@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -478,12 +478,12 @@ function EnglishStemmer() {
                         // (, line 68
                         // hop, line 68
                         {
-                            var /** number */ c = base.cursor - 2;
-                            if (base.limit_backward > c || c > base.limit)
+                            var /** number */ c1 = base.cursor - 2;
+                            if (base.limit_backward > c1 || c1 > base.limit)
                             {
                                 break lab2;
                             }
-                            base.cursor = c;
+                            base.cursor = c1;
                         }
                         // <-, line 68
                         if (!base.slice_from("i"))
@@ -606,9 +606,9 @@ function EnglishStemmer() {
                         // (, line 83
                         // <+, line 83
                         {
-                            var /** number */ c = base.cursor;
+                            var /** number */ c1 = base.cursor;
                             base.insert(base.cursor, base.cursor, "e");
-                            base.cursor = c;
+                            base.cursor = c1;
                         }
                         break;
                     case 2:
@@ -646,9 +646,9 @@ function EnglishStemmer() {
                         base.cursor = base.limit - v_4;
                         // <+, line 87
                         {
-                            var /** number */ c = base.cursor;
+                            var /** number */ c2 = base.cursor;
                             base.insert(base.cursor, base.cursor, "e");
-                            base.cursor = c;
+                            base.cursor = c2;
                         }
                         break;
                 }
@@ -1226,7 +1226,7 @@ function EnglishStemmer() {
     function r_postlude() {
         // (, line 203
         // Boolean test Y_found, line 203
-        if (!(B_Y_found))
+        if (!B_Y_found)
         {
             return false;
         }
@@ -1295,12 +1295,12 @@ function EnglishStemmer() {
                     lab3: {
                         // hop, line 208
                         {
-                            var /** number */ c = base.cursor + 3;
-                            if (0 > c || c > base.limit)
+                            var /** number */ c1 = base.cursor + 3;
+                            if (0 > c1 || c1 > base.limit)
                             {
                                 break lab3;
                             }
-                            base.cursor = c;
+                            base.cursor = c1;
                         }
                         break lab2;
                     }
@@ -1433,8 +1433,8 @@ function EnglishStemmer() {
 
     /**@return{string}*/
     this['stemWord'] = function(/**string*/word) {
-	base.setCurrent(word);
-	this.stem();
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };

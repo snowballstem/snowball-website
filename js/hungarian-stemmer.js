@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -388,12 +388,12 @@ function HungarianStemmer() {
         base.ket = base.cursor;
         // hop, line 73
         {
-            var /** number */ c = base.cursor - 1;
-            if (base.limit_backward > c || c > base.limit)
+            var /** number */ c1 = base.cursor - 1;
+            if (base.limit_backward > c1 || c1 > base.limit)
             {
                 return false;
             }
-            base.cursor = c;
+            base.cursor = c1;
         }
         // ], line 73
         base.bra = base.cursor;
@@ -1379,10 +1379,10 @@ function HungarianStemmer() {
         base.cursor = base.limit_backward;        return true;
     };
 
-    /**@export @return{string}*/
-    this.stemWord = function(word) {
-	base.setCurrent(word);
-	this.stem();
+    /**@return{string}*/
+    this['stemWord'] = function(/**string*/word) {
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };

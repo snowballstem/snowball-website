@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -190,12 +190,12 @@ function GermanStemmer() {
         // (, line 52
         // hop, line 52
         {
-            var /** number */ c = base.cursor + 3;
-            if (0 > c || c > base.limit)
+            var /** number */ c1 = base.cursor + 3;
+            if (0 > c1 || c1 > base.limit)
             {
                 return false;
             }
-            base.cursor = c;
+            base.cursor = c1;
         }
         // setmark x, line 52
         I_x = base.cursor;
@@ -499,12 +499,12 @@ function GermanStemmer() {
                     }
                     // hop, line 99
                     {
-                        var /** number */ c = base.cursor - 3;
-                        if (base.limit_backward > c || c > base.limit)
+                        var /** number */ c1 = base.cursor - 3;
+                        if (base.limit_backward > c1 || c1 > base.limit)
                         {
                             break lab2;
                         }
-                        base.cursor = c;
+                        base.cursor = c1;
                     }
                     // delete, line 99
                     if (!base.slice_del())
@@ -751,8 +751,8 @@ function GermanStemmer() {
 
     /**@return{string}*/
     this['stemWord'] = function(/**string*/word) {
-	base.setCurrent(word);
-	this.stem();
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };

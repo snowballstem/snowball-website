@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -255,42 +255,9 @@ function TamilStemmer() {
 
 
     /** @return {boolean} */
-    function r_strlen() {
-        // (, line 105
-        I_length = 0;
-        // do, line 109
-        var /** number */ v_1 = base.cursor;
-        lab0: {
-            // repeat, line 109
-            replab1: while(true)
-            {
-                lab2: {
-                    // (, line 109
-                    // next, line 109
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab2;
-                    }
-                    base.cursor++;
-                    // (, line 109
-                    I_length = (I_length + 1);
-                    continue replab1;
-                }
-                break replab1;
-            }
-        }
-        base.cursor = v_1;
-        return true;
-    };
-
-    /** @return {boolean} */
     function r_has_min_length() {
-        // (, line 112
-        // call strlen, line 113
-        if (!r_strlen())
-        {
-            return false;
-        }
+        // (, line 104
+        I_length = (base.current.length);
         if (!(I_length > 4))
         {
             return false;
@@ -300,18 +267,18 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_fix_va_start() {
-        // (, line 117
-        // or, line 118
+        // (, line 109
+        // or, line 110
         lab0: {
             var /** number */ v_1 = base.cursor;
             lab1: {
-                // (, line 118
-                // and, line 118
+                // (, line 110
+                // and, line 110
                 var /** number */ v_2 = base.cursor;
-                // try, line 118
+                // try, line 110
                 var /** number */ v_3 = base.cursor;
                 lab2: {
-                    // literal, line 118
+                    // literal, line 110
                     if (!(base.eq_s("\u0BB5\u0BCB")))
                     {
                         base.cursor = v_3;
@@ -319,16 +286,16 @@ function TamilStemmer() {
                     }
                 }
                 base.cursor = v_2;
-                // [, line 118
+                // [, line 110
                 base.bra = base.cursor;
-                // literal, line 118
+                // literal, line 110
                 if (!(base.eq_s("\u0BB5\u0BCB")))
                 {
                     break lab1;
                 }
-                // ], line 118
+                // ], line 110
                 base.ket = base.cursor;
-                // <-, line 118
+                // <-, line 110
                 if (!base.slice_from("\u0B93"))
                 {
                     return false;
@@ -337,13 +304,13 @@ function TamilStemmer() {
             }
             base.cursor = v_1;
             lab3: {
-                // (, line 119
-                // and, line 119
+                // (, line 111
+                // and, line 111
                 var /** number */ v_4 = base.cursor;
-                // try, line 119
+                // try, line 111
                 var /** number */ v_5 = base.cursor;
                 lab4: {
-                    // literal, line 119
+                    // literal, line 111
                     if (!(base.eq_s("\u0BB5\u0BCA")))
                     {
                         base.cursor = v_5;
@@ -351,16 +318,16 @@ function TamilStemmer() {
                     }
                 }
                 base.cursor = v_4;
-                // [, line 119
+                // [, line 111
                 base.bra = base.cursor;
-                // literal, line 119
+                // literal, line 111
                 if (!(base.eq_s("\u0BB5\u0BCA")))
                 {
                     break lab3;
                 }
-                // ], line 119
+                // ], line 111
                 base.ket = base.cursor;
-                // <-, line 119
+                // <-, line 111
                 if (!base.slice_from("\u0B92"))
                 {
                     return false;
@@ -369,13 +336,13 @@ function TamilStemmer() {
             }
             base.cursor = v_1;
             lab5: {
-                // (, line 120
-                // and, line 120
+                // (, line 112
+                // and, line 112
                 var /** number */ v_6 = base.cursor;
-                // try, line 120
+                // try, line 112
                 var /** number */ v_7 = base.cursor;
                 lab6: {
-                    // literal, line 120
+                    // literal, line 112
                     if (!(base.eq_s("\u0BB5\u0BC1")))
                     {
                         base.cursor = v_7;
@@ -383,16 +350,16 @@ function TamilStemmer() {
                     }
                 }
                 base.cursor = v_6;
-                // [, line 120
+                // [, line 112
                 base.bra = base.cursor;
-                // literal, line 120
+                // literal, line 112
                 if (!(base.eq_s("\u0BB5\u0BC1")))
                 {
                     break lab5;
                 }
-                // ], line 120
+                // ], line 112
                 base.ket = base.cursor;
-                // <-, line 120
+                // <-, line 112
                 if (!base.slice_from("\u0B89"))
                 {
                     return false;
@@ -400,13 +367,13 @@ function TamilStemmer() {
                 break lab0;
             }
             base.cursor = v_1;
-            // (, line 121
-            // and, line 121
+            // (, line 113
+            // and, line 113
             var /** number */ v_8 = base.cursor;
-            // try, line 121
+            // try, line 113
             var /** number */ v_9 = base.cursor;
             lab7: {
-                // literal, line 121
+                // literal, line 113
                 if (!(base.eq_s("\u0BB5\u0BC2")))
                 {
                     base.cursor = v_9;
@@ -414,16 +381,16 @@ function TamilStemmer() {
                 }
             }
             base.cursor = v_8;
-            // [, line 121
+            // [, line 113
             base.bra = base.cursor;
-            // literal, line 121
+            // literal, line 113
             if (!(base.eq_s("\u0BB5\u0BC2")))
             {
                 return false;
             }
-            // ], line 121
+            // ], line 113
             base.ket = base.cursor;
-            // <-, line 121
+            // <-, line 113
             if (!base.slice_from("\u0B8A"))
             {
                 return false;
@@ -434,25 +401,25 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_fix_endings() {
-        // (, line 124
-        // set found_wrong_ending, line 125
+        // (, line 116
+        // set found_wrong_ending, line 117
         B_found_wrong_ending = true;
-        // repeat, line 126
+        // repeat, line 118
         replab0: while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab1: {
-                // (, line 126
-                // Boolean test found_wrong_ending, line 126
-                if (!(B_found_wrong_ending))
+                // (, line 118
+                // Boolean test found_wrong_ending, line 118
+                if (!B_found_wrong_ending)
                 {
                     break lab1;
                 }
-                // (, line 126
-                // do, line 126
+                // (, line 118
+                // do, line 118
                 var /** number */ v_2 = base.cursor;
                 lab2: {
-                    // call fix_ending, line 126
+                    // call fix_ending, line 118
                     if (!r_fix_ending())
                     {
                         break lab2;
@@ -469,36 +436,36 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_question_prefixes() {
-        // (, line 129
-        // [, line 130
+        // (, line 121
+        // [, line 122
         base.bra = base.cursor;
-        // (, line 130
-        // literal, line 130
+        // (, line 122
+        // literal, line 122
         if (!(base.eq_s("\u0B8E")))
         {
             return false;
         }
-        // among, line 130
+        // among, line 122
         if (base.find_among(a_0) == 0)
         {
             return false;
         }
-        // literal, line 130
+        // literal, line 122
         if (!(base.eq_s("\u0BCD")))
         {
             return false;
         }
-        // ], line 130
+        // ], line 122
         base.ket = base.cursor;
-        // delete, line 130
+        // delete, line 122
         if (!base.slice_del())
         {
             return false;
         }
-        // do, line 131
+        // do, line 123
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // call fix_va_start, line 131
+            // call fix_va_start, line 123
             if (!r_fix_va_start())
             {
                 break lab0;
@@ -510,36 +477,32 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_fix_ending() {
-        // (, line 134
-        // unset found_wrong_ending, line 135
+        // (, line 126
+        // unset found_wrong_ending, line 127
         B_found_wrong_ending = false;
-        // call strlen, line 136
-        if (!r_strlen())
-        {
-            return false;
-        }
+        I_length = (base.current.length);
         if (!(I_length > 3))
         {
             return false;
         }
-        // backwards, line 138
+        // backwards, line 130
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 138
-        // or, line 140
+        // (, line 130
+        // or, line 132
         lab0: {
             var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                // (, line 139
-                // [, line 139
+                // (, line 131
+                // [, line 131
                 base.ket = base.cursor;
-                // among, line 139
+                // among, line 131
                 if (base.find_among_b(a_1) == 0)
                 {
                     break lab1;
                 }
-                // ], line 139
+                // ], line 131
                 base.bra = base.cursor;
-                // delete, line 139
+                // delete, line 131
                 if (!base.slice_del())
                 {
                     return false;
@@ -548,25 +511,25 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab2: {
-                // (, line 141
-                // [, line 141
+                // (, line 133
+                // [, line 133
                 base.ket = base.cursor;
-                // literal, line 141
+                // literal, line 133
                 if (!(base.eq_s_b("\u0BAF\u0BCD")))
                 {
                     break lab2;
                 }
-                // test, line 141
+                // test, line 133
                 var /** number */ v_2 = base.limit - base.cursor;
-                // among, line 141
+                // among, line 133
                 if (base.find_among_b(a_2) == 0)
                 {
                     break lab2;
                 }
                 base.cursor = base.limit - v_2;
-                // ], line 141
+                // ], line 133
                 base.bra = base.cursor;
-                // delete, line 141
+                // delete, line 133
                 if (!base.slice_del())
                 {
                     return false;
@@ -575,14 +538,14 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab3: {
-                // (, line 143
-                // [, line 143
+                // (, line 135
+                // [, line 135
                 base.ket = base.cursor;
-                // or, line 143
+                // or, line 135
                 lab4: {
                     var /** number */ v_3 = base.limit - base.cursor;
                     lab5: {
-                        // literal, line 143
+                        // literal, line 135
                         if (!(base.eq_s_b("\u0B9F\u0BCD\u0BAA\u0BCD")))
                         {
                             break lab5;
@@ -590,15 +553,15 @@ function TamilStemmer() {
                         break lab4;
                     }
                     base.cursor = base.limit - v_3;
-                    // literal, line 143
+                    // literal, line 135
                     if (!(base.eq_s_b("\u0B9F\u0BCD\u0B95\u0BCD")))
                     {
                         break lab3;
                     }
                 }
-                // ], line 143
+                // ], line 135
                 base.bra = base.cursor;
-                // <-, line 143
+                // <-, line 135
                 if (!base.slice_from("\u0BB3\u0BCD"))
                 {
                     return false;
@@ -607,17 +570,17 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab6: {
-                // (, line 145
-                // [, line 145
+                // (, line 137
+                // [, line 137
                 base.ket = base.cursor;
-                // literal, line 145
+                // literal, line 137
                 if (!(base.eq_s_b("\u0BA9\u0BCD\u0BB1\u0BCD")))
                 {
                     break lab6;
                 }
-                // ], line 145
+                // ], line 137
                 base.bra = base.cursor;
-                // <-, line 145
+                // <-, line 137
                 if (!base.slice_from("\u0BB2\u0BCD"))
                 {
                     return false;
@@ -626,17 +589,17 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab7: {
-                // (, line 148
-                // [, line 148
+                // (, line 140
+                // [, line 140
                 base.ket = base.cursor;
-                // literal, line 148
+                // literal, line 140
                 if (!(base.eq_s_b("\u0BB1\u0BCD\u0B95\u0BCD")))
                 {
                     break lab7;
                 }
-                // ], line 148
+                // ], line 140
                 base.bra = base.cursor;
-                // <-, line 148
+                // <-, line 140
                 if (!base.slice_from("\u0BB2\u0BCD"))
                 {
                     return false;
@@ -645,17 +608,17 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab8: {
-                // (, line 150
-                // [, line 150
+                // (, line 142
+                // [, line 142
                 base.ket = base.cursor;
-                // literal, line 150
+                // literal, line 142
                 if (!(base.eq_s_b("\u0B9F\u0BCD\u0B9F\u0BCD")))
                 {
                     break lab8;
                 }
-                // ], line 150
+                // ], line 142
                 base.bra = base.cursor;
-                // <-, line 150
+                // <-, line 142
                 if (!base.slice_from("\u0B9F\u0BC1"))
                 {
                     return false;
@@ -664,27 +627,27 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab9: {
-                // (, line 152
-                // Boolean test found_vetrumai_urupu, line 152
-                if (!(B_found_vetrumai_urupu))
+                // (, line 144
+                // Boolean test found_vetrumai_urupu, line 144
+                if (!B_found_vetrumai_urupu)
                 {
                     break lab9;
                 }
-                // [, line 152
+                // [, line 144
                 base.ket = base.cursor;
-                // literal, line 152
+                // literal, line 144
                 if (!(base.eq_s_b("\u0BA4\u0BCD\u0BA4\u0BCD")))
                 {
                     break lab9;
                 }
-                // (, line 152
-                // test, line 152
+                // (, line 144
+                // test, line 144
                 var /** number */ v_4 = base.limit - base.cursor;
-                // not, line 152
+                // not, line 144
                 {
                     var /** number */ v_5 = base.limit - base.cursor;
                     lab10: {
-                        // literal, line 152
+                        // literal, line 144
                         if (!(base.eq_s_b("\u0BC8")))
                         {
                             break lab10;
@@ -694,27 +657,27 @@ function TamilStemmer() {
                     base.cursor = base.limit - v_5;
                 }
                 base.cursor = base.limit - v_4;
-                // ], line 152
+                // ], line 144
                 base.bra = base.cursor;
-                // <-, line 152
+                // <-, line 144
                 if (!base.slice_from("\u0BAE\u0BCD"))
                 {
                     return false;
                 }
-                // ], line 152
+                // ], line 144
                 base.bra = base.cursor;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
             lab11: {
-                // (, line 154
-                // [, line 154
+                // (, line 146
+                // [, line 146
                 base.ket = base.cursor;
-                // or, line 154
+                // or, line 146
                 lab12: {
                     var /** number */ v_6 = base.limit - base.cursor;
                     lab13: {
-                        // literal, line 154
+                        // literal, line 146
                         if (!(base.eq_s_b("\u0BC1\u0B95\u0BCD")))
                         {
                             break lab13;
@@ -722,11 +685,131 @@ function TamilStemmer() {
                         break lab12;
                     }
                     base.cursor = base.limit - v_6;
-                    // literal, line 154
+                    // literal, line 146
                     if (!(base.eq_s_b("\u0BC1\u0B95\u0BCD\u0B95\u0BCD")))
                     {
                         break lab11;
                     }
+                }
+                // ], line 146
+                base.bra = base.cursor;
+                // <-, line 146
+                if (!base.slice_from("\u0BCD"))
+                {
+                    return false;
+                }
+                break lab0;
+            }
+            base.cursor = base.limit - v_1;
+            lab14: {
+                // (, line 148
+                // [, line 148
+                base.ket = base.cursor;
+                // literal, line 148
+                if (!(base.eq_s_b("\u0BCD")))
+                {
+                    break lab14;
+                }
+                // among, line 148
+                if (base.find_among_b(a_3) == 0)
+                {
+                    break lab14;
+                }
+                // literal, line 148
+                if (!(base.eq_s_b("\u0BCD")))
+                {
+                    break lab14;
+                }
+                // among, line 148
+                if (base.find_among_b(a_4) == 0)
+                {
+                    break lab14;
+                }
+                // ], line 148
+                base.bra = base.cursor;
+                // delete, line 148
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break lab0;
+            }
+            base.cursor = base.limit - v_1;
+            lab15: {
+                // (, line 150
+                // [, line 150
+                base.ket = base.cursor;
+                // literal, line 150
+                if (!(base.eq_s_b("\u0BC1\u0B95\u0BCD")))
+                {
+                    break lab15;
+                }
+                // ], line 150
+                base.bra = base.cursor;
+                // <-, line 150
+                if (!base.slice_from("\u0BCD"))
+                {
+                    return false;
+                }
+                break lab0;
+            }
+            base.cursor = base.limit - v_1;
+            lab16: {
+                // (, line 152
+                // [, line 152
+                base.ket = base.cursor;
+                // literal, line 152
+                if (!(base.eq_s_b("\u0BCD")))
+                {
+                    break lab16;
+                }
+                // among, line 152
+                if (base.find_among_b(a_5) == 0)
+                {
+                    break lab16;
+                }
+                // ], line 152
+                base.bra = base.cursor;
+                // delete, line 152
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break lab0;
+            }
+            base.cursor = base.limit - v_1;
+            lab17: {
+                // (, line 154
+                // [, line 154
+                base.ket = base.cursor;
+                // literal, line 154
+                if (!(base.eq_s_b("\u0BCD")))
+                {
+                    break lab17;
+                }
+                // (, line 154
+                // or, line 154
+                lab18: {
+                    var /** number */ v_7 = base.limit - base.cursor;
+                    lab19: {
+                        // among, line 154
+                        if (base.find_among_b(a_6) == 0)
+                        {
+                            break lab19;
+                        }
+                        break lab18;
+                    }
+                    base.cursor = base.limit - v_7;
+                    // among, line 154
+                    if (base.find_among_b(a_7) == 0)
+                    {
+                        break lab17;
+                    }
+                }
+                // literal, line 154
+                if (!(base.eq_s_b("\u0BCD")))
+                {
+                    break lab17;
                 }
                 // ], line 154
                 base.bra = base.cursor;
@@ -738,29 +821,14 @@ function TamilStemmer() {
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            lab14: {
+            lab20: {
                 // (, line 156
                 // [, line 156
                 base.ket = base.cursor;
-                // literal, line 156
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab14;
-                }
                 // among, line 156
-                if (base.find_among_b(a_3) == 0)
+                if (base.find_among_b(a_8) == 0)
                 {
-                    break lab14;
-                }
-                // literal, line 156
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab14;
-                }
-                // among, line 156
-                if (base.find_among_b(a_4) == 0)
-                {
-                    break lab14;
+                    break lab20;
                 }
                 // ], line 156
                 base.bra = base.cursor;
@@ -772,128 +840,23 @@ function TamilStemmer() {
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            lab15: {
+            lab21: {
                 // (, line 158
                 // [, line 158
                 base.ket = base.cursor;
                 // literal, line 158
-                if (!(base.eq_s_b("\u0BC1\u0B95\u0BCD")))
-                {
-                    break lab15;
-                }
-                // ], line 158
-                base.bra = base.cursor;
-                // <-, line 158
-                if (!base.slice_from("\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab16: {
-                // (, line 160
-                // [, line 160
-                base.ket = base.cursor;
-                // literal, line 160
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab16;
-                }
-                // among, line 160
-                if (base.find_among_b(a_5) == 0)
-                {
-                    break lab16;
-                }
-                // ], line 160
-                base.bra = base.cursor;
-                // delete, line 160
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab17: {
-                // (, line 162
-                // [, line 162
-                base.ket = base.cursor;
-                // literal, line 162
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab17;
-                }
-                // (, line 162
-                // or, line 162
-                lab18: {
-                    var /** number */ v_7 = base.limit - base.cursor;
-                    lab19: {
-                        // among, line 162
-                        if (base.find_among_b(a_6) == 0)
-                        {
-                            break lab19;
-                        }
-                        break lab18;
-                    }
-                    base.cursor = base.limit - v_7;
-                    // among, line 162
-                    if (base.find_among_b(a_7) == 0)
-                    {
-                        break lab17;
-                    }
-                }
-                // literal, line 162
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab17;
-                }
-                // ], line 162
-                base.bra = base.cursor;
-                // <-, line 162
-                if (!base.slice_from("\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab20: {
-                // (, line 164
-                // [, line 164
-                base.ket = base.cursor;
-                // among, line 164
-                if (base.find_among_b(a_8) == 0)
-                {
-                    break lab20;
-                }
-                // ], line 164
-                base.bra = base.cursor;
-                // delete, line 164
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab21: {
-                // (, line 166
-                // [, line 166
-                base.ket = base.cursor;
-                // literal, line 166
                 if (!(base.eq_s_b("\u0BA9\u0BC1")))
                 {
                     break lab21;
                 }
-                // (, line 166
-                // test, line 166
+                // (, line 158
+                // test, line 158
                 var /** number */ v_8 = base.limit - base.cursor;
-                // not, line 166
+                // not, line 158
                 {
                     var /** number */ v_9 = base.limit - base.cursor;
                     lab22: {
-                        // among, line 166
+                        // among, line 158
                         if (base.find_among_b(a_9) == 0)
                         {
                             break lab22;
@@ -903,9 +866,9 @@ function TamilStemmer() {
                     base.cursor = base.limit - v_9;
                 }
                 base.cursor = base.limit - v_8;
-                // ], line 166
+                // ], line 158
                 base.bra = base.cursor;
-                // delete, line 166
+                // delete, line 158
                 if (!base.slice_del())
                 {
                     return false;
@@ -914,22 +877,22 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab23: {
-                // (, line 168
-                // [, line 168
+                // (, line 160
+                // [, line 160
                 base.ket = base.cursor;
-                // literal, line 168
+                // literal, line 160
                 if (!(base.eq_s_b("\u0B99\u0BCD")))
                 {
                     break lab23;
                 }
-                // (, line 168
-                // test, line 168
+                // (, line 160
+                // test, line 160
                 var /** number */ v_10 = base.limit - base.cursor;
-                // not, line 168
+                // not, line 160
                 {
                     var /** number */ v_11 = base.limit - base.cursor;
                     lab24: {
-                        // literal, line 168
+                        // literal, line 160
                         if (!(base.eq_s_b("\u0BC8")))
                         {
                             break lab24;
@@ -939,9 +902,9 @@ function TamilStemmer() {
                     base.cursor = base.limit - v_11;
                 }
                 base.cursor = base.limit - v_10;
-                // ], line 168
+                // ], line 160
                 base.bra = base.cursor;
-                // <-, line 168
+                // <-, line 160
                 if (!base.slice_from("\u0BAE\u0BCD"))
                 {
                     return false;
@@ -950,17 +913,17 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab25: {
-                // (, line 170
-                // [, line 170
+                // (, line 162
+                // [, line 162
                 base.ket = base.cursor;
-                // literal, line 170
+                // literal, line 162
                 if (!(base.eq_s_b("\u0B99\u0BCD")))
                 {
                     break lab25;
                 }
-                // ], line 170
+                // ], line 162
                 base.bra = base.cursor;
-                // delete, line 170
+                // delete, line 162
                 if (!base.slice_del())
                 {
                     return false;
@@ -968,23 +931,23 @@ function TamilStemmer() {
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            // (, line 172
-            // [, line 172
+            // (, line 164
+            // [, line 164
             base.ket = base.cursor;
-            // literal, line 172
+            // literal, line 164
             if (!(base.eq_s_b("\u0BCD")))
             {
                 return false;
             }
-            // (, line 172
-            // test, line 172
+            // (, line 164
+            // test, line 164
             var /** number */ v_12 = base.limit - base.cursor;
-            // (, line 172
-            // or, line 172
+            // (, line 164
+            // or, line 164
             lab26: {
                 var /** number */ v_13 = base.limit - base.cursor;
                 lab27: {
-                    // among, line 172
+                    // among, line 164
                     if (base.find_among_b(a_10) == 0)
                     {
                         break lab27;
@@ -992,62 +955,62 @@ function TamilStemmer() {
                     break lab26;
                 }
                 base.cursor = base.limit - v_13;
-                // literal, line 172
+                // literal, line 164
                 if (!(base.eq_s_b("\u0BCD")))
                 {
                     return false;
                 }
             }
             base.cursor = base.limit - v_12;
-            // ], line 172
+            // ], line 164
             base.bra = base.cursor;
-            // delete, line 172
+            // delete, line 164
             if (!base.slice_del())
             {
                 return false;
             }
         }
-        base.cursor = base.limit_backward;        // set found_wrong_ending, line 175
+        base.cursor = base.limit_backward;        // set found_wrong_ending, line 167
         B_found_wrong_ending = true;
         return true;
     };
 
     /** @return {boolean} */
     function r_remove_pronoun_prefixes() {
-        // (, line 178
-        // unset found_a_match, line 179
+        // (, line 170
+        // unset found_a_match, line 171
         B_found_a_match = false;
-        // [, line 180
+        // [, line 172
         base.bra = base.cursor;
-        // among, line 180
+        // among, line 172
         if (base.find_among(a_11) == 0)
         {
             return false;
         }
-        // among, line 180
+        // among, line 172
         if (base.find_among(a_12) == 0)
         {
             return false;
         }
-        // literal, line 180
+        // literal, line 172
         if (!(base.eq_s("\u0BCD")))
         {
             return false;
         }
-        // ], line 180
+        // ], line 172
         base.ket = base.cursor;
-        // delete, line 180
+        // delete, line 172
         if (!base.slice_del())
         {
             return false;
         }
-        // (, line 181
-        // set found_a_match, line 181
+        // (, line 173
+        // set found_a_match, line 173
         B_found_a_match = true;
-        // do, line 182
+        // do, line 174
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // call fix_va_start, line 182
+            // call fix_va_start, line 174
             if (!r_fix_va_start())
             {
                 break lab0;
@@ -1059,32 +1022,32 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_plural_suffix() {
-        // (, line 185
-        // unset found_a_match, line 186
+        // (, line 177
+        // unset found_a_match, line 178
         B_found_a_match = false;
-        // backwards, line 187
+        // backwards, line 179
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 187
-        // or, line 188
+        // (, line 179
+        // or, line 180
         lab0: {
             var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                // (, line 188
-                // [, line 188
+                // (, line 180
+                // [, line 180
                 base.ket = base.cursor;
-                // literal, line 188
+                // literal, line 180
                 if (!(base.eq_s_b("\u0BC1\u0B99\u0BCD\u0B95\u0BB3\u0BCD")))
                 {
                     break lab1;
                 }
-                // (, line 188
-                // test, line 188
+                // (, line 180
+                // test, line 180
                 var /** number */ v_2 = base.limit - base.cursor;
-                // not, line 188
+                // not, line 180
                 {
                     var /** number */ v_3 = base.limit - base.cursor;
                     lab2: {
-                        // among, line 188
+                        // among, line 180
                         if (base.find_among_b(a_13) == 0)
                         {
                             break lab2;
@@ -1094,9 +1057,9 @@ function TamilStemmer() {
                     base.cursor = base.limit - v_3;
                 }
                 base.cursor = base.limit - v_2;
-                // ], line 188
+                // ], line 180
                 base.bra = base.cursor;
-                // <-, line 188
+                // <-, line 180
                 if (!base.slice_from("\u0BCD"))
                 {
                     return false;
@@ -1105,17 +1068,17 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab3: {
-                // (, line 189
-                // [, line 189
+                // (, line 181
+                // [, line 181
                 base.ket = base.cursor;
-                // literal, line 189
+                // literal, line 181
                 if (!(base.eq_s_b("\u0BB1\u0BCD\u0B95\u0BB3\u0BCD")))
                 {
                     break lab3;
                 }
-                // ], line 189
+                // ], line 181
                 base.bra = base.cursor;
-                // <-, line 189
+                // <-, line 181
                 if (!base.slice_from("\u0BB2\u0BCD"))
                 {
                     return false;
@@ -1124,17 +1087,17 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab4: {
-                // (, line 190
-                // [, line 190
+                // (, line 182
+                // [, line 182
                 base.ket = base.cursor;
-                // literal, line 190
+                // literal, line 182
                 if (!(base.eq_s_b("\u0B9F\u0BCD\u0B95\u0BB3\u0BCD")))
                 {
                     break lab4;
                 }
-                // ], line 190
+                // ], line 182
                 base.bra = base.cursor;
-                // <-, line 190
+                // <-, line 182
                 if (!base.slice_from("\u0BB3\u0BCD"))
                 {
                     return false;
@@ -1142,68 +1105,68 @@ function TamilStemmer() {
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            // (, line 191
-            // [, line 191
+            // (, line 183
+            // [, line 183
             base.ket = base.cursor;
-            // literal, line 191
+            // literal, line 183
             if (!(base.eq_s_b("\u0B95\u0BB3\u0BCD")))
             {
                 return false;
             }
-            // ], line 191
+            // ], line 183
             base.bra = base.cursor;
-            // delete, line 191
+            // delete, line 183
             if (!base.slice_del())
             {
                 return false;
             }
         }
-        // (, line 192
-        // set found_a_match, line 192
+        // (, line 184
+        // set found_a_match, line 184
         B_found_a_match = true;
         base.cursor = base.limit_backward;        return true;
     };
 
     /** @return {boolean} */
     function r_remove_question_suffixes() {
-        // (, line 196
-        // call has_min_length, line 197
+        // (, line 188
+        // call has_min_length, line 189
         if (!r_has_min_length())
         {
             return false;
         }
-        // unset found_a_match, line 198
+        // unset found_a_match, line 190
         B_found_a_match = false;
-        // backwards, line 199
+        // backwards, line 191
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 199
-        // do, line 200
+        // (, line 191
+        // do, line 192
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            // (, line 200
-            // [, line 201
+            // (, line 192
+            // [, line 193
             base.ket = base.cursor;
-            // among, line 201
+            // among, line 193
             if (base.find_among_b(a_14) == 0)
             {
                 break lab0;
             }
-            // ], line 201
+            // ], line 193
             base.bra = base.cursor;
-            // <-, line 201
+            // <-, line 193
             if (!base.slice_from("\u0BCD"))
             {
                 return false;
             }
-            // (, line 202
-            // set found_a_match, line 202
+            // (, line 194
+            // set found_a_match, line 194
             B_found_a_match = true;
         }
         base.cursor = base.limit - v_1;
-        base.cursor = base.limit_backward;        // do, line 205
+        base.cursor = base.limit_backward;        // do, line 197
         var /** number */ v_2 = base.cursor;
         lab1: {
-            // call fix_endings, line 205
+            // call fix_endings, line 197
             if (!r_fix_endings())
             {
                 break lab1;
@@ -1215,71 +1178,71 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_command_suffixes() {
-        // (, line 208
-        // call has_min_length, line 209
+        // (, line 200
+        // call has_min_length, line 201
         if (!r_has_min_length())
         {
             return false;
         }
-        // unset found_a_match, line 210
+        // unset found_a_match, line 202
         B_found_a_match = false;
-        // backwards, line 211
+        // backwards, line 203
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 211
-        // [, line 212
+        // (, line 203
+        // [, line 204
         base.ket = base.cursor;
-        // among, line 212
+        // among, line 204
         if (base.find_among_b(a_15) == 0)
         {
             return false;
         }
-        // ], line 212
+        // ], line 204
         base.bra = base.cursor;
-        // delete, line 212
+        // delete, line 204
         if (!base.slice_del())
         {
             return false;
         }
-        // (, line 213
-        // set found_a_match, line 213
+        // (, line 205
+        // set found_a_match, line 205
         B_found_a_match = true;
         base.cursor = base.limit_backward;        return true;
     };
 
     /** @return {boolean} */
     function r_remove_um() {
-        // (, line 217
-        // unset found_a_match, line 218
+        // (, line 209
+        // unset found_a_match, line 210
         B_found_a_match = false;
-        // call has_min_length, line 219
+        // call has_min_length, line 211
         if (!r_has_min_length())
         {
             return false;
         }
-        // backwards, line 220
+        // backwards, line 212
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 220
-        // [, line 220
+        // (, line 212
+        // [, line 212
         base.ket = base.cursor;
-        // literal, line 220
+        // literal, line 212
         if (!(base.eq_s_b("\u0BC1\u0BAE\u0BCD")))
         {
             return false;
         }
-        // ], line 220
+        // ], line 212
         base.bra = base.cursor;
-        // <-, line 220
+        // <-, line 212
         if (!base.slice_from("\u0BCD"))
         {
             return false;
         }
-        // (, line 221
-        // set found_a_match, line 221
+        // (, line 213
+        // set found_a_match, line 213
         B_found_a_match = true;
-        base.cursor = base.limit_backward;        // do, line 223
+        base.cursor = base.limit_backward;        // do, line 215
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // call fix_ending, line 223
+            // call fix_ending, line 215
             if (!r_fix_ending())
             {
                 break lab0;
@@ -1291,31 +1254,31 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_common_word_endings() {
-        // (, line 226
-        // unset found_a_match, line 230
+        // (, line 218
+        // unset found_a_match, line 222
         B_found_a_match = false;
-        // call has_min_length, line 231
+        // call has_min_length, line 223
         if (!r_has_min_length())
         {
             return false;
         }
-        // backwards, line 232
+        // backwards, line 224
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 232
-        // or, line 249
+        // (, line 224
+        // or, line 241
         lab0: {
             var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                // test, line 233
+                // test, line 225
                 var /** number */ v_2 = base.limit - base.cursor;
-                // (, line 233
-                // [, line 233
+                // (, line 225
+                // [, line 225
                 base.ket = base.cursor;
-                // or, line 233
+                // or, line 225
                 lab2: {
                     var /** number */ v_3 = base.limit - base.cursor;
                     lab3: {
-                        // literal, line 233
+                        // literal, line 225
                         if (!(base.eq_s_b("\u0BC1\u0B9F\u0BA9\u0BCD")))
                         {
                             break lab3;
@@ -1324,7 +1287,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab4: {
-                        // literal, line 234
+                        // literal, line 226
                         if (!(base.eq_s_b("\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8")))
                         {
                             break lab4;
@@ -1333,7 +1296,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab5: {
-                        // literal, line 235
+                        // literal, line 227
                         if (!(base.eq_s_b("\u0BBF\u0B9F\u0BAE\u0BCD")))
                         {
                             break lab5;
@@ -1342,7 +1305,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab6: {
-                        // literal, line 236
+                        // literal, line 228
                         if (!(base.eq_s_b("\u0BBF\u0BA9\u0BCD\u0BB1\u0BBF")))
                         {
                             break lab6;
@@ -1351,7 +1314,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab7: {
-                        // literal, line 237
+                        // literal, line 229
                         if (!(base.eq_s_b("\u0BBE\u0B95\u0BBF")))
                         {
                             break lab7;
@@ -1360,7 +1323,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab8: {
-                        // literal, line 238
+                        // literal, line 230
                         if (!(base.eq_s_b("\u0BBE\u0B95\u0BBF\u0BAF")))
                         {
                             break lab8;
@@ -1369,7 +1332,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab9: {
-                        // literal, line 239
+                        // literal, line 231
                         if (!(base.eq_s_b("\u0BC6\u0BA9\u0BCD\u0BB1\u0BC1")))
                         {
                             break lab9;
@@ -1378,7 +1341,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab10: {
-                        // literal, line 240
+                        // literal, line 232
                         if (!(base.eq_s_b("\u0BC1\u0BB3\u0BCD\u0BB3")))
                         {
                             break lab10;
@@ -1387,7 +1350,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab11: {
-                        // literal, line 241
+                        // literal, line 233
                         if (!(base.eq_s_b("\u0BC1\u0B9F\u0BC8\u0BAF")))
                         {
                             break lab11;
@@ -1396,7 +1359,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab12: {
-                        // literal, line 242
+                        // literal, line 234
                         if (!(base.eq_s_b("\u0BC1\u0B9F\u0BC8")))
                         {
                             break lab12;
@@ -1405,7 +1368,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab13: {
-                        // literal, line 243
+                        // literal, line 235
                         if (!(base.eq_s_b("\u0BC6\u0BA9\u0BC1\u0BAE\u0BCD")))
                         {
                             break lab13;
@@ -1414,20 +1377,20 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab14: {
-                        // (, line 244
-                        // literal, line 244
+                        // (, line 236
+                        // literal, line 236
                         if (!(base.eq_s_b("\u0BB2\u0BCD\u0BB2")))
                         {
                             break lab14;
                         }
-                        // test, line 244
+                        // test, line 236
                         var /** number */ v_4 = base.limit - base.cursor;
-                        // (, line 244
-                        // not, line 244
+                        // (, line 236
+                        // not, line 236
                         {
                             var /** number */ v_5 = base.limit - base.cursor;
                             lab15: {
-                                // among, line 244
+                                // among, line 236
                                 if (base.find_among_b(a_16) == 0)
                                 {
                                     break lab15;
@@ -1441,7 +1404,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_3;
                     lab16: {
-                        // literal, line 245
+                        // literal, line 237
                         if (!(base.eq_s_b("\u0BC6\u0BA9")))
                         {
                             break lab16;
@@ -1449,52 +1412,52 @@ function TamilStemmer() {
                         break lab2;
                     }
                     base.cursor = base.limit - v_3;
-                    // literal, line 246
+                    // literal, line 238
                     if (!(base.eq_s_b("\u0BBE\u0B95\u0BBF")))
                     {
                         break lab1;
                     }
                 }
-                // ], line 246
+                // ], line 238
                 base.bra = base.cursor;
-                // <-, line 246
+                // <-, line 238
                 if (!base.slice_from("\u0BCD"))
                 {
                     return false;
                 }
-                // (, line 247
-                // set found_a_match, line 247
+                // (, line 239
+                // set found_a_match, line 239
                 B_found_a_match = true;
                 base.cursor = base.limit - v_2;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            // test, line 250
+            // test, line 242
             var /** number */ v_6 = base.limit - base.cursor;
-            // (, line 250
-            // [, line 250
+            // (, line 242
+            // [, line 242
             base.ket = base.cursor;
-            // among, line 250
+            // among, line 242
             if (base.find_among_b(a_17) == 0)
             {
                 return false;
             }
-            // ], line 263
+            // ], line 255
             base.bra = base.cursor;
-            // delete, line 263
+            // delete, line 255
             if (!base.slice_del())
             {
                 return false;
             }
-            // (, line 264
-            // set found_a_match, line 264
+            // (, line 256
+            // set found_a_match, line 256
             B_found_a_match = true;
             base.cursor = base.limit - v_6;
         }
-        base.cursor = base.limit_backward;        // do, line 267
+        base.cursor = base.limit_backward;        // do, line 259
         var /** number */ v_7 = base.cursor;
         lab17: {
-            // call fix_endings, line 267
+            // call fix_endings, line 259
             if (!r_fix_endings())
             {
                 break lab17;
@@ -1506,37 +1469,37 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_vetrumai_urupukal() {
-        // (, line 270
-        // unset found_a_match, line 271
+        // (, line 262
+        // unset found_a_match, line 263
         B_found_a_match = false;
-        // unset found_vetrumai_urupu, line 272
+        // unset found_vetrumai_urupu, line 264
         B_found_vetrumai_urupu = false;
-        // call has_min_length, line 273
+        // call has_min_length, line 265
         if (!r_has_min_length())
         {
             return false;
         }
-        // backwards, line 274
+        // backwards, line 266
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 274
-        // (, line 275
-        // or, line 277
+        // (, line 266
+        // (, line 267
+        // or, line 269
         lab0: {
             var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                // test, line 276
+                // test, line 268
                 var /** number */ v_2 = base.limit - base.cursor;
-                // (, line 276
-                // [, line 276
+                // (, line 268
+                // [, line 268
                 base.ket = base.cursor;
-                // literal, line 276
+                // literal, line 268
                 if (!(base.eq_s_b("\u0BA9\u0BC8")))
                 {
                     break lab1;
                 }
-                // ], line 276
+                // ], line 268
                 base.bra = base.cursor;
-                // delete, line 276
+                // delete, line 268
                 if (!base.slice_del())
                 {
                     return false;
@@ -1546,21 +1509,21 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab2: {
-                // test, line 278
+                // test, line 270
                 var /** number */ v_3 = base.limit - base.cursor;
-                // (, line 278
-                // [, line 278
+                // (, line 270
+                // [, line 270
                 base.ket = base.cursor;
-                // or, line 279
+                // or, line 271
                 lab3: {
                     var /** number */ v_4 = base.limit - base.cursor;
                     lab4: {
-                        // (, line 278
-                        // or, line 278
+                        // (, line 270
+                        // or, line 270
                         lab5: {
                             var /** number */ v_5 = base.limit - base.cursor;
                             lab6: {
-                                // literal, line 278
+                                // literal, line 270
                                 if (!(base.eq_s_b("\u0BBF\u0BA9\u0BC8")))
                                 {
                                     break lab6;
@@ -1568,20 +1531,20 @@ function TamilStemmer() {
                                 break lab5;
                             }
                             base.cursor = base.limit - v_5;
-                            // literal, line 279
+                            // literal, line 271
                             if (!(base.eq_s_b("\u0BC8")))
                             {
                                 break lab4;
                             }
                         }
-                        // (, line 279
-                        // test, line 279
+                        // (, line 271
+                        // test, line 271
                         var /** number */ v_6 = base.limit - base.cursor;
-                        // not, line 279
+                        // not, line 271
                         {
                             var /** number */ v_7 = base.limit - base.cursor;
                             lab7: {
-                                // among, line 279
+                                // among, line 271
                                 if (base.find_among_b(a_18) == 0)
                                 {
                                     break lab7;
@@ -1594,31 +1557,31 @@ function TamilStemmer() {
                         break lab3;
                     }
                     base.cursor = base.limit - v_4;
-                    // (, line 280
-                    // literal, line 280
+                    // (, line 272
+                    // literal, line 272
                     if (!(base.eq_s_b("\u0BC8")))
                     {
                         break lab2;
                     }
-                    // (, line 280
-                    // test, line 280
+                    // (, line 272
+                    // test, line 272
                     var /** number */ v_8 = base.limit - base.cursor;
-                    // (, line 280
-                    // among, line 280
+                    // (, line 272
+                    // among, line 272
                     if (base.find_among_b(a_19) == 0)
                     {
                         break lab2;
                     }
-                    // literal, line 280
+                    // literal, line 272
                     if (!(base.eq_s_b("\u0BCD")))
                     {
                         break lab2;
                     }
                     base.cursor = base.limit - v_8;
                 }
-                // ], line 281
+                // ], line 273
                 base.bra = base.cursor;
-                // <-, line 281
+                // <-, line 273
                 if (!base.slice_from("\u0BCD"))
                 {
                     return false;
@@ -1628,16 +1591,16 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab8: {
-                // test, line 284
+                // test, line 276
                 var /** number */ v_9 = base.limit - base.cursor;
-                // (, line 284
-                // [, line 284
+                // (, line 276
+                // [, line 276
                 base.ket = base.cursor;
-                // or, line 285
+                // or, line 277
                 lab9: {
                     var /** number */ v_10 = base.limit - base.cursor;
                     lab10: {
-                        // literal, line 285
+                        // literal, line 277
                         if (!(base.eq_s_b("\u0BCA\u0B9F\u0BC1")))
                         {
                             break lab10;
@@ -1646,7 +1609,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab11: {
-                        // literal, line 286
+                        // literal, line 278
                         if (!(base.eq_s_b("\u0BCB\u0B9F\u0BC1")))
                         {
                             break lab11;
@@ -1655,7 +1618,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab12: {
-                        // literal, line 287
+                        // literal, line 279
                         if (!(base.eq_s_b("\u0BBF\u0BB2\u0BCD")))
                         {
                             break lab12;
@@ -1664,7 +1627,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab13: {
-                        // literal, line 288
+                        // literal, line 280
                         if (!(base.eq_s_b("\u0BBF\u0BB1\u0BCD")))
                         {
                             break lab13;
@@ -1673,20 +1636,20 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab14: {
-                        // (, line 289
-                        // literal, line 289
+                        // (, line 281
+                        // literal, line 281
                         if (!(base.eq_s_b("\u0BBF\u0BA9\u0BCD")))
                         {
                             break lab14;
                         }
-                        // (, line 289
-                        // test, line 289
+                        // (, line 281
+                        // test, line 281
                         var /** number */ v_11 = base.limit - base.cursor;
-                        // not, line 289
+                        // not, line 281
                         {
                             var /** number */ v_12 = base.limit - base.cursor;
                             lab15: {
-                                // literal, line 289
+                                // literal, line 281
                                 if (!(base.eq_s_b("\u0BAE")))
                                 {
                                     break lab15;
@@ -1700,7 +1663,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab16: {
-                        // literal, line 290
+                        // literal, line 282
                         if (!(base.eq_s_b("\u0BBF\u0BA9\u0BCD\u0BB1\u0BC1")))
                         {
                             break lab16;
@@ -1709,7 +1672,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab17: {
-                        // literal, line 291
+                        // literal, line 283
                         if (!(base.eq_s_b("\u0BBF\u0BB0\u0BC1\u0BA8\u0BCD\u0BA4\u0BC1")))
                         {
                             break lab17;
@@ -1718,7 +1681,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab18: {
-                        // literal, line 292
+                        // literal, line 284
                         if (!(base.eq_s_b("\u0BB5\u0BBF\u0B9F")))
                         {
                             break lab18;
@@ -1727,12 +1690,12 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab19: {
-                        // (, line 293
+                        // (, line 285
                         if (!(I_length >= 7))
                         {
                             break lab19;
                         }
-                        // literal, line 293
+                        // literal, line 285
                         if (!(base.eq_s_b("\u0BBF\u0B9F\u0BAE\u0BCD")))
                         {
                             break lab19;
@@ -1741,7 +1704,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab20: {
-                        // literal, line 294
+                        // literal, line 286
                         if (!(base.eq_s_b("\u0BBE\u0BB2\u0BCD")))
                         {
                             break lab20;
@@ -1750,7 +1713,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab21: {
-                        // literal, line 295
+                        // literal, line 287
                         if (!(base.eq_s_b("\u0BC1\u0B9F\u0BC8")))
                         {
                             break lab21;
@@ -1759,7 +1722,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab22: {
-                        // literal, line 296
+                        // literal, line 288
                         if (!(base.eq_s_b("\u0BBE\u0BAE\u0BB2\u0BCD")))
                         {
                             break lab22;
@@ -1768,20 +1731,20 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_10;
                     lab23: {
-                        // (, line 297
-                        // literal, line 297
+                        // (, line 289
+                        // literal, line 289
                         if (!(base.eq_s_b("\u0BB2\u0BCD")))
                         {
                             break lab23;
                         }
-                        // (, line 297
-                        // test, line 297
+                        // (, line 289
+                        // test, line 289
                         var /** number */ v_13 = base.limit - base.cursor;
-                        // not, line 297
+                        // not, line 289
                         {
                             var /** number */ v_14 = base.limit - base.cursor;
                             lab24: {
-                                // among, line 297
+                                // among, line 289
                                 if (base.find_among_b(a_20) == 0)
                                 {
                                     break lab24;
@@ -1794,15 +1757,15 @@ function TamilStemmer() {
                         break lab9;
                     }
                     base.cursor = base.limit - v_10;
-                    // literal, line 298
+                    // literal, line 290
                     if (!(base.eq_s_b("\u0BC1\u0BB3\u0BCD")))
                     {
                         break lab8;
                     }
                 }
-                // ], line 299
+                // ], line 291
                 base.bra = base.cursor;
-                // <-, line 299
+                // <-, line 291
                 if (!base.slice_from("\u0BCD"))
                 {
                     return false;
@@ -1812,16 +1775,16 @@ function TamilStemmer() {
             }
             base.cursor = base.limit - v_1;
             lab25: {
-                // test, line 302
+                // test, line 294
                 var /** number */ v_15 = base.limit - base.cursor;
-                // (, line 302
-                // [, line 302
+                // (, line 294
+                // [, line 294
                 base.ket = base.cursor;
-                // or, line 303
+                // or, line 295
                 lab26: {
                     var /** number */ v_16 = base.limit - base.cursor;
                     lab27: {
-                        // literal, line 303
+                        // literal, line 295
                         if (!(base.eq_s_b("\u0B95\u0BA3\u0BCD")))
                         {
                             break lab27;
@@ -1830,7 +1793,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_16;
                     lab28: {
-                        // literal, line 304
+                        // literal, line 296
                         if (!(base.eq_s_b("\u0BAE\u0BC1\u0BA9\u0BCD")))
                         {
                             break lab28;
@@ -1839,7 +1802,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_16;
                     lab29: {
-                        // literal, line 305
+                        // literal, line 297
                         if (!(base.eq_s_b("\u0BAE\u0BC7\u0BB2\u0BCD")))
                         {
                             break lab29;
@@ -1848,7 +1811,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_16;
                     lab30: {
-                        // literal, line 306
+                        // literal, line 298
                         if (!(base.eq_s_b("\u0BAE\u0BC7\u0BB1\u0BCD")))
                         {
                             break lab30;
@@ -1857,7 +1820,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_16;
                     lab31: {
-                        // literal, line 307
+                        // literal, line 299
                         if (!(base.eq_s_b("\u0B95\u0BC0\u0BB4\u0BCD")))
                         {
                             break lab31;
@@ -1866,7 +1829,7 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_16;
                     lab32: {
-                        // literal, line 308
+                        // literal, line 300
                         if (!(base.eq_s_b("\u0BAA\u0BBF\u0BA9\u0BCD")))
                         {
                             break lab32;
@@ -1874,20 +1837,20 @@ function TamilStemmer() {
                         break lab26;
                     }
                     base.cursor = base.limit - v_16;
-                    // (, line 309
-                    // literal, line 309
+                    // (, line 301
+                    // literal, line 301
                     if (!(base.eq_s_b("\u0BA4\u0BC1")))
                     {
                         break lab25;
                     }
-                    // (, line 309
-                    // test, line 309
+                    // (, line 301
+                    // test, line 301
                     var /** number */ v_17 = base.limit - base.cursor;
-                    // not, line 309
+                    // not, line 301
                     {
                         var /** number */ v_18 = base.limit - base.cursor;
                         lab33: {
-                            // among, line 309
+                            // among, line 301
                             if (base.find_among_b(a_21) == 0)
                             {
                                 break lab33;
@@ -1898,9 +1861,9 @@ function TamilStemmer() {
                     }
                     base.cursor = base.limit - v_17;
                 }
-                // ], line 310
+                // ], line 302
                 base.bra = base.cursor;
-                // delete, line 310
+                // delete, line 302
                 if (!base.slice_del())
                 {
                     return false;
@@ -1909,55 +1872,55 @@ function TamilStemmer() {
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            // test, line 313
+            // test, line 305
             var /** number */ v_19 = base.limit - base.cursor;
-            // (, line 313
-            // [, line 313
+            // (, line 305
+            // [, line 305
             base.ket = base.cursor;
-            // literal, line 313
+            // literal, line 305
             if (!(base.eq_s_b("\u0BC0")))
             {
                 return false;
             }
-            // ], line 313
+            // ], line 305
             base.bra = base.cursor;
-            // <-, line 313
+            // <-, line 305
             if (!base.slice_from("\u0BBF"))
             {
                 return false;
             }
             base.cursor = base.limit - v_19;
         }
-        // (, line 315
-        // set found_a_match, line 315
+        // (, line 307
+        // set found_a_match, line 307
         B_found_a_match = true;
-        // (, line 316
-        // set found_vetrumai_urupu, line 316
+        // (, line 308
+        // set found_vetrumai_urupu, line 308
         B_found_vetrumai_urupu = true;
-        // do, line 317
+        // do, line 309
         var /** number */ v_20 = base.limit - base.cursor;
         lab34: {
-            // (, line 317
-            // [, line 317
+            // (, line 309
+            // [, line 309
             base.ket = base.cursor;
-            // literal, line 317
+            // literal, line 309
             if (!(base.eq_s_b("\u0BBF\u0BA9\u0BCD")))
             {
                 break lab34;
             }
-            // ], line 317
+            // ], line 309
             base.bra = base.cursor;
-            // <-, line 317
+            // <-, line 309
             if (!base.slice_from("\u0BCD"))
             {
                 return false;
             }
         }
         base.cursor = base.limit - v_20;
-        base.cursor = base.limit_backward;        // do, line 319
+        base.cursor = base.limit_backward;        // do, line 311
         var /** number */ v_21 = base.cursor;
         lab35: {
-            // call fix_endings, line 319
+            // call fix_endings, line 311
             if (!r_fix_endings())
             {
                 break lab35;
@@ -1969,25 +1932,25 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_tense_suffixes() {
-        // (, line 322
-        // set found_a_match, line 323
+        // (, line 314
+        // set found_a_match, line 315
         B_found_a_match = true;
-        // repeat, line 324
+        // repeat, line 316
         replab0: while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab1: {
-                // (, line 324
-                // Boolean test found_a_match, line 324
-                if (!(B_found_a_match))
+                // (, line 316
+                // Boolean test found_a_match, line 316
+                if (!B_found_a_match)
                 {
                     break lab1;
                 }
-                // (, line 324
-                // do, line 324
+                // (, line 316
+                // do, line 316
                 var /** number */ v_2 = base.cursor;
                 lab2: {
-                    // call remove_tense_suffix, line 324
+                    // call remove_tense_suffix, line 316
                     if (!r_remove_tense_suffix())
                     {
                         break lab2;
@@ -2004,60 +1967,60 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_tense_suffix() {
-        // (, line 327
-        // unset found_a_match, line 328
+        // (, line 319
+        // unset found_a_match, line 320
         B_found_a_match = false;
-        // call has_min_length, line 329
+        // call has_min_length, line 321
         if (!r_has_min_length())
         {
             return false;
         }
-        // backwards, line 330
+        // backwards, line 322
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 330
-        // do, line 331
+        // (, line 322
+        // do, line 323
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            // (, line 331
-            // or, line 338
+            // (, line 323
+            // or, line 330
             lab1: {
                 var /** number */ v_2 = base.limit - base.cursor;
                 lab2: {
-                    // test, line 332
+                    // test, line 324
                     var /** number */ v_3 = base.limit - base.cursor;
-                    // (, line 332
-                    // [, line 332
+                    // (, line 324
+                    // [, line 324
                     base.ket = base.cursor;
-                    // among, line 332
+                    // among, line 324
                     if (base.find_among_b(a_22) == 0)
                     {
                         break lab2;
                     }
-                    // ], line 335
+                    // ], line 327
                     base.bra = base.cursor;
-                    // delete, line 335
+                    // delete, line 327
                     if (!base.slice_del())
                     {
                         return false;
                     }
-                    // (, line 336
-                    // set found_a_match, line 336
+                    // (, line 328
+                    // set found_a_match, line 328
                     B_found_a_match = true;
                     base.cursor = base.limit - v_3;
                     break lab1;
                 }
                 base.cursor = base.limit - v_2;
                 lab3: {
-                    // test, line 339
+                    // test, line 331
                     var /** number */ v_4 = base.limit - base.cursor;
-                    // (, line 339
-                    // [, line 339
+                    // (, line 331
+                    // [, line 331
                     base.ket = base.cursor;
-                    // or, line 340
+                    // or, line 332
                     lab4: {
                         var /** number */ v_5 = base.limit - base.cursor;
                         lab5: {
-                            // literal, line 340
+                            // literal, line 332
                             if (!(base.eq_s_b("\u0BAE\u0BBE\u0BB0\u0BCD")))
                             {
                                 break lab5;
@@ -2066,7 +2029,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab6: {
-                            // literal, line 341
+                            // literal, line 333
                             if (!(base.eq_s_b("\u0BAE\u0BBF\u0BA9\u0BCD")))
                             {
                                 break lab6;
@@ -2075,7 +2038,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab7: {
-                            // literal, line 342
+                            // literal, line 334
                             if (!(base.eq_s_b("\u0BA9\u0BA9\u0BCD")))
                             {
                                 break lab7;
@@ -2084,7 +2047,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab8: {
-                            // literal, line 343
+                            // literal, line 335
                             if (!(base.eq_s_b("\u0BA9\u0BBE\u0BA9\u0BCD")))
                             {
                                 break lab8;
@@ -2093,7 +2056,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab9: {
-                            // literal, line 344
+                            // literal, line 336
                             if (!(base.eq_s_b("\u0BA9\u0BBE\u0BB3\u0BCD")))
                             {
                                 break lab9;
@@ -2102,7 +2065,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab10: {
-                            // literal, line 345
+                            // literal, line 337
                             if (!(base.eq_s_b("\u0BA9\u0BBE\u0BB0\u0BCD")))
                             {
                                 break lab10;
@@ -2111,20 +2074,20 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab11: {
-                            // (, line 346
-                            // literal, line 346
+                            // (, line 338
+                            // literal, line 338
                             if (!(base.eq_s_b("\u0BB5\u0BA9\u0BCD")))
                             {
                                 break lab11;
                             }
-                            // test, line 346
+                            // test, line 338
                             var /** number */ v_6 = base.limit - base.cursor;
-                            // (, line 346
-                            // not, line 346
+                            // (, line 338
+                            // not, line 338
                             {
                                 var /** number */ v_7 = base.limit - base.cursor;
                                 lab12: {
-                                    // among, line 346
+                                    // among, line 338
                                     if (base.find_among_b(a_23) == 0)
                                     {
                                         break lab12;
@@ -2138,7 +2101,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab13: {
-                            // literal, line 347
+                            // literal, line 339
                             if (!(base.eq_s_b("\u0BA9\u0BB3\u0BCD")))
                             {
                                 break lab13;
@@ -2147,7 +2110,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab14: {
-                            // literal, line 348
+                            // literal, line 340
                             if (!(base.eq_s_b("\u0BB5\u0BB3\u0BCD")))
                             {
                                 break lab14;
@@ -2156,7 +2119,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab15: {
-                            // literal, line 349
+                            // literal, line 341
                             if (!(base.eq_s_b("\u0BA9\u0BB0\u0BCD")))
                             {
                                 break lab15;
@@ -2165,7 +2128,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab16: {
-                            // literal, line 350
+                            // literal, line 342
                             if (!(base.eq_s_b("\u0BB5\u0BB0\u0BCD")))
                             {
                                 break lab16;
@@ -2174,7 +2137,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab17: {
-                            // literal, line 351
+                            // literal, line 343
                             if (!(base.eq_s_b("\u0BA9")))
                             {
                                 break lab17;
@@ -2183,7 +2146,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab18: {
-                            // literal, line 351
+                            // literal, line 343
                             if (!(base.eq_s_b("\u0BAA")))
                             {
                                 break lab18;
@@ -2192,7 +2155,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab19: {
-                            // literal, line 351
+                            // literal, line 343
                             if (!(base.eq_s_b("\u0B95")))
                             {
                                 break lab19;
@@ -2201,7 +2164,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab20: {
-                            // literal, line 351
+                            // literal, line 343
                             if (!(base.eq_s_b("\u0BA4")))
                             {
                                 break lab20;
@@ -2210,7 +2173,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab21: {
-                            // literal, line 351
+                            // literal, line 343
                             if (!(base.eq_s_b("\u0BAF")))
                             {
                                 break lab21;
@@ -2219,7 +2182,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab22: {
-                            // literal, line 352
+                            // literal, line 344
                             if (!(base.eq_s_b("\u0BAA\u0BA9\u0BCD")))
                             {
                                 break lab22;
@@ -2228,7 +2191,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab23: {
-                            // literal, line 353
+                            // literal, line 345
                             if (!(base.eq_s_b("\u0BAA\u0BB3\u0BCD")))
                             {
                                 break lab23;
@@ -2237,7 +2200,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab24: {
-                            // literal, line 354
+                            // literal, line 346
                             if (!(base.eq_s_b("\u0BAA\u0BB0\u0BCD")))
                             {
                                 break lab24;
@@ -2246,20 +2209,20 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab25: {
-                            // (, line 355
-                            // literal, line 355
+                            // (, line 347
+                            // literal, line 347
                             if (!(base.eq_s_b("\u0BA4\u0BC1")))
                             {
                                 break lab25;
                             }
-                            // (, line 355
-                            // test, line 355
+                            // (, line 347
+                            // test, line 347
                             var /** number */ v_8 = base.limit - base.cursor;
-                            // not, line 355
+                            // not, line 347
                             {
                                 var /** number */ v_9 = base.limit - base.cursor;
                                 lab26: {
-                                    // among, line 355
+                                    // among, line 347
                                     if (base.find_among_b(a_24) == 0)
                                     {
                                         break lab26;
@@ -2273,7 +2236,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab27: {
-                            // literal, line 356
+                            // literal, line 348
                             if (!(base.eq_s_b("\u0BBF\u0BB1\u0BCD\u0BB1\u0BC1")))
                             {
                                 break lab27;
@@ -2282,7 +2245,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab28: {
-                            // literal, line 357
+                            // literal, line 349
                             if (!(base.eq_s_b("\u0BAA\u0BAE\u0BCD")))
                             {
                                 break lab28;
@@ -2291,7 +2254,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab29: {
-                            // literal, line 358
+                            // literal, line 350
                             if (!(base.eq_s_b("\u0BA9\u0BAE\u0BCD")))
                             {
                                 break lab29;
@@ -2300,7 +2263,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab30: {
-                            // literal, line 359
+                            // literal, line 351
                             if (!(base.eq_s_b("\u0BA4\u0BC1\u0BAE\u0BCD")))
                             {
                                 break lab30;
@@ -2309,7 +2272,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab31: {
-                            // literal, line 360
+                            // literal, line 352
                             if (!(base.eq_s_b("\u0BB1\u0BC1\u0BAE\u0BCD")))
                             {
                                 break lab31;
@@ -2318,7 +2281,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab32: {
-                            // literal, line 361
+                            // literal, line 353
                             if (!(base.eq_s_b("\u0B95\u0BC1\u0BAE\u0BCD")))
                             {
                                 break lab32;
@@ -2327,7 +2290,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab33: {
-                            // literal, line 362
+                            // literal, line 354
                             if (!(base.eq_s_b("\u0BA9\u0BC6\u0BA9\u0BCD")))
                             {
                                 break lab33;
@@ -2336,7 +2299,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_5;
                         lab34: {
-                            // literal, line 363
+                            // literal, line 355
                             if (!(base.eq_s_b("\u0BA9\u0BC8")))
                             {
                                 break lab34;
@@ -2344,50 +2307,50 @@ function TamilStemmer() {
                             break lab4;
                         }
                         base.cursor = base.limit - v_5;
-                        // literal, line 364
+                        // literal, line 356
                         if (!(base.eq_s_b("\u0BB5\u0BC8")))
                         {
                             break lab3;
                         }
                     }
-                    // ], line 365
+                    // ], line 357
                     base.bra = base.cursor;
-                    // delete, line 365
+                    // delete, line 357
                     if (!base.slice_del())
                     {
                         return false;
                     }
-                    // (, line 366
-                    // set found_a_match, line 366
+                    // (, line 358
+                    // set found_a_match, line 358
                     B_found_a_match = true;
                     base.cursor = base.limit - v_4;
                     break lab1;
                 }
                 base.cursor = base.limit - v_2;
                 lab35: {
-                    // test, line 369
+                    // test, line 361
                     var /** number */ v_10 = base.limit - base.cursor;
-                    // (, line 369
-                    // [, line 369
+                    // (, line 361
+                    // [, line 361
                     base.ket = base.cursor;
-                    // or, line 370
+                    // or, line 362
                     lab36: {
                         var /** number */ v_11 = base.limit - base.cursor;
                         lab37: {
-                            // (, line 370
-                            // literal, line 370
+                            // (, line 362
+                            // literal, line 362
                             if (!(base.eq_s_b("\u0BBE\u0BA9\u0BCD")))
                             {
                                 break lab37;
                             }
-                            // test, line 370
+                            // test, line 362
                             var /** number */ v_12 = base.limit - base.cursor;
-                            // (, line 370
-                            // not, line 370
+                            // (, line 362
+                            // not, line 362
                             {
                                 var /** number */ v_13 = base.limit - base.cursor;
                                 lab38: {
-                                    // literal, line 370
+                                    // literal, line 362
                                     if (!(base.eq_s_b("\u0B9A")))
                                     {
                                         break lab38;
@@ -2401,7 +2364,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab39: {
-                            // literal, line 371
+                            // literal, line 363
                             if (!(base.eq_s_b("\u0BBE\u0BB3\u0BCD")))
                             {
                                 break lab39;
@@ -2410,7 +2373,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab40: {
-                            // literal, line 372
+                            // literal, line 364
                             if (!(base.eq_s_b("\u0BBE\u0BB0\u0BCD")))
                             {
                                 break lab40;
@@ -2419,7 +2382,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab41: {
-                            // literal, line 373
+                            // literal, line 365
                             if (!(base.eq_s_b("\u0BC7\u0BA9\u0BCD")))
                             {
                                 break lab41;
@@ -2428,7 +2391,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab42: {
-                            // literal, line 374
+                            // literal, line 366
                             if (!(base.eq_s_b("\u0BBE")))
                             {
                                 break lab42;
@@ -2437,7 +2400,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab43: {
-                            // literal, line 375
+                            // literal, line 367
                             if (!(base.eq_s_b("\u0BBE\u0BAE\u0BCD")))
                             {
                                 break lab43;
@@ -2446,7 +2409,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab44: {
-                            // literal, line 376
+                            // literal, line 368
                             if (!(base.eq_s_b("\u0BC6\u0BAE\u0BCD")))
                             {
                                 break lab44;
@@ -2455,7 +2418,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab45: {
-                            // literal, line 377
+                            // literal, line 369
                             if (!(base.eq_s_b("\u0BC7\u0BAE\u0BCD")))
                             {
                                 break lab45;
@@ -2464,7 +2427,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab46: {
-                            // literal, line 378
+                            // literal, line 370
                             if (!(base.eq_s_b("\u0BCB\u0BAE\u0BCD")))
                             {
                                 break lab46;
@@ -2473,7 +2436,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab47: {
-                            // literal, line 379
+                            // literal, line 371
                             if (!(base.eq_s_b("\u0B95\u0BC1\u0BAE\u0BCD")))
                             {
                                 break lab47;
@@ -2482,7 +2445,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab48: {
-                            // literal, line 380
+                            // literal, line 372
                             if (!(base.eq_s_b("\u0BA4\u0BC1\u0BAE\u0BCD")))
                             {
                                 break lab48;
@@ -2491,7 +2454,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab49: {
-                            // literal, line 381
+                            // literal, line 373
                             if (!(base.eq_s_b("\u0B9F\u0BC1\u0BAE\u0BCD")))
                             {
                                 break lab49;
@@ -2500,7 +2463,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab50: {
-                            // literal, line 382
+                            // literal, line 374
                             if (!(base.eq_s_b("\u0BB1\u0BC1\u0BAE\u0BCD")))
                             {
                                 break lab50;
@@ -2509,7 +2472,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab51: {
-                            // literal, line 383
+                            // literal, line 375
                             if (!(base.eq_s_b("\u0BBE\u0BAF\u0BCD")))
                             {
                                 break lab51;
@@ -2518,7 +2481,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab52: {
-                            // literal, line 384
+                            // literal, line 376
                             if (!(base.eq_s_b("\u0BA9\u0BC6\u0BA9\u0BCD")))
                             {
                                 break lab52;
@@ -2527,7 +2490,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab53: {
-                            // literal, line 385
+                            // literal, line 377
                             if (!(base.eq_s_b("\u0BA9\u0BBF\u0BB0\u0BCD")))
                             {
                                 break lab53;
@@ -2536,7 +2499,7 @@ function TamilStemmer() {
                         }
                         base.cursor = base.limit - v_11;
                         lab54: {
-                            // literal, line 386
+                            // literal, line 378
                             if (!(base.eq_s_b("\u0BC0\u0BB0\u0BCD")))
                             {
                                 break lab54;
@@ -2544,37 +2507,37 @@ function TamilStemmer() {
                             break lab36;
                         }
                         base.cursor = base.limit - v_11;
-                        // literal, line 387
+                        // literal, line 379
                         if (!(base.eq_s_b("\u0BC0\u0BAF\u0BB0\u0BCD")))
                         {
                             break lab35;
                         }
                     }
-                    // ], line 388
+                    // ], line 380
                     base.bra = base.cursor;
-                    // <-, line 388
+                    // <-, line 380
                     if (!base.slice_from("\u0BCD"))
                     {
                         return false;
                     }
-                    // (, line 389
-                    // set found_a_match, line 389
+                    // (, line 381
+                    // set found_a_match, line 381
                     B_found_a_match = true;
                     base.cursor = base.limit - v_10;
                     break lab1;
                 }
                 base.cursor = base.limit - v_2;
-                // test, line 392
+                // test, line 384
                 var /** number */ v_14 = base.limit - base.cursor;
-                // (, line 392
-                // (, line 392
-                // [, line 392
+                // (, line 384
+                // (, line 384
+                // [, line 384
                 base.ket = base.cursor;
-                // or, line 392
+                // or, line 384
                 lab55: {
                     var /** number */ v_15 = base.limit - base.cursor;
                     lab56: {
-                        // literal, line 392
+                        // literal, line 384
                         if (!(base.eq_s_b("\u0B95\u0BC1")))
                         {
                             break lab56;
@@ -2582,62 +2545,62 @@ function TamilStemmer() {
                         break lab55;
                     }
                     base.cursor = base.limit - v_15;
-                    // literal, line 392
+                    // literal, line 384
                     if (!(base.eq_s_b("\u0BA4\u0BC1")))
                     {
                         break lab0;
                     }
                 }
-                // (, line 392
-                // test, line 392
+                // (, line 384
+                // test, line 384
                 var /** number */ v_16 = base.limit - base.cursor;
-                // literal, line 392
+                // literal, line 384
                 if (!(base.eq_s_b("\u0BCD")))
                 {
                     break lab0;
                 }
                 base.cursor = base.limit - v_16;
-                // ], line 392
+                // ], line 384
                 base.bra = base.cursor;
-                // delete, line 392
+                // delete, line 384
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // (, line 393
-                // set found_a_match, line 393
+                // (, line 385
+                // set found_a_match, line 385
                 B_found_a_match = true;
                 base.cursor = base.limit - v_14;
             }
         }
         base.cursor = base.limit - v_1;
-        // do, line 396
+        // do, line 388
         var /** number */ v_17 = base.limit - base.cursor;
         lab57: {
-            // (, line 396
-            // [, line 396
+            // (, line 388
+            // [, line 388
             base.ket = base.cursor;
-            // among, line 396
+            // among, line 388
             if (base.find_among_b(a_25) == 0)
             {
                 break lab57;
             }
-            // ], line 403
+            // ], line 395
             base.bra = base.cursor;
-            // delete, line 403
+            // delete, line 395
             if (!base.slice_del())
             {
                 return false;
             }
-            // (, line 404
-            // set found_a_match, line 404
+            // (, line 396
+            // set found_a_match, line 396
             B_found_a_match = true;
         }
         base.cursor = base.limit - v_17;
-        base.cursor = base.limit_backward;        // do, line 407
+        base.cursor = base.limit_backward;        // do, line 399
         var /** number */ v_18 = base.cursor;
         lab58: {
-            // call fix_endings, line 407
+            // call fix_endings, line 399
             if (!r_fix_endings())
             {
                 break lab58;
@@ -2648,108 +2611,108 @@ function TamilStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 410
-        // unset found_vetrumai_urupu, line 411
+        // (, line 402
+        // unset found_vetrumai_urupu, line 403
         B_found_vetrumai_urupu = false;
-        // do, line 412
+        // do, line 404
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // call fix_ending, line 412
+            // call fix_ending, line 404
             if (!r_fix_ending())
             {
                 break lab0;
             }
         }
         base.cursor = v_1;
-        // call has_min_length, line 413
+        // call has_min_length, line 405
         if (!r_has_min_length())
         {
             return false;
         }
-        // do, line 414
+        // do, line 406
         var /** number */ v_2 = base.cursor;
         lab1: {
-            // call remove_question_prefixes, line 414
+            // call remove_question_prefixes, line 406
             if (!r_remove_question_prefixes())
             {
                 break lab1;
             }
         }
         base.cursor = v_2;
-        // do, line 415
+        // do, line 407
         var /** number */ v_3 = base.cursor;
         lab2: {
-            // call remove_pronoun_prefixes, line 415
+            // call remove_pronoun_prefixes, line 407
             if (!r_remove_pronoun_prefixes())
             {
                 break lab2;
             }
         }
         base.cursor = v_3;
-        // do, line 416
+        // do, line 408
         var /** number */ v_4 = base.cursor;
         lab3: {
-            // call remove_question_suffixes, line 416
+            // call remove_question_suffixes, line 408
             if (!r_remove_question_suffixes())
             {
                 break lab3;
             }
         }
         base.cursor = v_4;
-        // do, line 417
+        // do, line 409
         var /** number */ v_5 = base.cursor;
         lab4: {
-            // call remove_um, line 417
+            // call remove_um, line 409
             if (!r_remove_um())
             {
                 break lab4;
             }
         }
         base.cursor = v_5;
-        // do, line 418
+        // do, line 410
         var /** number */ v_6 = base.cursor;
         lab5: {
-            // call remove_common_word_endings, line 418
+            // call remove_common_word_endings, line 410
             if (!r_remove_common_word_endings())
             {
                 break lab5;
             }
         }
         base.cursor = v_6;
-        // do, line 419
+        // do, line 411
         var /** number */ v_7 = base.cursor;
         lab6: {
-            // call remove_vetrumai_urupukal, line 419
+            // call remove_vetrumai_urupukal, line 411
             if (!r_remove_vetrumai_urupukal())
             {
                 break lab6;
             }
         }
         base.cursor = v_7;
-        // do, line 420
+        // do, line 412
         var /** number */ v_8 = base.cursor;
         lab7: {
-            // call remove_plural_suffix, line 420
+            // call remove_plural_suffix, line 412
             if (!r_remove_plural_suffix())
             {
                 break lab7;
             }
         }
         base.cursor = v_8;
-        // do, line 421
+        // do, line 413
         var /** number */ v_9 = base.cursor;
         lab8: {
-            // call remove_command_suffixes, line 421
+            // call remove_command_suffixes, line 413
             if (!r_remove_command_suffixes())
             {
                 break lab8;
             }
         }
         base.cursor = v_9;
-        // do, line 422
+        // do, line 414
         var /** number */ v_10 = base.cursor;
         lab9: {
-            // call remove_tense_suffixes, line 422
+            // call remove_tense_suffixes, line 414
             if (!r_remove_tense_suffixes())
             {
                 break lab9;
@@ -2761,8 +2724,8 @@ function TamilStemmer() {
 
     /**@return{string}*/
     this['stemWord'] = function(/**string*/word) {
-	base.setCurrent(word);
-	this.stem();
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };

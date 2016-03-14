@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -72,12 +72,12 @@ function NorwegianStemmer() {
         // (, line 30
         // hop, line 30
         {
-            var /** number */ c = base.cursor + 3;
-            if (0 > c || c > base.limit)
+            var /** number */ c1 = base.cursor + 3;
+            if (0 > c1 || c1 > base.limit)
             {
                 return false;
             }
-            base.cursor = c;
+            base.cursor = c1;
         }
         // setmark x, line 30
         I_x = base.cursor;
@@ -351,8 +351,8 @@ function NorwegianStemmer() {
 
     /**@return{string}*/
     this['stemWord'] = function(/**string*/word) {
-	base.setCurrent(word);
-	this.stem();
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };

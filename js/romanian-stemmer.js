@@ -1,4 +1,4 @@
-// This file was generated automatically by the Snowball to JSX compiler
+// This file was generated automatically by the Snowball to Javascript compiler
 // http://snowballstem.org/
 
 /**@constructor*/
@@ -1027,7 +1027,7 @@ function RomanianStemmer() {
                 var /** number */ v_6 = base.limit - base.cursor;
                 lab6: {
                     // Boolean test standard_suffix_removed, line 231
-                    if (!(B_standard_suffix_removed))
+                    if (!B_standard_suffix_removed)
                     {
                         break lab6;
                     }
@@ -1067,8 +1067,8 @@ function RomanianStemmer() {
 
     /**@return{string}*/
     this['stemWord'] = function(/**string*/word) {
-	base.setCurrent(word);
-	this.stem();
+        base.setCurrent(word);
+        this.stem();
         return base.getCurrent();
     };
 };
