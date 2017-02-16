@@ -211,7 +211,7 @@ A routine is called simply by using its name, &nbsp;<code>R</code>, as a command
 <p>
 The flow of control in Snowball is arranged by the implicit use of
 <I>signals</I>, rather than the explicit use of constructs like the &nbsp;<code>if</code>,
-<code>then</code>, &nbsp;<code>break</code>&nbsp; of C. The scheme is designed for handling strings, but is
+<code>else</code>, &nbsp;<code>break</code>&nbsp; of C. The scheme is designed for handling strings, but is
 perhaps easier to introduce using integers. Suppose &nbsp;<code>x</code>, &nbsp;<code>y</code>, &nbsp;<code>z</code>&nbsp; ... are
 integers. The command
 </p>
