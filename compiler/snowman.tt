@@ -67,8 +67,20 @@ brackets contains a list of names separated by whitespace. For example,
 strict about the declarations, so all the names go in the same name space,
 no name may be declared twice, all used names must be declared, no two
 routine definitions can have the same name, etc. Names declared and
-subsequently not used are merely reported in a warning message. A name may
-not be one of the reserved words of Snowball.
+subsequently not used are merely reported in a warning message.</p>
+
+<p>
+A name may not be one of the reserved words of Snowball.  Additionally, names
+for externals must be valid function/method names in the language being
+generated in most cases, which generally means they can't be reserved words
+in that language (e.g. [% highlight_inline("externals (null)") %] will generate
+invalid Java code containing a method <code>public boolean null()</code>.)
+For internal symbols we add a prefix to avoid this issue, but an external
+has to provide an external interface.  When generating C code, the
+<code>-eprefix</code> provides a solution to this issue, but for portability
+you need to consider this issue when naming externals (e.g. when using
+Snowball to implement stemming algorithms, the convention is that the external
+method is called <code>stem</code>, which should be safe.)
 </p>
 
 <h2>3 Literals</h2>
