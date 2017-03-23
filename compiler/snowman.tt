@@ -1133,9 +1133,9 @@ where &nbsp;<code>ch1</code>, &nbsp;<code>ch2</code>&nbsp; ... list all the char
 characters of &nbsp;<code>G</code>. Note that [% highlight_inline("non G") %] is not the same as [% highlight_inline("not G") %], in fact
 </p>
 
-<PRE>
-    non G    is equivalent to     (not G next)
-</PRE>
+<p>
+[% highlight_inline("non G") %] is equivalent to [% highlight_inline("(not G next)") %]
+</p>
 
 <p>
 [% highlight_inline("non") %] may be optionally followed by hyphen, so one may write
