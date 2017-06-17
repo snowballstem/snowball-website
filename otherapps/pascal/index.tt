@@ -6,6 +6,12 @@
 <li> <A HREF="stemming.zip">    The contributed zip file</A>
 </ul>
 
+<p>Note: The original zip file available here contained compiled .exe files
+(and "Readme.doc" inside the zip mentions these).  We had a report that a virus
+scanner claimed these contained a virus - it seems likely this is a false
+positive, but anyone interested would be best advised to compile the code for
+themselves anyway so we've stripped out all .exe files from the zip.</p>
+
 <p>
 Here is the original correspondence,
 </p>
