@@ -11,7 +11,7 @@ several useful stemmers which have been implemented using it.
 
 <p>
 The Snowball compiler translates a Snowball script into another language -
-currently ISO C, Java and Python are supported.
+currently ISO C, Java, Python, Rust and Go are supported.
 <!-- FIXME: JSX too, but the name JSX is more commonly associated with a
 different project, so needs careful wording -->
 <p>
@@ -97,6 +97,18 @@ speedily, and in any case they reserve the right to post their answers on snowba
 
 
 <ul>
+  <li>
+    <strong>Jun 2017</strong> - Go backend contributed by Marty Schoch.
+  </li>
+  <li>
+    <strong>Mar 2017</strong> - Rust backend contributed by Jakob Demler.
+  </li>
+  <li>
+    <strong>Jan 2016</strong> - Arabic stemming algorithm contributed by Assem Chelli.
+  </li>
+  <li>
+    <strong>Oct 2015</strong> - Tamil stemming algorithm contributed by Damodharan Rajalingam.
+  </li>
   <li>
     <strong>Sep 2015</strong> - New home for snowball on snowballstem.org.
   </li>
