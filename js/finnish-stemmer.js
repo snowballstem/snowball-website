@@ -1043,7 +1043,8 @@ function FinnishStemmer() {
             }
         }
         base.cursor = base.limit - v_9;
-        base.cursor = base.limit_backward;        return true;
+        base.cursor = base.limit_backward;
+        return true;
     };
 
     /**@return{string}*/

@@ -917,7 +917,8 @@ function PorterStemmer() {
             }
         }
         base.cursor = base.limit - v_17;
-        base.cursor = base.limit_backward;        // do, line 137
+        base.cursor = base.limit_backward;
+        // do, line 137
         var /** number */ v_18 = base.cursor;
         lab23: {
             // (, line 137

@@ -862,7 +862,8 @@ function DutchStemmer() {
             }
         }
         base.cursor = base.limit - v_3;
-        base.cursor = base.limit_backward;        // do, line 163
+        base.cursor = base.limit_backward;
+        // do, line 163
         var /** number */ v_4 = base.cursor;
         lab3: {
             // call postlude, line 163

@@ -1229,7 +1229,8 @@ function ItalianStemmer() {
             }
         }
         base.cursor = base.limit - v_6;
-        base.cursor = base.limit_backward;        // do, line 189
+        base.cursor = base.limit_backward;
+        // do, line 189
         var /** number */ v_7 = base.cursor;
         lab7: {
             // call postlude, line 189

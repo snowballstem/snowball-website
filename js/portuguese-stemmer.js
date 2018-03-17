@@ -1144,7 +1144,8 @@ function PortugueseStemmer() {
             }
         }
         base.cursor = base.limit - v_9;
-        base.cursor = base.limit_backward;        // do, line 213
+        base.cursor = base.limit_backward;
+        // do, line 213
         var /** number */ v_10 = base.cursor;
         lab9: {
             // call postlude, line 213

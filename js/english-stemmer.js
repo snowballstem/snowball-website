@@ -1417,7 +1417,8 @@ function EnglishStemmer() {
                 }
                 base.cursor = base.limit - v_12;
             }
-            base.cursor = base.limit_backward;            // do, line 227
+            base.cursor = base.limit_backward;
+            // do, line 227
             var /** number */ v_13 = base.cursor;
             lab15: {
                 // call postlude, line 227

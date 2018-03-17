@@ -169,14 +169,14 @@ function RussianStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 57
+        // (, line 60
         I_pV = base.limit;
         I_p2 = base.limit;
-        // do, line 61
+        // do, line 64
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 61
-            // gopast, line 62
+            // (, line 64
+            // gopast, line 65
             golab1: while(true)
             {
                 lab2: {
@@ -192,9 +192,9 @@ function RussianStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark pV, line 62
+            // setmark pV, line 65
             I_pV = base.cursor;
-            // gopast, line 62
+            // gopast, line 65
             golab3: while(true)
             {
                 lab4: {
@@ -210,7 +210,7 @@ function RussianStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 63
+            // gopast, line 66
             golab5: while(true)
             {
                 lab6: {
@@ -226,7 +226,7 @@ function RussianStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 63
+            // gopast, line 66
             golab7: while(true)
             {
                 lab8: {
@@ -242,7 +242,7 @@ function RussianStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p2, line 63
+            // setmark p2, line 66
             I_p2 = base.cursor;
         }
         base.cursor = v_1;
@@ -261,27 +261,27 @@ function RussianStemmer() {
     /** @return {boolean} */
     function r_perfective_gerund() {
         var /** number */ among_var;
-        // (, line 71
-        // [, line 72
+        // (, line 74
+        // [, line 75
         base.ket = base.cursor;
-        // substring, line 72
+        // substring, line 75
         among_var = base.find_among_b(a_0);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 72
+        // ], line 75
         base.bra = base.cursor;
         switch (among_var) {
             case 0:
                 return false;
             case 1:
-                // (, line 76
-                // or, line 76
+                // (, line 79
+                // or, line 79
                 lab0: {
                     var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
-                        // literal, line 76
+                        // literal, line 79
                         if (!(base.eq_s_b("\u0430")))
                         {
                             break lab1;
@@ -289,21 +289,21 @@ function RussianStemmer() {
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
-                    // literal, line 76
+                    // literal, line 79
                     if (!(base.eq_s_b("\u044F")))
                     {
                         return false;
                     }
                 }
-                // delete, line 76
+                // delete, line 79
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 83
-                // delete, line 83
+                // (, line 86
+                // delete, line 86
                 if (!base.slice_del())
                 {
                     return false;
@@ -316,23 +316,23 @@ function RussianStemmer() {
     /** @return {boolean} */
     function r_adjective() {
         var /** number */ among_var;
-        // (, line 87
-        // [, line 88
+        // (, line 90
+        // [, line 91
         base.ket = base.cursor;
-        // substring, line 88
+        // substring, line 91
         among_var = base.find_among_b(a_1);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 88
+        // ], line 91
         base.bra = base.cursor;
         switch (among_var) {
             case 0:
                 return false;
             case 1:
-                // (, line 97
-                // delete, line 97
+                // (, line 100
+                // delete, line 100
                 if (!base.slice_del())
                 {
                     return false;
@@ -345,38 +345,38 @@ function RussianStemmer() {
     /** @return {boolean} */
     function r_adjectival() {
         var /** number */ among_var;
-        // (, line 101
-        // call adjective, line 102
+        // (, line 104
+        // call adjective, line 105
         if (!r_adjective())
         {
             return false;
         }
-        // try, line 109
+        // try, line 112
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            // (, line 109
-            // [, line 110
+            // (, line 112
+            // [, line 113
             base.ket = base.cursor;
-            // substring, line 110
+            // substring, line 113
             among_var = base.find_among_b(a_2);
             if (among_var == 0)
             {
                 base.cursor = base.limit - v_1;
                 break lab0;
             }
-            // ], line 110
+            // ], line 113
             base.bra = base.cursor;
             switch (among_var) {
                 case 0:
                     base.cursor = base.limit - v_1;
                     break lab0;
                 case 1:
-                    // (, line 115
-                    // or, line 115
+                    // (, line 118
+                    // or, line 118
                     lab1: {
                         var /** number */ v_2 = base.limit - base.cursor;
                         lab2: {
-                            // literal, line 115
+                            // literal, line 118
                             if (!(base.eq_s_b("\u0430")))
                             {
                                 break lab2;
@@ -384,22 +384,22 @@ function RussianStemmer() {
                             break lab1;
                         }
                         base.cursor = base.limit - v_2;
-                        // literal, line 115
+                        // literal, line 118
                         if (!(base.eq_s_b("\u044F")))
                         {
                             base.cursor = base.limit - v_1;
                             break lab0;
                         }
                     }
-                    // delete, line 115
+                    // delete, line 118
                     if (!base.slice_del())
                     {
                         return false;
                     }
                     break;
                 case 2:
-                    // (, line 122
-                    // delete, line 122
+                    // (, line 125
+                    // delete, line 125
                     if (!base.slice_del())
                     {
                         return false;
@@ -413,23 +413,23 @@ function RussianStemmer() {
     /** @return {boolean} */
     function r_reflexive() {
         var /** number */ among_var;
-        // (, line 128
-        // [, line 129
+        // (, line 131
+        // [, line 132
         base.ket = base.cursor;
-        // substring, line 129
+        // substring, line 132
         among_var = base.find_among_b(a_3);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 129
+        // ], line 132
         base.bra = base.cursor;
         switch (among_var) {
             case 0:
                 return false;
             case 1:
-                // (, line 132
-                // delete, line 132
+                // (, line 135
+                // delete, line 135
                 if (!base.slice_del())
                 {
                     return false;
@@ -442,27 +442,27 @@ function RussianStemmer() {
     /** @return {boolean} */
     function r_verb() {
         var /** number */ among_var;
-        // (, line 136
-        // [, line 137
+        // (, line 139
+        // [, line 140
         base.ket = base.cursor;
-        // substring, line 137
+        // substring, line 140
         among_var = base.find_among_b(a_4);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 137
+        // ], line 140
         base.bra = base.cursor;
         switch (among_var) {
             case 0:
                 return false;
             case 1:
-                // (, line 143
-                // or, line 143
+                // (, line 146
+                // or, line 146
                 lab0: {
                     var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
-                        // literal, line 143
+                        // literal, line 146
                         if (!(base.eq_s_b("\u0430")))
                         {
                             break lab1;
@@ -470,21 +470,21 @@ function RussianStemmer() {
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
-                    // literal, line 143
+                    // literal, line 146
                     if (!(base.eq_s_b("\u044F")))
                     {
                         return false;
                     }
                 }
-                // delete, line 143
+                // delete, line 146
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 151
-                // delete, line 151
+                // (, line 154
+                // delete, line 154
                 if (!base.slice_del())
                 {
                     return false;
@@ -497,23 +497,23 @@ function RussianStemmer() {
     /** @return {boolean} */
     function r_noun() {
         var /** number */ among_var;
-        // (, line 159
-        // [, line 160
+        // (, line 162
+        // [, line 163
         base.ket = base.cursor;
-        // substring, line 160
+        // substring, line 163
         among_var = base.find_among_b(a_5);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 160
+        // ], line 163
         base.bra = base.cursor;
         switch (among_var) {
             case 0:
                 return false;
             case 1:
-                // (, line 167
-                // delete, line 167
+                // (, line 170
+                // delete, line 170
                 if (!base.slice_del())
                 {
                     return false;
@@ -526,18 +526,18 @@ function RussianStemmer() {
     /** @return {boolean} */
     function r_derivational() {
         var /** number */ among_var;
-        // (, line 175
-        // [, line 176
+        // (, line 178
+        // [, line 179
         base.ket = base.cursor;
-        // substring, line 176
+        // substring, line 179
         among_var = base.find_among_b(a_6);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 176
+        // ], line 179
         base.bra = base.cursor;
-        // call R2, line 176
+        // call R2, line 179
         if (!r_R2())
         {
             return false;
@@ -546,8 +546,8 @@ function RussianStemmer() {
             case 0:
                 return false;
             case 1:
-                // (, line 179
-                // delete, line 179
+                // (, line 182
+                // delete, line 182
                 if (!base.slice_del())
                 {
                     return false;
@@ -560,49 +560,36 @@ function RussianStemmer() {
     /** @return {boolean} */
     function r_tidy_up() {
         var /** number */ among_var;
-        // (, line 183
-        // [, line 184
+        // (, line 186
+        // [, line 187
         base.ket = base.cursor;
-        // substring, line 184
+        // substring, line 187
         among_var = base.find_among_b(a_7);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 184
+        // ], line 187
         base.bra = base.cursor;
         switch (among_var) {
             case 0:
                 return false;
             case 1:
-                // (, line 188
-                // delete, line 188
+                // (, line 191
+                // delete, line 191
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // [, line 189
+                // [, line 192
                 base.ket = base.cursor;
-                // literal, line 189
+                // literal, line 192
                 if (!(base.eq_s_b("\u043D")))
                 {
                     return false;
                 }
-                // ], line 189
+                // ], line 192
                 base.bra = base.cursor;
-                // literal, line 189
-                if (!(base.eq_s_b("\u043D")))
-                {
-                    return false;
-                }
-                // delete, line 189
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 2:
-                // (, line 192
                 // literal, line 192
                 if (!(base.eq_s_b("\u043D")))
                 {
@@ -614,9 +601,22 @@ function RussianStemmer() {
                     return false;
                 }
                 break;
+            case 2:
+                // (, line 195
+                // literal, line 195
+                if (!(base.eq_s_b("\u043D")))
+                {
+                    return false;
+                }
+                // delete, line 195
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break;
             case 3:
-                // (, line 194
-                // delete, line 194
+                // (, line 197
+                // delete, line 197
                 if (!base.slice_del())
                 {
                     return false;
@@ -627,130 +627,177 @@ function RussianStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 199
-        // do, line 201
+        // (, line 202
+        // do, line 206
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // call mark_regions, line 201
-            if (!r_mark_regions())
+            // repeat, line 206
+            replab1: while(true)
             {
-                break lab0;
+                var /** number */ v_2 = base.cursor;
+                lab2: {
+                    // (, line 206
+                    // goto, line 206
+                    golab3: while(true)
+                    {
+                        var /** number */ v_3 = base.cursor;
+                        lab4: {
+                            // (, line 206
+                            // [, line 206
+                            base.bra = base.cursor;
+                            // literal, line 206
+                            if (!(base.eq_s("\u0451")))
+                            {
+                                break lab4;
+                            }
+                            // ], line 206
+                            base.ket = base.cursor;
+                            base.cursor = v_3;
+                            break golab3;
+                        }
+                        base.cursor = v_3;
+                        if (base.cursor >= base.limit)
+                        {
+                            break lab2;
+                        }
+                        base.cursor++;
+                    }
+                    // <-, line 206
+                    if (!base.slice_from("\u0435"))
+                    {
+                        return false;
+                    }
+                    continue replab1;
+                }
+                base.cursor = v_2;
+                break replab1;
             }
         }
         base.cursor = v_1;
-        // backwards, line 202
+        // do, line 208
+        var /** number */ v_4 = base.cursor;
+        lab5: {
+            // call mark_regions, line 208
+            if (!r_mark_regions())
+            {
+                break lab5;
+            }
+        }
+        base.cursor = v_4;
+        // backwards, line 209
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // setlimit, line 202
-        var /** number */ v_2 = base.limit - base.cursor;
-        // tomark, line 202
+        // setlimit, line 209
+        var /** number */ v_5 = base.limit - base.cursor;
+        // tomark, line 209
         if (base.cursor < I_pV)
         {
             return false;
         }
         base.cursor = I_pV;
-        var /** number */ v_3 = base.limit_backward;
+        var /** number */ v_6 = base.limit_backward;
         base.limit_backward = base.cursor;
-        base.cursor = base.limit - v_2;
-        // (, line 202
-        // do, line 203
-        var /** number */ v_4 = base.limit - base.cursor;
-        lab1: {
-            // (, line 203
-            // or, line 204
-            lab2: {
-                var /** number */ v_5 = base.limit - base.cursor;
-                lab3: {
-                    // call perfective_gerund, line 204
+        base.cursor = base.limit - v_5;
+        // (, line 209
+        // do, line 210
+        var /** number */ v_7 = base.limit - base.cursor;
+        lab6: {
+            // (, line 210
+            // or, line 211
+            lab7: {
+                var /** number */ v_8 = base.limit - base.cursor;
+                lab8: {
+                    // call perfective_gerund, line 211
                     if (!r_perfective_gerund())
                     {
-                        break lab3;
+                        break lab8;
                     }
-                    break lab2;
+                    break lab7;
                 }
-                base.cursor = base.limit - v_5;
-                // (, line 205
-                // try, line 205
-                var /** number */ v_6 = base.limit - base.cursor;
-                lab4: {
-                    // call reflexive, line 205
+                base.cursor = base.limit - v_8;
+                // (, line 212
+                // try, line 212
+                var /** number */ v_9 = base.limit - base.cursor;
+                lab9: {
+                    // call reflexive, line 212
                     if (!r_reflexive())
                     {
-                        base.cursor = base.limit - v_6;
-                        break lab4;
+                        base.cursor = base.limit - v_9;
+                        break lab9;
                     }
                 }
-                // or, line 206
-                lab5: {
-                    var /** number */ v_7 = base.limit - base.cursor;
-                    lab6: {
-                        // call adjectival, line 206
+                // or, line 213
+                lab10: {
+                    var /** number */ v_10 = base.limit - base.cursor;
+                    lab11: {
+                        // call adjectival, line 213
                         if (!r_adjectival())
                         {
-                            break lab6;
+                            break lab11;
                         }
-                        break lab5;
+                        break lab10;
                     }
-                    base.cursor = base.limit - v_7;
-                    lab7: {
-                        // call verb, line 206
+                    base.cursor = base.limit - v_10;
+                    lab12: {
+                        // call verb, line 213
                         if (!r_verb())
                         {
-                            break lab7;
+                            break lab12;
                         }
-                        break lab5;
+                        break lab10;
                     }
-                    base.cursor = base.limit - v_7;
-                    // call noun, line 206
+                    base.cursor = base.limit - v_10;
+                    // call noun, line 213
                     if (!r_noun())
                     {
-                        break lab1;
+                        break lab6;
                     }
                 }
             }
         }
-        base.cursor = base.limit - v_4;
-        // try, line 209
-        var /** number */ v_8 = base.limit - base.cursor;
-        lab8: {
-            // (, line 209
-            // [, line 209
+        base.cursor = base.limit - v_7;
+        // try, line 216
+        var /** number */ v_11 = base.limit - base.cursor;
+        lab13: {
+            // (, line 216
+            // [, line 216
             base.ket = base.cursor;
-            // literal, line 209
+            // literal, line 216
             if (!(base.eq_s_b("\u0438")))
             {
-                base.cursor = base.limit - v_8;
-                break lab8;
+                base.cursor = base.limit - v_11;
+                break lab13;
             }
-            // ], line 209
+            // ], line 216
             base.bra = base.cursor;
-            // delete, line 209
+            // delete, line 216
             if (!base.slice_del())
             {
                 return false;
             }
         }
-        // do, line 212
-        var /** number */ v_9 = base.limit - base.cursor;
-        lab9: {
-            // call derivational, line 212
+        // do, line 219
+        var /** number */ v_12 = base.limit - base.cursor;
+        lab14: {
+            // call derivational, line 219
             if (!r_derivational())
             {
-                break lab9;
+                break lab14;
             }
         }
-        base.cursor = base.limit - v_9;
-        // do, line 213
-        var /** number */ v_10 = base.limit - base.cursor;
-        lab10: {
-            // call tidy_up, line 213
+        base.cursor = base.limit - v_12;
+        // do, line 220
+        var /** number */ v_13 = base.limit - base.cursor;
+        lab15: {
+            // call tidy_up, line 220
             if (!r_tidy_up())
             {
-                break lab10;
+                break lab15;
             }
         }
-        base.cursor = base.limit - v_10;
-        base.limit_backward = v_3;
-        base.cursor = base.limit_backward;        return true;
+        base.cursor = base.limit - v_13;
+        base.limit_backward = v_6;
+        base.cursor = base.limit_backward;
+        return true;
     };
 
     /**@return{string}*/

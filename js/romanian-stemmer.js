@@ -1052,7 +1052,8 @@ function RomanianStemmer() {
             }
         }
         base.cursor = base.limit - v_7;
-        base.cursor = base.limit_backward;        // do, line 234
+        base.cursor = base.limit_backward;
+        // do, line 234
         var /** number */ v_8 = base.cursor;
         lab8: {
             // call postlude, line 234

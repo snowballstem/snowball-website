@@ -1238,7 +1238,8 @@ function SpanishStemmer() {
             }
         }
         base.cursor = base.limit - v_5;
-        base.cursor = base.limit_backward;        // do, line 225
+        base.cursor = base.limit_backward;
+        // do, line 225
         var /** number */ v_6 = base.cursor;
         lab7: {
             // call postlude, line 225

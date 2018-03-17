@@ -3072,7 +3072,8 @@ function TurkishStemmer() {
             }
         }
         base.cursor = base.limit - v_3;
-        base.cursor = base.limit_backward;        return true;
+        base.cursor = base.limit_backward;
+        return true;
     };
 
     this.stem = /** @return {boolean} */ function() {
@@ -3112,7 +3113,8 @@ function TurkishStemmer() {
             }
         }
         base.cursor = base.limit - v_2;
-        base.cursor = base.limit_backward;        // call postlude, line 473
+        base.cursor = base.limit_backward;
+        // call postlude, line 473
         if (!r_postlude())
         {
             return false;

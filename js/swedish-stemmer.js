@@ -341,7 +341,8 @@ function SwedishStemmer() {
             }
         }
         base.cursor = base.limit - v_4;
-        base.cursor = base.limit_backward;        return true;
+        base.cursor = base.limit_backward;
+        return true;
     };
 
     /**@return{string}*/

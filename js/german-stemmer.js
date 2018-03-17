@@ -736,7 +736,8 @@ function GermanStemmer() {
             }
         }
         base.cursor = base.limit - v_3;
-        base.cursor = base.limit_backward;        // do, line 138
+        base.cursor = base.limit_backward;
+        // do, line 138
         var /** number */ v_4 = base.cursor;
         lab3: {
             // call postlude, line 138

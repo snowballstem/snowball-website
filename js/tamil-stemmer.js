@@ -257,7 +257,7 @@ function TamilStemmer() {
     /** @return {boolean} */
     function r_has_min_length() {
         // (, line 104
-        I_length = (base.current.length);
+        I_length = base.current.length;
         if (!(I_length > 4))
         {
             return false;
@@ -480,7 +480,7 @@ function TamilStemmer() {
         // (, line 126
         // unset found_wrong_ending, line 127
         B_found_wrong_ending = false;
-        I_length = (base.current.length);
+        I_length = base.current.length;
         if (!(I_length > 3))
         {
             return false;
@@ -970,7 +970,8 @@ function TamilStemmer() {
                 return false;
             }
         }
-        base.cursor = base.limit_backward;        // set found_wrong_ending, line 167
+        base.cursor = base.limit_backward;
+        // set found_wrong_ending, line 167
         B_found_wrong_ending = true;
         return true;
     };
@@ -1124,7 +1125,8 @@ function TamilStemmer() {
         // (, line 184
         // set found_a_match, line 184
         B_found_a_match = true;
-        base.cursor = base.limit_backward;        return true;
+        base.cursor = base.limit_backward;
+        return true;
     };
 
     /** @return {boolean} */
@@ -1163,7 +1165,8 @@ function TamilStemmer() {
             B_found_a_match = true;
         }
         base.cursor = base.limit - v_1;
-        base.cursor = base.limit_backward;        // do, line 197
+        base.cursor = base.limit_backward;
+        // do, line 197
         var /** number */ v_2 = base.cursor;
         lab1: {
             // call fix_endings, line 197
@@ -1206,7 +1209,8 @@ function TamilStemmer() {
         // (, line 205
         // set found_a_match, line 205
         B_found_a_match = true;
-        base.cursor = base.limit_backward;        return true;
+        base.cursor = base.limit_backward;
+        return true;
     };
 
     /** @return {boolean} */
@@ -1239,7 +1243,8 @@ function TamilStemmer() {
         // (, line 213
         // set found_a_match, line 213
         B_found_a_match = true;
-        base.cursor = base.limit_backward;        // do, line 215
+        base.cursor = base.limit_backward;
+        // do, line 215
         var /** number */ v_1 = base.cursor;
         lab0: {
             // call fix_ending, line 215
@@ -1454,7 +1459,8 @@ function TamilStemmer() {
             B_found_a_match = true;
             base.cursor = base.limit - v_6;
         }
-        base.cursor = base.limit_backward;        // do, line 259
+        base.cursor = base.limit_backward;
+        // do, line 259
         var /** number */ v_7 = base.cursor;
         lab17: {
             // call fix_endings, line 259
@@ -1917,7 +1923,8 @@ function TamilStemmer() {
             }
         }
         base.cursor = base.limit - v_20;
-        base.cursor = base.limit_backward;        // do, line 311
+        base.cursor = base.limit_backward;
+        // do, line 311
         var /** number */ v_21 = base.cursor;
         lab35: {
             // call fix_endings, line 311
@@ -2597,7 +2604,8 @@ function TamilStemmer() {
             B_found_a_match = true;
         }
         base.cursor = base.limit - v_17;
-        base.cursor = base.limit_backward;        // do, line 399
+        base.cursor = base.limit_backward;
+        // do, line 399
         var /** number */ v_18 = base.cursor;
         lab58: {
             // call fix_endings, line 399

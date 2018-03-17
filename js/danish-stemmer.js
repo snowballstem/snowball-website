@@ -417,7 +417,8 @@ function DanishStemmer() {
             }
         }
         base.cursor = base.limit - v_5;
-        base.cursor = base.limit_backward;        return true;
+        base.cursor = base.limit_backward;
+        return true;
     };
 
     /**@return{string}*/

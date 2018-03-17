@@ -1605,7 +1605,8 @@ function FrenchStemmer() {
             }
         }
         base.cursor = base.limit - v_10;
-        base.cursor = base.limit_backward;        // do, line 246
+        base.cursor = base.limit_backward;
+        // do, line 246
         var /** number */ v_11 = base.cursor;
         lab13: {
             // call postlude, line 246
