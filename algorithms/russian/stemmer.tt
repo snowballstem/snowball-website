@@ -342,7 +342,10 @@ transliterated forms that we will use here shown in brackets:
 </TABLE></DL>
 
 <p>
-There is a 33rd letter, ё (<B><I>ë</I></B>), but it is rarely used, and we assume it is mapped into е (<B><I>e</I></B>).
+There is a 33rd letter, ё (<B><I>e"</I></B>), but it is rarely used and often
+replaced by е in informal writing.  The original algorithm here assumed it
+had already been mapped to е (<B><I>e</I></B>); since 2018-03-16 the Snowball
+implementation we provide performs this mapping for you.
 </p>
 
 <p>
