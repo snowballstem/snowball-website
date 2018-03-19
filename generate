@@ -303,7 +303,7 @@ __END__
     print $h_out $out_str or die $!;
     close $h_out or die $!;
 }
-for my $in (<*.gv */*.gv */*.gv>) {
+for my $in (<*.gv */*.gv */*/*.gv>) {
     ((my $base = $in) =~ s/\.gv$//) or next;
     my $tmp = "$outpath$base.tmp.png";
     my $out = "$outpath$base.png";
