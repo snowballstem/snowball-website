@@ -295,7 +295,13 @@ __END__
 
 __END__
     };
-    $template->process($in, $vars, $out) || die $template->error();
+    my $out_str;
+    $template->process($in, $vars, \$out_str) || die $template->error();
+    # Kill empty <span> tags.
+    $out_str =~ s!<span></span>!!g;
+    open my $h_out, '>', $out or die $!;
+    print $h_out $out_str or die $!;
+    close $h_out or die $!;
 }
 for my $in (<*.gv */*.gv */*.gv>) {
     ((my $base = $in) =~ s/\.gv$//) or next;
