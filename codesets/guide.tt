@@ -1,66 +1,43 @@
 [% header('Character codes') %]
 
-<h2>Links</h2>
-
-<ul>
-<li> Snowball header files for <A HREF="ISO-Latin-1-hex.txt"> ISO Latin 1 (hex form)</A>
-</ul>
-
 <p>
-The Snowball scripts on this site define the codings of accented letters and
-other non-ASCII forms in a series of explicit declarations. For example, the
-German stemmer includes the lines
+Snowball (since version 2.0) supports specifying non-ASCII characters using
+the standard Unicode notation <code>U+XXXX</code> where XXXX is a string of
+hex digits.  However, this doesn't make for very readable source code, so the
+Snowball scripts on this site define more mnemonic representations of the
+non-ASCII characters which they use - for example, the German stemmer includes
+the lines
 </p>
 
 [% highlight('
-    /* special characters (in ISO Latin I) */
+    /* special characters */
 
-    stringdef a"   ' _ "hex 'E4'" _ '
-    stringdef o"   ' _ "hex 'F6'" _ '
-    stringdef u"   ' _ "hex 'FC'
-    stringdef ss   hex 'DF'
+    stringdef a"   ' _ "'{U+00E4}'" _ '
+    stringdef o"   ' _ "'{U+00F6}'" _ '
+    stringdef u"   ' _ "'{U+00FC}'
+    stringdef ss   '{U+00DF}'
 ") %]
 
 <p>
-In the ISO Latin I code set, hex E4, F6, FC and DF are the numeric values
-of characters <B><I>&auml;</I></B>, <B><I>&ouml;</I></B>, <B><I>&uuml;</I></B> and <B><I>&szlig;</I></B> respectively. These codings
-in the stemmer scripts then correspond to the codings used in the sample
-data.
+(In Unicode, hex values E4, F6, FC and DF are the numeric values
+of characters <B><I>&auml;</I></B>, <B><I>&ouml;</I></B>, <B><I>&uuml;</I></B> and <B><I>&szlig;</I></B> respectively.)
 </p>
 
 <p>
-For a more general approach, you may wish to replace the set of &nbsp;<code>stringdef</code>s
-by a &nbsp;<code>get</code>&nbsp; directive of the form,
-</p>
-
-[% highlight("
-    get 'ISO-Latin-1'
-") %]
-
-<p>
-possibly compiling with an &nbsp;<code>-include</code>&nbsp; option that declares the
-directory where this and other files are held,
-</p>
-
-<PRE>
-    snowball gstem.sbl -o gstem ... -include /home/shazzer/snowball/codesets
-</PRE>
-
-<p>
-Appropriate code sets for ISO Latin I are provided via the links
-above, and others will be added on demand or if submitted to us.
+Then the code which follows uses [% highlight_inline("'{a"}'") %] when it wants
+<B><I>&auml;</I></B>, etc.
 </p>
 
 <p>
-For Russian, two sets of &nbsp;<code>stringdef</code>s are given in the script &#x2014; KOI8-R,
-and (commented out) Unicode. For the other stemmers currently on offer the
-Unicode placings correspond to the ISO-Latin I placings, so no extra headers
-for Unicode need, at present, be given.
+Using literal Unicode character in strings in the source file may work in some
+cases, but isn't really supported - the snowball compiler doesn't (currently at
+least) have the concept of "source character set", so at best you'll limit
+which programming languages your stemmer can be used with.
 </p>
 
 <p>
-If you wish to describe other Latin-alphabet based codesets for use in
-Snowball headers, you should adhere to the following conventions:
+If you wish to describe other Latin-alphabet based codesets for use in stemmers
+we recommend using the following conventions:
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
@@ -94,5 +71,14 @@ Use &nbsp;<code>ae</code>&nbsp; and &nbsp;<code>ss</code>&nbsp; for <B><I>&aelig
 <B><I>&szlig;</I></B>, with
 upper case forms &nbsp;<code>AE</code>&nbsp; and &nbsp;<code>SS</code>. Use &nbsp;<code>th</code>&nbsp; for Icelandic thorn.
 </p>
+
+If you're writing a new stemmer, see below for a file of suitable
+<code>stringdef</code> lines you can cut and paste into your code.
+
+<h2>Links</h2>
+
+<ul>
+<li> <a href="latin-stringdef-list.txt"><code>stringdef</code> list for Latin alphabets</a>
+</ul>
 
 [% footer %]
