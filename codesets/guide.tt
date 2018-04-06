@@ -24,7 +24,7 @@ of characters <B><I>&auml;</I></B>, <B><I>&ouml;</I></B>, <B><I>&uuml;</I></B> a
 </p>
 
 <p>
-Then the code which follows uses [% highlight_inline("'{a"}'") %] when it wants
+Then the code which follows uses [% highlight_inline("'{a" _ '"' _ "}'") %] when it wants
 <B><I>&auml;</I></B>, etc.
 </p>
 
