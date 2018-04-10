@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/scandinavian.html"> Scandinavian language stemmers</A>
-[% algorithm_lis('norwegian', 'stem_ISO_8859_1.sbl', 'Norwegian') %]
+[% algorithm_lis('norwegian', 'Norwegian') %]
 </ul>
 
 <div style="background-color:lightpink">

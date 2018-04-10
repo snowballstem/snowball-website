@@ -101,9 +101,9 @@ $$vars{highlight_file} = sub {
 
 # <li> tags for a stemming algorithm.
 $$vars{algorithm_lis} = sub {
-    my ($id, $sbl_file, $lang_name) = @_;
+    my ($id, $lang_name) = @_;
     my $out = << "__END__";
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/$id/$sbl_file">The stemmer in Snowball</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/$id.sbl">The stemmer in Snowball</a></li>
 <li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/$id/voc.txt">Sample $lang_name vocabulary</a></li>
 <li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/$id/output.txt">Its stemmed equivalent</a></li>
 __END__

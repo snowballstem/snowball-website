@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('russian', 'stem_Unicode.sbl', 'Russian') %]
+[% algorithm_lis('russian', 'Russian') %]
 </ul>
 
 <p>

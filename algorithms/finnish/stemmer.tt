@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('finnish', 'stem_ISO_8859_1.sbl', 'Finnish') %]
+[% algorithm_lis('finnish', 'Finnish') %]
 </ul>
 
 <div style="background-color:lightpink">

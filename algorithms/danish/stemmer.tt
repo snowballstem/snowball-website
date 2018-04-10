@@ -3,7 +3,7 @@
 
 <ul>
 <li> <a HREF="/algorithms/scandinavian.html">Scandinavian language stemmers</a>
-[% algorithm_lis('danish', 'stem_ISO_8859_1.sbl', 'Danish') %]
+[% algorithm_lis('danish', 'Danish') %]
 </ul>
 
 <div style="background-color:lightpink">

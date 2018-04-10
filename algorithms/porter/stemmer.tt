@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('porter', 'stem_ISO_8859_1.sbl', 'English') %]
+[% algorithm_lis('porter', 'English') %]
 <li> <A HREF="https://tartarus.org/~martin/PorterStemmer/">
 The &#8216;official&#8217; home page of the Porter stemming algorithm</A>
 </ul>

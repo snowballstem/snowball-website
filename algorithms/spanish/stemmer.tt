@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/romance.html"> Romance language stemmers</A>
-[% algorithm_lis('spanish', 'stem_ISO_8859_1.sbl', 'Spanish') %]
+[% algorithm_lis('spanish', 'Spanish') %]
 </ul>
 
 <div style="background-color:lightpink">

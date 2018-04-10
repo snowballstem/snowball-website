@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="../german/stemmer.html"> The main German stemmer</A>
-[% algorithm_lis('german2', 'stem_ISO_8859_1.sbl', 'German') %]
+[% algorithm_lis('german2', 'German') %]
 </ul>
 
 <h2>Representation of umlaut by following <I>e</I></h2>

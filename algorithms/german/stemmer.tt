@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/germanic.html"> Germanic language stemmers</A>
-[% algorithm_lis('german', 'stem_ISO_8859_1.sbl', 'German') %]
+[% algorithm_lis('german', 'German') %]
 </ul>
 
 <div style="background-color:lightpink">
