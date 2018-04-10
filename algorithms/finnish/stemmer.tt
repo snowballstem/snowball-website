@@ -304,7 +304,10 @@ So <I>V</I><B><I>i</I></B> means a <I>V</I> followed by letter <B><I>i</I></B>.
 <BR>
 Define <I>LV</I> (long vowel) as one of  &nbsp; <B><I>aa  &nbsp;  ee  &nbsp;  ii  &nbsp;  oo  &nbsp;  uu  &nbsp;  ää  &nbsp;  öö</I></B>.
 <BR>
-Define a <I>c</I> (consonant) as a character other than a <I>v</I>.
+Define a <I>c</I> (consonant) as a character from ASCII a-z which isn't in
+<I>v</I> (originally this was "a character other than a <I>v</I> but since
+2018-04-11 we've changed this definition to avoid the stemmer from altering
+sequences of digits).
 <BR>
 So <I>cv</I> means a <I>c</I> followed by a <I>v</I>.
 </p>
