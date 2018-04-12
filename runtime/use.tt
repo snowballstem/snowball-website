@@ -399,7 +399,7 @@ at the top of this page, but here it is,
 
        The command line syntax is
 
-           ./H_prog file [-o[utput] file] -h[elp]]
+           ./H_prog [file] [-o[utput] file] [-h[elp]]
 
        The first argument gives the input file, which consists of a list of words
        to be stemmed, one per line. (Words must be in lower case.) If omitted, stdin
