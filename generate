@@ -279,8 +279,8 @@ __END__
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="/credits.html">Credits</a></li>
-            <li><a href="https://github.com/snowballstem">Source</a></li>
           </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
