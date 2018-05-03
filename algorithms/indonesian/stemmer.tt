@@ -116,4 +116,8 @@ This change only affects a very small number of words (11 out of
 </li>
 </ul>
 
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('indonesian') %]
+
 [% footer %]
