@@ -1,5 +1,12 @@
 [% header('An Object Pascal codegenerator for Snowball') %]
 
+<h2>Status</h2>
+
+<p>
+This backend has been updated to work with the latest code and is currently
+on a branch with the aim to finally get this work merged - see <a href="https://github.com/snowballstem/snowball/pull/75">PR#75</a> for the latest version, which fixes a few bugs in the code originally submitted.
+</p>
+
 <h2>Links to resources</h2>
 
 <ul>
