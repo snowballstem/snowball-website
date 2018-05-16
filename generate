@@ -109,7 +109,7 @@ $$vars{algorithm_lis} = sub {
 __END__
     if (-f "algorithms/$id/stop.txt") {
 	$out .= << "__END__";
-<li> <a href="stop.txt">$lang_name stop word list</a>
+<li> <a href="stop.txt">$lang_name stop word list (UTF-8 encoding)</a>
 __END__
     }
     return $out;
