@@ -30,7 +30,6 @@ seorang		| one person, same
 akan		| will, about to
 seperti		| as, like
 secara		| on
-ada		| exists
 kemudian	| later, then
 beberapa	| some
 banyak		| many
