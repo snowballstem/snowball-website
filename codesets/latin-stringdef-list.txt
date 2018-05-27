@@ -55,7 +55,7 @@ stringdef o'   '{U+00F3}'
 stringdef o^   '{U+00F4}'
 stringdef o~   '{U+00F5}'
 stringdef o"   '{U+00F6}'
-// U+00D7 is "DIVISION SIGN"
+// U+00F7 is "DIVISION SIGN"
 stringdef o/   '{U+00F8}'
 stringdef u`   '{U+00F9}'
 stringdef u'   '{U+00FA}'
