@@ -11,7 +11,8 @@ several useful stemmers which have been implemented using it.
 
 <p>
 The Snowball compiler translates a Snowball script into another language -
-currently ISO C, C#, Java, Javascript, Python, Rust and Go are supported.
+currently ISO C, C#, Go, Java, Javascript, Object Pascal, Python and Rust
+are supported.
 <p>
 
 <!--
@@ -96,6 +97,9 @@ speedily, and in any case they reserve the right to post their answers on snowba
 
 <ul>
   <li>
+    <strong>Jun 2018</strong> - Object pascal backend from Wout van Wezel merged.
+  </li>
+  <li>
     <strong>May 2018</strong> - Indonesian stemming algorithm contributed by Olly Betts.
   </li>
   <li>
@@ -178,12 +182,6 @@ speedily, and in any case they reserve the right to post their answers on snowba
       <li><a href="compiler/snowman.html">The Manual</a></li>
       <li><a href="runtime/use.html">How To Run It</a></li>
       <li><a href="codesets/guide.html">Character codes</a></li>
-    </ul>
-
-    <h3>External Contributions</h3>
-
-    <ul class="list-unstyled">
-      <li><a href="otherapps/pascal/">Object Pascal codegenerator for Snowball</a></li>
     </ul>
 
   </div>

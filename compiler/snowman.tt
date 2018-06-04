@@ -77,10 +77,20 @@ in that language (e.g. [% highlight_inline("externals (null)") %] will generate
 invalid Java code containing a method <code>public boolean null()</code>.)
 For internal symbols we add a prefix to avoid this issue, but an external
 has to provide an external interface.  When generating C code, the
-<code>-eprefix</code> provides a solution to this issue, but for portability
-you need to consider this issue when naming externals (e.g. when using
-Snowball to implement stemming algorithms, the convention is that the external
-method is called <code>stem</code>, which should be safe.)
+<code>-eprefix</code> option provides a potential solution to this problem.
+</p>
+
+<p>
+External names which differ only in case will cause a problem for languages
+with case-insensitive identifiers (such as Pascal).  This issue is also avoided
+for internal symbols in such languages by encoding case difference via an added
+prefix.
+</p>
+
+<p>
+So for portability a little care is needed when choosing names for externals.
+The convention when using Snowball to implement stemming algorithms is to have
+a single external named <code>stem</code>, which should be safe.
 </p>
 
 <h2>3 Literals</h2>
