@@ -147,8 +147,6 @@ function NepaliStemmer() {
         // ], line 54
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 58
                 // delete, line 58
@@ -227,8 +225,6 @@ function NepaliStemmer() {
         // ], line 70
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 71
                 // or, line 71
@@ -292,29 +288,21 @@ function NepaliStemmer() {
 
     /** @return {boolean} */
     function r_remove_category_3() {
-        var /** number */ among_var;
         // (, line 76
         // [, line 77
         base.ket = base.cursor;
         // substring, line 77
-        among_var = base.find_among_b(a_3);
-        if (among_var == 0)
+        if (base.find_among_b(a_3) == 0)
         {
             return false;
         }
         // ], line 77
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 79
-                // delete, line 79
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 79
+        // delete, line 79
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };

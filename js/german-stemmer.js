@@ -5,12 +5,12 @@
 function GermanStemmer() {
     var base = new BaseStemmer();
     /** @const */ var a_0 = [
-        ["", -1, 6],
+        ["", -1, 5],
         ["U", 0, 2],
         ["Y", 0, 1],
         ["\u00E4", 0, 3],
         ["\u00F6", 0, 4],
-        ["\u00FC", 0, 5]
+        ["\u00FC", 0, 2]
     ];
 
     /** @const */ var a_1 = [
@@ -300,8 +300,6 @@ function GermanStemmer() {
                 // ], line 62
                 base.ket = base.cursor;
                 switch (among_var) {
-                    case 0:
-                        break lab1;
                     case 1:
                         // (, line 63
                         // <-, line 63
@@ -335,14 +333,6 @@ function GermanStemmer() {
                         }
                         break;
                     case 5:
-                        // (, line 67
-                        // <-, line 67
-                        if (!base.slice_from("u"))
-                        {
-                            return false;
-                        }
-                        break;
-                    case 6:
                         // (, line 68
                         // next, line 68
                         if (base.cursor >= base.limit)
@@ -402,8 +392,6 @@ function GermanStemmer() {
                 break lab0;
             }
             switch (among_var) {
-                case 0:
-                    break lab0;
                 case 1:
                     // (, line 82
                     // delete, line 82
@@ -481,8 +469,6 @@ function GermanStemmer() {
                 break lab2;
             }
             switch (among_var) {
-                case 0:
-                    break lab2;
                 case 1:
                     // (, line 96
                     // delete, line 96
@@ -535,8 +521,6 @@ function GermanStemmer() {
                 break lab3;
             }
             switch (among_var) {
-                case 0:
-                    break lab3;
                 case 1:
                     // (, line 106
                     // delete, line 106
@@ -667,8 +651,7 @@ function GermanStemmer() {
                         // [, line 121
                         base.ket = base.cursor;
                         // substring, line 121
-                        among_var = base.find_among_b(a_3);
-                        if (among_var == 0)
+                        if (base.find_among_b(a_3) == 0)
                         {
                             base.cursor = base.limit - v_10;
                             break lab10;
@@ -681,18 +664,11 @@ function GermanStemmer() {
                             base.cursor = base.limit - v_10;
                             break lab10;
                         }
-                        switch (among_var) {
-                            case 0:
-                                base.cursor = base.limit - v_10;
-                                break lab10;
-                            case 1:
-                                // (, line 123
-                                // delete, line 123
-                                if (!base.slice_del())
-                                {
-                                    return false;
-                                }
-                                break;
+                        // (, line 123
+                        // delete, line 123
+                        if (!base.slice_del())
+                        {
+                            return false;
                         }
                     }
                     break;
@@ -727,7 +703,6 @@ function GermanStemmer() {
         // backwards, line 136
         base.limit_backward = base.cursor; base.cursor = base.limit;
         // do, line 137
-        var /** number */ v_3 = base.limit - base.cursor;
         lab2: {
             // call standard_suffix, line 137
             if (!r_standard_suffix())
@@ -735,7 +710,6 @@ function GermanStemmer() {
                 break lab2;
             }
         }
-        base.cursor = base.limit - v_3;
         base.cursor = base.limit_backward;
         // do, line 138
         var /** number */ v_4 = base.cursor;

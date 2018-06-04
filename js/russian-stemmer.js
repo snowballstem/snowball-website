@@ -273,8 +273,6 @@ function RussianStemmer() {
         // ], line 74
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 78
                 // or, line 78
@@ -315,29 +313,21 @@ function RussianStemmer() {
 
     /** @return {boolean} */
     function r_adjective() {
-        var /** number */ among_var;
         // (, line 89
         // [, line 90
         base.ket = base.cursor;
         // substring, line 90
-        among_var = base.find_among_b(a_1);
-        if (among_var == 0)
+        if (base.find_among_b(a_1) == 0)
         {
             return false;
         }
         // ], line 90
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 99
-                // delete, line 99
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 99
+        // delete, line 99
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
@@ -367,9 +357,6 @@ function RussianStemmer() {
             // ], line 112
             base.bra = base.cursor;
             switch (among_var) {
-                case 0:
-                    base.cursor = base.limit - v_1;
-                    break lab0;
                 case 1:
                     // (, line 117
                     // or, line 117
@@ -412,29 +399,21 @@ function RussianStemmer() {
 
     /** @return {boolean} */
     function r_reflexive() {
-        var /** number */ among_var;
         // (, line 130
         // [, line 131
         base.ket = base.cursor;
         // substring, line 131
-        among_var = base.find_among_b(a_3);
-        if (among_var == 0)
+        if (base.find_among_b(a_3) == 0)
         {
             return false;
         }
         // ], line 131
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 134
-                // delete, line 134
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 134
+        // delete, line 134
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
@@ -454,8 +433,6 @@ function RussianStemmer() {
         // ], line 139
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 145
                 // or, line 145
@@ -496,42 +473,32 @@ function RussianStemmer() {
 
     /** @return {boolean} */
     function r_noun() {
-        var /** number */ among_var;
         // (, line 161
         // [, line 162
         base.ket = base.cursor;
         // substring, line 162
-        among_var = base.find_among_b(a_5);
-        if (among_var == 0)
+        if (base.find_among_b(a_5) == 0)
         {
             return false;
         }
         // ], line 162
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 169
-                // delete, line 169
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 169
+        // delete, line 169
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
 
     /** @return {boolean} */
     function r_derivational() {
-        var /** number */ among_var;
         // (, line 177
         // [, line 178
         base.ket = base.cursor;
         // substring, line 178
-        among_var = base.find_among_b(a_6);
-        if (among_var == 0)
+        if (base.find_among_b(a_6) == 0)
         {
             return false;
         }
@@ -542,17 +509,11 @@ function RussianStemmer() {
         {
             return false;
         }
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 181
-                // delete, line 181
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 181
+        // delete, line 181
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
@@ -572,8 +533,6 @@ function RussianStemmer() {
         // ], line 186
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 190
                 // delete, line 190
@@ -675,7 +634,6 @@ function RussianStemmer() {
         }
         base.cursor = v_1;
         // do, line 207
-        var /** number */ v_4 = base.cursor;
         lab5: {
             // call mark_regions, line 207
             if (!r_mark_regions())
@@ -683,7 +641,6 @@ function RussianStemmer() {
                 break lab5;
             }
         }
-        base.cursor = v_4;
         // backwards, line 208
         base.limit_backward = base.cursor; base.cursor = base.limit;
         // setlimit, line 208

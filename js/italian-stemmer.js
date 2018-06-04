@@ -259,8 +259,6 @@ function ItalianStemmer() {
                 // ], line 36
                 base.ket = base.cursor;
                 switch (among_var) {
-                    case 0:
-                        break lab1;
                     case 1:
                         // (, line 37
                         // <-, line 37
@@ -621,8 +619,6 @@ function ItalianStemmer() {
                 // ], line 72
                 base.ket = base.cursor;
                 switch (among_var) {
-                    case 0:
-                        break lab1;
                     case 1:
                         // (, line 73
                         // <-, line 73
@@ -710,8 +706,6 @@ function ItalianStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 98
                 // delete, line 98
@@ -747,8 +741,6 @@ function ItalianStemmer() {
         // ], line 104
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 111
                 // call R2, line 111
@@ -892,9 +884,6 @@ function ItalianStemmer() {
                         return false;
                     }
                     switch (among_var) {
-                        case 0:
-                            base.cursor = base.limit - v_2;
-                            break lab1;
                         case 1:
                             // (, line 128
                             // [, line 128
@@ -941,32 +930,24 @@ function ItalianStemmer() {
                     // [, line 136
                     base.ket = base.cursor;
                     // substring, line 136
-                    among_var = base.find_among_b(a_5);
-                    if (among_var == 0)
+                    if (base.find_among_b(a_5) == 0)
                     {
                         base.cursor = base.limit - v_3;
                         break lab2;
                     }
                     // ], line 136
                     base.bra = base.cursor;
-                    switch (among_var) {
-                        case 0:
-                            base.cursor = base.limit - v_3;
-                            break lab2;
-                        case 1:
-                            // (, line 137
-                            // call R2, line 137
-                            if (!r_R2())
-                            {
-                                base.cursor = base.limit - v_3;
-                                break lab2;
-                            }
-                            // delete, line 137
-                            if (!base.slice_del())
-                            {
-                                return false;
-                            }
-                            break;
+                    // (, line 137
+                    // call R2, line 137
+                    if (!r_R2())
+                    {
+                        base.cursor = base.limit - v_3;
+                        break lab2;
+                    }
+                    // delete, line 137
+                    if (!base.slice_del())
+                    {
+                        return false;
                     }
                 }
                 break;
@@ -1036,7 +1017,6 @@ function ItalianStemmer() {
 
     /** @return {boolean} */
     function r_verb_suffix() {
-        var /** number */ among_var;
         // setlimit, line 148
         var /** number */ v_1 = base.limit - base.cursor;
         // tomark, line 148
@@ -1052,26 +1032,18 @@ function ItalianStemmer() {
         // [, line 149
         base.ket = base.cursor;
         // substring, line 149
-        among_var = base.find_among_b(a_7);
-        if (among_var == 0)
+        if (base.find_among_b(a_7) == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
         // ], line 149
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                base.limit_backward = v_2;
-                return false;
-            case 1:
-                // (, line 163
-                // delete, line 163
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 163
+        // delete, line 163
+        if (!base.slice_del())
+        {
+            return false;
         }
         base.limit_backward = v_2;
         return true;
@@ -1173,7 +1145,6 @@ function ItalianStemmer() {
         }
         base.cursor = v_1;
         // do, line 183
-        var /** number */ v_2 = base.cursor;
         lab1: {
             // call mark_regions, line 183
             if (!r_mark_regions())
@@ -1181,7 +1152,6 @@ function ItalianStemmer() {
                 break lab1;
             }
         }
-        base.cursor = v_2;
         // backwards, line 184
         base.limit_backward = base.cursor; base.cursor = base.limit;
         // (, line 184

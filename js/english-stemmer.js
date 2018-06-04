@@ -54,12 +54,12 @@ function EnglishStemmer() {
         ["anci", -1, 3],
         ["enci", -1, 2],
         ["ogi", -1, 13],
-        ["li", -1, 16],
+        ["li", -1, 15],
         ["bli", 3, 12],
         ["abli", 4, 4],
         ["alli", 3, 8],
-        ["fulli", 3, 14],
-        ["lessli", 3, 15],
+        ["fulli", 3, 9],
+        ["lessli", 3, 14],
         ["ousli", 3, 10],
         ["entli", 3, 5],
         ["aliti", -1, 8],
@@ -426,26 +426,18 @@ function EnglishStemmer() {
             // [, line 60
             base.ket = base.cursor;
             // substring, line 60
-            among_var = base.find_among_b(a_1);
-            if (among_var == 0)
+            if (base.find_among_b(a_1) == 0)
             {
                 base.cursor = base.limit - v_1;
                 break lab0;
             }
             // ], line 60
             base.bra = base.cursor;
-            switch (among_var) {
-                case 0:
-                    base.cursor = base.limit - v_1;
-                    break lab0;
-                case 1:
-                    // (, line 62
-                    // delete, line 62
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
-                    break;
+            // (, line 62
+            // delete, line 62
+            if (!base.slice_del())
+            {
+                return false;
             }
         }
         // [, line 65
@@ -459,8 +451,6 @@ function EnglishStemmer() {
         // ], line 65
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 66
                 // <-, line 66
@@ -549,8 +539,6 @@ function EnglishStemmer() {
         // ], line 75
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 77
                 // call R1, line 77
@@ -600,8 +588,6 @@ function EnglishStemmer() {
                 }
                 base.cursor = base.limit - v_3;
                 switch (among_var) {
-                    case 0:
-                        return false;
                     case 1:
                         // (, line 83
                         // <+, line 83
@@ -687,17 +673,13 @@ function EnglishStemmer() {
             return false;
         }
         // not, line 95
-        {
-            var /** number */ v_2 = base.limit - base.cursor;
-            lab2: {
-                // atlimit, line 95
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab2;
-                }
-                return false;
+        lab2: {
+            // atlimit, line 95
+            if (base.cursor > base.limit_backward)
+            {
+                break lab2;
             }
-            base.cursor = base.limit - v_2;
+            return false;
         }
         // <-, line 96
         if (!base.slice_from("i"))
@@ -727,8 +709,6 @@ function EnglishStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 101
                 // <-, line 101
@@ -839,14 +819,6 @@ function EnglishStemmer() {
                 }
                 break;
             case 14:
-                // (, line 120
-                // <-, line 120
-                if (!base.slice_from("ful"))
-                {
-                    return false;
-                }
-                break;
-            case 15:
                 // (, line 121
                 // <-, line 121
                 if (!base.slice_from("less"))
@@ -854,7 +826,7 @@ function EnglishStemmer() {
                     return false;
                 }
                 break;
-            case 16:
+            case 15:
                 // (, line 122
                 if (!(base.in_grouping_b(g_valid_LI, 99, 116)))
                 {
@@ -890,8 +862,6 @@ function EnglishStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 128
                 // <-, line 128
@@ -969,8 +939,6 @@ function EnglishStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 144
                 // delete, line 144
@@ -1024,8 +992,6 @@ function EnglishStemmer() {
         // ], line 150
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 151
                 // or, line 151
@@ -1128,8 +1094,6 @@ function EnglishStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 174
                 // <-, line 174
@@ -1311,7 +1275,6 @@ function EnglishStemmer() {
             base.cursor = v_1;
             // (, line 208
             // do, line 209
-            var /** number */ v_3 = base.cursor;
             lab4: {
                 // call prelude, line 209
                 if (!r_prelude())
@@ -1319,9 +1282,7 @@ function EnglishStemmer() {
                     break lab4;
                 }
             }
-            base.cursor = v_3;
             // do, line 210
-            var /** number */ v_4 = base.cursor;
             lab5: {
                 // call mark_regions, line 210
                 if (!r_mark_regions())
@@ -1329,7 +1290,6 @@ function EnglishStemmer() {
                     break lab5;
                 }
             }
-            base.cursor = v_4;
             // backwards, line 211
             base.limit_backward = base.cursor; base.cursor = base.limit;
             // (, line 211

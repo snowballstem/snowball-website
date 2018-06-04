@@ -70,7 +70,7 @@ function FinnishStemmer() {
         ["ta", 0, -1],
         ["lta", 4, -1],
         ["sta", 4, -1],
-        ["tta", 4, 9],
+        ["tta", 4, 2],
         ["lle", -1, -1],
         ["ine", -1, -1],
         ["ksi", -1, -1],
@@ -92,7 +92,7 @@ function FinnishStemmer() {
         ["t\u00E4", 22, -1],
         ["lt\u00E4", 26, -1],
         ["st\u00E4", 26, -1],
-        ["tt\u00E4", 26, 9]
+        ["tt\u00E4", 26, 2]
     ];
 
     /** @const */ var a_7 = [
@@ -258,8 +258,6 @@ function FinnishStemmer() {
         base.bra = base.cursor;
         base.limit_backward = v_2;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 63
                 if (!(base.in_grouping_b(g_particle_end, 97, 246)))
@@ -313,8 +311,6 @@ function FinnishStemmer() {
         base.bra = base.cursor;
         base.limit_backward = v_2;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 73
                 // not, line 73
@@ -463,8 +459,6 @@ function FinnishStemmer() {
         base.bra = base.cursor;
         base.limit_backward = v_2;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 99
                 // literal, line 99
@@ -563,14 +557,6 @@ function FinnishStemmer() {
                     return false;
                 }
                 break;
-            case 9:
-                // (, line 122
-                // literal, line 122
-                if (!(base.eq_s_b("e")))
-                {
-                    return false;
-                }
-                break;
         }
         // delete, line 139
         if (!base.slice_del())
@@ -611,8 +597,6 @@ function FinnishStemmer() {
         base.bra = base.cursor;
         base.limit_backward = v_2;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 147
                 // not, line 147
@@ -737,8 +721,6 @@ function FinnishStemmer() {
         base.bra = base.cursor;
         base.limit_backward = v_5;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 168
                 // not, line 168
@@ -1001,7 +983,6 @@ function FinnishStemmer() {
         base.cursor = base.limit - v_5;
         // or, line 193
         lab5: {
-            var /** number */ v_6 = base.limit - base.cursor;
             lab6: {
                 // (, line 193
                 // Boolean test ending_removed, line 193
@@ -1021,7 +1002,6 @@ function FinnishStemmer() {
                 base.cursor = base.limit - v_7;
                 break lab5;
             }
-            base.cursor = base.limit - v_6;
             // do, line 193
             var /** number */ v_8 = base.limit - base.cursor;
             lab8: {

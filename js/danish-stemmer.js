@@ -160,8 +160,6 @@ function DanishStemmer() {
         base.bra = base.cursor;
         base.limit_backward = v_2;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 48
                 // delete, line 48
@@ -286,8 +284,6 @@ function DanishStemmer() {
         base.bra = base.cursor;
         base.limit_backward = v_3;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 70
                 // delete, line 70

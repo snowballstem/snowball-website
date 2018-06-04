@@ -88,8 +88,6 @@ function DutchStemmer() {
                 // ], line 43
                 base.ket = base.cursor;
                 switch (among_var) {
-                    case 0:
-                        break lab1;
                     case 1:
                         // (, line 45
                         // <-, line 45
@@ -344,8 +342,6 @@ function DutchStemmer() {
                 // ], line 77
                 base.ket = base.cursor;
                 switch (among_var) {
-                    case 0:
-                        break lab1;
                     case 1:
                         // (, line 78
                         // <-, line 78
@@ -528,8 +524,6 @@ function DutchStemmer() {
             // ], line 108
             base.bra = base.cursor;
             switch (among_var) {
-                case 0:
-                    break lab0;
                 case 1:
                     // (, line 110
                     // call R1, line 110
@@ -648,8 +642,6 @@ function DutchStemmer() {
             // ], line 127
             base.bra = base.cursor;
             switch (among_var) {
-                case 0:
-                    break lab4;
                 case 1:
                     // (, line 129
                     // call R2, line 129
@@ -853,7 +845,6 @@ function DutchStemmer() {
         // backwards, line 161
         base.limit_backward = base.cursor; base.cursor = base.limit;
         // do, line 162
-        var /** number */ v_3 = base.limit - base.cursor;
         lab2: {
             // call standard_suffix, line 162
             if (!r_standard_suffix())
@@ -861,7 +852,6 @@ function DutchStemmer() {
                 break lab2;
             }
         }
-        base.cursor = base.limit - v_3;
         base.cursor = base.limit_backward;
         // do, line 163
         var /** number */ v_4 = base.cursor;

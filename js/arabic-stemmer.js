@@ -5,7 +5,7 @@
 function ArabicStemmer() {
     var base = new BaseStemmer();
     /** @const */ var a_0 = [
-        ["\u0640", -1, 2],
+        ["\u0640", -1, 1],
         ["\u064B", -1, 1],
         ["\u064C", -1, 1],
         ["\u064D", -1, 1],
@@ -14,149 +14,149 @@ function ArabicStemmer() {
         ["\u0650", -1, 1],
         ["\u0651", -1, 1],
         ["\u0652", -1, 1],
-        ["\u0660", -1, 3],
-        ["\u0661", -1, 4],
-        ["\u0662", -1, 5],
-        ["\u0663", -1, 6],
-        ["\u0664", -1, 7],
-        ["\u0665", -1, 8],
-        ["\u0666", -1, 9],
-        ["\u0667", -1, 10],
-        ["\u0668", -1, 11],
-        ["\u0669", -1, 12],
-        ["\uFE80", -1, 13],
-        ["\uFE81", -1, 17],
-        ["\uFE82", -1, 17],
-        ["\uFE83", -1, 14],
-        ["\uFE84", -1, 14],
-        ["\uFE85", -1, 18],
-        ["\uFE86", -1, 18],
-        ["\uFE87", -1, 15],
-        ["\uFE88", -1, 15],
-        ["\uFE89", -1, 16],
-        ["\uFE8A", -1, 16],
-        ["\uFE8B", -1, 16],
-        ["\uFE8C", -1, 16],
-        ["\uFE8D", -1, 19],
-        ["\uFE8E", -1, 19],
-        ["\uFE8F", -1, 20],
-        ["\uFE90", -1, 20],
-        ["\uFE91", -1, 20],
-        ["\uFE92", -1, 20],
-        ["\uFE93", -1, 21],
-        ["\uFE94", -1, 21],
-        ["\uFE95", -1, 22],
-        ["\uFE96", -1, 22],
-        ["\uFE97", -1, 22],
-        ["\uFE98", -1, 22],
-        ["\uFE99", -1, 23],
-        ["\uFE9A", -1, 23],
-        ["\uFE9B", -1, 23],
-        ["\uFE9C", -1, 23],
-        ["\uFE9D", -1, 24],
-        ["\uFE9E", -1, 24],
-        ["\uFE9F", -1, 24],
-        ["\uFEA0", -1, 24],
-        ["\uFEA1", -1, 25],
-        ["\uFEA2", -1, 25],
-        ["\uFEA3", -1, 25],
-        ["\uFEA4", -1, 25],
-        ["\uFEA5", -1, 26],
-        ["\uFEA6", -1, 26],
-        ["\uFEA7", -1, 26],
-        ["\uFEA8", -1, 26],
-        ["\uFEA9", -1, 27],
-        ["\uFEAA", -1, 27],
-        ["\uFEAB", -1, 28],
-        ["\uFEAC", -1, 28],
-        ["\uFEAD", -1, 29],
-        ["\uFEAE", -1, 29],
-        ["\uFEAF", -1, 30],
-        ["\uFEB0", -1, 30],
-        ["\uFEB1", -1, 31],
-        ["\uFEB2", -1, 31],
-        ["\uFEB3", -1, 31],
-        ["\uFEB4", -1, 31],
-        ["\uFEB5", -1, 32],
-        ["\uFEB6", -1, 32],
-        ["\uFEB7", -1, 32],
-        ["\uFEB8", -1, 32],
-        ["\uFEB9", -1, 33],
-        ["\uFEBA", -1, 33],
-        ["\uFEBB", -1, 33],
-        ["\uFEBC", -1, 33],
-        ["\uFEBD", -1, 34],
-        ["\uFEBE", -1, 34],
-        ["\uFEBF", -1, 34],
-        ["\uFEC0", -1, 34],
-        ["\uFEC1", -1, 35],
-        ["\uFEC2", -1, 35],
-        ["\uFEC3", -1, 35],
-        ["\uFEC4", -1, 35],
-        ["\uFEC5", -1, 36],
-        ["\uFEC6", -1, 36],
-        ["\uFEC7", -1, 36],
-        ["\uFEC8", -1, 36],
-        ["\uFEC9", -1, 37],
-        ["\uFECA", -1, 37],
-        ["\uFECB", -1, 37],
-        ["\uFECC", -1, 37],
-        ["\uFECD", -1, 38],
-        ["\uFECE", -1, 38],
-        ["\uFECF", -1, 38],
-        ["\uFED0", -1, 38],
-        ["\uFED1", -1, 39],
-        ["\uFED2", -1, 39],
-        ["\uFED3", -1, 39],
-        ["\uFED4", -1, 39],
-        ["\uFED5", -1, 40],
-        ["\uFED6", -1, 40],
-        ["\uFED7", -1, 40],
-        ["\uFED8", -1, 40],
-        ["\uFED9", -1, 41],
-        ["\uFEDA", -1, 41],
-        ["\uFEDB", -1, 41],
-        ["\uFEDC", -1, 41],
-        ["\uFEDD", -1, 42],
-        ["\uFEDE", -1, 42],
-        ["\uFEDF", -1, 42],
-        ["\uFEE0", -1, 42],
-        ["\uFEE1", -1, 43],
-        ["\uFEE2", -1, 43],
-        ["\uFEE3", -1, 43],
-        ["\uFEE4", -1, 43],
-        ["\uFEE5", -1, 44],
-        ["\uFEE6", -1, 44],
-        ["\uFEE7", -1, 44],
-        ["\uFEE8", -1, 44],
-        ["\uFEE9", -1, 45],
-        ["\uFEEA", -1, 45],
-        ["\uFEEB", -1, 45],
-        ["\uFEEC", -1, 45],
-        ["\uFEED", -1, 46],
-        ["\uFEEE", -1, 46],
-        ["\uFEEF", -1, 47],
-        ["\uFEF0", -1, 47],
-        ["\uFEF1", -1, 48],
-        ["\uFEF2", -1, 48],
-        ["\uFEF3", -1, 48],
-        ["\uFEF4", -1, 48],
-        ["\uFEF5", -1, 52],
-        ["\uFEF6", -1, 52],
-        ["\uFEF7", -1, 50],
-        ["\uFEF8", -1, 50],
-        ["\uFEF9", -1, 51],
-        ["\uFEFA", -1, 51],
-        ["\uFEFB", -1, 49],
-        ["\uFEFC", -1, 49]
+        ["\u0660", -1, 2],
+        ["\u0661", -1, 3],
+        ["\u0662", -1, 4],
+        ["\u0663", -1, 5],
+        ["\u0664", -1, 6],
+        ["\u0665", -1, 7],
+        ["\u0666", -1, 8],
+        ["\u0667", -1, 9],
+        ["\u0668", -1, 10],
+        ["\u0669", -1, 11],
+        ["\uFE80", -1, 12],
+        ["\uFE81", -1, 16],
+        ["\uFE82", -1, 16],
+        ["\uFE83", -1, 13],
+        ["\uFE84", -1, 13],
+        ["\uFE85", -1, 17],
+        ["\uFE86", -1, 17],
+        ["\uFE87", -1, 14],
+        ["\uFE88", -1, 14],
+        ["\uFE89", -1, 15],
+        ["\uFE8A", -1, 15],
+        ["\uFE8B", -1, 15],
+        ["\uFE8C", -1, 15],
+        ["\uFE8D", -1, 18],
+        ["\uFE8E", -1, 18],
+        ["\uFE8F", -1, 19],
+        ["\uFE90", -1, 19],
+        ["\uFE91", -1, 19],
+        ["\uFE92", -1, 19],
+        ["\uFE93", -1, 20],
+        ["\uFE94", -1, 20],
+        ["\uFE95", -1, 21],
+        ["\uFE96", -1, 21],
+        ["\uFE97", -1, 21],
+        ["\uFE98", -1, 21],
+        ["\uFE99", -1, 22],
+        ["\uFE9A", -1, 22],
+        ["\uFE9B", -1, 22],
+        ["\uFE9C", -1, 22],
+        ["\uFE9D", -1, 23],
+        ["\uFE9E", -1, 23],
+        ["\uFE9F", -1, 23],
+        ["\uFEA0", -1, 23],
+        ["\uFEA1", -1, 24],
+        ["\uFEA2", -1, 24],
+        ["\uFEA3", -1, 24],
+        ["\uFEA4", -1, 24],
+        ["\uFEA5", -1, 25],
+        ["\uFEA6", -1, 25],
+        ["\uFEA7", -1, 25],
+        ["\uFEA8", -1, 25],
+        ["\uFEA9", -1, 26],
+        ["\uFEAA", -1, 26],
+        ["\uFEAB", -1, 27],
+        ["\uFEAC", -1, 27],
+        ["\uFEAD", -1, 28],
+        ["\uFEAE", -1, 28],
+        ["\uFEAF", -1, 29],
+        ["\uFEB0", -1, 29],
+        ["\uFEB1", -1, 30],
+        ["\uFEB2", -1, 30],
+        ["\uFEB3", -1, 30],
+        ["\uFEB4", -1, 30],
+        ["\uFEB5", -1, 31],
+        ["\uFEB6", -1, 31],
+        ["\uFEB7", -1, 31],
+        ["\uFEB8", -1, 31],
+        ["\uFEB9", -1, 32],
+        ["\uFEBA", -1, 32],
+        ["\uFEBB", -1, 32],
+        ["\uFEBC", -1, 32],
+        ["\uFEBD", -1, 33],
+        ["\uFEBE", -1, 33],
+        ["\uFEBF", -1, 33],
+        ["\uFEC0", -1, 33],
+        ["\uFEC1", -1, 34],
+        ["\uFEC2", -1, 34],
+        ["\uFEC3", -1, 34],
+        ["\uFEC4", -1, 34],
+        ["\uFEC5", -1, 35],
+        ["\uFEC6", -1, 35],
+        ["\uFEC7", -1, 35],
+        ["\uFEC8", -1, 35],
+        ["\uFEC9", -1, 36],
+        ["\uFECA", -1, 36],
+        ["\uFECB", -1, 36],
+        ["\uFECC", -1, 36],
+        ["\uFECD", -1, 37],
+        ["\uFECE", -1, 37],
+        ["\uFECF", -1, 37],
+        ["\uFED0", -1, 37],
+        ["\uFED1", -1, 38],
+        ["\uFED2", -1, 38],
+        ["\uFED3", -1, 38],
+        ["\uFED4", -1, 38],
+        ["\uFED5", -1, 39],
+        ["\uFED6", -1, 39],
+        ["\uFED7", -1, 39],
+        ["\uFED8", -1, 39],
+        ["\uFED9", -1, 40],
+        ["\uFEDA", -1, 40],
+        ["\uFEDB", -1, 40],
+        ["\uFEDC", -1, 40],
+        ["\uFEDD", -1, 41],
+        ["\uFEDE", -1, 41],
+        ["\uFEDF", -1, 41],
+        ["\uFEE0", -1, 41],
+        ["\uFEE1", -1, 42],
+        ["\uFEE2", -1, 42],
+        ["\uFEE3", -1, 42],
+        ["\uFEE4", -1, 42],
+        ["\uFEE5", -1, 43],
+        ["\uFEE6", -1, 43],
+        ["\uFEE7", -1, 43],
+        ["\uFEE8", -1, 43],
+        ["\uFEE9", -1, 44],
+        ["\uFEEA", -1, 44],
+        ["\uFEEB", -1, 44],
+        ["\uFEEC", -1, 44],
+        ["\uFEED", -1, 45],
+        ["\uFEEE", -1, 45],
+        ["\uFEEF", -1, 46],
+        ["\uFEF0", -1, 46],
+        ["\uFEF1", -1, 47],
+        ["\uFEF2", -1, 47],
+        ["\uFEF3", -1, 47],
+        ["\uFEF4", -1, 47],
+        ["\uFEF5", -1, 51],
+        ["\uFEF6", -1, 51],
+        ["\uFEF7", -1, 49],
+        ["\uFEF8", -1, 49],
+        ["\uFEF9", -1, 50],
+        ["\uFEFA", -1, 50],
+        ["\uFEFB", -1, 48],
+        ["\uFEFC", -1, 48]
     ];
 
     /** @const */ var a_1 = [
         ["\u0622", -1, 1],
         ["\u0623", -1, 1],
-        ["\u0624", -1, 2],
+        ["\u0624", -1, 1],
         ["\u0625", -1, 1],
-        ["\u0626", -1, 3]
+        ["\u0626", -1, 1]
     ];
 
     /** @const */ var a_2 = [
@@ -177,14 +177,14 @@ function ArabicStemmer() {
     /** @const */ var a_4 = [
         ["\u0623\u0622", -1, 2],
         ["\u0623\u0623", -1, 1],
-        ["\u0623\u0624", -1, 3],
-        ["\u0623\u0625", -1, 5],
-        ["\u0623\u0627", -1, 4]
+        ["\u0623\u0624", -1, 1],
+        ["\u0623\u0625", -1, 4],
+        ["\u0623\u0627", -1, 3]
     ];
 
     /** @const */ var a_5 = [
         ["\u0641", -1, 1],
-        ["\u0648", -1, 2]
+        ["\u0648", -1, 1]
     ];
 
     /** @const */ var a_6 = [
@@ -268,17 +268,17 @@ function ArabicStemmer() {
     ];
 
     /** @const */ var a_18 = [
-        ["\u0627", -1, 2],
-        ["\u062A\u0627", 0, 3],
-        ["\u062A\u0645\u0627", 0, 5],
-        ["\u0646\u0627", 0, 3],
+        ["\u0627", -1, 1],
+        ["\u062A\u0627", 0, 2],
+        ["\u062A\u0645\u0627", 0, 4],
+        ["\u0646\u0627", 0, 2],
         ["\u062A", -1, 1],
-        ["\u0646", -1, 2],
-        ["\u0627\u0646", 5, 4],
-        ["\u062A\u0646", 5, 3],
-        ["\u0648\u0646", 5, 4],
-        ["\u064A\u0646", 5, 4],
-        ["\u064A", -1, 2]
+        ["\u0646", -1, 1],
+        ["\u0627\u0646", 5, 3],
+        ["\u062A\u0646", 5, 2],
+        ["\u0648\u0646", 5, 3],
+        ["\u064A\u0646", 5, 3],
+        ["\u064A", -1, 1]
     ];
 
     /** @const */ var a_19 = [
@@ -325,8 +325,6 @@ function ArabicStemmer() {
                     // ], line 254
                     base.ket = base.cursor;
                     switch (among_var) {
-                        case 0:
-                            break lab1;
                         case 1:
                             // (, line 255
                             // delete, line 255
@@ -336,14 +334,6 @@ function ArabicStemmer() {
                             }
                             break;
                         case 2:
-                            // (, line 256
-                            // delete, line 256
-                            if (!base.slice_del())
-                            {
-                                return false;
-                            }
-                            break;
-                        case 3:
                             // (, line 259
                             // <-, line 259
                             if (!base.slice_from("0"))
@@ -351,7 +341,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 4:
+                        case 3:
                             // (, line 260
                             // <-, line 260
                             if (!base.slice_from("1"))
@@ -359,7 +349,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 5:
+                        case 4:
                             // (, line 261
                             // <-, line 261
                             if (!base.slice_from("2"))
@@ -367,7 +357,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 6:
+                        case 5:
                             // (, line 262
                             // <-, line 262
                             if (!base.slice_from("3"))
@@ -375,7 +365,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 7:
+                        case 6:
                             // (, line 263
                             // <-, line 263
                             if (!base.slice_from("4"))
@@ -383,7 +373,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 8:
+                        case 7:
                             // (, line 264
                             // <-, line 264
                             if (!base.slice_from("5"))
@@ -391,7 +381,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 9:
+                        case 8:
                             // (, line 265
                             // <-, line 265
                             if (!base.slice_from("6"))
@@ -399,7 +389,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 10:
+                        case 9:
                             // (, line 266
                             // <-, line 266
                             if (!base.slice_from("7"))
@@ -407,7 +397,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 11:
+                        case 10:
                             // (, line 267
                             // <-, line 267
                             if (!base.slice_from("8"))
@@ -415,7 +405,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 12:
+                        case 11:
                             // (, line 268
                             // <-, line 268
                             if (!base.slice_from("9"))
@@ -423,7 +413,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 13:
+                        case 12:
                             // (, line 271
                             // <-, line 271
                             if (!base.slice_from("\u0621"))
@@ -431,7 +421,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 14:
+                        case 13:
                             // (, line 272
                             // <-, line 272
                             if (!base.slice_from("\u0623"))
@@ -439,7 +429,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 15:
+                        case 14:
                             // (, line 273
                             // <-, line 273
                             if (!base.slice_from("\u0625"))
@@ -447,7 +437,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 16:
+                        case 15:
                             // (, line 274
                             // <-, line 274
                             if (!base.slice_from("\u0626"))
@@ -455,7 +445,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 17:
+                        case 16:
                             // (, line 275
                             // <-, line 275
                             if (!base.slice_from("\u0622"))
@@ -463,7 +453,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 18:
+                        case 17:
                             // (, line 276
                             // <-, line 276
                             if (!base.slice_from("\u0624"))
@@ -471,7 +461,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 19:
+                        case 18:
                             // (, line 277
                             // <-, line 277
                             if (!base.slice_from("\u0627"))
@@ -479,7 +469,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 20:
+                        case 19:
                             // (, line 278
                             // <-, line 278
                             if (!base.slice_from("\u0628"))
@@ -487,7 +477,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 21:
+                        case 20:
                             // (, line 279
                             // <-, line 279
                             if (!base.slice_from("\u0629"))
@@ -495,7 +485,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 22:
+                        case 21:
                             // (, line 280
                             // <-, line 280
                             if (!base.slice_from("\u062A"))
@@ -503,7 +493,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 23:
+                        case 22:
                             // (, line 281
                             // <-, line 281
                             if (!base.slice_from("\u062B"))
@@ -511,7 +501,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 24:
+                        case 23:
                             // (, line 282
                             // <-, line 282
                             if (!base.slice_from("\u062C"))
@@ -519,7 +509,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 25:
+                        case 24:
                             // (, line 283
                             // <-, line 283
                             if (!base.slice_from("\u062D"))
@@ -527,7 +517,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 26:
+                        case 25:
                             // (, line 284
                             // <-, line 284
                             if (!base.slice_from("\u062E"))
@@ -535,7 +525,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 27:
+                        case 26:
                             // (, line 285
                             // <-, line 285
                             if (!base.slice_from("\u062F"))
@@ -543,7 +533,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 28:
+                        case 27:
                             // (, line 286
                             // <-, line 286
                             if (!base.slice_from("\u0630"))
@@ -551,7 +541,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 29:
+                        case 28:
                             // (, line 287
                             // <-, line 287
                             if (!base.slice_from("\u0631"))
@@ -559,7 +549,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 30:
+                        case 29:
                             // (, line 288
                             // <-, line 288
                             if (!base.slice_from("\u0632"))
@@ -567,7 +557,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 31:
+                        case 30:
                             // (, line 289
                             // <-, line 289
                             if (!base.slice_from("\u0633"))
@@ -575,7 +565,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 32:
+                        case 31:
                             // (, line 290
                             // <-, line 290
                             if (!base.slice_from("\u0634"))
@@ -583,7 +573,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 33:
+                        case 32:
                             // (, line 291
                             // <-, line 291
                             if (!base.slice_from("\u0635"))
@@ -591,7 +581,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 34:
+                        case 33:
                             // (, line 292
                             // <-, line 292
                             if (!base.slice_from("\u0636"))
@@ -599,7 +589,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 35:
+                        case 34:
                             // (, line 293
                             // <-, line 293
                             if (!base.slice_from("\u0637"))
@@ -607,7 +597,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 36:
+                        case 35:
                             // (, line 294
                             // <-, line 294
                             if (!base.slice_from("\u0638"))
@@ -615,7 +605,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 37:
+                        case 36:
                             // (, line 295
                             // <-, line 295
                             if (!base.slice_from("\u0639"))
@@ -623,7 +613,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 38:
+                        case 37:
                             // (, line 296
                             // <-, line 296
                             if (!base.slice_from("\u063A"))
@@ -631,7 +621,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 39:
+                        case 38:
                             // (, line 297
                             // <-, line 297
                             if (!base.slice_from("\u0641"))
@@ -639,7 +629,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 40:
+                        case 39:
                             // (, line 298
                             // <-, line 298
                             if (!base.slice_from("\u0642"))
@@ -647,7 +637,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 41:
+                        case 40:
                             // (, line 299
                             // <-, line 299
                             if (!base.slice_from("\u0643"))
@@ -655,7 +645,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 42:
+                        case 41:
                             // (, line 300
                             // <-, line 300
                             if (!base.slice_from("\u0644"))
@@ -663,7 +653,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 43:
+                        case 42:
                             // (, line 301
                             // <-, line 301
                             if (!base.slice_from("\u0645"))
@@ -671,7 +661,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 44:
+                        case 43:
                             // (, line 302
                             // <-, line 302
                             if (!base.slice_from("\u0646"))
@@ -679,7 +669,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 45:
+                        case 44:
                             // (, line 303
                             // <-, line 303
                             if (!base.slice_from("\u0647"))
@@ -687,7 +677,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 46:
+                        case 45:
                             // (, line 304
                             // <-, line 304
                             if (!base.slice_from("\u0648"))
@@ -695,7 +685,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 47:
+                        case 46:
                             // (, line 305
                             // <-, line 305
                             if (!base.slice_from("\u0649"))
@@ -703,7 +693,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 48:
+                        case 47:
                             // (, line 306
                             // <-, line 306
                             if (!base.slice_from("\u064A"))
@@ -711,7 +701,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 49:
+                        case 48:
                             // (, line 309
                             // <-, line 309
                             if (!base.slice_from("\u0644\u0627"))
@@ -719,7 +709,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 50:
+                        case 49:
                             // (, line 310
                             // <-, line 310
                             if (!base.slice_from("\u0644\u0623"))
@@ -727,7 +717,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 51:
+                        case 50:
                             // (, line 311
                             // <-, line 311
                             if (!base.slice_from("\u0644\u0625"))
@@ -735,7 +725,7 @@ function ArabicStemmer() {
                                 return false;
                             }
                             break;
-                        case 52:
+                        case 51:
                             // (, line 312
                             // <-, line 312
                             if (!base.slice_from("\u0644\u0622"))
@@ -772,40 +762,17 @@ function ArabicStemmer() {
             // [, line 326
             base.ket = base.cursor;
             // substring, line 326
-            among_var = base.find_among_b(a_1);
-            if (among_var == 0)
+            if (base.find_among_b(a_1) == 0)
             {
                 break lab0;
             }
             // ], line 326
             base.bra = base.cursor;
-            switch (among_var) {
-                case 0:
-                    break lab0;
-                case 1:
-                    // (, line 327
-                    // <-, line 327
-                    if (!base.slice_from("\u0621"))
-                    {
-                        return false;
-                    }
-                    break;
-                case 2:
-                    // (, line 328
-                    // <-, line 328
-                    if (!base.slice_from("\u0621"))
-                    {
-                        return false;
-                    }
-                    break;
-                case 3:
-                    // (, line 329
-                    // <-, line 329
-                    if (!base.slice_from("\u0621"))
-                    {
-                        return false;
-                    }
-                    break;
+            // (, line 327
+            // <-, line 327
+            if (!base.slice_from("\u0621"))
+            {
+                return false;
             }
             base.cursor = base.limit_backward;
         }
@@ -833,8 +800,6 @@ function ArabicStemmer() {
                         // ], line 337
                         base.ket = base.cursor;
                         switch (among_var) {
-                            case 0:
-                                break lab3;
                             case 1:
                                 // (, line 338
                                 // <-, line 338
@@ -892,8 +857,6 @@ function ArabicStemmer() {
         // ], line 351
         base.ket = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 352
                 if (!(I_word_len > 4))
@@ -940,8 +903,6 @@ function ArabicStemmer() {
         // ], line 361
         base.ket = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 362
                 if (!(I_word_len > 3))
@@ -967,18 +928,6 @@ function ArabicStemmer() {
                 }
                 break;
             case 3:
-                // (, line 364
-                if (!(I_word_len > 3))
-                {
-                    return false;
-                }
-                // <-, line 364
-                if (!base.slice_from("\u0623"))
-                {
-                    return false;
-                }
-                break;
-            case 4:
                 // (, line 365
                 if (!(I_word_len > 3))
                 {
@@ -990,7 +939,7 @@ function ArabicStemmer() {
                     return false;
                 }
                 break;
-            case 5:
+            case 4:
                 // (, line 366
                 if (!(I_word_len > 3))
                 {
@@ -1008,7 +957,6 @@ function ArabicStemmer() {
 
     /** @return {boolean} */
     function r_Prefix_Step2() {
-        var /** number */ among_var;
         // (, line 371
         I_word_len = base.current.length;
         // not, line 373
@@ -1040,40 +988,21 @@ function ArabicStemmer() {
         // [, line 375
         base.bra = base.cursor;
         // substring, line 375
-        among_var = base.find_among(a_5);
-        if (among_var == 0)
+        if (base.find_among(a_5) == 0)
         {
             return false;
         }
         // ], line 375
         base.ket = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 376
-                if (!(I_word_len > 3))
-                {
-                    return false;
-                }
-                // delete, line 376
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 2:
-                // (, line 377
-                if (!(I_word_len > 3))
-                {
-                    return false;
-                }
-                // delete, line 377
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 376
+        if (!(I_word_len > 3))
+        {
+            return false;
+        }
+        // delete, line 376
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
@@ -1094,8 +1023,6 @@ function ArabicStemmer() {
         // ], line 383
         base.ket = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 384
                 if (!(I_word_len > 5))
@@ -1153,8 +1080,6 @@ function ArabicStemmer() {
         // ], line 392
         base.ket = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 393
                 if (!(I_word_len > 3))
@@ -1211,8 +1136,6 @@ function ArabicStemmer() {
         // ], line 403
         base.ket = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 405
                 if (!(I_word_len > 4))
@@ -1267,38 +1190,30 @@ function ArabicStemmer() {
 
     /** @return {boolean} */
     function r_Prefix_Step4_Verb() {
-        var /** number */ among_var;
         // (, line 412
         I_word_len = base.current.length;
         // [, line 414
         base.bra = base.cursor;
         // substring, line 414
-        among_var = base.find_among(a_9);
-        if (among_var == 0)
+        if (base.find_among(a_9) == 0)
         {
             return false;
         }
         // ], line 414
         base.ket = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 415
-                if (!(I_word_len > 4))
-                {
-                    return false;
-                }
-                // set is_verb, line 415
-                B_is_verb = true;
-                // unset is_noun, line 415
-                B_is_noun = false;
-                // <-, line 415
-                if (!base.slice_from("\u0627\u0633\u062A"))
-                {
-                    return false;
-                }
-                break;
+        // (, line 415
+        if (!(I_word_len > 4))
+        {
+            return false;
+        }
+        // set is_verb, line 415
+        B_is_verb = true;
+        // unset is_noun, line 415
+        B_is_noun = false;
+        // <-, line 415
+        if (!base.slice_from("\u0627\u0633\u062A"))
+        {
+            return false;
         }
         return true;
     };
@@ -1319,8 +1234,6 @@ function ArabicStemmer() {
         // ], line 424
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 425
                 if (!(I_word_len >= 4))
@@ -1363,204 +1276,156 @@ function ArabicStemmer() {
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step1b() {
-        var /** number */ among_var;
         // (, line 430
         I_word_len = base.current.length;
         // [, line 432
         base.ket = base.cursor;
         // substring, line 432
-        among_var = base.find_among_b(a_11);
-        if (among_var == 0)
+        if (base.find_among_b(a_11) == 0)
         {
             return false;
         }
         // ], line 432
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 433
-                if (!(I_word_len > 5))
-                {
-                    return false;
-                }
-                // delete, line 433
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 433
+        if (!(I_word_len > 5))
+        {
+            return false;
+        }
+        // delete, line 433
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step2a() {
-        var /** number */ among_var;
         // (, line 437
         I_word_len = base.current.length;
         // [, line 439
         base.ket = base.cursor;
         // substring, line 439
-        among_var = base.find_among_b(a_12);
-        if (among_var == 0)
+        if (base.find_among_b(a_12) == 0)
         {
             return false;
         }
         // ], line 439
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 440
-                if (!(I_word_len > 4))
-                {
-                    return false;
-                }
-                // delete, line 440
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 440
+        if (!(I_word_len > 4))
+        {
+            return false;
+        }
+        // delete, line 440
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step2b() {
-        var /** number */ among_var;
         // (, line 444
         I_word_len = base.current.length;
         // [, line 446
         base.ket = base.cursor;
         // substring, line 446
-        among_var = base.find_among_b(a_13);
-        if (among_var == 0)
+        if (base.find_among_b(a_13) == 0)
         {
             return false;
         }
         // ], line 446
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 447
-                if (!(I_word_len >= 5))
-                {
-                    return false;
-                }
-                // delete, line 447
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 447
+        if (!(I_word_len >= 5))
+        {
+            return false;
+        }
+        // delete, line 447
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step2c1() {
-        var /** number */ among_var;
         // (, line 451
         I_word_len = base.current.length;
         // [, line 453
         base.ket = base.cursor;
         // substring, line 453
-        among_var = base.find_among_b(a_14);
-        if (among_var == 0)
+        if (base.find_among_b(a_14) == 0)
         {
             return false;
         }
         // ], line 453
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 454
-                if (!(I_word_len >= 4))
-                {
-                    return false;
-                }
-                // delete, line 454
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 454
+        if (!(I_word_len >= 4))
+        {
+            return false;
+        }
+        // delete, line 454
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step2c2() {
-        var /** number */ among_var;
         // (, line 457
         I_word_len = base.current.length;
         // [, line 459
         base.ket = base.cursor;
         // substring, line 459
-        among_var = base.find_among_b(a_15);
-        if (among_var == 0)
+        if (base.find_among_b(a_15) == 0)
         {
             return false;
         }
         // ], line 459
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 460
-                if (!(I_word_len >= 4))
-                {
-                    return false;
-                }
-                // delete, line 460
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 460
+        if (!(I_word_len >= 4))
+        {
+            return false;
+        }
+        // delete, line 460
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step3() {
-        var /** number */ among_var;
         // (, line 463
         I_word_len = base.current.length;
         // [, line 465
         base.ket = base.cursor;
         // substring, line 465
-        among_var = base.find_among_b(a_16);
-        if (among_var == 0)
+        if (base.find_among_b(a_16) == 0)
         {
             return false;
         }
         // ], line 465
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 466
-                if (!(I_word_len >= 3))
-                {
-                    return false;
-                }
-                // delete, line 466
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 466
+        if (!(I_word_len >= 3))
+        {
+            return false;
+        }
+        // delete, line 466
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
@@ -1581,8 +1446,6 @@ function ArabicStemmer() {
         // ], line 472
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 473
                 if (!(I_word_len >= 4))
@@ -1639,8 +1502,6 @@ function ArabicStemmer() {
         // ], line 480
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 481
                 if (!(I_word_len >= 4))
@@ -1654,18 +1515,6 @@ function ArabicStemmer() {
                 }
                 break;
             case 2:
-                // (, line 482
-                if (!(I_word_len >= 4))
-                {
-                    return false;
-                }
-                // delete, line 482
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 3:
                 // (, line 483
                 if (!(I_word_len >= 5))
                 {
@@ -1677,7 +1526,7 @@ function ArabicStemmer() {
                     return false;
                 }
                 break;
-            case 4:
+            case 3:
                 // (, line 484
                 if (!(I_word_len > 5))
                 {
@@ -1689,7 +1538,7 @@ function ArabicStemmer() {
                     return false;
                 }
                 break;
-            case 5:
+            case 4:
                 // (, line 485
                 if (!(I_word_len >= 6))
                 {
@@ -1707,34 +1556,26 @@ function ArabicStemmer() {
 
     /** @return {boolean} */
     function r_Suffix_Verb_Step2b() {
-        var /** number */ among_var;
         // (, line 489
         I_word_len = base.current.length;
         // [, line 491
         base.ket = base.cursor;
         // substring, line 491
-        among_var = base.find_among_b(a_19);
-        if (among_var == 0)
+        if (base.find_among_b(a_19) == 0)
         {
             return false;
         }
         // ], line 491
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 492
-                if (!(I_word_len >= 5))
-                {
-                    return false;
-                }
-                // delete, line 492
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 492
+        if (!(I_word_len >= 5))
+        {
+            return false;
+        }
+        // delete, line 492
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
@@ -1755,8 +1596,6 @@ function ArabicStemmer() {
         // ], line 499
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 500
                 if (!(I_word_len >= 4))
@@ -1787,30 +1626,22 @@ function ArabicStemmer() {
 
     /** @return {boolean} */
     function r_Suffix_All_alef_maqsura() {
-        var /** number */ among_var;
         // (, line 505
         I_word_len = base.current.length;
         // [, line 507
         base.ket = base.cursor;
         // substring, line 507
-        among_var = base.find_among_b(a_21);
-        if (among_var == 0)
+        if (base.find_among_b(a_21) == 0)
         {
             return false;
         }
         // ], line 507
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 508
-                // <-, line 508
-                if (!base.slice_from("\u064A"))
-                {
-                    return false;
-                }
-                break;
+        // (, line 508
+        // <-, line 508
+        if (!base.slice_from("\u064A"))
+        {
+            return false;
         }
         return true;
     };
@@ -2182,7 +2013,6 @@ function ArabicStemmer() {
         }
         base.cursor = v_15;
         // do, line 583
-        var /** number */ v_20 = base.cursor;
         lab36: {
             // call Normalize_post, line 583
             if (!r_Normalize_post())
@@ -2190,7 +2020,6 @@ function ArabicStemmer() {
                 break lab36;
             }
         }
-        base.cursor = v_20;
         return true;
     };
 

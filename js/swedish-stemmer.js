@@ -167,8 +167,6 @@ function SwedishStemmer() {
         base.bra = base.cursor;
         base.limit_backward = v_2;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 44
                 // delete, line 44
@@ -264,9 +262,6 @@ function SwedishStemmer() {
         // ], line 56
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                base.limit_backward = v_2;
-                return false;
             case 1:
                 // (, line 57
                 // delete, line 57

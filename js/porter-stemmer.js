@@ -39,21 +39,21 @@ function PorterStemmer() {
         ["abli", -1, 4],
         ["eli", -1, 6],
         ["alli", -1, 9],
-        ["ousli", -1, 12],
+        ["ousli", -1, 11],
         ["entli", -1, 5],
-        ["aliti", -1, 10],
-        ["biliti", -1, 14],
-        ["iviti", -1, 13],
+        ["aliti", -1, 9],
+        ["biliti", -1, 13],
+        ["iviti", -1, 12],
         ["tional", -1, 1],
         ["ational", 10, 8],
-        ["alism", -1, 10],
+        ["alism", -1, 9],
         ["ation", -1, 8],
         ["ization", 13, 7],
         ["izer", -1, 7],
         ["ator", -1, 8],
-        ["iveness", -1, 13],
-        ["fulness", -1, 11],
-        ["ousness", -1, 12]
+        ["iveness", -1, 12],
+        ["fulness", -1, 10],
+        ["ousness", -1, 11]
     ];
 
     /** @const */ var a_4 = [
@@ -148,8 +148,6 @@ function PorterStemmer() {
         // ], line 25
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 26
                 // <-, line 26
@@ -193,8 +191,6 @@ function PorterStemmer() {
         // ], line 34
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 35
                 // call R1, line 35
@@ -244,8 +240,6 @@ function PorterStemmer() {
                 }
                 base.cursor = base.limit - v_3;
                 switch (among_var) {
-                    case 0:
-                        return false;
                     case 1:
                         // (, line 41
                         // <+, line 41
@@ -370,8 +364,6 @@ function PorterStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 59
                 // <-, line 59
@@ -445,14 +437,6 @@ function PorterStemmer() {
                 }
                 break;
             case 10:
-                // (, line 71
-                // <-, line 71
-                if (!base.slice_from("al"))
-                {
-                    return false;
-                }
-                break;
-            case 11:
                 // (, line 72
                 // <-, line 72
                 if (!base.slice_from("ful"))
@@ -460,7 +444,7 @@ function PorterStemmer() {
                     return false;
                 }
                 break;
-            case 12:
+            case 11:
                 // (, line 74
                 // <-, line 74
                 if (!base.slice_from("ous"))
@@ -468,7 +452,7 @@ function PorterStemmer() {
                     return false;
                 }
                 break;
-            case 13:
+            case 12:
                 // (, line 76
                 // <-, line 76
                 if (!base.slice_from("ive"))
@@ -476,7 +460,7 @@ function PorterStemmer() {
                     return false;
                 }
                 break;
-            case 14:
+            case 13:
                 // (, line 77
                 // <-, line 77
                 if (!base.slice_from("ble"))
@@ -508,8 +492,6 @@ function PorterStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 83
                 // <-, line 83
@@ -558,8 +540,6 @@ function PorterStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 95
                 // delete, line 95

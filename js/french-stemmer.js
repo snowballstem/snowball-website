@@ -498,8 +498,6 @@ function FrenchStemmer() {
                 // ], line 77
                 base.ket = base.cursor;
                 switch (among_var) {
-                    case 0:
-                        break lab1;
                     case 1:
                         // (, line 78
                         // <-, line 78
@@ -584,8 +582,6 @@ function FrenchStemmer() {
         // ], line 92
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 96
                 // call R2, line 96
@@ -718,9 +714,6 @@ function FrenchStemmer() {
                     // ], line 116
                     base.bra = base.cursor;
                     switch (among_var) {
-                        case 0:
-                            base.cursor = base.limit - v_3;
-                            break lab3;
                         case 1:
                             // (, line 117
                             // call R2, line 117
@@ -849,9 +842,6 @@ function FrenchStemmer() {
                     // ], line 131
                     base.bra = base.cursor;
                     switch (among_var) {
-                        case 0:
-                            base.cursor = base.limit - v_5;
-                            break lab6;
                         case 1:
                             // (, line 132
                             // or, line 132
@@ -1126,7 +1116,6 @@ function FrenchStemmer() {
 
     /** @return {boolean} */
     function r_i_verb_suffix() {
-        var /** number */ among_var;
         // setlimit, line 163
         var /** number */ v_1 = base.limit - base.cursor;
         // tomark, line 163
@@ -1142,31 +1131,23 @@ function FrenchStemmer() {
         // [, line 164
         base.ket = base.cursor;
         // substring, line 164
-        among_var = base.find_among_b(a_5);
-        if (among_var == 0)
+        if (base.find_among_b(a_5) == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
         // ], line 164
         base.bra = base.cursor;
-        switch (among_var) {
-            case 0:
-                base.limit_backward = v_2;
-                return false;
-            case 1:
-                // (, line 170
-                if (!(base.out_grouping_b(g_v, 97, 251)))
-                {
-                    base.limit_backward = v_2;
-                    return false;
-                }
-                // delete, line 170
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 170
+        if (!(base.out_grouping_b(g_v, 97, 251)))
+        {
+            base.limit_backward = v_2;
+            return false;
+        }
+        // delete, line 170
+        if (!base.slice_del())
+        {
+            return false;
         }
         base.limit_backward = v_2;
         return true;
@@ -1199,9 +1180,6 @@ function FrenchStemmer() {
         // ], line 175
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                base.limit_backward = v_2;
-                return false;
             case 1:
                 // (, line 177
                 // call R2, line 177
@@ -1313,9 +1291,6 @@ function FrenchStemmer() {
         // ], line 201
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                base.limit_backward = v_4;
-                return false;
             case 1:
                 // (, line 202
                 // call R2, line 202
@@ -1480,7 +1455,6 @@ function FrenchStemmer() {
         }
         base.cursor = v_1;
         // do, line 224
-        var /** number */ v_2 = base.cursor;
         lab1: {
             // call mark_regions, line 224
             if (!r_mark_regions())
@@ -1488,7 +1462,6 @@ function FrenchStemmer() {
                 break lab1;
             }
         }
-        base.cursor = v_2;
         // backwards, line 225
         base.limit_backward = base.cursor; base.cursor = base.limit;
         // (, line 225

@@ -48,7 +48,7 @@ function HungarianStemmer() {
 
     /** @const */ var a_3 = [
         ["al", -1, 1],
-        ["el", -1, 2]
+        ["el", -1, 1]
     ];
 
     /** @const */ var a_4 = [
@@ -101,122 +101,122 @@ function HungarianStemmer() {
     /** @const */ var a_5 = [
         ["\u00E1n", -1, 2],
         ["\u00E9n", -1, 1],
-        ["\u00E1nk\u00E9nt", -1, 3]
+        ["\u00E1nk\u00E9nt", -1, 2]
     ];
 
     /** @const */ var a_6 = [
-        ["stul", -1, 2],
+        ["stul", -1, 1],
         ["astul", 0, 1],
-        ["\u00E1stul", 0, 3],
-        ["st\u00FCl", -1, 2],
+        ["\u00E1stul", 0, 2],
+        ["st\u00FCl", -1, 1],
         ["est\u00FCl", 3, 1],
-        ["\u00E9st\u00FCl", 3, 4]
+        ["\u00E9st\u00FCl", 3, 3]
     ];
 
     /** @const */ var a_7 = [
         ["\u00E1", -1, 1],
-        ["\u00E9", -1, 2]
+        ["\u00E9", -1, 1]
     ];
 
     /** @const */ var a_8 = [
-        ["k", -1, 7],
-        ["ak", 0, 4],
-        ["ek", 0, 6],
-        ["ok", 0, 5],
+        ["k", -1, 3],
+        ["ak", 0, 3],
+        ["ek", 0, 3],
+        ["ok", 0, 3],
         ["\u00E1k", 0, 1],
         ["\u00E9k", 0, 2],
         ["\u00F6k", 0, 3]
     ];
 
     /** @const */ var a_9 = [
-        ["\u00E9i", -1, 7],
-        ["\u00E1\u00E9i", 0, 6],
-        ["\u00E9\u00E9i", 0, 5],
-        ["\u00E9", -1, 9],
-        ["k\u00E9", 3, 4],
+        ["\u00E9i", -1, 1],
+        ["\u00E1\u00E9i", 0, 3],
+        ["\u00E9\u00E9i", 0, 2],
+        ["\u00E9", -1, 1],
+        ["k\u00E9", 3, 1],
         ["ak\u00E9", 4, 1],
         ["ek\u00E9", 4, 1],
         ["ok\u00E9", 4, 1],
         ["\u00E1k\u00E9", 4, 3],
         ["\u00E9k\u00E9", 4, 2],
         ["\u00F6k\u00E9", 4, 1],
-        ["\u00E9\u00E9", 3, 8]
+        ["\u00E9\u00E9", 3, 2]
     ];
 
     /** @const */ var a_10 = [
-        ["a", -1, 18],
-        ["ja", 0, 17],
-        ["d", -1, 16],
-        ["ad", 2, 13],
-        ["ed", 2, 13],
-        ["od", 2, 13],
-        ["\u00E1d", 2, 14],
-        ["\u00E9d", 2, 15],
-        ["\u00F6d", 2, 13],
-        ["e", -1, 18],
-        ["je", 9, 17],
-        ["nk", -1, 4],
+        ["a", -1, 1],
+        ["ja", 0, 1],
+        ["d", -1, 1],
+        ["ad", 2, 1],
+        ["ed", 2, 1],
+        ["od", 2, 1],
+        ["\u00E1d", 2, 2],
+        ["\u00E9d", 2, 3],
+        ["\u00F6d", 2, 1],
+        ["e", -1, 1],
+        ["je", 9, 1],
+        ["nk", -1, 1],
         ["unk", 11, 1],
         ["\u00E1nk", 11, 2],
         ["\u00E9nk", 11, 3],
         ["\u00FCnk", 11, 1],
-        ["uk", -1, 8],
-        ["juk", 16, 7],
-        ["\u00E1juk", 17, 5],
-        ["\u00FCk", -1, 8],
-        ["j\u00FCk", 19, 7],
-        ["\u00E9j\u00FCk", 20, 6],
-        ["m", -1, 12],
-        ["am", 22, 9],
-        ["em", 22, 9],
-        ["om", 22, 9],
-        ["\u00E1m", 22, 10],
-        ["\u00E9m", 22, 11],
-        ["o", -1, 18],
-        ["\u00E1", -1, 19],
-        ["\u00E9", -1, 20]
+        ["uk", -1, 1],
+        ["juk", 16, 1],
+        ["\u00E1juk", 17, 2],
+        ["\u00FCk", -1, 1],
+        ["j\u00FCk", 19, 1],
+        ["\u00E9j\u00FCk", 20, 3],
+        ["m", -1, 1],
+        ["am", 22, 1],
+        ["em", 22, 1],
+        ["om", 22, 1],
+        ["\u00E1m", 22, 2],
+        ["\u00E9m", 22, 3],
+        ["o", -1, 1],
+        ["\u00E1", -1, 2],
+        ["\u00E9", -1, 3]
     ];
 
     /** @const */ var a_11 = [
-        ["id", -1, 10],
-        ["aid", 0, 9],
-        ["jaid", 1, 6],
-        ["eid", 0, 9],
-        ["jeid", 3, 6],
-        ["\u00E1id", 0, 7],
-        ["\u00E9id", 0, 8],
-        ["i", -1, 15],
-        ["ai", 7, 14],
-        ["jai", 8, 11],
-        ["ei", 7, 14],
-        ["jei", 10, 11],
-        ["\u00E1i", 7, 12],
-        ["\u00E9i", 7, 13],
-        ["itek", -1, 24],
-        ["eitek", 14, 21],
-        ["jeitek", 15, 20],
-        ["\u00E9itek", 14, 23],
-        ["ik", -1, 29],
-        ["aik", 18, 26],
-        ["jaik", 19, 25],
-        ["eik", 18, 26],
-        ["jeik", 21, 25],
-        ["\u00E1ik", 18, 27],
-        ["\u00E9ik", 18, 28],
-        ["ink", -1, 20],
-        ["aink", 25, 17],
-        ["jaink", 26, 16],
-        ["eink", 25, 17],
-        ["jeink", 28, 16],
-        ["\u00E1ink", 25, 18],
-        ["\u00E9ink", 25, 19],
-        ["aitok", -1, 21],
-        ["jaitok", 32, 20],
-        ["\u00E1itok", -1, 22],
-        ["im", -1, 5],
-        ["aim", 35, 4],
+        ["id", -1, 1],
+        ["aid", 0, 1],
+        ["jaid", 1, 1],
+        ["eid", 0, 1],
+        ["jeid", 3, 1],
+        ["\u00E1id", 0, 2],
+        ["\u00E9id", 0, 3],
+        ["i", -1, 1],
+        ["ai", 7, 1],
+        ["jai", 8, 1],
+        ["ei", 7, 1],
+        ["jei", 10, 1],
+        ["\u00E1i", 7, 2],
+        ["\u00E9i", 7, 3],
+        ["itek", -1, 1],
+        ["eitek", 14, 1],
+        ["jeitek", 15, 1],
+        ["\u00E9itek", 14, 3],
+        ["ik", -1, 1],
+        ["aik", 18, 1],
+        ["jaik", 19, 1],
+        ["eik", 18, 1],
+        ["jeik", 21, 1],
+        ["\u00E1ik", 18, 2],
+        ["\u00E9ik", 18, 3],
+        ["ink", -1, 1],
+        ["aink", 25, 1],
+        ["jaink", 26, 1],
+        ["eink", 25, 1],
+        ["jeink", 28, 1],
+        ["\u00E1ink", 25, 2],
+        ["\u00E9ink", 25, 3],
+        ["aitok", -1, 1],
+        ["jaitok", 32, 1],
+        ["\u00E1itok", -1, 2],
+        ["im", -1, 1],
+        ["aim", 35, 1],
         ["jaim", 36, 1],
-        ["eim", 35, 4],
+        ["eim", 35, 1],
         ["jeim", 38, 1],
         ["\u00E1im", 35, 2],
         ["\u00E9im", 35, 3]
@@ -339,8 +339,6 @@ function HungarianStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 62
                 // <-, line 62
@@ -407,13 +405,11 @@ function HungarianStemmer() {
 
     /** @return {boolean} */
     function r_instrum() {
-        var /** number */ among_var;
         // (, line 76
         // [, line 77
         base.ket = base.cursor;
         // substring, line 77
-        among_var = base.find_among_b(a_3);
-        if (among_var == 0)
+        if (base.find_among_b(a_3) == 0)
         {
             return false;
         }
@@ -424,25 +420,11 @@ function HungarianStemmer() {
         {
             return false;
         }
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 78
-                // call double, line 78
-                if (!r_double())
-                {
-                    return false;
-                }
-                break;
-            case 2:
-                // (, line 79
-                // call double, line 79
-                if (!r_double())
-                {
-                    return false;
-                }
-                break;
+        // (, line 78
+        // call double, line 78
+        if (!r_double())
+        {
+            return false;
         }
         // delete, line 81
         if (!base.slice_del())
@@ -507,8 +489,6 @@ function HungarianStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 117
                 // <-, line 117
@@ -520,14 +500,6 @@ function HungarianStemmer() {
             case 2:
                 // (, line 118
                 // <-, line 118
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 3:
-                // (, line 119
-                // <-, line 119
                 if (!base.slice_from("a"))
                 {
                     return false;
@@ -557,8 +529,6 @@ function HungarianStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 125
                 // delete, line 125
@@ -568,14 +538,6 @@ function HungarianStemmer() {
                 }
                 break;
             case 2:
-                // (, line 126
-                // delete, line 126
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 3:
                 // (, line 127
                 // <-, line 127
                 if (!base.slice_from("a"))
@@ -583,7 +545,7 @@ function HungarianStemmer() {
                     return false;
                 }
                 break;
-            case 4:
+            case 3:
                 // (, line 128
                 // <-, line 128
                 if (!base.slice_from("e"))
@@ -597,13 +559,11 @@ function HungarianStemmer() {
 
     /** @return {boolean} */
     function r_factive() {
-        var /** number */ among_var;
         // (, line 132
         // [, line 133
         base.ket = base.cursor;
         // substring, line 133
-        among_var = base.find_among_b(a_7);
-        if (among_var == 0)
+        if (base.find_among_b(a_7) == 0)
         {
             return false;
         }
@@ -614,25 +574,11 @@ function HungarianStemmer() {
         {
             return false;
         }
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 134
-                // call double, line 134
-                if (!r_double())
-                {
-                    return false;
-                }
-                break;
-            case 2:
-                // (, line 135
-                // call double, line 135
-                if (!r_double())
-                {
-                    return false;
-                }
-                break;
+        // (, line 134
+        // call double, line 134
+        if (!r_double())
+        {
+            return false;
         }
         // delete, line 137
         if (!base.slice_del())
@@ -667,8 +613,6 @@ function HungarianStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 143
                 // <-, line 143
@@ -688,38 +632,6 @@ function HungarianStemmer() {
             case 3:
                 // (, line 145
                 // delete, line 145
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 4:
-                // (, line 146
-                // delete, line 146
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 5:
-                // (, line 147
-                // delete, line 147
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 6:
-                // (, line 148
-                // delete, line 148
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 7:
-                // (, line 149
-                // delete, line 149
                 if (!base.slice_del())
                 {
                     return false;
@@ -749,8 +661,6 @@ function HungarianStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 155
                 // delete, line 155
@@ -771,54 +681,6 @@ function HungarianStemmer() {
                 // (, line 157
                 // <-, line 157
                 if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 4:
-                // (, line 158
-                // delete, line 158
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 5:
-                // (, line 159
-                // <-, line 159
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 6:
-                // (, line 160
-                // <-, line 160
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 7:
-                // (, line 161
-                // delete, line 161
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 8:
-                // (, line 162
-                // <-, line 162
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 9:
-                // (, line 163
-                // delete, line 163
-                if (!base.slice_del())
                 {
                     return false;
                 }
@@ -847,8 +709,6 @@ function HungarianStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 169
                 // delete, line 169
@@ -868,142 +728,6 @@ function HungarianStemmer() {
             case 3:
                 // (, line 171
                 // <-, line 171
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 4:
-                // (, line 172
-                // delete, line 172
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 5:
-                // (, line 173
-                // <-, line 173
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 6:
-                // (, line 174
-                // <-, line 174
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 7:
-                // (, line 175
-                // delete, line 175
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 8:
-                // (, line 176
-                // delete, line 176
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 9:
-                // (, line 177
-                // delete, line 177
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 10:
-                // (, line 178
-                // <-, line 178
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 11:
-                // (, line 179
-                // <-, line 179
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 12:
-                // (, line 180
-                // delete, line 180
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 13:
-                // (, line 181
-                // delete, line 181
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 14:
-                // (, line 182
-                // <-, line 182
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 15:
-                // (, line 183
-                // <-, line 183
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 16:
-                // (, line 184
-                // delete, line 184
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 17:
-                // (, line 185
-                // delete, line 185
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 18:
-                // (, line 186
-                // delete, line 186
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 19:
-                // (, line 187
-                // <-, line 187
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 20:
-                // (, line 188
-                // <-, line 188
                 if (!base.slice_from("e"))
                 {
                     return false;
@@ -1033,8 +757,6 @@ function HungarianStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 194
                 // delete, line 194
@@ -1055,214 +777,6 @@ function HungarianStemmer() {
                 // (, line 196
                 // <-, line 196
                 if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 4:
-                // (, line 197
-                // delete, line 197
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 5:
-                // (, line 198
-                // delete, line 198
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 6:
-                // (, line 199
-                // delete, line 199
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 7:
-                // (, line 200
-                // <-, line 200
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 8:
-                // (, line 201
-                // <-, line 201
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 9:
-                // (, line 202
-                // delete, line 202
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 10:
-                // (, line 203
-                // delete, line 203
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 11:
-                // (, line 204
-                // delete, line 204
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 12:
-                // (, line 205
-                // <-, line 205
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 13:
-                // (, line 206
-                // <-, line 206
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 14:
-                // (, line 207
-                // delete, line 207
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 15:
-                // (, line 208
-                // delete, line 208
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 16:
-                // (, line 209
-                // delete, line 209
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 17:
-                // (, line 210
-                // delete, line 210
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 18:
-                // (, line 211
-                // <-, line 211
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 19:
-                // (, line 212
-                // <-, line 212
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 20:
-                // (, line 214
-                // delete, line 214
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 21:
-                // (, line 215
-                // delete, line 215
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 22:
-                // (, line 216
-                // <-, line 216
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 23:
-                // (, line 217
-                // <-, line 217
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 24:
-                // (, line 218
-                // delete, line 218
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 25:
-                // (, line 219
-                // delete, line 219
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 26:
-                // (, line 220
-                // delete, line 220
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
-            case 27:
-                // (, line 221
-                // <-, line 221
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
-                break;
-            case 28:
-                // (, line 222
-                // <-, line 222
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
-                break;
-            case 29:
-                // (, line 223
-                // delete, line 223
-                if (!base.slice_del())
                 {
                     return false;
                 }

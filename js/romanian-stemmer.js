@@ -555,8 +555,6 @@ function RomanianStemmer() {
                 // ], line 58
                 base.ket = base.cursor;
                 switch (among_var) {
-                    case 0:
-                        break lab1;
                     case 1:
                         // (, line 59
                         // <-, line 59
@@ -638,8 +636,6 @@ function RomanianStemmer() {
             return false;
         }
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 75
                 // delete, line 75
@@ -736,8 +732,6 @@ function RomanianStemmer() {
         }
         // (, line 92
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 100
                 // <-, line 101
@@ -831,8 +825,6 @@ function RomanianStemmer() {
         }
         // (, line 132
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 148
                 // delete, line 149
@@ -897,9 +889,6 @@ function RomanianStemmer() {
         // ], line 165
         base.bra = base.cursor;
         switch (among_var) {
-            case 0:
-                base.limit_backward = v_2;
-                return false;
             case 1:
                 // (, line 200
                 // or, line 200
@@ -941,13 +930,11 @@ function RomanianStemmer() {
 
     /** @return {boolean} */
     function r_vowel_suffix() {
-        var /** number */ among_var;
         // (, line 218
         // [, line 219
         base.ket = base.cursor;
         // substring, line 219
-        among_var = base.find_among_b(a_5);
-        if (among_var == 0)
+        if (base.find_among_b(a_5) == 0)
         {
             return false;
         }
@@ -958,17 +945,11 @@ function RomanianStemmer() {
         {
             return false;
         }
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 220
-                // delete, line 220
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 220
+        // delete, line 220
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
@@ -986,7 +967,6 @@ function RomanianStemmer() {
         }
         base.cursor = v_1;
         // do, line 227
-        var /** number */ v_2 = base.cursor;
         lab1: {
             // call mark_regions, line 227
             if (!r_mark_regions())
@@ -994,7 +974,6 @@ function RomanianStemmer() {
                 break lab1;
             }
         }
-        base.cursor = v_2;
         // backwards, line 228
         base.limit_backward = base.cursor; base.cursor = base.limit;
         // (, line 228

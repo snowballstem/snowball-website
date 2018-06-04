@@ -160,8 +160,6 @@ function NorwegianStemmer() {
         base.bra = base.cursor;
         base.limit_backward = v_2;
         switch (among_var) {
-            case 0:
-                return false;
             case 1:
                 // (, line 44
                 // delete, line 44
@@ -260,7 +258,6 @@ function NorwegianStemmer() {
 
     /** @return {boolean} */
     function r_other_suffix() {
-        var /** number */ among_var;
         // (, line 62
         // setlimit, line 63
         var /** number */ v_1 = base.limit - base.cursor;
@@ -277,8 +274,7 @@ function NorwegianStemmer() {
         // [, line 63
         base.ket = base.cursor;
         // substring, line 63
-        among_var = base.find_among_b(a_2);
-        if (among_var == 0)
+        if (base.find_among_b(a_2) == 0)
         {
             base.limit_backward = v_2;
             return false;
@@ -286,17 +282,11 @@ function NorwegianStemmer() {
         // ], line 63
         base.bra = base.cursor;
         base.limit_backward = v_2;
-        switch (among_var) {
-            case 0:
-                return false;
-            case 1:
-                // (, line 67
-                // delete, line 67
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break;
+        // (, line 67
+        // delete, line 67
+        if (!base.slice_del())
+        {
+            return false;
         }
         return true;
     };
