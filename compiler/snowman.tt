@@ -425,27 +425,20 @@ means
 so &nbsp;<code>C<SUB>1</SUB> or C<SUB>2</SUB> and C<SUB>3</SUB></code>&nbsp; means &nbsp;<code>(C<SUB>1</SUB> or C<SUB>2</SUB>) and C<SUB>3</SUB></code>&nbsp; etc.
 </p>
 
-<h2>6 AEs and integer commands</h2>
+<h2>6 Integer commands</h2>
 
 <p>
-An AE (arithmetic expression) consists of integer names and literal
-numbers connected by dyadic &nbsp;<code>+</code>, &nbsp;<code>-</code>, &nbsp;<code>*</code>&nbsp; and &nbsp;<code>/</code>, and monadic &nbsp;<code>-</code>, with the same
-binding powers and semantics as C. An integer command has the form
+There are two sorts of integer commands - assignments and comparisons.  Both
+are built from Arithmetic Expressions (AEs).
 </p>
 
-<PRE>
-    $X <I>op</I> AE
-</PRE>
+<h3>Arithmetic Expressions (AEs)</h3>
 
 <p>
-where &nbsp;<code>X</code>&nbsp; is an integer name and <I>op</I> is one of the six tests &nbsp;<code>==</code>, &nbsp;<code>!=</code>, &nbsp;<code>&gt;=</code>, &nbsp;<code>&gt;</code>,
-<code>&lt;=</code>, &nbsp;<code>&lt;</code>, or five assignments &nbsp;<code>=</code>, &nbsp;<code>+=</code>, &nbsp;<code>-=</code>, &nbsp;<code>*=</code>, &nbsp;<code>/=</code>. Again, the meanings are the
-same as in C.
-</p>
-
-<p>
-As well as integer names and literal numbers, the following may be used in
-AEs:
+An AE consists of integer names, literal numbers and a few other things
+connected by dyadic &nbsp;<code>+</code>, &nbsp;<code>-</code>, &nbsp;<code>*</code>&nbsp; and &nbsp;<code>/</code>, and monadic &nbsp;<code>-</code>, with the same
+binding powers and semantics as C.  As well as integer names and literal
+numbers, the following may be used in AEs:
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
@@ -469,14 +462,74 @@ AEs:
 The <I>cursor</I> and <I>limit</I> concepts are explained below.
 </p>
 
+<h3>Integer assignments</h3>
+
+</p>
+An integer assignment has the form
+</p>
+
+<PRE>
+    $X <I>assign_op</I> AE
+</PRE>
+
 <p>
-Examples of integer commands are,
+where &nbsp;<code>X</code>&nbsp; is an integer name and <I>assign_op</I> is one of the five assignments
+&nbsp;<code>=</code>, &nbsp;<code>+=</code>, &nbsp;<code>-=</code>, &nbsp;<code>*=</code>, or &nbsp;<code>/=</code>.
+The meanings are the same as in C.
+</p>
+
+<p>
+For example,
+</p>
+
+[% highlight('
+    $p1 = limit    // set p1 to the string limit
+') %]
+
+<p>
+Integer assignments always give the signal <B><I>t</I></B>.
+</p>
+
+<h3>Integer comparisons</h3>
+
+</p>
+An integer comparison has the form
+</p>
+
+<PRE>
+    $X <I>rel_op</I> AE
+</PRE>
+
+<p>
+or (since Snowball 2.0):
+</p>
+
+<PRE>
+    $(AE<sub>1</sub> <I>rel_op</I> AE<sub>2</sub>)
+</PRE>
+
+<p>
+where &nbsp;<code>X</code>&nbsp; is an integer name and <I>rel_op</I> is one of the six tests
+&nbsp;<code>==</code>, &nbsp;<code>!=</code>, &nbsp;<code>&gt;=</code>,
+&nbsp;<code>&gt;</code>, <code>&lt;=</code>, or &nbsp;<code>&lt;</code>.
+Again, the meanings are the same as in C.
+</p>
+
+<p>
+Examples of integer comparisons are,
 </p>
 
 [% highlight('
     $p1 <= cursor  // signal is f if the cursor is before position p1
-    $p1 = limit    // set p1 to the string limit
+    $(len >= 3)    // signal is f unless the string is at least 3 characters long
 ') %]
+
+<p>
+The second form is more general since an integer name is a valid AE, but it
+also allows comparisons which don't involve integer variables.  Before support
+for this was added the second example could only be achieved by assigning
+<code>len</code> to a variable and then testing that variable instead.
+</p>
 
 <h2>7 String commands</h2>
 
