@@ -133,7 +133,8 @@ characters, except that &nbsp;<code>A</code>&nbsp; can't be a single quote.
 
 <p>
 A subsequent occurrence of the <code>stringescapes</code> directive redefines
-the insert characters.
+the insert characters (but any string macros already defined with
+<code>stringdef</code> remain defined).
 </p>
 
 <p>
@@ -165,7 +166,7 @@ as string macros, snowball will upper case the characters after the
 </p></li>
 
 <li><p>
-Immediately after the stringescapes directive, &nbsp;<code>{'}</code>&nbsp; will substitute &nbsp;<code>'</code>&nbsp; and
+By default &nbsp;<code>{'}</code>&nbsp; will substitute &nbsp;<code>'</code>&nbsp; and
 <code>{{}</code>&nbsp; will substitute &nbsp;<code>{</code>, although macros &nbsp;<code>'</code>&nbsp; and &nbsp;<code>{</code>&nbsp; may subsequently be
 redefined.
 </p></li>
