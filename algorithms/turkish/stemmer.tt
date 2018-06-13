@@ -8,9 +8,27 @@
 </ul>
 
 <p>
-This page is a &#8216;placeholder&#8217; for the Turkish stemming algorithm provided by
-Evren Kapusuz Cilden. Evren explains that she has been following the paper,
+The Turkish stemming algorithm was provided by Evren Kapusuz Cilden.  It stems
+only noun and nominal verb suffixes because noun stems are more important for
+information retrieval, and only handling these simplifies the algorithm
+significantly.
 </p>
+
+<p>
+In her paper (linked above) Evren explains
+</p>
+
+<blockquote>
+<p>
+The stemmer can be enhanced to stem all kinds of verb suffixes. In Turkish,
+there are over fifty suffixes that can be affixed to verbs [2]. The
+morphological structure of verb suffixes is more complicated than noun
+suffixes. Despite this, one can use the methodology presented in this paper to
+enhance the stemmer to find stems of all kinds of Turkish words.
+</p>
+</blockquote>
+
+<p>where [2] is a reference to the following paper:</p>
 
 <DL><DD>
 <p>
