@@ -59,7 +59,7 @@ define cleaning as repeat (
         '{i"}' (<- 'i')
         '{.}' (<- '.')
         ''     (next)
-    ) //or next
+    )
 )
 
 backwardmode (
