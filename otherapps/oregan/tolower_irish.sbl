@@ -1,3 +1,16 @@
+stringescapes {}
+
+stringdef A'   '{U+00C1}'
+stringdef E'   '{U+00C9}'
+stringdef I'   '{U+00CD}'
+stringdef O'   '{U+00D3}'
+stringdef U'   '{U+00DA}'
+stringdef a'   '{U+00E1}'
+stringdef e'   '{U+00E9}'
+stringdef i'   '{U+00ED}'
+stringdef o'   '{U+00F3}'
+stringdef u'   '{U+00FA}'
+
 define tolower_irish as (
  [substring] among (
    'nA' (<- 'n-a')
@@ -5,22 +18,22 @@ define tolower_irish as (
    'nI' (<- 'n-i')
    'nO' (<- 'n-o')
    'nU' (<- 'n-u')
-   'nÁ' (<- 'n-á')
-   'nÉ' (<- 'n-é')
-   'nÍ' (<- 'n-í')
-   'nÓ' (<- 'n-ó')
-   'nÚ' (<- 'n-ú')
+   'n{A'}' (<- 'n-{a'}')
+   'n{E'}' (<- 'n-{e'}')
+   'n{I'}' (<- 'n-{i'}')
+   'n{O'}' (<- 'n-{o'}')
+   'n{U'}' (<- 'n-{u'}')
 
    'tA' (<- 't-a')
    'tE' (<- 't-e')
    'tI' (<- 't-i')
    'tO' (<- 't-o')
    'tU' (<- 't-u')
-   'tÁ' (<- 't-á')
-   'tÉ' (<- 't-é')
-   'tÍ' (<- 't-í')
-   'tÓ' (<- 't-ó')
-   'tÚ' (<- 't-ú')
+   't{A'}' (<- 't-{a'}')
+   't{E'}' (<- 't-{e'}')
+   't{I'}' (<- 't-{i'}')
+   't{O'}' (<- 't-{o'}')
+   't{U'}' (<- 't-{u'}')
  )
 )
 

@@ -15,13 +15,13 @@ groupings ( v )
 
 stringescapes {}
 
-/* Latin 1 */
+/* Accented characters */
 
-stringdef a'   hex 'E1'  // a-acute
-stringdef e'   hex 'E9'  // e-acute
-stringdef i'   hex 'ED'  // i-acute
-stringdef o'   hex 'F3'  // o-acute
-stringdef u'   hex 'FA'  // u-acute
+stringdef a'   '{U+00E1}'  // a-acute
+stringdef e'   '{U+00E9}'  // e-acute
+stringdef i'   '{U+00ED}'  // i-acute
+stringdef o'   '{U+00F3}'  // o-acute
+stringdef u'   '{U+00FA}'  // u-acute
 
 define v 'aeiou{a'}{e'}{i'}{o'}{u'}'
 
@@ -46,9 +46,9 @@ define initial_morph as (
     (delete)
 
     // verbs
-    'd{'}' 
+    'd{'}'
     (delete)
-    'd{'}fh' 
+    'd{'}fh'
     (<- 'f')
     // other contractions
     'm{'}' 'b{'}'
@@ -128,11 +128,11 @@ backwardmode (
   )
   define verb_sfx as (
     [substring] among (
-      'imid' 'aimid' '{i'}mid' 'a{i'}mid' 
+      'imid' 'aimid' '{i'}mid' 'a{i'}mid'
       'faidh' 'fidh'
       (RV delete)
       'ain'
-      'eadh' 'adh' 
+      'eadh' 'adh'
       '{a'}il'
       'tear' 'tar'
       (R1 delete)

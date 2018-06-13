@@ -20,23 +20,21 @@ groupings ( v )
 
 stringescapes {}
 
-/* Latin 2 */
-
-stringdef a' hex 'E1'
-stringdef c^ hex 'E8'
-stringdef d^ hex 'EF'
-stringdef e' hex 'E9'
-stringdef e^ hex 'EC'
-stringdef i' hex 'ED'
-stringdef n^ hex 'F2'
-stringdef o' hex 'F3'
-stringdef r^ hex 'F8'
-stringdef s^ hex 'B9'
-stringdef t^ hex 'BB'
-stringdef u' hex 'FA'
-stringdef u* hex 'F9'
-stringdef y' hex 'FD'
-stringdef z^ hex 'BE'
+stringdef a' '{U+00E1}'
+stringdef c^ '{U+010D}'
+stringdef d^ '{U+010F}'
+stringdef e' '{U+00E9}'
+stringdef e^ '{U+011B}'
+stringdef i' '{U+00ED}'
+stringdef n^ '{U+0148}'
+stringdef o' '{U+00F3}'
+stringdef r^ '{U+0159}'
+stringdef s^ '{U+0161}'
+stringdef t^ '{U+0165}'
+stringdef u' '{U+00FA}'
+stringdef u* '{U+016F}'
+stringdef y' '{U+00FD}'
+stringdef z^ '{U+017E}'
 
 define v 'aeiouy{a'}{e^}{e'}{i'}{o'}{u'}{u*}{y'}'
 
@@ -46,8 +44,8 @@ define mark_regions as (
     $p1 = limit
 
     do (
-	gopast non-v setmark pV
-	gopast non-v gopast v setmark p1
+        gopast non-v setmark pV
+        gopast non-v gopast v setmark p1
     )
 )
 
@@ -75,8 +73,8 @@ backwardmode (
       (delete)
       'in'
       (
-	delete
-	try palatalise
+        delete
+        try palatalise
       )
     )
   )
@@ -96,13 +94,13 @@ backwardmode (
       '{e'}m' '{i'}m' 'es'
       'e' 'i' '{i'}' '{e^}'
       (
-	delete
-	try palatalise
+        delete
+        try palatalise
       )
       'em'
       (
-	<- 'e'
-	try palatalise
+        <- 'e'
+        try palatalise
       )
     )
   )
@@ -123,29 +121,29 @@ backwardmode (
       'i{a'}n' 'ist' 'isk' 'i{s^}k' 'itb'
       'ic' 'in' 'it' 'iv'
       (
-	<- 'i'
-	palatalise
+        <- 'i'
+        palatalise
       )
       'enic' 'ec' 'en'
       (
-	<- 'e'
-	palatalise
+        <- 'e'
+        palatalise
       )
       '{e'}{r^}'
       (
-	<- '{e'}'
-	palatalise
+        <- '{e'}'
+        palatalise
       )
       '{e^}n'
       (
-	<- '{e^}'
-	palatalise
+        <- '{e^}'
+        palatalise
       )
       '{i'}rn'
       '{i'}{r^}' '{i'}n'
       (
-	<- '{i'}'
-	palatalise
+        <- '{i'}'
+        palatalise
       )
     )
   )
@@ -163,8 +161,8 @@ backwardmode (
       (delete)
       'izn' 'isk'
       (
-	<- 'i'
-	palatalise
+        <- 'i'
+        palatalise
       )
     )
   )
@@ -180,23 +178,23 @@ backwardmode (
       (delete)
       'e{c^}ek' 'enek' 'ek'
       (
-	<- 'e'
-	palatalise
+        <- 'e'
+        palatalise
       )
       '{e'}{c^}ek' '{e'}k'
       (
-	<- '{e'}'
-	palatalise
+        <- '{e'}'
+        palatalise
       )
       'i{c^}ek' 'inek' 'ik'
       (
-	<- 'i'
-	palatalise
+        <- 'i'
+        palatalise
       )
       '{i'}{c^}ek' '{i'}k'
       (
-	<- '{i'}'
-	palatalise
+        <- '{i'}'
+        palatalise
       )
       '{a'}k'
        (<- '{a'}')
@@ -213,13 +211,13 @@ backwardmode (
     [substring] among (
       '{e^}j{s^}'
       (
-	<- '{e^}'
-	palatalise
+        <- '{e^}'
+        palatalise
       )
       'ej{s^}'
       (
-	<- 'e'
-	palatalise
+        <- 'e'
+        palatalise
       )
     )
   )
