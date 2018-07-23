@@ -1,5 +1,11 @@
 [% header %]
 
+<noscript>
+<div class="alert alert-warning">
+Sorry, this demo requires Javascript to function.
+</div>
+</noscript>
+
 <p>
 Try the
 [% stemmer_select %]
