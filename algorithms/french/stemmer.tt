@@ -227,6 +227,12 @@ marking.)
 </p>
 
 <p>
+Replace <B><I>ë</I></B> and <B><I>ï</I></B> with <B><I>He</I></B> and <B><I>Hi</I></B>. The <B><I>H</I></B>
+marks the vowel as having originally had a diaeresis, while the vowel itself, lacking an accent, is able to
+match suffixes beginning in <B><I>e</I></B> or <B><I>i</I></B>.
+</p>
+
+<p>
 If the word begins with two vowels, <I>RV</I> is the region after the third
 letter, otherwise the region after the first vowel not at the beginning of
 the word, or the end of the word if these positions cannot be found. (Exceptionally,
@@ -347,7 +353,7 @@ Step 2<I>a</I>: Verb suffixes beginning <B><I>i</I></B>
 
 <DL><DD>
     Search for the longest among the following suffixes and if found,
-    delete if preceded by a non-vowel.
+    delete if the preceding character is neither a vowel nor <B><I>H</I></B>.
 <DL><DD>
         <B><I>îmes  &nbsp;  ît  &nbsp;  îtes  &nbsp;  i  &nbsp;  ie  &nbsp;  ies  &nbsp;  ir  &nbsp;  ira  &nbsp;  irai  &nbsp;  iraIent  &nbsp;  irais  &nbsp;  irait  &nbsp;  iras
          &nbsp;  irent  &nbsp;  irez  &nbsp;  iriez  &nbsp;  irions  &nbsp;  irons  &nbsp;  iront  &nbsp;  is  &nbsp;  issaIent  &nbsp;  issais  &nbsp;  issait
@@ -355,7 +361,7 @@ Step 2<I>a</I>: Verb suffixes beginning <B><I>i</I></B>
          &nbsp;  issions  &nbsp;  issons  &nbsp;  it</I></B>
 </DL>
 <BR>
-    (Note that the non-vowel itself must also be in <I>RV</I>.)
+    (Note that the preceding character itself must also be in <I>RV</I>.)
 </DL>
 
 <p>
@@ -407,7 +413,7 @@ Step 4: Residual suffix
 
 <DL><DD>
     <p>
-    If the word ends <B><I>s</I></B>, not preceded by <B><I>a</I></B>, <B><I>i</I></B>, <B><I>o</I></B>, <B><I>u</I></B>, <B><I>è</I></B> or <B><I>s</I></B>, delete it.
+    If the word ends <B><I>s</I></B>, not preceded by <B><I>a</I></B>, <B><I>i</I></B> (unless itself preceded by <B><I>H</I></B>), <B><I>o</I></B>, <B><I>u</I></B>, <B><I>è</I></B> or <B><I>s</I></B>, delete it.
     </p>
 
     <p>
@@ -426,8 +432,6 @@ Step 4: Residual suffix
         <DD>replace with <B><I>i</I></B>
     <DT><B><I>e</I></B>
         <DD>delete
-    <DT><B><I>ë</I></B>
-        <DD>if preceded by <B><I>gu</I></B>, delete
 </DL>
 <BR>
     (So note that <B><I>ion</I></B> is removed only when it is in <I>R</I>2 &#x2014; as well as being
@@ -460,7 +464,14 @@ And finally:
 </p>
 
 <DL><DD>
+    <p>
     Turn any remaining <B><I>I</I></B>, <B><I>U</I></B> and <B><I>Y</I></B> letters in the word back into lower case.
+    </p>
+
+    <p>
+    Turn <B><I>He</I></B> and <B><I>Hi</I></B> back into <B><I>ë</I></B> and <B><I>ï</I></B>, and remove any
+    remaining <B><I>H</I></B>.
+    </p>
 </DL>
 
 <h2>The same algorithm in Snowball</h2>
