@@ -1,0 +1,25 @@
+[% header('Greek stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('greek', 'Greek') %]
+</ul>
+
+<p>This is an implementation of the stemmer described in: </p>
+
+<blockquote>
+    Ntais, Georgios. Development of a Stemmer for the Greek Language. <i>Diss. Royal Institute of Technology, 2006.</i>
+</blockquote>
+
+<p>with additional improvements from: </p>
+
+<blockquote>
+    Saroukos, Spyridon. Enhancing a Greek language stemmer. <i>University of Tampere, 2008.</i>
+</blockquote>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('greek') %]
+
+[% footer %]

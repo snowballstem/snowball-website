@@ -78,6 +78,7 @@ We also provide Snowball implementations of some algorithms developed by other p
   <li><a href="/algorithms/basque/stemmer.html">Basque (Euskera)</a></li>
   <li><a href="/algorithms/catalan/stemmer.html">Catalan</a></li>
   <li><a href="/algorithms/indonesian/stemmer.html">Indonesian</a></li>
+  <li><a href="/algorithms/greek/stemmer.html">Greek</a></li>
 </ul>
 
 [% footer %]
