@@ -2,7 +2,7 @@
 // http://snowballstem.org/
 
 /**@constructor*/
-GreekStemmer = function() {
+function GreekStemmer() {
     var base = new BaseStemmer();
     /** @const */ var a_0 = [
         ["", -1, 25],
@@ -4501,3 +4501,4 @@ GreekStemmer = function() {
         return base.getCurrent();
     };
 };
+window['GreekStemmer'] = GreekStemmer;
