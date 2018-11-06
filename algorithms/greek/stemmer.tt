@@ -4,6 +4,8 @@
 
 <ul>
 [% algorithm_lis('greek', 'Greek') %]
+<li> <a href="https://sais.se/mthprize/2007/ntais2007.pdf">Ntais, Georgios. Development of a Stemmer for the Greek Language</a>
+<li> <a href="https://tampub.uta.fi/bitstream/handle/10024/80480/gradu03463.pdf">Saroukos, Spyridon. Enhancing a Greek language stemmer</a>
 </ul>
 
 <p>This is an implementation of the stemmer described in: </p>
