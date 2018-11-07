@@ -16,8 +16,8 @@ Snowball code on the website:
 
 git clone https://github.com/hajimes/pygments-snowball.git
 
-You also need the `snowball` repo in a sibling directory, for the Snowball code
-included on the website:
+You also need the `snowball` repo in a sibling directory to get warnings if
+the Snowball code here under `code/` is out of date:
 
 (cd .. && git clone https://github.com/snowballstem/snowball.git)
 
