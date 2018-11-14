@@ -216,7 +216,10 @@ The following letters are vowels:
 </DL>
 
 <p>
-A consonant is defined as a non-vowel.
+A consonant is defined as a character from ASCII a-z which isn't a vowel
+(originally this was "A consonant is defined as a non-vowel" but since
+2018-11-15 we've changed this definition to avoid the stemmer from altering
+alphanumeric codes which end with a repeated digit).
 </p>
 
 <p>
