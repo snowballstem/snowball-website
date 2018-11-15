@@ -122,6 +122,73 @@ __END__
     return $out;
 };
 
+$$vars{algorithm_vocab} = sub {
+    my ($id, $voc1, $voc2) = @_;
+    my (@out1, @out2);
+    {
+	my $i = join '', map{"$_\n"} @$voc1;
+	my $o;
+	run ['../snowball/stemwords', '-l', $id], \$i, \$o, \*STDERR
+	    or die "../snowball/stemwords $?";
+	chomp($o);
+	@out1 = split /\n/, $o;
+    }
+    {
+	my $i = join '', map{"$_\n"} @$voc2;
+	my $o;
+	run ['../snowball/stemwords', '-l', $id], \$i, \$o, \*STDERR
+	    or die "../snowball/stemwords $?";
+	chomp($o);
+	@out2 = split /\n/, $o;
+    }
+    my $out = << "__END__";
+<TABLE CELLPADDING=0>
+<TR><TD>  <B>word</B> </TD>
+ <TD></TD><TD> </TD>
+ <TD></TD><TD> <B>stem</B> </TD>
+ <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+ <TD></TD><TD> <B>word</B> </TD>
+ <TD></TD><TD> </TD>
+ <TD></TD><TD> <B>stem</B> </TD>
+</TR>
+
+<TR><TD>
+__END__
+    for my $w (@$voc1) {
+	$out .= $w . "<BR>\n";
+    }
+    $out .= << "__END__";
+</TD>
+<TD></TD><TD> <b>&#x21d2;</b> </TD>
+<TD></TD><TD>
+__END__
+    for my $w (@out1) {
+	$out .= $w . "<BR>\n";
+    }
+    $out .= << "__END__";
+</TD>
+<TD></TD><TD> </TD>
+<TD></TD><TD>
+__END__
+    for my $w (@$voc2) {
+	$out .= $w . "<BR>\n";
+    }
+    $out .= << "__END__";
+</TD>
+<TD></TD><TD> <b>&#x21d2;</b> </TD>
+<TD></TD><TD>
+__END__
+    for my $w (@out2) {
+	$out .= $w . "<BR>\n";
+    }
+    $out .= << "__END__";
+</TD>
+</TR>
+</TABLE>
+__END__
+    return $out;
+};
+
 # The footer of the page.
 # There should be no output after this.
 $$vars{footer} = <<'__END__';
