@@ -39,9 +39,9 @@ For example,
 </p>
 
 <PRE>
-    snowball danish/stem.sbl -o q/danish
-    snowball danish/stem.sbl -syntax
-    snowball danish/stem.sbl -output q/danish -ep danish_
+    snowball danish.sbl -o q/danish
+    snowball danish.sbl -syntax
+    snowball danish.sbl -output q/danish -ep danish_
 </PRE>
 
 <p>
@@ -351,16 +351,7 @@ First, install the compiler, as documented above.
 </p>
 
 <p>
-Then copy the files &nbsp;<code>stem_ISO_8859_1.sbl</code>, &nbsp;<code>voc.txt</code>&nbsp; and &nbsp;<code>output.txt</code>&nbsp; from the page for
-the Hungarian stemmer,
-</p>
-
-<PRE>
-    http://snowballstem.org/algorithms/hungarian/stemmer.html
-</PRE>
-
-<p>
-to the same directory, renaming the snowball script as &nbsp;<code>hungarian.sbl</code>.
+Then copy the files &nbsp;<code>hungarian.sbl</code>, &nbsp;<code>voc.txt</code>&nbsp; and &nbsp;<code>output.txt</code>&nbsp; from the <a href="/algorithms/hungarian/stemmer.html">page for the Hungarian stemmer</a> to the same directory.
 Take the &nbsp;<code>runtime/</code>&nbsp; directory out of the snowball code download, and put it in
 the current directory, renamed as &nbsp;<code>q/</code>, say.
 </p>
