@@ -18,36 +18,36 @@ be generated with the algorithm.
 </p>
 
 [% algorithm_vocab('hungarian', [
-'babahàznak',
+'babaháznak',
 'babakocsi',
-'babakocsijàért',
+'babakocsijáért',
 'babakocsit',
 'babakocsiért',
 'babból',
 'bab',
-'babgulyàs',
-'babgulyàst',
+'babgulyás',
+'babgulyást',
 'babona',
-'babonàkkal',
-'babonàs',
-'babràlgatta',
-'babràlni',
-'babràl',
-'babràlt',
-'babràlva',
+'babonákkal',
+'babonás',
+'babrálgatta',
+'babrálni',
+'babrál',
+'babrált',
+'babrálva',
 'babusgatnak',
 'baba',
-'babài',
-'babàk',
-'babàkkal',
-'babàzni',
+'babái',
+'babák',
+'babákkal',
+'babázni',
 'babérfa',
 'babérokat',
 'babért',
-'bacchànsn&otilde;k',
+'bacchánsnők',
 'badacsonyi',
-'badarsàg',
-'badarsàgok',
+'badarság',
+'badarságok',
 'baedeker',
 'baglyokat',
 'bagolyszem&uuml;veges',
@@ -61,27 +61,27 @@ be generated with the algorithm.
 ], [
 'muattta',
 'mukkot',
-'mulandósàg',
-'mulandósàgot',
-'mulasszàtok',
+'mulandóság',
+'mulandóságot',
+'mulasszátok',
 'mulasztanak',
 'mulasztotta',
 'mulasztottam',
-'mulasztottàk',
+'mulasztották',
 'mulaszt',
 'mulaszthatom',
-'mulasztàs',
-'mulasztàsban',
-'mulasztàsból',
-'mulasztàsnàl',
-'mulasztàssal',
-'mulasztàsànak',
-'mulasztàsànàl',
-'mulasztàsàért',
-'mulasztàsi',
-'mulasztàsos',
+'mulasztás',
+'mulasztásban',
+'mulasztásból',
+'mulasztásnál',
+'mulasztással',
+'mulasztásának',
+'mulasztásánál',
+'mulasztásáért',
+'mulasztási',
+'mulasztásos',
 'mulasztó',
-'mulathatnànk',
+'mulathatnánk',
 'mulathattunk',
 'mulatna',
 'mulat',
@@ -92,12 +92,12 @@ be generated with the algorithm.
 'mulattatta',
 'mulatott',
 'mulatozott',
-'mulatozàshoz',
-'mulatozàst',
-'mulatsàg',
-'mulatsàgnak',
-'mulatsàgot',
-'mulatsàgos',
+'mulatozáshoz',
+'mulatozást',
+'mulatság',
+'mulatságnak',
+'mulatságot',
+'mulatságos',
 'mulatt',
 ]) %]
 </div>
@@ -112,7 +112,7 @@ Letters in Hungarian include the following accented forms,
 </p>
 
 <DL><DD>
-    <B><I>&aacute;  &nbsp;  &eacute;  &nbsp;  &iacute;  &nbsp;  &oacute;  &nbsp;  &ouml;  &nbsp;  &otilde;  &nbsp;  &uacute;  &nbsp;  &uuml;  &nbsp;  &ucirc;</I></B>
+    <B><I>&aacute;  &nbsp;  &eacute;  &nbsp;  &iacute;  &nbsp;  &oacute;  &nbsp;  &ouml;  &nbsp;  &odblac;  &nbsp;  &uacute;  &nbsp;  &uuml;  &nbsp;  &udblac;</I></B>
 </DL>
 
 <p>
@@ -120,8 +120,8 @@ The following letters are vowels:
 </p>
 
 <DL><DD>
-    <B><I>a  &nbsp;  &aacute;  &nbsp;  e  &nbsp;  &eacute;  &nbsp;  i  &nbsp;  &iacute;  &nbsp;  o  &nbsp;  &oacute;  &nbsp;  &ouml;  &nbsp;  &otilde;  &nbsp;  u  &nbsp;  &uacute;  &nbsp;
-    &uuml;  &nbsp;  &ucirc;</I></B>
+    <B><I>a  &nbsp;  &aacute;  &nbsp;  e  &nbsp;  &eacute;  &nbsp;  i  &nbsp;  &iacute;  &nbsp;  o  &nbsp;  &oacute;  &nbsp;  &ouml;  &nbsp;  &odblac;  &nbsp;  u  &nbsp;  &uacute;  &nbsp;
+    &uuml;  &nbsp;  &udblac;</I></B>
 </DL>
 
 <p>
@@ -197,7 +197,7 @@ Step 2: Remove frequent cases
     Search for the longest among the following suffixes and perform the action indicated.
 <DL>
     <DT><B><I>ban  &nbsp;  ben  &nbsp;  ba  &nbsp;  be  &nbsp;  ra  &nbsp;  re  &nbsp;  nak  &nbsp;  nek  &nbsp;  val  &nbsp;  vel  &nbsp;  t&oacute;l
-     &nbsp;  t&otilde;l  &nbsp;  r&oacute;l  &nbsp;  r&otilde;l  &nbsp;  b&oacute;l  &nbsp;  b&otilde;l  &nbsp;  hoz  &nbsp;  hez  &nbsp;  h&ouml;z  &nbsp;
+     &nbsp;  t&odblac;l  &nbsp;  r&oacute;l  &nbsp;  r&odblac;l  &nbsp;  b&oacute;l  &nbsp;  b&odblac;l  &nbsp;  hoz  &nbsp;  hez  &nbsp;  h&ouml;z  &nbsp;
     n&aacute;l  &nbsp;  n&eacute;l  &nbsp;  ig  &nbsp;  at  &nbsp;  et  &nbsp;  ot  &nbsp;  &ouml;t  &nbsp;  &eacute;rt  &nbsp;  k&eacute;pp  &nbsp;
     k&eacute;ppen  &nbsp;  kor  &nbsp;  ul  &nbsp;  &uuml;l  &nbsp;  v&aacute;  &nbsp;  v&eacute;  &nbsp;  onk&eacute;nt  &nbsp;  enk&eacute;nt  &nbsp;
     ank&eacute;nt  &nbsp;  k&eacute;nt  &nbsp;  en  &nbsp;  on  &nbsp;  an  &nbsp;  &ouml;n  &nbsp;  n  &nbsp;  t</I></B>
