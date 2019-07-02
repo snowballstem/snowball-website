@@ -1436,17 +1436,19 @@ AE              ::= (AE) ||
                     len || lenof &lt;s_name&gt; ||
                     &lt;i_name&gt; || &lt;number&gt;
 
-&lt;i_command&gt;     ::= $ &lt;i_name&gt; = AE ||
+&lt;i_assign&gt;      ::= $ &lt;i_name&gt; = AE ||
                     $ &lt;i_name&gt; += AE || $ &lt;i_name&gt; -= AE ||
-                    $ &lt;i_name&gt; *= AE || $ &lt;i_name&gt; /= AE ||
-                    $ &lt;i_name&gt; == AE || $ &lt;i_name&gt; != AE ||
-                    $ &lt;i_name&gt; &gt; AE || $ &lt;i_name&gt; &gt;= AE ||
-                    $ &lt;i_name&gt; &lt; AE || $ &lt;i_name&gt; &lt;= AE
+                    $ &lt;i_name&gt; *= AE || $ &lt;i_name&gt; /= AE
+
+&lt;i_test_op&gt;     ::= == || != || &gt; || &gt;= || &lt; || &lt;=
+
+&lt;i_test&gt;        ::= $ ( AE &lt;i_test_op&gt; AE ) ||
+                    $ &lt;i_name&gt; &lt;i_test_op&gt; AE
 
 &lt;s_command&gt;     ::= $ &lt;s_name&gt; C
 
 C               ::= ( [C]* ) ||
-                    &lt;i_command&gt; || &lt;s_command&gt; || C or C || C and C ||
+                    &lt;i_assign&gt; || &lt;i_test&gt; || &lt;s_command&gt; || C or C || C and C ||
                     not C || test C || try C || do C || fail C ||
                     goto C || gopast C || repeat C || loop AE C ||
                     atleast AE C || S || = S || insert S || attach S ||
