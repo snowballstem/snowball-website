@@ -103,6 +103,12 @@ created by Mark A. Prisyazhnyuk.
 (added Aug 2011) These were ported from the Java Snowball stemmers.
 </p>
 
+<h3><a href="https://github.com/projectEndings/staticSearch/blob/master/xsl/porter2Stemmer.xsl">XSLT 3 Porter2 stemmer</a></h3>
+<p>
+(added July 2019). Martin Holmes has implemented Porter2 in XSLT 3. In the same repo, there is also a re-implementation
+of Porter2 in JavaScript.
+</p>
+
 <h3><a href="http://snowball.tartarus.org/otherlangs/">Contributed Stemmers on the old Snowball Website</a></h3>
 <p>
 Martin and Richard collected and hosted contributed stemmers in a number
