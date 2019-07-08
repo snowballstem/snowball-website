@@ -19,7 +19,7 @@ the Snowball-generated code, are well implemented, etc.  These projects aren't
 endorsed or recommended as such, but we hope they may be of interest.
 </p>
 
-<h3><a href="https://bitbucket.org/tebeka/snowball">libstemmer in Go</a></h3>
+<h3><a href="https://github.com/tebeka/snowball">libstemmer in Go</a></h3>
 <p>
 (added Feb 2013) Miki Tebeka has ported libstemmer_c to the Go programming
 language.
@@ -53,7 +53,8 @@ This is a PHP interface, developed by Jay Smith.
 
 <p>
 These projects reimplement the Snowball algorithms, either in hand-written
-code, or in code manually translated from the generated output for a language.
+code, or in code manually translated from the generated output for another
+language.
 </p>
 
 <p>
@@ -68,9 +69,9 @@ vocabulary for the corresponding natural language, and check that the
 stemmer produces the corresponding stemmed output.
 </p>
 
-<h3><a href="http://www.oleandersolutions.com/stemming/stemming.html">Oleander Stemming Library</a></h3>
+<h3><a href="https://www.oleandersolutions.com/stemming/stemming.html">Oleander Stemming Library</a></h3>
 <p>
-A reimplementation of the snowball stemming algorithms in C++.
+A reimplementation of the Snowball stemming algorithms in C++.
 </p>
 
 <h3><a href="https://bitbucket.org/smassung/porter2_stemmer">English (porter2) Stemmer in C++11</a></h3>
@@ -79,28 +80,22 @@ A reimplementation of the snowball stemming algorithms in C++.
 C++11.
 </p>
 
-<h3><a href="http://www.nltk.org/">NLTK</a></h3>
+<h3><a href="https://www.nltk.org/">NLTK</a></h3>
 <p>
 (added June 2010) Python versions of nearly all the stemmers have been made
 available by Peter Stahl at NLTK&#8217;s code repository.
 </p>
 
-<h3><a href="http://code.google.com/p/urim/source/browse/#svn/trunk/Firefox/modules/analysis/stemmer/ext">URIM Javascript stemmers</a></h3>
+<h3><a href="https://github.com/mazko/jssnowball/">Javascript stemmers</a></h3>
 <p>
-Javascript versions of nearly all the stemmers have appeared in Oleg Mazko&#8217;s
-<a href="https://code.google.com/p/urim/">Urim</a> project. Oleg created the stemmers by hand
-from the C/java output of the snowball compiler.
+Javascript versions of nearly all the stemmers, created by Oleg Mazko by hand
+from the C/Java output of the Snowball compiler.
 </p>
 
 <h3><a href="https://code.google.com/p/js-lingua-stem-ru/">js-lingua-stem-ru</a></h3>
 <p>
 This is a different implementation of the Russian stemmer in Javascript,
 created by Mark A. Prisyazhnyuk.
-</p>
-
-<h3><a href="http://www.iveonik.com/blog/2011/08/snowball-stemmers-on-csharp-free-download/">Iveonik Systems C# stemmers</a></h3>
-<p>
-(added Aug 2011) These were ported from the Java Snowball stemmers.
 </p>
 
 <h3><a href="https://github.com/projectEndings/staticSearch/blob/master/xsl/porter2Stemmer.xsl">XSLT 3 Porter2 stemmer</a></h3>
