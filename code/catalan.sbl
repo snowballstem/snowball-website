@@ -193,9 +193,10 @@ define stem as (
     )
     do cleaning
 )
+
 /*
      First works 2010/07/19
-     First Grammatical Reviews: http://ca.wikipedia.org/wiki/Gram%C3%A0tica_catalana
-     Suffix list: http://wapedia.mobi/ca/Llista_de_sufixos
-     Irregular Verbs: http://ca.wikipedia.org/wiki/Flexi%C3%B3_verbal_del_catal%C3%A0
+     First Grammatical Reviews: https://ca.wikipedia.org/wiki/Gram%C3%A0tica_del_catal%C3%A0
+     Suffix list: https://ca.wikipedia.org/wiki/Llista_de_sufixos
+     Irregular Verbs: https://ca.wikipedia.org/wiki/Flexi%C3%B3_verbal_del_catal%C3%A0
 */
