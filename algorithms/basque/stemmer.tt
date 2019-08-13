@@ -1,52 +1,54 @@
-[% header('A Basque stemming algorithm') %]
+[% header('Euskera stemming algorithm') %]
+
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="tarball.tgz"> Tar-gzipped file of the delivered resources</A>
-<li> <A HREF="http://www.santurtzieus.com/gelairekia/unitateak/3/lagun/atzizkien_zerrenda.htm"> Basque suffixes</A> (as referenced below)
+[% algorithm_lis('basque', 'Euskera') %]
 </ul>
 
+<div style="background-color:lightpink">
 <p>
-A stemmer for the Basque (Euskera) language was sent us by
-Mikel Otxandorena of <A HREF="http://www.isoco.com">iSOCO</A> with this accompanying email:
+Here is a sample of Basque vocabulary, with the stemmed forms that will
+be generated with this algorithm.
 </p>
 
-<blockquote><pre>
-From: Mikel Otxandorena &lt;motxandorena&#64;isoco.com&gt;
-Date: Mon, 26 Jul 2010 13:04:19 +0200
-Subject: Basque Snowball Stemmer
-
-Hi,
-
-As I told you the other day, I am sending you a valid version of a
-Basque stemmer.
-
-I have tested it with a dictionary that I attach in the
-email and it works well.
-
-For our use of suffixes see the following table:
-
-http://www.santurtzieus.com/gelairekia/unitateak/3/lagun/atzizkien_zerrenda.htm
-
-We are open to feedback and discussion about the linguistics,
-and about the final form of the snowball implementation.
-
-Please distribute this freely, with a mention of the author and
-of the company iSOCO, that has let us share our work freely with the
-Snowball community.
-
-Kind Regards,
-
-Mikel Otxandorena
-</pre></blockquote>
+[% algorithm_vocab('basque', [
+'barrutiaren',
+'barrutiek',
+'barrutien',
+'barrutietako',
+'barrutietan',
+'barrutik',
+'barrutiko',
+'barrutitan',
+'basa',
+'basailu',
+'basalto'
+], [
+'museoan',
+'museoak',
+'museoen',
+'museoetan',
+'museoko',
+'musikala',
+'musika',
+'musikariekin',
+'musikagilea',
+'musikagileak',
+'musikagilearen'
+]) %]
+</div>
 
 <p>
-Mikel has confirmed that he wishes <A HREF="http://www.isoco.com">iSOCO</A> to be
-duly acknowledged on the Snowball site, and that the stemmer itself is
-free for use under the BSD license.
+The following letters are vowels:
 </p>
 
-<h2>The algorithm in Snowball</h2>
+<DL><DD>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u</I></B>
+</DL>
+
+
+<h2>The stemming algorithm</h2>
 
 [% highlight_file('basque') %]
 
