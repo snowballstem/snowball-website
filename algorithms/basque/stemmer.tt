@@ -1,9 +1,9 @@
-[% header('Euskera stemming algorithm') %]
+[% header('Basque stemming algorithm') %]
 
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('basque', 'Euskera') %]
+[% algorithm_lis('basque', 'Basque') %]
 </ul>
 
 <div style="background-color:lightpink">

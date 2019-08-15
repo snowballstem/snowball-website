@@ -23,7 +23,7 @@ stemming algorithm:
 [% END %]
 <script>
 var old_words;
-function (elt) {
+function stem_demo(elt) {
   if (elt === undefined) elt = document.getElementById('words');
   var words = elt.value;
   if (words === old_words) return;
