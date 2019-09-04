@@ -1,0 +1,479 @@
+[% header('Estonian stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('estonian', 'Estonian') %]
+</ul>
+
+<div style="background-color:lightpink">
+
+<p>
+Here is a sample of vocabulary, with the stemmed forms that will
+be generated with the algorithm.
+</p>
+
+[% algorithm_vocab('estonian', [
+'raamat',
+'raamatu',
+'raamatut',
+'raamatule',
+'raamatud',
+'raamatute',
+'raamatuid',
+'raamatutele',
+'raamatutestki',
+'hele',
+'heleda',
+'heledat',
+'heledale',
+'heledad',
+'heledate',
+'heledaid',
+'heledatele',
+'heledam',
+'heledama',
+'heledamat',
+'heledamad',
+'heledamate',
+'heledamaid',
+'heledamatelegi',
+'heledaim',
+'heledaima',
+'heledaimat',
+'heledaimale',
+'heledaimad',
+'heledaimate',
+'heledaimaid',
+'heledaimatelt',
+'hobune',
+'hobuse',
+'hobust',
+'hobusele',
+'hobused',
+'hobuste',
+'hobuseid',
+'hobustele',
+], [
+'hüpata',
+'hüppa',
+'hüppaksin',
+'hüppaksid',
+'hüppaks',
+'hüppaksime',
+'hüppaksite',
+'hüppan',
+'hüppad',
+'hüppab',
+'hüppame',
+'hüppate',
+'hüppavad',
+'hüppasin',
+'hüppasid',
+'hüppas',
+'hüppasime',
+'hüppasite',
+'hüpanuksite',
+'hüpatakse',
+'hüpati',
+'hüpanud',
+'hüpanutest',
+'hüpates',
+'hüppavat',
+'hüppavatele',
+'hüppamata',
+'hüppamast',
+'hüljes',
+'hülge',
+'hüljest',
+'hülgesse',
+'hüljeste',
+'hülgeid',
+'hüljestesse',
+'hülgeisse',
+'ohutule',
+'ohutud',
+'ohutuid',
+'ohututele',
+]) %]
+</div>
+
+<p>
+This algorithm is written in collaboration with Estonian text analytics enterprise Texta.
+</p>
+
+<p>
+Letters in Estonian include the following accented forms,
+</p>
+
+<DL><DD>
+    <B><I>ä  &nbsp;  ö  &nbsp;  õ  &nbsp;  ü</I></B>
+</DL>
+
+<p>
+The following letters are vowels (<I>V1</I>):
+</p>
+
+<DL><DD>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  õ  &nbsp;  ä  &nbsp;  ö  &nbsp;  ü</I></B>
+</DL>
+
+<p>
+<I>RV</I> is defined as one of the following:
+</p>
+
+<DL><DD>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  u  &nbsp;  o</I></B>
+</DL>
+
+<p>
+<I>KI</I> is defined as one of the following (letters possible before <B><I>-ki</I></B> emphasis):
+</p>
+
+<DL><DD>
+    <B><I>k  &nbsp;  p  &nbsp;  t  &nbsp;  g  &nbsp;  b  &nbsp;  d  &nbsp;  s  &nbsp;  h  &nbsp;  f  &nbsp;  š  &nbsp;  z  &nbsp;  ž  &nbsp;  o</I></B>
+</DL>
+
+<p>
+<I>GI</I> is defined as one of the following (letters possible before <B><I>-gi</I></B> emphasis):
+</p>
+
+<DL><DD>
+    <B><I>c  &nbsp;  j  &nbsp;  l  &nbsp;  m  &nbsp;  n  &nbsp;  q  &nbsp;  r  &nbsp;  v  &nbsp;  w  &nbsp;  x  &nbsp;  a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  õ  &nbsp;  ä  &nbsp;  ö  &nbsp;  ü</I></B>
+</DL>
+
+<p>
+<I>R1</I> in this algorithm is defined as a region after the first consonant preceded by a vowel ([laul[nud], mõt[teid], kar[tuleid], saab[as] ). If there’s no such region, then the <I>R</I> is empty (laul[Ø], saun[Ø]). Limitations in steps (such as ‘preceded by <I>RV</I>’ ) are not restricted to the <I>R1</I> region.
+</p>
+
+<p>
+<I>LONGV</I> is defined as one of the following:
+</p>
+
+<DL><DD>
+    <B><I>aa  &nbsp;  ee  &nbsp;  ii  &nbsp;  oo  &nbsp;  uu  &nbsp;  ää  &nbsp;  öö  &nbsp;  üü  &nbsp;  õõ</I></B>
+</DL>
+
+<p>
+Do step 0. If nothing was changed in step 0, continue with the steps, otherwise stop. Do step 1 and step 2. If nothing was changed in step 2, do steps 3, 4, 5, 6, 7 , 8 and 9. If something was changed in  step 2, do step 9.
+</p>
+
+<p>
+Step 0: verb_exceptions
+</p>
+
+<DL><DD>
+    Search for some frequent irregular short verbs which wouldn’t have been found otherwise and give them a chosen stem.
+<BR><BR>
+<DL>
+    <DT><B><I>joon  &nbsp;  jood  &nbsp;  joob  &nbsp;  joote  &nbsp;  joome  &nbsp;  joovad</I></B>
+        <DD>replace by <B><I>joo</I></B>
+    <DT><B><I>jõin  &nbsp;  jõid  &nbsp;  jõi  &nbsp;  jõime  &nbsp;  jõite</I></B>
+        <DD>replace by <B><I>joo</I></B>
+    <DT><B><I>juuakse  &nbsp;  joodakse  &nbsp;  juua  &nbsp;  jooma  &nbsp;  joomata</I></B>
+        <DD>replace by <B><I>joo</I></B>
+    <DT><B><I>saan  &nbsp;  saad  &nbsp;  saab  &nbsp;  saate  &nbsp;  saame  &nbsp;  saavad</I></B>
+        <DD>replace by <B><I>saa</I></B>
+    <DT><B><I>saaksin  &nbsp;  saaksid  &nbsp;  saaks  &nbsp;  saaksite  &nbsp;  saaksime</I></B>
+        <DD>replace by <B><I>saa</I></B>
+    <DT><B><I>sain  &nbsp;  said  &nbsp;  sai  &nbsp;  saite  &nbsp;  saime</I></B>
+        <DD>replace by <B><I>saa</I></B>
+    <DT><B><I>saadakse  &nbsp;  saadi  &nbsp;  saama  &nbsp;  saada  &nbsp;  saamata</I></B>
+        <DD>replace by <B><I>saa</I></B>
+    <DT><B><I>viin  &nbsp;  viid  &nbsp;  viib  &nbsp;  viite  &nbsp;  viime  &nbsp;  viivad</I></B>
+        <DD>replace by <B><I>viima</I></B>
+    <DT><B><I>viisin  &nbsp;  viisite  &nbsp;  viisime</I></B>
+        <DD>replace by <B><I>viima</I></B>
+    <DT><B><I>viiakse  &nbsp;  viidi  &nbsp;  viima  &nbsp;  viia  &nbsp;  viimata</I></B>
+        <DD>replace by <B><I>viima</I></B>
+    <DT><B><I>keeksin  &nbsp;  keeks  &nbsp;  keeksid  &nbsp;  keeksime  &nbsp;  keeksite</I></B>
+        <DD>replace by <B><I>keesi</I></B>
+    <DT><B><I>keema  &nbsp;  keeta  &nbsp;  keedakse  &nbsp;  keemata</I></B>
+        <DD>replace by <B><I>keesi</I></B>
+    <DT><B><I>löön  &nbsp;  lööd  &nbsp;  lööb  &nbsp;  lööme  &nbsp;  lööte  &nbsp;  löövad</I></B>
+        <DD>replace by <B><I>löö</I></B>
+    <DT><B><I>lüüakse  &nbsp;  löödakse  &nbsp;  löödi  &nbsp;  lööma  &nbsp;  lüüa  &nbsp;  löömata</I></B>
+        <DD>replace by <B><I>löö</I></B>
+    <DT><B><I>lõin  &nbsp;  lõid  &nbsp;  lõi  &nbsp;  lõime  &nbsp;  lõite</I></B>
+        <DD>replace by <B><I>lõi</I></B>
+    <DT><B><I>loon  &nbsp;  lood  &nbsp;  loob  &nbsp;  loome  &nbsp;  loote &nbsp;  loovad</I></B>
+        <DD>replace by <B><I>loo</I></B>
+    <DT><B><I>looksin  &nbsp;  looksid  &nbsp;  looks  &nbsp;  looksime  &nbsp;  looksite</I></B>
+        <DD>replace by <B><I>loo</I></B>
+    <DT><B><I>luuakse  &nbsp;  loodi  &nbsp;  luua  &nbsp;  looma  &nbsp;  loomata</I></B>
+        <DD>replace by <B><I>loo</I></B>
+    <DT><B><I>käin  &nbsp;  käib  &nbsp;  käid  &nbsp;  käis  &nbsp;  käime  &nbsp;  käite  &nbsp;  käivad</I></B>
+        <DD>replace by <B><I>käisi</I></B>
+    <DT><B><I>käiksin  &nbsp;  käiks  &nbsp;  käiksid  &nbsp;  käiksime  &nbsp;  käiksite</I></B>
+        <DD>replace by <B><I>käisi</I></B>
+    <DT><B><I>käiakse  &nbsp;  käidi  &nbsp;  käia  &nbsp;  käima  &nbsp;  käimata</I></B>
+        <DD>replace by <B><I>käisi</I></B>
+    <DT><B><I>söön  &nbsp;  sööb  &nbsp;  sööd  &nbsp;  sööme  &nbsp;  sööte  &nbsp;  söövad</I></B>
+        <DD>replace by <B><I>söö</I></B>
+    <DT><B><I>sööksin  &nbsp;  sööks  &nbsp;  sööksid  &nbsp;  sööksime  &nbsp;  sööksite</I></B>
+        <DD>replace by <B><I>söö</I></B>
+    <DT><B><I>sõin  &nbsp;  sõi  &nbsp;  sõid  &nbsp;  sõime  &nbsp;  sõite</I></B>
+        <DD>replace by <B><I>söö</I></B>
+    <DT><B><I>süüakse  &nbsp;  söödakse  &nbsp;  söödi  &nbsp;  sööma  &nbsp;  söömata  &nbsp;  süüa</I></B>
+        <DD>replace by <B><I>söö</I></B>
+    <DT><B><I>toon  &nbsp;  tood  &nbsp;  toob  &nbsp;  toote  &nbsp;  toome  &nbsp;  toovad</I></B>
+        <DD>replace by <B><I>too</I></B>
+    <DT><B><I>tooksin  &nbsp;  tooksid  &nbsp;  tooks  &nbsp;  tooksite  &nbsp;  tooksime</I></B>
+        <DD>replace by <B><I>too</I></B>
+    <DT><B><I>tõin  &nbsp;  tõid  &nbsp;  tõi  &nbsp;  tõime  &nbsp;  tõite</I></B>
+        <DD>replace by <B><I>too</I></B>
+    <DT><B><I>tuuakse  &nbsp;  toodi  &nbsp;  tooma  &nbsp;  tuua  &nbsp;  toomata</I></B>
+        <DD>replace by <B><I>too</I></B>
+    <DT><B><I>võin  &nbsp;  võid  &nbsp;  võib  &nbsp;  võime  &nbsp;  võis  &nbsp;  võite  &nbsp;  võivad</I></B>
+        <DD>replace by <B><I>võisi</I></B>
+    <DT><B><I>võiksin  &nbsp;  võiksid  &nbsp;  võiks  &nbsp;  võiksime  &nbsp;  võiksite</I></B>
+        <DD>replace by <B><I>võisi</I></B>
+    <DT><B><I>võidakse  &nbsp;  võidi  &nbsp;  võida  &nbsp;  võima  &nbsp;  võimata</I></B>
+        <DD>replace by <B><I>võisi</I></B>
+    <DT><B><I>jään  &nbsp;  jääd  &nbsp;  jääb  &nbsp;  jääme  &nbsp;  jääte  &nbsp;  jäävad</I></B>
+        <DD>replace by <B><I>jääma</I></B>
+    <DT><B><I>jääksin  &nbsp;  jääksid  &nbsp;  jääks  &nbsp;  jääksime  &nbsp;  jääksite</I></B>
+        <DD>replace by <B><I>jääma</I></B>
+    <DT><B><I>jäime  &nbsp;  jäite  &nbsp;  jäin  &nbsp;  jäid  &nbsp;  jäi</I></B>
+        <DD>replace by <B><I>jääma</I></B>
+    <DT><B><I>müün  &nbsp;  müüd  &nbsp;  müüb  &nbsp;  müüs  &nbsp;  müüme  &nbsp;  müüte  &nbsp;  müüvad</I></B>
+        <DD>replace by <B><I>müüsi</I></B>
+    <DT><B><I>müüksin  &nbsp;  müüksid  &nbsp;  müüks  &nbsp;  müüksime  &nbsp;  müüksite</I></B>
+        <DD>replace by <B><I>müüsi</I></B>
+    <DT><B><I>müüakse  &nbsp;  müüdi  &nbsp;  müüa  &nbsp;  müüma  &nbsp;  müümata</I></B>
+        <DD>replace by <B><I>müüsi</I></B>
+    <DT><B><I>loeb  &nbsp;  loen  &nbsp;  loed  &nbsp;  loeme  &nbsp;  loete  &nbsp;  loevad</I></B>
+        <DD>replace by <B><I>luge</I></B>
+    <DT><B><I>loeks  &nbsp;  loeksin  &nbsp;  loeksid  &nbsp;  loeksime  &nbsp;  loeksite</I></B>
+        <DD>replace by <B><I>luge</I></B>
+    <DT><B><I>põen  &nbsp;  põeb  &nbsp;  põed  &nbsp;  põeme  &nbsp;  põete &nbsp;  põevad</I></B>
+        <DD>replace by <B><I>põde</I></B>
+    <DT><B><I>põeksin  &nbsp;  põeks  &nbsp;  põeksid  &nbsp;  põeksime  &nbsp;  põeksite</I></B>
+        <DD>replace by <B><I>põde</I></B>
+    <DT><B><I>laon  &nbsp;  laob  &nbsp;  laod  &nbsp;  laome  &nbsp;  laote  &nbsp;  laovad</I></B>
+        <DD>replace by <B><I>ladu</I></B>
+    <DT><B><I>laoksin  &nbsp;  laoks  &nbsp;  laoksid  &nbsp;  laoksime  &nbsp;  laoksite</I></B>
+        <DD>replace by <B><I>ladu</I></B>
+    <DT><B><I>teeksin  &nbsp;  teeks  &nbsp;  teeksid  &nbsp;  teeksime  &nbsp;  teeksite</I></B>
+        <DD>replace by <B><I>tegi</I></B>
+    <DT><B><I>teen  &nbsp;  teeb  &nbsp;  teed  &nbsp;  teeme  &nbsp;  teete  &nbsp;  teevad</I></B>
+        <DD>replace by <B><I>tegi</I></B>
+    <DT><B><I>tehakse  &nbsp;  tehti  &nbsp;  tegema  &nbsp;  tegemata  &nbsp;  teha</I></B>
+        <DD>replace by <B><I>tegi</I></B>
+    <DT><B><I>näen  &nbsp;  näeb  &nbsp;  näed  &nbsp;  näeme  &nbsp;  näete  &nbsp;  näevad</I></B>
+        <DD>replace by <B><I>nägi</I></B>
+    <DT><B><I>näeksin  &nbsp;  näeks  &nbsp;  näeksid  &nbsp;  näeksime  &nbsp;  näeksite</I></B>
+        <DD>replace by <B><I>nägi</I></B>
+    <DT><B><I>nähakse  &nbsp;  nähti  &nbsp;  näha  &nbsp;  nägema  &nbsp;  nägemata</I></B>
+        <DD>replace by <B><I>nägi</I></B>
+</DL>
+</DL>
+
+
+<p>
+Step 1: emphasis
+</p>
+
+<DL><DD>
+    Search for the longest among the following suffixes in <I>R1</I>, and perform the action indicated
+<BR><BR>
+<DL>
+        <DD>Test if there’s at least 4 letters before <I>R1</I> region. If so, continue this step
+    <DT><B><I>gi</I></B>
+        <DD>if preceded by <B><I>GI</I></B> and <B>not <I>LONGV</I></B>, delete
+    <DT><B><I>ki</I></B>
+        <DD>if preceded by <B>är</B>, replace it with <B>k</B>. If it wasn't replaced with <B>k</B> and is preceded by <B><I>KI</I></B>, delete
+</DL>
+</DL>
+
+<p>
+Step 2: verb
+</p>
+<DL><DD>
+    Search for the longest among the following suffixes in <I>R1</I>, and perform the
+    action indicated
+</p>
+
+<DL>
+    <DT><B><I>nuksin  &nbsp;  nuksime  &nbsp;  nuksid  &nbsp;  nuksite</I></B>
+		<DD>delete
+    <DT><B><I>ksin  &nbsp;  ksid  &nbsp;  ksime  &nbsp;  ksite</I></B>
+		<DD>delete
+    <DT><B><I>mata</I></B>
+		<DD>delete
+    <DT><B><I>takse  &nbsp;  dakse</I></B>
+		<DD>delete
+    <DT><B><I>taks  &nbsp;  daks</I></B>
+		<DD>delete
+    <DT><B><I>akse</I></B>
+		<DD>delete
+    <DT><B><I>sime</I></B>
+		<DD>delete
+    <DT><B><I>site</I></B>
+		<DD>delete
+    <DT><B><I>sin</I></B>
+		<DD>delete
+    <DT><B><I>me preceded by </I>V1</B>
+		<DD>delete
+    <DT><B><I>da preceded by </I>V1</B>
+		<DD>delete
+    <DT><B><I>n preceded by </I>V1</B>
+		<DD>delete
+    <DT><B><I>b preceded by </I>V1</B>
+		<DD>delete
+		
+		<DD>set is_verb
+</DL>
+</DL>
+
+<p>
+Step 3: special_noun_endings
+</p>
+
+<DL><DD>
+    Search for the longest among the following suffixes in <I>R1</I>, and perform the
+    action indicated
+<BR><BR>
+<DL>
+    <DT><B><I>lasse</I></B>
+		<DD>replace by <B><I>lase</I></B>
+    <DT><B><I>last</I></B>
+		<DD>replace by <B><I>lase</I></B>
+    <DT><B><I>lane</I></B>
+		<DD>replace by <B><I>lase</I></B>
+    <DT><B><I>lasi</I></B>
+		<DD>replace by <B><I>lase</I></B>
+    <DT><B><I>misse</I></B>
+		<DD>replace by <B><I>mise</I></B>
+    <DT><B><I>mist</I></B>
+		<DD>replace by <B><I>mise</I></B>
+    <DT><B><I>mine</I></B>
+		<DD>replace by <B><I>mise</I></B>
+    <DT><B><I>misi</I></B>
+		<DD>replace by <B><I>mise</I></B>
+    <DT><B><I>lisse</I></B>
+		<DD>replace by <B><I>lise</I></B>
+    <DT><B><I>list</I></B>
+		<DD>replace by <B><I>lise</I></B>
+    <DT><B><I>line</I></B>
+		<DD>replace by <B><I>lise</I></B>
+    <DT><B><I>lisi</I></B>
+		<DD>replace by <B><I>lise</I></B>
+</DL>
+</DL>
+
+<p>
+Step 4: case_ending
+</p>
+
+<DL><DD>
+    Search for the longest among the following suffixes in <I>R1</I>, and perform the
+    action indicated
+<BR><BR>
+<DL>
+    <DT><B><I>sse</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>st</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>le</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>lt</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>ga</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>ks</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>ta</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>t</I></B>
+    <DT><B><I>s</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>l</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+		<DD>delete</B>
+</DL>
+</DL>
+
+<p>
+Step 5: plural_three_first_cases
+</p>
+
+<DL><DD>
+    Search for the longest among the following suffixes in <I>R1</I>, and perform the
+    action indicated
+<BR><BR>
+<DL>
+    <DT><B><I>ikkude</I></B>
+		<DD>replace by <B><I>iku</I></B>
+    <DT><B><I>ikke</I></B>
+		<DD>replace by <B><I>iku</I></B>
+    <DT><B><I>ike</I></B>
+		<DD>replace by <B><I>iku</I></B>
+    <DT><B><I>sid</I></B>
+		<DD>if it is not preceded by <I>LONGV</I>, delete
+    <DT><B><I>te</I></B>
+		<DD>if it doesn't have at least 4 letters before it, replace by <B><I>t</I></B>.
+		<DD>Otherwise:
+		<DD>a) if it is preceded by <B><I>mis</I></B>, replace with <B><I>e</I></B>,
+		<DD>b) if it is preceded by <B><I>las</I></B>, replace with <B><I>e</I></B>,
+		<DD>c) if it is preceded by <B><I>lis</I></B>, replace with <B><I>e</I></B>,
+		<DD> if it wasn't replaced with <B><I>e</I></B> in stepst a)-c) and it isn't preceded by <B><I>t</I></B>, delete
+    <DT><B><I>de</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+		<DD>delete
+    <DT><B><I>d</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+		<DD>delete
+</DL>
+</DL>
+
+<p>
+Step 6:  degrees
+</p>
+
+<DL><DD>
+    Search for the longest among the following suffixes in <I>R1</I>, and perform the
+    action indicated
+<BR><BR>
+<DL>
+    <DT><B><I>mai</I> preceded by <I>RV</I></B>
+    <DT><B><I>ma</I></B>
+    <DT><B><I>m</I> preceded by <I>RV</I></B>
+		<DD>delete
+</DL>
+</DL>
+
+<p>
+Step 7:  i_plural
+</p>
+
+<DL><DD>
+    Search for the longest among the following suffixes in <I>R1</I>, and perform the
+    action indicated
+<BR><BR>
+<DL>
+    <DT><B><I>i</I> preceded by <I>RV</I></B>
+		<DD>delete
+</DL>
+</DL>
+
+<p>
+Step 7:  nu
+</p>
+
+<DL><DD>
+    Search for the longest among the following suffixes in <I>R1</I>, and perform the
+    action indicated
+<BR><BR>
+<DL>
+    <DT><B><I>nu</I></B>
+    <DT><B><I>tu</I></B>
+    <DT><B><I>du</I></B>
+    <DT><B><I>va</I></B>
+		<DD>delete
+</DL>
+</DL>
+
+<p>
+Step 9: remove_double_kpt
+</p>
+
+<DL><DD>
+	Undouble consonant if word ending is <B><I>kk</I>+V1</B>, <B><I>tt</I>+V1</B>, <B><I>pp</I>+V1</B>.  
+	<BR><BR>
+</DL>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('estonian') %]
+
+[% footer %]
