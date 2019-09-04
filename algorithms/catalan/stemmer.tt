@@ -1,55 +1,67 @@
-[% header('A Catalan stemming algorithm') %]
+[% header('Catalan stemming algorithm') %]
+
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="tarball.tgz"> Tar-gzipped file of the delivered resources</A>
-<li> <A HREF="https://ca.wikipedia.org/wiki/Gram%C3%A0tica_del_catal%C3%A0">Catalan grammar overview</A>
-<li> <A HREF="https://ca.wikipedia.org/wiki/Llista_de_sufixos">Catalan suffixes</A> (as referenced below)
-<li> <A HREF="https://ca.wikipedia.org/wiki/Flexi%C3%B3_verbal_del_catal%C3%A0">Catalan irregular verbs</A>
-(as referenced below)
+<li> <A HREF="/algorithms/romance.html"> Romance language stemmers</A>
+[% algorithm_lis('catalan', 'Catalan') %]
 </ul>
 
+<div style="background-color:lightpink">
 <p>
-A stemmer for Catalan was sent us by
-Israel Olalla of <A HREF="http://www.isoco.com">iSOCO</A> with this accompanying email:
+Here is a sample of Catalan vocabulary, with the stemmed forms that will
+be generated with this algorithm.
 </p>
 
-<blockquote><pre>
-From: Israel Olalla &lt;iolalla&#64;isoco.com&gt;
-Date: Mon, 26 Jul 2010 12:25:44 +0200
-Subject: Catalan Snowball Stemmer
+[% algorithm_vocab('catalan', [
+'abatuda',
+'abatut',
+'abatuts',
+'abbàssida',
+'abbàssides',
+'abbé',
+'abdalwadita',
+'abdalwadites',
+'abdicació',
+'abdicar',
+'abdicat',
+'abdicà'
+], [
+'gore',
+'gorg',
+'gorga',
+'gorges',
+'gorgs',
+'goril',
+'gorja',
+'gorra',
+'gorres',
+'gosa',
+'gosadia',
+'gosar',
+]) %]
+</div>
 
-Hi,
 
-Here you can find a valid version of the Catalan stemmer.
-
-It has been tested and reviewed using the dictionary included
-with freeling and works fine.
-
-To find the suffixes we've used, see:
-   http://wapedia.mobi/ca/Llista_de_sufixos
-
-And for irregular verbs:
-   http://ca.wikipedia.org/wiki/Flexi%C3%B3_verbal_del_catal%C3%A0
-
-We are open, to feedback and discussion about the linguistics,
-and about the snowball implementation i finally did.<br>
-
-Please distribute this freely, with a mention of the author and
-of the company iSOCO, that has let us share our work freely with the
-Snowball community.
-
-Kind Regards,
-
-Israel Olalla
-</pre></blockquote>
 
 <p>
-[For distribution, see the note for the <A HREF="../basque/stemmer.html">Basque stemmer</A>.
-Our thanks to <A HREF="http://www.isoco.com">iSOCO</A>!]
+Letters in Catalan include the following accented forms,
 </p>
 
-<h2>The algorithm in Snowball</h2>
+<DL><DD>
+    <B><I>á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  à  &nbsp;  è  &nbsp;  ì  &nbsp;  ò  &nbsp;  ù &nbsp; ü  &nbsp; ï</I></B>
+</DL>
+
+<p>
+The following letters are vowels:
+</p>
+
+<DL><DD>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  ü   &nbsp;  ï</I></B>
+</DL>
+
+
+<h2>The stemming algorithm</h2>
 
 [% highlight_file('catalan') %]
 

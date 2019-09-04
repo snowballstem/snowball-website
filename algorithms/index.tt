@@ -15,6 +15,7 @@ following languages:
     <ul>
         <li><A HREF="/algorithms/french/stemmer.html">French</A>
         <li><A HREF="/algorithms/spanish/stemmer.html">Spanish</A>
+        <li><A HREF="/algorithms/catalan/stemmer.html">Catalan</A>
         <li><A HREF="/algorithms/portuguese/stemmer.html">Portuguese</A>
         <li><A HREF="/algorithms/italian/stemmer.html">Italian</A>
 	<li><a href="/algorithms/romanian/stemmer.html">Romanian</a></li>
@@ -33,6 +34,7 @@ following languages:
     </ul>
     <li><A HREF="/algorithms/russian/stemmer.html">Russian</A>
     <li><A HREF="/algorithms/finnish/stemmer.html">Finnish</A>
+    <li><A HREF="/algorithms/basque/stemmer.html">Basque</A>
 </ul>
 
 <p>
