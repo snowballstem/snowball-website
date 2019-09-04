@@ -956,3 +956,4 @@ function BasqueStemmer() {
         return base.getCurrent();
     };
 };
+window['BasqueStemmer'] = BasqueStemmer;

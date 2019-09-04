@@ -1046,3 +1046,4 @@ function CatalanStemmer() {
         return base.getCurrent();
     };
 };
+window['CatalanStemmer'] = CatalanStemmer;
