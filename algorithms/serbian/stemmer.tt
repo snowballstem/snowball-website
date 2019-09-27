@@ -144,9 +144,13 @@ In Serbian language there are two dialects: <I>Ekavian</I> and <I>Ijekavian</I>.
 <PRE>
     - senka (Ekavian)
     - sjenka (Ijekavian)
-    - sijenka (Ijekavian)
 </PRE>
-have the same meaning (<I>Shadow</I>) but are spelled differently and because mostly used dialect in Serbia is <I>Ekavian</I> the next thing to do is to replace <I>Ijekavian</I> dialect with it.
+have the same meaning (<I>Shadow</I>), also words:
+<PRE>
+    - mleko (Ekavian)
+    - mlijeko (Ijekavian)
+</PRE>
+have the same meaning (<I>Milk</I>) but are spelled differently and because mostly used dialect in Serbia is <I>Ekavian</I> the next thing to do is to replace <I>Ijekavian</I> dialect with it.
 <BR>
 It is also common, although not valid, these days to use combination of letters "<I>d</I>" and "<I>j</I>" instead of a single letter "<I>đ</I>". For example people will more often write "<I>Novak Djoković</I>" instead of "<I>Novak Đoković</I>" and because this algorithm is developed with Information Retreival in mind they should be treated as the same terms.
 </p>
