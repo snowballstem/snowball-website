@@ -97,7 +97,10 @@ speedily, and in any case they reserve the right to post their answers on snowba
 
 <ul>
   <li>
-    <strong>Sep 2019</strong> - Serbian stemming algorithm contributed by Stefan Petkovic and Dragan Ivanovic.
+    <strong>Oct 2019</strong> - Serbian stemming algorithm contributed by Stefan Petkovic and Dragan Ivanovic.
+  </li>
+  <li>
+    <strong>Oct 2019</strong> - Snowball 2.0.0 released!
   </li>
   <li>
     <strong>Aug 2019</strong> - Basque and Catalan merged into the distribution.
