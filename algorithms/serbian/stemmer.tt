@@ -134,7 +134,7 @@ There is also letter - <B><I>r</I></B> - that isn't a vowel but it is sometimes 
 <B>1.</B> <I>Conversion of Cyrillic alphabet to Latin alphabet</I>
 <BR>
 <p>
-Serbian language use both <I>Cyrillic</I> and <I>Latin</I> alphabets, but Latin alphabet is what most people use these days on their PCs, Phones, etc. This algorithm is developed mostly for the purposes of the Information Retreival, therefor the first thing it does is to convert <I>Cyrillic</I> letters to <I>Latin</I>.
+Serbian language use both <I>Cyrillic</I> and <I>Latin</I> alphabets, but Latin alphabet is what most people use these days on their PCs, Phones, etc. This algorithm is developed mostly for the purposes of the Information Retrieval, therefore the first thing it does is to convert <I>Cyrillic</I> letters to <I>Latin</I>.
 </p>
 
 <B>2.</B> <I>Prelude</I>
@@ -152,7 +152,7 @@ have the same meaning (<I>Shadow</I>), also words:
 </PRE>
 have the same meaning (<I>Milk</I>) but are spelled differently and because mostly used dialect in Serbia is <I>Ekavian</I> the next thing to do is to replace <I>Ijekavian</I> dialect with it.
 <BR>
-It is also common, although not valid, these days to use combination of letters "<I>d</I>" and "<I>j</I>" instead of a single letter "<I>đ</I>". For example people will more often write "<I>Novak Djoković</I>" instead of "<I>Novak Đoković</I>" and because this algorithm is developed with Information Retreival in mind they should be treated as the same terms.
+It is also common, although not valid, these days to use combination of letters "<I>d</I>" and "<I>j</I>" instead of a single letter "<I>đ</I>". For example people will more often write "<I>Novak Djoković</I>" instead of "<I>Novak Đoković</I>" and because this algorithm is developed with Information Retrieval in mind they should be treated as the same terms.
 </p>
 
 <B>3.</B> <I>Mark Regions</I>
@@ -167,7 +167,7 @@ It is also common, although not valid, these days to use combination of letters 
 <BR>
 In Serbian language there are some words in which "<I>r</I>" letter is used for syllabification and in such words vowels can appear at the very end - for example word "<I>grmlje</I>".
 <BR>
-So before algorithm decide what will <I>R</I>1 be, it needs to look if and where "r" letter occure and where is the first vowel. If it finds "<I>r</I>" that occured
+So before algorithm decide what will <I>R</I>1 be, it needs to look if and where "r" letter occurs and where is the first vowel. If it finds "<I>r</I>" that occurred
 before the first vowel and there is at least one letter between them this means that "<I>r</I>" is used for syllabification and <I>R</I>1 is <B>2)</B>, otherwise <I>R</I>1 is <B>1</B>).
 <BR>
 For example: 
@@ -209,4 +209,3 @@ There are two steps for stemming, first one contains most of the rules and is th
 [% highlight_file('serbian') %]
 
 [% footer %]
-
