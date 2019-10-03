@@ -1,0 +1,272 @@
+[% header('Serbian stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('serbian', 'Serbian') %]
+</ul>
+
+<div style="background-color:lightpink">
+
+<p>
+Here is a sample of vocabulary, with the stemmed forms that will
+be generated with the algorithm.
+</p>
+
+[% algorithm_vocab('serbian', [
+'ambasade',
+'ambasadi',
+'abdominalna',
+'abdominalno',
+'abdominalnih',
+'abdominalnim',
+'abdominalnog',
+'abdominalnoj',
+'abdominalnom',
+'abdominalnu',
+'abeceda',
+'abecede',
+'abecedi',
+'abecedni',
+'abecednih',
+'abecednim',
+'abecedno',
+'abecednog',
+'abecednom',
+'abecedom',
+'abecedu',
+'abecendom',
+'ablendovanje',
+'ablenduje',
+'ablenduju',
+'ablendujući',
+'abnormalan',
+'abnormalije',
+'abnormalijom',
+'abnormalna',
+'abnormalne',
+'abnormalni',
+'abnormalnih',
+'abnormalnim',
+'abnormalno',
+'abnormalnog',
+'abnormalnom',
+'abnormalnost',
+'abnormalnosti',
+'abnormalnostima',
+'abnormalnu',
+], [
+'obustavila',
+'obustavile',
+'obustavili',
+'obustavilo',
+'obustavio',
+'ocenjivala',
+'ocenjivali',
+'ocenjivan',
+'ocenjivana',
+'ocenjivane',
+'ocenjivani',
+'ocenjivano',
+'ocenjivanja',
+'ocenjivanje',
+'ocenjivanju',
+'ocenjivao',
+'ocenjivati',
+'ocenjuje',
+'ocenjujem',
+'ocenjujemo',
+'ocenjuješ',
+'ocenjujete',
+'ocenjuju',
+'ocenjujući',
+'očajan',
+'očajna',
+'očajne',
+'očajni',
+'očajno',
+'padobrana',
+'padobranaca',
+'padobranci',
+'padobrancima',
+'padobranom',
+'padobranskim',
+'padobransku',
+'padobranu',
+'paganska',
+'paganske',
+'paganski',
+'paganskih',
+]) %]
+</div>
+
+<h2>The stemming algorithm</h2>
+
+<p>
+The Serbian language is a Slavic language (Indo-European) of the South Slavic
+subgroup. It is highly inflected and uses similar rules for morphological
+derivation and flexion as other Slavic languages, especially ones derived from
+the Serbo-Croatian language used in the former Yugoslavia. Because of this
+highly inflected characteristic a stemmer for Serbian language will have many
+more rules then stemmers for less inflected languages.
+</p>
+
+<p>
+Serbian Stemmer described in this document is based on the <a
+href="http://nlp.ffzg.hr/resources/tools/stemmer-for-croatian">Croatian
+Stemmer</a> which is published under the GNU Lesser General Public License.
+Mark Regions, Morphological Changes (<i>Step_1</i>) and Stemming
+(<i>Step_2</i>) routines are based on the Croatian Stemming Algorithm. In
+addition, some of the existing rules for Morphological Changes and Stemming
+(<i>Step_1 and Step_2 among lists</i>) have been modified and new rules have
+been added for the needs of the Serbian Stemmer.
+</p>
+
+<p>
+Latin alphabet in Serbian includes the following letters with diacritics:
+</p>
+
+<dl><dd>
+    <b><i>č &nbsp; ć &nbsp; đ &nbsp; š &nbsp; ž</i></b>
+</dl>
+
+<p>
+The following letters are vowels:
+</p>
+
+<dl><dd>
+    <b><i>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u</i></b>
+</dl>
+
+<p>
+There is also letter - <b><i>r</i></b> - that isn't a vowel but it is sometimes used for syllabification.
+</p>
+
+<h3>Main Routines of Serbian Stemming Algorithm are:</h3>
+
+<ol>
+<li><i>Conversion of Cyrillic alphabet to Latin alphabet</i>
+<p>
+The Serbian language uses both <i>Cyrillic</i> and <i>Latin</i> alphabets, but
+these days most people use the Latin alphabet on their PCs, Phones, etc. This
+algorithm is developed mostly for the purposes of the Information Retrieval,
+therefore the first thing it does is to convert <i>Cyrillic</i> letters to
+<i>Latin</i>.
+</p>
+</li>
+
+<li><i>Prelude</i>
+<p>
+In Serbian language there are two dialects: <i>Ekavian</i> and
+<i>Ijekavian</i>. For example words:
+<ul>
+<li> <i>senka</i> (Ekavian)
+<li> <i>sjenka</i> (Ijekavian)
+</ul>
+have the same meaning (<i>Shadow</i>), also words:
+<ul>
+<li> <i>mleko</i> (Ekavian)
+<li> <i>mlijeko</i> (Ijekavian)
+</ul>
+have the same meaning (<i>Milk</i>) but are spelled differently and because
+mostly used dialect in Serbia is <i>Ekavian</i> the next thing to do is to
+replace <i>Ijekavian</i> dialect with it.
+</p>
+
+<p>
+These days it is also common, although not valid, to use combination of letters
+"<i>d</i>" and "<i>j</i>" instead of a single letter "<i>đ</i>". For example
+people will more often write "<i>Novak Djoković</i>" instead of "<i>Novak
+Đoković</i>" and because this algorithm is developed with Information Retrieval
+in mind they should be treated as the same terms.
+</p>
+</li>
+<li><i>Mark Regions</i>
+<p>
+<i>R</i>1 is either:
+<ol>
+<li> a region after the first vowel if there are at least two letters outside
+of it, otherwise it is a region after the first non-vowel following a vowel,
+<li> a region after the first "<i>r</i>" if there are at least two letters
+outside of it, otherwise it is a region after the first non-"<i>r</i>"
+following an "<i>r</i>".
+</ol>
+<p>
+In Serbian language there are some words in which "<i>r</i>" letter is used for
+syllabification and in such words vowels can appear at the very end - for
+example word "<i>grmlje</i>".
+</p>
+
+<p>
+So before algorithm decide what will <i>R</i>1 be, it needs to look if and
+where "r" letter occurs and where is the first vowel. If it finds "<i>r</i>"
+that occurred before the first vowel and there is at least one letter between
+them this means that "<i>r</i>" is used for syllabification and <i>R</i>1 is
+<b>2)</b>, otherwise <i>R</i>1 is <b>1</b>).
+</p>
+
+<p>
+For example:
+<ul>
+<li> "<i>tr|go|va|čki</i>" - in this word "<i>tr</i>" is the first syllable
+     which means that "<i>r</i>" is used for syllabification and <i>R</i>1 =
+     "<i>govački</i>"
+
+<li> "<i>tre|ne|rka</i>" - in this word there is an "<i>r</i>" before the
+     first vowel but there isn't any letters between them which means that
+     "<i>r</i>" isn't used for syllabification and <i>R</i>1 = "<i>nerka</i>".
+
+<li> "<i>r|ta|njski</i>" - in this word "<i>r</i>" is the first syllable but if
+     we use "<i>tanjski</i>" as <i>R</i>1 it won't left enough letters outside
+     of it, so we need to shrink it down to a region after the first
+     non-"<i>r</i>" following an "<i>r</i>" which is in this case =
+     "<i>anjski</i>".
+
+<li> "<i>a|vi|on</i>" - similar to the previous case but with a vowel instead
+     of an "<i>r</i>".
+</ul>
+<i>R</i>2 isn't really a region, it is more a test routine that is used to
+check for letters with diacritics and is used later to apply certain rules in
+stemming. It is used because people these days tend to use letters without
+diacritics (instead of the proper ones with diacritics) and we need to take
+this into account also.
+</p>
+</li>
+
+<li><i>Morphological Changes</i>
+<p>
+Very last thing to do, before any stemming is done, are morphological changes.
+These changes are applied so we get the same stems for different forms of a
+word.
+</p>
+
+<p>
+For example words:
+<ul>
+<li> "<i>pravilan</i>" (Masculine, Singular)
+<li> "<i>pravilna</i>" (Feminine, Singular)
+<li> "<i>pravilno</i>" (Neuter, Singular)
+</ul>
+should have the same stem. To get that result the algorithm will first change
+word "<i>pravilan</i>" (Masculine, Singular) to "<i>pravilni</i>" (Masculine,
+Plural) and after that the word will be stemmed.
+</p>
+</li>
+
+<li><i>Stemming</i>
+<p>
+There are two steps for stemming.  The first contains most of the rules and is
+the primary stemming routine and the second one will try to stem the word only
+if the first one failed to do so - whether it was because there were no rules
+that could be applied or the rule overlapped the <i>R</i>1 region. The second
+step contains a few rules that will do proper stemming for most words that
+couldn't be stemmed using the rules from the first step.
+</p>
+</li>
+</ol>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('serbian') %]
+
+[% footer %]
