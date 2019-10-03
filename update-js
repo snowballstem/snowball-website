@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my $js_path_prefix = 'js/';
+my $coderepo_path_prefix = '../snowball/';
+
+my $jsdir;
+opendir $jsdir, "$coderepo_path_prefix/js_out" or die $!;
+while (readdir($jsdir)) {
+    next unless /-stemmer\.js$/;
+    my $in = "$coderepo_path_prefix/js_out/$_";
+    my $out = $js_path_prefix . $_;
+    open IN, '<', $in or die $!;
+    open OUT, '>', $out or die $!;
+    my $name;
+    while (<IN>) {
+	if (s/^(\w+Stemmer) = function\(\)/function $1()/) {
+	    $name = $1;
+	}
+	print OUT;
+    }
+    print OUT "window['$name'] = $name;\n";
+    close IN;
+    close OUT;
+}
