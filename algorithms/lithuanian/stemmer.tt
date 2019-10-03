@@ -1,0 +1,22 @@
+[% header('Lithuanian stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('lithuanian', 'Lithuanian') %]
+</ul>
+
+<p>
+This algorithm was contributed by Dainius Jocas.
+</p>
+
+<p>
+It's intended domain of use is information retrieval, and so handling of nouns
+is considered more important than that of verbs, adjectives, etc.
+</p>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('lithuanian') %]
+
+[% footer %]
