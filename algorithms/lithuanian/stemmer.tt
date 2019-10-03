@@ -11,7 +11,7 @@ This algorithm was contributed by Dainius Jocas.
 </p>
 
 <p>
-It's intended domain of use is information retrieval, and so handling of nouns
+Its intended domain of use is information retrieval, and so handling of nouns
 is considered more important than that of verbs, adjectives, etc.
 </p>
 
