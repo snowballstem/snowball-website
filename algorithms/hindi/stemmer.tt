@@ -1,0 +1,83 @@
+[% header('Hindi stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('hindi', 'Hindi') %]
+<li> <a href="http://www.kbcs.in/downloads/papers/StmmerHindi.pdf">"A
+Lightweight Stemmer for Hindi", A. Ramanathan and D. Rao (2003)</a>
+</ul>
+
+<p>
+This is an implementation of the "Lightweight Stemmer for Hindi" described in:
+</p>
+
+<blockquote>
+    A. Ramanathan and D. Rao (2003) A Lightweight Stemmer for Hindi
+</blockquote>
+
+<p>
+The major difference in our implementation is that rather than transliterating
+to the Latin alphabet we instead work in the original Devanagari script.  We
+have modified the suffixes in the list by converting them back to Devanagari
+like so:
+</p>
+
+<ul>
+<li> within the suffixes, "<i>a</i>" after a consonant is dropped since
+consonants have an implicit "<i>a</i>".
+<li> within the suffixes, a vowel other than "<i>a</i>" after a consonant
+is a dependent vowel (vowel sign); a vowel (including "<i>a</i>") after a
+non-consonant is an independent vowel.
+<li> to allow for the vowel at the start of each suffix being dependent or
+independent, we include each suffix twice.  For the dependent version, a
+leading "<i>a</i>" is dropped and we check that the suffix is preceded by a
+consonant (which will have an implicit "<i>a</i>").
+</ul>
+
+<p>
+The transliterations of our stems would end with "<i>a</i>" when our
+stems end in a consonant, so we also include the character <i>virama</i> in the
+list of suffixes to remove (this affects 222 words from our sample vocabulary).
+</p>
+
+<p>
+Aside from this, our implementation attempts to be faithful to the algorithm
+described in the paper, though in a few places we've had to resolve ambiguities
+in the paper:
+</p>
+
+<ul>
+
+<li>
+We assume that the whole word doesn't count as a valid suffix to remove, so we
+remove the longest suffix from the list <b>which leaves at least one character</b>.
+The paper doesn't seem to clearly state either way which is intended, but producing
+an empty stem seems unhelpful in general.  If we instead allowed an empty stem
+to be produced this would result in a different stem for 47 words out of the
+65,140 in our sample vocabulary from Hindi wikipedia.
+</li>
+
+<li>
+We add <i>a</i> to the list of suffixes to remove in figure 3.  This needed for
+the example given right at the end of section 5 to work (conflating <i>BarawIya</i>
+and <i>BarawIyawA</i>, and which §3.1 a.v strongly suggests should be in the list:
+<i>"Thus, the following suffix deletions (longest possible match) are required
+to reduce inflected forms of masculine nouns to a common stem: a A i [...]"</i>
+Adding <i>a</i> only affect 2 words out of the 65,140 in our sample vocabulary.
+</li>
+
+<li>
+We've also assumed that <i>Mh</i> in the suffix list isn't meant to match
+<i>M</i> followed by <i>h</i>.  Only one of the 65,140 words in the
+sample vocabulary stems differently due to this (and that word
+seems to be a typo).
+</li>
+
+</ul>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('hindi') %]
+
+[% footer %]
