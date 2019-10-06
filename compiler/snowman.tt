@@ -32,10 +32,10 @@ ASCII and 16-bit Unicode are supported.
 <h2>2 Names</h2>
 
 <p>
-A name in Snowball is a letter followed by zero or more letters, digits
-and underlines. A name can be of type <I>string</I>, <I>integer</I>, <I>boolean</I>,
-<I>routine</I>, <I>external</I> or <I>grouping</I>. All names must be declared. A
-declaration has the form
+A name in Snowball starts with an ASCII letter, followed by zero or more ASCII
+letters, digits and underscores. A name can be of type <I>string</I>,
+<I>integer</I>, <I>boolean</I>, <I>routine</I>, <I>external</I> or
+<I>grouping</I>. All names must be declared. A declaration has the form
 </p>
 
 <PRE>
@@ -81,10 +81,10 @@ has to provide an external interface.  When generating C code, the
 </p>
 
 <p>
-External names which differ only in case will cause a problem for languages
-with case-insensitive identifiers (such as Pascal).  This issue is also avoided
-for internal symbols in such languages by encoding case difference via an added
-prefix.
+Names in Snowball are case-sensitive, but external names which differ only in
+case will cause a problem for languages with case-insensitive identifiers (such
+as Pascal).  This issue is avoided for internal symbols in such languages by
+encoding case difference via an added prefix.
 </p>
 
 <p>
@@ -98,7 +98,7 @@ a single external named <code>stem</code>, which should be safe.
 <h3>3.1 Integer Literals</h3>
 
 <p>
-A literal integer is a digit sequence, and is always interpreted as
+A literal integer is an ASCII digit sequence, and is always interpreted as
 decimal.
 </p>
 
