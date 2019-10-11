@@ -47,6 +47,11 @@ wrapped by <a href="http://search.cpan.org/perldoc?Lingua%3A%3AStopWords"
 This is a PHP interface, developed by Jay Smith.
 </p>
 
+<h3><a href="https://git.sr.ht/~amz3/guile-snowball-stemmer">guile-snowball-stemmer</a></h3>
+<p>
+Guile bindings written by Amirouche Boubekki.
+</p>
+
 <hr>
 
 <h2>Reimplementations of the Stemming Algorithms</h2>
