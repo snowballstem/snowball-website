@@ -847,12 +847,14 @@ It is these numeric values of <B><I>c</I></B> and <B><I>l</I></B> which are acce
 <DL>
 <DT>[% highlight_inline("setmark X") %]
     <DD>sets &nbsp;<code>X</code>&nbsp; to the current value of <B><I>c</I></B>, where &nbsp;<code>X</code>&nbsp; is an integer variable.
+    It's equivalent to: [% highlight_inline("$X = cursor") %]
 
 <DT>[% highlight_inline("tomark AE") %]
     <DD>moves <B><I>c</I></B> forward to the position given by AE,
 
 <DT>[% highlight_inline("atmark AE") %]
     <DD>tests if <B><I>c</I></B> is at position AE (<B><I>t</I></B> or <B><I>f</I></B> signal).
+    It's equivalent to: [% highlight_inline("$(cursor == AE)") %]
 </DL>
 
 <p>
