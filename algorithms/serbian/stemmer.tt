@@ -192,6 +192,13 @@ outside of it, otherwise it is a region after the first non-"<i>r</i>"
 following an "<i>r</i>".
 </ol>
 <p>
+Note that every suffix which the stemmer can remove contains at least one
+vowel, so in the degenerate case of an input which contains no vowels there
+is nothing to be done.  The Snowball implementation of this stemmer sets
+<i>R</i>1 to be a zero length region at the end of the word if the input
+contains no vowels and no "<i>r</i>".
+</p>
+<p>
 In Serbian language there are some words in which "<i>r</i>" letter is used for
 syllabification and in such words vowels can appear at the very end - for
 example word "<i>grmlje</i>".
