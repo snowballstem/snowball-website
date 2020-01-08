@@ -150,6 +150,11 @@ OpenFTS is an advanced PostgreSQL-based search engine, which supports using
 Snowball for stemming.
 </p>
 
+<h3><a href="https://manticoresearch.com/">Manticore Search</a></h3>
+<p>
+Manticore Search in an open source search server which supports stemming using Snowball.
+</p>
+
 <h2>Snowball support in other tools</h2>
 
 <p>
