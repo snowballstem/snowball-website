@@ -1,0 +1,216 @@
+[% header('Yiddish stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <A HREF="/algorithms/germanic.html"> Germanic language stemmers</A></li>
+[% algorithm_lis('yiddish', 'Yiddish') %]
+</ul>
+
+<div style="background-color:lightpink">
+
+<p>
+Here is a sample of Yiddish vocabulary, with the stemmed forms that will
+be generated with this algorithm.
+</p>
+
+[% algorithm_vocab('yiddish', [
+'בענטש',
+'בענטשונג',
+'בענטשונגען',
+'בענטשט',
+'בענטשליכט',
+'בענטשן',
+'בענטשנדיק',
+'בענטשנדיקן',
+'בענטשנדיקס',
+'בענטשנדיקע',
+'בענטשנדיקער',
+'בענטשסט',
+'בענטשסטו',
+'בענעפֿיט',
+'בענעפֿיטן',
+'בענק',
+'בענקאַרט',
+'בענקאַרטן',
+'בענקט',
+'בענקל',
+'בענקלעך',
+'בענקנדיקערהײט',
+'בענקסט',
+'בענקסטו',
+'בענקעלע',
+'בענקעלעך',
+'בענקען',
+'בענקענדיק',
+'בענקענדיקן',
+'בענקענדיקס',
+'בענקענדיקע',
+'בענקענדיקער',
+'בענקעניש',
+], [
+'כאַראַקטער',
+'כאַראַקטעריזיר',
+'כאַראַקטעריזירט',
+'כאַראַקטעריזירטן',
+'כאַראַקטעריזירטס',
+'כאַראַקטעריזירטע',
+'כאַראַקטעריזירטער',
+'כאַראַקטעריזירן',
+'כאַראַקטעריזירנדיק',
+'כאַראַקטעריזירנדיקן',
+'כאַראַקטעריזירנדיקס',
+'כאַראַקטעריזירנדיקע',
+'כאַראַקטעריזירנדיקער',
+'כאַראַקטעריזירסט',
+'כאַראַקטעריזירסטו',
+'כאַראַקטעריסטיק',
+'כאַראַקטעריסטיקן',
+'כאַראַקטעריסטיש',
+'כאַראַקטעריסטישן',
+'כאַראַקטעריסטישע',
+'כאַראַקטעריסטישעס',
+'כאַראַקטעריסטישער',
+'כאַראַקטעריש',
+'כאַראַקטערישן',
+'כאַראַקטערישע',
+'כאַראַקטערישעס',
+'כאַראַקטערישער',
+'כאַראַקטערן',
+'כאַראַקטערס',
+'כאַרט',
+'כאַרטן',
+'כאַרטעס',
+'כאַריזמאַטיש',
+'כאַריזמאַטישן',
+'כאַריזמאַטישע',
+'כאַריזמאַטישעס',
+'כאַריזמאַטישער',
+]) %]
+</div>
+
+<h2>The stemming algorithm</h2>
+
+<h3>Groupings</h3>
+<p>We setup the following groupings:</p>
+
+<dl>
+  <dt>Niked</dt>
+  <dd>All niked used in Yiddish and Hebrew</dd>
+  <dt>AlefBeys</dt>
+  <dd>All actual letters in the Hebrew alphabet</dd>
+  <dt>Vowel</dt>
+  <dd>א ו י ע ױ ײ</dd>
+  <dt>Consonant</dt>
+  <dd>AlefBeys - Vowel</dd>
+  <dt>Hebrew consonants</dt>
+  <dd>
+    Consonant - ש.
+    We use hebrew consonants to detect three-letter hebraic roots.
+    We exclude ש to exclude Yiddish three-letter sequences like שפר.
+  </dd>
+</dl>
+
+<h3>Pre-processing</h3>
+<ul>
+  <li>We replace two ו, where the second one is not וּ, with װ.</li>
+  <li>We replace ו י, where the י is not a יִ, with ױ.</li>
+  <li>We replace two י, where the second one is not a יִ, with ײ.</li>
+  <li>We replace final forms (e.g. ץ) with their normal form (e.g. צ).</li>
+  <li>We remove all niked.</li>
+</ul>
+
+<h3>Marking regions</h3>
+<p>
+  Only a single marker is used: P1.
+  To begin with, this is set at the end of the word.
+</p>
+
+<ul>
+  <li>If the word begins with גע, it is replaced with "GE" and the cursor is advanced.</li>
+  <li>
+    Next, if the word begins with any verbal prefix, the cursor is advanced past this prefix.
+    Prefixes include (niked added for clarity, not included in algorithm):
+  </li>
+  <ul>
+    <li>Free stressed: אַדורכ, דורכ, אַהינ, אַהער, אַװעק, מיט, אַנטקעגנ, אַקעגנ, אַנידער, אַרױס, אַרױפ, אַרומ, אַרײנ, אַרונטער, אַריבער, נאָכ, פאַרבײַ, אַהײמ, אַפיר, פאַרױס, פונאַנדער, צוזאַמענ, צונױפ, צוריק.</li>
+    <li>Stressed: אױס, אױפ, אומ, אונטער, איבער, אײֲנ, אָנ, אָפּ, בײַ, פאָר, צו.</li>
+    <li>Unstressed: אַנט, באַ, דער, צע</li>
+  </ul>
+  <li>If the verbal prefix is followed by גע, it is replaced with "GE" and the cursor is advanced (e.g. אַװעקגעגאַנגען).</li>
+  <li>If the verbal prefix is followed by צו, it is replaced with "TSU" and the cursor is advanced (e.g. אַרומצוגײן).</li>
+</ul>
+
+<p>We are now at the start of the main portion of the word (past any verbal prefix and past participle marker).</p>
+
+<ul>
+  <li>If the following Hebrew roots with ש are found: משפּט, כּשר, שמד, the cursor is advanced past them, and P1 is marked.</li>
+  <li>Otherwise, if there are three Hebrew consonants (see groupings), the cursor is advanced past them, and P1 is marked.</li>
+  <li>Otherwise, the cursor is advanced to the first vowel, and then up to the first non-vowel, minus 1, and P1 is marked.</li>
+  <li>If P1 is not at least 3 letters beyond the main portion, it is advanced past the 3rd letter.</li>
+</ul>
+
+<h3>Backwards mode</h3>
+
+<p>Unless otherwise stated, all deletes ensure we are beyond P1.</p>
+<p>In each pass, at the first level of bullets, the longest matching suffix always wins.</p>
+
+<p>First pass:</p>
+<ul>
+  <li>Delete plural/adjective endings: ער, ערס, ן, ס, ען, נס, ענערס, ענס, עס.</li>
+  <ul>
+    <li>Exceptions: יע is not deleted (e.g. אגיטאַציע), יעס => יע</li>
+  </ul>
+  <li>Delete plural/adjective endings: ענעם, ענער, ענע, ענס</li>
+  <ul>
+    <li>If preceded by an irregular past participle ending in ן, replace it with the stem, e.g. געגאַנגען becomes גײ.</li>
+  </ul>
+  <li>Delete the verb/past participle ending: ט.</li>
+  <ul>
+    <li>Because of the above, also delete noun/adjectives ending in טן, טע, טער, טס so that they stem identically to the equivalent noun with the ט.</li>
+    <li>Similarly for past participles: -tns, -tene, -tenem, -tener טנס, טענע, טענעם, טענער</li>
+    <li>If the ט was before P1, we try to perform the same action while leaving the ט in place</li>
+    <li>At the same time, if preceded by an irregular past participles ending in ט, replace it with the stem, e.g. געבראַכט becomes ברענג.</li>
+  </ul>
+  <li>Anything ending with גײן is transformed to גײ.</li>
+  <li>Anything ending in an irregular past participle is corrected to the stem.</li>
+  <li>Delete noun endings: ונג, הײט, קײט, יקײט, שאַפֿט.</li>
+  <li>Delete noun endings: יזם, יזמס.</li>
+  <li>Delete Hebraic plural ending: ים</li>
+  <li>Replace the Hebraic plural ending ות with ה.</li>
+  <li>Delete the diminutive endings: עלעך, עלע, לעך, עלעס, עלען.</li>
+  <li>Delete the noun endings: יסט, יסטן.</li>
+  <ul>
+    <li>Exceptions to the above: words ending in גיסט or שיסט.</li>
+  </ul>
+  <li>Delete the verb ending סטו.</li>
+  <li>Delete the uperlative endings: סטער, סטע, סטן.</li>
+  <li>Delete the verb ending: סט.</li>
+</ul>
+
+<p>Second pass - after the first pass, do the following to the remaining stem:</p>
+<ul>
+  <li>Delete noun endings: ונג, הײט, קײט, יקײט, שאַפֿט.</li>
+  <li>Delete the diminutive ending ל if it follows a consonant.</li>
+</ul>
+
+<p>Third pass - after the second pass, do the following to the remaining stem:</p>
+<ul>
+  <li>Delete the adjective endings יק, יג, ניק, יש, for words like אָפהענגיקײט.</li>
+  <ul>
+    <li>Exceptions to the above: words ending in גליק or בליק.</li>
+  </ul>
+  <li>Delete the present participle ending: נדיק</li>
+  <li>
+    Delete the present participle ending ענדיק if it follows נג, נק, נ, מ, a consonant and ל or a vowel.
+    Otherwise, delete just the נדיק portion.
+  </li>
+</ul>
+
+Finally, all remaining GE and TSU are deleted.
+
+<h2>The same algorithm in Snowball</h2>
+
+[% highlight_file('yiddish') %]
+
+[% footer %]
