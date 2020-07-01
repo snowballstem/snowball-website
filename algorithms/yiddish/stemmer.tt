@@ -98,17 +98,16 @@ be generated with this algorithm.
   <dt>Niked</dt>
   <dd>All niked used in Yiddish and Hebrew</dd>
   <dt>AlefBeys</dt>
-  <dd>All actual letters in the Hebrew alphabet</dd>
+  <dd>
+    All actual letters in the Hebrew alphabet, including:
+    <li>The alphabet itself: א ב ג ד ה ו ז ח ט י כ ל מ נ ס ע פ צ ק ר ש ת</li>
+    <li>Final consonants: ך ם ן ף ץ</li>
+    <li>Ligatures: װ ױ ײ</li>
+  </dd>
   <dt>Vowel</dt>
   <dd>א ו י ע ױ ײ</dd>
   <dt>Consonant</dt>
   <dd>AlefBeys - Vowel</dd>
-  <dt>Hebrew consonants</dt>
-  <dd>
-    Consonant - ש.
-    We use hebrew consonants to detect three-letter hebraic roots.
-    We exclude ש to exclude Yiddish three-letter sequences like שפר.
-  </dd>
 </dl>
 
 <h3>Pre-processing</h3>
@@ -144,8 +143,8 @@ be generated with this algorithm.
 <p>We are now at the start of the main portion of the word (past any verbal prefix and past participle marker).</p>
 
 <ul>
-  <li>If the following Hebrew roots with ש are found: משפּט, כּשר, שמד, the cursor is advanced past them, and P1 is marked.</li>
-  <li>Otherwise, if there are three Hebrew consonants (see groupings), the cursor is advanced past them, and P1 is marked.</li>
+  <li>The following valid Yiddish three-consonant sequences are skipped: שפר, שטר, שטש, דזש.</li>
+  <li>If there is a sequence of three consonants, the cursor is advanced past them, and P1 is marked.</li>
   <li>Otherwise, the cursor is advanced to the first vowel, and then up to the first non-vowel, minus 1, and P1 is marked.</li>
   <li>If P1 is not at least 3 letters beyond the main portion, it is advanced past the 3rd letter.</li>
 </ul>
@@ -159,7 +158,7 @@ be generated with this algorithm.
 <ul>
   <li>Delete plural/adjective endings: ער, ערס, ן, ס, ען, נס, ענערס, ענס, עס.</li>
   <ul>
-    <li>Exceptions: יע is not deleted (e.g. אגיטאַציע), יעס => יע</li>
+    <li>Exceptions: יע is not deleted (e.g. אגיטאַציע), יעס becomes יע</li>
   </ul>
   <li>Delete plural/adjective endings: ענעם, ענער, ענע, ענס</li>
   <ul>
@@ -196,7 +195,7 @@ be generated with this algorithm.
 
 <p>Third pass - after the second pass, do the following to the remaining stem:</p>
 <ul>
-  <li>Delete the adjective endings יק, יג, ניק, יש, for words like אָפהענגיקײט.</li>
+  <li>Delete the adjective endings יק, יג, ניק, דיק, יש, for words like אָפהענגיקײט.</li>
   <ul>
     <li>Exceptions to the above: words ending in גליק or בליק.</li>
   </ul>
