@@ -12,14 +12,14 @@ Try the
 stemming algorithm:
 </p>
 <table border='0'><tr><td width="50%">
-<textarea id="words" rows=1 cols=50 placeholder="Enter some English text" oninput="stem_demo(this);">
+<textarea id="words" rows="1" cols="50" placeholder="Enter some English text" oninput="stem_demo(this);">
 </textarea>
 </td>
 <td id="results" class="license" style='border:1px;border-style:solid;'></td>
 </tr></table>
 
 [% FOREACH js IN stemmer_js_files %]
-<script language=javascript src="[% js %]"></script>
+<script language="javascript" src="[% js %]"></script>
 [% END %]
 <script>
 var old_words;
