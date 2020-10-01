@@ -4,8 +4,16 @@
   <div class="col-md-8">
 
 <p>
-<strong>Snowball</strong> is a small string processing language designed for creating stemming
-algorithms for use in Information Retrieval. This site describes Snowball, and presents
+<strong>Snowball</strong> is a small string processing language for creating
+stemming algorithms for use in Information Retrieval. It was originally designed
+and built by <a href="https://en.wikipedia.org/wiki/Martin_Porter">Martin
+Porter</a>, but he retired from development in 2014 and it is now maintained
+as a community project.  Martin chose the name Snowball as a tribute to
+<a href="https://en.wikipedia.org/wiki/SNOBOL">SNOBOL</a>, the excellent string
+handling language from the 1960s.
+</p>
+
+This site describes Snowball, and presents
 several useful stemmers which have been implemented using it.
 </p>
 
@@ -72,16 +80,6 @@ And look at the
 
 on how you can help.
 -->
-
-<blockquote>
-<p>
-Since it effectively provides a &#8216;<I>suffix STRIPPER GRAMmar</I>&#8217;, I had toyed with the
-idea of calling it &#8216;<I>strippergram</I>&#8217;, but good sense has prevailed, and so it is
-&#8216;<I>Snowball</I>&#8217; named as a tribute to SNOBOL, the excellent string handling language
-of Messrs Farber, Griswold, Poage and Polonsky from the 1960s.
-</p>
-<footer>Martin Porter</footer>
-</blockquote>
 
 <p>
 Please address all Snowball-related mail to the <a href="lists.html">snowball-discuss mailing list</a>.
