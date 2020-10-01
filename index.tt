@@ -5,24 +5,47 @@
 
 <p>
 <strong>Snowball</strong> is a small string processing language for creating
-stemming algorithms for use in Information Retrieval. It was originally designed
+stemming algorithms for use in Information Retrieval, plus a collection of
+stemming algorithms implemented using it.
+</p>
+
+<p>
+It was originally designed
 and built by <a href="https://en.wikipedia.org/wiki/Martin_Porter">Martin
-Porter</a>, but he retired from development in 2014 and it is now maintained
-as a community project.  Martin chose the name Snowball as a tribute to
-<a href="https://en.wikipedia.org/wiki/SNOBOL">SNOBOL</a>, the excellent string
-handling language from the 1960s.
+Porter</a>. Martin retired from development in 2014 and Snowball is now
+maintained as a community project. Martin originally chose the name Snowball as
+a tribute to <a href="https://en.wikipedia.org/wiki/SNOBOL">SNOBOL</a>, the
+excellent string handling language from the 1960s, but it now serves as a
+metaphor for how the project grows by gathering contributions over time.
 </p>
 
 <p>
-This site describes Snowball, and presents
-several useful stemmers which have been implemented using it.
+The Snowball compiler translates a Snowball program into source code in another
+language - currently ISO C, C#, Go, Java, Javascript, Object Pascal, Python and
+Rust are supported.
+<p>
+
+<h2>What is Stemming?</h2>
+
+<p>
+Stemming maps different forms of the same word to a common "stem" - for
+example, the English stemmer maps <i>connection</i>, <i>connections</i>,
+<i>connective</i>, <i>connected</i>, and <i>connecting</i> to <i>connect</i>.
+So a searching for <i>connected</i> would also find documents which only
+have the other forms.
 </p>
 
 <p>
-The Snowball compiler translates a Snowball script into another language -
-currently ISO C, C#, Go, Java, Javascript, Object Pascal, Python and Rust
-are supported.
-<p>
+This stem form is often a word itself, but this is not always the case as
+this is not a requirement for text search systems, which are the intended
+field of use.  We also aim to conflate words with the same meaning, rather
+than all words with a common linguistic root (so <i>awe</i> and <i>awful</i>
+don't have the same stem), and over-stemming is more problematic than
+under-stemming so we tend not to stem in cases that are hard to resolve.  If
+you want to always reduce words to a root form and/or get a root form which is
+itself a word then Snowball's stemming algorithms likely aren't the right
+answer.
+</p>
 
 <!--
 FIXME: Incorporate this text from quickintro here:
