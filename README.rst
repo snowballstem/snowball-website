@@ -21,7 +21,7 @@ the Snowball code here under `code/` is out of date:
 
 (cd .. && git clone https://github.com/snowballstem/snowball.git)
 
-Generating the website
+To create website
 ----------------------
 
 Run::
