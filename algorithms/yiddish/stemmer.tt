@@ -100,9 +100,11 @@ be generated with this algorithm.
   <dt>AlefBeys</dt>
   <dd>
     All actual letters in the Hebrew alphabet, including:
+    <ul>
     <li>The alphabet itself: א ב ג ד ה ו ז ח ט י כ ל מ נ ס ע פ צ ק ר ש ת</li>
     <li>Final consonants: ך ם ן ף ץ</li>
     <li>Ligatures: װ ױ ײ</li>
+    </ul>
   </dd>
   <dt>Vowel</dt>
   <dd>א ו י ע ױ ײ</dd>
