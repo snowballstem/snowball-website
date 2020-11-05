@@ -18,12 +18,12 @@ following languages:
         <li><A HREF="/algorithms/catalan/stemmer.html">Catalan</A>
         <li><A HREF="/algorithms/portuguese/stemmer.html">Portuguese</A>
         <li><A HREF="/algorithms/italian/stemmer.html">Italian</A>
-	<li><a href="/algorithms/romanian/stemmer.html">Romanian</a></li>
+        <li><a href="/algorithms/romanian/stemmer.html">Romanian</a></li>
     </ul>
     <li><A HREF="/algorithms/germanic.html">Germanic stemmers</A>
     <ul>
         <li><A HREF="/algorithms/german/stemmer.html">German</A>
-	<li><a href="/algorithms/german2/stemmer.html">(German variant)</a></li>
+        <li><a href="/algorithms/german2/stemmer.html">(German variant)</a></li>
         <li><A HREF="/algorithms/dutch/stemmer.html">Dutch</A>
     </ul>
     <li><A HREF="/algorithms/scandinavian.html">Scandinavian stemmers</A>
@@ -84,6 +84,7 @@ We also provide Snowball implementations of some algorithms developed by other p
   <li><a href="/algorithms/greek/stemmer.html">Greek</a></li>
   <li><a href="/algorithms/lithuanian/stemmer.html">Lithuanian</a></li>
   <li><a href="/algorithms/serbian/stemmer.html">Serbian</a></li>
+  <li><a href="/algorithms/yiddish/stemmer.html">Yiddish</a></li>
 </ul>
 
 [% footer %]
