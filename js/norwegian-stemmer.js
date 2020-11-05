@@ -64,12 +64,8 @@ function NorwegianStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 26
         I_p1 = base.limit;
-        // test, line 30
         var /** number */ v_1 = base.cursor;
-        // (, line 30
-        // hop, line 30
         {
             var /** number */ c1 = base.cursor + 3;
             if (0 > c1 || c1 > base.limit)
@@ -78,10 +74,8 @@ function NorwegianStemmer() {
             }
             base.cursor = c1;
         }
-        // setmark x, line 30
         I_x = base.cursor;
         base.cursor = v_1;
-        // goto, line 31
         golab0: while(true)
         {
             var /** number */ v_2 = base.cursor;
@@ -100,7 +94,6 @@ function NorwegianStemmer() {
             }
             base.cursor++;
         }
-        // gopast, line 31
         golab2: while(true)
         {
             lab3: {
@@ -116,11 +109,8 @@ function NorwegianStemmer() {
             }
             base.cursor++;
         }
-        // setmark p1, line 31
         I_p1 = base.cursor;
-        // try, line 32
         lab4: {
-            // (, line 32
             if (!(I_p1 < I_x))
             {
                 break lab4;
@@ -133,39 +123,29 @@ function NorwegianStemmer() {
     /** @return {boolean} */
     function r_main_suffix() {
         var /** number */ among_var;
-        // (, line 37
-        // setlimit, line 38
         if (base.cursor < I_p1)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_p1;
-        // (, line 38
-        // [, line 38
         base.ket = base.cursor;
-        // substring, line 38
         among_var = base.find_among_b(a_0);
         if (among_var == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
-        // ], line 38
         base.bra = base.cursor;
         base.limit_backward = v_2;
         switch (among_var) {
             case 1:
-                // (, line 44
-                // delete, line 44
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 46
-                // or, line 46
                 lab0: {
                     var /** number */ v_3 = base.limit - base.cursor;
                     lab1: {
@@ -176,8 +156,6 @@ function NorwegianStemmer() {
                         break lab0;
                     }
                     base.cursor = base.limit - v_3;
-                    // (, line 46
-                    // literal, line 46
                     if (!(base.eq_s_b("k")))
                     {
                         return false;
@@ -187,15 +165,12 @@ function NorwegianStemmer() {
                         return false;
                     }
                 }
-                // delete, line 46
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 48
-                // <-, line 48
                 if (!base.slice_from("er"))
                 {
                     return false;
@@ -207,39 +182,28 @@ function NorwegianStemmer() {
 
     /** @return {boolean} */
     function r_consonant_pair() {
-        // (, line 52
-        // test, line 53
         var /** number */ v_1 = base.limit - base.cursor;
-        // (, line 53
-        // setlimit, line 54
         if (base.cursor < I_p1)
         {
             return false;
         }
         var /** number */ v_3 = base.limit_backward;
         base.limit_backward = I_p1;
-        // (, line 54
-        // [, line 54
         base.ket = base.cursor;
-        // substring, line 54
         if (base.find_among_b(a_1) == 0)
         {
             base.limit_backward = v_3;
             return false;
         }
-        // ], line 54
         base.bra = base.cursor;
         base.limit_backward = v_3;
         base.cursor = base.limit - v_1;
-        // next, line 59
         if (base.cursor <= base.limit_backward)
         {
             return false;
         }
         base.cursor--;
-        // ], line 59
         base.bra = base.cursor;
-        // delete, line 59
         if (!base.slice_del())
         {
             return false;
@@ -249,28 +213,20 @@ function NorwegianStemmer() {
 
     /** @return {boolean} */
     function r_other_suffix() {
-        // (, line 62
-        // setlimit, line 63
         if (base.cursor < I_p1)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_p1;
-        // (, line 63
-        // [, line 63
         base.ket = base.cursor;
-        // substring, line 63
         if (base.find_among_b(a_2) == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
-        // ], line 63
         base.bra = base.cursor;
         base.limit_backward = v_2;
-        // (, line 67
-        // delete, line 67
         if (!base.slice_del())
         {
             return false;
@@ -279,28 +235,17 @@ function NorwegianStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 72
-        // do, line 74
         var /** number */ v_1 = base.cursor;
-        // call mark_regions, line 74
         r_mark_regions();
         base.cursor = v_1;
-        // backwards, line 75
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 75
-        // do, line 76
         var /** number */ v_2 = base.limit - base.cursor;
-        // call main_suffix, line 76
         r_main_suffix();
         base.cursor = base.limit - v_2;
-        // do, line 77
         var /** number */ v_3 = base.limit - base.cursor;
-        // call consonant_pair, line 77
         r_consonant_pair();
         base.cursor = base.limit - v_3;
-        // do, line 78
         var /** number */ v_4 = base.limit - base.cursor;
-        // call other_suffix, line 78
         r_other_suffix();
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;

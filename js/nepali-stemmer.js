@@ -134,38 +134,27 @@ function NepaliStemmer() {
     /** @return {boolean} */
     function r_remove_category_1() {
         var /** number */ among_var;
-        // (, line 53
-        // [, line 54
         base.ket = base.cursor;
-        // substring, line 54
         among_var = base.find_among_b(a_0);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 54
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 58
-                // delete, line 58
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 59
-                // or, line 59
                 lab0: {
                     var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
-                        // (, line 59
-                        // or, line 59
                         lab2: {
                             var /** number */ v_2 = base.limit - base.cursor;
                             lab3: {
-                                // literal, line 59
                                 if (!(base.eq_s_b("\u090F")))
                                 {
                                     break lab3;
@@ -173,17 +162,14 @@ function NepaliStemmer() {
                                 break lab2;
                             }
                             base.cursor = base.limit - v_2;
-                            // literal, line 59
                             if (!(base.eq_s_b("\u0947")))
                             {
                                 break lab1;
                             }
                         }
-                        // (, line 59
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
-                    // delete, line 59
                     if (!base.slice_del())
                     {
                         return false;
@@ -196,15 +182,11 @@ function NepaliStemmer() {
 
     /** @return {boolean} */
     function r_check_category_2() {
-        // (, line 63
-        // [, line 64
         base.ket = base.cursor;
-        // substring, line 64
         if (base.find_among_b(a_1) == 0)
         {
             return false;
         }
-        // ], line 64
         base.bra = base.cursor;
         return true;
     };
@@ -212,25 +194,18 @@ function NepaliStemmer() {
     /** @return {boolean} */
     function r_remove_category_2() {
         var /** number */ among_var;
-        // (, line 69
-        // [, line 70
         base.ket = base.cursor;
-        // substring, line 70
         among_var = base.find_among_b(a_2);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 70
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 71
-                // or, line 71
                 lab0: {
                     var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
-                        // literal, line 71
                         if (!(base.eq_s_b("\u092F\u094C")))
                         {
                             break lab1;
@@ -239,7 +214,6 @@ function NepaliStemmer() {
                     }
                     base.cursor = base.limit - v_1;
                     lab2: {
-                        // literal, line 71
                         if (!(base.eq_s_b("\u091B\u094C")))
                         {
                             break lab2;
@@ -248,7 +222,6 @@ function NepaliStemmer() {
                     }
                     base.cursor = base.limit - v_1;
                     lab3: {
-                        // literal, line 71
                         if (!(base.eq_s_b("\u0928\u094C")))
                         {
                             break lab3;
@@ -256,26 +229,21 @@ function NepaliStemmer() {
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
-                    // literal, line 71
                     if (!(base.eq_s_b("\u0925\u0947")))
                     {
                         return false;
                     }
                 }
-                // delete, line 71
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 72
-                // literal, line 72
                 if (!(base.eq_s_b("\u0924\u094D\u0930")))
                 {
                     return false;
                 }
-                // delete, line 72
                 if (!base.slice_del())
                 {
                     return false;
@@ -287,18 +255,12 @@ function NepaliStemmer() {
 
     /** @return {boolean} */
     function r_remove_category_3() {
-        // (, line 76
-        // [, line 77
         base.ket = base.cursor;
-        // substring, line 77
         if (base.find_among_b(a_3) == 0)
         {
             return false;
         }
-        // ], line 77
         base.bra = base.cursor;
-        // (, line 79
-        // delete, line 79
         if (!base.slice_del())
         {
             return false;
@@ -307,45 +269,30 @@ function NepaliStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 85
-        // backwards, line 86
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 86
-        // do, line 87
         var /** number */ v_1 = base.limit - base.cursor;
-        // call remove_category_1, line 87
         r_remove_category_1();
         base.cursor = base.limit - v_1;
-        // do, line 88
         var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
-            // (, line 88
-            // repeat, line 89
             while(true)
             {
                 var /** number */ v_3 = base.limit - base.cursor;
                 lab1: {
-                    // (, line 89
-                    // do, line 89
                     var /** number */ v_4 = base.limit - base.cursor;
                     lab2: {
-                        // (, line 89
-                        // and, line 89
                         var /** number */ v_5 = base.limit - base.cursor;
-                        // call check_category_2, line 89
                         if (!r_check_category_2())
                         {
                             break lab2;
                         }
                         base.cursor = base.limit - v_5;
-                        // call remove_category_2, line 89
                         if (!r_remove_category_2())
                         {
                             break lab2;
                         }
                     }
                     base.cursor = base.limit - v_4;
-                    // call remove_category_3, line 89
                     if (!r_remove_category_3())
                     {
                         break lab1;

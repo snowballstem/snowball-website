@@ -583,14 +583,10 @@ function CatalanStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 36
         I_p1 = base.limit;
         I_p2 = base.limit;
-        // do, line 41
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 41
-            // gopast, line 42
             golab1: while(true)
             {
                 lab2: {
@@ -606,7 +602,6 @@ function CatalanStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 42
             golab3: while(true)
             {
                 lab4: {
@@ -622,9 +617,7 @@ function CatalanStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p1, line 42
             I_p1 = base.cursor;
-            // gopast, line 43
             golab5: while(true)
             {
                 lab6: {
@@ -640,7 +633,6 @@ function CatalanStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 43
             golab7: while(true)
             {
                 lab8: {
@@ -656,7 +648,6 @@ function CatalanStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p2, line 43
             I_p2 = base.cursor;
         }
         base.cursor = v_1;
@@ -666,74 +657,55 @@ function CatalanStemmer() {
     /** @return {boolean} */
     function r_cleaning() {
         var /** number */ among_var;
-        // repeat, line 47
         while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab0: {
-                // (, line 47
-                // [, line 48
                 base.bra = base.cursor;
-                // substring, line 48
                 among_var = base.find_among(a_0);
                 if (among_var == 0)
                 {
                     break lab0;
                 }
-                // ], line 48
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        // (, line 49
-                        // <-, line 49
                         if (!base.slice_from("a"))
                         {
                             return false;
                         }
                         break;
                     case 2:
-                        // (, line 51
-                        // <-, line 51
                         if (!base.slice_from("e"))
                         {
                             return false;
                         }
                         break;
                     case 3:
-                        // (, line 53
-                        // <-, line 53
                         if (!base.slice_from("i"))
                         {
                             return false;
                         }
                         break;
                     case 4:
-                        // (, line 55
-                        // <-, line 55
                         if (!base.slice_from("o"))
                         {
                             return false;
                         }
                         break;
                     case 5:
-                        // (, line 57
-                        // <-, line 57
                         if (!base.slice_from("u"))
                         {
                             return false;
                         }
                         break;
                     case 6:
-                        // (, line 60
-                        // <-, line 60
                         if (!base.slice_from("."))
                         {
                             return false;
                         }
                         break;
                     case 7:
-                        // (, line 61
-                        // next, line 61
                         if (base.cursor >= base.limit)
                         {
                             break lab0;
@@ -769,23 +741,16 @@ function CatalanStemmer() {
 
     /** @return {boolean} */
     function r_attached_pronoun() {
-        // (, line 70
-        // [, line 71
         base.ket = base.cursor;
-        // substring, line 71
         if (base.find_among_b(a_1) == 0)
         {
             return false;
         }
-        // ], line 71
         base.bra = base.cursor;
-        // (, line 81
-        // call R1, line 81
         if (!r_R1())
         {
             return false;
         }
-        // delete, line 81
         if (!base.slice_del())
         {
             return false;
@@ -796,78 +761,59 @@ function CatalanStemmer() {
     /** @return {boolean} */
     function r_standard_suffix() {
         var /** number */ among_var;
-        // (, line 85
-        // [, line 86
         base.ket = base.cursor;
-        // substring, line 86
         among_var = base.find_among_b(a_2);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 86
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 110
-                // call R1, line 110
                 if (!r_R1())
                 {
                     return false;
                 }
-                // delete, line 110
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 112
-                // call R2, line 112
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 112
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 114
-                // call R2, line 114
                 if (!r_R2())
                 {
                     return false;
                 }
-                // <-, line 114
                 if (!base.slice_from("log"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 116
-                // call R2, line 116
                 if (!r_R2())
                 {
                     return false;
                 }
-                // <-, line 116
                 if (!base.slice_from("ic"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 118
-                // call R1, line 118
                 if (!r_R1())
                 {
                     return false;
                 }
-                // <-, line 118
                 if (!base.slice_from("c"))
                 {
                     return false;
@@ -880,39 +826,29 @@ function CatalanStemmer() {
     /** @return {boolean} */
     function r_verb_suffix() {
         var /** number */ among_var;
-        // (, line 122
-        // [, line 123
         base.ket = base.cursor;
-        // substring, line 123
         among_var = base.find_among_b(a_3);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 123
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 168
-                // call R1, line 168
                 if (!r_R1())
                 {
                     return false;
                 }
-                // delete, line 168
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 170
-                // call R2, line 170
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 170
                 if (!base.slice_del())
                 {
                     return false;
@@ -925,39 +861,29 @@ function CatalanStemmer() {
     /** @return {boolean} */
     function r_residual_suffix() {
         var /** number */ among_var;
-        // (, line 174
-        // [, line 175
         base.ket = base.cursor;
-        // substring, line 175
         among_var = base.find_among_b(a_4);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 175
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 178
-                // call R1, line 178
                 if (!r_R1())
                 {
                     return false;
                 }
-                // delete, line 178
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 180
-                // call R1, line 180
                 if (!r_R1())
                 {
                     return false;
                 }
-                // <-, line 180
                 if (!base.slice_from("ic"))
                 {
                     return false;
@@ -968,27 +894,16 @@ function CatalanStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 185
-        // do, line 186
-        // call mark_regions, line 186
         r_mark_regions();
-        // backwards, line 187
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 187
-        // do, line 188
         var /** number */ v_2 = base.limit - base.cursor;
-        // call attached_pronoun, line 188
         r_attached_pronoun();
         base.cursor = base.limit - v_2;
-        // do, line 189
         var /** number */ v_3 = base.limit - base.cursor;
         lab0: {
-            // (, line 189
-            // or, line 189
             lab1: {
                 var /** number */ v_4 = base.limit - base.cursor;
                 lab2: {
-                    // call standard_suffix, line 189
                     if (!r_standard_suffix())
                     {
                         break lab2;
@@ -996,7 +911,6 @@ function CatalanStemmer() {
                     break lab1;
                 }
                 base.cursor = base.limit - v_4;
-                // call verb_suffix, line 190
                 if (!r_verb_suffix())
                 {
                     break lab0;
@@ -1004,15 +918,11 @@ function CatalanStemmer() {
             }
         }
         base.cursor = base.limit - v_3;
-        // do, line 192
         var /** number */ v_5 = base.limit - base.cursor;
-        // call residual_suffix, line 192
         r_residual_suffix();
         base.cursor = base.limit - v_5;
         base.cursor = base.limit_backward;
-        // do, line 194
         var /** number */ v_6 = base.cursor;
-        // call cleaning, line 194
         r_cleaning();
         base.cursor = v_6;
         return true;

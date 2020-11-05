@@ -101,15 +101,11 @@ function IrishStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 28
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        // do, line 34
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 34
-            // gopast, line 35
             golab1: while(true)
             {
                 lab2: {
@@ -125,15 +121,11 @@ function IrishStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark pV, line 35
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        // do, line 37
         var /** number */ v_3 = base.cursor;
         lab3: {
-            // (, line 37
-            // gopast, line 38
             golab4: while(true)
             {
                 lab5: {
@@ -149,7 +141,6 @@ function IrishStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 38
             golab6: while(true)
             {
                 lab7: {
@@ -165,9 +156,7 @@ function IrishStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p1, line 38
             I_p1 = base.cursor;
-            // gopast, line 39
             golab8: while(true)
             {
                 lab9: {
@@ -183,7 +172,6 @@ function IrishStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 39
             golab10: while(true)
             {
                 lab11: {
@@ -199,7 +187,6 @@ function IrishStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p2, line 39
             I_p2 = base.cursor;
         }
         base.cursor = v_3;
@@ -209,93 +196,69 @@ function IrishStemmer() {
     /** @return {boolean} */
     function r_initial_morph() {
         var /** number */ among_var;
-        // (, line 43
-        // [, line 44
         base.bra = base.cursor;
-        // substring, line 44
         among_var = base.find_among(a_0);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 44
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 46
-                // delete, line 46
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 52
-                // <-, line 52
                 if (!base.slice_from("f"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 58
-                // <-, line 58
                 if (!base.slice_from("s"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 61
-                // <-, line 61
                 if (!base.slice_from("b"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 63
-                // <-, line 63
                 if (!base.slice_from("c"))
                 {
                     return false;
                 }
                 break;
             case 6:
-                // (, line 65
-                // <-, line 65
                 if (!base.slice_from("d"))
                 {
                     return false;
                 }
                 break;
             case 7:
-                // (, line 69
-                // <-, line 69
                 if (!base.slice_from("g"))
                 {
                     return false;
                 }
                 break;
             case 8:
-                // (, line 71
-                // <-, line 71
                 if (!base.slice_from("p"))
                 {
                     return false;
                 }
                 break;
             case 9:
-                // (, line 75
-                // <-, line 75
                 if (!base.slice_from("t"))
                 {
                     return false;
                 }
                 break;
             case 10:
-                // (, line 89
-                // <-, line 89
                 if (!base.slice_from("m"))
                 {
                     return false;
@@ -335,39 +298,29 @@ function IrishStemmer() {
     /** @return {boolean} */
     function r_noun_sfx() {
         var /** number */ among_var;
-        // (, line 103
-        // [, line 104
         base.ket = base.cursor;
-        // substring, line 104
         among_var = base.find_among_b(a_1);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 104
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 108
-                // call R1, line 108
                 if (!r_R1())
                 {
                     return false;
                 }
-                // delete, line 108
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 110
-                // call R2, line 110
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 110
                 if (!base.slice_del())
                 {
                     return false;
@@ -380,66 +333,49 @@ function IrishStemmer() {
     /** @return {boolean} */
     function r_deriv() {
         var /** number */ among_var;
-        // (, line 113
-        // [, line 114
         base.ket = base.cursor;
-        // substring, line 114
         among_var = base.find_among_b(a_2);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 114
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 116
-                // call R2, line 116
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 116
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 118
-                // <-, line 118
                 if (!base.slice_from("arc"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 120
-                // <-, line 120
                 if (!base.slice_from("gin"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 122
-                // <-, line 122
                 if (!base.slice_from("graf"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 124
-                // <-, line 124
                 if (!base.slice_from("paite"))
                 {
                     return false;
                 }
                 break;
             case 6:
-                // (, line 126
-                // <-, line 126
                 if (!base.slice_from("\u00F3id"))
                 {
                     return false;
@@ -452,39 +388,29 @@ function IrishStemmer() {
     /** @return {boolean} */
     function r_verb_sfx() {
         var /** number */ among_var;
-        // (, line 129
-        // [, line 130
         base.ket = base.cursor;
-        // substring, line 130
         among_var = base.find_among_b(a_3);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 130
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 133
-                // call RV, line 133
                 if (!r_RV())
                 {
                     return false;
                 }
-                // delete, line 133
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 138
-                // call R1, line 138
                 if (!r_R1())
                 {
                     return false;
                 }
-                // delete, line 138
                 if (!base.slice_del())
                 {
                     return false;
@@ -495,31 +421,18 @@ function IrishStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 143
-        // do, line 144
         var /** number */ v_1 = base.cursor;
-        // call initial_morph, line 144
         r_initial_morph();
         base.cursor = v_1;
-        // do, line 145
-        // call mark_regions, line 145
         r_mark_regions();
-        // backwards, line 146
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 146
-        // do, line 147
         var /** number */ v_3 = base.limit - base.cursor;
-        // call noun_sfx, line 147
         r_noun_sfx();
         base.cursor = base.limit - v_3;
-        // do, line 148
         var /** number */ v_4 = base.limit - base.cursor;
-        // call deriv, line 148
         r_deriv();
         base.cursor = base.limit - v_4;
-        // do, line 149
         var /** number */ v_5 = base.limit - base.cursor;
-        // call verb_sfx, line 149
         r_verb_sfx();
         base.cursor = base.limit - v_5;
         base.cursor = base.limit_backward;

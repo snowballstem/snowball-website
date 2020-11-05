@@ -257,41 +257,31 @@ function RomanianStemmer() {
 
     /** @return {boolean} */
     function r_prelude() {
-        // (, line 31
-        // repeat, line 32
         while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab0: {
-                // goto, line 32
                 golab1: while(true)
                 {
                     var /** number */ v_2 = base.cursor;
                     lab2: {
-                        // (, line 32
                         if (!(base.in_grouping(g_v, 97, 259)))
                         {
                             break lab2;
                         }
-                        // [, line 33
                         base.bra = base.cursor;
-                        // or, line 33
                         lab3: {
                             var /** number */ v_3 = base.cursor;
                             lab4: {
-                                // (, line 33
-                                // literal, line 33
                                 if (!(base.eq_s("u")))
                                 {
                                     break lab4;
                                 }
-                                // ], line 33
                                 base.ket = base.cursor;
                                 if (!(base.in_grouping(g_v, 97, 259)))
                                 {
                                     break lab4;
                                 }
-                                // <-, line 33
                                 if (!base.slice_from("U"))
                                 {
                                     return false;
@@ -299,19 +289,15 @@ function RomanianStemmer() {
                                 break lab3;
                             }
                             base.cursor = v_3;
-                            // (, line 34
-                            // literal, line 34
                             if (!(base.eq_s("i")))
                             {
                                 break lab2;
                             }
-                            // ], line 34
                             base.ket = base.cursor;
                             if (!(base.in_grouping(g_v, 97, 259)))
                             {
                                 break lab2;
                             }
-                            // <-, line 34
                             if (!base.slice_from("I"))
                             {
                                 return false;
@@ -337,33 +323,25 @@ function RomanianStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 38
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        // do, line 44
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 44
-            // or, line 46
             lab1: {
                 var /** number */ v_2 = base.cursor;
                 lab2: {
-                    // (, line 45
                     if (!(base.in_grouping(g_v, 97, 259)))
                     {
                         break lab2;
                     }
-                    // or, line 45
                     lab3: {
                         var /** number */ v_3 = base.cursor;
                         lab4: {
-                            // (, line 45
                             if (!(base.out_grouping(g_v, 97, 259)))
                             {
                                 break lab4;
                             }
-                            // gopast, line 45
                             golab5: while(true)
                             {
                                 lab6: {
@@ -382,12 +360,10 @@ function RomanianStemmer() {
                             break lab3;
                         }
                         base.cursor = v_3;
-                        // (, line 45
                         if (!(base.in_grouping(g_v, 97, 259)))
                         {
                             break lab2;
                         }
-                        // gopast, line 45
                         golab7: while(true)
                         {
                             lab8: {
@@ -407,21 +383,17 @@ function RomanianStemmer() {
                     break lab1;
                 }
                 base.cursor = v_2;
-                // (, line 47
                 if (!(base.out_grouping(g_v, 97, 259)))
                 {
                     break lab0;
                 }
-                // or, line 47
                 lab9: {
                     var /** number */ v_6 = base.cursor;
                     lab10: {
-                        // (, line 47
                         if (!(base.out_grouping(g_v, 97, 259)))
                         {
                             break lab10;
                         }
-                        // gopast, line 47
                         golab11: while(true)
                         {
                             lab12: {
@@ -440,12 +412,10 @@ function RomanianStemmer() {
                         break lab9;
                     }
                     base.cursor = v_6;
-                    // (, line 47
                     if (!(base.in_grouping(g_v, 97, 259)))
                     {
                         break lab0;
                     }
-                    // next, line 47
                     if (base.cursor >= base.limit)
                     {
                         break lab0;
@@ -453,15 +423,11 @@ function RomanianStemmer() {
                     base.cursor++;
                 }
             }
-            // setmark pV, line 48
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        // do, line 50
         var /** number */ v_8 = base.cursor;
         lab13: {
-            // (, line 50
-            // gopast, line 51
             golab14: while(true)
             {
                 lab15: {
@@ -477,7 +443,6 @@ function RomanianStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 51
             golab16: while(true)
             {
                 lab17: {
@@ -493,9 +458,7 @@ function RomanianStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p1, line 51
             I_p1 = base.cursor;
-            // gopast, line 52
             golab18: while(true)
             {
                 lab19: {
@@ -511,7 +474,6 @@ function RomanianStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 52
             golab20: while(true)
             {
                 lab21: {
@@ -527,7 +489,6 @@ function RomanianStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p2, line 52
             I_p2 = base.cursor;
         }
         base.cursor = v_8;
@@ -537,42 +498,31 @@ function RomanianStemmer() {
     /** @return {boolean} */
     function r_postlude() {
         var /** number */ among_var;
-        // repeat, line 56
         while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab0: {
-                // (, line 56
-                // [, line 58
                 base.bra = base.cursor;
-                // substring, line 58
                 among_var = base.find_among(a_0);
                 if (among_var == 0)
                 {
                     break lab0;
                 }
-                // ], line 58
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        // (, line 59
-                        // <-, line 59
                         if (!base.slice_from("i"))
                         {
                             return false;
                         }
                         break;
                     case 2:
-                        // (, line 60
-                        // <-, line 60
                         if (!base.slice_from("u"))
                         {
                             return false;
                         }
                         break;
                     case 3:
-                        // (, line 61
-                        // next, line 61
                         if (base.cursor >= base.limit)
                         {
                             break lab0;
@@ -618,62 +568,46 @@ function RomanianStemmer() {
     /** @return {boolean} */
     function r_step_0() {
         var /** number */ among_var;
-        // (, line 72
-        // [, line 73
         base.ket = base.cursor;
-        // substring, line 73
         among_var = base.find_among_b(a_1);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 73
         base.bra = base.cursor;
-        // call R1, line 73
         if (!r_R1())
         {
             return false;
         }
         switch (among_var) {
             case 1:
-                // (, line 75
-                // delete, line 75
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 77
-                // <-, line 77
                 if (!base.slice_from("a"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 79
-                // <-, line 79
                 if (!base.slice_from("e"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 81
-                // <-, line 81
                 if (!base.slice_from("i"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 83
-                // not, line 83
                 {
                     var /** number */ v_1 = base.limit - base.cursor;
                     lab0: {
-                        // literal, line 83
                         if (!(base.eq_s_b("ab")))
                         {
                             break lab0;
@@ -682,23 +616,18 @@ function RomanianStemmer() {
                     }
                     base.cursor = base.limit - v_1;
                 }
-                // <-, line 83
                 if (!base.slice_from("i"))
                 {
                     return false;
                 }
                 break;
             case 6:
-                // (, line 85
-                // <-, line 85
                 if (!base.slice_from("at"))
                 {
                     return false;
                 }
                 break;
             case 7:
-                // (, line 87
-                // <-, line 87
                 if (!base.slice_from("a\u0163i"))
                 {
                     return false;
@@ -711,76 +640,56 @@ function RomanianStemmer() {
     /** @return {boolean} */
     function r_combo_suffix() {
         var /** number */ among_var;
-        // test, line 91
         var /** number */ v_1 = base.limit - base.cursor;
-        // (, line 91
-        // [, line 92
         base.ket = base.cursor;
-        // substring, line 92
         among_var = base.find_among_b(a_2);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 92
         base.bra = base.cursor;
-        // call R1, line 92
         if (!r_R1())
         {
             return false;
         }
-        // (, line 92
         switch (among_var) {
             case 1:
-                // (, line 100
-                // <-, line 101
                 if (!base.slice_from("abil"))
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 103
-                // <-, line 104
                 if (!base.slice_from("ibil"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 106
-                // <-, line 107
                 if (!base.slice_from("iv"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 112
-                // <-, line 113
                 if (!base.slice_from("ic"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 117
-                // <-, line 118
                 if (!base.slice_from("at"))
                 {
                     return false;
                 }
                 break;
             case 6:
-                // (, line 121
-                // <-, line 122
                 if (!base.slice_from("it"))
                 {
                     return false;
                 }
                 break;
         }
-        // set standard_suffix_removed, line 125
         B_standard_suffix_removed = true;
         base.cursor = base.limit - v_1;
         return true;
@@ -789,15 +698,11 @@ function RomanianStemmer() {
     /** @return {boolean} */
     function r_standard_suffix() {
         var /** number */ among_var;
-        // (, line 129
-        // unset standard_suffix_removed, line 130
         B_standard_suffix_removed = false;
-        // repeat, line 131
         while(true)
         {
             var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
-                // call combo_suffix, line 131
                 if (!r_combo_suffix())
                 {
                     break lab0;
@@ -807,56 +712,42 @@ function RomanianStemmer() {
             base.cursor = base.limit - v_1;
             break;
         }
-        // [, line 132
         base.ket = base.cursor;
-        // substring, line 132
         among_var = base.find_among_b(a_3);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 132
         base.bra = base.cursor;
-        // call R2, line 132
         if (!r_R2())
         {
             return false;
         }
-        // (, line 132
         switch (among_var) {
             case 1:
-                // (, line 148
-                // delete, line 149
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 151
-                // literal, line 152
                 if (!(base.eq_s_b("\u0163")))
                 {
                     return false;
                 }
-                // ], line 152
                 base.bra = base.cursor;
-                // <-, line 152
                 if (!base.slice_from("t"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 155
-                // <-, line 156
                 if (!base.slice_from("ist"))
                 {
                     return false;
                 }
                 break;
         }
-        // set standard_suffix_removed, line 160
         B_standard_suffix_removed = true;
         return true;
     };
@@ -864,29 +755,22 @@ function RomanianStemmer() {
     /** @return {boolean} */
     function r_verb_suffix() {
         var /** number */ among_var;
-        // setlimit, line 164
         if (base.cursor < I_pV)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_pV;
-        // (, line 164
-        // [, line 165
         base.ket = base.cursor;
-        // substring, line 165
         among_var = base.find_among_b(a_4);
         if (among_var == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
-        // ], line 165
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 200
-                // or, line 200
                 lab0: {
                     var /** number */ v_3 = base.limit - base.cursor;
                     lab1: {
@@ -897,22 +781,18 @@ function RomanianStemmer() {
                         break lab0;
                     }
                     base.cursor = base.limit - v_3;
-                    // literal, line 200
                     if (!(base.eq_s_b("u")))
                     {
                         base.limit_backward = v_2;
                         return false;
                     }
                 }
-                // delete, line 200
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 214
-                // delete, line 214
                 if (!base.slice_del())
                 {
                     return false;
@@ -925,23 +805,16 @@ function RomanianStemmer() {
 
     /** @return {boolean} */
     function r_vowel_suffix() {
-        // (, line 218
-        // [, line 219
         base.ket = base.cursor;
-        // substring, line 219
         if (base.find_among_b(a_5) == 0)
         {
             return false;
         }
-        // ], line 219
         base.bra = base.cursor;
-        // call RV, line 219
         if (!r_RV())
         {
             return false;
         }
-        // (, line 220
-        // delete, line 220
         if (!base.slice_del())
         {
             return false;
@@ -950,37 +823,22 @@ function RomanianStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 225
-        // do, line 226
         var /** number */ v_1 = base.cursor;
-        // call prelude, line 226
         r_prelude();
         base.cursor = v_1;
-        // do, line 227
-        // call mark_regions, line 227
         r_mark_regions();
-        // backwards, line 228
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 228
-        // do, line 229
         var /** number */ v_3 = base.limit - base.cursor;
-        // call step_0, line 229
         r_step_0();
         base.cursor = base.limit - v_3;
-        // do, line 230
         var /** number */ v_4 = base.limit - base.cursor;
-        // call standard_suffix, line 230
         r_standard_suffix();
         base.cursor = base.limit - v_4;
-        // do, line 231
         var /** number */ v_5 = base.limit - base.cursor;
         lab0: {
-            // (, line 231
-            // or, line 231
             lab1: {
                 var /** number */ v_6 = base.limit - base.cursor;
                 lab2: {
-                    // Boolean test standard_suffix_removed, line 231
                     if (!B_standard_suffix_removed)
                     {
                         break lab2;
@@ -988,7 +846,6 @@ function RomanianStemmer() {
                     break lab1;
                 }
                 base.cursor = base.limit - v_6;
-                // call verb_suffix, line 231
                 if (!r_verb_suffix())
                 {
                     break lab0;
@@ -996,15 +853,11 @@ function RomanianStemmer() {
             }
         }
         base.cursor = base.limit - v_5;
-        // do, line 232
         var /** number */ v_7 = base.limit - base.cursor;
-        // call vowel_suffix, line 232
         r_vowel_suffix();
         base.cursor = base.limit - v_7;
         base.cursor = base.limit_backward;
-        // do, line 234
         var /** number */ v_8 = base.cursor;
-        // call postlude, line 234
         r_postlude();
         base.cursor = v_8;
         return true;

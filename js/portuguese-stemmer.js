@@ -232,42 +232,31 @@ function PortugueseStemmer() {
     /** @return {boolean} */
     function r_prelude() {
         var /** number */ among_var;
-        // repeat, line 36
         while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab0: {
-                // (, line 36
-                // [, line 37
                 base.bra = base.cursor;
-                // substring, line 37
                 among_var = base.find_among(a_0);
                 if (among_var == 0)
                 {
                     break lab0;
                 }
-                // ], line 37
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        // (, line 38
-                        // <-, line 38
                         if (!base.slice_from("a~"))
                         {
                             return false;
                         }
                         break;
                     case 2:
-                        // (, line 39
-                        // <-, line 39
                         if (!base.slice_from("o~"))
                         {
                             return false;
                         }
                         break;
                     case 3:
-                        // (, line 40
-                        // next, line 40
                         if (base.cursor >= base.limit)
                         {
                             break lab0;
@@ -285,33 +274,25 @@ function PortugueseStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 44
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        // do, line 50
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 50
-            // or, line 52
             lab1: {
                 var /** number */ v_2 = base.cursor;
                 lab2: {
-                    // (, line 51
                     if (!(base.in_grouping(g_v, 97, 250)))
                     {
                         break lab2;
                     }
-                    // or, line 51
                     lab3: {
                         var /** number */ v_3 = base.cursor;
                         lab4: {
-                            // (, line 51
                             if (!(base.out_grouping(g_v, 97, 250)))
                             {
                                 break lab4;
                             }
-                            // gopast, line 51
                             golab5: while(true)
                             {
                                 lab6: {
@@ -330,12 +311,10 @@ function PortugueseStemmer() {
                             break lab3;
                         }
                         base.cursor = v_3;
-                        // (, line 51
                         if (!(base.in_grouping(g_v, 97, 250)))
                         {
                             break lab2;
                         }
-                        // gopast, line 51
                         golab7: while(true)
                         {
                             lab8: {
@@ -355,21 +334,17 @@ function PortugueseStemmer() {
                     break lab1;
                 }
                 base.cursor = v_2;
-                // (, line 53
                 if (!(base.out_grouping(g_v, 97, 250)))
                 {
                     break lab0;
                 }
-                // or, line 53
                 lab9: {
                     var /** number */ v_6 = base.cursor;
                     lab10: {
-                        // (, line 53
                         if (!(base.out_grouping(g_v, 97, 250)))
                         {
                             break lab10;
                         }
-                        // gopast, line 53
                         golab11: while(true)
                         {
                             lab12: {
@@ -388,12 +363,10 @@ function PortugueseStemmer() {
                         break lab9;
                     }
                     base.cursor = v_6;
-                    // (, line 53
                     if (!(base.in_grouping(g_v, 97, 250)))
                     {
                         break lab0;
                     }
-                    // next, line 53
                     if (base.cursor >= base.limit)
                     {
                         break lab0;
@@ -401,15 +374,11 @@ function PortugueseStemmer() {
                     base.cursor++;
                 }
             }
-            // setmark pV, line 54
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        // do, line 56
         var /** number */ v_8 = base.cursor;
         lab13: {
-            // (, line 56
-            // gopast, line 57
             golab14: while(true)
             {
                 lab15: {
@@ -425,7 +394,6 @@ function PortugueseStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 57
             golab16: while(true)
             {
                 lab17: {
@@ -441,9 +409,7 @@ function PortugueseStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p1, line 57
             I_p1 = base.cursor;
-            // gopast, line 58
             golab18: while(true)
             {
                 lab19: {
@@ -459,7 +425,6 @@ function PortugueseStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 58
             golab20: while(true)
             {
                 lab21: {
@@ -475,7 +440,6 @@ function PortugueseStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p2, line 58
             I_p2 = base.cursor;
         }
         base.cursor = v_8;
@@ -485,42 +449,31 @@ function PortugueseStemmer() {
     /** @return {boolean} */
     function r_postlude() {
         var /** number */ among_var;
-        // repeat, line 62
         while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab0: {
-                // (, line 62
-                // [, line 63
                 base.bra = base.cursor;
-                // substring, line 63
                 among_var = base.find_among(a_1);
                 if (among_var == 0)
                 {
                     break lab0;
                 }
-                // ], line 63
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        // (, line 64
-                        // <-, line 64
                         if (!base.slice_from("\u00E3"))
                         {
                             return false;
                         }
                         break;
                     case 2:
-                        // (, line 65
-                        // <-, line 65
                         if (!base.slice_from("\u00F5"))
                         {
                             return false;
                         }
                         break;
                     case 3:
-                        // (, line 66
-                        // next, line 66
                         if (base.cursor >= base.limit)
                         {
                             break lab0;
@@ -566,128 +519,96 @@ function PortugueseStemmer() {
     /** @return {boolean} */
     function r_standard_suffix() {
         var /** number */ among_var;
-        // (, line 76
-        // [, line 77
         base.ket = base.cursor;
-        // substring, line 77
         among_var = base.find_among_b(a_5);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 77
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 92
-                // call R2, line 93
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 93
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 97
-                // call R2, line 98
                 if (!r_R2())
                 {
                     return false;
                 }
-                // <-, line 98
                 if (!base.slice_from("log"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 101
-                // call R2, line 102
                 if (!r_R2())
                 {
                     return false;
                 }
-                // <-, line 102
                 if (!base.slice_from("u"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 105
-                // call R2, line 106
                 if (!r_R2())
                 {
                     return false;
                 }
-                // <-, line 106
                 if (!base.slice_from("ente"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 109
-                // call R1, line 110
                 if (!r_R1())
                 {
                     return false;
                 }
-                // delete, line 110
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // try, line 111
                 var /** number */ v_1 = base.limit - base.cursor;
                 lab0: {
-                    // (, line 111
-                    // [, line 112
                     base.ket = base.cursor;
-                    // substring, line 112
                     among_var = base.find_among_b(a_2);
                     if (among_var == 0)
                     {
                         base.cursor = base.limit - v_1;
                         break lab0;
                     }
-                    // ], line 112
                     base.bra = base.cursor;
-                    // call R2, line 112
                     if (!r_R2())
                     {
                         base.cursor = base.limit - v_1;
                         break lab0;
                     }
-                    // delete, line 112
                     if (!base.slice_del())
                     {
                         return false;
                     }
                     switch (among_var) {
                         case 1:
-                            // (, line 113
-                            // [, line 113
                             base.ket = base.cursor;
-                            // literal, line 113
                             if (!(base.eq_s_b("at")))
                             {
                                 base.cursor = base.limit - v_1;
                                 break lab0;
                             }
-                            // ], line 113
                             base.bra = base.cursor;
-                            // call R2, line 113
                             if (!r_R2())
                             {
                                 base.cursor = base.limit - v_1;
                                 break lab0;
                             }
-                            // delete, line 113
                             if (!base.slice_del())
                             {
                                 return false;
@@ -697,39 +618,28 @@ function PortugueseStemmer() {
                 }
                 break;
             case 6:
-                // (, line 121
-                // call R2, line 122
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 122
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // try, line 123
                 var /** number */ v_2 = base.limit - base.cursor;
                 lab1: {
-                    // (, line 123
-                    // [, line 124
                     base.ket = base.cursor;
-                    // substring, line 124
                     if (base.find_among_b(a_3) == 0)
                     {
                         base.cursor = base.limit - v_2;
                         break lab1;
                     }
-                    // ], line 124
                     base.bra = base.cursor;
-                    // (, line 127
-                    // call R2, line 127
                     if (!r_R2())
                     {
                         base.cursor = base.limit - v_2;
                         break lab1;
                     }
-                    // delete, line 127
                     if (!base.slice_del())
                     {
                         return false;
@@ -737,39 +647,28 @@ function PortugueseStemmer() {
                 }
                 break;
             case 7:
-                // (, line 133
-                // call R2, line 134
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 134
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // try, line 135
                 var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    // (, line 135
-                    // [, line 136
                     base.ket = base.cursor;
-                    // substring, line 136
                     if (base.find_among_b(a_4) == 0)
                     {
                         base.cursor = base.limit - v_3;
                         break lab2;
                     }
-                    // ], line 136
                     base.bra = base.cursor;
-                    // (, line 139
-                    // call R2, line 139
                     if (!r_R2())
                     {
                         base.cursor = base.limit - v_3;
                         break lab2;
                     }
-                    // delete, line 139
                     if (!base.slice_del())
                     {
                         return false;
@@ -777,38 +676,28 @@ function PortugueseStemmer() {
                 }
                 break;
             case 8:
-                // (, line 145
-                // call R2, line 146
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 146
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // try, line 147
                 var /** number */ v_4 = base.limit - base.cursor;
                 lab3: {
-                    // (, line 147
-                    // [, line 148
                     base.ket = base.cursor;
-                    // literal, line 148
                     if (!(base.eq_s_b("at")))
                     {
                         base.cursor = base.limit - v_4;
                         break lab3;
                     }
-                    // ], line 148
                     base.bra = base.cursor;
-                    // call R2, line 148
                     if (!r_R2())
                     {
                         base.cursor = base.limit - v_4;
                         break lab3;
                     }
-                    // delete, line 148
                     if (!base.slice_del())
                     {
                         return false;
@@ -816,18 +705,14 @@ function PortugueseStemmer() {
                 }
                 break;
             case 9:
-                // (, line 152
-                // call RV, line 153
                 if (!r_RV())
                 {
                     return false;
                 }
-                // literal, line 153
                 if (!(base.eq_s_b("e")))
                 {
                     return false;
                 }
-                // <-, line 154
                 if (!base.slice_from("ir"))
                 {
                     return false;
@@ -839,26 +724,19 @@ function PortugueseStemmer() {
 
     /** @return {boolean} */
     function r_verb_suffix() {
-        // setlimit, line 159
         if (base.cursor < I_pV)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_pV;
-        // (, line 159
-        // [, line 160
         base.ket = base.cursor;
-        // substring, line 160
         if (base.find_among_b(a_6) == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
-        // ], line 160
         base.bra = base.cursor;
-        // (, line 179
-        // delete, line 179
         if (!base.slice_del())
         {
             return false;
@@ -869,23 +747,16 @@ function PortugueseStemmer() {
 
     /** @return {boolean} */
     function r_residual_suffix() {
-        // (, line 183
-        // [, line 184
         base.ket = base.cursor;
-        // substring, line 184
         if (base.find_among_b(a_7) == 0)
         {
             return false;
         }
-        // ], line 184
         base.bra = base.cursor;
-        // (, line 187
-        // call RV, line 187
         if (!r_RV())
         {
             return false;
         }
-        // delete, line 187
         if (!base.slice_del())
         {
             return false;
@@ -896,47 +767,33 @@ function PortugueseStemmer() {
     /** @return {boolean} */
     function r_residual_form() {
         var /** number */ among_var;
-        // (, line 191
-        // [, line 192
         base.ket = base.cursor;
-        // substring, line 192
         among_var = base.find_among_b(a_8);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 192
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 194
-                // call RV, line 194
                 if (!r_RV())
                 {
                     return false;
                 }
-                // delete, line 194
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // [, line 194
                 base.ket = base.cursor;
-                // or, line 194
                 lab0: {
                     var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
-                        // (, line 194
-                        // literal, line 194
                         if (!(base.eq_s_b("u")))
                         {
                             break lab1;
                         }
-                        // ], line 194
                         base.bra = base.cursor;
-                        // test, line 194
                         var /** number */ v_2 = base.limit - base.cursor;
-                        // literal, line 194
                         if (!(base.eq_s_b("g")))
                         {
                             break lab1;
@@ -945,37 +802,28 @@ function PortugueseStemmer() {
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
-                    // (, line 195
-                    // literal, line 195
                     if (!(base.eq_s_b("i")))
                     {
                         return false;
                     }
-                    // ], line 195
                     base.bra = base.cursor;
-                    // test, line 195
                     var /** number */ v_3 = base.limit - base.cursor;
-                    // literal, line 195
                     if (!(base.eq_s_b("c")))
                     {
                         return false;
                     }
                     base.cursor = base.limit - v_3;
                 }
-                // call RV, line 195
                 if (!r_RV())
                 {
                     return false;
                 }
-                // delete, line 195
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 196
-                // <-, line 196
                 if (!base.slice_from("c"))
                 {
                     return false;
@@ -986,35 +834,20 @@ function PortugueseStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 201
-        // do, line 202
         var /** number */ v_1 = base.cursor;
-        // call prelude, line 202
         r_prelude();
         base.cursor = v_1;
-        // do, line 203
-        // call mark_regions, line 203
         r_mark_regions();
-        // backwards, line 204
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 204
-        // do, line 205
         var /** number */ v_3 = base.limit - base.cursor;
         lab0: {
-            // (, line 205
-            // or, line 209
             lab1: {
                 var /** number */ v_4 = base.limit - base.cursor;
                 lab2: {
-                    // (, line 206
-                    // and, line 207
                     var /** number */ v_5 = base.limit - base.cursor;
-                    // (, line 206
-                    // or, line 206
                     lab3: {
                         var /** number */ v_6 = base.limit - base.cursor;
                         lab4: {
-                            // call standard_suffix, line 206
                             if (!r_standard_suffix())
                             {
                                 break lab4;
@@ -1022,40 +855,30 @@ function PortugueseStemmer() {
                             break lab3;
                         }
                         base.cursor = base.limit - v_6;
-                        // call verb_suffix, line 206
                         if (!r_verb_suffix())
                         {
                             break lab2;
                         }
                     }
                     base.cursor = base.limit - v_5;
-                    // do, line 207
                     var /** number */ v_7 = base.limit - base.cursor;
                     lab5: {
-                        // (, line 207
-                        // [, line 207
                         base.ket = base.cursor;
-                        // literal, line 207
                         if (!(base.eq_s_b("i")))
                         {
                             break lab5;
                         }
-                        // ], line 207
                         base.bra = base.cursor;
-                        // test, line 207
                         var /** number */ v_8 = base.limit - base.cursor;
-                        // literal, line 207
                         if (!(base.eq_s_b("c")))
                         {
                             break lab5;
                         }
                         base.cursor = base.limit - v_8;
-                        // call RV, line 207
                         if (!r_RV())
                         {
                             break lab5;
                         }
-                        // delete, line 207
                         if (!base.slice_del())
                         {
                             return false;
@@ -1065,7 +888,6 @@ function PortugueseStemmer() {
                     break lab1;
                 }
                 base.cursor = base.limit - v_4;
-                // call residual_suffix, line 209
                 if (!r_residual_suffix())
                 {
                     break lab0;
@@ -1073,15 +895,11 @@ function PortugueseStemmer() {
             }
         }
         base.cursor = base.limit - v_3;
-        // do, line 211
         var /** number */ v_9 = base.limit - base.cursor;
-        // call residual_form, line 211
         r_residual_form();
         base.cursor = base.limit - v_9;
         base.cursor = base.limit_backward;
-        // do, line 213
         var /** number */ v_10 = base.cursor;
-        // call postlude, line 213
         r_postlude();
         base.cursor = v_10;
         return true;

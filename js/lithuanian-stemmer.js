@@ -314,32 +314,24 @@ function LithuanianStemmer() {
 
     /** @return {boolean} */
     function r_step1() {
-        // (, line 44
-        // setlimit, line 45
         if (base.cursor < I_p1)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_p1;
-        // (, line 45
-        // [, line 45
         base.ket = base.cursor;
-        // substring, line 45
         if (base.find_among_b(a_0) == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
-        // ], line 45
         base.bra = base.cursor;
         base.limit_backward = v_2;
-        // call R1, line 45
         if (!r_R1())
         {
             return false;
         }
-        // delete, line 229
         if (!base.slice_del())
         {
             return false;
@@ -349,32 +341,24 @@ function LithuanianStemmer() {
 
     /** @return {boolean} */
     function r_step2() {
-        // repeat, line 232
         while(true)
         {
             var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
-                // (, line 232
-                // setlimit, line 233
                 if (base.cursor < I_p1)
                 {
                     break lab0;
                 }
                 var /** number */ v_3 = base.limit_backward;
                 base.limit_backward = I_p1;
-                // (, line 233
-                // [, line 233
                 base.ket = base.cursor;
-                // substring, line 233
                 if (base.find_among_b(a_1) == 0)
                 {
                     base.limit_backward = v_3;
                     break lab0;
                 }
-                // ], line 233
                 base.bra = base.cursor;
                 base.limit_backward = v_3;
-                // delete, line 303
                 if (!base.slice_del())
                 {
                     return false;
@@ -390,77 +374,57 @@ function LithuanianStemmer() {
     /** @return {boolean} */
     function r_fix_conflicts() {
         var /** number */ among_var;
-        // (, line 306
-        // [, line 307
         base.ket = base.cursor;
-        // substring, line 307
         among_var = base.find_among_b(a_2);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 307
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 309
-                // <-, line 309
                 if (!base.slice_from("ait\u0117"))
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 314
-                // <-, line 314
                 if (!base.slice_from("uot\u0117"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 319
-                // <-, line 319
                 if (!base.slice_from("\u0117jimas"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 322
-                // <-, line 322
                 if (!base.slice_from("esys"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 324
-                // <-, line 324
                 if (!base.slice_from("asys"))
                 {
                     return false;
                 }
                 break;
             case 6:
-                // (, line 327
-                // <-, line 327
                 if (!base.slice_from("avimas"))
                 {
                     return false;
                 }
                 break;
             case 7:
-                // (, line 328
-                // <-, line 328
                 if (!base.slice_from("ojimas"))
                 {
                     return false;
                 }
                 break;
             case 8:
-                // (, line 331
-                // <-, line 331
                 if (!base.slice_from("okat\u0117"))
                 {
                     return false;
@@ -473,29 +437,21 @@ function LithuanianStemmer() {
     /** @return {boolean} */
     function r_fix_chdz() {
         var /** number */ among_var;
-        // (, line 337
-        // [, line 338
         base.ket = base.cursor;
-        // substring, line 338
         among_var = base.find_among_b(a_3);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 338
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 339
-                // <-, line 339
                 if (!base.slice_from("t"))
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 340
-                // <-, line 340
                 if (!base.slice_from("d"))
                 {
                     return false;
@@ -507,18 +463,12 @@ function LithuanianStemmer() {
 
     /** @return {boolean} */
     function r_fix_gd() {
-        // (, line 344
-        // [, line 345
         base.ket = base.cursor;
-        // substring, line 345
         if (base.find_among_b(a_4) == 0)
         {
             return false;
         }
-        // ], line 345
         base.bra = base.cursor;
-        // (, line 346
-        // <-, line 346
         if (!base.slice_from("g"))
         {
             return false;
@@ -527,19 +477,12 @@ function LithuanianStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 353
         I_p1 = base.limit;
-        // do, line 357
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 357
-            // try, line 359
             var /** number */ v_2 = base.cursor;
             lab1: {
-                // (, line 359
-                // test, line 359
                 var /** number */ v_3 = base.cursor;
-                // literal, line 359
                 if (!(base.eq_s("a")))
                 {
                     base.cursor = v_2;
@@ -551,7 +494,6 @@ function LithuanianStemmer() {
                     base.cursor = v_2;
                     break lab1;
                 }
-                // hop, line 359
                 {
                     var /** number */ c1 = base.cursor + 1;
                     if (0 > c1 || c1 > base.limit)
@@ -562,7 +504,6 @@ function LithuanianStemmer() {
                     base.cursor = c1;
                 }
             }
-            // gopast, line 361
             golab2: while(true)
             {
                 lab3: {
@@ -578,7 +519,6 @@ function LithuanianStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 361
             golab4: while(true)
             {
                 lab5: {
@@ -594,41 +534,26 @@ function LithuanianStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p1, line 361
             I_p1 = base.cursor;
         }
         base.cursor = v_1;
-        // backwards, line 364
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 364
-        // do, line 365
         var /** number */ v_6 = base.limit - base.cursor;
-        // call fix_conflicts, line 365
         r_fix_conflicts();
         base.cursor = base.limit - v_6;
-        // do, line 366
         var /** number */ v_7 = base.limit - base.cursor;
-        // call step1, line 366
         r_step1();
         base.cursor = base.limit - v_7;
-        // do, line 367
         var /** number */ v_8 = base.limit - base.cursor;
-        // call fix_chdz, line 367
         r_fix_chdz();
         base.cursor = base.limit - v_8;
-        // do, line 368
         var /** number */ v_9 = base.limit - base.cursor;
-        // call step2, line 368
         r_step2();
         base.cursor = base.limit - v_9;
-        // do, line 369
         var /** number */ v_10 = base.limit - base.cursor;
-        // call fix_chdz, line 369
         r_fix_chdz();
         base.cursor = base.limit - v_10;
-        // do, line 370
         var /** number */ v_11 = base.limit - base.cursor;
-        // call fix_gd, line 370
         r_fix_gd();
         base.cursor = base.limit - v_11;
         base.cursor = base.limit_backward;

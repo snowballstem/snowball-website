@@ -2244,276 +2244,206 @@ function SerbianStemmer() {
 
     /** @const */ var /** Array<int> */ g_rg = [1];
 
-    var /** number */ I_sbst = 0;
-    var /** number */ I_p3 = 0;
-    var /** number */ I_p2 = 0;
     var /** number */ I_p1 = 0;
+    var /** boolean */ B_no_diacritics = false;
 
 
     /** @return {boolean} */
     function r_cyr_to_lat() {
         var /** number */ among_var;
-        // (, line 78
-        // do, line 80
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // repeat, line 80
             while(true)
             {
                 var /** number */ v_2 = base.cursor;
                 lab1: {
-                    // goto, line 80
                     golab2: while(true)
                     {
                         var /** number */ v_3 = base.cursor;
                         lab3: {
-                            // (, line 80
-                            // [, line 81
                             base.bra = base.cursor;
-                            // substring, line 81
                             among_var = base.find_among(a_0);
                             if (among_var == 0)
                             {
                                 break lab3;
                             }
-                            // ], line 81
                             base.ket = base.cursor;
                             switch (among_var) {
                                 case 1:
-                                    // (, line 82
-                                    // <-, line 82
                                     if (!base.slice_from("a"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 2:
-                                    // (, line 83
-                                    // <-, line 83
                                     if (!base.slice_from("b"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 3:
-                                    // (, line 84
-                                    // <-, line 84
                                     if (!base.slice_from("v"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 4:
-                                    // (, line 85
-                                    // <-, line 85
                                     if (!base.slice_from("g"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 5:
-                                    // (, line 86
-                                    // <-, line 86
                                     if (!base.slice_from("d"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 6:
-                                    // (, line 87
-                                    // <-, line 87
                                     if (!base.slice_from("\u0111"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 7:
-                                    // (, line 88
-                                    // <-, line 88
                                     if (!base.slice_from("e"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 8:
-                                    // (, line 89
-                                    // <-, line 89
                                     if (!base.slice_from("\u017E"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 9:
-                                    // (, line 90
-                                    // <-, line 90
                                     if (!base.slice_from("z"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 10:
-                                    // (, line 91
-                                    // <-, line 91
                                     if (!base.slice_from("i"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 11:
-                                    // (, line 92
-                                    // <-, line 92
                                     if (!base.slice_from("j"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 12:
-                                    // (, line 93
-                                    // <-, line 93
                                     if (!base.slice_from("k"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 13:
-                                    // (, line 94
-                                    // <-, line 94
                                     if (!base.slice_from("l"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 14:
-                                    // (, line 95
-                                    // <-, line 95
                                     if (!base.slice_from("lj"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 15:
-                                    // (, line 96
-                                    // <-, line 96
                                     if (!base.slice_from("m"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 16:
-                                    // (, line 97
-                                    // <-, line 97
                                     if (!base.slice_from("n"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 17:
-                                    // (, line 98
-                                    // <-, line 98
                                     if (!base.slice_from("nj"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 18:
-                                    // (, line 99
-                                    // <-, line 99
                                     if (!base.slice_from("o"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 19:
-                                    // (, line 100
-                                    // <-, line 100
                                     if (!base.slice_from("p"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 20:
-                                    // (, line 101
-                                    // <-, line 101
                                     if (!base.slice_from("r"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 21:
-                                    // (, line 102
-                                    // <-, line 102
                                     if (!base.slice_from("s"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 22:
-                                    // (, line 103
-                                    // <-, line 103
                                     if (!base.slice_from("t"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 23:
-                                    // (, line 104
-                                    // <-, line 104
                                     if (!base.slice_from("\u0107"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 24:
-                                    // (, line 105
-                                    // <-, line 105
                                     if (!base.slice_from("u"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 25:
-                                    // (, line 106
-                                    // <-, line 106
                                     if (!base.slice_from("f"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 26:
-                                    // (, line 107
-                                    // <-, line 107
                                     if (!base.slice_from("h"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 27:
-                                    // (, line 108
-                                    // <-, line 108
                                     if (!base.slice_from("c"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 28:
-                                    // (, line 109
-                                    // <-, line 109
                                     if (!base.slice_from("\u010D"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 29:
-                                    // (, line 110
-                                    // <-, line 110
                                     if (!base.slice_from("d\u017E"))
                                     {
                                         return false;
                                     }
                                     break;
                                 case 30:
-                                    // (, line 111
-                                    // <-, line 111
                                     if (!base.slice_from("\u0161"))
                                     {
                                         return false;
@@ -2542,39 +2472,30 @@ function SerbianStemmer() {
 
     /** @return {boolean} */
     function r_prelude() {
-        // (, line 117
-        // do, line 119
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // repeat, line 119
             while(true)
             {
                 var /** number */ v_2 = base.cursor;
                 lab1: {
-                    // goto, line 119
                     golab2: while(true)
                     {
                         var /** number */ v_3 = base.cursor;
                         lab3: {
-                            // (, line 119
                             if (!(base.in_grouping(g_ca, 98, 382)))
                             {
                                 break lab3;
                             }
-                            // [, line 120
                             base.bra = base.cursor;
-                            // literal, line 120
                             if (!(base.eq_s("ije")))
                             {
                                 break lab3;
                             }
-                            // ], line 120
                             base.ket = base.cursor;
                             if (!(base.in_grouping(g_ca, 98, 382)))
                             {
                                 break lab3;
                             }
-                            // <-, line 120
                             if (!base.slice_from("e"))
                             {
                                 return false;
@@ -2596,38 +2517,30 @@ function SerbianStemmer() {
             }
         }
         base.cursor = v_1;
-        // do, line 123
         var /** number */ v_4 = base.cursor;
         lab4: {
-            // repeat, line 123
             while(true)
             {
                 var /** number */ v_5 = base.cursor;
                 lab5: {
-                    // goto, line 123
                     golab6: while(true)
                     {
                         var /** number */ v_6 = base.cursor;
                         lab7: {
-                            // (, line 123
                             if (!(base.in_grouping(g_ca, 98, 382)))
                             {
                                 break lab7;
                             }
-                            // [, line 124
                             base.bra = base.cursor;
-                            // literal, line 124
                             if (!(base.eq_s("je")))
                             {
                                 break lab7;
                             }
-                            // ], line 124
                             base.ket = base.cursor;
                             if (!(base.in_grouping(g_ca, 98, 382)))
                             {
                                 break lab7;
                             }
-                            // <-, line 124
                             if (!base.slice_from("e"))
                             {
                                 return false;
@@ -2649,30 +2562,22 @@ function SerbianStemmer() {
             }
         }
         base.cursor = v_4;
-        // do, line 127
         var /** number */ v_7 = base.cursor;
         lab8: {
-            // repeat, line 127
             while(true)
             {
                 var /** number */ v_8 = base.cursor;
                 lab9: {
-                    // goto, line 127
                     golab10: while(true)
                     {
                         var /** number */ v_9 = base.cursor;
                         lab11: {
-                            // (, line 127
-                            // [, line 128
                             base.bra = base.cursor;
-                            // literal, line 128
                             if (!(base.eq_s("dj")))
                             {
                                 break lab11;
                             }
-                            // ], line 128
                             base.ket = base.cursor;
-                            // <-, line 128
                             if (!base.slice_from("\u0111"))
                             {
                                 return false;
@@ -2699,13 +2604,9 @@ function SerbianStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 133
-        I_p3 = 0;
-        // do, line 137
+        B_no_diacritics = true;
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 137
-            // gopast, line 138
             golab1: while(true)
             {
                 lab2: {
@@ -2721,22 +2622,16 @@ function SerbianStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p3, line 138
-            I_p3 = base.cursor;
+            B_no_diacritics = false;
         }
         base.cursor = v_1;
         I_p1 = base.limit;
-        I_p2 = 0;
-        // do, line 144
         var /** number */ v_3 = base.cursor;
         lab3: {
-            // (, line 144
-            // gopast, line 145
             golab4: while(true)
             {
                 lab5: {
-                    // literal, line 145
-                    if (!(base.eq_s("r")))
+                    if (!(base.in_grouping(g_v, 97, 117)))
                     {
                         break lab5;
                     }
@@ -2748,150 +2643,79 @@ function SerbianStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p2, line 145
-            I_p2 = base.cursor;
+            I_p1 = base.cursor;
+            if (!(I_p1 < 2))
+            {
+                break lab3;
+            }
+            golab6: while(true)
+            {
+                lab7: {
+                    if (!(base.out_grouping(g_v, 97, 117)))
+                    {
+                        break lab7;
+                    }
+                    break golab6;
+                }
+                if (base.cursor >= base.limit)
+                {
+                    break lab3;
+                }
+                base.cursor++;
+            }
+            I_p1 = base.cursor;
         }
         base.cursor = v_3;
-        // do, line 147
-        var /** number */ v_5 = base.cursor;
-        lab6: {
-            // (, line 147
-            // gopast, line 148
-            golab7: while(true)
+        var /** number */ v_6 = base.cursor;
+        lab8: {
+            golab9: while(true)
             {
-                lab8: {
-                    if (!(base.in_grouping(g_v, 97, 117)))
+                lab10: {
+                    if (!(base.eq_s("r")))
+                    {
+                        break lab10;
+                    }
+                    break golab9;
+                }
+                if (base.cursor >= base.limit)
+                {
+                    break lab8;
+                }
+                base.cursor++;
+            }
+            lab11: {
+                var /** number */ v_8 = base.cursor;
+                lab12: {
+                    if (!(base.cursor >= 2))
+                    {
+                        break lab12;
+                    }
+                    break lab11;
+                }
+                base.cursor = v_8;
+                golab13: while(true)
+                {
+                    lab14: {
+                        if (!(base.out_grouping(g_rg, 114, 114)))
+                        {
+                            break lab14;
+                        }
+                        break golab13;
+                    }
+                    if (base.cursor >= base.limit)
                     {
                         break lab8;
                     }
-                    break golab7;
+                    base.cursor++;
                 }
-                if (base.cursor >= base.limit)
-                {
-                    break lab6;
-                }
-                base.cursor++;
             }
-            // setmark p1, line 148
+            if (!((I_p1 - base.cursor) > 1))
+            {
+                break lab8;
+            }
             I_p1 = base.cursor;
-            // setmark sbst, line 148
-            I_sbst = base.cursor;
         }
-        base.cursor = v_5;
-        // try, line 150
-        lab9: {
-            // (, line 150
-            // (, line 151
-            if (!(I_p2 != 0))
-            {
-                break lab9;
-            }
-            // (, line 151
-            if (!(I_p2 < I_p1))
-            {
-                break lab9;
-            }
-            // (, line 151
-            I_sbst -= I_p2;
-            // (, line 151
-            if (!(I_sbst > 1))
-            {
-                break lab9;
-            }
-            // (, line 151
-            I_p1 = I_p2;
-        }
-        // (, line 153
-        if (!(I_p1 < 2))
-        {
-            return false;
-        }
-        // (, line 153
-        // or, line 154
-        lab10: {
-            var /** number */ v_8 = base.cursor;
-            lab11: {
-                // (, line 154
-                if (!(I_p1 == I_p2))
-                {
-                    break lab11;
-                }
-                // gopast, line 154
-                golab12: while(true)
-                {
-                    lab13: {
-                        // literal, line 154
-                        if (!(base.eq_s("r")))
-                        {
-                            break lab13;
-                        }
-                        break golab12;
-                    }
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab11;
-                    }
-                    base.cursor++;
-                }
-                // gopast, line 154
-                golab14: while(true)
-                {
-                    lab15: {
-                        if (!(base.out_grouping(g_rg, 114, 114)))
-                        {
-                            break lab15;
-                        }
-                        break golab14;
-                    }
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab11;
-                    }
-                    base.cursor++;
-                }
-                break lab10;
-            }
-            base.cursor = v_8;
-            // (, line 154
-            if (!(I_p1 != I_p2))
-            {
-                return false;
-            }
-            // gopast, line 154
-            golab16: while(true)
-            {
-                lab17: {
-                    if (!(base.in_grouping(g_v, 97, 117)))
-                    {
-                        break lab17;
-                    }
-                    break golab16;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    return false;
-                }
-                base.cursor++;
-            }
-            // gopast, line 154
-            golab18: while(true)
-            {
-                lab19: {
-                    if (!(base.out_grouping(g_v, 97, 117)))
-                    {
-                        break lab19;
-                    }
-                    break golab18;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    return false;
-                }
-                base.cursor++;
-            }
-        }
-        // setmark p1, line 155
-        I_p1 = base.cursor;
+        base.cursor = v_6;
         return true;
     };
 
@@ -2905,792 +2729,589 @@ function SerbianStemmer() {
     };
 
     /** @return {boolean} */
-    function r_R2() {
-        if (!(I_p3 == 0))
-        {
-            return false;
-        }
-        return true;
-    };
-
-    /** @return {boolean} */
     function r_Step_1() {
         var /** number */ among_var;
-        // (, line 165
-        // [, line 166
         base.ket = base.cursor;
-        // substring, line 166
         among_var = base.find_among_b(a_1);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 166
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 168
-                // <-, line 168
                 if (!base.slice_from("loga"))
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 170
-                // <-, line 170
                 if (!base.slice_from("peh"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 171
-                // <-, line 171
                 if (!base.slice_from("vojka"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 172
-                // <-, line 172
                 if (!base.slice_from("bojka"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 174
-                // <-, line 174
                 if (!base.slice_from("jak"))
                 {
                     return false;
                 }
                 break;
             case 6:
-                // (, line 175
-                // <-, line 175
                 if (!base.slice_from("\u010Dajni"))
                 {
                     return false;
                 }
                 break;
             case 7:
-                // (, line 176
-                // call R2, line 176
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 176
                 if (!base.slice_from("cajni"))
                 {
                     return false;
                 }
                 break;
             case 8:
-                // (, line 177
-                // <-, line 177
                 if (!base.slice_from("erni"))
                 {
                     return false;
                 }
                 break;
             case 9:
-                // (, line 178
-                // <-, line 178
                 if (!base.slice_from("larni"))
                 {
                     return false;
                 }
                 break;
             case 10:
-                // (, line 179
-                // <-, line 179
                 if (!base.slice_from("esni"))
                 {
                     return false;
                 }
                 break;
             case 11:
-                // (, line 180
-                // <-, line 180
                 if (!base.slice_from("anjca"))
                 {
                     return false;
                 }
                 break;
             case 12:
-                // (, line 182
-                // <-, line 182
                 if (!base.slice_from("ajca"))
                 {
                     return false;
                 }
                 break;
             case 13:
-                // (, line 184
-                // <-, line 184
                 if (!base.slice_from("ljca"))
                 {
                     return false;
                 }
                 break;
             case 14:
-                // (, line 186
-                // <-, line 186
                 if (!base.slice_from("ejca"))
                 {
                     return false;
                 }
                 break;
             case 15:
-                // (, line 188
-                // <-, line 188
                 if (!base.slice_from("ojca"))
                 {
                     return false;
                 }
                 break;
             case 16:
-                // (, line 189
-                // <-, line 189
                 if (!base.slice_from("ajka"))
                 {
                     return false;
                 }
                 break;
             case 17:
-                // (, line 190
-                // <-, line 190
                 if (!base.slice_from("ojka"))
                 {
                     return false;
                 }
                 break;
             case 18:
-                // (, line 192
-                // <-, line 192
                 if (!base.slice_from("\u0161ca"))
                 {
                     return false;
                 }
                 break;
             case 19:
-                // (, line 194
-                // <-, line 194
                 if (!base.slice_from("ing"))
                 {
                     return false;
                 }
                 break;
             case 20:
-                // (, line 195
-                // <-, line 195
                 if (!base.slice_from("tvenik"))
                 {
                     return false;
                 }
                 break;
             case 21:
-                // (, line 197
-                // <-, line 197
                 if (!base.slice_from("tetika"))
                 {
                     return false;
                 }
                 break;
             case 22:
-                // (, line 198
-                // <-, line 198
                 if (!base.slice_from("nstva"))
                 {
                     return false;
                 }
                 break;
             case 23:
-                // (, line 199
-                // <-, line 199
                 if (!base.slice_from("nik"))
                 {
                     return false;
                 }
                 break;
             case 24:
-                // (, line 200
-                // <-, line 200
                 if (!base.slice_from("tik"))
                 {
                     return false;
                 }
                 break;
             case 25:
-                // (, line 201
-                // <-, line 201
                 if (!base.slice_from("zik"))
                 {
                     return false;
                 }
                 break;
             case 26:
-                // (, line 202
-                // <-, line 202
                 if (!base.slice_from("snik"))
                 {
                     return false;
                 }
                 break;
             case 27:
-                // (, line 203
-                // <-, line 203
                 if (!base.slice_from("kusi"))
                 {
                     return false;
                 }
                 break;
             case 28:
-                // (, line 204
-                // <-, line 204
                 if (!base.slice_from("kusni"))
                 {
                     return false;
                 }
                 break;
             case 29:
-                // (, line 205
-                // <-, line 205
                 if (!base.slice_from("kustva"))
                 {
                     return false;
                 }
                 break;
             case 30:
-                // (, line 206
-                // <-, line 206
                 if (!base.slice_from("du\u0161ni"))
                 {
                     return false;
                 }
                 break;
             case 31:
-                // (, line 207
-                // call R2, line 207
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 207
                 if (!base.slice_from("dusni"))
                 {
                     return false;
                 }
                 break;
             case 32:
-                // (, line 208
-                // <-, line 208
                 if (!base.slice_from("antni"))
                 {
                     return false;
                 }
                 break;
             case 33:
-                // (, line 209
-                // <-, line 209
                 if (!base.slice_from("bilni"))
                 {
                     return false;
                 }
                 break;
             case 34:
-                // (, line 210
-                // <-, line 210
                 if (!base.slice_from("tilni"))
                 {
                     return false;
                 }
                 break;
             case 35:
-                // (, line 211
-                // <-, line 211
                 if (!base.slice_from("avilni"))
                 {
                     return false;
                 }
                 break;
             case 36:
-                // (, line 212
-                // <-, line 212
                 if (!base.slice_from("silni"))
                 {
                     return false;
                 }
                 break;
             case 37:
-                // (, line 213
-                // <-, line 213
                 if (!base.slice_from("gilni"))
                 {
                     return false;
                 }
                 break;
             case 38:
-                // (, line 214
-                // <-, line 214
                 if (!base.slice_from("rilni"))
                 {
                     return false;
                 }
                 break;
             case 39:
-                // (, line 215
-                // <-, line 215
                 if (!base.slice_from("nilni"))
                 {
                     return false;
                 }
                 break;
             case 40:
-                // (, line 216
-                // <-, line 216
                 if (!base.slice_from("alni"))
                 {
                     return false;
                 }
                 break;
             case 41:
-                // (, line 217
-                // <-, line 217
                 if (!base.slice_from("ozni"))
                 {
                     return false;
                 }
                 break;
             case 42:
-                // (, line 218
-                // <-, line 218
                 if (!base.slice_from("ravi"))
                 {
                     return false;
                 }
                 break;
             case 43:
-                // (, line 219
-                // <-, line 219
                 if (!base.slice_from("stavni"))
                 {
                     return false;
                 }
                 break;
             case 44:
-                // (, line 220
-                // <-, line 220
                 if (!base.slice_from("pravni"))
                 {
                     return false;
                 }
                 break;
             case 45:
-                // (, line 221
-                // <-, line 221
                 if (!base.slice_from("tivni"))
                 {
                     return false;
                 }
                 break;
             case 46:
-                // (, line 222
-                // <-, line 222
                 if (!base.slice_from("sivni"))
                 {
                     return false;
                 }
                 break;
             case 47:
-                // (, line 223
-                // <-, line 223
                 if (!base.slice_from("atni"))
                 {
                     return false;
                 }
                 break;
             case 48:
-                // (, line 224
-                // <-, line 224
                 if (!base.slice_from("enta"))
                 {
                     return false;
                 }
                 break;
             case 49:
-                // (, line 225
-                // <-, line 225
                 if (!base.slice_from("tetni"))
                 {
                     return false;
                 }
                 break;
             case 50:
-                // (, line 226
-                // <-, line 226
                 if (!base.slice_from("pletni"))
                 {
                     return false;
                 }
                 break;
             case 51:
-                // (, line 227
-                // <-, line 227
                 if (!base.slice_from("\u0161avi"))
                 {
                     return false;
                 }
                 break;
             case 52:
-                // (, line 228
-                // call R2, line 228
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 228
                 if (!base.slice_from("savi"))
                 {
                     return false;
                 }
                 break;
             case 53:
-                // (, line 229
-                // <-, line 229
                 if (!base.slice_from("anta"))
                 {
                     return false;
                 }
                 break;
             case 54:
-                // (, line 231
-                // <-, line 231
                 if (!base.slice_from("a\u010Dka"))
                 {
                     return false;
                 }
                 break;
             case 55:
-                // (, line 233
-                // call R2, line 233
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 233
                 if (!base.slice_from("acka"))
                 {
                     return false;
                 }
                 break;
             case 56:
-                // (, line 234
-                // <-, line 234
                 if (!base.slice_from("u\u0161ka"))
                 {
                     return false;
                 }
                 break;
             case 57:
-                // (, line 235
-                // call R2, line 235
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 235
                 if (!base.slice_from("uska"))
                 {
                     return false;
                 }
                 break;
             case 58:
-                // (, line 239
-                // <-, line 239
                 if (!base.slice_from("atka"))
                 {
                     return false;
                 }
                 break;
             case 59:
-                // (, line 241
-                // <-, line 241
                 if (!base.slice_from("etka"))
                 {
                     return false;
                 }
                 break;
             case 60:
-                // (, line 244
-                // <-, line 244
                 if (!base.slice_from("itka"))
                 {
                     return false;
                 }
                 break;
             case 61:
-                // (, line 246
-                // <-, line 246
                 if (!base.slice_from("otka"))
                 {
                     return false;
                 }
                 break;
             case 62:
-                // (, line 250
-                // <-, line 250
                 if (!base.slice_from("utka"))
                 {
                     return false;
                 }
                 break;
             case 63:
-                // (, line 251
-                // <-, line 251
                 if (!base.slice_from("eskna"))
                 {
                     return false;
                 }
                 break;
             case 64:
-                // (, line 252
-                // <-, line 252
                 if (!base.slice_from("ti\u010Dni"))
                 {
                     return false;
                 }
                 break;
             case 65:
-                // (, line 253
-                // call R2, line 253
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 253
                 if (!base.slice_from("ticni"))
                 {
                     return false;
                 }
                 break;
             case 66:
-                // (, line 254
-                // <-, line 254
                 if (!base.slice_from("ojska"))
                 {
                     return false;
                 }
                 break;
             case 67:
-                // (, line 255
-                // <-, line 255
                 if (!base.slice_from("esma"))
                 {
                     return false;
                 }
                 break;
             case 68:
-                // (, line 257
-                // <-, line 257
                 if (!base.slice_from("metra"))
                 {
                     return false;
                 }
                 break;
             case 69:
-                // (, line 259
-                // <-, line 259
                 if (!base.slice_from("centra"))
                 {
                     return false;
                 }
                 break;
             case 70:
-                // (, line 261
-                // <-, line 261
                 if (!base.slice_from("istra"))
                 {
                     return false;
                 }
                 break;
             case 71:
-                // (, line 262
-                // <-, line 262
                 if (!base.slice_from("osti"))
                 {
                     return false;
                 }
                 break;
             case 72:
-                // (, line 263
-                // call R2, line 263
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 263
                 if (!base.slice_from("osti"))
                 {
                     return false;
                 }
                 break;
             case 73:
-                // (, line 264
-                // <-, line 264
                 if (!base.slice_from("dba"))
                 {
                     return false;
                 }
                 break;
             case 74:
-                // (, line 266
-                // <-, line 266
                 if (!base.slice_from("\u010Dka"))
                 {
                     return false;
                 }
                 break;
             case 75:
-                // (, line 268
-                // <-, line 268
                 if (!base.slice_from("mca"))
                 {
                     return false;
                 }
                 break;
             case 76:
-                // (, line 270
-                // <-, line 270
                 if (!base.slice_from("nca"))
                 {
                     return false;
                 }
                 break;
             case 77:
-                // (, line 271
-                // <-, line 271
                 if (!base.slice_from("voljni"))
                 {
                     return false;
                 }
                 break;
             case 78:
-                // (, line 272
-                // <-, line 272
                 if (!base.slice_from("anki"))
                 {
                     return false;
                 }
                 break;
             case 79:
-                // (, line 274
-                // <-, line 274
                 if (!base.slice_from("vca"))
                 {
                     return false;
                 }
                 break;
             case 80:
-                // (, line 276
-                // <-, line 276
                 if (!base.slice_from("sca"))
                 {
                     return false;
                 }
                 break;
             case 81:
-                // (, line 278
-                // <-, line 278
                 if (!base.slice_from("rca"))
                 {
                     return false;
                 }
                 break;
             case 82:
-                // (, line 281
-                // <-, line 281
                 if (!base.slice_from("alca"))
                 {
                     return false;
                 }
                 break;
             case 83:
-                // (, line 283
-                // <-, line 283
                 if (!base.slice_from("elca"))
                 {
                     return false;
                 }
                 break;
             case 84:
-                // (, line 286
-                // <-, line 286
                 if (!base.slice_from("olca"))
                 {
                     return false;
                 }
                 break;
             case 85:
-                // (, line 288
-                // <-, line 288
                 if (!base.slice_from("njca"))
                 {
                     return false;
                 }
                 break;
             case 86:
-                // (, line 290
-                // <-, line 290
                 if (!base.slice_from("ekta"))
                 {
                     return false;
                 }
                 break;
             case 87:
-                // (, line 292
-                // <-, line 292
                 if (!base.slice_from("izma"))
                 {
                     return false;
                 }
                 break;
             case 88:
-                // (, line 293
-                // <-, line 293
                 if (!base.slice_from("jebi"))
                 {
                     return false;
                 }
                 break;
             case 89:
-                // (, line 294
-                // <-, line 294
                 if (!base.slice_from("baci"))
                 {
                     return false;
                 }
                 break;
             case 90:
-                // (, line 295
-                // <-, line 295
                 if (!base.slice_from("a\u0161ni"))
                 {
                     return false;
                 }
                 break;
             case 91:
-                // (, line 296
-                // call R2, line 296
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 296
                 if (!base.slice_from("asni"))
                 {
                     return false;
@@ -3703,1550 +3324,1173 @@ function SerbianStemmer() {
     /** @return {boolean} */
     function r_Step_2() {
         var /** number */ among_var;
-        // (, line 300
-        // [, line 301
         base.ket = base.cursor;
-        // substring, line 301
         among_var = base.find_among_b(a_2);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 301
         base.bra = base.cursor;
-        // call R1, line 301
         if (!r_R1())
         {
             return false;
         }
         switch (among_var) {
             case 1:
-                // (, line 329
-                // <-, line 329
                 if (!base.slice_from("sk"))
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 357
-                // <-, line 357
                 if (!base.slice_from("\u0161k"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 362
-                // <-, line 362
                 if (!base.slice_from("stv"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 367
-                // <-, line 367
                 if (!base.slice_from("\u0161tv"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 374
-                // <-, line 374
                 if (!base.slice_from("tanij"))
                 {
                     return false;
                 }
                 break;
             case 6:
-                // (, line 381
-                // <-, line 381
                 if (!base.slice_from("manij"))
                 {
                     return false;
                 }
                 break;
             case 7:
-                // (, line 388
-                // <-, line 388
                 if (!base.slice_from("panij"))
                 {
                     return false;
                 }
                 break;
             case 8:
-                // (, line 395
-                // <-, line 395
                 if (!base.slice_from("ranij"))
                 {
                     return false;
                 }
                 break;
             case 9:
-                // (, line 402
-                // <-, line 402
                 if (!base.slice_from("ganij"))
                 {
                     return false;
                 }
                 break;
             case 10:
-                // (, line 413
-                // <-, line 413
                 if (!base.slice_from("an"))
                 {
                     return false;
                 }
                 break;
             case 11:
-                // (, line 421
-                // <-, line 421
                 if (!base.slice_from("in"))
                 {
                     return false;
                 }
                 break;
             case 12:
-                // (, line 431
-                // <-, line 431
                 if (!base.slice_from("on"))
                 {
                     return false;
                 }
                 break;
             case 13:
-                // (, line 461
-                // <-, line 461
                 if (!base.slice_from("n"))
                 {
                     return false;
                 }
                 break;
             case 14:
-                // (, line 477
-                // <-, line 477
                 if (!base.slice_from("a\u0107"))
                 {
                     return false;
                 }
                 break;
             case 15:
-                // (, line 493
-                // <-, line 493
                 if (!base.slice_from("e\u0107"))
                 {
                     return false;
                 }
                 break;
             case 16:
-                // (, line 509
-                // <-, line 509
                 if (!base.slice_from("u\u0107"))
                 {
                     return false;
                 }
                 break;
             case 17:
-                // (, line 513
-                // <-, line 513
                 if (!base.slice_from("ugov"))
                 {
                     return false;
                 }
                 break;
             case 18:
-                // (, line 520
-                // <-, line 520
                 if (!base.slice_from("ug"))
                 {
                     return false;
                 }
                 break;
             case 19:
-                // (, line 525
-                // <-, line 525
                 if (!base.slice_from("log"))
                 {
                     return false;
                 }
                 break;
             case 20:
-                // (, line 536
-                // <-, line 536
                 if (!base.slice_from("g"))
                 {
                     return false;
                 }
                 break;
             case 21:
-                // (, line 540
-                // <-, line 540
                 if (!base.slice_from("rari"))
                 {
                     return false;
                 }
                 break;
             case 22:
-                // (, line 544
-                // <-, line 544
                 if (!base.slice_from("oti"))
                 {
                     return false;
                 }
                 break;
             case 23:
-                // (, line 548
-                // <-, line 548
                 if (!base.slice_from("si"))
                 {
                     return false;
                 }
                 break;
             case 24:
-                // (, line 552
-                // <-, line 552
                 if (!base.slice_from("li"))
                 {
                     return false;
                 }
                 break;
             case 25:
-                // (, line 560
-                // <-, line 560
                 if (!base.slice_from("uj"))
                 {
                     return false;
                 }
                 break;
             case 26:
-                // (, line 571
-                // <-, line 571
                 if (!base.slice_from("caj"))
                 {
                     return false;
                 }
                 break;
             case 27:
-                // (, line 582
-                // <-, line 582
                 if (!base.slice_from("\u010Daj"))
                 {
                     return false;
                 }
                 break;
             case 28:
-                // (, line 593
-                // <-, line 593
                 if (!base.slice_from("\u0107aj"))
                 {
                     return false;
                 }
                 break;
             case 29:
-                // (, line 604
-                // <-, line 604
                 if (!base.slice_from("\u0111aj"))
                 {
                     return false;
                 }
                 break;
             case 30:
-                // (, line 615
-                // <-, line 615
                 if (!base.slice_from("laj"))
                 {
                     return false;
                 }
                 break;
             case 31:
-                // (, line 626
-                // <-, line 626
                 if (!base.slice_from("raj"))
                 {
                     return false;
                 }
                 break;
             case 32:
-                // (, line 634
-                // <-, line 634
                 if (!base.slice_from("bij"))
                 {
                     return false;
                 }
                 break;
             case 33:
-                // (, line 642
-                // <-, line 642
                 if (!base.slice_from("cij"))
                 {
                     return false;
                 }
                 break;
             case 34:
-                // (, line 650
-                // <-, line 650
                 if (!base.slice_from("dij"))
                 {
                     return false;
                 }
                 break;
             case 35:
-                // (, line 656
-                // <-, line 656
                 if (!base.slice_from("lij"))
                 {
                     return false;
                 }
                 break;
             case 36:
-                // (, line 659
-                // <-, line 659
                 if (!base.slice_from("nij"))
                 {
                     return false;
                 }
                 break;
             case 37:
-                // (, line 667
-                // <-, line 667
                 if (!base.slice_from("mij"))
                 {
                     return false;
                 }
                 break;
             case 38:
-                // (, line 675
-                // <-, line 675
                 if (!base.slice_from("\u017Eij"))
                 {
                     return false;
                 }
                 break;
             case 39:
-                // (, line 683
-                // <-, line 683
                 if (!base.slice_from("gij"))
                 {
                     return false;
                 }
                 break;
             case 40:
-                // (, line 691
-                // <-, line 691
                 if (!base.slice_from("fij"))
                 {
                     return false;
                 }
                 break;
             case 41:
-                // (, line 699
-                // <-, line 699
                 if (!base.slice_from("pij"))
                 {
                     return false;
                 }
                 break;
             case 42:
-                // (, line 707
-                // <-, line 707
                 if (!base.slice_from("rij"))
                 {
                     return false;
                 }
                 break;
             case 43:
-                // (, line 713
-                // <-, line 713
                 if (!base.slice_from("sij"))
                 {
                     return false;
                 }
                 break;
             case 44:
-                // (, line 721
-                // <-, line 721
                 if (!base.slice_from("tij"))
                 {
                     return false;
                 }
                 break;
             case 45:
-                // (, line 729
-                // <-, line 729
                 if (!base.slice_from("zij"))
                 {
                     return false;
                 }
                 break;
             case 46:
-                // (, line 737
-                // <-, line 737
                 if (!base.slice_from("nal"))
                 {
                     return false;
                 }
                 break;
             case 47:
-                // (, line 745
-                // <-, line 745
                 if (!base.slice_from("ijal"))
                 {
                     return false;
                 }
                 break;
             case 48:
-                // (, line 751
-                // <-, line 751
                 if (!base.slice_from("ozil"))
                 {
                     return false;
                 }
                 break;
             case 49:
-                // (, line 755
-                // <-, line 755
                 if (!base.slice_from("olov"))
                 {
                     return false;
                 }
                 break;
             case 50:
-                // (, line 761
-                // <-, line 761
                 if (!base.slice_from("ol"))
                 {
                     return false;
                 }
                 break;
             case 51:
-                // (, line 769
-                // <-, line 769
                 if (!base.slice_from("lem"))
                 {
                     return false;
                 }
                 break;
             case 52:
-                // (, line 776
-                // <-, line 776
                 if (!base.slice_from("ram"))
                 {
                     return false;
                 }
                 break;
             case 53:
-                // (, line 783
-                // <-, line 783
                 if (!base.slice_from("ar"))
                 {
                     return false;
                 }
                 break;
             case 54:
-                // (, line 790
-                // <-, line 790
                 if (!base.slice_from("dr"))
                 {
                     return false;
                 }
                 break;
             case 55:
-                // (, line 797
-                // <-, line 797
                 if (!base.slice_from("er"))
                 {
                     return false;
                 }
                 break;
             case 56:
-                // (, line 804
-                // <-, line 804
                 if (!base.slice_from("or"))
                 {
                     return false;
                 }
                 break;
             case 57:
-                // (, line 809
-                // <-, line 809
                 if (!base.slice_from("es"))
                 {
                     return false;
                 }
                 break;
             case 58:
-                // (, line 814
-                // <-, line 814
                 if (!base.slice_from("is"))
                 {
                     return false;
                 }
                 break;
             case 59:
-                // (, line 822
-                // <-, line 822
                 if (!base.slice_from("ta\u0161"))
                 {
                     return false;
                 }
                 break;
             case 60:
-                // (, line 830
-                // <-, line 830
                 if (!base.slice_from("na\u0161"))
                 {
                     return false;
                 }
                 break;
             case 61:
-                // (, line 838
-                // <-, line 838
                 if (!base.slice_from("ja\u0161"))
                 {
                     return false;
                 }
                 break;
             case 62:
-                // (, line 846
-                // <-, line 846
                 if (!base.slice_from("ka\u0161"))
                 {
                     return false;
                 }
                 break;
             case 63:
-                // (, line 854
-                // <-, line 854
                 if (!base.slice_from("ba\u0161"))
                 {
                     return false;
                 }
                 break;
             case 64:
-                // (, line 862
-                // <-, line 862
                 if (!base.slice_from("ga\u0161"))
                 {
                     return false;
                 }
                 break;
             case 65:
-                // (, line 870
-                // <-, line 870
                 if (!base.slice_from("va\u0161"))
                 {
                     return false;
                 }
                 break;
             case 66:
-                // (, line 878
-                // <-, line 878
                 if (!base.slice_from("e\u0161"))
                 {
                     return false;
                 }
                 break;
             case 67:
-                // (, line 886
-                // <-, line 886
                 if (!base.slice_from("i\u0161"))
                 {
                     return false;
                 }
                 break;
             case 68:
-                // (, line 893
-                // <-, line 893
                 if (!base.slice_from("ikat"))
                 {
                     return false;
                 }
                 break;
             case 69:
-                // (, line 900
-                // <-, line 900
                 if (!base.slice_from("lat"))
                 {
                     return false;
                 }
                 break;
             case 70:
-                // (, line 908
-                // <-, line 908
                 if (!base.slice_from("et"))
                 {
                     return false;
                 }
                 break;
             case 71:
-                // (, line 916
-                // <-, line 916
                 if (!base.slice_from("est"))
                 {
                     return false;
                 }
                 break;
             case 72:
-                // (, line 924
-                // <-, line 924
                 if (!base.slice_from("ist"))
                 {
                     return false;
                 }
                 break;
             case 73:
-                // (, line 932
-                // <-, line 932
                 if (!base.slice_from("kst"))
                 {
                     return false;
                 }
                 break;
             case 74:
-                // (, line 940
-                // <-, line 940
                 if (!base.slice_from("ost"))
                 {
                     return false;
                 }
                 break;
             case 75:
-                // (, line 945
-                // <-, line 945
                 if (!base.slice_from("i\u0161t"))
                 {
                     return false;
                 }
                 break;
             case 76:
-                // (, line 957
-                // <-, line 957
                 if (!base.slice_from("ova"))
                 {
                     return false;
                 }
                 break;
             case 77:
-                // (, line 988
-                // <-, line 988
                 if (!base.slice_from("av"))
                 {
                     return false;
                 }
                 break;
             case 78:
-                // (, line 1019
-                // <-, line 1019
                 if (!base.slice_from("ev"))
                 {
                     return false;
                 }
                 break;
             case 79:
-                // (, line 1050
-                // <-, line 1050
                 if (!base.slice_from("iv"))
                 {
                     return false;
                 }
                 break;
             case 80:
-                // (, line 1079
-                // <-, line 1079
                 if (!base.slice_from("ov"))
                 {
                     return false;
                 }
                 break;
             case 81:
-                // (, line 1085
-                // <-, line 1085
                 if (!base.slice_from("mov"))
                 {
                     return false;
                 }
                 break;
             case 82:
-                // (, line 1091
-                // <-, line 1091
                 if (!base.slice_from("lov"))
                 {
                     return false;
                 }
                 break;
             case 83:
-                // (, line 1121
-                // <-, line 1121
                 if (!base.slice_from("el"))
                 {
                     return false;
                 }
                 break;
             case 84:
-                // (, line 1151
-                // <-, line 1151
                 if (!base.slice_from("anj"))
                 {
                     return false;
                 }
                 break;
             case 85:
-                // (, line 1181
-                // <-, line 1181
                 if (!base.slice_from("enj"))
                 {
                     return false;
                 }
                 break;
             case 86:
-                // (, line 1211
-                // <-, line 1211
                 if (!base.slice_from("\u0161nj"))
                 {
                     return false;
                 }
                 break;
             case 87:
-                // (, line 1219
-                // <-, line 1219
                 if (!base.slice_from("en"))
                 {
                     return false;
                 }
                 break;
             case 88:
-                // (, line 1223
-                // <-, line 1223
                 if (!base.slice_from("\u0161n"))
                 {
                     return false;
                 }
                 break;
             case 89:
-                // (, line 1238
-                // <-, line 1238
                 if (!base.slice_from("\u010Din"))
                 {
                     return false;
                 }
                 break;
             case 90:
-                // (, line 1254
-                // <-, line 1254
                 if (!base.slice_from("ro\u0161i"))
                 {
                     return false;
                 }
                 break;
             case 91:
-                // (, line 1283
-                // <-, line 1283
                 if (!base.slice_from("o\u0161"))
                 {
                     return false;
                 }
                 break;
             case 92:
-                // (, line 1311
-                // <-, line 1311
                 if (!base.slice_from("evit"))
                 {
                     return false;
                 }
                 break;
             case 93:
-                // (, line 1339
-                // <-, line 1339
                 if (!base.slice_from("ovit"))
                 {
                     return false;
                 }
                 break;
             case 94:
-                // (, line 1367
-                // <-, line 1367
                 if (!base.slice_from("ast"))
                 {
                     return false;
                 }
                 break;
             case 95:
-                // (, line 1398
-                // <-, line 1398
                 if (!base.slice_from("k"))
                 {
                     return false;
                 }
                 break;
             case 96:
-                // (, line 1425
-                // <-, line 1425
                 if (!base.slice_from("eva"))
                 {
                     return false;
                 }
                 break;
             case 97:
-                // (, line 1452
-                // <-, line 1452
                 if (!base.slice_from("ava"))
                 {
                     return false;
                 }
                 break;
             case 98:
-                // (, line 1479
-                // <-, line 1479
                 if (!base.slice_from("iva"))
                 {
                     return false;
                 }
                 break;
             case 99:
-                // (, line 1506
-                // <-, line 1506
                 if (!base.slice_from("uva"))
                 {
                     return false;
                 }
                 break;
             case 100:
-                // (, line 1538
-                // <-, line 1538
                 if (!base.slice_from("ir"))
                 {
                     return false;
                 }
                 break;
             case 101:
-                // (, line 1561
-                // <-, line 1561
                 if (!base.slice_from("a\u010D"))
                 {
                     return false;
                 }
                 break;
             case 102:
-                // (, line 1584
-                // <-, line 1584
                 if (!base.slice_from("a\u010Da"))
                 {
                     return false;
                 }
                 break;
             case 103:
-                // (, line 1612
-                // <-, line 1612
                 if (!base.slice_from("ni"))
                 {
                     return false;
                 }
                 break;
             case 104:
-                // (, line 1638
-                // <-, line 1638
                 if (!base.slice_from("a"))
                 {
                     return false;
                 }
                 break;
             case 105:
-                // (, line 1665
-                // <-, line 1665
                 if (!base.slice_from("ur"))
                 {
                     return false;
                 }
                 break;
             case 106:
-                // (, line 1686
-                // <-, line 1686
                 if (!base.slice_from("astaj"))
                 {
                     return false;
                 }
                 break;
             case 107:
-                // (, line 1707
-                // <-, line 1707
                 if (!base.slice_from("istaj"))
                 {
                     return false;
                 }
                 break;
             case 108:
-                // (, line 1728
-                // <-, line 1728
                 if (!base.slice_from("ostaj"))
                 {
                     return false;
                 }
                 break;
             case 109:
-                // (, line 1741
-                // <-, line 1741
                 if (!base.slice_from("aj"))
                 {
                     return false;
                 }
                 break;
             case 110:
-                // (, line 1768
-                // <-, line 1768
                 if (!base.slice_from("asta"))
                 {
                     return false;
                 }
                 break;
             case 111:
-                // (, line 1795
-                // <-, line 1795
                 if (!base.slice_from("ista"))
                 {
                     return false;
                 }
                 break;
             case 112:
-                // (, line 1822
-                // <-, line 1822
                 if (!base.slice_from("osta"))
                 {
                     return false;
                 }
                 break;
             case 113:
-                // (, line 1846
-                // <-, line 1846
                 if (!base.slice_from("ta"))
                 {
                     return false;
                 }
                 break;
             case 114:
-                // (, line 1862
-                // <-, line 1862
                 if (!base.slice_from("inj"))
                 {
                     return false;
                 }
                 break;
             case 115:
-                // (, line 1872
-                // <-, line 1872
                 if (!base.slice_from("as"))
                 {
                     return false;
                 }
                 break;
             case 116:
-                // (, line 1887
-                // <-, line 1887
                 if (!base.slice_from("i"))
                 {
                     return false;
                 }
                 break;
             case 117:
-                // (, line 1929
-                // <-, line 1929
                 if (!base.slice_from("lu\u010D"))
                 {
                     return false;
                 }
                 break;
             case 118:
-                // (, line 1944
-                // <-, line 1944
                 if (!base.slice_from("jeti"))
                 {
                     return false;
                 }
                 break;
             case 119:
-                // (, line 1949
-                // <-, line 1949
                 if (!base.slice_from("e"))
                 {
                     return false;
                 }
                 break;
             case 120:
-                // (, line 1980
-                // <-, line 1980
                 if (!base.slice_from("at"))
                 {
                     return false;
                 }
                 break;
             case 121:
-                // (, line 2018
-                // call R2, line 2018
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2018
                 if (!base.slice_from("luc"))
                 {
                     return false;
                 }
                 break;
             case 122:
-                // (, line 2047
-                // call R2, line 2047
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2047
                 if (!base.slice_from("snj"))
                 {
                     return false;
                 }
                 break;
             case 123:
-                // (, line 2077
-                // call R2, line 2077
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2077
                 if (!base.slice_from("os"))
                 {
                     return false;
                 }
                 break;
             case 124:
-                // (, line 2113
-                // call R2, line 2113
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2113
                 if (!base.slice_from("ac"))
                 {
                     return false;
                 }
                 break;
             case 125:
-                // (, line 2129
-                // call R2, line 2129
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2129
                 if (!base.slice_from("ec"))
                 {
                     return false;
                 }
                 break;
             case 126:
-                // (, line 2145
-                // call R2, line 2145
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2145
                 if (!base.slice_from("uc"))
                 {
                     return false;
                 }
                 break;
             case 127:
-                // (, line 2161
-                // call R2, line 2161
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2161
                 if (!base.slice_from("rosi"))
                 {
                     return false;
                 }
                 break;
             case 128:
-                // (, line 2184
-                // call R2, line 2184
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2184
                 if (!base.slice_from("aca"))
                 {
                     return false;
                 }
                 break;
             case 129:
-                // (, line 2192
-                // call R2, line 2192
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2192
                 if (!base.slice_from("jas"))
                 {
                     return false;
                 }
                 break;
             case 130:
-                // (, line 2200
-                // call R2, line 2200
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2200
                 if (!base.slice_from("tas"))
                 {
                     return false;
                 }
                 break;
             case 131:
-                // (, line 2208
-                // call R2, line 2208
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2208
                 if (!base.slice_from("gas"))
                 {
                     return false;
                 }
                 break;
             case 132:
-                // (, line 2216
-                // call R2, line 2216
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2216
                 if (!base.slice_from("nas"))
                 {
                     return false;
                 }
                 break;
             case 133:
-                // (, line 2224
-                // call R2, line 2224
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2224
                 if (!base.slice_from("kas"))
                 {
                     return false;
                 }
                 break;
             case 134:
-                // (, line 2232
-                // call R2, line 2232
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2232
                 if (!base.slice_from("vas"))
                 {
                     return false;
                 }
                 break;
             case 135:
-                // (, line 2240
-                // call R2, line 2240
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2240
                 if (!base.slice_from("bas"))
                 {
                     return false;
                 }
                 break;
             case 136:
-                // (, line 2242
-                // call R2, line 2242
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2242
                 if (!base.slice_from("as"))
                 {
                     return false;
                 }
                 break;
             case 137:
-                // (, line 2257
-                // call R2, line 2257
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2257
                 if (!base.slice_from("cin"))
                 {
                     return false;
                 }
                 break;
             case 138:
-                // (, line 2260
-                // call R2, line 2260
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2260
                 if (!base.slice_from("astaj"))
                 {
                     return false;
                 }
                 break;
             case 139:
-                // (, line 2263
-                // call R2, line 2263
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2263
                 if (!base.slice_from("istaj"))
                 {
                     return false;
                 }
                 break;
             case 140:
-                // (, line 2266
-                // call R2, line 2266
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2266
                 if (!base.slice_from("ostaj"))
                 {
                     return false;
                 }
                 break;
             case 141:
-                // (, line 2270
-                // call R2, line 2270
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2270
                 if (!base.slice_from("asta"))
                 {
                     return false;
                 }
                 break;
             case 142:
-                // (, line 2274
-                // call R2, line 2274
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2274
                 if (!base.slice_from("ista"))
                 {
                     return false;
                 }
                 break;
             case 143:
-                // (, line 2278
-                // call R2, line 2278
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2278
                 if (!base.slice_from("osta"))
                 {
                     return false;
                 }
                 break;
             case 144:
-                // (, line 2281
-                // call R2, line 2281
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2281
                 if (!base.slice_from("ava"))
                 {
                     return false;
                 }
                 break;
             case 145:
-                // (, line 2284
-                // call R2, line 2284
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2284
                 if (!base.slice_from("eva"))
                 {
                     return false;
                 }
                 break;
             case 146:
-                // (, line 2287
-                // call R2, line 2287
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2287
                 if (!base.slice_from("iva"))
                 {
                     return false;
                 }
                 break;
             case 147:
-                // (, line 2290
-                // call R2, line 2290
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2290
                 if (!base.slice_from("uva"))
                 {
                     return false;
                 }
                 break;
             case 148:
-                // (, line 2291
-                // call R2, line 2291
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2291
                 if (!base.slice_from("ova"))
                 {
                     return false;
                 }
                 break;
             case 149:
-                // (, line 2293
-                // call R2, line 2293
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2293
                 if (!base.slice_from("jeti"))
                 {
                     return false;
                 }
                 break;
             case 150:
-                // (, line 2295
-                // call R2, line 2295
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2295
                 if (!base.slice_from("inj"))
                 {
                     return false;
                 }
                 break;
             case 151:
-                // (, line 2296
-                // call R2, line 2296
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2296
                 if (!base.slice_from("ist"))
                 {
                     return false;
                 }
                 break;
             case 152:
-                // (, line 2299
-                // call R2, line 2299
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2299
                 if (!base.slice_from("es"))
                 {
                     return false;
                 }
                 break;
             case 153:
-                // (, line 2302
-                // call R2, line 2302
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2302
                 if (!base.slice_from("et"))
                 {
                     return false;
                 }
                 break;
             case 154:
-                // (, line 2305
-                // call R2, line 2305
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2305
                 if (!base.slice_from("is"))
                 {
                     return false;
                 }
                 break;
             case 155:
-                // (, line 2311
-                // call R2, line 2311
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2311
                 if (!base.slice_from("ir"))
                 {
                     return false;
                 }
                 break;
             case 156:
-                // (, line 2314
-                // call R2, line 2314
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2314
                 if (!base.slice_from("ur"))
                 {
                     return false;
                 }
                 break;
             case 157:
-                // (, line 2316
-                // call R2, line 2316
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2316
                 if (!base.slice_from("uj"))
                 {
                     return false;
                 }
                 break;
             case 158:
-                // (, line 2318
-                // call R2, line 2318
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2318
                 if (!base.slice_from("ni"))
                 {
                     return false;
                 }
                 break;
             case 159:
-                // (, line 2322
-                // call R2, line 2322
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2322
                 if (!base.slice_from("sn"))
                 {
                     return false;
                 }
                 break;
             case 160:
-                // (, line 2324
-                // call R2, line 2324
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2324
                 if (!base.slice_from("ta"))
                 {
                     return false;
                 }
                 break;
             case 161:
-                // (, line 2328
-                // call R2, line 2328
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2328
                 if (!base.slice_from("a"))
                 {
                     return false;
                 }
                 break;
             case 162:
-                // (, line 2332
-                // call R2, line 2332
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2332
                 if (!base.slice_from("i"))
                 {
                     return false;
                 }
                 break;
             case 163:
-                // (, line 2333
-                // call R2, line 2333
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2333
                 if (!base.slice_from("e"))
                 {
                     return false;
                 }
                 break;
             case 164:
-                // (, line 2336
-                // call R2, line 2336
-                if (!r_R2())
+                if (!B_no_diacritics)
                 {
                     return false;
                 }
-                // <-, line 2336
                 if (!base.slice_from("n"))
                 {
                     return false;
@@ -5258,23 +4502,16 @@ function SerbianStemmer() {
 
     /** @return {boolean} */
     function r_Step_3() {
-        // (, line 2340
-        // [, line 2341
         base.ket = base.cursor;
-        // substring, line 2341
         if (base.find_among_b(a_3) == 0)
         {
             return false;
         }
-        // ], line 2341
         base.bra = base.cursor;
-        // call R1, line 2341
         if (!r_R1())
         {
             return false;
         }
-        // (, line 2367
-        // <-, line 2367
         if (!base.slice_from(""))
         {
             return false;
@@ -5283,35 +4520,18 @@ function SerbianStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 2372
-        // do, line 2373
-        // call cyr_to_lat, line 2373
         r_cyr_to_lat();
-        // do, line 2374
-        // call prelude, line 2374
         r_prelude();
-        // do, line 2375
-        var /** number */ v_3 = base.cursor;
-        // call mark_regions, line 2375
         r_mark_regions();
-        base.cursor = v_3;
-        // backwards, line 2376
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 2376
-        // do, line 2377
         var /** number */ v_4 = base.limit - base.cursor;
-        // call Step_1, line 2377
         r_Step_1();
         base.cursor = base.limit - v_4;
-        // do, line 2378
         var /** number */ v_5 = base.limit - base.cursor;
         lab0: {
-            // (, line 2378
-            // or, line 2378
             lab1: {
                 var /** number */ v_6 = base.limit - base.cursor;
                 lab2: {
-                    // call Step_2, line 2378
                     if (!r_Step_2())
                     {
                         break lab2;
@@ -5319,7 +4539,6 @@ function SerbianStemmer() {
                     break lab1;
                 }
                 base.cursor = base.limit - v_6;
-                // call Step_3, line 2378
                 if (!r_Step_3())
                 {
                     break lab0;

@@ -145,7 +145,6 @@ function HindiStemmer() {
 
     /** @return {boolean} */
     function r_CONSONANT() {
-        // (, line 129
         if (!(base.in_grouping_b(g_consonant, 2325, 2399)))
         {
             return false;
@@ -154,42 +153,29 @@ function HindiStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 131
-        // test, line 132
         var /** number */ v_1 = base.cursor;
-        // (, line 132
-        // next, line 132
         if (base.cursor >= base.limit)
         {
             return false;
         }
         base.cursor++;
-        // setmark p, line 132
         I_p = base.cursor;
         base.cursor = v_1;
-        // backwards, line 133
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 133
-        // setlimit, line 139
         if (base.cursor < I_p)
         {
             return false;
         }
         var /** number */ v_3 = base.limit_backward;
         base.limit_backward = I_p;
-        // (, line 139
-        // [, line 139
         base.ket = base.cursor;
-        // substring, line 139
         if (base.find_among_b(a_0) == 0)
         {
             base.limit_backward = v_3;
             return false;
         }
-        // ], line 139
         base.bra = base.cursor;
         base.limit_backward = v_3;
-        // delete, line 321
         if (!base.slice_del())
         {
             return false;

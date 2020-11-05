@@ -71,12 +71,8 @@ function SwedishStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 26
         I_p1 = base.limit;
-        // test, line 29
         var /** number */ v_1 = base.cursor;
-        // (, line 29
-        // hop, line 29
         {
             var /** number */ c1 = base.cursor + 3;
             if (0 > c1 || c1 > base.limit)
@@ -85,10 +81,8 @@ function SwedishStemmer() {
             }
             base.cursor = c1;
         }
-        // setmark x, line 29
         I_x = base.cursor;
         base.cursor = v_1;
-        // goto, line 30
         golab0: while(true)
         {
             var /** number */ v_2 = base.cursor;
@@ -107,7 +101,6 @@ function SwedishStemmer() {
             }
             base.cursor++;
         }
-        // gopast, line 30
         golab2: while(true)
         {
             lab3: {
@@ -123,11 +116,8 @@ function SwedishStemmer() {
             }
             base.cursor++;
         }
-        // setmark p1, line 30
         I_p1 = base.cursor;
-        // try, line 31
         lab4: {
-            // (, line 31
             if (!(I_p1 < I_x))
             {
                 break lab4;
@@ -140,43 +130,33 @@ function SwedishStemmer() {
     /** @return {boolean} */
     function r_main_suffix() {
         var /** number */ among_var;
-        // (, line 36
-        // setlimit, line 37
         if (base.cursor < I_p1)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_p1;
-        // (, line 37
-        // [, line 37
         base.ket = base.cursor;
-        // substring, line 37
         among_var = base.find_among_b(a_0);
         if (among_var == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
-        // ], line 37
         base.bra = base.cursor;
         base.limit_backward = v_2;
         switch (among_var) {
             case 1:
-                // (, line 44
-                // delete, line 44
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 46
                 if (!(base.in_grouping_b(g_s_ending, 98, 121)))
                 {
                     return false;
                 }
-                // delete, line 46
                 if (!base.slice_del())
                 {
                     return false;
@@ -188,36 +168,27 @@ function SwedishStemmer() {
 
     /** @return {boolean} */
     function r_consonant_pair() {
-        // setlimit, line 50
         if (base.cursor < I_p1)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_p1;
-        // (, line 50
-        // and, line 52
         var /** number */ v_3 = base.limit - base.cursor;
-        // among, line 51
         if (base.find_among_b(a_1) == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
         base.cursor = base.limit - v_3;
-        // (, line 52
-        // [, line 52
         base.ket = base.cursor;
-        // next, line 52
         if (base.cursor <= base.limit_backward)
         {
             base.limit_backward = v_2;
             return false;
         }
         base.cursor--;
-        // ], line 52
         base.bra = base.cursor;
-        // delete, line 52
         if (!base.slice_del())
         {
             return false;
@@ -229,45 +200,34 @@ function SwedishStemmer() {
     /** @return {boolean} */
     function r_other_suffix() {
         var /** number */ among_var;
-        // setlimit, line 55
         if (base.cursor < I_p1)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_p1;
-        // (, line 55
-        // [, line 56
         base.ket = base.cursor;
-        // substring, line 56
         among_var = base.find_among_b(a_2);
         if (among_var == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
-        // ], line 56
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 57
-                // delete, line 57
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 58
-                // <-, line 58
                 if (!base.slice_from("l\u00F6s"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 59
-                // <-, line 59
                 if (!base.slice_from("full"))
                 {
                     return false;
@@ -279,28 +239,17 @@ function SwedishStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 64
-        // do, line 66
         var /** number */ v_1 = base.cursor;
-        // call mark_regions, line 66
         r_mark_regions();
         base.cursor = v_1;
-        // backwards, line 67
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 67
-        // do, line 68
         var /** number */ v_2 = base.limit - base.cursor;
-        // call main_suffix, line 68
         r_main_suffix();
         base.cursor = base.limit - v_2;
-        // do, line 69
         var /** number */ v_3 = base.limit - base.cursor;
-        // call consonant_pair, line 69
         r_consonant_pair();
         base.cursor = base.limit - v_3;
-        // do, line 70
         var /** number */ v_4 = base.limit - base.cursor;
-        // call other_suffix, line 70
         r_other_suffix();
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;

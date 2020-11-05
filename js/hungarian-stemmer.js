@@ -228,18 +228,14 @@ function HungarianStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 44
         I_p1 = base.limit;
-        // or, line 51
         lab0: {
             var /** number */ v_1 = base.cursor;
             lab1: {
-                // (, line 48
                 if (!(base.in_grouping(g_v, 97, 369)))
                 {
                     break lab1;
                 }
-                // goto, line 48
                 golab2: while(true)
                 {
                     var /** number */ v_2 = base.cursor;
@@ -258,11 +254,9 @@ function HungarianStemmer() {
                     }
                     base.cursor++;
                 }
-                // or, line 49
                 lab4: {
                     var /** number */ v_3 = base.cursor;
                     lab5: {
-                        // among, line 49
                         if (base.find_among(a_0) == 0)
                         {
                             break lab5;
@@ -270,24 +264,20 @@ function HungarianStemmer() {
                         break lab4;
                     }
                     base.cursor = v_3;
-                    // next, line 49
                     if (base.cursor >= base.limit)
                     {
                         break lab1;
                     }
                     base.cursor++;
                 }
-                // setmark p1, line 50
                 I_p1 = base.cursor;
                 break lab0;
             }
             base.cursor = v_1;
-            // (, line 53
             if (!(base.out_grouping(g_v, 97, 369)))
             {
                 return false;
             }
-            // gopast, line 53
             golab6: while(true)
             {
                 lab7: {
@@ -303,7 +293,6 @@ function HungarianStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p1, line 53
             I_p1 = base.cursor;
         }
         return true;
@@ -321,34 +310,25 @@ function HungarianStemmer() {
     /** @return {boolean} */
     function r_v_ending() {
         var /** number */ among_var;
-        // (, line 60
-        // [, line 61
         base.ket = base.cursor;
-        // substring, line 61
         among_var = base.find_among_b(a_1);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 61
         base.bra = base.cursor;
-        // call R1, line 61
         if (!r_R1())
         {
             return false;
         }
         switch (among_var) {
             case 1:
-                // (, line 62
-                // <-, line 62
                 if (!base.slice_from("a"))
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 63
-                // <-, line 63
                 if (!base.slice_from("e"))
                 {
                     return false;
@@ -360,10 +340,7 @@ function HungarianStemmer() {
 
     /** @return {boolean} */
     function r_double() {
-        // (, line 67
-        // test, line 68
         var /** number */ v_1 = base.limit - base.cursor;
-        // among, line 68
         if (base.find_among_b(a_2) == 0)
         {
             return false;
@@ -374,16 +351,12 @@ function HungarianStemmer() {
 
     /** @return {boolean} */
     function r_undouble() {
-        // (, line 72
-        // next, line 73
         if (base.cursor <= base.limit_backward)
         {
             return false;
         }
         base.cursor--;
-        // [, line 73
         base.ket = base.cursor;
-        // hop, line 73
         {
             var /** number */ c1 = base.cursor - 1;
             if (base.limit_backward > c1 || c1 > base.limit)
@@ -392,9 +365,7 @@ function HungarianStemmer() {
             }
             base.cursor = c1;
         }
-        // ], line 73
         base.bra = base.cursor;
-        // delete, line 73
         if (!base.slice_del())
         {
             return false;
@@ -404,33 +375,24 @@ function HungarianStemmer() {
 
     /** @return {boolean} */
     function r_instrum() {
-        // (, line 76
-        // [, line 77
         base.ket = base.cursor;
-        // substring, line 77
         if (base.find_among_b(a_3) == 0)
         {
             return false;
         }
-        // ], line 77
         base.bra = base.cursor;
-        // call R1, line 77
         if (!r_R1())
         {
             return false;
         }
-        // (, line 78
-        // call double, line 78
         if (!r_double())
         {
             return false;
         }
-        // delete, line 81
         if (!base.slice_del())
         {
             return false;
         }
-        // call undouble, line 82
         if (!r_undouble())
         {
             return false;
@@ -440,27 +402,20 @@ function HungarianStemmer() {
 
     /** @return {boolean} */
     function r_case() {
-        // (, line 86
-        // [, line 87
         base.ket = base.cursor;
-        // substring, line 87
         if (base.find_among_b(a_4) == 0)
         {
             return false;
         }
-        // ], line 87
         base.bra = base.cursor;
-        // call R1, line 87
         if (!r_R1())
         {
             return false;
         }
-        // delete, line 111
         if (!base.slice_del())
         {
             return false;
         }
-        // call v_ending, line 112
         if (!r_v_ending())
         {
             return false;
@@ -471,34 +426,25 @@ function HungarianStemmer() {
     /** @return {boolean} */
     function r_case_special() {
         var /** number */ among_var;
-        // (, line 115
-        // [, line 116
         base.ket = base.cursor;
-        // substring, line 116
         among_var = base.find_among_b(a_5);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 116
         base.bra = base.cursor;
-        // call R1, line 116
         if (!r_R1())
         {
             return false;
         }
         switch (among_var) {
             case 1:
-                // (, line 117
-                // <-, line 117
                 if (!base.slice_from("e"))
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 118
-                // <-, line 118
                 if (!base.slice_from("a"))
                 {
                     return false;
@@ -511,42 +457,31 @@ function HungarianStemmer() {
     /** @return {boolean} */
     function r_case_other() {
         var /** number */ among_var;
-        // (, line 123
-        // [, line 124
         base.ket = base.cursor;
-        // substring, line 124
         among_var = base.find_among_b(a_6);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 124
         base.bra = base.cursor;
-        // call R1, line 124
         if (!r_R1())
         {
             return false;
         }
         switch (among_var) {
             case 1:
-                // (, line 125
-                // delete, line 125
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 127
-                // <-, line 127
                 if (!base.slice_from("a"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 128
-                // <-, line 128
                 if (!base.slice_from("e"))
                 {
                     return false;
@@ -558,33 +493,24 @@ function HungarianStemmer() {
 
     /** @return {boolean} */
     function r_factive() {
-        // (, line 132
-        // [, line 133
         base.ket = base.cursor;
-        // substring, line 133
         if (base.find_among_b(a_7) == 0)
         {
             return false;
         }
-        // ], line 133
         base.bra = base.cursor;
-        // call R1, line 133
         if (!r_R1())
         {
             return false;
         }
-        // (, line 134
-        // call double, line 134
         if (!r_double())
         {
             return false;
         }
-        // delete, line 137
         if (!base.slice_del())
         {
             return false;
         }
-        // call undouble, line 138
         if (!r_undouble())
         {
             return false;
@@ -595,42 +521,31 @@ function HungarianStemmer() {
     /** @return {boolean} */
     function r_plural() {
         var /** number */ among_var;
-        // (, line 141
-        // [, line 142
         base.ket = base.cursor;
-        // substring, line 142
         among_var = base.find_among_b(a_8);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 142
         base.bra = base.cursor;
-        // call R1, line 142
         if (!r_R1())
         {
             return false;
         }
         switch (among_var) {
             case 1:
-                // (, line 143
-                // <-, line 143
                 if (!base.slice_from("a"))
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 144
-                // <-, line 144
                 if (!base.slice_from("e"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 145
-                // delete, line 145
                 if (!base.slice_del())
                 {
                     return false;
@@ -643,42 +558,31 @@ function HungarianStemmer() {
     /** @return {boolean} */
     function r_owned() {
         var /** number */ among_var;
-        // (, line 153
-        // [, line 154
         base.ket = base.cursor;
-        // substring, line 154
         among_var = base.find_among_b(a_9);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 154
         base.bra = base.cursor;
-        // call R1, line 154
         if (!r_R1())
         {
             return false;
         }
         switch (among_var) {
             case 1:
-                // (, line 155
-                // delete, line 155
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 156
-                // <-, line 156
                 if (!base.slice_from("e"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 157
-                // <-, line 157
                 if (!base.slice_from("a"))
                 {
                     return false;
@@ -691,42 +595,31 @@ function HungarianStemmer() {
     /** @return {boolean} */
     function r_sing_owner() {
         var /** number */ among_var;
-        // (, line 167
-        // [, line 168
         base.ket = base.cursor;
-        // substring, line 168
         among_var = base.find_among_b(a_10);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 168
         base.bra = base.cursor;
-        // call R1, line 168
         if (!r_R1())
         {
             return false;
         }
         switch (among_var) {
             case 1:
-                // (, line 169
-                // delete, line 169
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 170
-                // <-, line 170
                 if (!base.slice_from("a"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 171
-                // <-, line 171
                 if (!base.slice_from("e"))
                 {
                     return false;
@@ -739,42 +632,31 @@ function HungarianStemmer() {
     /** @return {boolean} */
     function r_plur_owner() {
         var /** number */ among_var;
-        // (, line 192
-        // [, line 193
         base.ket = base.cursor;
-        // substring, line 193
         among_var = base.find_among_b(a_11);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 193
         base.bra = base.cursor;
-        // call R1, line 193
         if (!r_R1())
         {
             return false;
         }
         switch (among_var) {
             case 1:
-                // (, line 194
-                // delete, line 194
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 195
-                // <-, line 195
                 if (!base.slice_from("a"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 196
-                // <-, line 196
                 if (!base.slice_from("e"))
                 {
                     return false;
@@ -785,58 +667,35 @@ function HungarianStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 228
-        // do, line 229
         var /** number */ v_1 = base.cursor;
-        // call mark_regions, line 229
         r_mark_regions();
         base.cursor = v_1;
-        // backwards, line 230
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 230
-        // do, line 231
         var /** number */ v_2 = base.limit - base.cursor;
-        // call instrum, line 231
         r_instrum();
         base.cursor = base.limit - v_2;
-        // do, line 232
         var /** number */ v_3 = base.limit - base.cursor;
-        // call case, line 232
         r_case();
         base.cursor = base.limit - v_3;
-        // do, line 233
         var /** number */ v_4 = base.limit - base.cursor;
-        // call case_special, line 233
         r_case_special();
         base.cursor = base.limit - v_4;
-        // do, line 234
         var /** number */ v_5 = base.limit - base.cursor;
-        // call case_other, line 234
         r_case_other();
         base.cursor = base.limit - v_5;
-        // do, line 235
         var /** number */ v_6 = base.limit - base.cursor;
-        // call factive, line 235
         r_factive();
         base.cursor = base.limit - v_6;
-        // do, line 236
         var /** number */ v_7 = base.limit - base.cursor;
-        // call owned, line 236
         r_owned();
         base.cursor = base.limit - v_7;
-        // do, line 237
         var /** number */ v_8 = base.limit - base.cursor;
-        // call sing_owner, line 237
         r_sing_owner();
         base.cursor = base.limit - v_8;
-        // do, line 238
         var /** number */ v_9 = base.limit - base.cursor;
-        // call plur_owner, line 238
         r_plur_owner();
         base.cursor = base.limit - v_9;
-        // do, line 239
         var /** number */ v_10 = base.limit - base.cursor;
-        // call plural, line 239
         r_plural();
         base.cursor = base.limit - v_10;
         base.cursor = base.limit_backward;

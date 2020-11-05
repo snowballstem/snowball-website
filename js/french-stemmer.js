@@ -187,45 +187,34 @@ function FrenchStemmer() {
 
     /** @return {boolean} */
     function r_prelude() {
-        // repeat, line 38
         while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab0: {
-                // goto, line 38
                 golab1: while(true)
                 {
                     var /** number */ v_2 = base.cursor;
                     lab2: {
-                        // (, line 38
-                        // or, line 44
                         lab3: {
                             var /** number */ v_3 = base.cursor;
                             lab4: {
-                                // (, line 40
                                 if (!(base.in_grouping(g_v, 97, 251)))
                                 {
                                     break lab4;
                                 }
-                                // [, line 40
                                 base.bra = base.cursor;
-                                // or, line 40
                                 lab5: {
                                     var /** number */ v_4 = base.cursor;
                                     lab6: {
-                                        // (, line 40
-                                        // literal, line 40
                                         if (!(base.eq_s("u")))
                                         {
                                             break lab6;
                                         }
-                                        // ], line 40
                                         base.ket = base.cursor;
                                         if (!(base.in_grouping(g_v, 97, 251)))
                                         {
                                             break lab6;
                                         }
-                                        // <-, line 40
                                         if (!base.slice_from("U"))
                                         {
                                             return false;
@@ -234,19 +223,15 @@ function FrenchStemmer() {
                                     }
                                     base.cursor = v_4;
                                     lab7: {
-                                        // (, line 41
-                                        // literal, line 41
                                         if (!(base.eq_s("i")))
                                         {
                                             break lab7;
                                         }
-                                        // ], line 41
                                         base.ket = base.cursor;
                                         if (!(base.in_grouping(g_v, 97, 251)))
                                         {
                                             break lab7;
                                         }
-                                        // <-, line 41
                                         if (!base.slice_from("I"))
                                         {
                                             return false;
@@ -254,15 +239,11 @@ function FrenchStemmer() {
                                         break lab5;
                                     }
                                     base.cursor = v_4;
-                                    // (, line 42
-                                    // literal, line 42
                                     if (!(base.eq_s("y")))
                                     {
                                         break lab4;
                                     }
-                                    // ], line 42
                                     base.ket = base.cursor;
-                                    // <-, line 42
                                     if (!base.slice_from("Y"))
                                     {
                                         return false;
@@ -272,17 +253,12 @@ function FrenchStemmer() {
                             }
                             base.cursor = v_3;
                             lab8: {
-                                // (, line 45
-                                // [, line 45
                                 base.bra = base.cursor;
-                                // literal, line 45
                                 if (!(base.eq_s("\u00EB")))
                                 {
                                     break lab8;
                                 }
-                                // ], line 45
                                 base.ket = base.cursor;
-                                // <-, line 45
                                 if (!base.slice_from("He"))
                                 {
                                     return false;
@@ -291,17 +267,12 @@ function FrenchStemmer() {
                             }
                             base.cursor = v_3;
                             lab9: {
-                                // (, line 47
-                                // [, line 47
                                 base.bra = base.cursor;
-                                // literal, line 47
                                 if (!(base.eq_s("\u00EF")))
                                 {
                                     break lab9;
                                 }
-                                // ], line 47
                                 base.ket = base.cursor;
-                                // <-, line 47
                                 if (!base.slice_from("Hi"))
                                 {
                                     return false;
@@ -310,21 +281,16 @@ function FrenchStemmer() {
                             }
                             base.cursor = v_3;
                             lab10: {
-                                // (, line 49
-                                // [, line 49
                                 base.bra = base.cursor;
-                                // literal, line 49
                                 if (!(base.eq_s("y")))
                                 {
                                     break lab10;
                                 }
-                                // ], line 49
                                 base.ket = base.cursor;
                                 if (!(base.in_grouping(g_v, 97, 251)))
                                 {
                                     break lab10;
                                 }
-                                // <-, line 49
                                 if (!base.slice_from("Y"))
                                 {
                                     return false;
@@ -332,22 +298,16 @@ function FrenchStemmer() {
                                 break lab3;
                             }
                             base.cursor = v_3;
-                            // (, line 51
-                            // literal, line 51
                             if (!(base.eq_s("q")))
                             {
                                 break lab2;
                             }
-                            // [, line 51
                             base.bra = base.cursor;
-                            // literal, line 51
                             if (!(base.eq_s("u")))
                             {
                                 break lab2;
                             }
-                            // ], line 51
                             base.ket = base.cursor;
-                            // <-, line 51
                             if (!base.slice_from("U"))
                             {
                                 return false;
@@ -373,19 +333,14 @@ function FrenchStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 54
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        // do, line 60
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 60
-            // or, line 62
             lab1: {
                 var /** number */ v_2 = base.cursor;
                 lab2: {
-                    // (, line 61
                     if (!(base.in_grouping(g_v, 97, 251)))
                     {
                         break lab2;
@@ -394,7 +349,6 @@ function FrenchStemmer() {
                     {
                         break lab2;
                     }
-                    // next, line 61
                     if (base.cursor >= base.limit)
                     {
                         break lab2;
@@ -404,7 +358,6 @@ function FrenchStemmer() {
                 }
                 base.cursor = v_2;
                 lab3: {
-                    // among, line 63
                     if (base.find_among(a_0) == 0)
                     {
                         break lab3;
@@ -412,14 +365,11 @@ function FrenchStemmer() {
                     break lab1;
                 }
                 base.cursor = v_2;
-                // (, line 70
-                // next, line 70
                 if (base.cursor >= base.limit)
                 {
                     break lab0;
                 }
                 base.cursor++;
-                // gopast, line 70
                 golab4: while(true)
                 {
                     lab5: {
@@ -436,15 +386,11 @@ function FrenchStemmer() {
                     base.cursor++;
                 }
             }
-            // setmark pV, line 71
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        // do, line 73
         var /** number */ v_4 = base.cursor;
         lab6: {
-            // (, line 73
-            // gopast, line 74
             golab7: while(true)
             {
                 lab8: {
@@ -460,7 +406,6 @@ function FrenchStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 74
             golab9: while(true)
             {
                 lab10: {
@@ -476,9 +421,7 @@ function FrenchStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p1, line 74
             I_p1 = base.cursor;
-            // gopast, line 75
             golab11: while(true)
             {
                 lab12: {
@@ -494,7 +437,6 @@ function FrenchStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 75
             golab13: while(true)
             {
                 lab14: {
@@ -510,7 +452,6 @@ function FrenchStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p2, line 75
             I_p2 = base.cursor;
         }
         base.cursor = v_4;
@@ -520,74 +461,55 @@ function FrenchStemmer() {
     /** @return {boolean} */
     function r_postlude() {
         var /** number */ among_var;
-        // repeat, line 79
         while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab0: {
-                // (, line 79
-                // [, line 81
                 base.bra = base.cursor;
-                // substring, line 81
                 among_var = base.find_among(a_1);
                 if (among_var == 0)
                 {
                     break lab0;
                 }
-                // ], line 81
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        // (, line 82
-                        // <-, line 82
                         if (!base.slice_from("i"))
                         {
                             return false;
                         }
                         break;
                     case 2:
-                        // (, line 83
-                        // <-, line 83
                         if (!base.slice_from("u"))
                         {
                             return false;
                         }
                         break;
                     case 3:
-                        // (, line 84
-                        // <-, line 84
                         if (!base.slice_from("y"))
                         {
                             return false;
                         }
                         break;
                     case 4:
-                        // (, line 85
-                        // <-, line 85
                         if (!base.slice_from("\u00EB"))
                         {
                             return false;
                         }
                         break;
                     case 5:
-                        // (, line 86
-                        // <-, line 86
                         if (!base.slice_from("\u00EF"))
                         {
                             return false;
                         }
                         break;
                     case 6:
-                        // (, line 87
-                        // delete, line 87
                         if (!base.slice_del())
                         {
                             return false;
                         }
                         break;
                     case 7:
-                        // (, line 88
-                        // next, line 88
                         if (base.cursor >= base.limit)
                         {
                             break lab0;
@@ -633,68 +555,49 @@ function FrenchStemmer() {
     /** @return {boolean} */
     function r_standard_suffix() {
         var /** number */ among_var;
-        // (, line 98
-        // [, line 99
         base.ket = base.cursor;
-        // substring, line 99
         among_var = base.find_among_b(a_4);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 99
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 103
-                // call R2, line 103
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 103
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 106
-                // call R2, line 106
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 106
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // try, line 107
                 var /** number */ v_1 = base.limit - base.cursor;
                 lab0: {
-                    // (, line 107
-                    // [, line 107
                     base.ket = base.cursor;
-                    // literal, line 107
                     if (!(base.eq_s_b("ic")))
                     {
                         base.cursor = base.limit - v_1;
                         break lab0;
                     }
-                    // ], line 107
                     base.bra = base.cursor;
-                    // or, line 107
                     lab1: {
                         var /** number */ v_2 = base.limit - base.cursor;
                         lab2: {
-                            // (, line 107
-                            // call R2, line 107
                             if (!r_R2())
                             {
                                 break lab2;
                             }
-                            // delete, line 107
                             if (!base.slice_del())
                             {
                                 return false;
@@ -702,7 +605,6 @@ function FrenchStemmer() {
                             break lab1;
                         }
                         base.cursor = base.limit - v_2;
-                        // <-, line 107
                         if (!base.slice_from("iqU"))
                         {
                             return false;
@@ -711,120 +613,90 @@ function FrenchStemmer() {
                 }
                 break;
             case 3:
-                // (, line 111
-                // call R2, line 111
                 if (!r_R2())
                 {
                     return false;
                 }
-                // <-, line 111
                 if (!base.slice_from("log"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 114
-                // call R2, line 114
                 if (!r_R2())
                 {
                     return false;
                 }
-                // <-, line 114
                 if (!base.slice_from("u"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 117
-                // call R2, line 117
                 if (!r_R2())
                 {
                     return false;
                 }
-                // <-, line 117
                 if (!base.slice_from("ent"))
                 {
                     return false;
                 }
                 break;
             case 6:
-                // (, line 120
-                // call RV, line 121
                 if (!r_RV())
                 {
                     return false;
                 }
-                // delete, line 121
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // try, line 122
                 var /** number */ v_3 = base.limit - base.cursor;
                 lab3: {
-                    // (, line 122
-                    // [, line 123
                     base.ket = base.cursor;
-                    // substring, line 123
                     among_var = base.find_among_b(a_2);
                     if (among_var == 0)
                     {
                         base.cursor = base.limit - v_3;
                         break lab3;
                     }
-                    // ], line 123
                     base.bra = base.cursor;
                     switch (among_var) {
                         case 1:
-                            // (, line 124
-                            // call R2, line 124
                             if (!r_R2())
                             {
                                 base.cursor = base.limit - v_3;
                                 break lab3;
                             }
-                            // delete, line 124
                             if (!base.slice_del())
                             {
                                 return false;
                             }
-                            // [, line 124
                             base.ket = base.cursor;
-                            // literal, line 124
                             if (!(base.eq_s_b("at")))
                             {
                                 base.cursor = base.limit - v_3;
                                 break lab3;
                             }
-                            // ], line 124
                             base.bra = base.cursor;
-                            // call R2, line 124
                             if (!r_R2())
                             {
                                 base.cursor = base.limit - v_3;
                                 break lab3;
                             }
-                            // delete, line 124
                             if (!base.slice_del())
                             {
                                 return false;
                             }
                             break;
                         case 2:
-                            // (, line 125
-                            // or, line 125
                             lab4: {
                                 var /** number */ v_4 = base.limit - base.cursor;
                                 lab5: {
-                                    // (, line 125
-                                    // call R2, line 125
                                     if (!r_R2())
                                     {
                                         break lab5;
                                     }
-                                    // delete, line 125
                                     if (!base.slice_del())
                                     {
                                         return false;
@@ -832,14 +704,11 @@ function FrenchStemmer() {
                                     break lab4;
                                 }
                                 base.cursor = base.limit - v_4;
-                                // (, line 125
-                                // call R1, line 125
                                 if (!r_R1())
                                 {
                                     base.cursor = base.limit - v_3;
                                     break lab3;
                                 }
-                                // <-, line 125
                                 if (!base.slice_from("eux"))
                                 {
                                     return false;
@@ -847,28 +716,22 @@ function FrenchStemmer() {
                             }
                             break;
                         case 3:
-                            // (, line 127
-                            // call R2, line 127
                             if (!r_R2())
                             {
                                 base.cursor = base.limit - v_3;
                                 break lab3;
                             }
-                            // delete, line 127
                             if (!base.slice_del())
                             {
                                 return false;
                             }
                             break;
                         case 4:
-                            // (, line 129
-                            // call RV, line 129
                             if (!r_RV())
                             {
                                 base.cursor = base.limit - v_3;
                                 break lab3;
                             }
-                            // <-, line 129
                             if (!base.slice_from("i"))
                             {
                                 return false;
@@ -878,46 +741,33 @@ function FrenchStemmer() {
                 }
                 break;
             case 7:
-                // (, line 135
-                // call R2, line 136
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 136
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // try, line 137
                 var /** number */ v_5 = base.limit - base.cursor;
                 lab6: {
-                    // (, line 137
-                    // [, line 138
                     base.ket = base.cursor;
-                    // substring, line 138
                     among_var = base.find_among_b(a_3);
                     if (among_var == 0)
                     {
                         base.cursor = base.limit - v_5;
                         break lab6;
                     }
-                    // ], line 138
                     base.bra = base.cursor;
                     switch (among_var) {
                         case 1:
-                            // (, line 139
-                            // or, line 139
                             lab7: {
                                 var /** number */ v_6 = base.limit - base.cursor;
                                 lab8: {
-                                    // (, line 139
-                                    // call R2, line 139
                                     if (!r_R2())
                                     {
                                         break lab8;
                                     }
-                                    // delete, line 139
                                     if (!base.slice_del())
                                     {
                                         return false;
@@ -925,7 +775,6 @@ function FrenchStemmer() {
                                     break lab7;
                                 }
                                 base.cursor = base.limit - v_6;
-                                // <-, line 139
                                 if (!base.slice_from("abl"))
                                 {
                                     return false;
@@ -933,18 +782,13 @@ function FrenchStemmer() {
                             }
                             break;
                         case 2:
-                            // (, line 140
-                            // or, line 140
                             lab9: {
                                 var /** number */ v_7 = base.limit - base.cursor;
                                 lab10: {
-                                    // (, line 140
-                                    // call R2, line 140
                                     if (!r_R2())
                                     {
                                         break lab10;
                                     }
-                                    // delete, line 140
                                     if (!base.slice_del())
                                     {
                                         return false;
@@ -952,7 +796,6 @@ function FrenchStemmer() {
                                     break lab9;
                                 }
                                 base.cursor = base.limit - v_7;
-                                // <-, line 140
                                 if (!base.slice_from("iqU"))
                                 {
                                     return false;
@@ -960,14 +803,11 @@ function FrenchStemmer() {
                             }
                             break;
                         case 3:
-                            // (, line 141
-                            // call R2, line 141
                             if (!r_R2())
                             {
                                 base.cursor = base.limit - v_5;
                                 break lab6;
                             }
-                            // delete, line 141
                             if (!base.slice_del())
                             {
                                 return false;
@@ -977,63 +817,46 @@ function FrenchStemmer() {
                 }
                 break;
             case 8:
-                // (, line 147
-                // call R2, line 148
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 148
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // try, line 149
                 var /** number */ v_8 = base.limit - base.cursor;
                 lab11: {
-                    // (, line 149
-                    // [, line 149
                     base.ket = base.cursor;
-                    // literal, line 149
                     if (!(base.eq_s_b("at")))
                     {
                         base.cursor = base.limit - v_8;
                         break lab11;
                     }
-                    // ], line 149
                     base.bra = base.cursor;
-                    // call R2, line 149
                     if (!r_R2())
                     {
                         base.cursor = base.limit - v_8;
                         break lab11;
                     }
-                    // delete, line 149
                     if (!base.slice_del())
                     {
                         return false;
                     }
-                    // [, line 149
                     base.ket = base.cursor;
-                    // literal, line 149
                     if (!(base.eq_s_b("ic")))
                     {
                         base.cursor = base.limit - v_8;
                         break lab11;
                     }
-                    // ], line 149
                     base.bra = base.cursor;
-                    // or, line 149
                     lab12: {
                         var /** number */ v_9 = base.limit - base.cursor;
                         lab13: {
-                            // (, line 149
-                            // call R2, line 149
                             if (!r_R2())
                             {
                                 break lab13;
                             }
-                            // delete, line 149
                             if (!base.slice_del())
                             {
                                 return false;
@@ -1041,7 +864,6 @@ function FrenchStemmer() {
                             break lab12;
                         }
                         base.cursor = base.limit - v_9;
-                        // <-, line 149
                         if (!base.slice_from("iqU"))
                         {
                             return false;
@@ -1050,39 +872,29 @@ function FrenchStemmer() {
                 }
                 break;
             case 9:
-                // (, line 151
-                // <-, line 151
                 if (!base.slice_from("eau"))
                 {
                     return false;
                 }
                 break;
             case 10:
-                // (, line 152
-                // call R1, line 152
                 if (!r_R1())
                 {
                     return false;
                 }
-                // <-, line 152
                 if (!base.slice_from("al"))
                 {
                     return false;
                 }
                 break;
             case 11:
-                // (, line 154
-                // or, line 154
                 lab14: {
                     var /** number */ v_10 = base.limit - base.cursor;
                     lab15: {
-                        // (, line 154
-                        // call R2, line 154
                         if (!r_R2())
                         {
                             break lab15;
                         }
-                        // delete, line 154
                         if (!base.slice_del())
                         {
                             return false;
@@ -1090,13 +902,10 @@ function FrenchStemmer() {
                         break lab14;
                     }
                     base.cursor = base.limit - v_10;
-                    // (, line 154
-                    // call R1, line 154
                     if (!r_R1())
                     {
                         return false;
                     }
-                    // <-, line 154
                     if (!base.slice_from("eux"))
                     {
                         return false;
@@ -1104,8 +913,6 @@ function FrenchStemmer() {
                 }
                 break;
             case 12:
-                // (, line 157
-                // call R1, line 157
                 if (!r_R1())
                 {
                     return false;
@@ -1114,60 +921,42 @@ function FrenchStemmer() {
                 {
                     return false;
                 }
-                // delete, line 157
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 13:
-                // (, line 162
-                // call RV, line 162
                 if (!r_RV())
                 {
                     return false;
                 }
-                // fail, line 162
-                // (, line 162
-                // <-, line 162
                 if (!base.slice_from("ant"))
                 {
                     return false;
                 }
                 return false;
             case 14:
-                // (, line 163
-                // call RV, line 163
                 if (!r_RV())
                 {
                     return false;
                 }
-                // fail, line 163
-                // (, line 163
-                // <-, line 163
                 if (!base.slice_from("ent"))
                 {
                     return false;
                 }
                 return false;
             case 15:
-                // (, line 165
-                // test, line 165
                 var /** number */ v_11 = base.limit - base.cursor;
-                // (, line 165
                 if (!(base.in_grouping_b(g_v, 97, 251)))
                 {
                     return false;
                 }
-                // call RV, line 165
                 if (!r_RV())
                 {
                     return false;
                 }
                 base.cursor = base.limit - v_11;
-                // fail, line 165
-                // (, line 165
-                // delete, line 165
                 if (!base.slice_del())
                 {
                     return false;
@@ -1179,30 +968,22 @@ function FrenchStemmer() {
 
     /** @return {boolean} */
     function r_i_verb_suffix() {
-        // setlimit, line 170
         if (base.cursor < I_pV)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_pV;
-        // (, line 170
-        // [, line 171
         base.ket = base.cursor;
-        // substring, line 171
         if (base.find_among_b(a_5) == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
-        // ], line 171
         base.bra = base.cursor;
-        // (, line 177
-        // not, line 177
         {
             var /** number */ v_3 = base.limit - base.cursor;
             lab0: {
-                // literal, line 177
                 if (!(base.eq_s_b("H")))
                 {
                     break lab0;
@@ -1217,7 +998,6 @@ function FrenchStemmer() {
             base.limit_backward = v_2;
             return false;
         }
-        // delete, line 177
         if (!base.slice_del())
         {
             return false;
@@ -1229,70 +1009,52 @@ function FrenchStemmer() {
     /** @return {boolean} */
     function r_verb_suffix() {
         var /** number */ among_var;
-        // setlimit, line 181
         if (base.cursor < I_pV)
         {
             return false;
         }
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_pV;
-        // (, line 181
-        // [, line 182
         base.ket = base.cursor;
-        // substring, line 182
         among_var = base.find_among_b(a_6);
         if (among_var == 0)
         {
             base.limit_backward = v_2;
             return false;
         }
-        // ], line 182
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 184
-                // call R2, line 184
                 if (!r_R2())
                 {
                     base.limit_backward = v_2;
                     return false;
                 }
-                // delete, line 184
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 192
-                // delete, line 192
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 197
-                // delete, line 197
                 if (!base.slice_del())
                 {
                     return false;
                 }
-                // try, line 198
                 var /** number */ v_3 = base.limit - base.cursor;
                 lab0: {
-                    // (, line 198
-                    // [, line 198
                     base.ket = base.cursor;
-                    // literal, line 198
                     if (!(base.eq_s_b("e")))
                     {
                         base.cursor = base.limit - v_3;
                         break lab0;
                     }
-                    // ], line 198
                     base.bra = base.cursor;
-                    // delete, line 198
                     if (!base.slice_del())
                     {
                         return false;
@@ -1307,29 +1069,19 @@ function FrenchStemmer() {
     /** @return {boolean} */
     function r_residual_suffix() {
         var /** number */ among_var;
-        // (, line 205
-        // try, line 206
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            // (, line 206
-            // [, line 206
             base.ket = base.cursor;
-            // literal, line 206
             if (!(base.eq_s_b("s")))
             {
                 base.cursor = base.limit - v_1;
                 break lab0;
             }
-            // ], line 206
             base.bra = base.cursor;
-            // test, line 206
             var /** number */ v_2 = base.limit - base.cursor;
-            // (, line 206
-            // or, line 206
             lab1: {
                 var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    // literal, line 206
                     if (!(base.eq_s_b("Hi")))
                     {
                         break lab2;
@@ -1344,45 +1096,35 @@ function FrenchStemmer() {
                 }
             }
             base.cursor = base.limit - v_2;
-            // delete, line 206
             if (!base.slice_del())
             {
                 return false;
             }
         }
-        // setlimit, line 207
         if (base.cursor < I_pV)
         {
             return false;
         }
         var /** number */ v_5 = base.limit_backward;
         base.limit_backward = I_pV;
-        // (, line 207
-        // [, line 208
         base.ket = base.cursor;
-        // substring, line 208
         among_var = base.find_among_b(a_7);
         if (among_var == 0)
         {
             base.limit_backward = v_5;
             return false;
         }
-        // ], line 208
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 209
-                // call R2, line 209
                 if (!r_R2())
                 {
                     base.limit_backward = v_5;
                     return false;
                 }
-                // or, line 209
                 lab3: {
                     var /** number */ v_6 = base.limit - base.cursor;
                     lab4: {
-                        // literal, line 209
                         if (!(base.eq_s_b("s")))
                         {
                             break lab4;
@@ -1390,30 +1132,24 @@ function FrenchStemmer() {
                         break lab3;
                     }
                     base.cursor = base.limit - v_6;
-                    // literal, line 209
                     if (!(base.eq_s_b("t")))
                     {
                         base.limit_backward = v_5;
                         return false;
                     }
                 }
-                // delete, line 209
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 211
-                // <-, line 211
                 if (!base.slice_from("i"))
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 212
-                // delete, line 212
                 if (!base.slice_del())
                 {
                     return false;
@@ -1426,26 +1162,19 @@ function FrenchStemmer() {
 
     /** @return {boolean} */
     function r_un_double() {
-        // (, line 217
-        // test, line 218
         var /** number */ v_1 = base.limit - base.cursor;
-        // among, line 218
         if (base.find_among_b(a_8) == 0)
         {
             return false;
         }
         base.cursor = base.limit - v_1;
-        // [, line 218
         base.ket = base.cursor;
-        // next, line 218
         if (base.cursor <= base.limit_backward)
         {
             return false;
         }
         base.cursor--;
-        // ], line 218
         base.bra = base.cursor;
-        // delete, line 218
         if (!base.slice_del())
         {
             return false;
@@ -1455,8 +1184,6 @@ function FrenchStemmer() {
 
     /** @return {boolean} */
     function r_un_accent() {
-        // (, line 221
-        // atleast, line 222
         {
             var v_1 = 1;
             while(true)
@@ -1476,13 +1203,10 @@ function FrenchStemmer() {
                 return false;
             }
         }
-        // [, line 223
         base.ket = base.cursor;
-        // or, line 223
         lab1: {
             var /** number */ v_3 = base.limit - base.cursor;
             lab2: {
-                // literal, line 223
                 if (!(base.eq_s_b("\u00E9")))
                 {
                     break lab2;
@@ -1490,15 +1214,12 @@ function FrenchStemmer() {
                 break lab1;
             }
             base.cursor = base.limit - v_3;
-            // literal, line 223
             if (!(base.eq_s_b("\u00E8")))
             {
                 return false;
             }
         }
-        // ], line 223
         base.bra = base.cursor;
-        // <-, line 223
         if (!base.slice_from("e"))
         {
             return false;
@@ -1507,35 +1228,20 @@ function FrenchStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 227
-        // do, line 229
         var /** number */ v_1 = base.cursor;
-        // call prelude, line 229
         r_prelude();
         base.cursor = v_1;
-        // do, line 230
-        // call mark_regions, line 230
         r_mark_regions();
-        // backwards, line 231
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 231
-        // do, line 233
         var /** number */ v_3 = base.limit - base.cursor;
         lab0: {
-            // (, line 233
-            // or, line 243
             lab1: {
                 var /** number */ v_4 = base.limit - base.cursor;
                 lab2: {
-                    // (, line 234
-                    // and, line 239
                     var /** number */ v_5 = base.limit - base.cursor;
-                    // (, line 235
-                    // or, line 235
                     lab3: {
                         var /** number */ v_6 = base.limit - base.cursor;
                         lab4: {
-                            // call standard_suffix, line 235
                             if (!r_standard_suffix())
                             {
                                 break lab4;
@@ -1544,7 +1250,6 @@ function FrenchStemmer() {
                         }
                         base.cursor = base.limit - v_6;
                         lab5: {
-                            // call i_verb_suffix, line 236
                             if (!r_i_verb_suffix())
                             {
                                 break lab5;
@@ -1552,32 +1257,23 @@ function FrenchStemmer() {
                             break lab3;
                         }
                         base.cursor = base.limit - v_6;
-                        // call verb_suffix, line 237
                         if (!r_verb_suffix())
                         {
                             break lab2;
                         }
                     }
                     base.cursor = base.limit - v_5;
-                    // try, line 240
                     var /** number */ v_7 = base.limit - base.cursor;
                     lab6: {
-                        // (, line 240
-                        // [, line 240
                         base.ket = base.cursor;
-                        // or, line 240
                         lab7: {
                             var /** number */ v_8 = base.limit - base.cursor;
                             lab8: {
-                                // (, line 240
-                                // literal, line 240
                                 if (!(base.eq_s_b("Y")))
                                 {
                                     break lab8;
                                 }
-                                // ], line 240
                                 base.bra = base.cursor;
-                                // <-, line 240
                                 if (!base.slice_from("i"))
                                 {
                                     return false;
@@ -1585,16 +1281,12 @@ function FrenchStemmer() {
                                 break lab7;
                             }
                             base.cursor = base.limit - v_8;
-                            // (, line 241
-                            // literal, line 241
                             if (!(base.eq_s_b("\u00E7")))
                             {
                                 base.cursor = base.limit - v_7;
                                 break lab6;
                             }
-                            // ], line 241
                             base.bra = base.cursor;
-                            // <-, line 241
                             if (!base.slice_from("c"))
                             {
                                 return false;
@@ -1604,7 +1296,6 @@ function FrenchStemmer() {
                     break lab1;
                 }
                 base.cursor = base.limit - v_4;
-                // call residual_suffix, line 244
                 if (!r_residual_suffix())
                 {
                     break lab0;
@@ -1612,20 +1303,14 @@ function FrenchStemmer() {
             }
         }
         base.cursor = base.limit - v_3;
-        // do, line 249
         var /** number */ v_9 = base.limit - base.cursor;
-        // call un_double, line 249
         r_un_double();
         base.cursor = base.limit - v_9;
-        // do, line 250
         var /** number */ v_10 = base.limit - base.cursor;
-        // call un_accent, line 250
         r_un_accent();
         base.cursor = base.limit - v_10;
         base.cursor = base.limit_backward;
-        // do, line 252
         var /** number */ v_11 = base.cursor;
-        // call postlude, line 252
         r_postlude();
         base.cursor = v_11;
         return true;

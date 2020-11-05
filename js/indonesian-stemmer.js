@@ -53,18 +53,12 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_remove_particle() {
-        // (, line 50
-        // [, line 51
         base.ket = base.cursor;
-        // substring, line 51
         if (base.find_among_b(a_0) == 0)
         {
             return false;
         }
-        // ], line 51
         base.bra = base.cursor;
-        // (, line 52
-        // delete, line 52
         if (!base.slice_del())
         {
             return false;
@@ -75,18 +69,12 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_remove_possessive_pronoun() {
-        // (, line 56
-        // [, line 57
         base.ket = base.cursor;
-        // substring, line 57
         if (base.find_among_b(a_1) == 0)
         {
             return false;
         }
-        // ], line 57
         base.bra = base.cursor;
-        // (, line 58
-        // delete, line 58
         if (!base.slice_del())
         {
             return false;
@@ -97,8 +85,6 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_SUFFIX_KAN_OK() {
-        // (, line 63
-        // and, line 85
         if (!(I_prefix != 3))
         {
             return false;
@@ -112,7 +98,6 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_SUFFIX_AN_OK() {
-        // (, line 89
         if (!(I_prefix != 1))
         {
             return false;
@@ -122,16 +107,13 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_SUFFIX_I_OK() {
-        // (, line 91
         if (!(I_prefix <= 2))
         {
             return false;
         }
-        // not, line 128
         {
             var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
-                // literal, line 128
                 if (!(base.eq_s_b("s")))
                 {
                     break lab0;
@@ -145,18 +127,12 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_remove_suffix() {
-        // (, line 131
-        // [, line 132
         base.ket = base.cursor;
-        // substring, line 132
         if (base.find_among_b(a_2) == 0)
         {
             return false;
         }
-        // ], line 132
         base.bra = base.cursor;
-        // (, line 134
-        // delete, line 134
         if (!base.slice_del())
         {
             return false;
@@ -167,7 +143,6 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_VOWEL() {
-        // (, line 141
         if (!(base.in_grouping(g_vowel, 97, 117)))
         {
             return false;
@@ -177,12 +152,10 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_KER() {
-        // (, line 143
         if (!(base.out_grouping(g_vowel, 97, 117)))
         {
             return false;
         }
-        // literal, line 143
         if (!(base.eq_s("er")))
         {
             return false;
@@ -193,21 +166,15 @@ function IndonesianStemmer() {
     /** @return {boolean} */
     function r_remove_first_order_prefix() {
         var /** number */ among_var;
-        // (, line 145
-        // [, line 146
         base.bra = base.cursor;
-        // substring, line 146
         among_var = base.find_among(a_3);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 146
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 147
-                // delete, line 147
                 if (!base.slice_del())
                 {
                     return false;
@@ -216,8 +183,6 @@ function IndonesianStemmer() {
                 I_measure -= 1;
                 break;
             case 2:
-                // (, line 148
-                // delete, line 148
                 if (!base.slice_del())
                 {
                     return false;
@@ -226,9 +191,7 @@ function IndonesianStemmer() {
                 I_measure -= 1;
                 break;
             case 3:
-                // (, line 149
                 I_prefix = 1;
-                // <-, line 149
                 if (!base.slice_from("s"))
                 {
                     return false;
@@ -236,9 +199,7 @@ function IndonesianStemmer() {
                 I_measure -= 1;
                 break;
             case 4:
-                // (, line 150
                 I_prefix = 3;
-                // <-, line 150
                 if (!base.slice_from("s"))
                 {
                     return false;
@@ -246,21 +207,17 @@ function IndonesianStemmer() {
                 I_measure -= 1;
                 break;
             case 5:
-                // (, line 151
                 I_prefix = 1;
                 I_measure -= 1;
-                // or, line 151
                 lab0: {
                     var /** number */ v_1 = base.cursor;
                     lab1: {
-                        // and, line 151
                         var /** number */ v_2 = base.cursor;
                         if (!(base.in_grouping(g_vowel, 97, 117)))
                         {
                             break lab1;
                         }
                         base.cursor = v_2;
-                        // <-, line 151
                         if (!base.slice_from("p"))
                         {
                             return false;
@@ -268,7 +225,6 @@ function IndonesianStemmer() {
                         break lab0;
                     }
                     base.cursor = v_1;
-                    // delete, line 151
                     if (!base.slice_del())
                     {
                         return false;
@@ -276,21 +232,17 @@ function IndonesianStemmer() {
                 }
                 break;
             case 6:
-                // (, line 152
                 I_prefix = 3;
                 I_measure -= 1;
-                // or, line 152
                 lab2: {
                     var /** number */ v_3 = base.cursor;
                     lab3: {
-                        // and, line 152
                         var /** number */ v_4 = base.cursor;
                         if (!(base.in_grouping(g_vowel, 97, 117)))
                         {
                             break lab3;
                         }
                         base.cursor = v_4;
-                        // <-, line 152
                         if (!base.slice_from("p"))
                         {
                             return false;
@@ -298,7 +250,6 @@ function IndonesianStemmer() {
                         break lab2;
                     }
                     base.cursor = v_3;
-                    // delete, line 152
                     if (!base.slice_del())
                     {
                         return false;
@@ -312,21 +263,15 @@ function IndonesianStemmer() {
     /** @return {boolean} */
     function r_remove_second_order_prefix() {
         var /** number */ among_var;
-        // (, line 156
-        // [, line 162
         base.bra = base.cursor;
-        // substring, line 162
         among_var = base.find_among(a_4);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 162
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 163
-                // delete, line 163
                 if (!base.slice_del())
                 {
                     return false;
@@ -335,8 +280,6 @@ function IndonesianStemmer() {
                 I_measure -= 1;
                 break;
             case 2:
-                // (, line 164
-                // <-, line 164
                 if (!base.slice_from("ajar"))
                 {
                     return false;
@@ -344,8 +287,6 @@ function IndonesianStemmer() {
                 I_measure -= 1;
                 break;
             case 3:
-                // (, line 165
-                // delete, line 165
                 if (!base.slice_del())
                 {
                     return false;
@@ -354,8 +295,6 @@ function IndonesianStemmer() {
                 I_measure -= 1;
                 break;
             case 4:
-                // (, line 166
-                // <-, line 166
                 if (!base.slice_from("ajar"))
                 {
                     return false;
@@ -368,19 +307,13 @@ function IndonesianStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 171
         I_measure = 0;
-        // do, line 173
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 173
-            // repeat, line 173
             while(true)
             {
                 var /** number */ v_2 = base.cursor;
                 lab1: {
-                    // (, line 173
-                    // gopast, line 173
                     golab2: while(true)
                     {
                         lab3: {
@@ -409,21 +342,15 @@ function IndonesianStemmer() {
             return false;
         }
         I_prefix = 0;
-        // backwards, line 176
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 176
-        // do, line 177
         var /** number */ v_4 = base.limit - base.cursor;
-        // call remove_particle, line 177
         r_remove_particle();
         base.cursor = base.limit - v_4;
         if (!(I_measure > 2))
         {
             return false;
         }
-        // do, line 179
         var /** number */ v_5 = base.limit - base.cursor;
-        // call remove_possessive_pronoun, line 179
         r_remove_possessive_pronoun();
         base.cursor = base.limit - v_5;
         base.cursor = base.limit_backward;
@@ -431,32 +358,22 @@ function IndonesianStemmer() {
         {
             return false;
         }
-        // or, line 188
         lab4: {
             var /** number */ v_6 = base.cursor;
             lab5: {
-                // test, line 182
                 var /** number */ v_7 = base.cursor;
-                // (, line 182
-                // call remove_first_order_prefix, line 183
                 if (!r_remove_first_order_prefix())
                 {
                     break lab5;
                 }
-                // do, line 184
                 var /** number */ v_8 = base.cursor;
                 lab6: {
-                    // (, line 184
-                    // test, line 185
                     var /** number */ v_9 = base.cursor;
-                    // (, line 185
                     if (!(I_measure > 2))
                     {
                         break lab6;
                     }
-                    // backwards, line 185
                     base.limit_backward = base.cursor; base.cursor = base.limit;
-                    // call remove_suffix, line 185
                     if (!r_remove_suffix())
                     {
                         break lab6;
@@ -467,7 +384,6 @@ function IndonesianStemmer() {
                     {
                         break lab6;
                     }
-                    // call remove_second_order_prefix, line 186
                     if (!r_remove_second_order_prefix())
                     {
                         break lab6;
@@ -478,23 +394,16 @@ function IndonesianStemmer() {
                 break lab4;
             }
             base.cursor = v_6;
-            // (, line 188
-            // do, line 189
             var /** number */ v_10 = base.cursor;
-            // call remove_second_order_prefix, line 189
             r_remove_second_order_prefix();
             base.cursor = v_10;
-            // do, line 190
             var /** number */ v_11 = base.cursor;
             lab7: {
-                // (, line 190
                 if (!(I_measure > 2))
                 {
                     break lab7;
                 }
-                // backwards, line 190
                 base.limit_backward = base.cursor; base.cursor = base.limit;
-                // call remove_suffix, line 190
                 if (!r_remove_suffix())
                 {
                     break lab7;

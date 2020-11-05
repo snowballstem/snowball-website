@@ -444,33 +444,25 @@ function BasqueStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 23
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        // do, line 29
         var /** number */ v_1 = base.cursor;
         lab0: {
-            // (, line 29
-            // or, line 31
             lab1: {
                 var /** number */ v_2 = base.cursor;
                 lab2: {
-                    // (, line 30
                     if (!(base.in_grouping(g_v, 97, 117)))
                     {
                         break lab2;
                     }
-                    // or, line 30
                     lab3: {
                         var /** number */ v_3 = base.cursor;
                         lab4: {
-                            // (, line 30
                             if (!(base.out_grouping(g_v, 97, 117)))
                             {
                                 break lab4;
                             }
-                            // gopast, line 30
                             golab5: while(true)
                             {
                                 lab6: {
@@ -489,12 +481,10 @@ function BasqueStemmer() {
                             break lab3;
                         }
                         base.cursor = v_3;
-                        // (, line 30
                         if (!(base.in_grouping(g_v, 97, 117)))
                         {
                             break lab2;
                         }
-                        // gopast, line 30
                         golab7: while(true)
                         {
                             lab8: {
@@ -514,21 +504,17 @@ function BasqueStemmer() {
                     break lab1;
                 }
                 base.cursor = v_2;
-                // (, line 32
                 if (!(base.out_grouping(g_v, 97, 117)))
                 {
                     break lab0;
                 }
-                // or, line 32
                 lab9: {
                     var /** number */ v_6 = base.cursor;
                     lab10: {
-                        // (, line 32
                         if (!(base.out_grouping(g_v, 97, 117)))
                         {
                             break lab10;
                         }
-                        // gopast, line 32
                         golab11: while(true)
                         {
                             lab12: {
@@ -547,12 +533,10 @@ function BasqueStemmer() {
                         break lab9;
                     }
                     base.cursor = v_6;
-                    // (, line 32
                     if (!(base.in_grouping(g_v, 97, 117)))
                     {
                         break lab0;
                     }
-                    // next, line 32
                     if (base.cursor >= base.limit)
                     {
                         break lab0;
@@ -560,15 +544,11 @@ function BasqueStemmer() {
                     base.cursor++;
                 }
             }
-            // setmark pV, line 33
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        // do, line 35
         var /** number */ v_8 = base.cursor;
         lab13: {
-            // (, line 35
-            // gopast, line 36
             golab14: while(true)
             {
                 lab15: {
@@ -584,7 +564,6 @@ function BasqueStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 36
             golab16: while(true)
             {
                 lab17: {
@@ -600,9 +579,7 @@ function BasqueStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p1, line 36
             I_p1 = base.cursor;
-            // gopast, line 37
             golab18: while(true)
             {
                 lab19: {
@@ -618,7 +595,6 @@ function BasqueStemmer() {
                 }
                 base.cursor++;
             }
-            // gopast, line 37
             golab20: while(true)
             {
                 lab21: {
@@ -634,7 +610,6 @@ function BasqueStemmer() {
                 }
                 base.cursor++;
             }
-            // setmark p2, line 37
             I_p2 = base.cursor;
         }
         base.cursor = v_8;
@@ -671,63 +646,47 @@ function BasqueStemmer() {
     /** @return {boolean} */
     function r_aditzak() {
         var /** number */ among_var;
-        // (, line 47
-        // [, line 48
         base.ket = base.cursor;
-        // substring, line 48
         among_var = base.find_among_b(a_0);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 48
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 59
-                // call RV, line 59
                 if (!r_RV())
                 {
                     return false;
                 }
-                // delete, line 59
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 61
-                // call R2, line 61
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 61
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 63
-                // <-, line 63
                 if (!base.slice_from("atseden"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 65
-                // <-, line 65
                 if (!base.slice_from("arabera"))
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 67
-                // <-, line 67
                 if (!base.slice_from("baditu"))
                 {
                     return false;
@@ -740,108 +699,81 @@ function BasqueStemmer() {
     /** @return {boolean} */
     function r_izenak() {
         var /** number */ among_var;
-        // (, line 72
-        // [, line 73
         base.ket = base.cursor;
-        // substring, line 73
         among_var = base.find_among_b(a_1);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 73
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 103
-                // call RV, line 103
                 if (!r_RV())
                 {
                     return false;
                 }
-                // delete, line 103
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 105
-                // call R2, line 105
                 if (!r_R2())
                 {
                     return false;
                 }
-                // delete, line 105
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 3:
-                // (, line 107
-                // <-, line 107
                 if (!base.slice_from("jok"))
                 {
                     return false;
                 }
                 break;
             case 4:
-                // (, line 109
-                // call R1, line 109
                 if (!r_R1())
                 {
                     return false;
                 }
-                // delete, line 109
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 5:
-                // (, line 111
-                // <-, line 111
                 if (!base.slice_from("tra"))
                 {
                     return false;
                 }
                 break;
             case 6:
-                // (, line 113
-                // <-, line 113
                 if (!base.slice_from("minutu"))
                 {
                     return false;
                 }
                 break;
             case 7:
-                // (, line 115
-                // <-, line 115
                 if (!base.slice_from("zehar"))
                 {
                     return false;
                 }
                 break;
             case 8:
-                // (, line 117
-                // <-, line 117
                 if (!base.slice_from("geldi"))
                 {
                     return false;
                 }
                 break;
             case 9:
-                // (, line 119
-                // <-, line 119
                 if (!base.slice_from("igaro"))
                 {
                     return false;
                 }
                 break;
             case 10:
-                // (, line 121
-                // <-, line 121
                 if (!base.slice_from("aurka"))
                 {
                     return false;
@@ -854,34 +786,25 @@ function BasqueStemmer() {
     /** @return {boolean} */
     function r_adjetiboak() {
         var /** number */ among_var;
-        // (, line 125
-        // [, line 126
         base.ket = base.cursor;
-        // substring, line 126
         among_var = base.find_among_b(a_2);
         if (among_var == 0)
         {
             return false;
         }
-        // ], line 126
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                // (, line 129
-                // call RV, line 129
                 if (!r_RV())
                 {
                     return false;
                 }
-                // delete, line 129
                 if (!base.slice_del())
                 {
                     return false;
                 }
                 break;
             case 2:
-                // (, line 131
-                // <-, line 131
                 if (!base.slice_from("z"))
                 {
                     return false;
@@ -892,19 +815,12 @@ function BasqueStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 137
-        // do, line 138
-        // call mark_regions, line 138
         r_mark_regions();
-        // backwards, line 139
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // (, line 139
-        // repeat, line 140
         while(true)
         {
             var /** number */ v_2 = base.limit - base.cursor;
             lab0: {
-                // call aditzak, line 140
                 if (!r_aditzak())
                 {
                     break lab0;
@@ -914,12 +830,10 @@ function BasqueStemmer() {
             base.cursor = base.limit - v_2;
             break;
         }
-        // repeat, line 141
         while(true)
         {
             var /** number */ v_3 = base.limit - base.cursor;
             lab1: {
-                // call izenak, line 141
                 if (!r_izenak())
                 {
                     break lab1;
@@ -929,9 +843,7 @@ function BasqueStemmer() {
             base.cursor = base.limit - v_3;
             break;
         }
-        // do, line 142
         var /** number */ v_4 = base.limit - base.cursor;
-        // call adjetiboak, line 142
         r_adjetiboak();
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;

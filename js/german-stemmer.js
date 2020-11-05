@@ -58,30 +58,20 @@ function GermanStemmer() {
 
     /** @return {boolean} */
     function r_prelude() {
-        // (, line 33
-        // test, line 35
         var /** number */ v_1 = base.cursor;
-        // repeat, line 35
         while(true)
         {
             var /** number */ v_2 = base.cursor;
             lab0: {
-                // (, line 35
-                // or, line 38
                 lab1: {
                     var /** number */ v_3 = base.cursor;
                     lab2: {
-                        // (, line 36
-                        // [, line 37
                         base.bra = base.cursor;
-                        // literal, line 37
                         if (!(base.eq_s("\u00DF")))
                         {
                             break lab2;
                         }
-                        // ], line 37
                         base.ket = base.cursor;
-                        // <-, line 37
                         if (!base.slice_from("ss"))
                         {
                             return false;
@@ -89,7 +79,6 @@ function GermanStemmer() {
                         break lab1;
                     }
                     base.cursor = v_3;
-                    // next, line 38
                     if (base.cursor >= base.limit)
                     {
                         break lab0;
@@ -102,40 +91,31 @@ function GermanStemmer() {
             break;
         }
         base.cursor = v_1;
-        // repeat, line 41
         while(true)
         {
             var /** number */ v_4 = base.cursor;
             lab3: {
-                // goto, line 41
                 golab4: while(true)
                 {
                     var /** number */ v_5 = base.cursor;
                     lab5: {
-                        // (, line 41
                         if (!(base.in_grouping(g_v, 97, 252)))
                         {
                             break lab5;
                         }
-                        // [, line 42
                         base.bra = base.cursor;
-                        // or, line 42
                         lab6: {
                             var /** number */ v_6 = base.cursor;
                             lab7: {
-                                // (, line 42
-                                // literal, line 42
                                 if (!(base.eq_s("u")))
                                 {
                                     break lab7;
                                 }
-                                // ], line 42
                                 base.ket = base.cursor;
                                 if (!(base.in_grouping(g_v, 97, 252)))
                                 {
                                     break lab7;
                                 }
-                                // <-, line 42
                                 if (!base.slice_from("U"))
                                 {
                                     return false;
@@ -143,19 +123,15 @@ function GermanStemmer() {
                                 break lab6;
                             }
                             base.cursor = v_6;
-                            // (, line 43
-                            // literal, line 43
                             if (!(base.eq_s("y")))
                             {
                                 break lab5;
                             }
-                            // ], line 43
                             base.ket = base.cursor;
                             if (!(base.in_grouping(g_v, 97, 252)))
                             {
                                 break lab5;
                             }
-                            // <-, line 43
                             if (!base.slice_from("Y"))
                             {
                                 return false;
@@ -181,13 +157,9 @@ function GermanStemmer() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        // (, line 47
         I_p1 = base.limit;
         I_p2 = base.limit;
-        // test, line 52
         var /** number */ v_1 = base.cursor;
-        // (, line 52
-        // hop, line 52
         {
             var /** number */ c1 = base.cursor + 3;
             if (0 > c1 || c1 > base.limit)
@@ -196,10 +168,8 @@ function GermanStemmer() {
             }
             base.cursor = c1;
         }
-        // setmark x, line 52
         I_x = base.cursor;
         base.cursor = v_1;
-        // gopast, line 54
         golab0: while(true)
         {
             lab1: {
@@ -215,7 +185,6 @@ function GermanStemmer() {
             }
             base.cursor++;
         }
-        // gopast, line 54
         golab2: while(true)
         {
             lab3: {
@@ -231,18 +200,14 @@ function GermanStemmer() {
             }
             base.cursor++;
         }
-        // setmark p1, line 54
         I_p1 = base.cursor;
-        // try, line 55
         lab4: {
-            // (, line 55
             if (!(I_p1 < I_x))
             {
                 break lab4;
             }
             I_p1 = I_x;
         }
-        // gopast, line 56
         golab5: while(true)
         {
             lab6: {
@@ -258,7 +223,6 @@ function GermanStemmer() {
             }
             base.cursor++;
         }
-        // gopast, line 56
         golab7: while(true)
         {
             lab8: {
@@ -274,7 +238,6 @@ function GermanStemmer() {
             }
             base.cursor++;
         }
-        // setmark p2, line 56
         I_p2 = base.cursor;
         return true;
     };
@@ -282,58 +245,43 @@ function GermanStemmer() {
     /** @return {boolean} */
     function r_postlude() {
         var /** number */ among_var;
-        // repeat, line 60
         while(true)
         {
             var /** number */ v_1 = base.cursor;
             lab0: {
-                // (, line 60
-                // [, line 62
                 base.bra = base.cursor;
-                // substring, line 62
                 among_var = base.find_among(a_0);
                 if (among_var == 0)
                 {
                     break lab0;
                 }
-                // ], line 62
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        // (, line 63
-                        // <-, line 63
                         if (!base.slice_from("y"))
                         {
                             return false;
                         }
                         break;
                     case 2:
-                        // (, line 64
-                        // <-, line 64
                         if (!base.slice_from("u"))
                         {
                             return false;
                         }
                         break;
                     case 3:
-                        // (, line 65
-                        // <-, line 65
                         if (!base.slice_from("a"))
                         {
                             return false;
                         }
                         break;
                     case 4:
-                        // (, line 66
-                        // <-, line 66
                         if (!base.slice_from("o"))
                         {
                             return false;
                         }
                         break;
                     case 5:
-                        // (, line 68
-                        // next, line 68
                         if (base.cursor >= base.limit)
                         {
                             break lab0;
@@ -370,63 +318,45 @@ function GermanStemmer() {
     /** @return {boolean} */
     function r_standard_suffix() {
         var /** number */ among_var;
-        // (, line 78
-        // do, line 79
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            // (, line 79
-            // [, line 80
             base.ket = base.cursor;
-            // substring, line 80
             among_var = base.find_among_b(a_1);
             if (among_var == 0)
             {
                 break lab0;
             }
-            // ], line 80
             base.bra = base.cursor;
-            // call R1, line 80
             if (!r_R1())
             {
                 break lab0;
             }
             switch (among_var) {
                 case 1:
-                    // (, line 82
-                    // delete, line 82
                     if (!base.slice_del())
                     {
                         return false;
                     }
                     break;
                 case 2:
-                    // (, line 85
-                    // delete, line 85
                     if (!base.slice_del())
                     {
                         return false;
                     }
-                    // try, line 86
                     var /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
-                        // (, line 86
-                        // [, line 86
                         base.ket = base.cursor;
-                        // literal, line 86
                         if (!(base.eq_s_b("s")))
                         {
                             base.cursor = base.limit - v_2;
                             break lab1;
                         }
-                        // ], line 86
                         base.bra = base.cursor;
-                        // literal, line 86
                         if (!(base.eq_s_b("nis")))
                         {
                             base.cursor = base.limit - v_2;
                             break lab1;
                         }
-                        // delete, line 86
                         if (!base.slice_del())
                         {
                             return false;
@@ -434,12 +364,10 @@ function GermanStemmer() {
                     }
                     break;
                 case 3:
-                    // (, line 89
                     if (!(base.in_grouping_b(g_s_ending, 98, 116)))
                     {
                         break lab0;
                     }
-                    // delete, line 89
                     if (!base.slice_del())
                     {
                         return false;
@@ -448,41 +376,31 @@ function GermanStemmer() {
             }
         }
         base.cursor = base.limit - v_1;
-        // do, line 93
         var /** number */ v_3 = base.limit - base.cursor;
         lab2: {
-            // (, line 93
-            // [, line 94
             base.ket = base.cursor;
-            // substring, line 94
             among_var = base.find_among_b(a_2);
             if (among_var == 0)
             {
                 break lab2;
             }
-            // ], line 94
             base.bra = base.cursor;
-            // call R1, line 94
             if (!r_R1())
             {
                 break lab2;
             }
             switch (among_var) {
                 case 1:
-                    // (, line 96
-                    // delete, line 96
                     if (!base.slice_del())
                     {
                         return false;
                     }
                     break;
                 case 2:
-                    // (, line 99
                     if (!(base.in_grouping_b(g_st_ending, 98, 116)))
                     {
                         break lab2;
                     }
-                    // hop, line 99
                     {
                         var /** number */ c1 = base.cursor - 3;
                         if (base.limit_backward > c1 || c1 > base.limit)
@@ -491,7 +409,6 @@ function GermanStemmer() {
                         }
                         base.cursor = c1;
                     }
-                    // delete, line 99
                     if (!base.slice_del())
                     {
                         return false;
@@ -500,52 +417,37 @@ function GermanStemmer() {
             }
         }
         base.cursor = base.limit - v_3;
-        // do, line 103
         var /** number */ v_4 = base.limit - base.cursor;
         lab3: {
-            // (, line 103
-            // [, line 104
             base.ket = base.cursor;
-            // substring, line 104
             among_var = base.find_among_b(a_4);
             if (among_var == 0)
             {
                 break lab3;
             }
-            // ], line 104
             base.bra = base.cursor;
-            // call R2, line 104
             if (!r_R2())
             {
                 break lab3;
             }
             switch (among_var) {
                 case 1:
-                    // (, line 106
-                    // delete, line 106
                     if (!base.slice_del())
                     {
                         return false;
                     }
-                    // try, line 107
                     var /** number */ v_5 = base.limit - base.cursor;
                     lab4: {
-                        // (, line 107
-                        // [, line 107
                         base.ket = base.cursor;
-                        // literal, line 107
                         if (!(base.eq_s_b("ig")))
                         {
                             base.cursor = base.limit - v_5;
                             break lab4;
                         }
-                        // ], line 107
                         base.bra = base.cursor;
-                        // not, line 107
                         {
                             var /** number */ v_6 = base.limit - base.cursor;
                             lab5: {
-                                // literal, line 107
                                 if (!(base.eq_s_b("e")))
                                 {
                                     break lab5;
@@ -555,13 +457,11 @@ function GermanStemmer() {
                             }
                             base.cursor = base.limit - v_6;
                         }
-                        // call R2, line 107
                         if (!r_R2())
                         {
                             base.cursor = base.limit - v_5;
                             break lab4;
                         }
-                        // delete, line 107
                         if (!base.slice_del())
                         {
                             return false;
@@ -569,12 +469,9 @@ function GermanStemmer() {
                     }
                     break;
                 case 2:
-                    // (, line 110
-                    // not, line 110
                     {
                         var /** number */ v_7 = base.limit - base.cursor;
                         lab6: {
-                            // literal, line 110
                             if (!(base.eq_s_b("e")))
                             {
                                 break lab6;
@@ -583,30 +480,22 @@ function GermanStemmer() {
                         }
                         base.cursor = base.limit - v_7;
                     }
-                    // delete, line 110
                     if (!base.slice_del())
                     {
                         return false;
                     }
                     break;
                 case 3:
-                    // (, line 113
-                    // delete, line 113
                     if (!base.slice_del())
                     {
                         return false;
                     }
-                    // try, line 114
                     var /** number */ v_8 = base.limit - base.cursor;
                     lab7: {
-                        // (, line 114
-                        // [, line 115
                         base.ket = base.cursor;
-                        // or, line 115
                         lab8: {
                             var /** number */ v_9 = base.limit - base.cursor;
                             lab9: {
-                                // literal, line 115
                                 if (!(base.eq_s_b("er")))
                                 {
                                     break lab9;
@@ -614,22 +503,18 @@ function GermanStemmer() {
                                 break lab8;
                             }
                             base.cursor = base.limit - v_9;
-                            // literal, line 115
                             if (!(base.eq_s_b("en")))
                             {
                                 base.cursor = base.limit - v_8;
                                 break lab7;
                             }
                         }
-                        // ], line 115
                         base.bra = base.cursor;
-                        // call R1, line 115
                         if (!r_R1())
                         {
                             base.cursor = base.limit - v_8;
                             break lab7;
                         }
-                        // delete, line 115
                         if (!base.slice_del())
                         {
                             return false;
@@ -637,34 +522,24 @@ function GermanStemmer() {
                     }
                     break;
                 case 4:
-                    // (, line 119
-                    // delete, line 119
                     if (!base.slice_del())
                     {
                         return false;
                     }
-                    // try, line 120
                     var /** number */ v_10 = base.limit - base.cursor;
                     lab10: {
-                        // (, line 120
-                        // [, line 121
                         base.ket = base.cursor;
-                        // substring, line 121
                         if (base.find_among_b(a_3) == 0)
                         {
                             base.cursor = base.limit - v_10;
                             break lab10;
                         }
-                        // ], line 121
                         base.bra = base.cursor;
-                        // call R2, line 121
                         if (!r_R2())
                         {
                             base.cursor = base.limit - v_10;
                             break lab10;
                         }
-                        // (, line 123
-                        // delete, line 123
                         if (!base.slice_del())
                         {
                             return false;
@@ -678,26 +553,16 @@ function GermanStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        // (, line 133
-        // do, line 134
         var /** number */ v_1 = base.cursor;
-        // call prelude, line 134
         r_prelude();
         base.cursor = v_1;
-        // do, line 135
         var /** number */ v_2 = base.cursor;
-        // call mark_regions, line 135
         r_mark_regions();
         base.cursor = v_2;
-        // backwards, line 136
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        // do, line 137
-        // call standard_suffix, line 137
         r_standard_suffix();
         base.cursor = base.limit_backward;
-        // do, line 138
         var /** number */ v_4 = base.cursor;
-        // call postlude, line 138
         r_postlude();
         base.cursor = v_4;
         return true;
