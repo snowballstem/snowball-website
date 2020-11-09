@@ -119,6 +119,9 @@ speedily, and in any case they reserve the right to post their answers on snowba
 
 <ul>
   <li>
+    <strong>Nov 2020</strong> - Yiddish stemming algorithm contributed by Assaf Urieli.
+  </li>
+  <li>
     <strong>Oct 2019</strong> - Serbian stemming algorithm contributed by Stefan Petkovic and Dragan Ivanovic.
   </li>
   <li>
