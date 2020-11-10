@@ -42,9 +42,9 @@ wrapped by <a href="http://search.cpan.org/perldoc?Lingua%3A%3AStopWords"
 >Lingua::StopWords</a>.
 </p>
 
-<h3><a href="http://pecl.php.net/package/stem">PHP stem extensions</a></h3>
+<h3><a href="https://github.com/amaccis/php-stemmer">PHP Stemmer</a></h3>
 <p>
-This is a PHP interface, developed by Jay Smith.
+PHP bindings written by Andrea Maccis, and largely inspired by Richard Boulton's PyStemmer. 
 </p>
 
 <h3><a href="https://git.sr.ht/~amz3/guile-snowball-stemmer">guile-snowball-stemmer</a></h3>
