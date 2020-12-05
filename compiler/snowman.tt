@@ -448,10 +448,10 @@ numbers, the following may be used in AEs:
 <TR><TD><code>cursor</code>&nbsp;   <TD></TD><TD>  &#x2014; the current value of the string <I>cursor</I>
 <TR><TD><code>limit</code>&nbsp;    <TD></TD><TD>  &#x2014; the current value of the string <I>limit</I>
 <TR><TD><code>size</code>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in "slots"
-<TR><TD><code>sizeof s</code>&nbsp; <TD></TD><TD>  &#x2014; the number of "slots" in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string
+<TR><TD><code>sizeof s</code>&nbsp; <TD></TD><TD>  &#x2014; the number of "slots" in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string or (since Snowball 2.1) a literal string
 <TR><TH colspan="2">New in Snowball 2.0:</TH></TR>
 <TR><TD><code>len</code>&nbsp;      <TD></TD><TD>  &#x2014; the length of the string, in Unicode characters
-<TR><TD><code>lenof s</code>&nbsp;  <TD></TD><TD>  &#x2014; the number of Unicode characters in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string
+<TR><TD><code>lenof s</code>&nbsp;  <TD></TD><TD>  &#x2014; the number of Unicode characters in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string or (since Snowball 2.1) a literal string
 </TABLE></DL>
 
 <p>
