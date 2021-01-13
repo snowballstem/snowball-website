@@ -15,77 +15,69 @@ be generated with this algorithm.
 </p>
 
 [% algorithm_vocab('yiddish', [
-'בענטש',
-'בענטשונג',
-'בענטשונגען',
-'בענטשט',
-'בענטשליכט',
-'בענטשן',
-'בענטשנדיק',
-'בענטשנדיקן',
-'בענטשנדיקס',
-'בענטשנדיקע',
-'בענטשנדיקער',
-'בענטשסט',
-'בענטשסטו',
-'בענעפֿיט',
-'בענעפֿיטן',
-'בענק',
-'בענקאַרט',
-'בענקאַרטן',
-'בענקט',
-'בענקל',
-'בענקלעך',
-'בענקנדיקערהײט',
-'בענקסט',
-'בענקסטו',
-'בענקעלע',
-'בענקעלעך',
-'בענקען',
-'בענקענדיק',
-'בענקענדיקן',
-'בענקענדיקס',
-'בענקענדיקע',
-'בענקענדיקער',
-'בענקעניש',
+'אַװעקבלאָנדזשען',
+'אַװעקבלאָנדזשענדיק',
+'אַװעקבלאָנדזשענדיקן',
+'אַװעקבלאָנדזשענדיקס',
+'אַװעקבלאָנדזשענדיקע',
+'אַװעקבלאָנדזשענדיקער',
+'אַװעקגײן',
+'אַװעקגײנדיק',
+'אַװעקגײנדיקן',
+'אַװעקגײנדיקס',
+'אַװעקגײנדיקע',
+'אַװעקגײנדיקער',
+'אַװעקגנבֿענען',
+'אַװעקגנבֿענענדיק',
+'אַװעקגנבֿענענדיקן',
+'אַװעקגנבֿענענדיקס',
+'אַװעקגנבֿענענדיקע',
+'אַװעקגנבֿענענדיקער',
+'אַװעקגעבלאָנדזשעט',
+'אַװעקגעבלאָנדזשעטן',
+'אַװעקגעבלאָנדזשעטס',
+'אַװעקגעבלאָנדזשעטע',
+'אַװעקגעבלאָנדזשעטער',
+'אַװעקגעבן',
+'אַװעקגעבנדיק',
+'אַװעקגעבנדיקן',
+'אַװעקגעבנדיקס',
+'אַװעקגעבנדיקע',
+'אַװעקגעבנדיקער',
+'אַװעקגעגאַנגען',
+'אַװעקגעגאַנגענס',
+'אַװעקגעגאַנגענע',
+'אַװעקגעגאַנגענעם',
+'אַװעקגעגאַנגענער',
+'אַװעקגעגנבֿעט',
 ], [
-'כאַראַקטער',
-'כאַראַקטעריזיר',
-'כאַראַקטעריזירט',
-'כאַראַקטעריזירטן',
-'כאַראַקטעריזירטס',
-'כאַראַקטעריזירטע',
-'כאַראַקטעריזירטער',
-'כאַראַקטעריזירן',
-'כאַראַקטעריזירנדיק',
-'כאַראַקטעריזירנדיקן',
-'כאַראַקטעריזירנדיקס',
-'כאַראַקטעריזירנדיקע',
-'כאַראַקטעריזירנדיקער',
-'כאַראַקטעריזירסט',
-'כאַראַקטעריזירסטו',
-'כאַראַקטעריסטיק',
-'כאַראַקטעריסטיקן',
-'כאַראַקטעריסטיש',
-'כאַראַקטעריסטישן',
-'כאַראַקטעריסטישע',
-'כאַראַקטעריסטישעס',
-'כאַראַקטעריסטישער',
-'כאַראַקטעריש',
-'כאַראַקטערישן',
-'כאַראַקטערישע',
-'כאַראַקטערישעס',
-'כאַראַקטערישער',
-'כאַראַקטערן',
-'כאַראַקטערס',
-'כאַרט',
-'כאַרטן',
-'כאַרטעס',
-'כאַריזמאַטיש',
-'כאַריזמאַטישן',
-'כאַריזמאַטישע',
-'כאַריזמאַטישעס',
-'כאַריזמאַטישער',
+'אַבֿידות',
+'אַבסטראַקטסטער',
+'אַדורכבײַסנדיקער',
+'אַדורכגעביסן',
+'אַדורכגעשמועסט',
+'אַדורכפֿירנדיק',
+'אַװעקגעגאַנגען',
+'אַװעקגעגאַנגענעם',
+'אַװעקגענומענער',
+'אמתדיק',
+'אמתדיקן',
+'אמתדיקע',
+'אמתדיקער',
+'באַהאַלטן',
+'ביכער',
+'געאַכלט',
+'געאײַלט',
+'געאײַלן',
+'געבאָדענעם',
+'געבאָטענעם',
+'געשדכנטע',
+'עראָפּלאַנען',
+'פֿאַרגאַנגענהײט',
+'פֿאָרױסגעגאַנגענע',
+'קינדהײט',
+'װילן',
+'װילסט',
 ]) %]
 </div>
 
@@ -128,7 +120,7 @@ be generated with this algorithm.
 </p>
 
 <ul>
-  <li>If the word begins with גע, it is replaced with "GE" and the cursor is advanced.</li>
+  <li>If the word begins with גע (except for געלט and געבן) it is replaced with "GE" and the cursor is advanced.</li>
   <li>
     Next, if the word begins with any verbal prefix, the cursor is advanced past this prefix.
     Prefixes include (niked added for clarity, not included in algorithm):
@@ -138,8 +130,8 @@ be generated with this algorithm.
     <li>Stressed: אױס, אױפ, אומ, אונטער, איבער, אײֲנ, אָנ, אָפּ, בײַ, פאָר, צו.</li>
     <li>Unstressed: אַנט, באַ, דער, צע</li>
   </ul>
-  <li>If the verbal prefix is followed by גע, it is replaced with "GE" and the cursor is advanced (e.g. אַװעקגעגאַנגען).</li>
-  <li>If the verbal prefix is followed by צו, it is replaced with "TSU" and the cursor is advanced (e.g. אַרומצוגײן).</li>
+  <li>If the verbal prefix is followed by גע (except for געבן), it is replaced with "GE" and the cursor is advanced (e.g. אַװעקגעגאַנגען).</li>
+  <li>If the verbal prefix is followed by צו (except for צוגן, צוקט or צוקן with nothing afterwards), it is replaced with "TSU" and the cursor is advanced (e.g. אַרומצוגײן).</li>
 </ul>
 
 <p>We are now at the start of the main portion of the word (past any verbal prefix and past participle marker).</p>
@@ -173,6 +165,7 @@ be generated with this algorithm.
     <li>If the ט was before P1, we try to perform the same action while leaving the ט in place</li>
     <li>At the same time, if preceded by an irregular past participles ending in ט, replace it with the stem, e.g. געבראַכט becomes ברענג.</li>
   </ul>
+  <li>Delete the past participle endings: עט, עטן, עטס, עטע, עטער
   <li>Anything ending with גײן is transformed to גײ.</li>
   <li>Anything ending in an irregular past participle is corrected to the stem.</li>
   <li>Delete noun endings: ונג, הײט, קײט, יקײט, שאַפֿט.</li>
