@@ -21,8 +21,8 @@ metaphor for how the project grows by gathering contributions over time.
 
 <p>
 The Snowball compiler translates a Snowball program into source code in another
-language - currently ISO C, C#, Go, Java, Javascript, Object Pascal, Python and
-Rust are supported.
+language - currently Ada, ISO C, C#, Go, Java, Javascript, Object Pascal,
+Python and Rust are supported.
 <p>
 
 <h2>What is Stemming?</h2>
