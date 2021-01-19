@@ -1,31 +1,51 @@
-[% header('An Armenian stemming algorithm') %]
+[% header('Armenian stemming algorithm') %]
+
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="tarball.tgz"> Tar-gzipped file of the delivery from Astghik Mkrtchyan</A>
+[% algorithm_lis('armenian', 'Armenian') %]
 </ul>
 
 <p>
-A stemmer for Armenian was sent to us by Astghik Mkrtchyan with this accompanying
-email:
+This stemmer for Armenian was developed and contributed by Astghik Mkrtchyan.
 </p>
 
-<blockquote><pre>
-From: astghik mkrtchyan &lt;mkrtch.ast&#64;mail.ru&gt;
-Date: Sat, 12 Jun 2010 20:27:02 +0400
-Subject: Armenian Stemmer
+<p>
+The following characters are vowels for the purposes of this algorithm:
 
-Hello,
+<dl><dd>
+    &#x561; &#x567; &#x56B; &#x585; &#x582; &#x565; &#x578; &#x568;
+</dl>
 
-I newbie here. Recently I've googled for Armenian stemmer. So I have found
-nothing, decided to write one. And now I'm sending Armenian stemmer
-(stem_Unicode.sbl) and generated java file.
+<p>
+In any word, <i>RV</i> is the region after the first vowel, or the end of the word
+if it contains no vowels.
+</p>
 
-Regards,
-Astghik
-</pre></blockquote>
+<p>
+<I>R</I>2 is the region after the first non-vowel following a vowel after the
+first non-vowel following a vowel, or the end of the word if there is no such
+non-vowel.
+</p>
 
-<h2>The algorithm in Snowball</h2>
+<p>
+The algorithm has a fairly simple structure which only removes suffixes.  There
+are four steps, applied in turn:
+</p>
+
+<ul>
+<li> an "ending" is removed, if one is found in <i>R</i>2,</li>
+<li> a verb suffix is removed, if one is found in <i>RV</i>,</li>
+<li> an adjective suffix is removed, if one is found in <i>RV</i>,</li>
+<li> a noun suffix is removed, if one is found in <i>RV</i>.</li>
+</ul>
+
+<p>
+See the Snowball implementation of the stemmer below for the lists of suffixes
+each step checks for.
+</p>
+
+<h2>The full algorithm in Snowball</h2>
 
 [% highlight_file('armenian') %]
 
