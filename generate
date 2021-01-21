@@ -110,6 +110,7 @@ $$vars{highlight_file} = sub {
 $$vars{algorithm_lis} = sub {
     my ($id, $lang_name) = @_;
     my $out = << "__END__";
+<li> <a href="/demo.html#\u$id">Javascript demo</a></li>
 <li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/$id.sbl">The stemmer in Snowball</a></li>
 <li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/$id/voc.txt">Sample $lang_name vocabulary</a></li>
 <li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/$id/output.txt">Its stemmed equivalent</a></li>
@@ -221,7 +222,7 @@ my @menu = (
 );
 
     my @stemmer_js_files;
-    my $stemmer_select = '<select id="lang" onchange="lang_changed(this);">';
+    my $stemmer_select = '<select id="lang" onchange="lang_changed(this);location.hash=this.options[this.selectedIndex].value">';
     for (sort glob('js/*-stemmer.js')) {
 	if (m!/(.*)-!) {
 	    push @stemmer_js_files, $_;

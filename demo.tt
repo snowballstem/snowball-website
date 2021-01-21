@@ -75,6 +75,24 @@ function lang_changed(elt) {
     words_elt.placeholder = "Enter some " + lang + " text";
     stem_demo();
 }
+window.onload = function() {
+    let d=location.hash;
+    if (d.length) {
+        let c=null;
+        let s=document.getElementById('lang');
+        let a=(s.selectedIndex>=0?s.options[s.selectedIndex]:null);
+        d = d.substring(1);
+        for (let i=0; i<s.options.length; i++) {
+            let e = s.options[i];
+            if (e.getAttribute("value") === d) c = e;
+        }
+        if (c !== null && c !== a) {
+            if (a !== null) a.removeAttribute("selected");
+            c.setAttribute("selected", "");
+            s.onchange();
+        }
+    }
+}
 </script>
 
 [% footer %]
