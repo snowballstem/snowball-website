@@ -6,25 +6,25 @@
 
 <ul>
 <li>
-<a href="dist/libstemmer_c.tgz">The C version of the libstemmer library.</a><br/>
+<a href="dist/libstemmer_c-[% version %].tar.gz">The C version of the libstemmer library.</a><br/>
 This contains all you need to include the snowball stemming algorithms into a
 C project of your own.  If you download this, you don't need to use the snowball
 compiler, or worry about the internals of the stemmers in any way.
 </li>
 <li>
-<a href="dist/libstemmer_csharp.tgz">The C# version of the libstemmer library.</a><br/>
+<a href="dist/libstemmer_csharp-[% version %].tar.gz">The C# version of the libstemmer library.</a><br/>
 This contains all you need to include the snowball stemming algorithms into a
 C# project of your own.  If you download this, you don't need to use the snowball
 compiler, or worry about the internals of the stemmers in any way.
 </li>
 <li>
-<a href="dist/libstemmer_java.tgz">The Java version of the libstemmer library.</a><br/>
+<a href="dist/libstemmer_java-[% version %].tar.gz">The Java version of the libstemmer library.</a><br/>
 This contains all you need to include the snowball stemming algorithms into a
 Java project of your own.  If you download this, you don't need to use the snowball
 compiler, or worry about the internals of the stemmers in any way.
 </li>
 <li>
-<a href="dist/snowball_code.tgz">Snowball, algorithms, and libstemmer library.</a><br/>
+<a href="dist/snowball-[% version %].tar.gz">Snowball, algorithms, and libstemmer library.</a><br/>
 This contains all the source code for snowball (but not the generated source files).
 This is useful mainly if you are wanting to work on the algorithms (tweaking them,
 or producing new algorithms).
