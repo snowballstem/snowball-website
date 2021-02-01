@@ -111,15 +111,24 @@ The following letters are vowels:
 <DL><DD>
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  â  &nbsp;  à  &nbsp;  ë  &nbsp;  é  &nbsp;  ê  &nbsp;  è  &nbsp;  ï  &nbsp;  î  &nbsp;  ô  &nbsp;  û  &nbsp;  ù</I></B>
 </DL>
-Assume the word is in lower case. Then put into upper case <B><I>u</I></B> or <B><I>i</I></B> preceded
-and followed by a vowel, and <B><I>y</I></B> preceded or followed by a vowel. <B><I>u</I></B> after <B><I>q</I></B> is
-also put into upper case. For example,
+Assume the word is in lower case.  Then, taking the letters in turn from the
+beginning to end of the word, put <b><i>u</i></b> or <b><i>i</i></b> into upper
+case when it is both preceded and followed by a vowel; put <b><i>y</i></b> into
+upper case when it is either preceded or followed by a vowel; and put <b><i>u</i></b> into upper case when it follows <b><i>q</i></b>. For example,
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>    jouer   <TD></TD><TD> &#x2192; <TD></TD><TD>  joUer
 <TR><TD>    ennuie  <TD></TD><TD> &#x2192; <TD></TD><TD>  ennuIe
 <TR><TD>    yeux    <TD></TD><TD> &#x2192; <TD></TD><TD>  Yeux
 <TR><TD>    quand   <TD></TD><TD> &#x2192; <TD></TD><TD>  qUand
+<TR><TD>    croyiez <TD></TD><TD> &#x2192; <TD></TD><TD>  croYiez
 </TABLE></DL>
+
+<p>
+In the last example, <b><i>y</i></b> becomes <b><i>Y</i></b> because it is
+between two vowels, but <b><i>i</i></b> does not become <b><i>I</i></b> because
+it is between <b><i>Y</i></b> and <b><i>e</i></b>, and <b><i>Y</i></b> is not
+defined as a vowel above.
+</p>
 
 <p>
 (The upper case forms are not then classed as vowels &#x2014; see <A HREF="../../texts/vowelmarking.html"> note</A> on vowel
