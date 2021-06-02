@@ -72,10 +72,10 @@ $$vars{highlight} = sub {
     my $out;
     if (defined $lang) {
 	run ['pygmentize', "-l$lang", '-fhtml'], \$in, \$out, \*STDERR
-	    or die "python: $?";
+	    or die "pygmentize: $?";
     } else {
-	run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
-	    or die "python: $?";
+	run ['python3', 'highlight_snowball.py'], \$in, \$out, \*STDERR
+	    or die "python3: $?";
     }
     return $out;
 };
@@ -88,8 +88,8 @@ $$vars{highlight_inline} = sub {
     $in =~ /\&[#\w]+;/ and warn "HTML entity in Snowball code? [$&]";
     $in =~ /\n/ and warn "Newline in inline Snowball code? [$in]";
     my $out;
-    run ['python', 'highlight_snowball.py'], \$in, \$out, \*STDERR
-	or die "python: $?";
+    run ['python3', 'highlight_snowball.py'], \$in, \$out, \*STDERR
+	or die "python3: $?";
     $out =~ s!<div([^.]*)><pre>!<span$1><code>!;
     $out =~ s!</pre></div>!</code></span>!;
     return $out;
@@ -107,7 +107,7 @@ $$vars{highlight_file} = sub {
 	    print STDERR "warning: $source and $corerepo_source differ\n";
 	}
     }
-    return scalar(`python highlight_snowball.py < \Q$source\E`);
+    return scalar(`python3 highlight_snowball.py < \Q$source\E`);
 };
 
 # <li> tags for a stemming algorithm.
