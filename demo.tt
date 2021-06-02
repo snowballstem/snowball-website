@@ -12,7 +12,7 @@ Try the
 stemming algorithm:
 </p>
 <table border='0'><tr><td width="50%">
-<textarea id="words" rows="1" cols="50" placeholder="Enter some English text" oninput="stem_demo(this.value);">
+<textarea id="words" rows="1" cols="50" placeholder="Enter some English text" oninput="stem_demo(this);">
 </textarea>
 </td>
 <td id="results" class="license" style='border:1px;border-style:solid;'></td>
@@ -27,7 +27,8 @@ This demo performs stemming entirely within your browser, using Javascript code 
 [% END %]
 <script>
 var old_words;
-function stem_demo(words) {
+function stem_demo(elt) {
+  var words = elt.value;
   if (words === old_words) return;
   old_words = words;
   // Auto-expand height of the textarea
@@ -71,7 +72,7 @@ function lang_changed(elt) {
         words_elt.dir = results_elt.dir = 'ltr';
     }
     words_elt.placeholder = "Enter some " + lang + " text";
-    stem_demo(document.getElementById('words').value);
+    stem_demo(document.getElementById('words'));
 }
 window.onload = function() {
     let d=location.hash;
@@ -94,7 +95,7 @@ window.onload = function() {
     if (t !== null) {
 	let s=document.getElementById('words');
 	s.value=t;
-	stem_demo(t);
+	stem_demo(s);
     }
 }
 </script>
