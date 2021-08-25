@@ -1,7 +1,7 @@
 Snowball Website Sources
 ========================
 
-This is the source for generating the website: http://snowballstem.org/
+This is the source for generating the website: https://snowballstem.org/
 
 Setup
 -----

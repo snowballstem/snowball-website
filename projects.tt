@@ -34,12 +34,11 @@ different API.  PyStemmer's current home is as part of the snowballstem github
 project.
 </p>
 
-<h3><a href="http://search.cpan.org/perldoc?Lingua%3A%3AStem%3A%3ASnowball">Lingua::Stem::Snowball</a></h3>
+<h3><a href="https://metacpan.org/pod/Lingua::Stem::Snowball">Lingua::Stem::Snowball</a></h3>
 <p>
 Lingua::Stem::Snowball is an XS module which provides a Perl interface to the
 C versions of the Snowball stemmers.  The Snowball stopwords lists are also
-wrapped by <a href="http://search.cpan.org/perldoc?Lingua%3A%3AStopWords"
->Lingua::StopWords</a>.
+wrapped by <a href="https://metacpan.org/pod/Lingua::StopWords">Lingua::StopWords</a>.
 </p>
 
 <h3><a href="https://github.com/amaccis/php-stemmer">PHP Stemmer</a></h3>
