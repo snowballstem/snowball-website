@@ -6,6 +6,39 @@
 [% algorithm_lis('armenian', 'Armenian') %]
 </ul>
 
+<div style="background-color:lightpink">
+<p>
+Here is a sample of Armenian vocabulary, with the stemmed forms that will
+be generated with this algorithm.
+</p>
+
+[% algorithm_vocab('armenian', [
+'աղոթում',
+'աղոթք',
+'աղոթքը',
+'աղոթքի',
+'աղոթքին',
+'աղոթքից',
+'աղոթքն',
+'աղոթքներ',
+'աղոթքները',
+'աղոթքների',
+'աղոթքներին'
+], [
+'բանաձևեր',
+'բանաձևերը',
+'բանաձևերի',
+'բանաձևերից',
+'բանաձևերն',
+'բանաձևերով',
+'բանաձևերում',
+'բանաձևը',
+'բանաձևի',
+'բանաձևին',
+'բանաձևից'
+]) %]
+</div>
+
 <p>
 This stemmer for Armenian was developed and contributed by Astghik Mkrtchyan.
 </p>
