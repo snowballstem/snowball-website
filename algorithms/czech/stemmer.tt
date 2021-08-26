@@ -1,0 +1,16 @@
+[% header('Czech stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('czech', 'Czech') %]
+</ul>
+
+<p>
+In March 2012 Jim O&#8217;Regan sent us an implementation of Ljiljana
+Dolamic's Czech stemmer.
+</p>
+
+[% highlight_file('czech') %]
+
+[% footer %]

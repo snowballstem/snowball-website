@@ -72,7 +72,8 @@ We also provide Snowball implementations of some algorithms developed by other p
   <li>the early <a href="/algorithms/lovins/stemmer.html">Lovins English stemmer</a>
   <li>the <a href="/otherapps/schinke/">Schinke/Willett Latin algorithm</a>
   <li>the <a href="/algorithms/kraaij_pohlmann/stemmer.html">Kraaij/Pohlmann Dutch algorithm</a>
-  <li><a href="/otherapps/oregan/">Irish and Czech</a></li>
+  <li><a href="/algorithms/irish/stemmer.html">Irish Gaelic</a></li>
+  <li><a href="/algorithms/czech/stemmer.html">Czech</a></li>
   <li><a href="/otherapps/romanian/">Two stemmers for Romanian</a></li>
   <li><a href="/algorithms/hungarian/stemmer.html">Hungarian</a></li>
   <li><a href="/algorithms/turkish/stemmer.html">Turkish</a></li>

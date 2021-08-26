@@ -1,0 +1,63 @@
+[% header('Irish Gaelic stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('irish', 'Irish') %]
+<li> <a href="../../code/tolower_irish.sbl">lower case script</a>
+</ul>
+
+<div style="background-color:lightpink">
+<p>
+Here is a sample of Irish vocabulary, with the stemmed forms that will
+be generated with this algorithm.
+</p>
+
+[% algorithm_vocab('irish', [
+'fix'
+], [
+'me'
+]) %]
+</div>
+
+<p>
+This basic stemmer for Irish was developed and contributed by Jim
+O&#8217;Regan.
+</p>
+
+<p>
+One thing that should be taken into account with Irish is the initial
+mutation (n-eclipsis and h-prothesis) which causes problems if words
+are simply folded to lowercase before stemming in the way that is
+usually assumed by Snowball stemmers.  A Snowball version of an algorithm to
+fold to lowercase while taking this into account would look something like:
+</p>
+
+[% highlight_file('tolower_irish') %]
+
+<p>
+The following characters are vowels for the purposes of this algorithm:
+
+<dl><dd>
+    a e i o u &#xE1; &#xE9; &#xED; &#xF3; &#xFA;
+</dl>
+
+<p>
+The algorithm first addresses the initial mutation, then regions are determined
+based on the word after this first step:
+</p>
+
+<ul>
+<li><i>RV</i> is the region after the first vowel, or the end of the word
+if it contains no vowels.</li>
+<li><I>R</I>1 is the region after the first non-vowel following a vowel, or the
+end of the word if there is no such non-vowel.</li>
+<li><I>R</I>2 is the region after the first non-vowel following a vowel in
+<I>R</I>1, or the end of the word if there is no such non-vowel.</li>
+</ul>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('irish') %]
+
+[% footer %]

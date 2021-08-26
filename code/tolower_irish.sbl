@@ -36,4 +36,3 @@ define tolower_irish as (
    't{U'}' (<- 't-{u'}')
  )
 )
-
