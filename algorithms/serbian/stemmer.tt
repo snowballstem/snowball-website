@@ -108,7 +108,7 @@ subgroup. It is highly inflected and uses similar rules for morphological
 derivation and flexion as other Slavic languages, especially ones derived from
 the Serbo-Croatian language used in the former Yugoslavia. Because of this
 highly inflected characteristic a stemmer for Serbian language will have many
-more rules then stemmers for less inflected languages.
+more rules than stemmers for less inflected languages.
 </p>
 
 <p>
@@ -219,8 +219,8 @@ For example:
      which means that "<i>r</i>" is used for syllabification and <i>R</i>1 =
      "<i>govački</i>"
 
-<li> "<i>tre|ne|rka</i>" - in this word there is an "<i>r</i>" before the
-     first vowel but there isn't any letters between them which means that
+<li> "<i>tre|ne|rka</i>" - in this word there is a letter "<i>r</i>" before the
+     first vowel but there aren't any letters between them which means that
      "<i>r</i>" isn't used for syllabification and <i>R</i>1 = "<i>nerka</i>".
 
 <li> "<i>r|ta|njski</i>" - in this word "<i>r</i>" is the first syllable but if
@@ -232,9 +232,11 @@ For example:
 <li> "<i>a|vi|on</i>" - similar to the previous case but with a vowel instead
      of an "<i>r</i>".
 </ul>
-<i>R</i>2 isn't really a region, it is more a test routine that is used to
+
+Inside <i>Mark Regions</i> routine there is a test routine that is used to
 check for letters with diacritics and is used later to apply certain rules in
-stemming. It is used because people these days tend to use letters without
+stemming. Result of this test routine is stored inside <i>no_diacritics</i> flag.
+This test routine is used because people these days tend to use letters without
 diacritics (instead of the proper ones with diacritics) and we need to take
 this into account also.
 </p>
@@ -243,7 +245,7 @@ this into account also.
 <li><i>Morphological Changes</i>
 <p>
 Very last thing to do, before any stemming is done, are morphological changes.
-These changes are applied so we get the same stems for different forms of a
+These changes are applied so that we get the same stems for different forms of a
 word.
 </p>
 
