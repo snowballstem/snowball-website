@@ -13,11 +13,7 @@ Here is a sample of Irish vocabulary, with the stemmed forms that will
 be generated with this algorithm.
 </p>
 
-[% algorithm_vocab('irish', [
-'fix'
-], [
-'me'
-]) %]
+[% algorithm_vocab('irish', [30, 'ábharú', 'pábháil']) %]
 </div>
 
 <p>
