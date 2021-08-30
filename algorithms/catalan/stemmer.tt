@@ -13,33 +13,7 @@ Here is a sample of Catalan vocabulary, with the stemmed forms that will
 be generated with this algorithm.
 </p>
 
-[% algorithm_vocab('catalan', [
-'abatuda',
-'abatut',
-'abatuts',
-'abbàssida',
-'abbàssides',
-'abbé',
-'abdalwadita',
-'abdalwadites',
-'abdicació',
-'abdicar',
-'abdicat',
-'abdicà'
-], [
-'gore',
-'gorg',
-'gorga',
-'gorges',
-'gorgs',
-'goril',
-'gorja',
-'gorra',
-'gorres',
-'gosa',
-'gosadia',
-'gosar',
-]) %]
+[% algorithm_vocab('catalan', [12, 'abatuda', 'gore']) %]
 </div>
 
 

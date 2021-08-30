@@ -129,6 +129,35 @@ __END__
 
 $$vars{algorithm_vocab} = sub {
     my ($id, $voc1, $voc2) = @_;
+    if (!defined($voc2)) {
+	# New approach - number of entries and two starting words, from which
+	# we pull words from the snowball-data voc.txt for this language.
+	my ($n, $a, $b) = @$voc1;
+	$voc1 = [];
+	$voc2 = [];
+	my $vocfile = "../snowball-data/$id/voc.txt";
+	open VOC, '<', $vocfile or die "$vocfile: $!";
+	while (<VOC>) {
+	    chomp;
+	    last if $_ eq $a;
+	}
+	die "Word '$a' not found in '$vocfile'\n" unless defined $_;
+	for my $i (1..$n) {
+	    push @$voc1, $_;
+	    $_ = <VOC>;
+	    chomp;
+	}
+	while (<VOC>) {
+	    chomp;
+	    last if $_ eq $b;
+	}
+	die "Word '$b' not found in '$vocfile'\n" unless defined $_;
+	for my $i (1..$n) {
+	    push @$voc2, $_;
+	    $_ = <VOC>;
+	    chomp;
+	}
+    }
     my (@out1, @out2);
     {
 	my $i = join '', map{"$_\n"} @$voc1;

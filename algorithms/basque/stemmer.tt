@@ -12,31 +12,7 @@ Here is a sample of Basque vocabulary, with the stemmed forms that will
 be generated with this algorithm.
 </p>
 
-[% algorithm_vocab('basque', [
-'barrutiaren',
-'barrutiek',
-'barrutien',
-'barrutietako',
-'barrutietan',
-'barrutik',
-'barrutiko',
-'barrutitan',
-'basa',
-'basailu',
-'basalto'
-], [
-'museoan',
-'museoak',
-'museoen',
-'museoetan',
-'museoko',
-'musikala',
-'musika',
-'musikariekin',
-'musikagilea',
-'musikagileak',
-'musikagilearen'
-]) %]
+[% algorithm_vocab('basque', [12, 'barrutiaren', 'museoak']) %]
 </div>
 
 <p>
