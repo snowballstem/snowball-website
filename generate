@@ -297,7 +297,7 @@ __END__
 	print "$in: error: $found_entry menu entries highlighted\n";
 	$menu = '';
     } elsif ($found_entry == 0) {
-	print "$in: warning: No corresponding menu entry\n";
+	print "$in: warning: No corresponding menu entry\n" unless $in eq '404.tt';
 	$menu = '';
     }
 
