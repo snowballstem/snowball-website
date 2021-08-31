@@ -5,7 +5,6 @@
 <ul>
 <li> <A HREF="/algorithms/romance.html"> Romance language stemmers</A>
 [% algorithm_lis('romanian', 'Romanian') %]
-<!-- <li> <A HREF="stop.txt">    Romanian stop word list is not yet in place</A> -->
 <li> <A HREF="http://seelrc.org:8080/grammar/mainframe.jsp?nLanguageID=5">
 Dana Cojocaru&#8217;s Romanian Grammar</A>
 </ul>
