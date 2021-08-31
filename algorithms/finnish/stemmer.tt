@@ -6,15 +6,7 @@
 [% algorithm_lis('finnish', 'Finnish') %]
 </ul>
 
-<div style="background-color:lightpink">
-
-<p>
-Here is a sample of vocabulary, with the stemmed forms that will
-be generated with the algorithm.
-</p>
-
-[% algorithm_vocab('finnish', [40, 'edeltäjien', 'innostu']) %]
-</div>
+[% algorithm_vocab([40, 'edeltäjien', 'innostu']) %]
 
 <p>
 Finnish is not an Indo-European language, but belongs to the Finno-Ugric

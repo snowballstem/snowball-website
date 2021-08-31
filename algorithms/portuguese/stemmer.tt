@@ -7,14 +7,7 @@
 [% algorithm_lis('portuguese', 'Portuguese') %]
 </ul>
 
-<div style="background-color:lightpink">
-<p>
-Here is a sample of Portuguese vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('portuguese', [40, 'boa', 'quiabo']) %]
-</div>
+[% algorithm_vocab([40, 'boa', 'quiabo']) %]
 
 <h2>The stemming algorithm</h2>
 

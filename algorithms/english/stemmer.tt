@@ -6,14 +6,7 @@
 [% algorithm_lis('english', 'English') %]
 </ul>
 
-<div style="background-color:lightpink">
-<p>
-Here is a sample of vocabulary, with the stemmed forms that will
-be generated with the algorithm.
-</p>
-
-[% algorithm_vocab('english', [40, 'consign', 'knack']) %]
-</div>
+[% algorithm_vocab([40, 'consign', 'knack']) %]
 
 <h2>Developing the English stemmer</h2>
 

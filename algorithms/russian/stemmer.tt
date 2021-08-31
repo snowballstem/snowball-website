@@ -13,14 +13,7 @@ following the standard Library of Congress transliteration scheme.
     equivalent is also viewable in this transliterated form. -->
 </p>
 
-<div style="background-color:lightpink">
-<p>
-Here is a sample of Russian vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('russian', [60, 'в', 'п']) %]
-</div>
+[% algorithm_vocab([60, 'в', 'п']) %]
 
 <h2>The stemming algorithm</h2>
 

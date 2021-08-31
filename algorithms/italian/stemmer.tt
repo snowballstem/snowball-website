@@ -7,15 +7,7 @@
 [% algorithm_lis('italian', 'Italian') %]
 </ul>
 
-<div style="background-color:lightpink">
-
-<p>
-Here is a sample of Italian vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('italian', [40, 'abbandonata', 'pronto']) %]
-</div>
+[% algorithm_vocab([40, 'abbandonata', 'pronto']) %]
 
 <h2>The stemming algorithm</h2>
 

@@ -7,14 +7,7 @@
 [% algorithm_lis('yiddish', 'Yiddish') %]
 </ul>
 
-<div style="background-color:lightpink">
-
-<p>
-Here is a sample of Yiddish vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('yiddish', [
+[% algorithm_vocab([
 'אַװעקבלאָנדזשען',
 'אַװעקבלאָנדזשענדיק',
 'אַװעקבלאָנדזשענדיקן',
@@ -79,7 +72,6 @@ be generated with this algorithm.
 'װילן',
 'װילסט',
 ]) %]
-</div>
 
 <h2>The stemming algorithm</h2>
 

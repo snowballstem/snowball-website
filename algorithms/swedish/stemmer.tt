@@ -7,14 +7,7 @@
 [% algorithm_lis('swedish', 'Swedish') %]
 </ul>
 
-<div style="background-color:lightpink">
-<p>
-Here is a sample of Swedish vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('swedish', [40, 'jakt', 'klo']) %]
-</div>
+[% algorithm_vocab([40, 'jakt', 'klo']) %]
 
 <h2>The stemming algorithm</h2>
 

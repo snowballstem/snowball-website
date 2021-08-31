@@ -11,14 +11,7 @@
 isla, Amsterdam</A> page for the Hungarian stemmer
 </ul>
 
-<div style="background-color:lightpink">
-<p>
-Here is a sample of vocabulary, with the stemmed forms that will
-be generated with the algorithm.
-</p>
-
-[% algorithm_vocab('hungarian', [40, 'babaháznak', 'muattta']) %]
-</div>
+[% algorithm_vocab([40, 'babaháznak', 'muattta']) %]
 
 <p>
 This stemming algorithm removes the inflectional suffixes of nouns. Nouns are

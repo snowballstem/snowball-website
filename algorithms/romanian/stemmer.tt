@@ -10,15 +10,7 @@
 Dana Cojocaru&#8217;s Romanian Grammar</A>
 </ul>
 
-<div style="background-color:lightpink">
-
-<p>
-Here is a sample of Romanian vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('romanian', [40, 'abruptă', 'ocol']) %]
-</div>
+[% algorithm_vocab([40, 'abruptă', 'ocol']) %]
 
 <p>
 (For the background to this work, see the

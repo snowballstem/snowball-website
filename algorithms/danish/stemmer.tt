@@ -6,14 +6,7 @@
 [% algorithm_lis('danish', 'Danish') %]
 </ul>
 
-<div style="background-color:lightpink">
-<p>
-Here is a sample of Danish vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('danish', [40, 'indtage', 'underste']) %]
-</div>
+[% algorithm_vocab([40, 'indtage', 'underste']) %]
 
 <h2>The stemming algorithm</h2>
 

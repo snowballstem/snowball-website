@@ -7,14 +7,7 @@
 <li> <a href="../../code/tolower_irish.sbl">lower case script</a>
 </ul>
 
-<div style="background-color:lightpink">
-<p>
-Here is a sample of Irish vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('irish', [30, 'ábharú', 'pábháil']) %]
-</div>
+[% algorithm_vocab([30, 'ábharú', 'pábháil']) %]
 
 <p>
 This basic stemmer for Irish was developed and contributed by Jim

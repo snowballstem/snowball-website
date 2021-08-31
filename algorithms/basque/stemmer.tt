@@ -6,14 +6,7 @@
 [% algorithm_lis('basque', 'Basque') %]
 </ul>
 
-<div style="background-color:lightpink">
-<p>
-Here is a sample of Basque vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('basque', [12, 'barrutiaren', 'museoak']) %]
-</div>
+[% algorithm_vocab([12, 'barrutiaren', 'museoak']) %]
 
 <p>
 The following letters are vowels:

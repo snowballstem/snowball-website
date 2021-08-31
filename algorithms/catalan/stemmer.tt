@@ -7,16 +7,7 @@
 [% algorithm_lis('catalan', 'Catalan') %]
 </ul>
 
-<div style="background-color:lightpink">
-<p>
-Here is a sample of Catalan vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('catalan', [12, 'abatuda', 'gore']) %]
-</div>
-
-
+[% algorithm_vocab([12, 'abatuda', 'gore']) %]
 
 <p>
 Letters in Catalan include the following accented forms,

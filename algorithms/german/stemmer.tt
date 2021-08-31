@@ -7,15 +7,7 @@
 [% algorithm_lis('german', 'German') %]
 </ul>
 
-<div style="background-color:lightpink">
-
-<p>
-Here is a sample of German vocabulary, with the stemmed forms that will
-be generated with this algorithm.
-</p>
-
-[% algorithm_vocab('german', [40, 'aufeinander', 'kategorie']) %]
-</div>
+[% algorithm_vocab([40, 'aufeinander', 'kategorie']) %]
 
 <h2>The stemming algorithm</h2>
 
