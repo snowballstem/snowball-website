@@ -161,10 +161,10 @@ These projects add Snowball support to other tools, or are tools including
 support for Snowball.
 </p>
 
-<h3><a href="https://github.com/hajimes/pygments-snowball">Pygments Lexer Plugin for Snowball</a></h3>
+<h3><a href="https://pygments.org/">Pygments</a></h3>
 <p>
-This project adds support for syntax highlighting Snowball code to Pygments, a
-syntax highlighter written in Python.
+Pygments is a syntax highlighter written in Python, and includes support for
+syntax highlighting Snowball code (since version 2.2).
 </p>
 
 <hr>

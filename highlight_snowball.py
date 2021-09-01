@@ -1,5 +1,5 @@
 from pygments import highlight
-from pygments_snowball import SnowballLexer
+from pygments.lexers import SnowballLexer
 from pygments.formatters import HtmlFormatter
 import sys
 

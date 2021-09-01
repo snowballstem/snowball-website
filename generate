@@ -20,7 +20,6 @@ my ($id, $lang_name);
 my $outpath = '../snowballstem.github.io/';
 print "Generating output in '$outpath'\n";
 
-$ENV{PYTHONPATH} = 'pygments-snowball';
 $ENV{PYTHONIOENCODING} = 'UTF-8';
 
 my $code_path_prefix = 'code/';
