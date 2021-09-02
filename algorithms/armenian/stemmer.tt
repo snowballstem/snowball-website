@@ -20,14 +20,14 @@ The following characters are vowels for the purposes of this algorithm:
 </dl>
 
 <p>
-In any word, <i>RV</i> is the region after the first vowel, or the end of the word
-if it contains no vowels.
-</p>
-
-<p>
 <I>R</I>2 is the region after the first non-vowel following a vowel after the
 first non-vowel following a vowel, or the end of the word if there is no such
 non-vowel.
+</p>
+
+<p>
+<I>RV</I> has the same definition as in the
+ <A HREF="../spanish/stemmer.html">Spanish stemmer</A>.
 </p>
 
 <p>
