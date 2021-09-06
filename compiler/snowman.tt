@@ -1253,7 +1253,7 @@ characters of &nbsp;<code>G</code>. Note that [% highlight_inline("non G") %] is
 </p>
 
 <p>
-[% highlight_inline("non") %] may be optionally followed by hyphen, so one may write
+[% highlight_inline("non") %] may be optionally followed by hyphen, for example:
 </p>
 
 [% highlight("
@@ -1262,8 +1262,30 @@ characters of &nbsp;<code>G</code>. Note that [% highlight_inline("non G") %] is
 ") %]
 
 <p>
-etc.
+Bear in mind that [% highlight_inline("non-vowel") %] doesn't only match a
+consonant - it'll match any character which isn't in the <code>vowel</code>
+grouping.  Failing to consider this has lead to bugs in stemming algorithms -
+for example, here we intended to undouble a consonant:
 </p>
+
+[% highlight("
+    [non-vowel] -> ch
+    ch
+    delete
+") %]
+
+<p>
+The problem with this code is it will also mangle numbers with repeated digits,
+for example <code>1900</code> would become <code>190</code>.  A good rule of
+thumb here seems to be to use an inclusive grouping check if the code goes on
+to delete the character matched:
+</p>
+
+[% highlight("
+    [consonant] -> ch
+    ch
+    delete
+") %]
 
 <h2>10 A Snowball program</h2>
 
