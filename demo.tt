@@ -40,23 +40,19 @@ function stem_demo(elt) {
   lang += "Stemmer";
   var s = eval("new "+lang+"()");
   var result = '';
-  var a = words.split(/([^[% word_regexp %]']+)/);
-  var i;
-  for (i = 0; i < a.length; ++i) {
-    var w = a[i];
-    if (w === '') continue;
-    if (w.match(/^[[% word_regexp %]']/)) {
-	result += '<span style="background-color:#dfd" title="' + lang + '(' + w + ')">' + s.stemWord(w.toLowerCase()) + '</span>';
-    } else {
-	result += w.replace(/[ &<>\n]/g, function(c){
-	    if (c === ' ') return '&nbsp;';
-	    if (c === '<') return '&lt;';
-	    if (c === '>') return '&gt;';
-	    if (c === '&') return '&amp;';
-	    // Zero width space means a trailing newline will get rendered.
-	    return '<br>&#8203;';
-	});
-    }
+  var i = 0;
+  for (const m of words.matchAll(/([[% word_regexp %]']+)/ug)) {
+    result += words.substring(i, m.index).replace(/[ &<>\n]/g, function(c){
+        if (c === ' ') return '&nbsp;';
+        if (c === '<') return '&lt;';
+        if (c === '>') return '&gt;';
+        if (c === '&') return '&amp;';
+        // Zero width space means a trailing newline will get rendered.
+        return '<br>&#8203;';
+    });
+    const w = m[0];
+    result += '<span style="background-color:#dfd" title="' + lang + '(' + w + ')">' + s.stemWord(w.toLowerCase()) + '</span>';
+    i = m.index + w.length;
   }
   document.getElementById('results').innerHTML = result;
 }
