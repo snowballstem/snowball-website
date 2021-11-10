@@ -46,11 +46,6 @@ wrapped by <a href="https://metacpan.org/pod/Lingua::StopWords">Lingua::StopWord
 PHP bindings written by Andrea Maccis, and largely inspired by Richard Boulton's PyStemmer. 
 </p>
 
-<h3><a href="https://git.sr.ht/~amz3/guile-snowball-stemmer">guile-snowball-stemmer</a></h3>
-<p>
-Guile bindings written by Amirouche Boubekki.
-</p>
-
 <hr>
 
 <h2>Reimplementations of the Stemming Algorithms</h2>
