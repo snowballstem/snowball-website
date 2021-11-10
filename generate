@@ -5,7 +5,7 @@ use File::Compare;
 use Template;
 use IPC::Run qw(run);
 
-my $version = '2.1.0';
+my $version = '2.2.0';
 
 # some useful options (see below for full list)
 my $config = {
