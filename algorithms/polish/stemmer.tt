@@ -1,0 +1,166 @@
+[% header('Polish stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('polish', 'Polish') %]
+</ul>
+
+[% algorithm_vocab([20, 'babicka', 'maaru']) %]
+
+<h2>The stemming algorithm</h2>
+
+<p>
+The Polish alphabet includes the following additional letters,
+</p>
+
+<DL><DD>
+    <B><I>ą  &nbsp;  ę  &nbsp;  ó &nbsp;  ł &nbsp;  ć &nbsp;  ś</I></B>
+</DL>
+
+<p>
+The following letters are vowels:
+</p>
+
+<DL><DD>
+    <B><I>a  &nbsp;  ą  &nbsp;  e  &nbsp;  ę  &nbsp;  i  &nbsp;  o  &nbsp;  ó  &nbsp;  u  &nbsp;  y</I></B>
+</DL>
+
+
+<p>
+Do each of steps 1, 2, 3, 4, 5, 6 and 7.
+</p>
+
+<p>
+<B>Step 1. Remove nouns:</B>
+</p>
+
+<DL><DD>
+    <DL>
+        <DT>(<I>a</I>)
+            If a length of the word is over 7 letters and the ending is one of the following:
+            <B><I>zacja  &nbsp;  zacją  &nbsp;  zacji</I></B>
+                <DD>delete the ending
+        <DT>(<I>b</I>)
+            If a length of the word is over 6 letters and the ending is one of the following:
+            <B><I>acja  &nbsp;  acji  &nbsp;  acją  &nbsp;  tach  &nbsp;  anie  &nbsp;  enie  &nbsp;  eniu   &nbsp;  aniu</I></B>
+                <DD>delete the ending
+        <DT>(<I>c</I>)
+            If a length of the word is over 6 letters and the ending is:
+            <B><I>tyka</I></B>
+                <DD>delete the last 2 letters
+        <DT>(<I>d/I>)
+            If a length of the word is over 5 letters and the ending is one of the following:
+            <B><I>ach  &nbsp;  ami  &nbsp;  nia  &nbsp;  niu  &nbsp;  cia  &nbsp;  ciu   &nbsp;  cji   &nbsp;  cja   &nbsp;  cją   &nbsp; 
+            ce   &nbsp;  ta</I></B>
+                <DD>delete the ending
+    </DL>
+</DL>
+
+<p>
+<B>Step 2. Remove dimunitive:</B>
+</p>
+
+<DL><DD>
+    <DL>
+        <DT>(<I>a</I>)
+            If a length of the word is over 6 letters and the ending is one of the following:
+            <B><I>eczek  &nbsp;  iczek  &nbsp;  iszek  &nbsp;  aszek  &nbsp;  uszek</I></B>
+                <DD>delete the ending
+        <DT>(<I>b</I>)
+            If a length of the word is over 6 letters and the ending is one of the following:
+            <B><I>enek  &nbsp;  ejek  &nbsp;  erek</I></B>
+                <DD>delete the last 2 letters
+        <DT>(<I>c</I>)
+            If a length of the word is over 4 letters and the ending is one of the following:
+            <B><I>ek  &nbsp;  ak  </I></B>
+                <DD>delete the ending
+    </DL>
+</DL>
+
+<p>
+<B>Step 3. Remove adjectives endings:</B>
+</p>
+
+<DL><DD>
+    <DL>
+        <DT>(<I>a</I>)
+            If a length of the word is over 7 letters, word begins with <B><I>naj</I></B> and the ending is one of the following:
+            <B><I>sze  &nbsp;  szy  &nbsp;  szych</I></B>
+                <DD>delete the beginning <B><I>(naj)</I></B> and the ending
+        <DT>(<I>b</I>)
+            If a length of the word is over 6 letters and the ending is:
+            <B><I>czny</I></B>
+                <DD>delete the ending
+        <DT>(<I>c</I>)
+            If a length of the word is over 5 letters and the ending is one of the following:
+            <B><I>owy  &nbsp;  owa  &nbsp;  owe  &nbsp;   ych  &nbsp;  ego  &nbsp;  ej</I></B>
+                <DD>delete the ending
+    </DL>
+</DL>
+
+<p>
+<B>Step 4. Remove verbs endings:</B>
+</p>
+
+<DL><DD>
+    <DL>
+        <DT>(<I>a</I>)
+            If a length of the word is over 5 letters and the ending is one of the following:
+            <B><I>bym  &nbsp;  esz  &nbsp;  asz  &nbsp;  cie  &nbsp;  eść  &nbsp;  aść  &nbsp;  łem  &nbsp;  amy  &nbsp;  emy</I></B>
+                <DD>delete the ending
+        <DT>(<I>b</I>)
+            If a length of the word is over 3 letters and the ending is:
+            <B><I>aj</I></B>
+                <DD>delete the last letter
+        <DT>(<I>c</I>)
+            If a length of the word is over 3 letters and the ending is one of the following:
+            <B><I>ać  &nbsp;  em  &nbsp;  am  &nbsp;  ał  &nbsp;  ił  &nbsp;  ić  &nbsp;  ąc</I></B>
+                <DD>delete the last 2 letters
+    </DL>
+</DL>
+
+<p>
+<B>Step 5. Remove adverbs endings:</B>
+</p>
+
+<DL><DD>
+    <DL>
+        <DT>(<I>a</I>)
+            If a length of the word is over 4 letters and the ending is one of the following:
+            <B><I>nie  &nbsp;  wie  &nbsp;  rze</I></B>
+                <DD>delete the the last 2 letters
+    </DL>
+</DL>
+
+<p>
+<B>Step 6. Remove plural forms:</B>
+</p>
+
+<DL><DD>
+    <DL>
+        <DT>(<I>a</I>)
+            If a length of the word is over 4 letters and the ending is one of the following:
+            <B><I>ów  &nbsp;  om  &nbsp;  ami</I></B>
+                <DD>delete the the ending
+    </DL>
+</DL>
+
+<p>
+<B>Step 7. Remove general endings:</B>
+</p>
+
+<DL><DD>
+    <DL>
+        <DT>(<I>a</I>)
+            If a length of the word is over 4 letters and the ending is one of the following:
+            <B><I>ia  &nbsp;  ie  &nbsp;  u  &nbsp;  ą  &nbsp;  i  &nbsp;  a  &nbsp;  ę  &nbsp;  y  &nbsp;  ę  &nbsp;  ł</I></B>
+                <DD>delete the the ending
+    </DL>
+</DL>
+
+<h2>The same algorithm in Snowball</h2>
+
+[% highlight_file('polish') %]
+
+[% footer %]

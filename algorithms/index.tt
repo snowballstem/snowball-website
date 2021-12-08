@@ -86,6 +86,7 @@ We also provide Snowball implementations of some algorithms developed by other p
   <li><a href="/algorithms/lithuanian/stemmer.html">Lithuanian</a></li>
   <li><a href="/algorithms/serbian/stemmer.html">Serbian</a></li>
   <li><a href="/algorithms/yiddish/stemmer.html">Yiddish</a></li>
+  <li><a href="/algorithms/polish/stemmer.html">Polish</a></li>
 </ul>
 
 [% footer %]
