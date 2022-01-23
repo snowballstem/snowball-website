@@ -1,0 +1,18 @@
+[% header('Ukrainian stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('ukrainian', 'Ukrainian') %]
+</ul>
+
+[% algorithm_vocab([60, 'в', 'п']) %]
+
+
+<h2>The algorithm in Snowball (Unicode version)</h2>
+
+Source <A HREF="https://github.com/Tapkomet/UAStemming"> here</A>.
+
+[% highlight_file('ukrainian') %]
+
+[% footer %]
