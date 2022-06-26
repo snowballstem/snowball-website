@@ -46,6 +46,11 @@ wrapped by <a href="https://metacpan.org/pod/Lingua::StopWords">Lingua::StopWord
 PHP bindings written by Andrea Maccis, and largely inspired by Richard Boulton's PyStemmer. 
 </p>
 
+<h3><a href="https://github.com/amaccis/node-stemmer">Node.js Stemmer</a></h3>
+<p>
+A Node.js interface to the Snowball stemming algorithms, written by Andrea Maccis and largely inspired by Richard Boulton's PyStemmer.
+<p>
+
 <hr>
 
 <h2>Reimplementations of the Stemming Algorithms</h2>
