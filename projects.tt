@@ -49,7 +49,7 @@ PHP bindings written by Andrea Maccis, and largely inspired by Richard Boulton's
 <h3><a href="https://github.com/amaccis/node-stemmer">Node.js Stemmer</a></h3>
 <p>
 A Node.js interface to the Snowball stemming algorithms, written by Andrea Maccis and largely inspired by Richard Boulton's PyStemmer.
-<p>
+</p>
 
 <hr>
 
