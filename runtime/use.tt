@@ -6,21 +6,40 @@
 <li> <A HREF="../compiler/snowman.html">     Snowball manual</A>
 </ul>
 
-<h2>Compiling and running Snowball</h2>
+<h2>Compiling Snowball</h2>
 
 <p>
 When you <a href="/download.html">download Snowball</a>,
-it already contains a make file to allow you to build and install it,
-like so:
+it already contains a make file to allow you to build it, like so:
 </p>
 
 <PRE>
     make
-    sudo make install
 </PRE>
 
 <p>
-The snowball compiler can then be called up with the following syntax,
+You can confirm it's working with a simple test like so:
+</p>
+
+<PRE>
+    echo "running" | ./stemwords -l en
+</PRE>
+
+<p>
+which should output: <tt>run</tt>
+</p>
+
+<p>
+There's no built in way to install snowball currently - you can either copy
+the <tt>snowball</tt> binary to somewhere that's on your <tt>PATH</tt>
+(e.g. on a typical Linux machine: <tt>sudo cp snowball /usr/local/bin</tt>)
+or just run it from the source tree with <tt>./snowball</tt>).
+</p>
+
+<h2>Running Snowball</h2>
+
+<p>
+The snowball compiler has the following command line syntax,
 </p>
 
 <PRE>
