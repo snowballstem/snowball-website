@@ -41,7 +41,19 @@ and <I>RV</I> have the same definition as in the
 </p>
 
 <p>
-Always do steps 0 and 1.
+First exceptional cases are checked for.  These need to match the whole word, and currently are:
+</p>
+
+<ul>
+<li><B><I>divano</I></B>: replace with <B><I>divan</I></B> (to avoid conflating with <B><I>diva</I></B>) [Added 2022-11-16]
+</ul>
+
+<p>
+If found then handle as described and that's it.
+</p>
+
+<p>
+Otherwise always do steps 0 and 1.
 </p>
 
 <p>
