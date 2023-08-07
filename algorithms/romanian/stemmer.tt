@@ -31,7 +31,7 @@ Letters in Romanian include the following accented forms,
 </p>
 
 <DL><DD>
-    <B><I>ă  &nbsp;  â  &nbsp;  î  &nbsp;  ş  &nbsp;  ţ</I></B>
+    <B><I>ă  &nbsp;  â  &nbsp;  î  &nbsp;  ș  &nbsp;  ț</I></B>
 </DL>
 
 <p>
@@ -43,7 +43,16 @@ The following letters are vowels:
 </DL>
 
 <p>
-First, <B><I>i</I></B> and <B><I>u</I></B> between vowels are put into upper case
+Before full Unicode support was widespread it was common to use <i>ş</i> and
+<i>ţ</i> (cedilla instead of comma-below) in Romanian text as these characters
+were more readily available in 8-bit character sets.  The original version of
+this algorithm only recognised the cedilla forms, but the current version
+instead normalises the old forms as a first step: replace <i>ş</i> by
+<i>ș</i> and <i>ţ</i> by <i>ț</i>.
+</p>
+
+<p>
+Then, <B><I>i</I></B> and <B><I>u</I></B> between vowels are put into upper case
 (so that they are treated as consonants).
 </p>
 
@@ -79,8 +88,8 @@ Step 0: Removal of plurals (and other simplifications)
         <DD>replace with <B><I>i</I></B> if not preceded by <B><I>ab</I></B>
     <DT><B><I>atei</I></B>
         <DD>replace with  <B><I>at</I></B>
-    <DT><B><I>aţie  &nbsp;  aţia</I></B>
-        <DD>replace with  <B><I>aţi</I></B>
+    <DT><B><I>ație  &nbsp;  ația</I></B>
+        <DD>replace with  <B><I>ați</I></B>
 </DL>
 </DL>
 
@@ -93,22 +102,22 @@ Step 1: Reduction of combining suffixes
     it is in <I>R</I>1, preform the replacement action indicated.
     Then repeat this step until no replacement occurs.
 <DL>
-    <DT><B><I>abilitate  &nbsp;  abilitati  &nbsp;  abilităi  &nbsp;  abilităţi</I></B>
+    <DT><B><I>abilitate  &nbsp;  abilitati  &nbsp;  abilităi  &nbsp;  abilități</I></B>
         <DD>replace with <B><I>abil</I></B>
     <DT><B><I>ibilitate</I></B>
         <DD>replace with <B><I>ibil</I></B>
-    <DT><B><I>ivitate  &nbsp;  ivitati  &nbsp;  ivităi  &nbsp;  ivităţi</I></B>
+    <DT><B><I>ivitate  &nbsp;  ivitati  &nbsp;  ivităi  &nbsp;  ivități</I></B>
         <DD>replace with <B><I>iv</I></B>
-    <DT><B><I>icitate  &nbsp;  icitati  &nbsp;  icităi  &nbsp;  icităţi  &nbsp;
+    <DT><B><I>icitate  &nbsp;  icitati  &nbsp;  icităi  &nbsp;  icități  &nbsp;
     icator  &nbsp;  icatori  &nbsp;
     iciv  &nbsp;  iciva  &nbsp;  icive  &nbsp;  icivi  &nbsp;  icivă  &nbsp;
     ical  &nbsp;  icala  &nbsp;  icale  &nbsp;  icali  &nbsp;  icală</I></B>
         <DD>replace with <B><I>ic</I></B>
-    <DT><B><I>ativ  &nbsp;  ativa  &nbsp;  ative  &nbsp;  ativi  &nbsp;  ativă  &nbsp;  aţiune  &nbsp;
+    <DT><B><I>ativ  &nbsp;  ativa  &nbsp;  ative  &nbsp;  ativi  &nbsp;  ativă  &nbsp;  ațiune  &nbsp;
     atoare  &nbsp;  ator  &nbsp;  atori  &nbsp;
     ătoare  &nbsp;  ător  &nbsp;  ători</I></B>
         <DD>replace with <B><I>at</I></B>
-    <DT><B><I>itiv  &nbsp;  itiva  &nbsp;  itive  &nbsp;  itivi  &nbsp;  itivă  &nbsp;  iţiune  &nbsp;
+    <DT><B><I>itiv  &nbsp;  itiva  &nbsp;  itive  &nbsp;  itivi  &nbsp;  itivă  &nbsp;  ițiune  &nbsp;
                 itoare  &nbsp;  itor  &nbsp;  itori</I></B>
         <DD>replace with <B><I>it</I></B>
 </DL>
@@ -128,16 +137,16 @@ Step 2: Removal of &#8216;standard&#8217; suffixes
     ic  &nbsp;  ica  &nbsp;  ice  &nbsp;  ici  &nbsp;  ică  &nbsp;
     abil  &nbsp;  abila  &nbsp;  abile  &nbsp;  abili  &nbsp;  abilă  &nbsp;
     ibil  &nbsp;  ibila  &nbsp;  ibile  &nbsp;  ibili  &nbsp;  ibilă  &nbsp;
-    oasa  &nbsp;  oasă  &nbsp;  oase  &nbsp;  os  &nbsp;  osi  &nbsp;  oşi  &nbsp;
+    oasa  &nbsp;  oasă  &nbsp;  oase  &nbsp;  os  &nbsp;  osi  &nbsp;  oși  &nbsp;
     ant  &nbsp;  anta  &nbsp;  ante  &nbsp;  anti  &nbsp;  antă  &nbsp;
     ator  &nbsp;  atori  &nbsp;
-    itate  &nbsp;  itati  &nbsp;  ităi  &nbsp;  ităţi  &nbsp;
+    itate  &nbsp;  itati  &nbsp;  ităi  &nbsp;  ități  &nbsp;
     iv  &nbsp;  iva  &nbsp;  ive  &nbsp;  ivi  &nbsp;  ivă</I></B>
         <DD>delete
     <DT><B><I>iune  &nbsp;  iuni</I></B>
-        <DD>delete if preceded by <B><I>ţ</I></B>, and replace the <B><I>ţ</I></B> by <B><I>t</I></B>.
+        <DD>delete if preceded by <B><I>ț</I></B>, and replace the <B><I>ț</I></B> by <B><I>t</I></B>.
     <DT><B><I>ism  &nbsp;  isme  &nbsp;
-    ist  &nbsp;  ista  &nbsp;  iste  &nbsp;  isti  &nbsp;  istă  &nbsp;  işti</I></B>
+    ist  &nbsp;  ista  &nbsp;  iste  &nbsp;  isti  &nbsp;  istă  &nbsp;  iști</I></B>
         <DD>replace with <B><I>ist</I></B>
 </DL>
 </DL>
@@ -159,31 +168,31 @@ Step 3: Removal of verb suffixes
     indu  &nbsp;  ându  &nbsp;
     eze  &nbsp;
     ească  &nbsp;
-    ez  &nbsp;  ezi  &nbsp;  ează  &nbsp;  esc  &nbsp;  eşti  &nbsp;
-    eşte  &nbsp;
-    ăsc  &nbsp;  ăşti  &nbsp;
-    ăşte  &nbsp;
+    ez  &nbsp;  ezi  &nbsp;  ează  &nbsp;  esc  &nbsp;  ești  &nbsp;
+    ește  &nbsp;
+    ăsc  &nbsp;  ăști  &nbsp;
+    ăște  &nbsp;
     am  &nbsp;  ai  &nbsp;  au  &nbsp;
-    eam  &nbsp;  eai  &nbsp;  ea  &nbsp;  eaţi  &nbsp;  eau  &nbsp;
-    iam  &nbsp;  iai  &nbsp;  ia  &nbsp;  iaţi  &nbsp;  iau  &nbsp;
+    eam  &nbsp;  eai  &nbsp;  ea  &nbsp;  eați  &nbsp;  eau  &nbsp;
+    iam  &nbsp;  iai  &nbsp;  ia  &nbsp;  iați  &nbsp;  iau  &nbsp;
     ui  &nbsp;
-    aşi  &nbsp;  arăm  &nbsp;  arăţi  &nbsp;  ară  &nbsp;
-    uşi  &nbsp;  urăm  &nbsp;  urăţi  &nbsp;  ură  &nbsp;
-    işi  &nbsp;  irăm  &nbsp;  irăţi  &nbsp;  iră  &nbsp;
-    âi  &nbsp;  âşi  &nbsp;  ârăm  &nbsp;  ârăţi  &nbsp;  âră  &nbsp;
-    asem  &nbsp;  aseşi  &nbsp;  ase  &nbsp;  aserăm  &nbsp;  aserăţi  &nbsp;  aseră  &nbsp;
-    isem  &nbsp;  iseşi  &nbsp;  ise  &nbsp;  iserăm  &nbsp;  iserăţi  &nbsp;  iseră  &nbsp;
-    âsem  &nbsp;  âseşi  &nbsp;  âse  &nbsp;  âserăm  &nbsp;  âserăţi  &nbsp;  âseră  &nbsp;
-    usem  &nbsp;  useşi  &nbsp;  use  &nbsp;  userăm  &nbsp;  userăţi  &nbsp;  useră</I></B>
+    ași  &nbsp;  arăm  &nbsp;  arăți  &nbsp;  ară  &nbsp;
+    uși  &nbsp;  urăm  &nbsp;  urăți  &nbsp;  ură  &nbsp;
+    iși  &nbsp;  irăm  &nbsp;  irăți  &nbsp;  iră  &nbsp;
+    âi  &nbsp;  âși  &nbsp;  ârăm  &nbsp;  ârăți  &nbsp;  âră  &nbsp;
+    asem  &nbsp;  aseși  &nbsp;  ase  &nbsp;  aserăm  &nbsp;  aserăți  &nbsp;  aseră  &nbsp;
+    isem  &nbsp;  iseși  &nbsp;  ise  &nbsp;  iserăm  &nbsp;  iserăți  &nbsp;  iseră  &nbsp;
+    âsem  &nbsp;  âseși  &nbsp;  âse  &nbsp;  âserăm  &nbsp;  âserăți  &nbsp;  âseră  &nbsp;
+    usem  &nbsp;  useși  &nbsp;  use  &nbsp;  userăm  &nbsp;  userăți  &nbsp;  useră</I></B>
 
         <DD>delete if preceded in <I>RV</I> by a consonant or <B><I>u</I></B>
-    <DT><B><I>ăm  &nbsp;  aţi  &nbsp;
-    em  &nbsp;  eţi  &nbsp;
-    im  &nbsp;  iţi  &nbsp;
-    âm  &nbsp;  âţi  &nbsp;
-    seşi  &nbsp;  serăm  &nbsp;  serăţi  &nbsp;  seră  &nbsp;
+    <DT><B><I>ăm  &nbsp;  ați  &nbsp;
+    em  &nbsp;  eți  &nbsp;
+    im  &nbsp;  iți  &nbsp;
+    âm  &nbsp;  âți  &nbsp;
+    seși  &nbsp;  serăm  &nbsp;  serăți  &nbsp;  seră  &nbsp;
     sei  &nbsp;  se  &nbsp;
-    sesem  &nbsp;  seseşi  &nbsp;  sese  &nbsp;  seserăm  &nbsp;  seserăţi  &nbsp;  seseră</I></B>
+    sesem  &nbsp;  seseși  &nbsp;  sese  &nbsp;  seserăm  &nbsp;  seserăți  &nbsp;  seseră</I></B>
         <DD>delete
 </DL>
 </DL>
@@ -208,7 +217,7 @@ And finally:
     Turn <B><I>I</I></B>, <B><I>U</I></B> back into <B><I>i</I></B>, <B><I>u</I></B>.
 </DL>
 
-<h2>The same algorithm in Snowball (Unicode version)</h2>
+<h2>The same algorithm in Snowball</h2>
 
 [% highlight_file('romanian') %]
 
