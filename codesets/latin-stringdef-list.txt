@@ -39,7 +39,7 @@ stringdef a~   '{U+00E3}'
 stringdef a"   '{U+00E4}'
 stringdef ao   '{U+00E5}'
 stringdef ae   '{U+00E6}'
-stringdef c,   '{U+00E7}'
+stringdef cc   '{U+00E7}' // c cedilla
 stringdef e`   '{U+00E8}'
 stringdef e'   '{U+00E9}'
 stringdef e^   '{U+00EA}'
@@ -69,6 +69,8 @@ stringdef a+   '{U+0103}' // a breve
 stringdef g~   '{U+011F}' // LATIN SMALL LETTER G WITH BREVE
 stringdef i'   '{U+0131}' // LATIN SMALL LETTER I WITHOUT DOT
 stringdef oq   '{U+0151}' // o-double acute
-stringdef s,   '{U+015F}' // s cedilla
-stringdef t,   '{U+0163}' // t cedilla
+stringdef sc   '{U+015F}' // s cedilla
+stringdef tc   '{U+0163}' // t cedilla
 stringdef uq   '{U+0171}' // u-double acute
+stringdef s,   '{U+0219}' // s comma
+stringdef t,   '{U+021B}' // t comma

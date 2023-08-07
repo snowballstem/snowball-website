@@ -46,7 +46,7 @@ we recommend using the following conventions:
 <TR><TD> grave  <TD></TD><TD> grave <TD></TD><TD> &nbsp;<code>a`</code> for &agrave;
 <TR><TD> umlaut <TD></TD><TD> double quote <TD></TD><TD> &nbsp;<code>u"</code> for &uuml;
 <TR><TD> circumflex  <TD></TD><TD> circumflex <TD></TD><TD> &nbsp;<code>i^</code> for &icirc;
-<TR><TD> cedilla  <TD></TD><TD> comma <TD></TD><TD> &nbsp;<code>c,</code> for &ccedil;
+<TR><TD> cedilla  <TD></TD><TD> letter c <TD></TD><TD> &nbsp;<code>cc</code> for &ccedil;
 <TR><TD> tilde  <TD></TD><TD> tilde <TD></TD><TD> &nbsp;<code>n~</code> for &ntilde;
 <TR><TD> ring  <TD></TD><TD> letter o <TD></TD><TD> &nbsp;<code>ao</code> for &aring;
 <TR><TD> line through  <TD></TD><TD> solidus <TD></TD><TD> &nbsp;<code>o/</code> for &oslash;
@@ -54,6 +54,7 @@ we recommend using the following conventions:
      as implemented uses '+'. -->
 <TR><TD> breve <TD></TD><TD> plus <TD></TD><TD> &nbsp;<code>a+</code> for &#x103;
 <TR><TD> double acute <TD></TD><TD> letter q <TD></TD><TD> &nbsp;<code>oq</code> for &#x151;
+<TR><TD> comma below <TD></TD><TD> , <TD></TD><TD> &nbsp;<code>t,</code> for &#x21B;
 </TABLE></DL>
 
 <p>
@@ -72,8 +73,16 @@ Use &nbsp;<code>ae</code>&nbsp; and &nbsp;<code>ss</code>&nbsp; for <B><I>&aelig
 upper case forms &nbsp;<code>AE</code>&nbsp; and &nbsp;<code>SS</code>. Use &nbsp;<code>th</code>&nbsp; for Icelandic thorn.
 </p>
 
+<p>
+We used to recommend <code>,</code> for cedilla, but we need a way to
+represent comma-below for Romanian, so we've repurposed <code>,</code>
+for that and now recommend <code>c</code> for cedilla instead.
+</p>
+
+<p>
 If you're writing a new stemmer, see below for a file of suitable
 <code>stringdef</code> lines you can cut and paste into your code.
+</p>
 
 <h2>Links</h2>
 
