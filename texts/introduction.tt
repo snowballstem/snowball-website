@@ -105,7 +105,7 @@ stemmers are based upon the written, and not the spoken, form of the
 language. This is also the assumption here. Historically,
 grammarians often regarded the written language as the real language and
 the spoken as a mere derivative form. Almost in reaction, many modern
-linguists have taken a precisely opposite view (Farmer, 1965 pp 2-3). A
+linguists have taken a precisely opposite view (Palmer, 1965 pp 2-3). A
 more balanced position is that the two languages are distinct though
 connected, and require separate treatment. One can in fact imagine parallel
 stemming algorithms for the spoken language, or rather for the phoneme
