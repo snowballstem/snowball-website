@@ -129,6 +129,14 @@ __END__
     return $out;
 };
 
+# Output from: snowball --help
+$$vars{snowball_help} = sub {
+    my $o;
+    run ['../snowball/snowball', '--help'], \undef, \$o, \*STDERR
+	or die "../snowball/snowball $?";
+    return $o;
+};
+
 $$vars{algorithm_vocab} = sub {
     my ($voc1, $voc2) = @_;
     die unless defined $id && defined $lang_name;

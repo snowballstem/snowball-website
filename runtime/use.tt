@@ -43,13 +43,7 @@ The snowball compiler has the following command line syntax,
 </p>
 
 <PRE>
-    snowball F1 [-o[utput] F2]
-                [-s[yntax]]
-                [-w[idechars]]  [-u[tf8]]
-                [-j[ava]]  [-n[ame] C]
-                [-ep[refix] S1]  [-vp[refix] S2]
-                [-i[nclude] D]
-                [-r[untime] P]
+[% snowball_help | html %]
 </PRE>
 
 <p>
@@ -63,19 +57,21 @@ For example,
 </PRE>
 
 <p>
-The first argument, &nbsp;<code>F1</code>, is the name of the Snowball file to be compiled. If
-the &nbsp;<code>-java</code>&nbsp; option is absent, it
-produces
-two outputs, an ANSI C module in &nbsp;<code>F2.c</code>&nbsp; and a corresponding header file in &nbsp;<code>F2.h</code>.
-If option &nbsp;<code>-java</code>&nbsp; is present, Java output is produced in &nbsp;<code>F2.java</code>.
+The first argument, &nbsp;<code>SOURCE_FILE</code>, is the name of the Snowball file to be compiled. Unless you specify a different programming language to
+generate code for, the default is to generate ISO C which results in two output
+files, a C source in &nbsp;<code>OUTPUT_BASE.c</code>&nbsp; and a corresponding header file in &nbsp;<code>OUTPUT_BASE.h</code>.  This is similar for other
+programming languages, e.g. if option &nbsp;<code>-java</code>&nbsp; is
+present, Java output is produced in &nbsp;<code>OUTPUT_BASE.java</code>.
 </p>
 
 <p>
-The &nbsp;<code>-widechars</code>, &nbsp;<code>-utf8</code>, &nbsp;<code>-eprefix</code>&nbsp; and &nbsp;<code>-vprefix</code>&nbsp; options belong with ANSI C
-generation; the &nbsp;<code>-name</code>&nbsp; option with Java generation.
+Some options are only valid when generating code for particular programming
+languages.  For example, the &nbsp;<code>-widechars</code>,
+&nbsp;<code>-utf8</code>, &nbsp;<code>-eprefix</code>&nbsp; and
+&nbsp;<code>-vprefix</code>&nbsp; options are specific to C and C++.
 </p>
 
-<h4>ANSI C generation</h4>
+<h4>ISO C generation</h4>
 
 <p>
 In the absence of the &nbsp;<code>-eprefix</code>&nbsp; and &nbsp;<code>-vprefix</code>&nbsp; options, the list of
@@ -146,48 +142,20 @@ would give rise the header file,
 ", "c") %]
 
 <p>
-The &nbsp;<code>-widechars</code>&nbsp; option affects interpretation of Snowball <I>hex</I> and
-<I>decimal</I> strings, as in
+The <code>-utf8</code> and <code>-widechars</code>&nbsp; options affects how
+the generated C/C++ code expects strings to be represented - UTF-8 or
+wide-character Unicode (stored using 2 bytes per codepoint), or if neither is
+specified, one byte per codepoint using either ISO-8859-1 or another encoding.
 </p>
 
-[% highlight("
-    stringdef m hex 'H1 H2 ...'
-    stringdef m decimal 'D1 D2 ...'
-") %]
-
 <p>
-where &nbsp;<code>H1</code>, &nbsp;<code>H2</code>&nbsp; ... are hex numbers and &nbsp;<code>D1</code>, &nbsp;<code>D2</code>&nbsp; ... are decimal
-numbers. Without the &nbsp;<code>-widechars</code>&nbsp; option it is an error for these numbers
-to exceed 255. With the &nbsp;<code>-widechars</code>&nbsp; option it is only an error if they
-exceed 65535. So by default one byte characters are assumed, but
-<code>-widechars</code>&nbsp; makes the assumptions that characters are two bytes. Note
-that (<I>a</I>) the output from Snowball is the same in both cases, and (<I>b</I>)
-the &nbsp;<code>-java</code>&nbsp; option automatically sets the &nbsp;<code>-widechars</code>&nbsp; option.
-Within the API header file &nbsp;<code>api.h</code>, &nbsp;<code>symbol</code>&nbsp; is given a typedef of
-<code>unsigned char</code>,
-</p>
-
-[% highlight("
-        typedef unsigned char symbol;
-", "c") %]
-
-<p>
-&#x2014; and a sequence of characters representing a word to be stemmed is then
-held in a &nbsp;<code>symbol</code>&nbsp; array. To switch to a 16 bit representation of characters,
-just replace &nbsp;<code>char</code>&nbsp; by &nbsp;<code>short</code>&nbsp; here:
-</p>
-
-[% highlight("
-        typedef unsigned short symbol;
-", "c") %]
-
-<p>
-The &nbsp;<code>-utf8</code>&nbsp; option is an alternative to &nbsp;<code>-widechars</code>. Again, it allows
-characters in the range 0 to 65535 in &nbsp;<code>stringdef</code>s, but these characters
-are then encoded as 2 or 3 byte characters in the UTF-8 encoding scheme.
-The ANSI C program output by Snowball is similarly adjusted to handle
-characters that can occupy multiple bytes. (See section 12 of the
-Snowball manual.)
+For other programming languages, one of these three options is effectively
+implicitly hard-coded (except wide-characters may be wider) - e.g. C#, Java,
+Javascript and Python use wide characters; Ada, Go and Rust use UTF-8; Pascal
+uses ISO-8859-1.  Since Snowball 2.0 it's possible with a little care to write
+Snowball code that works regardless of how characters are represented.  See
+section 12 of the <a href="/compiler/snowman.html">Snowball manual</a> for
+more details.
 </p>
 
 <p>
@@ -198,13 +166,8 @@ in the same location as the generated source files. It is used when
 building the libstemmer library, and may be useful for other projects.
 </p>
 
-<h4>Java generation</h4>
-
-<p>
-The &nbsp;<code>-java</code>&nbsp; option automatically sets the &nbsp;<code>-widechars</code>&nbsp; option.
-</p>
-
 <!--
+<h4>Java generation</h4>
 <p>
 To run Java, download the
 <A HREF="../dist/libstemmer_java-[% version %].tar.gz">tarball</A>,
