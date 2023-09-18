@@ -131,7 +131,7 @@ The following letters are vowels (<I>V1</I>):
 </p>
 
 <DL><DD>
-    <B><I>k  &nbsp;  p  &nbsp;  t  &nbsp;  g  &nbsp;  b  &nbsp;  d  &nbsp;  s  &nbsp;  h  &nbsp;  f  &nbsp;  š  &nbsp;  z  &nbsp;  ž  &nbsp;  o</I></B>
+    <B><I>k  &nbsp;  p  &nbsp;  t  &nbsp;  g  &nbsp;  b  &nbsp;  d  &nbsp;  s  &nbsp;  h  &nbsp;  f  &nbsp;  š  &nbsp;  z  &nbsp;  ž</I></B>
 </DL>
 
 <p>
@@ -143,7 +143,7 @@ The following letters are vowels (<I>V1</I>):
 </DL>
 
 <p>
-<I>R1</I> in this algorithm is defined as a region after the first consonant preceded by a vowel ([laul[nud], mõt[teid], kar[tuleid], saab[as] ). If there’s no such region, then the <I>R</I> is empty (laul[Ø], saun[Ø]). Limitations in steps (such as ‘preceded by <I>RV</I>’ ) are not restricted to the <I>R1</I> region.
+<I>R1</I> in this algorithm is defined as a region after the first consonant preceded by a vowel (laul[nud], mõt[teid], kar[tuleid], saab[as] ). If there’s no such region, then <I>R1</I> is empty (laul[Ø], saun[Ø]). Limitations in steps (such as ‘if preceded by <I>RV</I>’ ) are not restricted to the <I>R1</I> region.
 </p>
 
 <p>
@@ -155,7 +155,7 @@ The following letters are vowels (<I>V1</I>):
 </DL>
 
 <p>
-Do step 0. If nothing was changed in step 0, continue with the steps, otherwise stop. Do step 1 and step 2. If nothing was changed in step 2, do steps 3, 4, 5, 6, 7 , 8 and 9. If something was changed in  step 2, do step 9.
+Do step 0. If nothing was changed in step 0, continue with the steps, otherwise stop. Do step 1 and step 2. If nothing was changed in step 2, do steps 3, 4, 5, 6, 7, 8 and 9. If something was changed in step 2, do step 9.
 </p>
 
 <p>
@@ -280,9 +280,9 @@ Step 1: emphasis
 <DL>
         <DD>Test if there’s at least 4 letters before <I>R1</I> region. If so, continue this step
     <DT><B><I>gi</I></B>
-        <DD>if preceded by <B><I>GI</I></B> and <B>not <I>LONGV</I></B>, delete
+        <DD>if preceded by a character from <B><I>GI</I></B> which is not the second character of a long vowel as defined by <B><I>LONGV</I></B>, delete
     <DT><B><I>ki</I></B>
-        <DD>if preceded by <B>är</B>, replace it with <B>k</B>. If it wasn't replaced with <B>k</B> and is preceded by <B><I>KI</I></B>, delete
+        <DD>if preceded by <B><I>KI</I></B>, delete
 </DL>
 </DL>
 
@@ -306,23 +306,21 @@ Step 2: verb
     <DT><B><I>taks  &nbsp;  daks</I></B>
 		<DD>delete
     <DT><B><I>akse</I></B>
-		<DD>delete
+		<DD>replace with <I>a</I>
     <DT><B><I>sime</I></B>
 		<DD>delete
     <DT><B><I>site</I></B>
 		<DD>delete
     <DT><B><I>sin</I></B>
 		<DD>delete
-    <DT><B><I>me preceded by </I>V1</B>
-		<DD>delete
-    <DT><B><I>da preceded by </I>V1</B>
-		<DD>delete
-    <DT><B><I>n preceded by </I>V1</B>
-		<DD>delete
-    <DT><B><I>b preceded by </I>V1</B>
-		<DD>delete
-		
-		<DD>set is_verb
+    <DT><B><I>me</I></B>
+		<DD>if preceded by <B><I>V1</I></B>, delete
+    <DT><B><I>da</I></B>
+		<DD>if preceded by <B><I>V1</I></B>, delete
+    <DT><B><I>n</I></B>
+		<DD>if preceded by <B><I>V1</I></B>, delete
+    <DT><B><I>b</I></B>
+		<DD>if preceded by <B><I>V1</I></B>, delete
 </DL>
 </DL>
 
@@ -371,16 +369,16 @@ Step 4: case_ending
     action indicated
 <BR><BR>
 <DL>
-    <DT><B><I>sse</I> preceded by <I>RV</I> or <I>LONGV</I></B>
-    <DT><B><I>st</I> preceded by <I>RV</I> or <I>LONGV</I></B>
-    <DT><B><I>le</I> preceded by <I>RV</I> or <I>LONGV</I></B>
-    <DT><B><I>lt</I> preceded by <I>RV</I> or <I>LONGV</I></B>
-    <DT><B><I>ga</I> preceded by <I>RV</I> or <I>LONGV</I></B>
-    <DT><B><I>ks</I> preceded by <I>RV</I> or <I>LONGV</I></B>
-    <DT><B><I>ta</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>sse</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>st</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>le</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>lt</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>ga</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>ks</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>ta</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
     <DT><B><I>t</I></B>
-    <DT><B><I>s</I> preceded by <I>RV</I> or <I>LONGV</I></B>
-    <DT><B><I>l</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>s</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>l</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
 		<DD>delete</B>
 </DL>
 </DL>
@@ -408,10 +406,10 @@ Step 5: plural_three_first_cases
 		<DD>a) if it is preceded by <B><I>mis</I></B>, replace with <B><I>e</I></B>,
 		<DD>b) if it is preceded by <B><I>las</I></B>, replace with <B><I>e</I></B>,
 		<DD>c) if it is preceded by <B><I>lis</I></B>, replace with <B><I>e</I></B>,
-		<DD> if it wasn't replaced with <B><I>e</I></B> in stepst a)-c) and it isn't preceded by <B><I>t</I></B>, delete
-    <DT><B><I>de</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+		<DD> if it wasn't replaced with <B><I>e</I></B> in steps a)-c) and it isn't preceded by <B><I>t</I></B>, delete
+    <DT><B><I>de</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
 		<DD>delete
-    <DT><B><I>d</I> preceded by <I>RV</I> or <I>LONGV</I></B>
+    <DT><B><I>d</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
 		<DD>delete
 </DL>
 </DL>
@@ -425,9 +423,9 @@ Step 6:  degrees
     action indicated
 <BR><BR>
 <DL>
-    <DT><B><I>mai</I> preceded by <I>RV</I></B>
+    <DT><B><I>mai</I> if preceded by <I>RV</I></B>
     <DT><B><I>ma</I></B>
-    <DT><B><I>m</I> preceded by <I>RV</I></B>
+    <DT><B><I>m</I> if preceded by <I>RV</I></B
 		<DD>delete
 </DL>
 </DL>
@@ -441,13 +439,13 @@ Step 7:  i_plural
     action indicated
 <BR><BR>
 <DL>
-    <DT><B><I>i</I> preceded by <I>RV</I></B>
+    <DT><B><I>i</I> if preceded by <I>RV</I></B>
 		<DD>delete
 </DL>
 </DL>
 
 <p>
-Step 7:  nu
+Step 8:  nu
 </p>
 
 <DL><DD>
