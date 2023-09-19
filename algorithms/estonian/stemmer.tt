@@ -376,7 +376,7 @@ Step 4: case_ending
     <DT><B><I>ga</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
     <DT><B><I>ks</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
     <DT><B><I>ta</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
-    <DT><B><I>t</I></B>
+    <DT><B><I>t</I> if preceded by at least 4 characters</B>
     <DT><B><I>s</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
     <DT><B><I>l</I> if preceded by <I>RV</I> or <I>LONGV</I></B>
 		<DD>delete</B>
