@@ -143,7 +143,7 @@ The following letters are vowels (<I>V1</I>):
 </DL>
 
 <p>
-<I>R1</I> in this algorithm is defined as a region after the first consonant preceded by a vowel (laul[nud], mõt[teid], kar[tuleid], saab[as] ). If there’s no such region, then <I>R1</I> is empty (laul[Ø], saun[Ø]). Limitations in steps (such as ‘if preceded by <I>RV</I>’ ) are not restricted to the <I>R1</I> region.
+<I>R1</I> in this algorithm is defined as a region after the first consonant preceded by a vowel (laul[nud], mõt[teid], kar[tuleid], saab[as]). If there’s no such region, then <I>R1</I> is empty (laul[Ø], saun[Ø]). Limitations in steps (such as "if preceded by <I>RV</I>") are not restricted to the <I>R1</I> region.
 </p>
 
 <p>
@@ -466,7 +466,7 @@ Step 9: remove_double_kpt
 </p>
 
 <DL><DD>
-	Undouble consonant if word ending is <B><I>kk</I>+V1</B>, <B><I>tt</I>+V1</B>, <B><I>pp</I>+V1</B>.  
+	Undouble consonant if word ending is <B><I>kk</I>+V1</B>, <B><I>tt</I>+V1</B>, <B><I>pp</I>+V1</B>.
 	<BR><BR>
 </DL>
 
