@@ -278,7 +278,7 @@ Step 1: emphasis
     Search for the longest among the following suffixes in <I>R1</I>, and perform the action indicated
 <BR><BR>
 <DL>
-        <DD>Test if there’s at least 4 letters before <I>R1</I> region. If so, continue this step
+        <DD>Test if there’s at least 4 characters before <I>R1</I> region. If so, continue this step
     <DT><B><I>gi</I></B>
         <DD>if preceded by a character from <B><I>GI</I></B> which is not the second character of a long vowel as defined by <B><I>LONGV</I></B>, delete
     <DT><B><I>ki</I></B>
@@ -401,7 +401,7 @@ Step 5: plural_three_first_cases
     <DT><B><I>sid</I></B>
 		<DD>if it is not preceded by <I>LONGV</I>, delete
     <DT><B><I>te</I></B>
-		<DD>if it doesn't have at least 4 letters before it, replace by <B><I>t</I></B>.
+		<DD>if it doesn't have at least 4 characters before it, replace by <B><I>t</I></B>.
 		<DD>Otherwise:
 		<DD>a) if it is preceded by <B><I>mis</I></B>, replace with <B><I>e</I></B>,
 		<DD>b) if it is preceded by <B><I>las</I></B>, replace with <B><I>e</I></B>,
