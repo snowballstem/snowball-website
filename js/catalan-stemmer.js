@@ -723,20 +723,12 @@ function CatalanStemmer() {
 
     /** @return {boolean} */
     function r_R1() {
-        if (!(I_p1 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p1 <= base.cursor;
     };
 
     /** @return {boolean} */
     function r_R2() {
-        if (!(I_p2 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p2 <= base.cursor;
     };
 
     /** @return {boolean} */

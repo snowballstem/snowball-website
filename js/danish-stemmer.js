@@ -113,7 +113,7 @@ function DanishStemmer() {
         }
         I_p1 = base.cursor;
         lab4: {
-            if (!(I_p1 < I_x))
+            if (I_p1 >= I_x)
             {
                 break lab4;
             }

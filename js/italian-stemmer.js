@@ -584,29 +584,17 @@ function ItalianStemmer() {
 
     /** @return {boolean} */
     function r_RV() {
-        if (!(I_pV <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_pV <= base.cursor;
     };
 
     /** @return {boolean} */
     function r_R1() {
-        if (!(I_p1 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p1 <= base.cursor;
     };
 
     /** @return {boolean} */
     function r_R2() {
-        if (!(I_p2 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p2 <= base.cursor;
     };
 
     /** @return {boolean} */
@@ -949,41 +937,71 @@ function ItalianStemmer() {
         return true;
     };
 
+    /** @return {boolean} */
+    function r_exceptions() {
+        base.bra = base.cursor;
+        if (!(base.eq_s("divano")))
+        {
+            return false;
+        }
+        if (base.cursor < base.limit)
+        {
+            return false;
+        }
+        base.ket = base.cursor;
+        if (!base.slice_from("divan"))
+        {
+            return false;
+        }
+        return true;
+    };
+
     this.stem = /** @return {boolean} */ function() {
-        var /** number */ v_1 = base.cursor;
-        r_prelude();
-        base.cursor = v_1;
-        r_mark_regions();
-        base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_3 = base.limit - base.cursor;
-        r_attached_pronoun();
-        base.cursor = base.limit - v_3;
-        var /** number */ v_4 = base.limit - base.cursor;
         lab0: {
+            var /** number */ v_1 = base.cursor;
             lab1: {
-                var /** number */ v_5 = base.limit - base.cursor;
-                lab2: {
-                    if (!r_standard_suffix())
+                if (!r_exceptions())
+                {
+                    break lab1;
+                }
+                break lab0;
+            }
+            base.cursor = v_1;
+            var /** number */ v_2 = base.cursor;
+            r_prelude();
+            base.cursor = v_2;
+            r_mark_regions();
+            base.limit_backward = base.cursor; base.cursor = base.limit;
+            var /** number */ v_4 = base.limit - base.cursor;
+            r_attached_pronoun();
+            base.cursor = base.limit - v_4;
+            var /** number */ v_5 = base.limit - base.cursor;
+            lab2: {
+                lab3: {
+                    var /** number */ v_6 = base.limit - base.cursor;
+                    lab4: {
+                        if (!r_standard_suffix())
+                        {
+                            break lab4;
+                        }
+                        break lab3;
+                    }
+                    base.cursor = base.limit - v_6;
+                    if (!r_verb_suffix())
                     {
                         break lab2;
                     }
-                    break lab1;
-                }
-                base.cursor = base.limit - v_5;
-                if (!r_verb_suffix())
-                {
-                    break lab0;
                 }
             }
+            base.cursor = base.limit - v_5;
+            var /** number */ v_7 = base.limit - base.cursor;
+            r_vowel_suffix();
+            base.cursor = base.limit - v_7;
+            base.cursor = base.limit_backward;
+            var /** number */ v_8 = base.cursor;
+            r_postlude();
+            base.cursor = v_8;
         }
-        base.cursor = base.limit - v_4;
-        var /** number */ v_6 = base.limit - base.cursor;
-        r_vowel_suffix();
-        base.cursor = base.limit - v_6;
-        base.cursor = base.limit_backward;
-        var /** number */ v_7 = base.cursor;
-        r_postlude();
-        base.cursor = v_7;
         return true;
     };
 

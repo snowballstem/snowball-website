@@ -732,7 +732,7 @@ function ArabicStemmer() {
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (!(base.current.length > 4))
+                if (base.current.length <= 4)
                 {
                     return false;
                 }
@@ -741,7 +741,7 @@ function ArabicStemmer() {
                 B_is_defined = true;
                 break;
             case 2:
-                if (!(base.current.length > 3))
+                if (base.current.length <= 3)
                 {
                     return false;
                 }
@@ -765,7 +765,7 @@ function ArabicStemmer() {
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (!(base.current.length > 3))
+                if (base.current.length <= 3)
                 {
                     return false;
                 }
@@ -775,7 +775,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 2:
-                if (!(base.current.length > 3))
+                if (base.current.length <= 3)
                 {
                     return false;
                 }
@@ -785,7 +785,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 3:
-                if (!(base.current.length > 3))
+                if (base.current.length <= 3)
                 {
                     return false;
                 }
@@ -795,7 +795,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 4:
-                if (!(base.current.length > 3))
+                if (base.current.length <= 3)
                 {
                     return false;
                 }
@@ -816,7 +816,7 @@ function ArabicStemmer() {
             return false;
         }
         base.ket = base.cursor;
-        if (!(base.current.length > 3))
+        if (base.current.length <= 3)
         {
             return false;
         }
@@ -850,7 +850,7 @@ function ArabicStemmer() {
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (!(base.current.length > 5))
+                if (base.current.length <= 5)
                 {
                     return false;
                 }
@@ -860,7 +860,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 2:
-                if (!(base.current.length > 4))
+                if (base.current.length <= 4)
                 {
                     return false;
                 }
@@ -885,7 +885,7 @@ function ArabicStemmer() {
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (!(base.current.length > 3))
+                if (base.current.length <= 3)
                 {
                     return false;
                 }
@@ -895,7 +895,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 2:
-                if (!(base.current.length > 3))
+                if (base.current.length <= 3)
                 {
                     return false;
                 }
@@ -905,7 +905,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 3:
-                if (!(base.current.length > 3))
+                if (base.current.length <= 3)
                 {
                     return false;
                 }
@@ -930,7 +930,7 @@ function ArabicStemmer() {
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (!(base.current.length > 4))
+                if (base.current.length <= 4)
                 {
                     return false;
                 }
@@ -940,7 +940,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 2:
-                if (!(base.current.length > 4))
+                if (base.current.length <= 4)
                 {
                     return false;
                 }
@@ -950,7 +950,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 3:
-                if (!(base.current.length > 4))
+                if (base.current.length <= 4)
                 {
                     return false;
                 }
@@ -960,7 +960,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 4:
-                if (!(base.current.length > 4))
+                if (base.current.length <= 4)
                 {
                     return false;
                 }
@@ -981,7 +981,7 @@ function ArabicStemmer() {
             return false;
         }
         base.ket = base.cursor;
-        if (!(base.current.length > 4))
+        if (base.current.length <= 4)
         {
             return false;
         }
@@ -1006,7 +1006,7 @@ function ArabicStemmer() {
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!(base.current.length >= 4))
+                if (base.current.length < 4)
                 {
                     return false;
                 }
@@ -1016,7 +1016,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 2:
-                if (!(base.current.length >= 5))
+                if (base.current.length < 5)
                 {
                     return false;
                 }
@@ -1026,7 +1026,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 3:
-                if (!(base.current.length >= 6))
+                if (base.current.length < 6)
                 {
                     return false;
                 }
@@ -1047,7 +1047,7 @@ function ArabicStemmer() {
             return false;
         }
         base.bra = base.cursor;
-        if (!(base.current.length > 5))
+        if (base.current.length <= 5)
         {
             return false;
         }
@@ -1066,7 +1066,7 @@ function ArabicStemmer() {
             return false;
         }
         base.bra = base.cursor;
-        if (!(base.current.length > 4))
+        if (base.current.length <= 4)
         {
             return false;
         }
@@ -1085,7 +1085,7 @@ function ArabicStemmer() {
             return false;
         }
         base.bra = base.cursor;
-        if (!(base.current.length >= 5))
+        if (base.current.length < 5)
         {
             return false;
         }
@@ -1104,7 +1104,7 @@ function ArabicStemmer() {
             return false;
         }
         base.bra = base.cursor;
-        if (!(base.current.length >= 4))
+        if (base.current.length < 4)
         {
             return false;
         }
@@ -1123,7 +1123,7 @@ function ArabicStemmer() {
             return false;
         }
         base.bra = base.cursor;
-        if (!(base.current.length >= 4))
+        if (base.current.length < 4)
         {
             return false;
         }
@@ -1142,7 +1142,7 @@ function ArabicStemmer() {
             return false;
         }
         base.bra = base.cursor;
-        if (!(base.current.length >= 3))
+        if (base.current.length < 3)
         {
             return false;
         }
@@ -1165,7 +1165,7 @@ function ArabicStemmer() {
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!(base.current.length >= 4))
+                if (base.current.length < 4)
                 {
                     return false;
                 }
@@ -1175,7 +1175,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 2:
-                if (!(base.current.length >= 5))
+                if (base.current.length < 5)
                 {
                     return false;
                 }
@@ -1185,7 +1185,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 3:
-                if (!(base.current.length >= 6))
+                if (base.current.length < 6)
                 {
                     return false;
                 }
@@ -1210,7 +1210,7 @@ function ArabicStemmer() {
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!(base.current.length >= 4))
+                if (base.current.length < 4)
                 {
                     return false;
                 }
@@ -1220,7 +1220,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 2:
-                if (!(base.current.length >= 5))
+                if (base.current.length < 5)
                 {
                     return false;
                 }
@@ -1230,7 +1230,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 3:
-                if (!(base.current.length > 5))
+                if (base.current.length <= 5)
                 {
                     return false;
                 }
@@ -1240,7 +1240,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 4:
-                if (!(base.current.length >= 6))
+                if (base.current.length < 6)
                 {
                     return false;
                 }
@@ -1261,7 +1261,7 @@ function ArabicStemmer() {
             return false;
         }
         base.bra = base.cursor;
-        if (!(base.current.length >= 5))
+        if (base.current.length < 5)
         {
             return false;
         }
@@ -1284,7 +1284,7 @@ function ArabicStemmer() {
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!(base.current.length >= 4))
+                if (base.current.length < 4)
                 {
                     return false;
                 }
@@ -1294,7 +1294,7 @@ function ArabicStemmer() {
                 }
                 break;
             case 2:
-                if (!(base.current.length >= 6))
+                if (base.current.length < 6)
                 {
                     return false;
                 }

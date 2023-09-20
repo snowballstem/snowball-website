@@ -287,11 +287,7 @@ function ArmenianStemmer() {
 
     /** @return {boolean} */
     function r_R2() {
-        if (!(I_p2 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p2 <= base.cursor;
     };
 
     /** @return {boolean} */

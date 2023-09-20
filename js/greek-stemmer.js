@@ -1124,11 +1124,7 @@ function GreekStemmer() {
 
     /** @return {boolean} */
     function r_has_min_length() {
-        if (!(base.current.length >= 3))
-        {
-            return false;
-        }
-        return true;
+        return base.current.length >= 3;
     };
 
     /** @return {boolean} */

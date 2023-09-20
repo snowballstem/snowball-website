@@ -85,11 +85,11 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_SUFFIX_KAN_OK() {
-        if (!(I_prefix != 3))
+        if (I_prefix == 3)
         {
             return false;
         }
-        if (!(I_prefix != 2))
+        if (I_prefix == 2)
         {
             return false;
         }
@@ -98,16 +98,12 @@ function IndonesianStemmer() {
 
     /** @return {boolean} */
     function r_SUFFIX_AN_OK() {
-        if (!(I_prefix != 1))
-        {
-            return false;
-        }
-        return true;
+        return I_prefix != 1;
     };
 
     /** @return {boolean} */
     function r_SUFFIX_I_OK() {
-        if (!(I_prefix <= 2))
+        if (I_prefix > 2)
         {
             return false;
         }
@@ -337,7 +333,7 @@ function IndonesianStemmer() {
             }
         }
         base.cursor = v_1;
-        if (!(I_measure > 2))
+        if (I_measure <= 2)
         {
             return false;
         }
@@ -346,7 +342,7 @@ function IndonesianStemmer() {
         var /** number */ v_4 = base.limit - base.cursor;
         r_remove_particle();
         base.cursor = base.limit - v_4;
-        if (!(I_measure > 2))
+        if (I_measure <= 2)
         {
             return false;
         }
@@ -354,7 +350,7 @@ function IndonesianStemmer() {
         r_remove_possessive_pronoun();
         base.cursor = base.limit - v_5;
         base.cursor = base.limit_backward;
-        if (!(I_measure > 2))
+        if (I_measure <= 2)
         {
             return false;
         }
@@ -369,7 +365,7 @@ function IndonesianStemmer() {
                 var /** number */ v_8 = base.cursor;
                 lab6: {
                     var /** number */ v_9 = base.cursor;
-                    if (!(I_measure > 2))
+                    if (I_measure <= 2)
                     {
                         break lab6;
                     }
@@ -380,7 +376,7 @@ function IndonesianStemmer() {
                     }
                     base.cursor = base.limit_backward;
                     base.cursor = v_9;
-                    if (!(I_measure > 2))
+                    if (I_measure <= 2)
                     {
                         break lab6;
                     }
@@ -399,7 +395,7 @@ function IndonesianStemmer() {
             base.cursor = v_10;
             var /** number */ v_11 = base.cursor;
             lab7: {
-                if (!(I_measure > 2))
+                if (I_measure <= 2)
                 {
                     break lab7;
                 }

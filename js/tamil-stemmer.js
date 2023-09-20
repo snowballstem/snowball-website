@@ -4,6 +4,13 @@
 function TamilStemmer() {
     var base = new BaseStemmer();
     /** @const */ var a_0 = [
+        ["\u0BB5\u0BC1", -1, 3],
+        ["\u0BB5\u0BC2", -1, 4],
+        ["\u0BB5\u0BCA", -1, 2],
+        ["\u0BB5\u0BCB", -1, 1]
+    ];
+
+    /** @const */ var a_1 = [
         ["\u0B95", -1, -1],
         ["\u0B99", -1, -1],
         ["\u0B9A", -1, -1],
@@ -16,12 +23,6 @@ function TamilStemmer() {
         ["\u0BB5", -1, -1]
     ];
 
-    /** @const */ var a_1 = [
-        ["\u0BA8\u0BCD\u0BA4", -1, -1],
-        ["\u0BA8\u0BCD\u0BA4\u0BCD", -1, -1],
-        ["\u0BA8\u0BCD", -1, -1]
-    ];
-
     /** @const */ var a_2 = [
         ["\u0BBF", -1, -1],
         ["\u0BC0", -1, -1],
@@ -29,24 +30,43 @@ function TamilStemmer() {
     ];
 
     /** @const */ var a_3 = [
-        ["\u0B95", -1, -1],
-        ["\u0B9A", -1, -1],
-        ["\u0B9F", -1, -1],
-        ["\u0BA4", -1, -1],
-        ["\u0BAA", -1, -1],
-        ["\u0BB1", -1, -1]
+        ["\u0BBE", -1, -1],
+        ["\u0BBF", -1, -1],
+        ["\u0BC0", -1, -1],
+        ["\u0BC1", -1, -1],
+        ["\u0BC2", -1, -1],
+        ["\u0BC6", -1, -1],
+        ["\u0BC7", -1, -1],
+        ["\u0BC8", -1, -1]
     ];
 
     /** @const */ var a_4 = [
-        ["\u0B95", -1, -1],
-        ["\u0B9A", -1, -1],
-        ["\u0B9F", -1, -1],
-        ["\u0BA4", -1, -1],
-        ["\u0BAA", -1, -1],
-        ["\u0BB1", -1, -1]
+        ["", -1, 2],
+        ["\u0BC8", 0, 1],
+        ["\u0BCD", 0, 1]
     ];
 
     /** @const */ var a_5 = [
+        ["\u0BA8\u0BCD\u0BA4", -1, 1],
+        ["\u0BAF", -1, 1],
+        ["\u0BB5", -1, 1],
+        ["\u0BA9\u0BC1", -1, 8],
+        ["\u0BC1\u0B95\u0BCD", -1, 7],
+        ["\u0BC1\u0B95\u0BCD\u0B95\u0BCD", -1, 7],
+        ["\u0B9F\u0BCD\u0B95\u0BCD", -1, 3],
+        ["\u0BB1\u0BCD\u0B95\u0BCD", -1, 4],
+        ["\u0B99\u0BCD", -1, 9],
+        ["\u0B9F\u0BCD\u0B9F\u0BCD", -1, 5],
+        ["\u0BA4\u0BCD\u0BA4\u0BCD", -1, 6],
+        ["\u0BA8\u0BCD\u0BA4\u0BCD", -1, 1],
+        ["\u0BA8\u0BCD", -1, 1],
+        ["\u0B9F\u0BCD\u0BAA\u0BCD", -1, 3],
+        ["\u0BAF\u0BCD", -1, 2],
+        ["\u0BA9\u0BCD\u0BB1\u0BCD", -1, 4],
+        ["\u0BB5\u0BCD", -1, 1]
+    ];
+
+    /** @const */ var a_6 = [
         ["\u0B95", -1, -1],
         ["\u0B9A", -1, -1],
         ["\u0B9F", -1, -1],
@@ -55,28 +75,27 @@ function TamilStemmer() {
         ["\u0BB1", -1, -1]
     ];
 
-    /** @const */ var a_6 = [
+    /** @const */ var a_7 = [
+        ["\u0B95", -1, -1],
+        ["\u0B9A", -1, -1],
+        ["\u0B9F", -1, -1],
+        ["\u0BA4", -1, -1],
+        ["\u0BAA", -1, -1],
+        ["\u0BB1", -1, -1]
+    ];
+
+    /** @const */ var a_8 = [
+        ["\u0B9E", -1, -1],
+        ["\u0BA3", -1, -1],
+        ["\u0BA8", -1, -1],
+        ["\u0BA9", -1, -1],
+        ["\u0BAE", -1, -1],
         ["\u0BAF", -1, -1],
         ["\u0BB0", -1, -1],
         ["\u0BB2", -1, -1],
         ["\u0BB3", -1, -1],
         ["\u0BB4", -1, -1],
         ["\u0BB5", -1, -1]
-    ];
-
-    /** @const */ var a_7 = [
-        ["\u0B99", -1, -1],
-        ["\u0B9E", -1, -1],
-        ["\u0BA3", -1, -1],
-        ["\u0BA8", -1, -1],
-        ["\u0BA9", -1, -1],
-        ["\u0BAE", -1, -1]
-    ];
-
-    /** @const */ var a_8 = [
-        ["\u0BAF", -1, -1],
-        ["\u0BB5", -1, -1],
-        ["\u0BB5\u0BCD", -1, -1]
     ];
 
     /** @const */ var a_9 = [
@@ -87,27 +106,17 @@ function TamilStemmer() {
         ["\u0BC2", -1, -1],
         ["\u0BC6", -1, -1],
         ["\u0BC7", -1, -1],
-        ["\u0BC8", -1, -1]
+        ["\u0BC8", -1, -1],
+        ["\u0BCD", -1, -1]
     ];
 
     /** @const */ var a_10 = [
-        ["\u0BBE", -1, -1],
-        ["\u0BBF", -1, -1],
-        ["\u0BC0", -1, -1],
-        ["\u0BC1", -1, -1],
-        ["\u0BC2", -1, -1],
-        ["\u0BC6", -1, -1],
-        ["\u0BC7", -1, -1],
-        ["\u0BC8", -1, -1]
-    ];
-
-    /** @const */ var a_11 = [
         ["\u0B85", -1, -1],
         ["\u0B87", -1, -1],
         ["\u0B89", -1, -1]
     ];
 
-    /** @const */ var a_12 = [
+    /** @const */ var a_11 = [
         ["\u0B95", -1, -1],
         ["\u0B99", -1, -1],
         ["\u0B9A", -1, -1],
@@ -120,13 +129,20 @@ function TamilStemmer() {
         ["\u0BB5", -1, -1]
     ];
 
-    /** @const */ var a_13 = [
+    /** @const */ var a_12 = [
         ["\u0B95", -1, -1],
         ["\u0B9A", -1, -1],
         ["\u0B9F", -1, -1],
         ["\u0BA4", -1, -1],
         ["\u0BAA", -1, -1],
         ["\u0BB1", -1, -1]
+    ];
+
+    /** @const */ var a_13 = [
+        ["\u0B95\u0BB3\u0BCD", -1, 4],
+        ["\u0BC1\u0B99\u0BCD\u0B95\u0BB3\u0BCD", 0, 1],
+        ["\u0B9F\u0BCD\u0B95\u0BB3\u0BCD", 0, 3],
+        ["\u0BB1\u0BCD\u0B95\u0BB3\u0BCD", 0, 2]
     ];
 
     /** @const */ var a_14 = [
@@ -152,31 +168,82 @@ function TamilStemmer() {
     ];
 
     /** @const */ var a_17 = [
-        ["\u0BAA\u0B9F\u0BCD\u0B9F", -1, -1],
-        ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BA3", -1, -1],
-        ["\u0BA4\u0BBE\u0BA9", -1, -1],
-        ["\u0BAA\u0B9F\u0BBF\u0BA4\u0BBE\u0BA9", 2, -1],
-        ["\u0B95\u0BC1\u0BB0\u0BBF\u0BAF", -1, -1],
-        ["\u0BAA\u0B9F\u0BBF", -1, -1],
-        ["\u0BAA\u0BB1\u0BCD\u0BB1\u0BBF", -1, -1],
-        ["\u0BAA\u0B9F\u0BC1", -1, -1],
-        ["\u0BB5\u0BBF\u0B9F\u0BC1", -1, -1],
-        ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BC1", -1, -1],
-        ["\u0BB5\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1", -1, -1],
-        ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1", -1, -1],
-        ["\u0BC6\u0BB2\u0BCD\u0BB2\u0BBE\u0BAE\u0BCD", -1, -1]
+        ["\u0BAA\u0B9F\u0BCD\u0B9F", -1, 3],
+        ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BA3", -1, 3],
+        ["\u0BA4\u0BBE\u0BA9", -1, 3],
+        ["\u0BAA\u0B9F\u0BBF\u0BA4\u0BBE\u0BA9", 2, 3],
+        ["\u0BC6\u0BA9", -1, 1],
+        ["\u0BBE\u0B95\u0BBF\u0BAF", -1, 1],
+        ["\u0B95\u0BC1\u0BB0\u0BBF\u0BAF", -1, 3],
+        ["\u0BC1\u0B9F\u0BC8\u0BAF", -1, 1],
+        ["\u0BB2\u0BCD\u0BB2", -1, 2],
+        ["\u0BC1\u0BB3\u0BCD\u0BB3", -1, 1],
+        ["\u0BBE\u0B95\u0BBF", -1, 1],
+        ["\u0BAA\u0B9F\u0BBF", -1, 3],
+        ["\u0BBF\u0BA9\u0BCD\u0BB1\u0BBF", -1, 1],
+        ["\u0BAA\u0BB1\u0BCD\u0BB1\u0BBF", -1, 3],
+        ["\u0BAA\u0B9F\u0BC1", -1, 3],
+        ["\u0BB5\u0BBF\u0B9F\u0BC1", -1, 3],
+        ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BC1", -1, 3],
+        ["\u0BB5\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1", -1, 3],
+        ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1", -1, 3],
+        ["\u0BC6\u0BA9\u0BCD\u0BB1\u0BC1", -1, 1],
+        ["\u0BC1\u0B9F\u0BC8", -1, 1],
+        ["\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8", -1, 1],
+        ["\u0BC1\u0B9F\u0BA9\u0BCD", -1, 1],
+        ["\u0BBF\u0B9F\u0BAE\u0BCD", -1, 1],
+        ["\u0BC6\u0BB2\u0BCD\u0BB2\u0BBE\u0BAE\u0BCD", -1, 3],
+        ["\u0BC6\u0BA9\u0BC1\u0BAE\u0BCD", -1, 1]
     ];
 
     /** @const */ var a_18 = [
-        ["\u0B95", -1, -1],
-        ["\u0B9A", -1, -1],
-        ["\u0B9F", -1, -1],
-        ["\u0BA4", -1, -1],
-        ["\u0BAA", -1, -1],
-        ["\u0BB1", -1, -1]
+        ["\u0BBE", -1, -1],
+        ["\u0BBF", -1, -1],
+        ["\u0BC0", -1, -1],
+        ["\u0BC1", -1, -1],
+        ["\u0BC2", -1, -1],
+        ["\u0BC6", -1, -1],
+        ["\u0BC7", -1, -1],
+        ["\u0BC8", -1, -1]
     ];
 
     /** @const */ var a_19 = [
+        ["\u0BBE", -1, -1],
+        ["\u0BBF", -1, -1],
+        ["\u0BC0", -1, -1],
+        ["\u0BC1", -1, -1],
+        ["\u0BC2", -1, -1],
+        ["\u0BC6", -1, -1],
+        ["\u0BC7", -1, -1],
+        ["\u0BC8", -1, -1]
+    ];
+
+    /** @const */ var a_20 = [
+        ["\u0BB5\u0BBF\u0B9F", -1, 2],
+        ["\u0BC0", -1, 7],
+        ["\u0BCA\u0B9F\u0BC1", -1, 2],
+        ["\u0BCB\u0B9F\u0BC1", -1, 2],
+        ["\u0BA4\u0BC1", -1, 6],
+        ["\u0BBF\u0BB0\u0BC1\u0BA8\u0BCD\u0BA4\u0BC1", 4, 2],
+        ["\u0BBF\u0BA9\u0BCD\u0BB1\u0BC1", -1, 2],
+        ["\u0BC1\u0B9F\u0BC8", -1, 2],
+        ["\u0BA9\u0BC8", -1, 1],
+        ["\u0B95\u0BA3\u0BCD", -1, 1],
+        ["\u0BBF\u0BA9\u0BCD", -1, 3],
+        ["\u0BAE\u0BC1\u0BA9\u0BCD", -1, 1],
+        ["\u0BBF\u0B9F\u0BAE\u0BCD", -1, 4],
+        ["\u0BBF\u0BB1\u0BCD", -1, 2],
+        ["\u0BAE\u0BC7\u0BB1\u0BCD", -1, 1],
+        ["\u0BB2\u0BCD", -1, 5],
+        ["\u0BBE\u0BAE\u0BB2\u0BCD", 15, 2],
+        ["\u0BBE\u0BB2\u0BCD", 15, 2],
+        ["\u0BBF\u0BB2\u0BCD", 15, 2],
+        ["\u0BAE\u0BC7\u0BB2\u0BCD", 15, 1],
+        ["\u0BC1\u0BB3\u0BCD", -1, 2],
+        ["\u0B95\u0BC0\u0BB4\u0BCD", -1, 1]
+    ];
+
+    /** @const */ var a_21 = [
         ["\u0B95", -1, -1],
         ["\u0B9A", -1, -1],
         ["\u0B9F", -1, -1],
@@ -185,31 +252,13 @@ function TamilStemmer() {
         ["\u0BB1", -1, -1]
     ];
 
-    /** @const */ var a_20 = [
-        ["\u0BBE", -1, -1],
-        ["\u0BBF", -1, -1],
-        ["\u0BC0", -1, -1],
-        ["\u0BC1", -1, -1],
-        ["\u0BC2", -1, -1],
-        ["\u0BC6", -1, -1],
-        ["\u0BC7", -1, -1],
-        ["\u0BC8", -1, -1]
-    ];
-
-    /** @const */ var a_21 = [
-        ["\u0BBE", -1, -1],
-        ["\u0BBF", -1, -1],
-        ["\u0BC0", -1, -1],
-        ["\u0BC1", -1, -1],
-        ["\u0BC2", -1, -1],
-        ["\u0BC6", -1, -1],
-        ["\u0BC7", -1, -1],
-        ["\u0BC8", -1, -1]
-    ];
-
     /** @const */ var a_22 = [
-        ["\u0BAA\u0B9F\u0BC1", -1, -1],
-        ["\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BCD", -1, -1]
+        ["\u0B95", -1, -1],
+        ["\u0B9A", -1, -1],
+        ["\u0B9F", -1, -1],
+        ["\u0BA4", -1, -1],
+        ["\u0BAA", -1, -1],
+        ["\u0BB1", -1, -1]
     ];
 
     /** @const */ var a_23 = [
@@ -239,6 +288,55 @@ function TamilStemmer() {
     ];
 
     /** @const */ var a_25 = [
+        ["\u0B95", -1, 1],
+        ["\u0BA4", -1, 1],
+        ["\u0BA9", -1, 1],
+        ["\u0BAA", -1, 1],
+        ["\u0BAF", -1, 1],
+        ["\u0BBE", -1, 5],
+        ["\u0B95\u0BC1", -1, 6],
+        ["\u0BAA\u0B9F\u0BC1", -1, 1],
+        ["\u0BA4\u0BC1", -1, 3],
+        ["\u0BBF\u0BB1\u0BCD\u0BB1\u0BC1", -1, 1],
+        ["\u0BA9\u0BC8", -1, 1],
+        ["\u0BB5\u0BC8", -1, 1],
+        ["\u0BA9\u0BA9\u0BCD", -1, 1],
+        ["\u0BAA\u0BA9\u0BCD", -1, 1],
+        ["\u0BB5\u0BA9\u0BCD", -1, 2],
+        ["\u0BBE\u0BA9\u0BCD", -1, 4],
+        ["\u0BA9\u0BBE\u0BA9\u0BCD", 15, 1],
+        ["\u0BAE\u0BBF\u0BA9\u0BCD", -1, 1],
+        ["\u0BA9\u0BC6\u0BA9\u0BCD", -1, 1],
+        ["\u0BC7\u0BA9\u0BCD", -1, 5],
+        ["\u0BA9\u0BAE\u0BCD", -1, 1],
+        ["\u0BAA\u0BAE\u0BCD", -1, 1],
+        ["\u0BBE\u0BAE\u0BCD", -1, 5],
+        ["\u0B95\u0BC1\u0BAE\u0BCD", -1, 1],
+        ["\u0B9F\u0BC1\u0BAE\u0BCD", -1, 5],
+        ["\u0BA4\u0BC1\u0BAE\u0BCD", -1, 1],
+        ["\u0BB1\u0BC1\u0BAE\u0BCD", -1, 1],
+        ["\u0BC6\u0BAE\u0BCD", -1, 5],
+        ["\u0BC7\u0BAE\u0BCD", -1, 5],
+        ["\u0BCB\u0BAE\u0BCD", -1, 5],
+        ["\u0BBE\u0BAF\u0BCD", -1, 5],
+        ["\u0BA9\u0BB0\u0BCD", -1, 1],
+        ["\u0BAA\u0BB0\u0BCD", -1, 1],
+        ["\u0BC0\u0BAF\u0BB0\u0BCD", -1, 5],
+        ["\u0BB5\u0BB0\u0BCD", -1, 1],
+        ["\u0BBE\u0BB0\u0BCD", -1, 5],
+        ["\u0BA9\u0BBE\u0BB0\u0BCD", 35, 1],
+        ["\u0BAE\u0BBE\u0BB0\u0BCD", 35, 1],
+        ["\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BCD", -1, 1],
+        ["\u0BA9\u0BBF\u0BB0\u0BCD", -1, 5],
+        ["\u0BC0\u0BB0\u0BCD", -1, 5],
+        ["\u0BA9\u0BB3\u0BCD", -1, 1],
+        ["\u0BAA\u0BB3\u0BCD", -1, 1],
+        ["\u0BB5\u0BB3\u0BCD", -1, 1],
+        ["\u0BBE\u0BB3\u0BCD", -1, 5],
+        ["\u0BA9\u0BBE\u0BB3\u0BCD", 44, 1]
+    ];
+
+    /** @const */ var a_26 = [
         ["\u0B95\u0BBF\u0BB1", -1, -1],
         ["\u0B95\u0BBF\u0BA9\u0BCD\u0BB1", -1, -1],
         ["\u0BBE\u0BA8\u0BBF\u0BA9\u0BCD\u0BB1", -1, -1],
@@ -253,109 +351,44 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_has_min_length() {
-        if (!(base.current.length > 4))
-        {
-            return false;
-        }
-        return true;
+        return base.current.length > 4;
     };
 
     /** @return {boolean} */
     function r_fix_va_start() {
-        lab0: {
-            var /** number */ v_1 = base.cursor;
-            lab1: {
-                var /** number */ v_2 = base.cursor;
-                var /** number */ v_3 = base.cursor;
-                lab2: {
-                    if (!(base.eq_s("\u0BB5\u0BCB")))
-                    {
-                        base.cursor = v_3;
-                        break lab2;
-                    }
-                }
-                base.cursor = v_2;
-                base.bra = base.cursor;
-                if (!(base.eq_s("\u0BB5\u0BCB")))
-                {
-                    break lab1;
-                }
-                base.ket = base.cursor;
+        var /** number */ among_var;
+        base.bra = base.cursor;
+        among_var = base.find_among(a_0);
+        if (among_var == 0)
+        {
+            return false;
+        }
+        base.ket = base.cursor;
+        switch (among_var) {
+            case 1:
                 if (!base.slice_from("\u0B93"))
                 {
                     return false;
                 }
-                break lab0;
-            }
-            base.cursor = v_1;
-            lab3: {
-                var /** number */ v_4 = base.cursor;
-                var /** number */ v_5 = base.cursor;
-                lab4: {
-                    if (!(base.eq_s("\u0BB5\u0BCA")))
-                    {
-                        base.cursor = v_5;
-                        break lab4;
-                    }
-                }
-                base.cursor = v_4;
-                base.bra = base.cursor;
-                if (!(base.eq_s("\u0BB5\u0BCA")))
-                {
-                    break lab3;
-                }
-                base.ket = base.cursor;
+                break;
+            case 2:
                 if (!base.slice_from("\u0B92"))
                 {
                     return false;
                 }
-                break lab0;
-            }
-            base.cursor = v_1;
-            lab5: {
-                var /** number */ v_6 = base.cursor;
-                var /** number */ v_7 = base.cursor;
-                lab6: {
-                    if (!(base.eq_s("\u0BB5\u0BC1")))
-                    {
-                        base.cursor = v_7;
-                        break lab6;
-                    }
-                }
-                base.cursor = v_6;
-                base.bra = base.cursor;
-                if (!(base.eq_s("\u0BB5\u0BC1")))
-                {
-                    break lab5;
-                }
-                base.ket = base.cursor;
+                break;
+            case 3:
                 if (!base.slice_from("\u0B89"))
                 {
                     return false;
                 }
-                break lab0;
-            }
-            base.cursor = v_1;
-            var /** number */ v_8 = base.cursor;
-            var /** number */ v_9 = base.cursor;
-            lab7: {
-                if (!(base.eq_s("\u0BB5\u0BC2")))
+                break;
+            case 4:
+                if (!base.slice_from("\u0B8A"))
                 {
-                    base.cursor = v_9;
-                    break lab7;
+                    return false;
                 }
-            }
-            base.cursor = v_8;
-            base.bra = base.cursor;
-            if (!(base.eq_s("\u0BB5\u0BC2")))
-            {
-                return false;
-            }
-            base.ket = base.cursor;
-            if (!base.slice_from("\u0B8A"))
-            {
-                return false;
-            }
+                break;
         }
         return true;
     };
@@ -389,7 +422,7 @@ function TamilStemmer() {
         {
             return false;
         }
-        if (base.find_among(a_0) == 0)
+        if (base.find_among(a_1) == 0)
         {
             return false;
         }
@@ -410,7 +443,8 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_fix_ending() {
-        if (!(base.current.length > 3))
+        var /** number */ among_var;
+        if (base.current.length <= 3)
         {
             return false;
         }
@@ -419,331 +453,114 @@ function TamilStemmer() {
             var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
-                if (base.find_among_b(a_1) == 0)
+                among_var = base.find_among_b(a_5);
+                if (among_var == 0)
                 {
                     break lab1;
                 }
                 base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab2: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BAF\u0BCD")))
-                {
-                    break lab2;
-                }
-                var /** number */ v_2 = base.limit - base.cursor;
-                if (base.find_among_b(a_2) == 0)
-                {
-                    break lab2;
-                }
-                base.cursor = base.limit - v_2;
-                base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab3: {
-                base.ket = base.cursor;
-                lab4: {
-                    var /** number */ v_3 = base.limit - base.cursor;
-                    lab5: {
-                        if (!(base.eq_s_b("\u0B9F\u0BCD\u0BAA\u0BCD")))
+                switch (among_var) {
+                    case 1:
+                        if (!base.slice_del())
                         {
-                            break lab5;
+                            return false;
                         }
-                        break lab4;
-                    }
-                    base.cursor = base.limit - v_3;
-                    if (!(base.eq_s_b("\u0B9F\u0BCD\u0B95\u0BCD")))
-                    {
-                        break lab3;
-                    }
-                }
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BB3\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab6: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BA9\u0BCD\u0BB1\u0BCD")))
-                {
-                    break lab6;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BB2\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab7: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BB1\u0BCD\u0B95\u0BCD")))
-                {
-                    break lab7;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BB2\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab8: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0B9F\u0BCD\u0B9F\u0BCD")))
-                {
-                    break lab8;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0B9F\u0BC1"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab9: {
-                if (!B_found_vetrumai_urupu)
-                {
-                    break lab9;
-                }
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BA4\u0BCD\u0BA4\u0BCD")))
-                {
-                    break lab9;
-                }
-                var /** number */ v_4 = base.limit - base.cursor;
-                {
-                    var /** number */ v_5 = base.limit - base.cursor;
-                    lab10: {
-                        if (!(base.eq_s_b("\u0BC8")))
+                        break;
+                    case 2:
+                        var /** number */ v_2 = base.limit - base.cursor;
+                        if (base.find_among_b(a_2) == 0)
                         {
-                            break lab10;
+                            break lab1;
                         }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_5;
-                }
-                base.cursor = base.limit - v_4;
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BAE\u0BCD"))
-                {
-                    return false;
-                }
-                base.bra = base.cursor;
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab11: {
-                base.ket = base.cursor;
-                lab12: {
-                    var /** number */ v_6 = base.limit - base.cursor;
-                    lab13: {
-                        if (!(base.eq_s_b("\u0BC1\u0B95\u0BCD")))
+                        base.cursor = base.limit - v_2;
+                        if (!base.slice_del())
                         {
-                            break lab13;
+                            return false;
                         }
-                        break lab12;
-                    }
-                    base.cursor = base.limit - v_6;
-                    if (!(base.eq_s_b("\u0BC1\u0B95\u0BCD\u0B95\u0BCD")))
-                    {
-                        break lab11;
-                    }
-                }
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab14: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab14;
-                }
-                if (base.find_among_b(a_3) == 0)
-                {
-                    break lab14;
-                }
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab14;
-                }
-                if (base.find_among_b(a_4) == 0)
-                {
-                    break lab14;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab15: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BC1\u0B95\u0BCD")))
-                {
-                    break lab15;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab16: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab16;
-                }
-                if (base.find_among_b(a_5) == 0)
-                {
-                    break lab16;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab17: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab17;
-                }
-                lab18: {
-                    var /** number */ v_7 = base.limit - base.cursor;
-                    lab19: {
-                        if (base.find_among_b(a_6) == 0)
+                        break;
+                    case 3:
+                        if (!base.slice_from("\u0BB3\u0BCD"))
                         {
-                            break lab19;
+                            return false;
                         }
-                        break lab18;
-                    }
-                    base.cursor = base.limit - v_7;
-                    if (base.find_among_b(a_7) == 0)
-                    {
-                        break lab17;
-                    }
-                }
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab17;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab20: {
-                base.ket = base.cursor;
-                if (base.find_among_b(a_8) == 0)
-                {
-                    break lab20;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab21: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BA9\u0BC1")))
-                {
-                    break lab21;
-                }
-                var /** number */ v_8 = base.limit - base.cursor;
-                {
-                    var /** number */ v_9 = base.limit - base.cursor;
-                    lab22: {
-                        if (base.find_among_b(a_9) == 0)
+                        break;
+                    case 4:
+                        if (!base.slice_from("\u0BB2\u0BCD"))
                         {
-                            break lab22;
+                            return false;
                         }
-                        break lab21;
-                    }
-                    base.cursor = base.limit - v_9;
-                }
-                base.cursor = base.limit - v_8;
-                base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab23: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0B99\u0BCD")))
-                {
-                    break lab23;
-                }
-                var /** number */ v_10 = base.limit - base.cursor;
-                {
-                    var /** number */ v_11 = base.limit - base.cursor;
-                    lab24: {
-                        if (!(base.eq_s_b("\u0BC8")))
+                        break;
+                    case 5:
+                        if (!base.slice_from("\u0B9F\u0BC1"))
                         {
-                            break lab24;
+                            return false;
                         }
-                        break lab23;
-                    }
-                    base.cursor = base.limit - v_11;
-                }
-                base.cursor = base.limit - v_10;
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BAE\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab25: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0B99\u0BCD")))
-                {
-                    break lab25;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
+                        break;
+                    case 6:
+                        if (!B_found_vetrumai_urupu)
+                        {
+                            break lab1;
+                        }
+                        {
+                            var /** number */ v_3 = base.limit - base.cursor;
+                            lab2: {
+                                if (!(base.eq_s_b("\u0BC8")))
+                                {
+                                    break lab2;
+                                }
+                                break lab1;
+                            }
+                            base.cursor = base.limit - v_3;
+                        }
+                        if (!base.slice_from("\u0BAE\u0BCD"))
+                        {
+                            return false;
+                        }
+                        break;
+                    case 7:
+                        if (!base.slice_from("\u0BCD"))
+                        {
+                            return false;
+                        }
+                        break;
+                    case 8:
+                        {
+                            var /** number */ v_4 = base.limit - base.cursor;
+                            lab3: {
+                                if (base.find_among_b(a_3) == 0)
+                                {
+                                    break lab3;
+                                }
+                                break lab1;
+                            }
+                            base.cursor = base.limit - v_4;
+                        }
+                        if (!base.slice_del())
+                        {
+                            return false;
+                        }
+                        break;
+                    case 9:
+                        among_var = base.find_among_b(a_4);
+                        if (among_var == 0)
+                        {
+                            break lab1;
+                        }
+                        switch (among_var) {
+                            case 1:
+                                if (!base.slice_del())
+                                {
+                                    return false;
+                                }
+                                break;
+                            case 2:
+                                if (!base.slice_from("\u0BAE\u0BCD"))
+                                {
+                                    return false;
+                                }
+                                break;
+                        }
+                        break;
                 }
                 break lab0;
             }
@@ -753,27 +570,62 @@ function TamilStemmer() {
             {
                 return false;
             }
-            var /** number */ v_12 = base.limit - base.cursor;
-            lab26: {
-                var /** number */ v_13 = base.limit - base.cursor;
-                lab27: {
-                    if (base.find_among_b(a_10) == 0)
+            lab4: {
+                var /** number */ v_5 = base.limit - base.cursor;
+                lab5: {
+                    if (base.find_among_b(a_6) == 0)
                     {
-                        break lab27;
+                        break lab5;
                     }
-                    break lab26;
+                    var /** number */ v_6 = base.limit - base.cursor;
+                    lab6: {
+                        if (!(base.eq_s_b("\u0BCD")))
+                        {
+                            base.cursor = base.limit - v_6;
+                            break lab6;
+                        }
+                        if (base.find_among_b(a_7) == 0)
+                        {
+                            base.cursor = base.limit - v_6;
+                            break lab6;
+                        }
+                    }
+                    base.bra = base.cursor;
+                    if (!base.slice_del())
+                    {
+                        return false;
+                    }
+                    break lab4;
                 }
-                base.cursor = base.limit - v_13;
-                if (!(base.eq_s_b("\u0BCD")))
+                base.cursor = base.limit - v_5;
+                lab7: {
+                    if (base.find_among_b(a_8) == 0)
+                    {
+                        break lab7;
+                    }
+                    base.bra = base.cursor;
+                    if (!(base.eq_s_b("\u0BCD")))
+                    {
+                        break lab7;
+                    }
+                    if (!base.slice_del())
+                    {
+                        return false;
+                    }
+                    break lab4;
+                }
+                base.cursor = base.limit - v_5;
+                var /** number */ v_7 = base.limit - base.cursor;
+                if (base.find_among_b(a_9) == 0)
                 {
                     return false;
                 }
-            }
-            base.cursor = base.limit - v_12;
-            base.bra = base.cursor;
-            if (!base.slice_del())
-            {
-                return false;
+                base.cursor = base.limit - v_7;
+                base.bra = base.cursor;
+                if (!base.slice_del())
+                {
+                    return false;
+                }
             }
         }
         base.cursor = base.limit_backward;
@@ -782,13 +634,12 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_pronoun_prefixes() {
-        B_found_a_match = false;
         base.bra = base.cursor;
-        if (base.find_among(a_11) == 0)
+        if (base.find_among(a_10) == 0)
         {
             return false;
         }
-        if (base.find_among(a_12) == 0)
+        if (base.find_among(a_11) == 0)
         {
             return false;
         }
@@ -801,7 +652,6 @@ function TamilStemmer() {
         {
             return false;
         }
-        B_found_a_match = true;
         var /** number */ v_1 = base.cursor;
         r_fix_va_start();
         base.cursor = v_1;
@@ -810,77 +660,56 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_plural_suffix() {
-        B_found_a_match = false;
+        var /** number */ among_var;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
-            lab1: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BC1\u0B99\u0BCD\u0B95\u0BB3\u0BCD")))
-                {
-                    break lab1;
-                }
-                var /** number */ v_2 = base.limit - base.cursor;
-                {
-                    var /** number */ v_3 = base.limit - base.cursor;
-                    lab2: {
-                        if (base.find_among_b(a_13) == 0)
+        base.ket = base.cursor;
+        among_var = base.find_among_b(a_13);
+        if (among_var == 0)
+        {
+            return false;
+        }
+        base.bra = base.cursor;
+        switch (among_var) {
+            case 1:
+                lab0: {
+                    var /** number */ v_1 = base.limit - base.cursor;
+                    lab1: {
+                        if (base.find_among_b(a_12) == 0)
                         {
-                            break lab2;
+                            break lab1;
                         }
-                        break lab1;
+                        if (!base.slice_from("\u0BC1\u0B99\u0BCD"))
+                        {
+                            return false;
+                        }
+                        break lab0;
                     }
-                    base.cursor = base.limit - v_3;
+                    base.cursor = base.limit - v_1;
+                    if (!base.slice_from("\u0BCD"))
+                    {
+                        return false;
+                    }
                 }
-                base.cursor = base.limit - v_2;
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BCD"))
-                {
-                    return false;
-                }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab3: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BB1\u0BCD\u0B95\u0BB3\u0BCD")))
-                {
-                    break lab3;
-                }
-                base.bra = base.cursor;
+                break;
+            case 2:
                 if (!base.slice_from("\u0BB2\u0BCD"))
                 {
                     return false;
                 }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab4: {
-                base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0B9F\u0BCD\u0B95\u0BB3\u0BCD")))
-                {
-                    break lab4;
-                }
-                base.bra = base.cursor;
+                break;
+            case 3:
                 if (!base.slice_from("\u0BB3\u0BCD"))
                 {
                     return false;
                 }
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            base.ket = base.cursor;
-            if (!(base.eq_s_b("\u0B95\u0BB3\u0BCD")))
-            {
-                return false;
-            }
-            base.bra = base.cursor;
-            if (!base.slice_del())
-            {
-                return false;
-            }
+                break;
+            case 4:
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break;
         }
-        B_found_a_match = true;
         base.cursor = base.limit_backward;
         return true;
     };
@@ -891,7 +720,6 @@ function TamilStemmer() {
         {
             return false;
         }
-        B_found_a_match = false;
         base.limit_backward = base.cursor; base.cursor = base.limit;
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
@@ -905,7 +733,6 @@ function TamilStemmer() {
             {
                 return false;
             }
-            B_found_a_match = true;
         }
         base.cursor = base.limit - v_1;
         base.cursor = base.limit_backward;
@@ -919,7 +746,6 @@ function TamilStemmer() {
         {
             return false;
         }
-        B_found_a_match = false;
         base.limit_backward = base.cursor; base.cursor = base.limit;
         base.ket = base.cursor;
         if (base.find_among_b(a_15) == 0)
@@ -931,14 +757,12 @@ function TamilStemmer() {
         {
             return false;
         }
-        B_found_a_match = true;
         base.cursor = base.limit_backward;
         return true;
     };
 
     /** @return {boolean} */
     function r_remove_um() {
-        B_found_a_match = false;
         if (!r_has_min_length())
         {
             return false;
@@ -954,7 +778,6 @@ function TamilStemmer() {
         {
             return false;
         }
-        B_found_a_match = true;
         base.cursor = base.limit_backward;
         var /** number */ v_1 = base.cursor;
         r_fix_ending();
@@ -964,164 +787,49 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_common_word_endings() {
-        B_found_a_match = false;
+        var /** number */ among_var;
         if (!r_has_min_length())
         {
             return false;
         }
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
-            lab1: {
-                var /** number */ v_2 = base.limit - base.cursor;
-                base.ket = base.cursor;
-                lab2: {
-                    var /** number */ v_3 = base.limit - base.cursor;
-                    lab3: {
-                        if (!(base.eq_s_b("\u0BC1\u0B9F\u0BA9\u0BCD")))
-                        {
-                            break lab3;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab4: {
-                        if (!(base.eq_s_b("\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8")))
-                        {
-                            break lab4;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab5: {
-                        if (!(base.eq_s_b("\u0BBF\u0B9F\u0BAE\u0BCD")))
-                        {
-                            break lab5;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab6: {
-                        if (!(base.eq_s_b("\u0BBF\u0BA9\u0BCD\u0BB1\u0BBF")))
-                        {
-                            break lab6;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab7: {
-                        if (!(base.eq_s_b("\u0BBE\u0B95\u0BBF")))
-                        {
-                            break lab7;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab8: {
-                        if (!(base.eq_s_b("\u0BBE\u0B95\u0BBF\u0BAF")))
-                        {
-                            break lab8;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab9: {
-                        if (!(base.eq_s_b("\u0BC6\u0BA9\u0BCD\u0BB1\u0BC1")))
-                        {
-                            break lab9;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab10: {
-                        if (!(base.eq_s_b("\u0BC1\u0BB3\u0BCD\u0BB3")))
-                        {
-                            break lab10;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab11: {
-                        if (!(base.eq_s_b("\u0BC1\u0B9F\u0BC8\u0BAF")))
-                        {
-                            break lab11;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab12: {
-                        if (!(base.eq_s_b("\u0BC1\u0B9F\u0BC8")))
-                        {
-                            break lab12;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab13: {
-                        if (!(base.eq_s_b("\u0BC6\u0BA9\u0BC1\u0BAE\u0BCD")))
-                        {
-                            break lab13;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab14: {
-                        if (!(base.eq_s_b("\u0BB2\u0BCD\u0BB2")))
-                        {
-                            break lab14;
-                        }
-                        var /** number */ v_4 = base.limit - base.cursor;
-                        {
-                            var /** number */ v_5 = base.limit - base.cursor;
-                            lab15: {
-                                if (base.find_among_b(a_16) == 0)
-                                {
-                                    break lab15;
-                                }
-                                break lab14;
-                            }
-                            base.cursor = base.limit - v_5;
-                        }
-                        base.cursor = base.limit - v_4;
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    lab16: {
-                        if (!(base.eq_s_b("\u0BC6\u0BA9")))
-                        {
-                            break lab16;
-                        }
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_3;
-                    if (!(base.eq_s_b("\u0BBE\u0B95\u0BBF")))
-                    {
-                        break lab1;
-                    }
-                }
-                base.bra = base.cursor;
+        base.ket = base.cursor;
+        among_var = base.find_among_b(a_17);
+        if (among_var == 0)
+        {
+            return false;
+        }
+        base.bra = base.cursor;
+        switch (among_var) {
+            case 1:
                 if (!base.slice_from("\u0BCD"))
                 {
                     return false;
                 }
-                B_found_a_match = true;
-                base.cursor = base.limit - v_2;
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            var /** number */ v_6 = base.limit - base.cursor;
-            base.ket = base.cursor;
-            if (base.find_among_b(a_17) == 0)
-            {
-                return false;
-            }
-            base.bra = base.cursor;
-            if (!base.slice_del())
-            {
-                return false;
-            }
-            B_found_a_match = true;
-            base.cursor = base.limit - v_6;
+                break;
+            case 2:
+                {
+                    var /** number */ v_1 = base.limit - base.cursor;
+                    lab0: {
+                        if (base.find_among_b(a_16) == 0)
+                        {
+                            break lab0;
+                        }
+                        return false;
+                    }
+                    base.cursor = base.limit - v_1;
+                }
+                if (!base.slice_from("\u0BCD"))
+                {
+                    return false;
+                }
+                break;
+            case 3:
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break;
         }
         base.cursor = base.limit_backward;
         r_fix_endings();
@@ -1130,7 +838,7 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_vetrumai_urupukal() {
-        B_found_a_match = false;
+        var /** number */ among_var;
         B_found_vetrumai_urupu = false;
         if (!r_has_min_length())
         {
@@ -1142,334 +850,145 @@ function TamilStemmer() {
             lab1: {
                 var /** number */ v_2 = base.limit - base.cursor;
                 base.ket = base.cursor;
-                if (!(base.eq_s_b("\u0BA9\u0BC8")))
+                among_var = base.find_among_b(a_20);
+                if (among_var == 0)
                 {
                     break lab1;
                 }
                 base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
+                switch (among_var) {
+                    case 1:
+                        if (!base.slice_del())
+                        {
+                            return false;
+                        }
+                        break;
+                    case 2:
+                        if (!base.slice_from("\u0BCD"))
+                        {
+                            return false;
+                        }
+                        break;
+                    case 3:
+                        {
+                            var /** number */ v_3 = base.limit - base.cursor;
+                            lab2: {
+                                if (!(base.eq_s_b("\u0BAE")))
+                                {
+                                    break lab2;
+                                }
+                                break lab1;
+                            }
+                            base.cursor = base.limit - v_3;
+                        }
+                        if (!base.slice_from("\u0BCD"))
+                        {
+                            return false;
+                        }
+                        break;
+                    case 4:
+                        if (base.current.length < 7)
+                        {
+                            break lab1;
+                        }
+                        if (!base.slice_from("\u0BCD"))
+                        {
+                            return false;
+                        }
+                        break;
+                    case 5:
+                        {
+                            var /** number */ v_4 = base.limit - base.cursor;
+                            lab3: {
+                                if (base.find_among_b(a_18) == 0)
+                                {
+                                    break lab3;
+                                }
+                                break lab1;
+                            }
+                            base.cursor = base.limit - v_4;
+                        }
+                        if (!base.slice_from("\u0BCD"))
+                        {
+                            return false;
+                        }
+                        break;
+                    case 6:
+                        {
+                            var /** number */ v_5 = base.limit - base.cursor;
+                            lab4: {
+                                if (base.find_among_b(a_19) == 0)
+                                {
+                                    break lab4;
+                                }
+                                break lab1;
+                            }
+                            base.cursor = base.limit - v_5;
+                        }
+                        if (!base.slice_del())
+                        {
+                            return false;
+                        }
+                        break;
+                    case 7:
+                        if (!base.slice_from("\u0BBF"))
+                        {
+                            return false;
+                        }
+                        break;
                 }
                 base.cursor = base.limit - v_2;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            lab2: {
-                var /** number */ v_3 = base.limit - base.cursor;
-                base.ket = base.cursor;
-                lab3: {
-                    var /** number */ v_4 = base.limit - base.cursor;
-                    lab4: {
-                        lab5: {
-                            var /** number */ v_5 = base.limit - base.cursor;
-                            lab6: {
-                                if (!(base.eq_s_b("\u0BBF\u0BA9\u0BC8")))
-                                {
-                                    break lab6;
-                                }
-                                break lab5;
-                            }
-                            base.cursor = base.limit - v_5;
-                            if (!(base.eq_s_b("\u0BC8")))
+            var /** number */ v_6 = base.limit - base.cursor;
+            base.ket = base.cursor;
+            if (!(base.eq_s_b("\u0BC8")))
+            {
+                return false;
+            }
+            lab5: {
+                var /** number */ v_7 = base.limit - base.cursor;
+                lab6: {
+                    {
+                        var /** number */ v_8 = base.limit - base.cursor;
+                        lab7: {
+                            if (base.find_among_b(a_21) == 0)
                             {
-                                break lab4;
+                                break lab7;
                             }
+                            break lab6;
                         }
-                        var /** number */ v_6 = base.limit - base.cursor;
-                        {
-                            var /** number */ v_7 = base.limit - base.cursor;
-                            lab7: {
-                                if (base.find_among_b(a_18) == 0)
-                                {
-                                    break lab7;
-                                }
-                                break lab4;
-                            }
-                            base.cursor = base.limit - v_7;
-                        }
-                        base.cursor = base.limit - v_6;
-                        break lab3;
+                        base.cursor = base.limit - v_8;
                     }
-                    base.cursor = base.limit - v_4;
-                    if (!(base.eq_s_b("\u0BC8")))
-                    {
-                        break lab2;
-                    }
-                    var /** number */ v_8 = base.limit - base.cursor;
-                    if (base.find_among_b(a_19) == 0)
-                    {
-                        break lab2;
-                    }
-                    if (!(base.eq_s_b("\u0BCD")))
-                    {
-                        break lab2;
-                    }
-                    base.cursor = base.limit - v_8;
+                    break lab5;
                 }
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BCD"))
+                base.cursor = base.limit - v_7;
+                var /** number */ v_9 = base.limit - base.cursor;
+                if (base.find_among_b(a_22) == 0)
                 {
                     return false;
                 }
-                base.cursor = base.limit - v_3;
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab8: {
-                var /** number */ v_9 = base.limit - base.cursor;
-                base.ket = base.cursor;
-                lab9: {
-                    var /** number */ v_10 = base.limit - base.cursor;
-                    lab10: {
-                        if (!(base.eq_s_b("\u0BCA\u0B9F\u0BC1")))
-                        {
-                            break lab10;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab11: {
-                        if (!(base.eq_s_b("\u0BCB\u0B9F\u0BC1")))
-                        {
-                            break lab11;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab12: {
-                        if (!(base.eq_s_b("\u0BBF\u0BB2\u0BCD")))
-                        {
-                            break lab12;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab13: {
-                        if (!(base.eq_s_b("\u0BBF\u0BB1\u0BCD")))
-                        {
-                            break lab13;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab14: {
-                        if (!(base.eq_s_b("\u0BBF\u0BA9\u0BCD")))
-                        {
-                            break lab14;
-                        }
-                        var /** number */ v_11 = base.limit - base.cursor;
-                        {
-                            var /** number */ v_12 = base.limit - base.cursor;
-                            lab15: {
-                                if (!(base.eq_s_b("\u0BAE")))
-                                {
-                                    break lab15;
-                                }
-                                break lab14;
-                            }
-                            base.cursor = base.limit - v_12;
-                        }
-                        base.cursor = base.limit - v_11;
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab16: {
-                        if (!(base.eq_s_b("\u0BBF\u0BA9\u0BCD\u0BB1\u0BC1")))
-                        {
-                            break lab16;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab17: {
-                        if (!(base.eq_s_b("\u0BBF\u0BB0\u0BC1\u0BA8\u0BCD\u0BA4\u0BC1")))
-                        {
-                            break lab17;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab18: {
-                        if (!(base.eq_s_b("\u0BB5\u0BBF\u0B9F")))
-                        {
-                            break lab18;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab19: {
-                        if (!(base.current.length >= 7))
-                        {
-                            break lab19;
-                        }
-                        if (!(base.eq_s_b("\u0BBF\u0B9F\u0BAE\u0BCD")))
-                        {
-                            break lab19;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab20: {
-                        if (!(base.eq_s_b("\u0BBE\u0BB2\u0BCD")))
-                        {
-                            break lab20;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab21: {
-                        if (!(base.eq_s_b("\u0BC1\u0B9F\u0BC8")))
-                        {
-                            break lab21;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab22: {
-                        if (!(base.eq_s_b("\u0BBE\u0BAE\u0BB2\u0BCD")))
-                        {
-                            break lab22;
-                        }
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    lab23: {
-                        if (!(base.eq_s_b("\u0BB2\u0BCD")))
-                        {
-                            break lab23;
-                        }
-                        var /** number */ v_13 = base.limit - base.cursor;
-                        {
-                            var /** number */ v_14 = base.limit - base.cursor;
-                            lab24: {
-                                if (base.find_among_b(a_20) == 0)
-                                {
-                                    break lab24;
-                                }
-                                break lab23;
-                            }
-                            base.cursor = base.limit - v_14;
-                        }
-                        base.cursor = base.limit - v_13;
-                        break lab9;
-                    }
-                    base.cursor = base.limit - v_10;
-                    if (!(base.eq_s_b("\u0BC1\u0BB3\u0BCD")))
-                    {
-                        break lab8;
-                    }
-                }
-                base.bra = base.cursor;
-                if (!base.slice_from("\u0BCD"))
+                if (!(base.eq_s_b("\u0BCD")))
                 {
                     return false;
                 }
                 base.cursor = base.limit - v_9;
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            lab25: {
-                var /** number */ v_15 = base.limit - base.cursor;
-                base.ket = base.cursor;
-                lab26: {
-                    var /** number */ v_16 = base.limit - base.cursor;
-                    lab27: {
-                        if (!(base.eq_s_b("\u0B95\u0BA3\u0BCD")))
-                        {
-                            break lab27;
-                        }
-                        break lab26;
-                    }
-                    base.cursor = base.limit - v_16;
-                    lab28: {
-                        if (!(base.eq_s_b("\u0BAE\u0BC1\u0BA9\u0BCD")))
-                        {
-                            break lab28;
-                        }
-                        break lab26;
-                    }
-                    base.cursor = base.limit - v_16;
-                    lab29: {
-                        if (!(base.eq_s_b("\u0BAE\u0BC7\u0BB2\u0BCD")))
-                        {
-                            break lab29;
-                        }
-                        break lab26;
-                    }
-                    base.cursor = base.limit - v_16;
-                    lab30: {
-                        if (!(base.eq_s_b("\u0BAE\u0BC7\u0BB1\u0BCD")))
-                        {
-                            break lab30;
-                        }
-                        break lab26;
-                    }
-                    base.cursor = base.limit - v_16;
-                    lab31: {
-                        if (!(base.eq_s_b("\u0B95\u0BC0\u0BB4\u0BCD")))
-                        {
-                            break lab31;
-                        }
-                        break lab26;
-                    }
-                    base.cursor = base.limit - v_16;
-                    lab32: {
-                        if (!(base.eq_s_b("\u0BAA\u0BBF\u0BA9\u0BCD")))
-                        {
-                            break lab32;
-                        }
-                        break lab26;
-                    }
-                    base.cursor = base.limit - v_16;
-                    if (!(base.eq_s_b("\u0BA4\u0BC1")))
-                    {
-                        break lab25;
-                    }
-                    var /** number */ v_17 = base.limit - base.cursor;
-                    {
-                        var /** number */ v_18 = base.limit - base.cursor;
-                        lab33: {
-                            if (base.find_among_b(a_21) == 0)
-                            {
-                                break lab33;
-                            }
-                            break lab25;
-                        }
-                        base.cursor = base.limit - v_18;
-                    }
-                    base.cursor = base.limit - v_17;
-                }
-                base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                base.cursor = base.limit - v_15;
-                break lab0;
-            }
-            base.cursor = base.limit - v_1;
-            var /** number */ v_19 = base.limit - base.cursor;
-            base.ket = base.cursor;
-            if (!(base.eq_s_b("\u0BC0")))
-            {
-                return false;
             }
             base.bra = base.cursor;
-            if (!base.slice_from("\u0BBF"))
+            if (!base.slice_from("\u0BCD"))
             {
                 return false;
             }
-            base.cursor = base.limit - v_19;
+            base.cursor = base.limit - v_6;
         }
-        B_found_a_match = true;
         B_found_vetrumai_urupu = true;
-        var /** number */ v_20 = base.limit - base.cursor;
-        lab34: {
+        var /** number */ v_10 = base.limit - base.cursor;
+        lab8: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u0BBF\u0BA9\u0BCD")))
             {
-                break lab34;
+                break lab8;
             }
             base.bra = base.cursor;
             if (!base.slice_from("\u0BCD"))
@@ -1477,7 +996,7 @@ function TamilStemmer() {
                 return false;
             }
         }
-        base.cursor = base.limit - v_20;
+        base.cursor = base.limit - v_10;
         base.cursor = base.limit_backward;
         r_fix_endings();
         return true;
@@ -1507,6 +1026,7 @@ function TamilStemmer() {
 
     /** @return {boolean} */
     function r_remove_tense_suffix() {
+        var /** number */ among_var;
         B_found_a_match = false;
         if (!r_has_min_length())
         {
@@ -1515,503 +1035,101 @@ function TamilStemmer() {
         base.limit_backward = base.cursor; base.cursor = base.limit;
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            lab1: {
-                var /** number */ v_2 = base.limit - base.cursor;
-                lab2: {
-                    var /** number */ v_3 = base.limit - base.cursor;
-                    base.ket = base.cursor;
-                    if (base.find_among_b(a_22) == 0)
-                    {
-                        break lab2;
-                    }
-                    base.bra = base.cursor;
+            var /** number */ v_2 = base.limit - base.cursor;
+            base.ket = base.cursor;
+            among_var = base.find_among_b(a_25);
+            if (among_var == 0)
+            {
+                break lab0;
+            }
+            base.bra = base.cursor;
+            switch (among_var) {
+                case 1:
                     if (!base.slice_del())
                     {
                         return false;
                     }
-                    B_found_a_match = true;
-                    base.cursor = base.limit - v_3;
-                    break lab1;
-                }
-                base.cursor = base.limit - v_2;
-                lab3: {
-                    var /** number */ v_4 = base.limit - base.cursor;
-                    base.ket = base.cursor;
-                    lab4: {
+                    break;
+                case 2:
+                    {
+                        var /** number */ v_3 = base.limit - base.cursor;
+                        lab1: {
+                            if (base.find_among_b(a_23) == 0)
+                            {
+                                break lab1;
+                            }
+                            break lab0;
+                        }
+                        base.cursor = base.limit - v_3;
+                    }
+                    if (!base.slice_del())
+                    {
+                        return false;
+                    }
+                    break;
+                case 3:
+                    {
+                        var /** number */ v_4 = base.limit - base.cursor;
+                        lab2: {
+                            if (base.find_among_b(a_24) == 0)
+                            {
+                                break lab2;
+                            }
+                            break lab0;
+                        }
+                        base.cursor = base.limit - v_4;
+                    }
+                    if (!base.slice_del())
+                    {
+                        return false;
+                    }
+                    break;
+                case 4:
+                    {
                         var /** number */ v_5 = base.limit - base.cursor;
-                        lab5: {
-                            if (!(base.eq_s_b("\u0BAE\u0BBE\u0BB0\u0BCD")))
+                        lab3: {
+                            if (!(base.eq_s_b("\u0B9A")))
                             {
-                                break lab5;
+                                break lab3;
                             }
-                            break lab4;
+                            break lab0;
                         }
                         base.cursor = base.limit - v_5;
-                        lab6: {
-                            if (!(base.eq_s_b("\u0BAE\u0BBF\u0BA9\u0BCD")))
-                            {
-                                break lab6;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab7: {
-                            if (!(base.eq_s_b("\u0BA9\u0BA9\u0BCD")))
-                            {
-                                break lab7;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab8: {
-                            if (!(base.eq_s_b("\u0BA9\u0BBE\u0BA9\u0BCD")))
-                            {
-                                break lab8;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab9: {
-                            if (!(base.eq_s_b("\u0BA9\u0BBE\u0BB3\u0BCD")))
-                            {
-                                break lab9;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab10: {
-                            if (!(base.eq_s_b("\u0BA9\u0BBE\u0BB0\u0BCD")))
-                            {
-                                break lab10;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab11: {
-                            if (!(base.eq_s_b("\u0BB5\u0BA9\u0BCD")))
-                            {
-                                break lab11;
-                            }
-                            var /** number */ v_6 = base.limit - base.cursor;
-                            {
-                                var /** number */ v_7 = base.limit - base.cursor;
-                                lab12: {
-                                    if (base.find_among_b(a_23) == 0)
-                                    {
-                                        break lab12;
-                                    }
-                                    break lab11;
-                                }
-                                base.cursor = base.limit - v_7;
-                            }
-                            base.cursor = base.limit - v_6;
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab13: {
-                            if (!(base.eq_s_b("\u0BA9\u0BB3\u0BCD")))
-                            {
-                                break lab13;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab14: {
-                            if (!(base.eq_s_b("\u0BB5\u0BB3\u0BCD")))
-                            {
-                                break lab14;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab15: {
-                            if (!(base.eq_s_b("\u0BA9\u0BB0\u0BCD")))
-                            {
-                                break lab15;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab16: {
-                            if (!(base.eq_s_b("\u0BB5\u0BB0\u0BCD")))
-                            {
-                                break lab16;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab17: {
-                            if (!(base.eq_s_b("\u0BA9")))
-                            {
-                                break lab17;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab18: {
-                            if (!(base.eq_s_b("\u0BAA")))
-                            {
-                                break lab18;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab19: {
-                            if (!(base.eq_s_b("\u0B95")))
-                            {
-                                break lab19;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab20: {
-                            if (!(base.eq_s_b("\u0BA4")))
-                            {
-                                break lab20;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab21: {
-                            if (!(base.eq_s_b("\u0BAF")))
-                            {
-                                break lab21;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab22: {
-                            if (!(base.eq_s_b("\u0BAA\u0BA9\u0BCD")))
-                            {
-                                break lab22;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab23: {
-                            if (!(base.eq_s_b("\u0BAA\u0BB3\u0BCD")))
-                            {
-                                break lab23;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab24: {
-                            if (!(base.eq_s_b("\u0BAA\u0BB0\u0BCD")))
-                            {
-                                break lab24;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab25: {
-                            if (!(base.eq_s_b("\u0BA4\u0BC1")))
-                            {
-                                break lab25;
-                            }
-                            var /** number */ v_8 = base.limit - base.cursor;
-                            {
-                                var /** number */ v_9 = base.limit - base.cursor;
-                                lab26: {
-                                    if (base.find_among_b(a_24) == 0)
-                                    {
-                                        break lab26;
-                                    }
-                                    break lab25;
-                                }
-                                base.cursor = base.limit - v_9;
-                            }
-                            base.cursor = base.limit - v_8;
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab27: {
-                            if (!(base.eq_s_b("\u0BBF\u0BB1\u0BCD\u0BB1\u0BC1")))
-                            {
-                                break lab27;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab28: {
-                            if (!(base.eq_s_b("\u0BAA\u0BAE\u0BCD")))
-                            {
-                                break lab28;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab29: {
-                            if (!(base.eq_s_b("\u0BA9\u0BAE\u0BCD")))
-                            {
-                                break lab29;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab30: {
-                            if (!(base.eq_s_b("\u0BA4\u0BC1\u0BAE\u0BCD")))
-                            {
-                                break lab30;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab31: {
-                            if (!(base.eq_s_b("\u0BB1\u0BC1\u0BAE\u0BCD")))
-                            {
-                                break lab31;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab32: {
-                            if (!(base.eq_s_b("\u0B95\u0BC1\u0BAE\u0BCD")))
-                            {
-                                break lab32;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab33: {
-                            if (!(base.eq_s_b("\u0BA9\u0BC6\u0BA9\u0BCD")))
-                            {
-                                break lab33;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        lab34: {
-                            if (!(base.eq_s_b("\u0BA9\u0BC8")))
-                            {
-                                break lab34;
-                            }
-                            break lab4;
-                        }
-                        base.cursor = base.limit - v_5;
-                        if (!(base.eq_s_b("\u0BB5\u0BC8")))
-                        {
-                            break lab3;
-                        }
                     }
-                    base.bra = base.cursor;
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
-                    B_found_a_match = true;
-                    base.cursor = base.limit - v_4;
-                    break lab1;
-                }
-                base.cursor = base.limit - v_2;
-                lab35: {
-                    var /** number */ v_10 = base.limit - base.cursor;
-                    base.ket = base.cursor;
-                    lab36: {
-                        var /** number */ v_11 = base.limit - base.cursor;
-                        lab37: {
-                            if (!(base.eq_s_b("\u0BBE\u0BA9\u0BCD")))
-                            {
-                                break lab37;
-                            }
-                            var /** number */ v_12 = base.limit - base.cursor;
-                            {
-                                var /** number */ v_13 = base.limit - base.cursor;
-                                lab38: {
-                                    if (!(base.eq_s_b("\u0B9A")))
-                                    {
-                                        break lab38;
-                                    }
-                                    break lab37;
-                                }
-                                base.cursor = base.limit - v_13;
-                            }
-                            base.cursor = base.limit - v_12;
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab39: {
-                            if (!(base.eq_s_b("\u0BBE\u0BB3\u0BCD")))
-                            {
-                                break lab39;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab40: {
-                            if (!(base.eq_s_b("\u0BBE\u0BB0\u0BCD")))
-                            {
-                                break lab40;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab41: {
-                            if (!(base.eq_s_b("\u0BC7\u0BA9\u0BCD")))
-                            {
-                                break lab41;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab42: {
-                            if (!(base.eq_s_b("\u0BBE")))
-                            {
-                                break lab42;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab43: {
-                            if (!(base.eq_s_b("\u0BBE\u0BAE\u0BCD")))
-                            {
-                                break lab43;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab44: {
-                            if (!(base.eq_s_b("\u0BC6\u0BAE\u0BCD")))
-                            {
-                                break lab44;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab45: {
-                            if (!(base.eq_s_b("\u0BC7\u0BAE\u0BCD")))
-                            {
-                                break lab45;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab46: {
-                            if (!(base.eq_s_b("\u0BCB\u0BAE\u0BCD")))
-                            {
-                                break lab46;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab47: {
-                            if (!(base.eq_s_b("\u0B95\u0BC1\u0BAE\u0BCD")))
-                            {
-                                break lab47;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab48: {
-                            if (!(base.eq_s_b("\u0BA4\u0BC1\u0BAE\u0BCD")))
-                            {
-                                break lab48;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab49: {
-                            if (!(base.eq_s_b("\u0B9F\u0BC1\u0BAE\u0BCD")))
-                            {
-                                break lab49;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab50: {
-                            if (!(base.eq_s_b("\u0BB1\u0BC1\u0BAE\u0BCD")))
-                            {
-                                break lab50;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab51: {
-                            if (!(base.eq_s_b("\u0BBE\u0BAF\u0BCD")))
-                            {
-                                break lab51;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab52: {
-                            if (!(base.eq_s_b("\u0BA9\u0BC6\u0BA9\u0BCD")))
-                            {
-                                break lab52;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab53: {
-                            if (!(base.eq_s_b("\u0BA9\u0BBF\u0BB0\u0BCD")))
-                            {
-                                break lab53;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        lab54: {
-                            if (!(base.eq_s_b("\u0BC0\u0BB0\u0BCD")))
-                            {
-                                break lab54;
-                            }
-                            break lab36;
-                        }
-                        base.cursor = base.limit - v_11;
-                        if (!(base.eq_s_b("\u0BC0\u0BAF\u0BB0\u0BCD")))
-                        {
-                            break lab35;
-                        }
-                    }
-                    base.bra = base.cursor;
                     if (!base.slice_from("\u0BCD"))
                     {
                         return false;
                     }
-                    B_found_a_match = true;
-                    base.cursor = base.limit - v_10;
-                    break lab1;
-                }
-                base.cursor = base.limit - v_2;
-                var /** number */ v_14 = base.limit - base.cursor;
-                base.ket = base.cursor;
-                lab55: {
-                    var /** number */ v_15 = base.limit - base.cursor;
-                    lab56: {
-                        if (!(base.eq_s_b("\u0B95\u0BC1")))
-                        {
-                            break lab56;
-                        }
-                        break lab55;
+                    break;
+                case 5:
+                    if (!base.slice_from("\u0BCD"))
+                    {
+                        return false;
                     }
-                    base.cursor = base.limit - v_15;
-                    if (!(base.eq_s_b("\u0BA4\u0BC1")))
+                    break;
+                case 6:
+                    var /** number */ v_6 = base.limit - base.cursor;
+                    if (!(base.eq_s_b("\u0BCD")))
                     {
                         break lab0;
                     }
-                }
-                var /** number */ v_16 = base.limit - base.cursor;
-                if (!(base.eq_s_b("\u0BCD")))
-                {
-                    break lab0;
-                }
-                base.cursor = base.limit - v_16;
-                base.bra = base.cursor;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
-                B_found_a_match = true;
-                base.cursor = base.limit - v_14;
+                    base.cursor = base.limit - v_6;
+                    if (!base.slice_del())
+                    {
+                        return false;
+                    }
+                    break;
             }
+            B_found_a_match = true;
+            base.cursor = base.limit - v_2;
         }
         base.cursor = base.limit - v_1;
-        var /** number */ v_17 = base.limit - base.cursor;
-        lab57: {
+        var /** number */ v_7 = base.limit - base.cursor;
+        lab4: {
             base.ket = base.cursor;
-            if (base.find_among_b(a_25) == 0)
+            if (base.find_among_b(a_26) == 0)
             {
-                break lab57;
+                break lab4;
             }
             base.bra = base.cursor;
             if (!base.slice_del())
@@ -2020,7 +1138,7 @@ function TamilStemmer() {
             }
             B_found_a_match = true;
         }
-        base.cursor = base.limit - v_17;
+        base.cursor = base.limit - v_7;
         base.cursor = base.limit_backward;
         r_fix_endings();
         return true;

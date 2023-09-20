@@ -202,7 +202,7 @@ function GermanStemmer() {
         }
         I_p1 = base.cursor;
         lab4: {
-            if (!(I_p1 < I_x))
+            if (I_p1 >= I_x)
             {
                 break lab4;
             }
@@ -299,20 +299,12 @@ function GermanStemmer() {
 
     /** @return {boolean} */
     function r_R1() {
-        if (!(I_p1 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p1 <= base.cursor;
     };
 
     /** @return {boolean} */
     function r_R2() {
-        if (!(I_p2 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p2 <= base.cursor;
     };
 
     /** @return {boolean} */

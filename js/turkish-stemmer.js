@@ -2346,36 +2346,22 @@ function TurkishStemmer() {
     /** @return {boolean} */
     function r_more_than_one_syllable_word() {
         var /** number */ v_1 = base.cursor;
+        for (var /** number */ v_2 = 2; v_2 > 0; v_2--)
         {
-            var v_2 = 2;
-            while(true)
+            golab0: while(true)
             {
-                var /** number */ v_3 = base.cursor;
-                lab0: {
-                    golab1: while(true)
+                lab1: {
+                    if (!(base.in_grouping(g_vowel, 97, 305)))
                     {
-                        lab2: {
-                            if (!(base.in_grouping(g_vowel, 97, 305)))
-                            {
-                                break lab2;
-                            }
-                            break golab1;
-                        }
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab0;
-                        }
-                        base.cursor++;
+                        break lab1;
                     }
-                    v_2--;
-                    continue;
+                    break golab0;
                 }
-                base.cursor = v_3;
-                break;
-            }
-            if (v_2 > 0)
-            {
-                return false;
+                if (base.cursor >= base.limit)
+                {
+                    return false;
+                }
+                base.cursor++;
             }
         }
         base.cursor = v_1;

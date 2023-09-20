@@ -4,17 +4,22 @@
 function RomanianStemmer() {
     var base = new BaseStemmer();
     /** @const */ var a_0 = [
+        ["\u015F", -1, 1],
+        ["\u0163", -1, 2]
+    ];
+
+    /** @const */ var a_1 = [
         ["", -1, 3],
         ["I", 0, 1],
         ["U", 0, 2]
     ];
 
-    /** @const */ var a_1 = [
+    /** @const */ var a_2 = [
         ["ea", -1, 3],
-        ["a\u0163ia", -1, 7],
+        ["a\u021Bia", -1, 7],
         ["aua", -1, 2],
         ["iua", -1, 4],
-        ["a\u0163ie", -1, 7],
+        ["a\u021Bie", -1, 7],
         ["ele", -1, 3],
         ["ile", -1, 5],
         ["iile", 6, 4],
@@ -28,14 +33,14 @@ function RomanianStemmer() {
         ["iilor", 14, 4]
     ];
 
-    /** @const */ var a_2 = [
+    /** @const */ var a_3 = [
         ["icala", -1, 4],
         ["iciva", -1, 4],
         ["ativa", -1, 5],
         ["itiva", -1, 6],
         ["icale", -1, 4],
-        ["a\u0163iune", -1, 5],
-        ["i\u0163iune", -1, 6],
+        ["a\u021Biune", -1, 5],
+        ["i\u021Biune", -1, 6],
         ["atoare", -1, 5],
         ["itoare", -1, 6],
         ["\u0103toare", -1, 5],
@@ -60,9 +65,9 @@ function RomanianStemmer() {
         ["icit\u0103i", -1, 4],
         ["abilit\u0103i", -1, 1],
         ["ivit\u0103i", -1, 3],
-        ["icit\u0103\u0163i", -1, 4],
-        ["abilit\u0103\u0163i", -1, 1],
-        ["ivit\u0103\u0163i", -1, 3],
+        ["icit\u0103\u021Bi", -1, 4],
+        ["abilit\u0103\u021Bi", -1, 1],
+        ["ivit\u0103\u021Bi", -1, 3],
         ["ical", -1, 4],
         ["ator", -1, 5],
         ["icator", 35, 4],
@@ -77,7 +82,7 @@ function RomanianStemmer() {
         ["itiv\u0103", -1, 6]
     ];
 
-    /** @const */ var a_3 = [
+    /** @const */ var a_4 = [
         ["ica", -1, 1],
         ["abila", -1, 1],
         ["ibila", -1, 1],
@@ -114,11 +119,11 @@ function RomanianStemmer() {
         ["anti", -1, 1],
         ["isti", -1, 3],
         ["uti", -1, 1],
-        ["i\u015Fti", -1, 3],
+        ["i\u0219ti", -1, 3],
         ["ivi", -1, 1],
         ["it\u0103i", -1, 1],
-        ["o\u015Fi", -1, 1],
-        ["it\u0103\u0163i", -1, 1],
+        ["o\u0219i", -1, 1],
+        ["it\u0103\u021Bi", -1, 1],
         ["abil", -1, 1],
         ["ibil", -1, 1],
         ["ism", -1, 3],
@@ -142,7 +147,7 @@ function RomanianStemmer() {
         ["iv\u0103", -1, 1]
     ];
 
-    /** @const */ var a_4 = [
+    /** @const */ var a_5 = [
         ["ea", -1, 1],
         ["ia", -1, 1],
         ["esc", -1, 1],
@@ -159,44 +164,44 @@ function RomanianStemmer() {
         ["ise", 10, 1],
         ["use", 10, 1],
         ["\u00E2se", 10, 1],
-        ["e\u015Fte", -1, 1],
-        ["\u0103\u015Fte", -1, 1],
+        ["e\u0219te", -1, 1],
+        ["\u0103\u0219te", -1, 1],
         ["eze", -1, 1],
         ["ai", -1, 1],
         ["eai", 19, 1],
         ["iai", 19, 1],
         ["sei", -1, 2],
-        ["e\u015Fti", -1, 1],
-        ["\u0103\u015Fti", -1, 1],
+        ["e\u0219ti", -1, 1],
+        ["\u0103\u0219ti", -1, 1],
         ["ui", -1, 1],
         ["ezi", -1, 1],
         ["\u00E2i", -1, 1],
-        ["a\u015Fi", -1, 1],
-        ["se\u015Fi", -1, 2],
-        ["ase\u015Fi", 29, 1],
-        ["sese\u015Fi", 29, 2],
-        ["ise\u015Fi", 29, 1],
-        ["use\u015Fi", 29, 1],
-        ["\u00E2se\u015Fi", 29, 1],
-        ["i\u015Fi", -1, 1],
-        ["u\u015Fi", -1, 1],
-        ["\u00E2\u015Fi", -1, 1],
-        ["a\u0163i", -1, 2],
-        ["ea\u0163i", 38, 1],
-        ["ia\u0163i", 38, 1],
-        ["e\u0163i", -1, 2],
-        ["i\u0163i", -1, 2],
-        ["\u00E2\u0163i", -1, 2],
-        ["ar\u0103\u0163i", -1, 1],
-        ["ser\u0103\u0163i", -1, 2],
-        ["aser\u0103\u0163i", 45, 1],
-        ["seser\u0103\u0163i", 45, 2],
-        ["iser\u0103\u0163i", 45, 1],
-        ["user\u0103\u0163i", 45, 1],
-        ["\u00E2ser\u0103\u0163i", 45, 1],
-        ["ir\u0103\u0163i", -1, 1],
-        ["ur\u0103\u0163i", -1, 1],
-        ["\u00E2r\u0103\u0163i", -1, 1],
+        ["a\u0219i", -1, 1],
+        ["se\u0219i", -1, 2],
+        ["ase\u0219i", 29, 1],
+        ["sese\u0219i", 29, 2],
+        ["ise\u0219i", 29, 1],
+        ["use\u0219i", 29, 1],
+        ["\u00E2se\u0219i", 29, 1],
+        ["i\u0219i", -1, 1],
+        ["u\u0219i", -1, 1],
+        ["\u00E2\u0219i", -1, 1],
+        ["a\u021Bi", -1, 2],
+        ["ea\u021Bi", 38, 1],
+        ["ia\u021Bi", 38, 1],
+        ["e\u021Bi", -1, 2],
+        ["i\u021Bi", -1, 2],
+        ["\u00E2\u021Bi", -1, 2],
+        ["ar\u0103\u021Bi", -1, 1],
+        ["ser\u0103\u021Bi", -1, 2],
+        ["aser\u0103\u021Bi", 45, 1],
+        ["seser\u0103\u021Bi", 45, 2],
+        ["iser\u0103\u021Bi", 45, 1],
+        ["user\u0103\u021Bi", 45, 1],
+        ["\u00E2ser\u0103\u021Bi", 45, 1],
+        ["ir\u0103\u021Bi", -1, 1],
+        ["ur\u0103\u021Bi", -1, 1],
+        ["\u00E2r\u0103\u021Bi", -1, 1],
         ["am", -1, 1],
         ["eam", 54, 1],
         ["iam", 54, 1],
@@ -239,7 +244,7 @@ function RomanianStemmer() {
         ["eaz\u0103", -1, 1]
     ];
 
-    /** @const */ var a_5 = [
+    /** @const */ var a_6 = [
         ["a", -1, 1],
         ["e", -1, 1],
         ["ie", 1, 1],
@@ -254,6 +259,60 @@ function RomanianStemmer() {
     var /** number */ I_p1 = 0;
     var /** number */ I_pV = 0;
 
+
+    /** @return {boolean} */
+    function r_norm() {
+        var /** number */ among_var;
+        var /** number */ v_1 = base.cursor;
+        lab0: {
+            while(true)
+            {
+                var /** number */ v_2 = base.cursor;
+                lab1: {
+                    golab2: while(true)
+                    {
+                        var /** number */ v_3 = base.cursor;
+                        lab3: {
+                            base.bra = base.cursor;
+                            among_var = base.find_among(a_0);
+                            if (among_var == 0)
+                            {
+                                break lab3;
+                            }
+                            base.ket = base.cursor;
+                            switch (among_var) {
+                                case 1:
+                                    if (!base.slice_from("\u0219"))
+                                    {
+                                        return false;
+                                    }
+                                    break;
+                                case 2:
+                                    if (!base.slice_from("\u021B"))
+                                    {
+                                        return false;
+                                    }
+                                    break;
+                            }
+                            base.cursor = v_3;
+                            break golab2;
+                        }
+                        base.cursor = v_3;
+                        if (base.cursor >= base.limit)
+                        {
+                            break lab1;
+                        }
+                        base.cursor++;
+                    }
+                    continue;
+                }
+                base.cursor = v_2;
+                break;
+            }
+        }
+        base.cursor = v_1;
+        return true;
+    };
 
     /** @return {boolean} */
     function r_prelude() {
@@ -503,7 +562,7 @@ function RomanianStemmer() {
             var /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
-                among_var = base.find_among(a_0);
+                among_var = base.find_among(a_1);
                 if (among_var == 0)
                 {
                     break lab0;
@@ -540,36 +599,24 @@ function RomanianStemmer() {
 
     /** @return {boolean} */
     function r_RV() {
-        if (!(I_pV <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_pV <= base.cursor;
     };
 
     /** @return {boolean} */
     function r_R1() {
-        if (!(I_p1 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p1 <= base.cursor;
     };
 
     /** @return {boolean} */
     function r_R2() {
-        if (!(I_p2 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p2 <= base.cursor;
     };
 
     /** @return {boolean} */
     function r_step_0() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_1);
+        among_var = base.find_among_b(a_2);
         if (among_var == 0)
         {
             return false;
@@ -628,7 +675,7 @@ function RomanianStemmer() {
                 }
                 break;
             case 7:
-                if (!base.slice_from("a\u0163i"))
+                if (!base.slice_from("a\u021Bi"))
                 {
                     return false;
                 }
@@ -642,7 +689,7 @@ function RomanianStemmer() {
         var /** number */ among_var;
         var /** number */ v_1 = base.limit - base.cursor;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_2);
+        among_var = base.find_among_b(a_3);
         if (among_var == 0)
         {
             return false;
@@ -713,7 +760,7 @@ function RomanianStemmer() {
             break;
         }
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_3);
+        among_var = base.find_among_b(a_4);
         if (among_var == 0)
         {
             return false;
@@ -731,7 +778,7 @@ function RomanianStemmer() {
                 }
                 break;
             case 2:
-                if (!(base.eq_s_b("\u0163")))
+                if (!(base.eq_s_b("\u021B")))
                 {
                     return false;
                 }
@@ -762,7 +809,7 @@ function RomanianStemmer() {
         var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_4);
+        among_var = base.find_among_b(a_5);
         if (among_var == 0)
         {
             base.limit_backward = v_2;
@@ -806,7 +853,7 @@ function RomanianStemmer() {
     /** @return {boolean} */
     function r_vowel_suffix() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_5) == 0)
+        if (base.find_among_b(a_6) == 0)
         {
             return false;
         }
@@ -823,21 +870,22 @@ function RomanianStemmer() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        var /** number */ v_1 = base.cursor;
+        r_norm();
+        var /** number */ v_2 = base.cursor;
         r_prelude();
-        base.cursor = v_1;
+        base.cursor = v_2;
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_3 = base.limit - base.cursor;
-        r_step_0();
-        base.cursor = base.limit - v_3;
         var /** number */ v_4 = base.limit - base.cursor;
-        r_standard_suffix();
+        r_step_0();
         base.cursor = base.limit - v_4;
         var /** number */ v_5 = base.limit - base.cursor;
+        r_standard_suffix();
+        base.cursor = base.limit - v_5;
+        var /** number */ v_6 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_6 = base.limit - base.cursor;
+                var /** number */ v_7 = base.limit - base.cursor;
                 lab2: {
                     if (!B_standard_suffix_removed)
                     {
@@ -845,21 +893,21 @@ function RomanianStemmer() {
                     }
                     break lab1;
                 }
-                base.cursor = base.limit - v_6;
+                base.cursor = base.limit - v_7;
                 if (!r_verb_suffix())
                 {
                     break lab0;
                 }
             }
         }
-        base.cursor = base.limit - v_5;
-        var /** number */ v_7 = base.limit - base.cursor;
+        base.cursor = base.limit - v_6;
+        var /** number */ v_8 = base.limit - base.cursor;
         r_vowel_suffix();
-        base.cursor = base.limit - v_7;
+        base.cursor = base.limit - v_8;
         base.cursor = base.limit_backward;
-        var /** number */ v_8 = base.cursor;
+        var /** number */ v_9 = base.cursor;
         r_postlude();
-        base.cursor = v_8;
+        base.cursor = v_9;
         return true;
     };
 

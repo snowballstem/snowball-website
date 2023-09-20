@@ -300,11 +300,7 @@ function HungarianStemmer() {
 
     /** @return {boolean} */
     function r_R1() {
-        if (!(I_p1 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p1 <= base.cursor;
     };
 
     /** @return {boolean} */

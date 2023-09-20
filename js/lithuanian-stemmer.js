@@ -304,15 +304,6 @@ function LithuanianStemmer() {
 
 
     /** @return {boolean} */
-    function r_R1() {
-        if (!(I_p1 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
-    };
-
-    /** @return {boolean} */
     function r_step1() {
         if (base.cursor < I_p1)
         {
@@ -328,10 +319,6 @@ function LithuanianStemmer() {
         }
         base.bra = base.cursor;
         base.limit_backward = v_2;
-        if (!r_R1())
-        {
-            return false;
-        }
         if (!base.slice_del())
         {
             return false;
@@ -489,7 +476,7 @@ function LithuanianStemmer() {
                     break lab1;
                 }
                 base.cursor = v_3;
-                if (!(base.current.length > 6))
+                if (base.current.length <= 6)
                 {
                     base.cursor = v_2;
                     break lab1;

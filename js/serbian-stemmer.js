@@ -2644,7 +2644,7 @@ function SerbianStemmer() {
                 base.cursor++;
             }
             I_p1 = base.cursor;
-            if (!(I_p1 < 2))
+            if (I_p1 >= 2)
             {
                 break lab3;
             }
@@ -2686,7 +2686,7 @@ function SerbianStemmer() {
             lab11: {
                 var /** number */ v_8 = base.cursor;
                 lab12: {
-                    if (!(base.cursor >= 2))
+                    if (base.cursor < 2)
                     {
                         break lab12;
                     }
@@ -2709,7 +2709,7 @@ function SerbianStemmer() {
                     base.cursor++;
                 }
             }
-            if (!((I_p1 - base.cursor) > 1))
+            if ((I_p1 - base.cursor) <= 1)
             {
                 break lab8;
             }
@@ -2721,11 +2721,7 @@ function SerbianStemmer() {
 
     /** @return {boolean} */
     function r_R1() {
-        if (!(I_p1 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p1 <= base.cursor;
     };
 
     /** @return {boolean} */

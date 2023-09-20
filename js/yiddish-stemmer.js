@@ -555,7 +555,7 @@ function YiddishStemmer() {
         }
         I_p1 = base.cursor;
         lab17: {
-            if (!(I_p1 < I_x))
+            if (I_p1 >= I_x)
             {
                 break lab17;
             }
@@ -566,20 +566,12 @@ function YiddishStemmer() {
 
     /** @return {boolean} */
     function r_R1() {
-        if (!(I_p1 <= base.cursor))
-        {
-            return false;
-        }
-        return true;
+        return I_p1 <= base.cursor;
     };
 
     /** @return {boolean} */
     function r_R1plus3() {
-        if (!(I_p1 <= (base.cursor + 3)))
-        {
-            return false;
-        }
-        return true;
+        return I_p1 <= (base.cursor + 3);
     };
 
     /** @return {boolean} */
