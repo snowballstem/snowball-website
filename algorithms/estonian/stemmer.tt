@@ -13,7 +13,7 @@ Here is a sample of vocabulary, with the stemmed forms that will
 be generated with the algorithm.
 </p>
 
-[% algorithm_vocab('estonian', [
+[% algorithm_vocab([
 'raamat',
 'raamatu',
 'raamatut',
