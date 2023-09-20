@@ -462,12 +462,12 @@ Step 8:  nu
 </DL>
 
 <p>
-Step 9: remove_double_kpt
+Step 9: undouble_kpt
 </p>
 
 <DL><DD>
-	Undouble consonant if word ending is <B><I>kk</I>+V1</B>, <B><I>tt</I>+V1</B>, <B><I>pp</I>+V1</B>.
-	<BR><BR>
+    Undouble consonant if word ending is <B><I>kk</I>+V1</B>, <B><I>tt</I>+V1</B>, <B><I>pp</I>+V1</B>,
+    provided the vowel is in R1.
 </DL>
 
 <h2>The full algorithm in Snowball</h2>
