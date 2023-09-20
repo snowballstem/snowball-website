@@ -1,5 +1,6 @@
 
 routines (
+           norm
            prelude postlude mark_regions
            RV R1 R2
            step_0
@@ -23,10 +24,22 @@ stringescapes {}
 stringdef a^   '{U+00E2}'  // a circumflex
 stringdef i^   '{U+00EE}'  // i circumflex
 stringdef a+   '{U+0103}'  // a breve
-stringdef s,   '{U+015F}'  // s cedilla
-stringdef t,   '{U+0163}'  // t cedilla
+stringdef sc   '{U+015F}'  // s cedilla
+stringdef tc   '{U+0163}'  // t cedilla
+stringdef s,   '{U+0219}'  // s comma
+stringdef t,   '{U+021B}'  // t comma
 
 define v 'aeiou{a^}{i^}{a+}'
+
+// Normalize old cedilla forms to correct comma-below forms.
+define norm as (
+    do repeat goto (
+        [substring] among (
+            '{sc}'    (<- '{s,}')
+            '{tc}'    (<- '{t,}')
+        )
+    )
+)
 
 define prelude as (
     repeat goto (
@@ -190,7 +203,7 @@ backwardmode (
             'i{s,}i' 'ir{a+}m' 'ir{a+}{t,}i' 'ir{a+}'
             '{a^}i' '{a^}{s,}i' '{a^}r{a+}m' '{a^}r{a+}{t,}i' '{a^}r{a+}'
 
-            // pluferfect:
+            // pluperfect:
             'asem' 'ase{s,}i' 'ase' 'aser{a+}m' 'aser{a+}{t,}i' 'aser{a+}'
             'isem' 'ise{s,}i' 'ise' 'iser{a+}m' 'iser{a+}{t,}i' 'iser{a+}'
             '{a^}sem' '{a^}se{s,}i' '{a^}se' '{a^}ser{a+}m' '{a^}ser{a+}{t,}i'
@@ -223,6 +236,7 @@ backwardmode (
 )
 
 define stem as (
+    do norm
     do prelude
     do mark_regions
     backwards (
