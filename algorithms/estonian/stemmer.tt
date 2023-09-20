@@ -170,7 +170,7 @@ Step 0: verb_exceptions
         <DD>replace by <B><I>joo</I></B>
     <DT><B><I>jõin  &nbsp;  jõid  &nbsp;  jõi  &nbsp;  jõime  &nbsp;  jõite</I></B>
         <DD>replace by <B><I>joo</I></B>
-    <DT><B><I>juuakse  &nbsp;  joodakse  &nbsp;  juua  &nbsp;  jooma  &nbsp;  joomata</I></B>
+    <DT><B><I>joomata  &nbsp;  juuakse  &nbsp;  joodakse  &nbsp;  juua  &nbsp;  jooma</I></B>
         <DD>replace by <B><I>joo</I></B>
     <DT><B><I>saan  &nbsp;  saad  &nbsp;  saab  &nbsp;  saate  &nbsp;  saame  &nbsp;  saavad</I></B>
         <DD>replace by <B><I>saa</I></B>
@@ -178,35 +178,41 @@ Step 0: verb_exceptions
         <DD>replace by <B><I>saa</I></B>
     <DT><B><I>sain  &nbsp;  said  &nbsp;  sai  &nbsp;  saite  &nbsp;  saime</I></B>
         <DD>replace by <B><I>saa</I></B>
-    <DT><B><I>saadakse  &nbsp;  saadi  &nbsp;  saama  &nbsp;  saada  &nbsp;  saamata</I></B>
+    <DT><B><I>saamata  &nbsp;  saadakse  &nbsp;  saadi  &nbsp;  saama  &nbsp;  saada</I></B>
         <DD>replace by <B><I>saa</I></B>
     <DT><B><I>viin  &nbsp;  viid  &nbsp;  viib  &nbsp;  viite  &nbsp;  viime  &nbsp;  viivad</I></B>
         <DD>replace by <B><I>viima</I></B>
+    <DT><B><I>viiksin  &nbsp;  viiksid  &nbsp;  viiks  &nbsp;  viiksite  &nbsp;  viiksime</I></B>
+        <DD>replace by <B><I>viima</I></B>
     <DT><B><I>viisin  &nbsp;  viisite  &nbsp;  viisime</I></B>
         <DD>replace by <B><I>viima</I></B>
-    <DT><B><I>viiakse  &nbsp;  viidi  &nbsp;  viima  &nbsp;  viia  &nbsp;  viimata</I></B>
+    <DT><B><I>viimata  &nbsp;  viiakse  &nbsp;  viidi  &nbsp;  viima  &nbsp;  viia</I></B>
         <DD>replace by <B><I>viima</I></B>
+    <DT><B><I>keen  &nbsp;  keeb  &nbsp;  keed  &nbsp;  kees  &nbsp;  keeme  &nbsp;  keete  &nbsp;  keevad</I></B>
+        <DD>replace by <B><I>keesi</I></B>
     <DT><B><I>keeksin  &nbsp;  keeks  &nbsp;  keeksid  &nbsp;  keeksime  &nbsp;  keeksite</I></B>
         <DD>replace by <B><I>keesi</I></B>
-    <DT><B><I>keema  &nbsp;  keeta  &nbsp;  keedakse  &nbsp;  keemata</I></B>
+    <DT><B><I>keemata  &nbsp;  keema  &nbsp;  keeta  &nbsp;  keedakse</I></B>
         <DD>replace by <B><I>keesi</I></B>
     <DT><B><I>löön  &nbsp;  lööd  &nbsp;  lööb  &nbsp;  lööme  &nbsp;  lööte  &nbsp;  löövad</I></B>
         <DD>replace by <B><I>löö</I></B>
-    <DT><B><I>lüüakse  &nbsp;  löödakse  &nbsp;  löödi  &nbsp;  lööma  &nbsp;  lüüa  &nbsp;  löömata</I></B>
+    <DT><B><I>lööksin  &nbsp;  lööksid  &nbsp;  lööks  &nbsp;  lööksime  &nbsp;  lööksite</I></B>
+        <DD>replace by <B><I>löö</I></B>
+    <DT><B><I>löömata  &nbsp;  lüüakse  &nbsp;  löödakse  &nbsp;  löödi  &nbsp;  lööma  &nbsp;  lüüa</I></B>
         <DD>replace by <B><I>löö</I></B>
     <DT><B><I>lõin  &nbsp;  lõid  &nbsp;  lõi  &nbsp;  lõime  &nbsp;  lõite</I></B>
         <DD>replace by <B><I>lõi</I></B>
-    <DT><B><I>loon  &nbsp;  lood  &nbsp;  loob  &nbsp;  loome  &nbsp;  loote &nbsp;  loovad</I></B>
+    <DT><B><I>loon  &nbsp;  lood  &nbsp;  loob  &nbsp;  loome  &nbsp;  loote  &nbsp;  loovad</I></B>
         <DD>replace by <B><I>loo</I></B>
     <DT><B><I>looksin  &nbsp;  looksid  &nbsp;  looks  &nbsp;  looksime  &nbsp;  looksite</I></B>
         <DD>replace by <B><I>loo</I></B>
-    <DT><B><I>luuakse  &nbsp;  loodi  &nbsp;  luua  &nbsp;  looma  &nbsp;  loomata</I></B>
+    <DT><B><I>loomata  &nbsp;  luuakse  &nbsp;  loodi  &nbsp;  luua  &nbsp;  looma</I></B>
         <DD>replace by <B><I>loo</I></B>
     <DT><B><I>käin  &nbsp;  käib  &nbsp;  käid  &nbsp;  käis  &nbsp;  käime  &nbsp;  käite  &nbsp;  käivad</I></B>
         <DD>replace by <B><I>käisi</I></B>
     <DT><B><I>käiksin  &nbsp;  käiks  &nbsp;  käiksid  &nbsp;  käiksime  &nbsp;  käiksite</I></B>
         <DD>replace by <B><I>käisi</I></B>
-    <DT><B><I>käiakse  &nbsp;  käidi  &nbsp;  käia  &nbsp;  käima  &nbsp;  käimata</I></B>
+    <DT><B><I>käimata  &nbsp;  käiakse  &nbsp;  käidi  &nbsp;  käia  &nbsp;  käima</I></B>
         <DD>replace by <B><I>käisi</I></B>
     <DT><B><I>söön  &nbsp;  sööb  &nbsp;  sööd  &nbsp;  sööme  &nbsp;  sööte  &nbsp;  söövad</I></B>
         <DD>replace by <B><I>söö</I></B>
@@ -214,7 +220,7 @@ Step 0: verb_exceptions
         <DD>replace by <B><I>söö</I></B>
     <DT><B><I>sõin  &nbsp;  sõi  &nbsp;  sõid  &nbsp;  sõime  &nbsp;  sõite</I></B>
         <DD>replace by <B><I>söö</I></B>
-    <DT><B><I>süüakse  &nbsp;  söödakse  &nbsp;  söödi  &nbsp;  sööma  &nbsp;  söömata  &nbsp;  süüa</I></B>
+    <DT><B><I>söömata  &nbsp;  süüakse  &nbsp;  söödakse  &nbsp;  söödi  &nbsp;  sööma  &nbsp;  süüa</I></B>
         <DD>replace by <B><I>söö</I></B>
     <DT><B><I>toon  &nbsp;  tood  &nbsp;  toob  &nbsp;  toote  &nbsp;  toome  &nbsp;  toovad</I></B>
         <DD>replace by <B><I>too</I></B>
@@ -222,13 +228,13 @@ Step 0: verb_exceptions
         <DD>replace by <B><I>too</I></B>
     <DT><B><I>tõin  &nbsp;  tõid  &nbsp;  tõi  &nbsp;  tõime  &nbsp;  tõite</I></B>
         <DD>replace by <B><I>too</I></B>
-    <DT><B><I>tuuakse  &nbsp;  toodi  &nbsp;  tooma  &nbsp;  tuua  &nbsp;  toomata</I></B>
+    <DT><B><I>toomata  &nbsp;  tuuakse  &nbsp;  toodi  &nbsp;  tooma  &nbsp;  tuua</I></B>
         <DD>replace by <B><I>too</I></B>
     <DT><B><I>võin  &nbsp;  võid  &nbsp;  võib  &nbsp;  võime  &nbsp;  võis  &nbsp;  võite  &nbsp;  võivad</I></B>
         <DD>replace by <B><I>võisi</I></B>
     <DT><B><I>võiksin  &nbsp;  võiksid  &nbsp;  võiks  &nbsp;  võiksime  &nbsp;  võiksite</I></B>
         <DD>replace by <B><I>võisi</I></B>
-    <DT><B><I>võidakse  &nbsp;  võidi  &nbsp;  võida  &nbsp;  võima  &nbsp;  võimata</I></B>
+    <DT><B><I>võimata  &nbsp;  võidakse  &nbsp;  võidi  &nbsp;  võida  &nbsp;  võima</I></B>
         <DD>replace by <B><I>võisi</I></B>
     <DT><B><I>jään  &nbsp;  jääd  &nbsp;  jääb  &nbsp;  jääme  &nbsp;  jääte  &nbsp;  jäävad</I></B>
         <DD>replace by <B><I>jääma</I></B>
@@ -236,17 +242,19 @@ Step 0: verb_exceptions
         <DD>replace by <B><I>jääma</I></B>
     <DT><B><I>jäime  &nbsp;  jäite  &nbsp;  jäin  &nbsp;  jäid  &nbsp;  jäi</I></B>
         <DD>replace by <B><I>jääma</I></B>
+    <DT><B><I>jäämata  &nbsp;  jäädakse  &nbsp;  jääda  &nbsp;  jääma  &nbsp;  jäädi</I></B>
+        <DD>replace by <B><I>jääma</I></B>
     <DT><B><I>müün  &nbsp;  müüd  &nbsp;  müüb  &nbsp;  müüs  &nbsp;  müüme  &nbsp;  müüte  &nbsp;  müüvad</I></B>
         <DD>replace by <B><I>müüsi</I></B>
     <DT><B><I>müüksin  &nbsp;  müüksid  &nbsp;  müüks  &nbsp;  müüksime  &nbsp;  müüksite</I></B>
         <DD>replace by <B><I>müüsi</I></B>
-    <DT><B><I>müüakse  &nbsp;  müüdi  &nbsp;  müüa  &nbsp;  müüma  &nbsp;  müümata</I></B>
+    <DT><B><I>müümata  &nbsp;  müüakse  &nbsp;  müüdi  &nbsp;  müüa  &nbsp;  müüma</I></B>
         <DD>replace by <B><I>müüsi</I></B>
     <DT><B><I>loeb  &nbsp;  loen  &nbsp;  loed  &nbsp;  loeme  &nbsp;  loete  &nbsp;  loevad</I></B>
         <DD>replace by <B><I>luge</I></B>
     <DT><B><I>loeks  &nbsp;  loeksin  &nbsp;  loeksid  &nbsp;  loeksime  &nbsp;  loeksite</I></B>
         <DD>replace by <B><I>luge</I></B>
-    <DT><B><I>põen  &nbsp;  põeb  &nbsp;  põed  &nbsp;  põeme  &nbsp;  põete &nbsp;  põevad</I></B>
+    <DT><B><I>põen  &nbsp;  põeb  &nbsp;  põed  &nbsp;  põeme  &nbsp;  põete  &nbsp;  põevad</I></B>
         <DD>replace by <B><I>põde</I></B>
     <DT><B><I>põeksin  &nbsp;  põeks  &nbsp;  põeksid  &nbsp;  põeksime  &nbsp;  põeksite</I></B>
         <DD>replace by <B><I>põde</I></B>
@@ -258,13 +266,13 @@ Step 0: verb_exceptions
         <DD>replace by <B><I>tegi</I></B>
     <DT><B><I>teen  &nbsp;  teeb  &nbsp;  teed  &nbsp;  teeme  &nbsp;  teete  &nbsp;  teevad</I></B>
         <DD>replace by <B><I>tegi</I></B>
-    <DT><B><I>tehakse  &nbsp;  tehti  &nbsp;  tegema  &nbsp;  tegemata  &nbsp;  teha</I></B>
+    <DT><B><I>tegemata  &nbsp;  tehakse  &nbsp;  tehti  &nbsp;  tegema  &nbsp;  teha</I></B>
         <DD>replace by <B><I>tegi</I></B>
     <DT><B><I>näen  &nbsp;  näeb  &nbsp;  näed  &nbsp;  näeme  &nbsp;  näete  &nbsp;  näevad</I></B>
         <DD>replace by <B><I>nägi</I></B>
     <DT><B><I>näeksin  &nbsp;  näeks  &nbsp;  näeksid  &nbsp;  näeksime  &nbsp;  näeksite</I></B>
         <DD>replace by <B><I>nägi</I></B>
-    <DT><B><I>nähakse  &nbsp;  nähti  &nbsp;  näha  &nbsp;  nägema  &nbsp;  nägemata</I></B>
+    <DT><B><I>nägemata  &nbsp;  nähakse  &nbsp;  nähti  &nbsp;  näha  &nbsp;  nägema</I></B>
         <DD>replace by <B><I>nägi</I></B>
 </DL>
 </DL>
