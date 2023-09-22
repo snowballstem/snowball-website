@@ -237,7 +237,7 @@ The following forms are equivalent,
 ") %]
 
 <p>
-The interpretation of the values is as a Unicode codepoints if command
+The interpretation of the values is as Unicode codepoints if command
 line option <code>-utf8</code> or <code>-widechars</code> is specified, and as
 character values in an unspecified single byte character set otherwise.  For
 ASCII and ISO-8859-1 the character values match Unicode codepoints, but to
