@@ -1,12 +1,5 @@
 [% header('The Schinke Latin stemming algorithm') %]
 
-<!--
-
-I think there is no source for this with the usual html markup. If there is,
-I've altered "latin.tgz" to "schinke.tgz" near the end.
-
--->
-
 <h2>Links to resources</h2>
 
 <ul>
