@@ -13,14 +13,11 @@ while (readdir($jsdir)) {
     my $out = $js_path_prefix . $_;
     open IN, '<', $in or die $!;
     open OUT, '>', $out or die $!;
-    my $name;
     while (<IN>) {
-	if (s/^(\w+Stemmer) = function\(\)/function $1()/) {
-	    $name = $1;
-	}
+	next if /const BaseStemmer = require/;
+	s/.*typeof module.*? = (.*);/window['$1'] = $1;/;
 	print OUT;
     }
-    print OUT "window['$name'] = $name;\n";
     close IN;
     close OUT;
 }
