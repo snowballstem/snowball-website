@@ -202,51 +202,6 @@ For example,
     define v 'aeiou{a'}{e'}{i'}{o'}{u'}{u\"}'
 ") %]
 
-<p>
-In a &nbsp;<code>stringdef</code>&nbsp;, string may be preceded by the word &nbsp;<code>hex</code>,
-or the word &nbsp;<code>decimal</code>.  This is a legacy feature for
-compatibility with code written before support for specifying Unicode
-codepoints using the <code>U+</code> notation was added - you shouldn't
-use it in new code, but we document it here so that its meaning in
-existing code can be understood.
-</p>
-
-<p>
-<code>hex</code> and <code>decimal</code> mean that the contents of the string
-are interpreted as characters values written out in hexadecimal, or decimal,
-notation.  The characters should be separated by spaces. For example,
-</p>
-
-[% highlight("
-    hex 'DA'        /* is character hex DA */
-    hex 'D A'       /* is the two characters, hex D and A (carriage
-                       return, and line feed) */
-    decimal '10'    /* character 10 (line feed) */
-    decimal '13 10' /* characters 13 and 10 (carriage return, and
-                       line feed) */
-") %]
-
-<p>
-The following forms are equivalent,
-</p>
-
-[% highlight("
-    hex 'd a'      /* lower case also allowed */
-    hex '0D 000A'  /* leading zeroes ignored */
-    hex ' D  A  '  /* extra spacing is harmless */
-") %]
-
-<p>
-The interpretation of the values is as Unicode codepoints if command
-line option <code>-utf8</code> or <code>-widechars</code> is specified, and as
-character values in an unspecified single byte character set otherwise.  For
-ASCII and ISO-8859-1 the character values match Unicode codepoints, but to
-handle other single byte character sets (e.g. ISO-8859-2 or KOI8-R) this means
-you need a special version of a Snowball source with different character values
-specified via <code>stringdef</code>.  The <code>U+</code> notation allows
-you to use a single Snowball source in this situation.
-</p>
-
 <h2>4 Routines</h2>
 
 <p>
@@ -1410,6 +1365,61 @@ different in case (<i>c</i>)).
 <p>
 So long as these simple distinctions are recognised, the same Snowball
 script can be compiled to work with any of the three encoding schemes.
+</p>
+
+<h2>13 Legacy Features</h2>
+
+<h3>13.1 hex and decimal</h3>
+
+<p>
+This section documents features of Snowball for which there's a strongly
+prefered alternative.  They're still support for compatibility with
+existing code which uses them, but you shouldn't use them in then code.
+We document them here so that their meaning in existing code can be
+understood, and especially to aid updated to the preferred alternatives.
+</p>
+
+<p>
+In a &nbsp;<code>stringdef</code>&nbsp;, string may be preceded by the word &nbsp;<code>hex</code>,
+or the word &nbsp;<code>decimal</code>.  This was how non-ASCII characters
+were specified before support for specifying Unicode codepoints using the
+<code>U+</code> notation was added.
+</p>
+
+<p>
+<code>hex</code> and <code>decimal</code> mean that the contents of the string
+are interpreted as characters values written out in hexadecimal, or decimal,
+notation.  The characters should be separated by spaces. For example,
+</p>
+
+[% highlight("
+    hex 'DA'        /* is character hex DA */
+    hex 'D A'       /* is the two characters, hex D and A (carriage
+                       return, and line feed) */
+    decimal '10'    /* character 10 (line feed) */
+    decimal '13 10' /* characters 13 and 10 (carriage return, and
+                       line feed) */
+") %]
+
+<p>
+The following forms are equivalent,
+</p>
+
+[% highlight("
+    hex 'd a'      /* lower case also allowed */
+    hex '0D 000A'  /* leading zeroes ignored */
+    hex ' D  A  '  /* extra spacing is harmless */
+") %]
+
+<p>
+The interpretation of the values is as Unicode codepoints if command
+line option <code>-utf8</code> or <code>-widechars</code> is specified, and as
+character values in an unspecified single byte character set otherwise.  For
+ASCII and ISO-8859-1 the character values match Unicode codepoints, but to
+handle other single byte character sets (e.g. ISO-8859-2 or KOI8-R) you needed
+a special version of a Snowball source with different character values
+specified via <code>stringdef</code>.  The <code>U+</code> notation allows
+you to use a single Snowball source in this situation.
 </p>
 
 <h2>Snowball syntax</h2>
