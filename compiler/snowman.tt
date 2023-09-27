@@ -1457,8 +1457,8 @@ G               ::= &lt;g_name&gt; || &lt;literal string&gt;
 AE              ::= (AE) ||
                     AE + AE || AE - AE || AE * AE || AE / AE || - AE ||
                     maxint || minint || cursor || limit ||
-                    size || sizeof &lt;s_name&gt; ||
-                    len || lenof &lt;s_name&gt; ||
+                    size || sizeof S ||
+                    len || lenof S ||
                     &lt;i_name&gt; || &lt;number&gt;
 
 &lt;i_assign&gt;      ::= $ &lt;i_name&gt; = AE ||
