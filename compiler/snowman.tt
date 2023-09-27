@@ -976,7 +976,7 @@ The more general form of [% highlight_inline("substring /* ... */ among") %] is,
 
 <PRE>
     substring
-    ...
+    C
     among( 'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C<SUB>1</SUB>)
            'S<SUB>21</SUB>' 'S<SUB>22</SUB>' ... (C<SUB>2</SUB>)
            ...
@@ -987,7 +987,10 @@ The more general form of [% highlight_inline("substring /* ... */ among") %] is,
 
 <p>
 Obeying &nbsp;<code>substring</code>&nbsp; searches for a longest match among the &nbsp;<code>'S<SUB>ij</SUB>'</code>. The
-signal from &nbsp;<code>substring</code>&nbsp; is <B><I>t</I></B> if a match is found, otherwise <B><I>f</I></B>. When the
+signal from &nbsp;<code>substring</code>&nbsp; is <B><I>t</I></B> if a match is found, otherwise <B><I>f</I></B>.
+Any commands <code>C</code> between the <code>substring</code> and <code>among</code> will be run after this
+search and only if the search finds a match (it would be equivalent to remove <code>C</code> and replace each
+<code>C<sub>i</sub></code> with <code>C C<sub>i</sub></code>). When the
 <code>among</code>&nbsp; comes to be obeyed, the &nbsp;<code>C<SUB>i</SUB></code>&nbsp; corresponding to the matched &nbsp;<code>'S<SUB>ij</SUB>'</code>&nbsp; is
 obeyed, and its signal becomes the signal of the &nbsp;<code>among</code>&nbsp; command.
 </p>
@@ -1051,51 +1054,12 @@ The last &nbsp;<code>(C<SUB>n</SUB>)</code>&nbsp; may be omitted, in which case 
 </p>
 
 <p>
-Another possible abbreviation is that when &nbsp;<code>substring</code>&nbsp; is omitted, a
-construct such as
-</p>
-
-<PRE>
-    among( 'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C C<SUB>1</SUB>)
-           'S<SUB>21</SUB>' 'S<SUB>22</SUB>' ... (C C<SUB>2</SUB>)
-           ...
-           'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C C<SUB>n</SUB>)
-         )
-</PRE>
-
-<p>
-can be written
-</p>
-
-<PRE>
-    among( (C)
-           'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C<SUB>1</SUB>)
-           'S<SUB>21</SUB>' 'S<SUB>22</SUB>' ... (C<SUB>2</SUB>)
-           ...
-           'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
-         )
-</PRE>
-
-<p>
-and this is just equivalent to
-</p>
-
-<PRE>
-    substring C
-    among( 'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C<SUB>1</SUB>)
-           'S<SUB>21</SUB>' 'S<SUB>22</SUB>' ... (C<SUB>2</SUB>)
-           ...
-           'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
-         )
-</PRE>
-
-<p>
-In its most general form, each string &nbsp;<code>'S<SUB>ij</SUB>'</code>&nbsp; may be optionally followed by a
+Each string &nbsp;<code>'S<SUB>ij</SUB>'</code>&nbsp; may be optionally followed by a
 routine name,
 </p>
 
 <PRE>
-    among( (C)
+    among(
            'S<SUB>11</SUB>' R<SUB>11</SUB> 'S<SUB>12</SUB>' R<SUB>12</SUB> ... (C<SUB>1</SUB>)
            'S<SUB>21</SUB>' R<SUB>21</SUB> 'S<SUB>22</SUB>' R<SUB>22</SUB> ... (C<SUB>2</SUB>)
            ...
@@ -1104,7 +1068,7 @@ routine name,
 </PRE>
 
 <p>
-So here each &nbsp;<code>R<SUB>ij</SUB></code>&nbsp; is either a routine name or is null. If null, it is equivalent
+If a routine name is not specified, it is equivalent
 to a routine which simply returns signal <B><I>t</I></B>,
 </p>
 
@@ -1116,9 +1080,13 @@ to a routine which simply returns signal <B><I>t</I></B>,
 &#x2014; so we can imagine each &nbsp;<code>'S<SUB>ij</SUB>'</code>&nbsp; having its associated routine
 <code>R<SUB>ij</SUB></code>. Then obeying the &nbsp;<code>among</code>&nbsp; causes a search for the longest
 <code>'S<SUB>ij</SUB>'</code>&nbsp; whose corresponding routine
-<code>R<SUB>ij</SUB></code>&nbsp; gives <B><I>t</I></B>. The routines
-<code>R<SUB>ij</SUB></code>&nbsp; should be written without any side-effects, other than the inevitable cursor
-movement. (<B><I>c</I></B> is in any case set back to its old value following a call of
+<code>R<SUB>ij</SUB></code>&nbsp; gives <B><I>t</I></B>.
+</p>
+
+<p>
+The routines <code>R<SUB>ij</SUB></code>&nbsp; should be written without any
+side-effects, other than the inevitable cursor movement. (<B><I>c</I></B> is in
+any case set back to its old value following a call of
 <code>R<SUB>ij</SUB></code>.)
 </p>
 
@@ -1421,6 +1389,84 @@ a special version of a Snowball source with different character values
 specified via <code>stringdef</code>.  The <code>U+</code> notation allows
 you to use a single Snowball source in this situation.
 </p>
+
+<h3>13.2 among starter command</h3>
+
+<p>
+The <code>among</code> command supports a "starter" command, <code>C</code>
+in this example:
+</p>
+
+<PRE>
+    among( (C)
+           'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C<SUB>1</SUB>)
+           'S<SUB>21</SUB>' 'S<SUB>22</SUB>' ... (C<SUB>2</SUB>)
+           ...
+           'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
+         )
+</PRE>
+
+<p>
+This is equivalent to adding <code>C</code> at the start of each
+<code>C<sub>i</sub></code>:
+</p>
+
+<PRE>
+    among( 'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C C<SUB>1</SUB>)
+           'S<SUB>21</SUB>' 'S<SUB>22</SUB>' ... (C C<SUB>2</SUB>)
+           ...
+           'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C C<SUB>n</SUB>)
+         )
+</PRE>
+
+<p>
+However, both are equivalent to:
+</p>
+
+<PRE>
+    substring C
+    among( 'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C<SUB>1</SUB>)
+           'S<SUB>21</SUB>' 'S<SUB>22</SUB>' ... (C<SUB>2</SUB>)
+           ...
+           'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
+         )
+</PRE>
+
+<p>
+This requires an explicit <code>substring</code> but seems clearer so
+we recommend using this in new code and have designated the use of a starter as
+a legacy feature.
+</p>
+
+<p>
+A starter is also allowed with an explicit <code>substring</code>, for example:
+</p>
+
+<PRE>
+    substring
+    C<sub>s</sub>
+    among( (C<sub>a</sub>)
+           'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C<SUB>1</SUB>)
+           'S<SUB>21</SUB>' 'S<SUB>22</SUB>' ... (C<SUB>2</SUB>)
+           ...
+           'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
+         )
+</PRE>
+
+<p>
+is equivalent to:
+</p>
+
+<PRE>
+    substring
+    C<sub>s</sub>
+    C<sub>a</sub>
+    among( 'S<SUB>11</SUB>' 'S<SUB>12</SUB>' ... (C<SUB>1</SUB>)
+           'S<SUB>21</SUB>' 'S<SUB>22</SUB>' ... (C<SUB>2</SUB>)
+           ...
+           'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
+         )
+</PRE>
 
 <h2>Snowball syntax</h2>
 
