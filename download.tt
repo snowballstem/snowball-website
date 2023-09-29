@@ -54,7 +54,7 @@ Developers may wish to access the latest source using the command:
 </p>
 
 <pre>
-git clone git&#64;github.com:snowballstem/snowball.git
+git clone https://github.com/snowballstem/snowball.git
 </pre>
 
 <h3>Web interface</h3>
