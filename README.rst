@@ -6,10 +6,11 @@ This is the source for generating the website: https://snowballstem.org/
 Setup
 -----
 
-You'll need the Perl `Template Toolkit`, `neato` from `graphviz`, the
-`Closure Compiler`, `pngcrush` and `pygments` - on Debian you can install these with::
+You'll need the Perl `IPC::Run` module, Perl `Template Toolkit`, `neato` from
+`graphviz`, the `Closure Compiler`, `pngcrush` and `pygments` - on Debian you
+can install these with::
 
- apt-get install libtemplate-perl graphviz closure-compiler pngcrush python3-pygments
+ apt-get install libipc-run-perl libtemplate-perl graphviz closure-compiler pngcrush python3-pygments
 
 You need `pygments` >= 2.2 for Snowball support.
 
