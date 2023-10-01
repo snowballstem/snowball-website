@@ -723,7 +723,7 @@ or <I>slice</I> of the string being tested. Then
 <DT>[% highlight_inline(']') %]
     <DD>sets the right-end of the slice to <B><I>c</I></B>,
 <DT>[% highlight_inline("-> s") %]
-    <DD>moves the slice to variable &nbsp;<code>s</code>,
+    <DD>copies the slice to variable &nbsp;<code>s</code>,
 <DT>[% highlight_inline("<- S") %]
     <DD>replaces the slice with variable (or literal) &nbsp;<code>S</code>.
 </DL>
