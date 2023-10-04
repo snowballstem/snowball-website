@@ -44,6 +44,14 @@ Define a valid <B><I>s</I></B>-ending as one of
 </DL>
 
 <p>
+Define a valid <B><I>öst</I></B>-ending as one of
+</p>
+
+<DL><DD>
+<B><I>i</I></B>  &nbsp;  <B><I>k</I></B>  &nbsp;  <B><I>l</I></B>  &nbsp;  <B><I>n</I></B>  &nbsp;  <B><I>p</I></B>  &nbsp;  <B><I>r</I></B>  &nbsp;  <B><I>t</I></B>  &nbsp;  <B><I>u</I></B>  &nbsp;  <B><I>v</I></B>
+</DL>
+
+<p>
 Do each of steps 1, 2 and 3.
 </p>
 
@@ -93,11 +101,14 @@ Step 3:
     <DL>
     <DT><B><I>lig  &nbsp;  ig  &nbsp;  els</I></B>
         <DD>delete
-    <DT><B><I>löst</I></B>
-        <DD>replace with <B><I>lös</I></B>
+    <DT><B><I>öst</I></B>
+        <DD>replace with <B><I>ös</I></B> if preceded by a valid <B><I>öst</I></B>-ending
     <DT><B><I>fullt</I></B>
         <DD>replace with <B><I>full</I></B>
     </DL>
+    (The letter of the valid <B><I>öst</I></B>-ending is not necessarily in <I>R</I>1.
+    Prior to Snowball 2.3.0, <B><I>öst</I></B>-ending was effectively just
+    <B><I>l</I></B> and <em>was</em> required to be in <I>R</I>1.)
 </DL>
 
 <h2>The same algorithm in Snowball</h2>
