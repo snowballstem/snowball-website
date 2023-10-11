@@ -6,13 +6,6 @@
 [% algorithm_lis('estonian', 'Estonian') %]
 </ul>
 
-<div style="background-color:lightpink">
-
-<p>
-Here is a sample of vocabulary, with the stemmed forms that will
-be generated with the algorithm.
-</p>
-
 [% algorithm_vocab([
 'raamat',
 'raamatu',
@@ -96,7 +89,6 @@ be generated with the algorithm.
 'ohutuid',
 'ohututele',
 ]) %]
-</div>
 
 <p>
 This algorithm is written in collaboration with Estonian text analytics enterprise Texta.
