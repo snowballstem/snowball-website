@@ -50,19 +50,33 @@ But it is hardly surprising that after twenty years of use of the Porter
 stemmer, certain improvements did suggest themselves, and a new algorithm
 for English is therefore offered here. (It could be called the &#8216;Porter2&#8217;
 stemmer to distinguish it from the Porter stemmer, from which it derives.)
-The changes are not so very extensive: (1) terminating <B><I>y</I></B> is changed to
-<B><I>i</I></B> rather less often, (2) suffix <B><I>us</I></B> does not lose its <B><I>s</I></B>, (3) a
-few additional suffixes are included for removal, including (4) suffix
-<B><I>ly</I></B>. In addition, a small list of exceptional forms is included. In
-December 2001 there were two further adjustments: (5) Steps 5<I>a</I> and 5<I>b</I>
-of the old Porter stemmer were combined into a single step. This means
-that undoubling final <B><I>ll</I></B> is not done with removal of final <B><I>e</I></B>. (6)
-In Step 3 <B><I>ative</I></B> is removed only when in region <I>R</I>2.
-(7)
-In July
-2005 a small adjustment was made (including a new step 0) to handle
-apostrophe.
+The changes are not so very extensive:
 </p>
+
+<ol>
+<li>[In C Porter stemmer but not in paper]
+Extra rule in Step 2: <b><i>logi</i></b> -> <b><i>log</i></b>
+<li>[In C Porter stemmer but not in paper]
+Step 2 rule: <b><i>abli</i></b> -> <b><i>able</i></b> replace by <b><i>bli</i></b> -> <b><i>ble</i></b>
+<li>[In C Porter stemmer but not in paper]
+The algorithm leaves along strings of length 2 (so
+<b><i>as</i></b> and <b><i>is</i></b> not longer lose <b><i>s</i></b>.
+<li>Terminating <B><I>y</I></B> is changed to <B><I>i</I></B> rather less often
+<li>Suffix <B><I>us</I></B> does not lose its <B><I>s</I></B>
+<li>A few additional suffixes are included for removal, including suffix
+<B><I>ly</I></B>
+<li>A small list of exceptional forms is included
+<li>[December 2001] Steps 5<I>a</I> and 5<I>b</I>
+of the old Porter stemmer were combined into a single step. This means
+that undoubling final <B><I>ll</I></B> is not done with removal of final <B><I>e</I></B>
+<li>[December 2001] In Step 3 <B><I>ative</I></B> is removed only when in region <I>R</I>2.
+<li>[May 2005] <B><I>commun</I></B> added to exceptional forms
+<li>[July 2005] A small adjustment was made (including a new step 0) to handle
+apostrophe.
+<li>[January 2006] "Words" <b><i>ied</i></b> and <b><i>ies</i></b> now stem to <b><i>ie</i></b> rather than <b><i>i</i></b>.
+<li>[January 2006] The implementation was fixed to follow the algorithm as documented here and now always treats an initial <b><i>y</i></b> as a consonant.
+<li>[November 2006] <B><I>arsen</I></B> added to exceptional forms
+</ol>
 
 <p>
 To begin with, here is the basic algorithm without reference to the
