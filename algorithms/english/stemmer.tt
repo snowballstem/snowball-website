@@ -534,7 +534,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 <DL><DD>
     <p>
-    If the words begins <B><I>gener</I></B>, <B><I>commun</I></B> or <B><I>arsen</I></B>, set <I>R</I>1 to be the remainder of the
+    If the word begins <B><I>gener</I></B>, <B><I>commun</I></B> or <B><I>arsen</I></B>, set <I>R</I>1 to be the remainder of the
     word.
     </p>
 
