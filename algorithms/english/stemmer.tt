@@ -76,6 +76,7 @@ apostrophe.
 <li>[January 2006] "Words" <b><i>ied</i></b> and <b><i>ies</i></b> now stem to <b><i>ie</i></b> rather than <b><i>i</i></b>.
 <li>[January 2006] The implementation was fixed to follow the algorithm as documented here and now always treats an initial <b><i>y</i></b> as a consonant.
 <li>[November 2006] <B><I>arsen</I></B> added to exceptional forms
+<li>[October 2023] Don't undouble if preceded by exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b>
 </ol>
 
 <p>
@@ -204,9 +205,9 @@ Step 1<I>b</I>:
     <DT><B><I>ed  &nbsp;  edly</I></B><code><FONT COLOR=BLUE>+</FONT></code>  &nbsp;  <B><I>ing  &nbsp;  ingly</I></B><code><FONT COLOR=BLUE>+</FONT></code>
         <DD>delete if the preceding word part contains a vowel, and after the deletion:
         <DD>if the word ends <B><I>at</I></B>, <B><I>bl</I></B> or <B><I>iz</I></B> add <B><I>e</I></B> (so <I>luxuriat</I> &#x2192; <I>luxuriate</I>), or
-        <DD>if the word ends with a double
-        remove the last letter (so <I>hopp</I> &#x2192; <I>hop</I>), or
-        <DD>if the word is short, add <B><I>e</I></B> (so <I>hop</I> &#x2192; <I>hope</I>)
+        <DD>if the word ends with a double preceded by something other than exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b> then
+        remove the last letter (so <I>hopp</I> &#x2192; <I>hop</I> but <i>add</i>, <i>egg</i> and <i>off</i> are not changed), or
+        <DD>if the word does not end with a double and is short, add <B><I>e</I></B> (so <I>hop</I> &#x2192; <I>hope</I>)
 </DL>
 </DL>
 
