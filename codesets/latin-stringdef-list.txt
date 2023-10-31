@@ -66,11 +66,22 @@ stringdef th   '{U+00FE}'
 stringdef y"   '{U+00FF}'
 
 stringdef a+   '{U+0103}' // a breve
+stringdef ak   '{U+0105}' // a ogonek
+stringdef c'   '{U+0107}' // c acute
+stringdef cv   '{U+010D}' // c caron
+stringdef d/   '{U+0111}' // d stroke
+stringdef e.   '{U+0117}' // LATIN SMALL LETTER E WITH DOT ABOVE
+stringdef ek   '{U+0119}' // e ogonek
 stringdef g~   '{U+011F}' // LATIN SMALL LETTER G WITH BREVE
-stringdef i'   '{U+0131}' // LATIN SMALL LETTER I WITHOUT DOT
+stringdef ik   '{U+012F}' // i ogonek
+stringdef l/   '{U+0142}' // l stroke
 stringdef oq   '{U+0151}' // o-double acute
 stringdef sc   '{U+015F}' // s cedilla
+stringdef sv   '{U+0161}' // s caron
 stringdef tc   '{U+0163}' // t cedilla
+stringdef u-   '{U+016B}' // LATIN SMALL LETTER U WITH MACRON
 stringdef uq   '{U+0171}' // u-double acute
+stringdef uk   '{U+0173}' // u ogonek
+stringdef zv   '{U+017E}' // z caron
 stringdef s,   '{U+0219}' // s comma
 stringdef t,   '{U+021B}' // t comma
