@@ -59,6 +59,7 @@ we recommend using the following conventions:
 <TR><TD> dot above <TD></TD><TD> full stop/period (.) <TD></TD><TD> &nbsp;<code>e.</code> for &#x117;
 <TR><TD> macron <TD></TD><TD> minus (-) <TD></TD><TD> &nbsp;<code>u-</code> for &#x16B;
 <TR><TD> ogonek <TD></TD><TD> letter k <TD></TD><TD> &nbsp;<code>uk</code> for &#x173;
+<TR><TD> without dot <TD></TD><TD> no suffix <TD></TD><TD> &nbsp;<code>i</code> for &#x131;
 </TABLE></DL>
 
 <p>
