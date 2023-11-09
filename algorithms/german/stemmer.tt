@@ -75,13 +75,14 @@ Step 1:
 <DL><DD>
     Search for the longest among the following suffixes,
         <DL><DD>
-        (<I>a</I>) <B><I>em  &nbsp;  ern  &nbsp;  er</I></B><BR>
-        (<I>b</I>) <B><I>e  &nbsp;  en  &nbsp;  es</I></B><BR>
-        (<I>c</I>) <B><I>s</I></B> (preceded by a valid <B><I>s</I></B>-ending)
+        (<I>a</I>) <B><I>em</I></B> (not preceded by <B><I>syst</I></B> [condition added in Snowball 2.3.0])<BR>
+        (<I>b</I>) <B><I>ern  &nbsp;  er</I></B><BR>
+        (<I>c</I>) <B><I>e  &nbsp;  en  &nbsp;  es</I></B><BR>
+        (<I>d</I>) <B><I>s</I></B> (preceded by a valid <B><I>s</I></B>-ending)
 </DL>
     <p>
     and delete if in <I>R</I>1. (Of course the letter of the valid <B><I>s</I></B>-ending is
-    not necessarily in <I>R</I>1.) If an ending of group (<I>b</I>) is deleted, and the ending
+    not necessarily in <I>R</I>1.) If an ending of group (<I>c</I>) is deleted, and the ending
     is preceded by <B><I>niss</I></B>, delete the final <B><I>s</I></B>.
     </p>
 

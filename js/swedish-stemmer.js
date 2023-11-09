@@ -58,12 +58,14 @@ var SwedishStemmer = function() {
         ["lig", 0, 1],
         ["els", -1, 1],
         ["fullt", -1, 3],
-        ["l\u00F6st", -1, 2]
+        ["\u00F6st", -1, 2]
     ];
 
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 32];
 
     /** @const */ var /** Array<int> */ g_s_ending = [119, 127, 149];
+
+    /** @const */ var /** Array<int> */ g_ost_ending = [173, 58];
 
     var /** number */ I_x = 0;
     var /** number */ I_p1 = 0;
@@ -214,6 +216,7 @@ var SwedishStemmer = function() {
             return false;
         }
         base.bra = base.cursor;
+        base.limit_backward = v_2;
         switch (among_var) {
             case 1:
                 if (!base.slice_del())
@@ -222,7 +225,11 @@ var SwedishStemmer = function() {
                 }
                 break;
             case 2:
-                if (!base.slice_from("l\u00F6s"))
+                if (!(base.in_grouping_b(g_ost_ending, 105, 118)))
+                {
+                    return false;
+                }
+                if (!base.slice_from("\u00F6s"))
                 {
                     return false;
                 }
@@ -234,7 +241,6 @@ var SwedishStemmer = function() {
                 }
                 break;
         }
-        base.limit_backward = v_2;
         return true;
     };
 

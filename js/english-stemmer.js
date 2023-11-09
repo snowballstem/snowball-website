@@ -146,6 +146,8 @@ var EnglishStemmer = function() {
         ["ugly", -1, 8]
     ];
 
+    /** @const */ var /** Array<int> */ g_aeo = [17, 64];
+
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1];
 
     /** @const */ var /** Array<int> */ g_v_WXY = [1, 17, 65, 208, 1];
@@ -493,28 +495,32 @@ var EnglishStemmer = function() {
                 {
                     return false;
                 }
+                base.ket = base.cursor;
+                base.bra = base.cursor;
                 var /** number */ v_3 = base.limit - base.cursor;
                 among_var = base.find_among_b(a_3);
-                base.cursor = base.limit - v_3;
                 switch (among_var) {
                     case 1:
+                        if (!base.slice_from("e"))
                         {
-                            var /** number */ c1 = base.cursor;
-                            base.insert(base.cursor, base.cursor, "e");
-                            base.cursor = c1;
+                            return false;
                         }
-                        break;
+                        return false;
                     case 2:
-                        base.ket = base.cursor;
-                        if (base.cursor <= base.limit_backward)
                         {
-                            return false;
-                        }
-                        base.cursor--;
-                        base.bra = base.cursor;
-                        if (!base.slice_del())
-                        {
-                            return false;
+                            var /** number */ v_4 = base.limit - base.cursor;
+                            lab2: {
+                                if (!(base.in_grouping_b(g_aeo, 97, 111)))
+                                {
+                                    break lab2;
+                                }
+                                if (base.cursor > base.limit_backward)
+                                {
+                                    break lab2;
+                                }
+                                return false;
+                            }
+                            base.cursor = base.limit - v_4;
                         }
                         break;
                     case 3:
@@ -522,18 +528,29 @@ var EnglishStemmer = function() {
                         {
                             return false;
                         }
-                        var /** number */ v_4 = base.limit - base.cursor;
+                        var /** number */ v_5 = base.limit - base.cursor;
                         if (!r_shortv())
                         {
                             return false;
                         }
-                        base.cursor = base.limit - v_4;
+                        base.cursor = base.limit - v_5;
+                        if (!base.slice_from("e"))
                         {
-                            var /** number */ c2 = base.cursor;
-                            base.insert(base.cursor, base.cursor, "e");
-                            base.cursor = c2;
+                            return false;
                         }
-                        break;
+                        return false;
+                }
+                base.cursor = base.limit - v_3;
+                base.ket = base.cursor;
+                if (base.cursor <= base.limit_backward)
+                {
+                    return false;
+                }
+                base.cursor--;
+                base.bra = base.cursor;
+                if (!base.slice_del())
+                {
+                    return false;
                 }
                 break;
         }
