@@ -1341,10 +1341,10 @@ script can be compiled to work with any of the three encoding schemes.
 
 <p>
 This section documents features of Snowball for which there's a strongly
-prefered alternative.  They're still support for compatibility with
-existing code which uses them, but you shouldn't use them in then code.
+preferred alternative.  They're still supported for compatibility with
+existing code which uses them, but you shouldn't use them in new code.
 We document them here so that their meaning in existing code can be
-understood, and especially to aid updated to the preferred alternatives.
+understood, and especially to aid updating to the preferred alternatives.
 </p>
 
 <p>
@@ -1384,8 +1384,8 @@ The interpretation of the values is as Unicode codepoints if command
 line option <code>-utf8</code> or <code>-widechars</code> is specified, and as
 character values in an unspecified single byte character set otherwise.  For
 ASCII and ISO-8859-1 the character values match Unicode codepoints, but to
-handle other single byte character sets (e.g. ISO-8859-2 or KOI8-R) you needed
-a special version of a Snowball source with different character values
+handle other single byte character sets (e.g. ISO-8859-2 or KOI8-R) you would
+need a special version of a Snowball source with different character values
 specified via <code>stringdef</code>.  The <code>U+</code> notation allows
 you to use a single Snowball source in this situation.
 </p>
