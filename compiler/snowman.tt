@@ -1337,8 +1337,6 @@ script can be compiled to work with any of the three encoding schemes.
 
 <h2>13 Legacy Features</h2>
 
-<h3>13.1 hex and decimal</h3>
-
 <p>
 This section documents features of Snowball for which there's a strongly
 preferred alternative.  They're still supported for compatibility with
@@ -1346,6 +1344,8 @@ existing code which uses them, but you shouldn't use them in new code.
 We document them here so that their meaning in existing code can be
 understood, and especially to aid updating to the preferred alternatives.
 </p>
+
+<h3>13.1 hex and decimal</h3>
 
 <p>
 In a &nbsp;<code>stringdef</code>&nbsp;, string may be preceded by the word &nbsp;<code>hex</code>,
