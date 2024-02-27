@@ -2,7 +2,7 @@
 
 <h2>Links to resources</h2>
 
-<uL
+<ul>
 <li> <A HREF="/algorithms/romance.html"> Romance language stemmers</A>
 [% algorithm_lis('italian', 'Italian') %]
 </ul>
