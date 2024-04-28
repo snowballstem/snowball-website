@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - main
+  # Allow running manually from the Actions tab (useful if there are changes to
+  # snowball and/or snowball-data that affect the website).
+  workflow_dispatch:
+
 permissions:
   contents: write
 jobs:
