@@ -78,10 +78,11 @@ Step 1:
         (<I>a</I>) <B><I>em</I></B> (not preceded by <B><I>syst</I></B> [condition added in Snowball 2.3.0])<BR>
         (<I>b</I>) <B><I>ern  &nbsp;  er</I></B><BR>
         (<I>c</I>) <B><I>e  &nbsp;  en  &nbsp;  es</I></B><BR>
-        (<I>d</I>) <B><I>s</I></B> (preceded by a valid <B><I>s</I></B>-ending)
+        (<I>d</I>) <B><I>s</I></B> (preceded by a valid <B><I>s</I></B>-ending)<BR>
+        (<I>e</I>) <B><I>ln  &nbsp;  lns</I></B> [added in Snowball 2.3.0]
 </DL>
     <p>
-    and delete if in <I>R</I>1. (Of course the letter of the valid <B><I>s</I></B>-ending is
+    and if in <I>R</I>1 then delete (for (a) to (d)) or replace with <I>l</I> (for (e)). (Of course the letter of the valid <B><I>s</I></B>-ending is
     not necessarily in <I>R</I>1.) If an ending of group (<I>c</I>) is deleted, and the ending
     is preceded by <B><I>niss</I></B>, delete the final <B><I>s</I></B>.
     </p>
