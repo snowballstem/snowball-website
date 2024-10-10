@@ -8,15 +8,15 @@
 
 <p>
 We used to present a variant of the main German stemmer, termed "german2" which
-was the same as the German stemmer but adjusted the first step to improve
-handling of input text where the German letters <B><I>ä</I></B>,
+was the same as the German stemmer except with the first step adjusted to
+improve handling of input text where the German letters <B><I>ä</I></B>,
 <B><I>ö</I></B> and <B><I>ü</I></B>, were written as <B><I>ae</I></B>,
 <B><I>oe</I></B> and <B><I>ue</I></B> respectively.
 </p>
 
 <p>
 Snowball 2.3.0 added these adjustments to the main German stemmer, so there
-is no longer a "german2" variant - just used the "german" stemmer.
+is no longer a "german2" variant - just use the "german" stemmer.
 </p>
 
 [% footer %]
