@@ -1257,8 +1257,7 @@ A name, reserved word or number is terminated by the first character that
 cannot form part of it. A symbol is recognised as the longest sequence of
 characters that forms a valid symbol. So &nbsp;<code>+=-</code>&nbsp; is two symbols, &nbsp;<code>+=</code>&nbsp; and
 <code>-</code>, because &nbsp;<code>+=</code>&nbsp; is a valid symbol in the language while &nbsp;<code>+=-</code>&nbsp; is not.
-Whitespace separates tokens but is otherwise ignored. This of course is
-like C.
+Whitespace separates tokens but is otherwise ignored.
 </p>
 
 <p>
