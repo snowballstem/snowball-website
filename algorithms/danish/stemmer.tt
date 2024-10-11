@@ -72,8 +72,8 @@ Step 1:
                 <DD>delete if preceded by a valid <B><I>s</I></B>-ending
 </DL>
 <p>
-    (Of course the letter of the valid <B><I>s</I></B>-ending is
-    not necessarily in <I>R</I>1)
+    (Note that only the suffix needs to be in <I>R</I>1, the letter of the
+    valid <B><I>s</I></B>-ending is not required to be.)
 </p>
 </DL>
 
