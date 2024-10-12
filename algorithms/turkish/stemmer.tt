@@ -40,6 +40,15 @@ Conference
 </p>
 </DL>
 
+<p>
+In addition to the steps described in the paper, as a first step if the
+input contains an apostrophe we truncate it at the first apostrophe, which
+aims to remove proper noun suffixes.  For example, <i>Türkiye'dir</i> ("it is
+Turkey") is truncate to <i>Türkiye</i> ("Turkey") which is then stemmed as
+it would be without the proper noun suffix.  (This step was added in Snowball
+2.3.0.)
+</p>
+
 <h2>The algorithm in Snowball</h2>
 
 [% highlight_file('turkish') %]
