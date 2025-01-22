@@ -253,7 +253,7 @@ Here is a sample of Yiddish vocabulary, with the stemmed forms that will be gene
 </p>
 
 <ul>
-  <li>If the word begins with גע (except for געלט and געבן) it is replaced with "GE" and the cursor is advanced.</li>
+  <li>If the word begins with גע (unless it begins געלט or געבן or is exactly גע) it is replaced with "GE" and the cursor is advanced.</li>
   <li>
     Next, if the word begins with any verbal prefix, the cursor is advanced past this prefix.
     Prefixes include (niked added for clarity, not included in algorithm):
@@ -336,6 +336,14 @@ Here is a sample of Yiddish vocabulary, with the stemmed forms that will be gene
 
 Finally, all remaining GE and TSU are deleted.
 
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.3.0: Added an exception to the check to replace prefix גע with
+GE to not replace when גע is the entire input word.  This avoids generating an
+empty stem in this case.
+</ul>
+
 <h2>The same algorithm in Snowball</h2>
 
 <div class="highlight"><pre><span class="cm">/* *******************************************</span>
@@ -345,459 +353,459 @@ Finally, all remaining GE and TSU are deleted.
 <span class="cm"> * Emails: assaf.urieli at gmail.com</span>
 <span class="cm"> * Version: 0.1 (15.05.2020)</span>
 <span class="cm"> *</span>
-<span class="cm"> ********************************************* */</span><span class="w"></span>
+<span class="cm"> ********************************************* */</span>
 
-<span class="kr">routines</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">       </span><span class="n">prelude</span><span class="w"></span>
-<span class="w">       </span><span class="n">mark_regions</span><span class="w"></span>
-<span class="w">       </span><span class="n">R1</span><span class="w"></span>
-<span class="w">       </span><span class="n">R1plus3</span><span class="w"></span>
-<span class="w">       </span><span class="n">standard_suffix</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">       </span><span class="n">prelude</span>
+<span class="w">       </span><span class="n">mark_regions</span>
+<span class="w">       </span><span class="n">R1</span>
+<span class="w">       </span><span class="n">R1plus3</span>
+<span class="w">       </span><span class="n">standard_suffix</span>
+<span class="p">)</span>
 
-<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="n">niked</span><span class="w"> </span><span class="n">alefBeys</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="n">niked</span><span class="w"> </span><span class="n">alefBeys</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span><span class="w"></span>
+<span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span>
 
-<span class="c1">// AlefBeys</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Alef</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05D0}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Beys</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05D1}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Giml</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05D2}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Dalet</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05D3}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Hey</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05D4}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Vov</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05D5}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Zayen</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05D6}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Khes</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05D7}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Tes</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05D8}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Yud</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05D9}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">LangerKhof</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+05DA}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Khof</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05DB}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Lamed</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05DC}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">ShlosMem</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+05DD}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Mem</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05DE}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">LangerNun</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+05DF}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Nun</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05E0}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Samekh</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+05E1}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Ayen</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05E2}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">LangerFey</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+05E3}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Fey</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05E4}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">LangerTsadek</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+05E5}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Tsadek</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+05E6}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Kuf</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05E7}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Reysh</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05E8}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Shin</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05E9}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Sof</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05EA}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">TsveyVovn</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+05F0}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">VovYud</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+05F1}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">TsveyYudn</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+05F2}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="c1">// AlefBeys</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Alef</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05D0}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Beys</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05D1}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Giml</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05D2}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Dalet</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05D3}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Hey</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05D4}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Vov</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05D5}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Zayen</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05D6}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Khes</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05D7}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Tes</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05D8}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Yud</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05D9}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">LangerKhof</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+05DA}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Khof</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05DB}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Lamed</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05DC}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ShlosMem</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+05DD}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Mem</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05DE}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">LangerNun</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+05DF}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Nun</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05E0}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Samekh</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+05E1}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Ayen</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05E2}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">LangerFey</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+05E3}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Fey</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05E4}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">LangerTsadek</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+05E5}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Tsadek</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+05E6}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Kuf</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05E7}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Reysh</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05E8}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Shin</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+05E9}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Sof</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05EA}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">TsveyVovn</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+05F0}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">VovYud</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+05F1}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">TsveyYudn</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+05F2}</span><span class="s1">&#39;</span>
 
-<span class="c1">// Niked</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Shvo</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05B0}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Khirik</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B4}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Tseyre</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B5}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Segl</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05B6}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">ReducedSegl</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+05B1}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Pasekh</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B7}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">ReducedPasekh</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+05B2}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Komets</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B8}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">ReducedKomets</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+05B3}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Rafe</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05BF}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">SinDot</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05C2}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">ShinDot</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+05C1}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Khoylm</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B9}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Melupm</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05BC}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">Kubuts</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05BB}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="c1">// Niked</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Shvo</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05B0}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Khirik</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B4}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Tseyre</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B5}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Segl</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05B6}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ReducedSegl</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+05B1}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Pasekh</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B7}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ReducedPasekh</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+05B2}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Komets</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B8}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ReducedKomets</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+05B3}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Rafe</span><span class="w">          </span><span class="s1">&#39;</span><span class="se">{U+05BF}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">SinDot</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05C2}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ShinDot</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+05C1}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Khoylm</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05B9}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Melupm</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05BC}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Kubuts</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+05BB}</span><span class="s1">&#39;</span>
 
-<span class="c1">// Groupings</span><span class="w"></span>
-<span class="kr">define</span><span class="w"> </span><span class="n">niked</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{Shvo}{Khirik}{Tseyre}{Segl}{ReducedSegl}{Pasekh}{ReducedPasekh}{Komets}{ReducedKomets}{SinDot}{ShinDot}{Khoylm}{Melupm}{Kubuts}{Rafe}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">define</span><span class="w"> </span><span class="n">alefBeys</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{Alef}{Beys}{Giml}{Dalet}{Hey}{Vov}{Zayen}{Khes}{Tes}{Yud}{LangerKhof}{Khof}{Lamed}{ShlosMem}{Mem}{LangerNun}{Nun}{Samekh}{Ayen}{LangerFey}{Fey}{LangerTsadek}{Tsadek}{Kuf}{Reysh}{Shin}{Sof}{TsveyVovn}{VovYud}{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">define</span><span class="w"> </span><span class="n">vowel</span><span class="w">           </span><span class="s1">&#39;</span><span class="se">{Alef}{Vov}{Yud}{Ayen}{VovYud}{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="kr">define</span><span class="w"> </span><span class="n">consonant</span><span class="w">   </span><span class="n">alefBeys</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vowel</span><span class="w"></span>
+<span class="c1">// Groupings</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">niked</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{Shvo}{Khirik}{Tseyre}{Segl}{ReducedSegl}{Pasekh}{ReducedPasekh}{Komets}{ReducedKomets}{SinDot}{ShinDot}{Khoylm}{Melupm}{Kubuts}{Rafe}</span><span class="s1">&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">alefBeys</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{Alef}{Beys}{Giml}{Dalet}{Hey}{Vov}{Zayen}{Khes}{Tes}{Yud}{LangerKhof}{Khof}{Lamed}{ShlosMem}{Mem}{LangerNun}{Nun}{Samekh}{Ayen}{LangerFey}{Fey}{LangerTsadek}{Tsadek}{Kuf}{Reysh}{Shin}{Sof}{TsveyVovn}{VovYud}{TsveyYudn}</span><span class="s1">&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">vowel</span><span class="w">           </span><span class="s1">&#39;</span><span class="se">{Alef}{Vov}{Yud}{Ayen}{VovYud}{TsveyYudn}</span><span class="s1">&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">consonant</span><span class="w">   </span><span class="n">alefBeys</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vowel</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">prelude</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="ow">repeat</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Vov}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Melupm}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Yud}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Khirik}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{VovYud}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Yud}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Khirik}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{LangerKhof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Khof}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ShlosMem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{LangerNun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{LangerFey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{LangerTsadek}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="p">)</span><span class="w"></span>
+<span class="kr">define</span><span class="w"> </span><span class="n">prelude</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">repeat</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Vov}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Melupm}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Yud}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Khirik}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{VovYud}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Yud}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Khirik}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{LangerKhof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Khof}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ShlosMem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{LangerNun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{LangerFey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{LangerTsadek}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
 
-<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="ow">repeat</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="n">niked</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">))</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="ow">repeat</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="n">niked</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">))</span>
+<span class="p">)</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span><span class="w"></span>
+<span class="kr">define</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
 
-<span class="w">  </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// Replace past participle ge- at start of word</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// Unless word starts with gelt- or gebn-</span><span class="w"></span>
-<span class="w">      </span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{Giml}{Ayen}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"></span>
-<span class="w">      </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{Lamed}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Nun}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;GE&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// Replace past participle ge- at start of word</span>
+<span class="w">      </span><span class="c1">// Unless word starts with gelt- or gebn-</span>
+<span class="w">      </span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{Giml}{Ayen}</span><span class="s1">&#39;</span><span class="o">]</span>
+<span class="w">      </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{Lamed}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Nun}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;GE&#39;</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// skip verbal prefix</span><span class="w"></span>
-<span class="w">      </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// Free stressed: Adurkh-, Durkh-, Ahin-, Aher-, Avek-, Mit-, Antkegn-, Akegn-, Anider-, Arop-, Aroys-, Aroyf-, Arum-, Arayn-, Arunter-, Ariber-, Nokh-, Farbay-, Aheym-, Afir-, Faroys-, Funander-, Tsuzamen-, Tsunoyf-, Tsurik-</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Alef}{Dalet}{Vov}{Reysh}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Dalet}{Vov}{Reysh}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Hey}{Yud}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Hey}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{TsveyVovn}{Ayen}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Mem}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Nun}{Tes}{Kuf}{Ayen}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Kuf}{Ayen}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Nun}{Yud}{Dalet}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{Alef}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{VovYud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{VovYud}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{Vov}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{TsveyYudn}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{Vov}{Nun}{Tes}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{Yud}{Beys}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Alef}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{Beys}{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Hey}{TsveyYudn}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Fey}{Yud}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{VovYud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Vov}{Nun}{Alef}{Nun}{Dalet}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Zayen}{Alef}{Mem}{Ayen}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Nun}{VovYud}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Reysh}{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// skip verbal prefix</span>
+<span class="w">      </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">        </span><span class="c1">// Free stressed: Adurkh-, Durkh-, Ahin-, Aher-, Avek-, Mit-, Antkegn-, Akegn-, Anider-, Arop-, Aroys-, Aroyf-, Arum-, Arayn-, Arunter-, Ariber-, Nokh-, Farbay-, Aheym-, Afir-, Faroys-, Funander-, Tsuzamen-, Tsunoyf-, Tsurik-</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Alef}{Dalet}{Vov}{Reysh}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Dalet}{Vov}{Reysh}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Hey}{Yud}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Hey}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{TsveyVovn}{Ayen}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Mem}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Nun}{Tes}{Kuf}{Ayen}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Kuf}{Ayen}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Nun}{Yud}{Dalet}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{Alef}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{VovYud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{VovYud}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{Vov}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{TsveyYudn}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{Vov}{Nun}{Tes}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Reysh}{Yud}{Beys}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Alef}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{Beys}{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Hey}{TsveyYudn}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Fey}{Yud}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{VovYud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Vov}{Nun}{Alef}{Nun}{Dalet}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Zayen}{Alef}{Mem}{Ayen}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Nun}{VovYud}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Reysh}{Yud}{Kuf}</span><span class="s1">&#39;</span>
 
-<span class="w">        </span><span class="c1">// Stressed: Oys-, Oyf-, Um-, Unter-, Iber-, Ayn-, On-, Op-, Bay-, For-, Tsu-.</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Alef}{VovYud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{VovYud}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Vov}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Vov}{Nun}{Tes}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Yud}{Beys}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{TsveyYudn}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Stressed: Oys-, Oyf-, Um-, Unter-, Iber-, Ayn-, On-, Op-, Bay-, For-, Tsu-.</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Alef}{VovYud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{VovYud}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Vov}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Vov}{Nun}{Tes}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Yud}{Beys}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{TsveyYudn}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Alef}{Fey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}</span><span class="s1">&#39;</span>
 
-<span class="w">        </span><span class="c1">// Unstressed:  Ant-, Ba-, Der-, Tse-. Far- already covered by For-. Ge- comes later.</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Alef}{Nun}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Alef}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Dalet}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Ayen}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Unstressed:  Ant-, Ba-, Der-, Tse-. Far- already covered by For-. Ge- comes later.</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Alef}{Nun}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Alef}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Dalet}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Ayen}</span><span class="s1">&#39;</span>
 
-<span class="w">        </span><span class="c1">// If verbal prefix followed by Tsu- or Ge-, replace it</span><span class="w"></span>
-<span class="w">        </span><span class="p">(</span><span class="w"></span>
-<span class="w">          </span><span class="c1">// Don&#39;t mark the TSU- prefix inside verbs like &quot;oys-tsugn&quot;</span><span class="w"></span>
-<span class="w">          </span><span class="ow">test</span><span class="w"> </span><span class="p">((</span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Kuf}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Kuf}{Nun}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span><span class="w"></span>
-<span class="w">          </span><span class="ow">or</span><span class="w"></span>
-<span class="w">          </span><span class="c1">// Don&#39;t mark the GE- prefix inside verbs like &quot;avek-gebn&quot;</span><span class="w"></span>
-<span class="w">          </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{Giml}{Ayen}{Beys}{Nun}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">          </span><span class="ow">or</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{Giml}{Ayen}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;GE&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">          </span><span class="ow">or</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;TSU&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// If verbal prefix followed by Tsu- or Ge-, replace it</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">          </span><span class="c1">// Don&#39;t mark the TSU- prefix inside verbs like &quot;oys-tsugn&quot;</span>
+<span class="w">          </span><span class="ow">test</span><span class="w"> </span><span class="p">((</span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Kuf}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}{Kuf}{Nun}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span>
+<span class="w">          </span><span class="ow">or</span>
+<span class="w">          </span><span class="c1">// Don&#39;t mark the GE- prefix inside verbs like &quot;avek-gebn&quot;</span>
+<span class="w">          </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{Giml}{Ayen}{Beys}{Nun}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">          </span><span class="ow">or</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{Giml}{Ayen}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;GE&#39;</span><span class="p">)</span>
+<span class="w">          </span><span class="ow">or</span>
+<span class="w">          </span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{Tsadek}{Vov}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;TSU&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="ow">test</span><span class="p">(</span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="ow">test</span><span class="p">(</span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
 
-<span class="w">    </span><span class="c1">// We want to allow three-consonant Hebrew roots.</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// To this end, we skip three-consonant combinations that exist in non-Hebraic Yiddish.</span><span class="w"></span>
-<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{Fey}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{Shin}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Dalet}{Zayen}{Shin}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="ow">true</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// We want to allow three-consonant Hebrew roots.</span>
+<span class="w">    </span><span class="c1">// To this end, we skip three-consonant combinations that exist in non-Hebraic Yiddish.</span>
+<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{Fey}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{Shin}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Dalet}{Zayen}{Shin}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="ow">true</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="c1">// Either 3 consonants or the first non-vowel after a vowel</span><span class="w"></span>
-<span class="w">    </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="n">consonant</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="ow">try</span><span class="p">(</span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">  </span><span class="c1">// at least 3 past the prefix</span><span class="w"></span>
-<span class="w">  </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Either 3 consonants or the first non-vowel after a vowel</span>
+<span class="w">    </span><span class="p">(</span>
+<span class="w">      </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="n">consonant</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span><span class="p">)</span>
+<span class="w">      </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">try</span><span class="p">(</span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">  </span><span class="c1">// at least 3 past the prefix</span>
+<span class="w">  </span><span class="p">)</span>
 
-<span class="p">)</span><span class="w"></span>
+<span class="p">)</span>
 
-<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">cursor</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Like R1, but also allows the cursor to be outside R1 by the width of Giml Yud Samekh</span><span class="w"></span>
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">R1plus3</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">cursor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ow">sizeof</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{Yud}{Samekh}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">cursor</span>
+<span class="w">  </span><span class="c1">// Like R1, but also allows the cursor to be outside R1 by the width of Giml Yud Samekh</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">R1plus3</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">cursor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ow">sizeof</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{Yud}{Samekh}</span><span class="s1">&#39;</span>
 
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">standard_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// Plural/adjective endings: -er, -ers, -e, -n, -s, -en, -ns, -eners, -ens, -es</span><span class="w"></span>
-<span class="w">         </span><span class="s1">&#39;</span><span class="se">{Ayen}{Reysh}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Ayen}{Reysh}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">standard_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">        </span><span class="c1">// Plural/adjective endings: -er, -ers, -e, -n, -s, -en, -ns, -eners, -ens, -es</span>
+<span class="w">         </span><span class="s1">&#39;</span><span class="se">{Ayen}{Reysh}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Ayen}{Reysh}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Reysh}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Exception: don&#39;t delete noun endings -ie, like &quot;agitatsie&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Ayen}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="ow">true</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Exception: don&#39;t delete noun endings -ie, like &quot;agitatsie&quot;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Ayen}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="ow">true</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -ies =&gt; ie</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Ayen}{Samekh}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Ayen}</span><span class="s1">&#39;</span><span class="w">  </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -ies =&gt; ie</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Ayen}{Samekh}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Ayen}</span><span class="s1">&#39;</span><span class="w">  </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Plural/adjective endings: -enem, -ener, -ene, -ens</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Samekh}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Plural/adjective endings: -enem, -ener, -ene, -ens</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Samekh}</span><span class="s1">&#39;</span>
 <span class="w">          </span><span class="p">(</span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span>
-<span class="w">            </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gegangen =&gt; -gey</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Giml}{Alef}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{TsveyYudn}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -genumen =&gt; -nem</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Nun}{Vov}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gemiten =&gt; -mayd</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Mem}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Mem}{TsveyYudn}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gebiten =&gt; -bayt</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Beys}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gebisen =&gt; -bays</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Beys}{Yud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gevizen =&gt; -vayz</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Yud}{Zayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{TsveyYudn}{Zayen}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -getriben =&gt; -trayb</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Yud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -geliten =&gt; -layt</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Lamed}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Lamed}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gekliben =&gt; -klayb</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Kuf}{Lamed}{Yud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Kuf}{Lamed}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -geriben =&gt; -rayb</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Reysh}{Yud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gerisen =&gt; -rays</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Reysh}{Yud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Reysh}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -geshvigen =&gt; -shvayg</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{Yud}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{TsveyYudn}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -geshmisen =&gt; -shmays</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Mem}{Yud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Mem}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -geshniten =&gt; -shnayd</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Nun}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Nun}{TsveyYudn}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -geshriben =&gt; -shrayb</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Reysh}{Yud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gebunden =&gt; -bind</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Beys}{Vov}{Nun}{Dalet}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Yud}{Nun}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gevuntshn =&gt; -vintsh</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Vov}{Tes}{Shin}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Yud}{Tes}{Shin}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gezungen =&gt; -zing</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Zayen}{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Zayen}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -getrunken =&gt; -trink</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Vov}{Nun}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Yud}{Nun}{Kuf}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -getsvungen =&gt; -tsving</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Tsadek}{TsveyVovn}{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{TsveyVovn}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -geshlungen =&gt; -shling</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Lamed}{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Lamed}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -geboygen =&gt; -beyg</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Beys}{VovYud}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -gehoyben =&gt; -heyb</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Hey}{VovYud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -farloyren =&gt; -farlir</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{Lamed}{VovYud}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{Lamed}{Yud}{Reysh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -shtanen =&gt; -shtey</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{Alef}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{TsveyYudn}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="c1">// -geshvoyrn =&gt; -shver</span><span class="w"></span>
-<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{VovYud}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">              </span><span class="c1">// -gegangen =&gt; -gey</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Giml}{Alef}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{TsveyYudn}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -genumen =&gt; -nem</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Nun}{Vov}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gemiten =&gt; -mayd</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Mem}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Mem}{TsveyYudn}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gebiten =&gt; -bayt</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Beys}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gebisen =&gt; -bays</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Beys}{Yud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gevizen =&gt; -vayz</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Yud}{Zayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{TsveyYudn}{Zayen}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -getriben =&gt; -trayb</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Yud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -geliten =&gt; -layt</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Lamed}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Lamed}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gekliben =&gt; -klayb</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Kuf}{Lamed}{Yud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Kuf}{Lamed}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -geriben =&gt; -rayb</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Reysh}{Yud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gerisen =&gt; -rays</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Reysh}{Yud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Reysh}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -geshvigen =&gt; -shvayg</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{Yud}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{TsveyYudn}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -geshmisen =&gt; -shmays</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Mem}{Yud}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Mem}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -geshniten =&gt; -shnayd</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Nun}{Yud}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Nun}{TsveyYudn}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -geshriben =&gt; -shrayb</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Reysh}{Yud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gebunden =&gt; -bind</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Beys}{Vov}{Nun}{Dalet}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Yud}{Nun}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gevuntshn =&gt; -vintsh</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Vov}{Tes}{Shin}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Yud}{Tes}{Shin}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gezungen =&gt; -zing</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Zayen}{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Zayen}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -getrunken =&gt; -trink</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Vov}{Nun}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Yud}{Nun}{Kuf}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -getsvungen =&gt; -tsving</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Tsadek}{TsveyVovn}{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{TsveyVovn}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -geshlungen =&gt; -shling</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Lamed}{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Lamed}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -geboygen =&gt; -beyg</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Beys}{VovYud}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -gehoyben =&gt; -heyb</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Hey}{VovYud}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -farloyren =&gt; -farlir</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{Lamed}{VovYud}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{Lamed}{Yud}{Reysh}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -shtanen =&gt; -shtey</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{Alef}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{TsveyYudn}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="c1">// -geshvoyrn =&gt; -shver</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{VovYud}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">         </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Verb/past participle ending: -t</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Tes}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Verb/past participle ending: -t</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Tes}</span><span class="s1">&#39;</span>
 <span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"> </span>
 
-<span class="w">        </span><span class="c1">// As well as noun/adjectives ending in -tn, -te, -ter, -ts so that the &quot;-t&quot; doesn&#39;t differentiate</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// Similarly for past participles: -tns, -tene, -tenem, -tener</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// If the Tes was before R1, we try to perform the same action while leaving the Tes in place</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Samekh}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Tes}{Nun}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}{Nun}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}{Nun}{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}{Nun}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="p">((</span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}</span><span class="s1">&#39;</span><span class="p">))</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// -(ge)brakht =&gt; -breng</span><span class="w"></span>
-<span class="w">            </span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{Beys}{Reysh}{Alef}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{Ayen}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Reysh}{Ayen}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// As well as noun/adjectives ending in -tn, -te, -ter, -ts so that the &quot;-t&quot; doesn&#39;t differentiate</span>
+<span class="w">        </span><span class="c1">// Similarly for past participles: -tns, -tene, -tenem, -tener</span>
+<span class="w">        </span><span class="c1">// If the Tes was before R1, we try to perform the same action while leaving the Tes in place</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Samekh}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Tes}{Nun}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}{Nun}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}{Nun}{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Ayen}{Nun}{Ayen}{Reysh}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="p">((</span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="w">            </span><span class="c1">// -(ge)brakht =&gt; -breng</span>
+<span class="w">            </span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{Beys}{Reysh}{Alef}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{Ayen}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Reysh}{Ayen}{Nun}{Giml}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Past participles: -et, -etn, -ets, -ete, -eter</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Past participles: -et, -etn, -ets, -ete, -eter</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Tes}{Ayen}{Reysh}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -geyn shorted to -gey</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Giml}{TsveyYudn}{Nun}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">                    </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{TsveyYudn}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -geyn shorted to -gey</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Giml}{TsveyYudn}{Nun}</span><span class="s1">&#39;</span>
+<span class="w">                    </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{TsveyYudn}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// ##################### Long list of irregular past participles</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// -(ge)gangen (shortened to -gangen after prefixes) =&gt; -gey</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Giml}{Alef}{Nun}{Giml}{Ayen}{Nun}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">                    </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ##################### Long list of irregular past participles</span>
+<span class="w">        </span><span class="c1">// -(ge)gangen (shortened to -gangen after prefixes) =&gt; -gey</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Giml}{Alef}{Nun}{Giml}{Ayen}{Nun}</span><span class="s1">&#39;</span>
+<span class="w">                    </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{TsveyYudn}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -(ge)numen (shortened to -numen after prefixes) =&gt; -nem</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Nun}{Vov}{Mem}{Ayen}{Nun}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -(ge)numen (shortened to -numen after prefixes) =&gt; -nem</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Nun}{Vov}{Mem}{Ayen}{Nun}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Ayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -(ge)shribn (shortened to -shribn after prefixes) =&gt; -shrayb</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{Reysh}{Yud}{Beys}{Nun}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -(ge)shribn (shortened to -shribn after prefixes) =&gt; -shrayb</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{Reysh}{Yud}{Beys}{Nun}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gemiten =&gt; -mayd</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gemiten =&gt; -mayd</span>
 <span class="w">        </span><span class="s1">&#39;GE</span><span class="se">{Mem}{Yud}{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Mem}{TsveyYudn}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Mem}{TsveyYudn}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gebiten =&gt; -bayt</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gebiten =&gt; -bayt</span>
 <span class="w">        </span><span class="s1">&#39;GE</span><span class="se">{Beys}{Yud}{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gebisen =&gt; -bays</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gebisen =&gt; -bays</span>
 <span class="w">        </span><span class="s1">&#39;GE</span><span class="se">{Beys}{Yud}{Samekh}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gevizen =&gt; -vayz</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gevizen =&gt; -vayz</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Yud}{Zayen}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{TsveyYudn}{Zayen}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{TsveyYudn}{Zayen}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -getriben =&gt; -trayb</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -getriben =&gt; -trayb</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Yud}{Beys}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -geliten =&gt; -layt</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -geliten =&gt; -layt</span>
 <span class="w">        </span><span class="s1">&#39;GE</span><span class="se">{Lamed}{Yud}{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Lamed}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Lamed}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gekliben =&gt; -klayb</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gekliben =&gt; -klayb</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Kuf}{Lamed}{Yud}{Beys}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Kuf}{Lamed}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Kuf}{Lamed}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -geriben =&gt; -rayb</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -geriben =&gt; -rayb</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Reysh}{Yud}{Beys}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Reysh}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gerisen =&gt; -rays</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gerisen =&gt; -rays</span>
 <span class="w">        </span><span class="s1">&#39;GE</span><span class="se">{Reysh}{Yud}{Samekh}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Reysh}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Reysh}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -geshvigen =&gt; -shvayg</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -geshvigen =&gt; -shvayg</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{Yud}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{TsveyYudn}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{TsveyYudn}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -geshmisen =&gt; -shmays</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -geshmisen =&gt; -shmays</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{Mem}{Yud}{Samekh}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Mem}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Mem}{TsveyYudn}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -geshniten =&gt; -shnayd</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -geshniten =&gt; -shnayd</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{Nun}{Yud}{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Nun}{TsveyYudn}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Nun}{TsveyYudn}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gebunden =&gt; -bind</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gebunden =&gt; -bind</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Beys}{Vov}{Nun}{Dalet}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Yud}{Nun}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Yud}{Nun}{Dalet}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gevuntshn =&gt; -vintsh</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gevuntshn =&gt; -vintsh</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Vov}{Tes}{Shin}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Yud}{Tes}{Shin}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{TsveyVovn}{Yud}{Tes}{Shin}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gezungen =&gt; -zing</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gezungen =&gt; -zing</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Zayen}{Vov}{Nun}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Zayen}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Zayen}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -getrunken =&gt; -trink</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -getrunken =&gt; -trink</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Vov}{Nun}{Kuf}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Yud}{Nun}{Kuf}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tes}{Reysh}{Yud}{Nun}{Kuf}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -getsvungen =&gt; -tsving</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -getsvungen =&gt; -tsving</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Tsadek}{TsveyVovn}{Vov}{Nun}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{TsveyVovn}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Tsadek}{TsveyVovn}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -geshlungen =&gt; -shling</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -geshlungen =&gt; -shling</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{Lamed}{Vov}{Nun}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Lamed}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Lamed}{Yud}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -geboygen =&gt; -beyg</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -geboygen =&gt; -beyg</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Beys}{VovYud}{Giml}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{TsveyYudn}{Giml}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -gehoyben =&gt; -heyb</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -gehoyben =&gt; -heyb</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Hey}{VovYud}{Beys}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}{TsveyYudn}{Beys}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -farloyren =&gt; -farlir</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -farloyren =&gt; -farlir</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{Lamed}{VovYud}{Reysh}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{Lamed}{Yud}{Reysh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Fey}{Alef}{Reysh}{Lamed}{Yud}{Reysh}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -shtanen =&gt; -shtey</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -shtanen =&gt; -shtey</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{Alef}{Nun}{Ayen}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{TsveyYudn}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Tes}{TsveyYudn}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">         </span><span class="c1">// -geshvoyrn =&gt; -shver</span><span class="w"></span>
+<span class="w">         </span><span class="c1">// -geshvoyrn =&gt; -shver</span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{VovYud}{Reysh}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{TsveyVovn}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// -(ge)brakht (shortened to -brakht after prefixes) =&gt; -breng</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Beys}{Reysh}{Alef}{Khof}{Tes}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Reysh}{Ayen}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// -(ge)brakht (shortened to -brakht after prefixes) =&gt; -breng</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Beys}{Reysh}{Alef}{Khof}{Tes}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Beys}{Reysh}{Ayen}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// ###### End of irregular past participles</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ###### End of irregular past participles</span>
 
-<span class="w">        </span><span class="c1">// Noun endings: -ung, -hayt, -kayt, -ikayt, -shaft</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Kuf}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Kuf}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Alef}{Fey}{Tes}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Noun endings: -ung, -hayt, -kayt, -ikayt, -shaft</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Kuf}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Kuf}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Alef}{Fey}{Tes}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Noun endings: -izm, izmen</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Zayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Zayen}{Mem}{Ayen}{Nun}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Noun endings: -izm, izmen</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Zayen}{Mem}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Zayen}{Mem}{Ayen}{Nun}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Plural ending: -im</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Mem}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Plural ending: -im</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Mem}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 <span class="w">          </span>
-<span class="w">        </span><span class="c1">// Plural ending: -os (Hebraic), replace with -h</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Sof}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Plural ending: -os (Hebraic), replace with -h</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Sof}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Diminutive endings: -elekh, -ele, -lekh, -eles, -elen</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Ayen}{Lamed}{Ayen}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Lamed}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Lamed}{Ayen}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Lamed}{Ayen}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Lamed}{Ayen}{Nun}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Diminutive endings: -elekh, -ele, -lekh, -eles, -elen</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Ayen}{Lamed}{Ayen}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Lamed}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Lamed}{Ayen}{Khof}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Lamed}{Ayen}{Samekh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Ayen}{Lamed}{Ayen}{Nun}</span><span class="s1">&#39;</span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 <span class="w">        </span>
-<span class="w">        </span><span class="c1">// Noun ending: -ist</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Samekh}{Tes}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// Exceptions: -gist, -shist</span><span class="w"></span>
-<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="n">R1plus3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="ow">or</span><span class="w"></span>
-<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">          </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Noun ending: -ist</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Samekh}{Tes}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span>
+<span class="w">            </span><span class="c1">// Exceptions: -gist, -shist</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="n">R1plus3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Samekh}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">            </span><span class="ow">or</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">          </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Noun ending: -istn</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Samekh}{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Noun ending: -istn</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Samekh}{Tes}{Nun}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 <span class="w">        </span>
-<span class="w">        </span><span class="c1">// Verb ending: -stu</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Samekh}{Tes}{Vov}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Verb ending: -stu</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Samekh}{Tes}{Vov}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Superlative ending: -ster, -ste, -stn </span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Superlative ending: -ster, -ste, -stn </span>
 <span class="w">        </span><span class="s1">&#39;</span><span class="se">{Samekh}{Tes}{Ayen}{Reysh}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Samekh}{Tes}{Ayen}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Samekh}{Tes}{Nun}</span><span class="s1">&#39;</span><span class="w"> </span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 <span class="w">          </span>
-<span class="w">        </span><span class="c1">// Ambiguous verb ending: -st</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Samekh}{Tes}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Ambiguous verb ending: -st</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Samekh}{Tes}</span><span class="s1">&#39;</span>
 <span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"> </span>
-<span class="w">      </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// Noun endings: -ung, -hayt, -kayt, -ikayt, -shaft</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Kuf}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Kuf}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Alef}{Fey}{Tes}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">        </span><span class="c1">// Noun endings: -ung, -hayt, -kayt, -ikayt, -shaft</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Vov}{Nun}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Hey}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Kuf}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Kuf}{TsveyYudn}{Tes}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Shin}{Alef}{Fey}{Tes}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Diminutive endings: -l</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Lamed}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Diminutive endings: -l</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Lamed}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// Adjective endings: -ig, -ik, -ish, -nik, -dik</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Shin}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Dalet}{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">        </span><span class="c1">// Adjective endings: -ig, -ik, -ish, -nik, -dik</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Yud}{Giml}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Yud}{Shin}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Nun}{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Dalet}{Yud}{Kuf}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Exceptions to above: -blik, -glik</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Beys}{Lamed}{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{Lamed}{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="ow">true</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Exceptions to above: -blik, -glik</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Beys}{Lamed}{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{Giml}{Lamed}{Yud}{Kuf}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="ow">true</span><span class="w"> </span><span class="p">)</span>
 <span class="w">          </span>
-<span class="w">        </span><span class="c1">// Present participle endings: -ndik</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Nun}{Dalet}{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Present participle endings: -ndik</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Nun}{Dalet}{Yud}{Kuf}</span><span class="s1">&#39;</span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">        </span><span class="c1">// Present participle ending -endik: delete if after a -ng, -nk, -n, -m, consonant+l, or vowel.</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// Otherwise, delete just the -ndik part.</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Dalet}{Yud}{Kuf}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Present participle ending -endik: delete if after a -ng, -nk, -n, -m, consonant+l, or vowel.</span>
+<span class="w">        </span><span class="c1">// Otherwise, delete just the -ndik part.</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{Ayen}{Nun}{Dalet}{Yud}{Kuf}</span><span class="s1">&#39;</span>
+<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="ow">repeat</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;GE&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;TSU&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="ow">repeat</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;GE&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;TSU&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">))</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">prelude</span><span class="w"></span>
-<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"></span>
-<span class="w">  </span><span class="ow">backwards</span><span class="w"></span>
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">standard_suffix</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">prelude</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">mark_regions</span>
+<span class="w">  </span><span class="ow">backwards</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">standard_suffix</span>
+<span class="p">)</span>
 </pre></div>
 
 

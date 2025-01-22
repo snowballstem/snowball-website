@@ -183,81 +183,81 @@ Martin
  -------
 
 </pre>
-<div class="highlight"><pre><span class="kr">strings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">noun_form</span><span class="w">  </span><span class="n">verb_form</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span class="kr">strings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">noun_form</span><span class="w">  </span><span class="n">verb_form</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">routines</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">   </span><span class="n">map_letters</span><span class="w"></span>
-<span class="w">   </span><span class="n">que_word</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="n">map_letters</span>
+<span class="w">   </span><span class="n">que_word</span>
+<span class="p">)</span>
 
-<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">map_letters</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="kr">define</span><span class="w"> </span><span class="n">map_letters</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;j&#39;</span><span class="o">]</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;v&#39;</span><span class="o">]</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;j&#39;</span><span class="o">]</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;v&#39;</span><span class="o">]</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="p">)</span>
 
-<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">que_word</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">que_word</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">        </span><span class="o">[</span><span class="s1">&#39;que&#39;</span><span class="o">]</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">                </span><span class="s1">&#39;at&#39;</span><span class="w"> </span><span class="s1">&#39;quo&#39;</span><span class="w"> </span><span class="s1">&#39;ne&#39;</span><span class="w"> </span><span class="s1">&#39;ita&#39;</span><span class="w"> </span><span class="s1">&#39;abs&#39;</span><span class="w"> </span><span class="s1">&#39;aps&#39;</span><span class="w"> </span><span class="s1">&#39;abus&#39;</span><span class="w"> </span><span class="s1">&#39;adae&#39;</span><span class="w"> </span><span class="s1">&#39;adus&#39;</span><span class="w"></span>
-<span class="w">                </span><span class="s1">&#39;deni&#39;</span><span class="w"> </span><span class="s1">&#39;de&#39;</span><span class="w"> </span><span class="s1">&#39;sus&#39;</span><span class="w"> </span><span class="s1">&#39;obli&#39;</span><span class="w"> </span><span class="s1">&#39;perae&#39;</span><span class="w"> </span><span class="s1">&#39;plenis&#39;</span><span class="w"> </span><span class="s1">&#39;quando&#39;</span><span class="w"> </span><span class="s1">&#39;quis&#39;</span><span class="w"></span>
-<span class="w">                </span><span class="s1">&#39;quae&#39;</span><span class="w"> </span><span class="s1">&#39;cuius&#39;</span><span class="w"> </span><span class="s1">&#39;cui&#39;</span><span class="w"> </span><span class="s1">&#39;quem&#39;</span><span class="w"> </span><span class="s1">&#39;quam&#39;</span><span class="w"> </span><span class="s1">&#39;qua&#39;</span><span class="w"> </span><span class="s1">&#39;qui&#39;</span><span class="w"></span>
-<span class="w">                </span><span class="s1">&#39;quorum&#39;</span><span class="w"> </span><span class="s1">&#39;quarum&#39;</span><span class="w"> </span><span class="s1">&#39;quibus&#39;</span><span class="w"> </span><span class="s1">&#39;quos&#39;</span><span class="w"> </span><span class="s1">&#39;quas&#39;</span><span class="w"> </span><span class="s1">&#39;quotusquis&#39;</span><span class="w"></span>
-<span class="w">                </span><span class="s1">&#39;quous&#39;</span><span class="w"> </span><span class="s1">&#39;ubi&#39;</span><span class="w"> </span><span class="s1">&#39;undi&#39;</span><span class="w"> </span><span class="s1">&#39;us&#39;</span><span class="w"> </span><span class="s1">&#39;uter&#39;</span><span class="w"> </span><span class="s1">&#39;uti&#39;</span><span class="w"> </span><span class="s1">&#39;utro&#39;</span><span class="w"> </span><span class="s1">&#39;utribi&#39;</span><span class="w"></span>
-<span class="w">                </span><span class="s1">&#39;tor&#39;</span><span class="w"> </span><span class="s1">&#39;co&#39;</span><span class="w"> </span><span class="s1">&#39;conco&#39;</span><span class="w"> </span><span class="s1">&#39;contor&#39;</span><span class="w"> </span><span class="s1">&#39;detor&#39;</span><span class="w"> </span><span class="s1">&#39;deco&#39;</span><span class="w"> </span><span class="s1">&#39;exco&#39;</span><span class="w"> </span><span class="s1">&#39;extor&#39;</span><span class="w"></span>
-<span class="w">                </span><span class="s1">&#39;obtor&#39;</span><span class="w"> </span><span class="s1">&#39;optor&#39;</span><span class="w"> </span><span class="s1">&#39;retor&#39;</span><span class="w"> </span><span class="s1">&#39;reco&#39;</span><span class="w"> </span><span class="s1">&#39;attor&#39;</span><span class="w"> </span><span class="s1">&#39;inco&#39;</span><span class="w"> </span><span class="s1">&#39;intor&#39;</span><span class="w"></span>
-<span class="w">                </span><span class="s1">&#39;praetor&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="o">]</span><span class="w"></span>
-<span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">noun_form</span><span class="w"></span>
-<span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">verb_form</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">fail</span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="o">[</span><span class="s1">&#39;que&#39;</span><span class="o">]</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                </span><span class="s1">&#39;at&#39;</span><span class="w"> </span><span class="s1">&#39;quo&#39;</span><span class="w"> </span><span class="s1">&#39;ne&#39;</span><span class="w"> </span><span class="s1">&#39;ita&#39;</span><span class="w"> </span><span class="s1">&#39;abs&#39;</span><span class="w"> </span><span class="s1">&#39;aps&#39;</span><span class="w"> </span><span class="s1">&#39;abus&#39;</span><span class="w"> </span><span class="s1">&#39;adae&#39;</span><span class="w"> </span><span class="s1">&#39;adus&#39;</span>
+<span class="w">                </span><span class="s1">&#39;deni&#39;</span><span class="w"> </span><span class="s1">&#39;de&#39;</span><span class="w"> </span><span class="s1">&#39;sus&#39;</span><span class="w"> </span><span class="s1">&#39;obli&#39;</span><span class="w"> </span><span class="s1">&#39;perae&#39;</span><span class="w"> </span><span class="s1">&#39;plenis&#39;</span><span class="w"> </span><span class="s1">&#39;quando&#39;</span><span class="w"> </span><span class="s1">&#39;quis&#39;</span>
+<span class="w">                </span><span class="s1">&#39;quae&#39;</span><span class="w"> </span><span class="s1">&#39;cuius&#39;</span><span class="w"> </span><span class="s1">&#39;cui&#39;</span><span class="w"> </span><span class="s1">&#39;quem&#39;</span><span class="w"> </span><span class="s1">&#39;quam&#39;</span><span class="w"> </span><span class="s1">&#39;qua&#39;</span><span class="w"> </span><span class="s1">&#39;qui&#39;</span>
+<span class="w">                </span><span class="s1">&#39;quorum&#39;</span><span class="w"> </span><span class="s1">&#39;quarum&#39;</span><span class="w"> </span><span class="s1">&#39;quibus&#39;</span><span class="w"> </span><span class="s1">&#39;quos&#39;</span><span class="w"> </span><span class="s1">&#39;quas&#39;</span><span class="w"> </span><span class="s1">&#39;quotusquis&#39;</span>
+<span class="w">                </span><span class="s1">&#39;quous&#39;</span><span class="w"> </span><span class="s1">&#39;ubi&#39;</span><span class="w"> </span><span class="s1">&#39;undi&#39;</span><span class="w"> </span><span class="s1">&#39;us&#39;</span><span class="w"> </span><span class="s1">&#39;uter&#39;</span><span class="w"> </span><span class="s1">&#39;uti&#39;</span><span class="w"> </span><span class="s1">&#39;utro&#39;</span><span class="w"> </span><span class="s1">&#39;utribi&#39;</span>
+<span class="w">                </span><span class="s1">&#39;tor&#39;</span><span class="w"> </span><span class="s1">&#39;co&#39;</span><span class="w"> </span><span class="s1">&#39;conco&#39;</span><span class="w"> </span><span class="s1">&#39;contor&#39;</span><span class="w"> </span><span class="s1">&#39;detor&#39;</span><span class="w"> </span><span class="s1">&#39;deco&#39;</span><span class="w"> </span><span class="s1">&#39;exco&#39;</span><span class="w"> </span><span class="s1">&#39;extor&#39;</span>
+<span class="w">                </span><span class="s1">&#39;obtor&#39;</span><span class="w"> </span><span class="s1">&#39;optor&#39;</span><span class="w"> </span><span class="s1">&#39;retor&#39;</span><span class="w"> </span><span class="s1">&#39;reco&#39;</span><span class="w"> </span><span class="s1">&#39;attor&#39;</span><span class="w"> </span><span class="s1">&#39;inco&#39;</span><span class="w"> </span><span class="s1">&#39;intor&#39;</span>
+<span class="w">                </span><span class="s1">&#39;praetor&#39;</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="o">]</span>
+<span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">noun_form</span>
+<span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">verb_form</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">fail</span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">    </span><span class="n">map_letters</span><span class="w"></span>
+<span class="w">    </span><span class="n">map_letters</span>
 
-<span class="w">    </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="n">que_word</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">noun_form</span><span class="w"></span>
-<span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">verb_form</span><span class="w"></span>
+<span class="w">    </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="n">que_word</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">noun_form</span>
+<span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">verb_form</span>
 
-<span class="w">            </span><span class="o">$</span><span class="n">noun_form</span><span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">                </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
-<span class="w">                </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;ibus&#39;</span><span class="w"> </span><span class="s1">&#39;ius&#39;</span><span class="w"> </span><span class="s1">&#39;ae&#39;</span><span class="w"> </span><span class="s1">&#39;am&#39;</span><span class="w"> </span><span class="s1">&#39;as&#39;</span><span class="w"> </span><span class="s1">&#39;em&#39;</span><span class="w"> </span><span class="s1">&#39;es&#39;</span><span class="w"> </span><span class="s1">&#39;ia&#39;</span><span class="w"> </span><span class="s1">&#39;is&#39;</span><span class="w"> </span><span class="s1">&#39;nt&#39;</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;os&#39;</span><span class="w"> </span><span class="s1">&#39;ud&#39;</span><span class="w"> </span><span class="s1">&#39;um&#39;</span><span class="w"> </span><span class="s1">&#39;us&#39;</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="w"></span>
-<span class="w">                        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="o">$</span><span class="n">noun_form</span><span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">                </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                    </span><span class="s1">&#39;ibus&#39;</span><span class="w"> </span><span class="s1">&#39;ius&#39;</span><span class="w"> </span><span class="s1">&#39;ae&#39;</span><span class="w"> </span><span class="s1">&#39;am&#39;</span><span class="w"> </span><span class="s1">&#39;as&#39;</span><span class="w"> </span><span class="s1">&#39;em&#39;</span><span class="w"> </span><span class="s1">&#39;es&#39;</span><span class="w"> </span><span class="s1">&#39;ia&#39;</span><span class="w"> </span><span class="s1">&#39;is&#39;</span><span class="w"> </span><span class="s1">&#39;nt&#39;</span>
+<span class="w">                    </span><span class="s1">&#39;os&#39;</span><span class="w"> </span><span class="s1">&#39;ud&#39;</span><span class="w"> </span><span class="s1">&#39;um&#39;</span><span class="w"> </span><span class="s1">&#39;us&#39;</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="s1">&#39;u&#39;</span>
+<span class="w">                        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span>
 
-<span class="w">            </span><span class="o">$</span><span class="n">verb_form</span><span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">                </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
-<span class="w">                </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;iuntur&#39;</span><span class="w"> </span><span class="s1">&#39;erunt&#39;</span><span class="w"> </span><span class="s1">&#39;untur&#39;</span><span class="w"> </span><span class="s1">&#39;iunt&#39;</span><span class="w"> </span><span class="s1">&#39;unt&#39;</span><span class="w"></span>
-<span class="w">                         </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;i&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;beris&#39;</span><span class="w"> </span><span class="s1">&#39;bor&#39;</span><span class="w"> </span><span class="s1">&#39;bo&#39;</span><span class="w"></span>
-<span class="w">                         </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;bi&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;ero&#39;</span><span class="w"></span>
-<span class="w">                         </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;eri&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;mini&#39;</span><span class="w"> </span><span class="s1">&#39;ntur&#39;</span><span class="w"> </span><span class="s1">&#39;stis&#39;</span><span class="w"> </span><span class="s1">&#39;mur&#39;</span><span class="w"> </span><span class="s1">&#39;mus&#39;</span><span class="w"> </span><span class="s1">&#39;ris&#39;</span><span class="w"> </span><span class="s1">&#39;sti&#39;</span><span class="w"> </span><span class="s1">&#39;tis&#39;</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;tur&#39;</span><span class="w"> </span><span class="s1">&#39;ns&#39;</span><span class="w"> </span><span class="s1">&#39;nt&#39;</span><span class="w"> </span><span class="s1">&#39;ri&#39;</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="s1">&#39;t&#39;</span><span class="w"></span>
-<span class="w">                         </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="o">$</span><span class="n">verb_form</span><span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">                </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                    </span><span class="s1">&#39;iuntur&#39;</span><span class="w"> </span><span class="s1">&#39;erunt&#39;</span><span class="w"> </span><span class="s1">&#39;untur&#39;</span><span class="w"> </span><span class="s1">&#39;iunt&#39;</span><span class="w"> </span><span class="s1">&#39;unt&#39;</span>
+<span class="w">                         </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+<span class="w">                    </span><span class="s1">&#39;beris&#39;</span><span class="w"> </span><span class="s1">&#39;bor&#39;</span><span class="w"> </span><span class="s1">&#39;bo&#39;</span>
+<span class="w">                         </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;bi&#39;</span><span class="p">)</span>
+<span class="w">                    </span><span class="s1">&#39;ero&#39;</span>
+<span class="w">                         </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;eri&#39;</span><span class="p">)</span>
+<span class="w">                    </span><span class="s1">&#39;mini&#39;</span><span class="w"> </span><span class="s1">&#39;ntur&#39;</span><span class="w"> </span><span class="s1">&#39;stis&#39;</span><span class="w"> </span><span class="s1">&#39;mur&#39;</span><span class="w"> </span><span class="s1">&#39;mus&#39;</span><span class="w"> </span><span class="s1">&#39;ris&#39;</span><span class="w"> </span><span class="s1">&#39;sti&#39;</span><span class="w"> </span><span class="s1">&#39;tis&#39;</span>
+<span class="w">                    </span><span class="s1">&#39;tur&#39;</span><span class="w"> </span><span class="s1">&#39;ns&#39;</span><span class="w"> </span><span class="s1">&#39;nt&#39;</span><span class="w"> </span><span class="s1">&#39;ri&#39;</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="s1">&#39;t&#39;</span>
+<span class="w">                         </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
 <span class="w">    </span><span class="cm">/* the stemmed words are left in noun-form and verb-form, and can</span>
-<span class="cm">       be picked up as C strings at z-&gt;S[0] and z-&gt;S[1] through the API. */</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="cm">       be picked up as C strings at z-&gt;S[0] and z-&gt;S[1] through the API. */</span>
+<span class="p">)</span>
 </pre></div>
 
 </blockquote>

@@ -483,244 +483,244 @@ Step 9: Remove plural suffixes
 <div class="highlight"><pre><span class="cm">/*</span>
 <span class="cm">Hungarian Stemmer</span>
 <span class="cm">Removes noun inflections</span>
-<span class="cm">*/</span><span class="w"></span>
+<span class="cm">*/</span>
 
-<span class="kr">routines</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="n">mark_regions</span><span class="w"></span>
-<span class="w">    </span><span class="n">R1</span><span class="w"></span>
-<span class="w">    </span><span class="n">v_ending</span><span class="w"></span>
-<span class="w">    </span><span class="n">case</span><span class="w"></span>
-<span class="w">    </span><span class="n">case_special</span><span class="w"></span>
-<span class="w">    </span><span class="n">case_other</span><span class="w"></span>
-<span class="w">    </span><span class="n">plural</span><span class="w"></span>
-<span class="w">    </span><span class="n">owned</span><span class="w"></span>
-<span class="w">    </span><span class="n">sing_owner</span><span class="w"></span>
-<span class="w">    </span><span class="n">plur_owner</span><span class="w"></span>
-<span class="w">    </span><span class="n">instrum</span><span class="w"></span>
-<span class="w">    </span><span class="n">factive</span><span class="w"></span>
-<span class="w">    </span><span class="n">undouble</span><span class="w"></span>
-<span class="w">    </span><span class="n">double</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">mark_regions</span>
+<span class="w">    </span><span class="n">R1</span>
+<span class="w">    </span><span class="n">v_ending</span>
+<span class="w">    </span><span class="n">case</span>
+<span class="w">    </span><span class="n">case_special</span>
+<span class="w">    </span><span class="n">case_other</span>
+<span class="w">    </span><span class="n">plural</span>
+<span class="w">    </span><span class="n">owned</span>
+<span class="w">    </span><span class="n">sing_owner</span>
+<span class="w">    </span><span class="n">plur_owner</span>
+<span class="w">    </span><span class="n">instrum</span>
+<span class="w">    </span><span class="n">factive</span>
+<span class="w">    </span><span class="n">undouble</span>
+<span class="w">    </span><span class="n">double</span>
+<span class="p">)</span>
 
-<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="p">)</span>
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span><span class="w"></span>
+<span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span>
 
-<span class="cm">/* special characters */</span><span class="w"></span>
+<span class="cm">/* special characters */</span>
 
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">a&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00E1}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//a-acute</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">e&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00E9}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//e-acute</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">i&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00ED}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//i-acute</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">o&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00F3}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//o-acute</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">o&quot;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00F6}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//o-umlaut</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">oq</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0151}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">//o-double acute</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">u&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00FA}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//u-acute</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">u&quot;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00FC}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//u-umlaut</span><span class="w"></span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">uq</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0171}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">//u-double acute</span><span class="w"></span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">a&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00E1}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//a-acute</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">e&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00E9}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//e-acute</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">i&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00ED}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//i-acute</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">o&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00F3}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//o-acute</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">o&quot;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00F6}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//o-umlaut</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">oq</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0151}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">//o-double acute</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">u&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00FA}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//u-acute</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">u&quot;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00FC}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">//u-umlaut</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">uq</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0171}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">//u-double acute</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiou</span><span class="se">{a&#39;}{e&#39;}{i&#39;}{o&#39;}{o&quot;}{oq}{u&#39;}{u&quot;}{uq}</span><span class="s1">&#39;</span><span class="w"></span>
+<span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiou</span><span class="se">{a&#39;}{e&#39;}{i&#39;}{o&#39;}{o&quot;}{oq}{u&#39;}{u&quot;}{uq}</span><span class="s1">&#39;</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="kr">define</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">    </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span><span class="w"></span>
+<span class="w">    </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
 
-<span class="w">    </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"></span>
-<span class="w">     </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;cs&#39;</span><span class="w"> </span><span class="s1">&#39;gy&#39;</span><span class="w"> </span><span class="s1">&#39;ly&#39;</span><span class="w"> </span><span class="s1">&#39;ny&#39;</span><span class="w"> </span><span class="s1">&#39;sz&#39;</span><span class="w"> </span><span class="s1">&#39;ty&#39;</span><span class="w"> </span><span class="s1">&#39;zs&#39;</span><span class="w"> </span><span class="s1">&#39;dzs&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">next</span><span class="w"></span>
-<span class="w">     </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="ow">or</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span>
+<span class="w">     </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;cs&#39;</span><span class="w"> </span><span class="s1">&#39;gy&#39;</span><span class="w"> </span><span class="s1">&#39;ly&#39;</span><span class="w"> </span><span class="s1">&#39;ny&#39;</span><span class="w"> </span><span class="s1">&#39;sz&#39;</span><span class="w"> </span><span class="s1">&#39;ty&#39;</span><span class="w"> </span><span class="s1">&#39;zs&#39;</span><span class="w"> </span><span class="s1">&#39;dzs&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">next</span>
+<span class="w">     </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
 
-<span class="w">    </span><span class="p">(</span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span><span class="p">)</span>
+<span class="p">)</span>
 
-<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">cursor</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">cursor</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">v_ending</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">v_ending</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">double</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="ow">test</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;bb&#39;</span><span class="w"> </span><span class="s1">&#39;cc&#39;</span><span class="w"> </span><span class="s1">&#39;ccs&#39;</span><span class="w"> </span><span class="s1">&#39;dd&#39;</span><span class="w"> </span><span class="s1">&#39;ff&#39;</span><span class="w"> </span><span class="s1">&#39;gg&#39;</span><span class="w"> </span><span class="s1">&#39;ggy&#39;</span><span class="w"> </span><span class="s1">&#39;jj&#39;</span><span class="w"> </span><span class="s1">&#39;kk&#39;</span><span class="w"> </span><span class="s1">&#39;ll&#39;</span><span class="w"> </span><span class="s1">&#39;lly&#39;</span><span class="w"> </span><span class="s1">&#39;mm&#39;</span><span class="w"></span>
-<span class="w">        </span><span class="s1">&#39;nn&#39;</span><span class="w"> </span><span class="s1">&#39;nny&#39;</span><span class="w"> </span><span class="s1">&#39;pp&#39;</span><span class="w"> </span><span class="s1">&#39;rr&#39;</span><span class="w"> </span><span class="s1">&#39;ss&#39;</span><span class="w"> </span><span class="s1">&#39;ssz&#39;</span><span class="w"> </span><span class="s1">&#39;tt&#39;</span><span class="w"> </span><span class="s1">&#39;tty&#39;</span><span class="w"> </span><span class="s1">&#39;vv&#39;</span><span class="w"> </span><span class="s1">&#39;zz&#39;</span><span class="w"> </span><span class="s1">&#39;zzs&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">double</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="ow">test</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;bb&#39;</span><span class="w"> </span><span class="s1">&#39;cc&#39;</span><span class="w"> </span><span class="s1">&#39;ccs&#39;</span><span class="w"> </span><span class="s1">&#39;dd&#39;</span><span class="w"> </span><span class="s1">&#39;ff&#39;</span><span class="w"> </span><span class="s1">&#39;gg&#39;</span><span class="w"> </span><span class="s1">&#39;ggy&#39;</span><span class="w"> </span><span class="s1">&#39;jj&#39;</span><span class="w"> </span><span class="s1">&#39;kk&#39;</span><span class="w"> </span><span class="s1">&#39;ll&#39;</span><span class="w"> </span><span class="s1">&#39;lly&#39;</span><span class="w"> </span><span class="s1">&#39;mm&#39;</span>
+<span class="w">        </span><span class="s1">&#39;nn&#39;</span><span class="w"> </span><span class="s1">&#39;nny&#39;</span><span class="w"> </span><span class="s1">&#39;pp&#39;</span><span class="w"> </span><span class="s1">&#39;rr&#39;</span><span class="w"> </span><span class="s1">&#39;ss&#39;</span><span class="w"> </span><span class="s1">&#39;ssz&#39;</span><span class="w"> </span><span class="s1">&#39;tt&#39;</span><span class="w"> </span><span class="s1">&#39;tty&#39;</span><span class="w"> </span><span class="s1">&#39;vv&#39;</span><span class="w"> </span><span class="s1">&#39;zz&#39;</span><span class="w"> </span><span class="s1">&#39;zzs&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">undouble</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="ow">next</span><span class="w"> </span><span class="o">[</span><span class="ow">hop</span><span class="w"> </span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">undouble</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="ow">next</span><span class="w"> </span><span class="o">[</span><span class="ow">hop</span><span class="w"> </span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">instrum</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;al&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;el&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="ow">delete</span><span class="w"></span>
-<span class="w">        </span><span class="n">undouble</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">instrum</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;al&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">double</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;el&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">double</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="ow">delete</span>
+<span class="w">        </span><span class="n">undouble</span>
+<span class="w">    </span><span class="p">)</span>
 
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">case</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ban&#39;</span><span class="w"> </span><span class="s1">&#39;ben&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ba&#39;</span><span class="w"> </span><span class="s1">&#39;be&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ra&#39;</span><span class="w"> </span><span class="s1">&#39;re&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;nak&#39;</span><span class="w"> </span><span class="s1">&#39;nek&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;val&#39;</span><span class="w"> </span><span class="s1">&#39;vel&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;t</span><span class="se">{o&#39;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="s1">&#39;t</span><span class="se">{oq}</span><span class="s1">l&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;r</span><span class="se">{o&#39;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="s1">&#39;r</span><span class="se">{oq}</span><span class="s1">l&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;b</span><span class="se">{o&#39;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="s1">&#39;b</span><span class="se">{oq}</span><span class="s1">l&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;hoz&#39;</span><span class="w"> </span><span class="s1">&#39;hez&#39;</span><span class="w"> </span><span class="s1">&#39;h</span><span class="se">{o&quot;}</span><span class="s1">z&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;n</span><span class="se">{a&#39;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="s1">&#39;n</span><span class="se">{e&#39;}</span><span class="s1">l&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ig&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;at&#39;</span><span class="w"> </span><span class="s1">&#39;et&#39;</span><span class="w"> </span><span class="s1">&#39;ot&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">t&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">rt&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;k</span><span class="se">{e&#39;}</span><span class="s1">pp&#39;</span><span class="w"> </span><span class="s1">&#39;k</span><span class="se">{e&#39;}</span><span class="s1">ppen&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;kor&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ul&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">l&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;v</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;v</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;onk</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span><span class="w"> </span><span class="s1">&#39;enk</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span><span class="w"> </span><span class="s1">&#39;ank</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;k</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;en&#39;</span><span class="w"> </span><span class="s1">&#39;on&#39;</span><span class="w"> </span><span class="s1">&#39;an&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">n&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;n&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;t&#39;</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="ow">delete</span><span class="w"></span>
-<span class="w">        </span><span class="n">v_ending</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">case</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;ban&#39;</span><span class="w"> </span><span class="s1">&#39;ben&#39;</span>
+<span class="w">            </span><span class="s1">&#39;ba&#39;</span><span class="w"> </span><span class="s1">&#39;be&#39;</span>
+<span class="w">            </span><span class="s1">&#39;ra&#39;</span><span class="w"> </span><span class="s1">&#39;re&#39;</span>
+<span class="w">            </span><span class="s1">&#39;nak&#39;</span><span class="w"> </span><span class="s1">&#39;nek&#39;</span>
+<span class="w">            </span><span class="s1">&#39;val&#39;</span><span class="w"> </span><span class="s1">&#39;vel&#39;</span>
+<span class="w">            </span><span class="s1">&#39;t</span><span class="se">{o&#39;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="s1">&#39;t</span><span class="se">{oq}</span><span class="s1">l&#39;</span>
+<span class="w">            </span><span class="s1">&#39;r</span><span class="se">{o&#39;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="s1">&#39;r</span><span class="se">{oq}</span><span class="s1">l&#39;</span>
+<span class="w">            </span><span class="s1">&#39;b</span><span class="se">{o&#39;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="s1">&#39;b</span><span class="se">{oq}</span><span class="s1">l&#39;</span>
+<span class="w">            </span><span class="s1">&#39;hoz&#39;</span><span class="w"> </span><span class="s1">&#39;hez&#39;</span><span class="w"> </span><span class="s1">&#39;h</span><span class="se">{o&quot;}</span><span class="s1">z&#39;</span>
+<span class="w">            </span><span class="s1">&#39;n</span><span class="se">{a&#39;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="s1">&#39;n</span><span class="se">{e&#39;}</span><span class="s1">l&#39;</span>
+<span class="w">            </span><span class="s1">&#39;ig&#39;</span>
+<span class="w">            </span><span class="s1">&#39;at&#39;</span><span class="w"> </span><span class="s1">&#39;et&#39;</span><span class="w"> </span><span class="s1">&#39;ot&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">t&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">rt&#39;</span>
+<span class="w">            </span><span class="s1">&#39;k</span><span class="se">{e&#39;}</span><span class="s1">pp&#39;</span><span class="w"> </span><span class="s1">&#39;k</span><span class="se">{e&#39;}</span><span class="s1">ppen&#39;</span>
+<span class="w">            </span><span class="s1">&#39;kor&#39;</span>
+<span class="w">            </span><span class="s1">&#39;ul&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">l&#39;</span>
+<span class="w">            </span><span class="s1">&#39;v</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;v</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;onk</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span><span class="w"> </span><span class="s1">&#39;enk</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span><span class="w"> </span><span class="s1">&#39;ank</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span>
+<span class="w">            </span><span class="s1">&#39;k</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span>
+<span class="w">            </span><span class="s1">&#39;en&#39;</span><span class="w"> </span><span class="s1">&#39;on&#39;</span><span class="w"> </span><span class="s1">&#39;an&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">n&#39;</span>
+<span class="w">            </span><span class="s1">&#39;n&#39;</span>
+<span class="w">            </span><span class="s1">&#39;t&#39;</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="ow">delete</span>
+<span class="w">        </span><span class="n">v_ending</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">case_special</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">nk</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">case_special</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">nk</span><span class="se">{e&#39;}</span><span class="s1">nt&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">case_other</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;astul&#39;</span><span class="w"> </span><span class="s1">&#39;est</span><span class="se">{u&quot;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;stul&#39;</span><span class="w"> </span><span class="s1">&#39;st</span><span class="se">{u&quot;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">stul&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">st</span><span class="se">{u&quot;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">case_other</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;astul&#39;</span><span class="w"> </span><span class="s1">&#39;est</span><span class="se">{u&quot;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;stul&#39;</span><span class="w"> </span><span class="s1">&#39;st</span><span class="se">{u&quot;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">stul&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">st</span><span class="se">{u&quot;}</span><span class="s1">l&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">factive</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="ow">delete</span><span class="w"></span>
-<span class="w">        </span><span class="n">undouble</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">factive</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">double</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">double</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="ow">delete</span>
+<span class="w">        </span><span class="n">undouble</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">plural</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ak&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ok&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ek&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;k&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">plural</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ak&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ok&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ek&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;k&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">owned</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ok</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">k</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;ak</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;ek</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">k</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">k</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;k</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}{e&#39;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}{e&#39;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">i&#39;</span><span class="w">  </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">owned</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;ok</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">k</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;ak</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;ek</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">k</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">k</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;k</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}{e&#39;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}{e&#39;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">i&#39;</span><span class="w">  </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">sing_owner</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">nk&#39;</span><span class="w"> </span><span class="s1">&#39;unk&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">nk&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">nk&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;nk&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">juk&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">j</span><span class="se">{u&quot;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;juk&#39;</span><span class="w"> </span><span class="s1">&#39;j</span><span class="se">{u&quot;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;uk&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;em&#39;</span><span class="w"> </span><span class="s1">&#39;om&#39;</span><span class="w"> </span><span class="s1">&#39;am&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;m&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;od&#39;</span><span class="w"> </span><span class="s1">&#39;ed&#39;</span><span class="w"> </span><span class="s1">&#39;ad&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">d&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">d&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">d&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;d&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ja&#39;</span><span class="w"> </span><span class="s1">&#39;je&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">sing_owner</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">nk&#39;</span><span class="w"> </span><span class="s1">&#39;unk&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">nk&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">nk&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;nk&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">juk&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">j</span><span class="se">{u&quot;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;juk&#39;</span><span class="w"> </span><span class="s1">&#39;j</span><span class="se">{u&quot;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;uk&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;em&#39;</span><span class="w"> </span><span class="s1">&#39;om&#39;</span><span class="w"> </span><span class="s1">&#39;am&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;m&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;od&#39;</span><span class="w"> </span><span class="s1">&#39;ed&#39;</span><span class="w"> </span><span class="s1">&#39;ad&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">d&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">d&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">d&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;d&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ja&#39;</span><span class="w"> </span><span class="s1">&#39;je&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">plur_owner</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;jaim&#39;</span><span class="w"> </span><span class="s1">&#39;jeim&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">im&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">im&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;aim&#39;</span><span class="w"> </span><span class="s1">&#39;eim&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;im&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;jaid&#39;</span><span class="w"> </span><span class="s1">&#39;jeid&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">id&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">id&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;aid&#39;</span><span class="w"> </span><span class="s1">&#39;eid&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;id&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;jai&#39;</span><span class="w"> </span><span class="s1">&#39;jei&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ai&#39;</span><span class="w"> </span><span class="s1">&#39;ei&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;jaink&#39;</span><span class="w"> </span><span class="s1">&#39;jeink&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;eink&#39;</span><span class="w"> </span><span class="s1">&#39;aink&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">ink&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">ink&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ink&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;jaitok&#39;</span><span class="w"> </span><span class="s1">&#39;jeitek&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;aitok&#39;</span><span class="w"> </span><span class="s1">&#39;eitek&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">itok&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">itek&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;itek&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;jeik&#39;</span><span class="w"> </span><span class="s1">&#39;jaik&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;aik&#39;</span><span class="w"> </span><span class="s1">&#39;eik&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">ik&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">ik&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="s1">&#39;ik&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">plur_owner</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;jaim&#39;</span><span class="w"> </span><span class="s1">&#39;jeim&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">im&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">im&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;aim&#39;</span><span class="w"> </span><span class="s1">&#39;eim&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;im&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;jaid&#39;</span><span class="w"> </span><span class="s1">&#39;jeid&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">id&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">id&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;aid&#39;</span><span class="w"> </span><span class="s1">&#39;eid&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;id&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;jai&#39;</span><span class="w"> </span><span class="s1">&#39;jei&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ai&#39;</span><span class="w"> </span><span class="s1">&#39;ei&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;jaink&#39;</span><span class="w"> </span><span class="s1">&#39;jeink&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;eink&#39;</span><span class="w"> </span><span class="s1">&#39;aink&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">ink&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">ink&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ink&#39;</span>
+<span class="w">            </span><span class="s1">&#39;jaitok&#39;</span><span class="w"> </span><span class="s1">&#39;jeitek&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;aitok&#39;</span><span class="w"> </span><span class="s1">&#39;eitek&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">itok&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">itek&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;itek&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;jeik&#39;</span><span class="w"> </span><span class="s1">&#39;jaik&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;aik&#39;</span><span class="w"> </span><span class="s1">&#39;eik&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">ik&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">ik&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ik&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"></span>
-<span class="w">    </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="ow">do</span><span class="w"> </span><span class="n">instrum</span><span class="w"></span>
-<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">case</span><span class="w"></span>
-<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">case_special</span><span class="w"></span>
-<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">case_other</span><span class="w"></span>
-<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">factive</span><span class="w"></span>
-<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">owned</span><span class="w"></span>
-<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">sing_owner</span><span class="w"></span>
-<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">plur_owner</span><span class="w"></span>
-<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">plural</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">mark_regions</span>
+<span class="w">    </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="ow">do</span><span class="w"> </span><span class="n">instrum</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">case</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">case_special</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">case_other</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">factive</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">owned</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">sing_owner</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">plur_owner</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">plural</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 
 
