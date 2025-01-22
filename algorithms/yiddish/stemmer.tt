@@ -112,7 +112,7 @@
 </p>
 
 <ul>
-  <li>If the word begins with גע (except for געלט and געבן) it is replaced with "GE" and the cursor is advanced.</li>
+  <li>If the word begins with גע (unless it begins געלט or געבן or is exactly גע) it is replaced with "GE" and the cursor is advanced.</li>
   <li>
     Next, if the word begins with any verbal prefix, the cursor is advanced past this prefix.
     Prefixes include (niked added for clarity, not included in algorithm):
@@ -194,6 +194,14 @@
 </ul>
 
 Finally, all remaining GE and TSU are deleted.
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.3.0: Added an exception to the check to replace prefix גע with
+GE to not replace when גע is the entire input word.  This avoids generating an
+empty stem in this case.
+</ul>
 
 <h2>The same algorithm in Snowball</h2>
 
