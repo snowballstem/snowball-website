@@ -41,45 +41,56 @@ examples given of the stemmer's behaviour in the paper help to
 resolve these issues.
 </p>
 
-<p>
-Notice that c<sub>2</sub> isn't actually used - the most obvious explanation
-seems to be that "c<sub>1</sub>c<sub>1</sub>" should read
-"c<sub>1</sub>c<sub>2</sub>", or maybe "c<sub>2</sub>c<sub>1</sub>".
-</p>
+  <ul>
+  <li>
+  <p>
+  Notice that c<sub>2</sub> isn't actually used - the most obvious explanation
+  seems to be that "c<sub>1</sub>c<sub>1</sub>" should read
+  "c<sub>1</sub>c<sub>2</sub>", or maybe "c<sub>2</sub>c<sub>1</sub>".
+  </p>
+  </li>
 
-<p>
-Elsewhere the paper defines V... as meaning "the stem starts with
-a vowel" and K... as meaning "the stem starts with a consonant".
-</p>
+  <li>
+  <p>
+  Elsewhere the paper defines V... as meaning "the stem starts with
+  a vowel" and K... as meaning "the stem starts with a consonant".
+  The meaning of | isn't actually defined, but clearly means alternation.
+  </p>
 
-<p>
-In other places where it says X|Y... it seems the | binds more
-tightly, so it's (V|K)...c<sub>i</sub>c<sub>j</sub> not
-V|(K...c<sub>i</sub>c<sub>j</sub>).  That seems a bit
-odd as the first letter must be either a vowel or a consonant, so
-that really just means "ends c<sub>i</sub>c<sub>j</sub>".  However, nowhere in
-the paper uses or defines a notation such as ...X, which may explain this
-seemingly redundant way of specifying this.
-</p>
+  <p>
+  However nowhere is the precedence of | vs ... defined, and there
+  isn't a standard precedence we could reasonably assume.
+  In other places where the paper says X|Y... it seems the | binds more
+  tightly, so it's (V|K)...c<sub>i</sub>c<sub>j</sub> not
+  V|(K...c<sub>i</sub>c<sub>j</sub>).  That seems a bit
+  odd as the first letter must be either a vowel or a consonant, so
+  that really just means "ends c<sub>i</sub>c<sub>j</sub>".  However, nowhere in
+  the paper uses or defines a notation such as ...X, which may explain this
+  seemingly redundant way of specifying this.
+  </p>
+  </li>
 
-<p>
-The conditions elsewhere on prefix removal (e.g. V...) are clearly
-on the stem left after the prefix is removed.  None of the other
-rules for suffix removal have conditions on the stem, but for
-consistency with the prefix rules we might expect that the
-c<sub>i</sub>c<sub>j</sub> test is on what's left <em>after</em> removing the
-"i" suffix.
-</p>
+  <li>
+  <p>
+  The conditions elsewhere on prefix removal (e.g. V...) are clearly
+  on the stem left after the prefix is removed.  None of the other
+  rules for suffix removal have conditions on the stem, but for
+  consistency with the prefix rules we might expect that the
+  c<sub>i</sub>c<sub>j</sub> test is on what's left <em>after</em> removing the
+  "i" suffix.
+  </p>
+  </li>
+  </ul>
 
-<p>
-However, studying Indonesian wordlists and discussion with a native
-speaker leads us to conclude that the purpose of this check is to
-protect words of foreign origin (e.g. "televisi", "organisasi",
-"komunikasi") from stemming, and the common feature of these is
-that the word ends "-si", so we conclude that the condition here
-should be read as "word does not end -si", and this is what we
-have implemented.
-</p>
+  <p>
+  Studying Indonesian wordlists and discussion with a native
+  speaker leads us to conclude that the purpose of this check is to
+  protect words of foreign origin (e.g. "televisi", "organisasi",
+  "komunikasi") from stemming, and the common feature of these is
+  that the word ends "-si", so we conclude that the entire "additional
+  condition" here should be read as "word does not end -si", and this is what
+  we have implemented.
+  </p>
 </li>
 
 <li>
