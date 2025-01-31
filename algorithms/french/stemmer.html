@@ -83,7 +83,6 @@ continuait<BR>
 continuant<BR>
 continuation<BR>
 continue<BR>
-continué<BR>
 continuel<BR>
 continuelle<BR>
 continuellement<BR>
@@ -96,6 +95,7 @@ continueront<BR>
 continuez<BR>
 continuité<BR>
 continuons<BR>
+continué<BR>
 contorsions<BR>
 contour<BR>
 contournait<BR>
@@ -103,11 +103,11 @@ contournant<BR>
 contourne<BR>
 contours<BR>
 contractait<BR>
+contracter<BR>
+contractions<BR>
 contracté<BR>
 contractée<BR>
-contracter<BR>
 contractés<BR>
-contractions<BR>
 contradictoirement<BR>
 contradictoires<BR>
 contraindre<BR>
@@ -126,7 +126,6 @@ continu<BR>
 continu<BR>
 continu<BR>
 continu<BR>
-continu<BR>
 continuel<BR>
 continuel<BR>
 continuel<BR>
@@ -139,6 +138,7 @@ continu<BR>
 continu<BR>
 continu<BR>
 continuon<BR>
+continu<BR>
 contors<BR>
 contour<BR>
 contourn<BR>
@@ -176,19 +176,14 @@ maire<BR>
 maires<BR>
 mairie<BR>
 mais<BR>
-maïs<BR>
 maison<BR>
 maisons<BR>
 maistre<BR>
 maitre<BR>
-maître<BR>
-maîtres<BR>
-maîtresse<BR>
-maîtresses<BR>
-majesté<BR>
 majestueuse<BR>
 majestueusement<BR>
 majestueux<BR>
+majesté<BR>
 majeur<BR>
 majeure<BR>
 major<BR>
@@ -203,6 +198,11 @@ malades<BR>
 maladie<BR>
 maladies<BR>
 maladive<BR>
+maladresse<BR>
+maladresses<BR>
+maladroit<BR>
+maladroite<BR>
+maladroitement<BR>
 </TD>
 <TD></TD><TD> <b>&#x21d2;</b> </TD>
 <TD></TD><TD>
@@ -219,19 +219,14 @@ mair<BR>
 mair<BR>
 mair<BR>
 mais<BR>
-maï<BR>
 maison<BR>
 maison<BR>
 maistr<BR>
 maitr<BR>
-maîtr<BR>
-maîtr<BR>
-maîtress<BR>
-maîtress<BR>
+majestu<BR>
+majestu<BR>
+majestu<BR>
 majest<BR>
-majestu<BR>
-majestu<BR>
-majestu<BR>
 majeur<BR>
 majeur<BR>
 major<BR>
@@ -246,6 +241,11 @@ malad<BR>
 malad<BR>
 malad<BR>
 malad<BR>
+maladress<BR>
+maladress<BR>
+maladroit<BR>
+maladroit<BR>
+maladroit<BR>
 </TD>
 </TR>
 </TABLE>
@@ -260,14 +260,28 @@ Letters in French include the following accented forms,
 <DL><DD>
     <B><I>â  &nbsp;  à  &nbsp;  ç  &nbsp;  ë  &nbsp;  é  &nbsp;  ê  &nbsp;  è  &nbsp;  ï  &nbsp;  î  &nbsp;  ô  &nbsp;  û  &nbsp;  ù</I></B>
 </DL>
+
+<p>
 The following letters are vowels:
+</p>
+
 <DL><DD>
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  â  &nbsp;  à  &nbsp;  ë  &nbsp;  é  &nbsp;  ê  &nbsp;  è  &nbsp;  ï  &nbsp;  î  &nbsp;  ô  &nbsp;  û  &nbsp;  ù</I></B>
 </DL>
+
+<p>
+The first step removes elisions.  If the word starts with one of
+<b><i>c</i></b> <b><i>d</i></b> <b><i>j</i></b> <b><i>l</i></b> <b><i>m</i></b> <b><i>n</i></b> <b><i>s</i></b> <b><i>t</i></b>
+or <b><i>qu</i></b>, followed by an apostrophe (<b><i>'</i></b>) then remove this unless it comprises the whole word.
+</p>
+
+<p>
 Assume the word is in lower case.  Then, taking the letters in turn from the
 beginning to end of the word, put <b><i>u</i></b> or <b><i>i</i></b> into upper
 case when it is both preceded and followed by a vowel; put <b><i>y</i></b> into
 upper case when it is either preceded or followed by a vowel; and put <b><i>u</i></b> into upper case when it follows <b><i>q</i></b>. For example,
+</p>
+
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>    jouer   <TD></TD><TD> &#x2192; <TD></TD><TD>  joUer
 <TR><TD>    ennuie  <TD></TD><TD> &#x2192; <TD></TD><TD>  ennuIe
@@ -536,9 +550,18 @@ And finally:
     </p>
 </DL>
 
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.0.0: Suffixes that begin with a diaereses are now removed
+(done by replacing <B><I>ë</I></B> and <B><I>ï</I></B> with <B><I>He</I></B> and <B><I>Hi</I></B>, during stemming then undoing afterwards).</li>
+<li>Snowball 2.3.0: Added a new first step which removes elisions.</li>
+</ul>
+
 <h2>The same algorithm in Snowball</h2>
 
 <div class="highlight"><pre><span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">           </span><span class="n">elisions</span>
 <span class="w">           </span><span class="n">prelude</span><span class="w"> </span><span class="n">postlude</span><span class="w"> </span><span class="n">mark_regions</span>
 <span class="w">           </span><span class="n">RV</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="n">R2</span>
 <span class="w">           </span><span class="n">standard_suffix</span>
@@ -553,7 +576,7 @@ And finally:
 
 <span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">pV</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">keep_with_s</span><span class="w"> </span><span class="p">)</span>
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">elision_char</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">keep_with_s</span><span class="w"> </span><span class="p">)</span>
 
 <span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span>
 
@@ -574,6 +597,14 @@ And finally:
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">u`</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+00F9}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// u-grave</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiouy</span><span class="se">{a^}{a`}{e&quot;}{e&#39;}{e^}{e`}{i&quot;}{i^}{o^}{u^}{u`}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Single character elisions</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">elision_char</span><span class="w"> </span><span class="s1">&#39;cdjlmnst&#39;</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">elisions</span><span class="w"> </span><span class="kr">as</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="w"> </span><span class="p">(</span><span class="n">elision_char</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;qu&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="ow">delete</span>
+<span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">prelude</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span>
 
@@ -766,6 +797,7 @@ And finally:
 
 <span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">elisions</span>
 <span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">prelude</span>
 <span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">mark_regions</span>
 <span class="w">    </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
