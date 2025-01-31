@@ -18,14 +18,28 @@ Letters in French include the following accented forms,
 <DL><DD>
     <B><I>â  &nbsp;  à  &nbsp;  ç  &nbsp;  ë  &nbsp;  é  &nbsp;  ê  &nbsp;  è  &nbsp;  ï  &nbsp;  î  &nbsp;  ô  &nbsp;  û  &nbsp;  ù</I></B>
 </DL>
+
+<p>
 The following letters are vowels:
+</p>
+
 <DL><DD>
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  â  &nbsp;  à  &nbsp;  ë  &nbsp;  é  &nbsp;  ê  &nbsp;  è  &nbsp;  ï  &nbsp;  î  &nbsp;  ô  &nbsp;  û  &nbsp;  ù</I></B>
 </DL>
+
+<p>
+The first step removes elisions.  If the word starts with one of
+<b><i>c</i></b> <b><i>d</i></b> <b><i>j</i></b> <b><i>l</i></b> <b><i>m</i></b> <b><i>n</i></b> <b><i>s</i></b> <b><i>t</i></b>
+or <b><i>qu</i></b>, followed by an apostrophe (<b><i>'</i></b>) then remove this unless it comprises the whole word.
+</p>
+
+<p>
 Assume the word is in lower case.  Then, taking the letters in turn from the
 beginning to end of the word, put <b><i>u</i></b> or <b><i>i</i></b> into upper
 case when it is both preceded and followed by a vowel; put <b><i>y</i></b> into
 upper case when it is either preceded or followed by a vowel; and put <b><i>u</i></b> into upper case when it follows <b><i>q</i></b>. For example,
+</p>
+
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>    jouer   <TD></TD><TD> &#x2192; <TD></TD><TD>  joUer
 <TR><TD>    ennuie  <TD></TD><TD> &#x2192; <TD></TD><TD>  ennuIe
@@ -293,6 +307,14 @@ And finally:
     remaining <B><I>H</I></B>.
     </p>
 </DL>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.0.0: Suffixes that begin with a diaereses are now removed
+(done by replacing <B><I>ë</I></B> and <B><I>ï</I></B> with <B><I>He</I></B> and <B><I>Hi</I></B>, during stemming then undoing afterwards).</li>
+<li>Snowball 2.3.0: Added a new first step which removes elisions.</li>
+</ul>
 
 <h2>The same algorithm in Snowball</h2>
 
