@@ -354,7 +354,7 @@ Finally,
 
 <span class="kr">booleans</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">e_found</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="p">)</span>
+<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
 
 <span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">v_I</span><span class="w"> </span><span class="n">v_j</span><span class="w"> </span><span class="p">)</span>
 
@@ -408,8 +408,10 @@ Finally,
 <span class="w">    </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
 <span class="w">    </span><span class="o">$</span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
 
+<span class="w">    </span><span class="ow">test</span><span class="p">(</span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+
 <span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
-<span class="w">    </span><span class="ow">try</span><span class="p">(</span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w">  </span><span class="c1">// at least 3</span>
+<span class="w">    </span><span class="ow">try</span><span class="p">(</span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">  </span><span class="c1">// at least 3</span>
 <span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p2</span>
 
 <span class="p">)</span>
