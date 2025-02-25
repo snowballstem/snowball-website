@@ -127,12 +127,13 @@ These projects use Snowball stemmers:
 A probabilistic search engine which supports stemming using Snowball.
 </p>
 
-<h3><a href="https://code.google.com/p/urim/">urim</a></h3>
+<h3><a href="https://github.com/mazko/jstaggregator">urim</a></h3>
 <p>
-(added Sep 2010) Developed by Oleg Mazko, Urim is a standalone,
+Developed by Oleg Mazko, Urim is a standalone,
 offline tag-cloud builder engine, fully written in JavaScript and so
 capable of integration into all Internet browsers. Available as
-a Firefox add-on. With a JavaScript port of the Snowball stemmers (danish,
+a Firefox add-on and a Chrome extension.
+With a JavaScript port of the Snowball stemmers (danish,
 dutch, english, finnish, french, german, hungarian, italian,
 norwegian, portuguese, russian, spanish, swedish, romanian, turkish)
 also available as a separate library ready for developers.
