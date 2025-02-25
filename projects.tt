@@ -150,6 +150,12 @@ Snowball for stemming.
 Manticore Search in an open source search server which supports stemming using Snowball.
 </p>
 
+<h3><a href="https://www.postgresql.org/">PostgreSQL</a></h3>
+<p>
+PostgreSQL is a relational database which can be
+<a href="https://www.postgresql.org/docs/current/textsearch-dictionaries.html#TEXTSEARCH-SNOWBALL-DICTIONARY">configured to use Snowball stemmers</a>.
+</p>
+
 <h2>Snowball support in other tools</h2>
 
 <p>
