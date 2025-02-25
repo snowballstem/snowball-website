@@ -127,11 +127,6 @@ These projects use Snowball stemmers:
 A probabilistic search engine which supports stemming using Snowball.
 </p>
 
-<h3><a href="https://plone.org/products/textindexng3">TextIndexNG</a></h3>
-<p>
-A fulltext indexing solution for Zope with support for stemming using Snowball.
-</p>
-
 <h3><a href="https://code.google.com/p/urim/">urim</a></h3>
 <p>
 (added Sep 2010) Developed by Oleg Mazko, Urim is a standalone,
