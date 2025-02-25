@@ -139,7 +139,7 @@ norwegian, portuguese, russian, spanish, swedish, romanian, turkish)
 also available as a separate library ready for developers.
 </p>
 
-<h3><a href="http://openfts.sourceforge.net">OpenFTS</a></h3>
+<h3><a href="https://openfts.sourceforge.net">OpenFTS</a></h3>
 <p>
 OpenFTS is an advanced PostgreSQL-based search engine, which supports using
 Snowball for stemming.
