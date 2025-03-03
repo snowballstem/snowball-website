@@ -5,8 +5,10 @@
 <ul>
 [% algorithm_lis('lovins', '') %]
 <li> <A HREF="festschrift.html"> (in more depth)</A>
+<!-- link 404 2025-03-04
 <li> <A HREF="http://www.cs.waikato.ac.nz/~eibe/stemmers/index.html">
 An &#8216;unofficial&#8217; home page of the Lovins stemming algorithm</A>
+-->
 </ul>
 
 <p>
