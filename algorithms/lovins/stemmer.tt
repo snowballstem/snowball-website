@@ -320,11 +320,7 @@ The following examples show the intentions behind these rules.
 <h4>The Lovins algorithm in Snowball</h4>
 
 <p>
-And here is the Lovins algorithm in Snowball. The natural representation
-of the Lovins endings, conditions and rules in Snowball, is, I believe, a
-vindication of the appropriateness of Snowball for stemming work. Once the
-tables had been established, getting the Snowball version running was the
-work of a few minutes.
+Here is the Lovins algorithm in Snowball. The tables of endings, conditions and rules from Lovins' paper translate very naturally into Snowball code.
 </p>
 
 [% highlight_file('lovins') %]

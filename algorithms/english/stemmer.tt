@@ -16,7 +16,7 @@
 </p>
 
 <p>
-I have made more than one attempt to improve the structure of the Porter
+Martin Porter made more than one attempt to improve the structure of the Porter
 algorithm by making it follow the pattern of ending removal of the Romance
 language stemmers. It is not hard to see why one should want to do this:
 step 1<I>b</I> of the Porter stemmer removes <B><I>ed</I></B> and <B><I>ing</I></B>, which are
@@ -28,7 +28,7 @@ not shared by the Romance stemmers. Again, the divisions between steps
 </p>
 
 <p>
-Nevertheless, these attempts at improvement have been abandoned. They seem
+Nevertheless, these attempts at improvement were abandoned. They seem
 to lead to a more complicated algorithm with no very obvious improvements.
 A reason for not taking note of the outcome of step 1<I>b</I> may be that
 English endings do not determine word categories quite as strongly as
