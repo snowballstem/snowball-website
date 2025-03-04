@@ -39,8 +39,9 @@ Define a valid <B><I>s</I></B>-ending as one of
 
 <DL><DD>
 <B><I>b</I></B>  &nbsp;  <B><I>c</I></B>  &nbsp;  <B><I>d</I></B>  &nbsp;  <B><I>f</I></B>  &nbsp;  <B><I>g</I></B>  &nbsp;  <B><I>h</I></B>  &nbsp;  <B><I>j</I></B>  &nbsp;
-<B><I>l</I></B>  &nbsp;  <B><I>m</I></B>  &nbsp;  <B><I>n</I></B>  &nbsp;  <B><I>o</I></B>  &nbsp;  <B><I>p</I></B>  &nbsp;  <B><I>r</I></B>  &nbsp;  <B><I>t</I></B>  &nbsp;  <B><I>v</I></B>  &nbsp;
+<B><I>l</I></B>  &nbsp;  <B><I>m</I></B>  &nbsp;  <B><I>n</I></B>  &nbsp;  <B><I>o</I></B>  &nbsp;  <B><I>p</I></B>  &nbsp;  <B><I>t</I></B>  &nbsp;  <B><I>v</I></B>  &nbsp;
 <B><I>y</I></B>  &nbsp;  <B><I>z</I></B>,
+<BR> or <B><I>r</I></B> not preceded by <b><i>e</i><b>,
 <BR> or <B><I>k</I></B> not preceded by a vowel.
 </DL>
 
@@ -101,6 +102,13 @@ Step 3:
      &nbsp;  lov  &nbsp;  elov  &nbsp;  slov  &nbsp;   hetslov</I></B>
 </DL>
 </DL>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.0.0: <B><I>s</I></B>-ending definition adjusted to only include <b><i>k</i></b> when preceded by a non-vowel.
+<li>Snowball 2.3.0: <B><I>s</I></B>-ending definition adjusted to only include <b><i>r</i></b> when not preceded <b><i>e</i></b>.
+</ul>
 
 <h2>The same algorithm in Snowball</h2>
 
