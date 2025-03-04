@@ -605,18 +605,14 @@ cannot really be separated from other aspect of the indexing process:
 
 <ol>
 <li><p>What is a word? For indexing purposes, a word in a European language is
-a sequence of letters bounded by non-letters. But in English, an internal
-apostrophe does not split a word, although it is not classed as a letter.
-The treatment of these word boundary characters affects the stemmer. For
-example, the Kraaij Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
-treats apostrophe as part of the alphabet (so <B><I>&#8217;s</I></B>, <B><I>&#8217;tje</I></B> and <B><I>&#8217;je</I></B> are three
-of their endings). The Dutch stemmer presented here assumes hyphen and
-apostrophe have already been removed from the word to be stemmed.
+approximately a sequence of letters bounded by non-letters, but some punctuation
+needs special consideration.  For example, an internal apostrophe typically
+does not split a word.
 </p>
 
 <li><p>What is a letter? Clearly letters define words, but different languages
-use different letters, much confusion coming from the varied use of
-accented Roman letters.
+use different alphabets.  Even only considering languages using the Latin
+alphabet there are different accented letters.
 </p>
 
 <p>
@@ -642,30 +638,29 @@ two styles, upper and lower case, which historically correspond (very roughly) t
 shapes you get if you use a chisel or a pen. Across all languages, the
 exact relation of upper to lower case is not so easy to define. In Italian,
 for example, an accented lower case letter is sometimes represented in
-upper case by the unaccented letter followed by an apostrophe. (I have
-seen this convention used in modern Italian news stories in machine
-readable form.)
+upper case by the unaccented letter followed by an apostrophe (this seems
+to be because Italian keywords have keys for accented lower case letters
+but typing accented upper case letters is more complicated).  This is even
+sometimes seen in published books.
+</p>
+
+<li><p>
+The Snowball stemmers expect that the input words have been converted to
+lower case.
 </p>
 
 <p>
-In fact the Porter stemmer (which is for English) assumes the word being stemmed is
-unaccented and in lower case. More exactly, <B><I>a</I></B>, <B><I>e</I></B>, <B><I>i</I></B>, <B><I>o</I></B>,
-<B><I>u</I></B>,
-and sometimes <B><I>y</I></B>, are
-treated as vowels, and any other character gets treated as a consonant.
-Each stemmer presented here assumes some degree of normalisation before it
-receives the word, which is roughly (<I>a</I>) put all letters into lower case,
-and (<I>b</I>) remove accents from letter-accent combinations that do not form
-part of the alphabet of the language. Each stemmer declares the
-letter-accent combinations for its language, and this can be used as a
-guide for the normalisation, but even so, we can see from
-the discussion above that (<I>a</I>) and (<I>b</I>) are not trivial
-operations, and need to be done with care.
+(Incidentally, because the stemmers work on lower case words, some of the
+algorithms sometimes turn letters to upper case internally for flagging
+purposes.)
 </p>
 
-<p>
-(Incidentally, because the stemmers work on lower case words, turning
-letters to upper case is sometimes used internally for flagging purposes.)
+<li><p>
+The algorithms for languages which use accented characters are
+written assuming that no additional accent stripping is done before or
+after stemming.  If you strip accents you may cause conflation of
+unrelated words - for example, in French <i>châtiment</i> (punishment) and
+<i>chat</i> (cat) would produce the same stem if accents are stripped.
 </p>
 
 <li><p>Identifying stopwords. Invariant stopwords are more easily found before

@@ -67,10 +67,15 @@ be closer to the truth to say <I>because of</I>) its complete semantic redundanc
 </ol>
 
 <p>
-For these reasons, the English stemmer treats apostrophe as a letter, removing
+For these reasons, the English stemmer treats apostrophe as if it were a letter, removing
 it from the beginning of a word, where it might have stood for an opening
 quote, from the end of the word, where it might have stood for a closing quote,
 or been an apostrophe following <B><I>s</I></B>. The form <B><I>&#8217;s</I></B> is also treated as an ending.
 </p>
 
+<p>
+The Kraaij Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
+treats apostrophe as part of the alphabet (so <B><I>&#8217;s</I></B>, <B><I>&#8217;tje</I></B> and <B><I>&#8217;je</I></B> are three
+of their endings). The Dutch stemmer presented here assumes hyphen and
+apostrophe have already been removed from the word to be stemmed.
 [% footer %]
