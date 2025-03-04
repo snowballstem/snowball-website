@@ -281,8 +281,9 @@ Define a valid <B><I>s</I></B>-ending as one of
 
 <DL><DD>
 <B><I>b</I></B>  &nbsp;  <B><I>c</I></B>  &nbsp;  <B><I>d</I></B>  &nbsp;  <B><I>f</I></B>  &nbsp;  <B><I>g</I></B>  &nbsp;  <B><I>h</I></B>  &nbsp;  <B><I>j</I></B>  &nbsp;
-<B><I>l</I></B>  &nbsp;  <B><I>m</I></B>  &nbsp;  <B><I>n</I></B>  &nbsp;  <B><I>o</I></B>  &nbsp;  <B><I>p</I></B>  &nbsp;  <B><I>r</I></B>  &nbsp;  <B><I>t</I></B>  &nbsp;  <B><I>v</I></B>  &nbsp;
+<B><I>l</I></B>  &nbsp;  <B><I>m</I></B>  &nbsp;  <B><I>n</I></B>  &nbsp;  <B><I>o</I></B>  &nbsp;  <B><I>p</I></B>  &nbsp;  <B><I>t</I></B>  &nbsp;  <B><I>v</I></B>  &nbsp;
 <B><I>y</I></B>  &nbsp;  <B><I>z</I></B>,
+<BR> or <B><I>r</I></B> not preceded by <b><i>e</i><b>,
 <BR> or <B><I>k</I></B> not preceded by a vowel.
 </DL>
 
@@ -344,6 +345,13 @@ Step 3:
 </DL>
 </DL>
 
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.0.0: <B><I>s</I></B>-ending definition adjusted to only include <b><i>k</i></b> when preceded by a non-vowel.
+<li>Snowball 2.3.0: <B><I>s</I></B>-ending definition adjusted to only include <b><i>r</i></b> when not preceded <b><i>e</i></b>.
+</ul>
+
 <h2>The same algorithm in Snowball</h2>
 
 <div class="highlight"><pre><span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
@@ -369,7 +377,7 @@ Step 3:
 
 <span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiouy</span><span class="se">{ae}{ao}{o/}</span><span class="s1">&#39;</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">s_ending</span><span class="w">  </span><span class="s1">&#39;bcdfghjlmnoprtvyz&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">s_ending</span><span class="w">  </span><span class="s1">&#39;bcdfghjlmnoptvyz&#39;</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
@@ -391,7 +399,7 @@ Step 3:
 <span class="w">            </span><span class="s1">&#39;hetens&#39;</span><span class="w"> </span><span class="s1">&#39;ers&#39;</span><span class="w"> </span><span class="s1">&#39;ets&#39;</span><span class="w"> </span><span class="s1">&#39;et&#39;</span><span class="w"> </span><span class="s1">&#39;het&#39;</span><span class="w"> </span><span class="s1">&#39;ast&#39;</span>
 <span class="w">                </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;s&#39;</span>
-<span class="w">                </span><span class="p">(</span><span class="n">s_ending</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">                </span><span class="p">(</span><span class="n">s_ending</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;erte&#39;</span><span class="w"> </span><span class="s1">&#39;ert&#39;</span>
 <span class="w">                </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;er&#39;</span><span class="p">)</span>
 <span class="w">        </span><span class="p">)</span>
