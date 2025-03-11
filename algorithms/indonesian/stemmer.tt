@@ -7,6 +7,8 @@
 <li> <a href="http://www.illc.uva.nl/Publications/ResearchReports/MoL-2003-02.text.pdf">"A Study of Stemming Effects on Information Retrieval in Bahasa Indonesia", Fadillah Z Tala</a>
 </ul>
 
+[% algorithm_vocab([22, 'ekolog', 'perak']) %]
+
 <p>
 This is an implementation of the "Porter Stemmer for Bahasa Indonesia" described
 in:
