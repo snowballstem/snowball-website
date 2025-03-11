@@ -302,13 +302,24 @@ Step 1:
         <DT>(<I>a</I>)
             <B><I>a  &nbsp;  e  &nbsp;  ede  &nbsp;  ande  &nbsp;  ende  &nbsp;  ane  &nbsp;  ene  &nbsp;  hetene  &nbsp;  en
              &nbsp;  heten  &nbsp;  ar  &nbsp;  er  &nbsp;  heter  &nbsp;  as  &nbsp;  es  &nbsp;  edes  &nbsp;  endes  &nbsp;
-            enes  &nbsp;  hetenes  &nbsp;  ens  &nbsp;  hetens  &nbsp;  ers  &nbsp;  ets  &nbsp;  et  &nbsp;  het  &nbsp;
+            enes  &nbsp;  hetenes  &nbsp;  ens  &nbsp;  hetens  &nbsp;  ets  &nbsp;  et  &nbsp;  het  &nbsp;
             ast</I></B>
                 <DD>delete
         <DT>(<I>b</I>)
+            <B><I>ers</I></B>
+                <DD>find the longest suffix preceding <b><i>ers</i></b>, and perform the action indicated.
+                <DL>
+                    <DT>(<i>i</i>>
+                        <b><i>amm &nbsp; ast &nbsp; ind &nbsp; kap &nbsp; kk &nbsp; lt &nbsp; nk &nbsp; omm &nbsp; pp &nbsp; v &nbsp; øst</i></b>
+                        <DD>do nothing
+                    <DT>(<i>ii</i>>
+                        <b><i>giv &nbsp; hav &nbsp; skap</i></b>
+                        <DD>delete <b><i>ers</i></b> suffix
+                </DL>
+        <DT>(<I>c</I>)
             <B><I>s</I></B>
                 <DD>delete if preceded by a valid <B><I>s</I></B>-ending
-        <DT>(<I>c</I>)
+        <DT>(<I>d</I>)
             <B><I>erte  &nbsp;  ert</I></B>
                 <DD>replace with <B><I>er</I></B>
     </DL>
@@ -349,7 +360,7 @@ Step 3:
 
 <ul>
 <li>Snowball 2.0.0: <B><I>s</I></B>-ending definition adjusted to only include <b><i>k</i></b> when preceded by a non-vowel.
-<li>Snowball 2.3.0: <B><I>s</I></B>-ending definition adjusted to only include <b><i>r</i></b> when not preceded <b><i>e</i></b>.
+<li>Snowball 2.3.0: Improve handling of words ending <b><i>ers</i></b>
 </ul>
 
 <h2>The same algorithm in Snowball</h2>
@@ -396,8 +407,18 @@ Step 3:
 
 <span class="w">            </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="s1">&#39;ede&#39;</span><span class="w"> </span><span class="s1">&#39;ande&#39;</span><span class="w"> </span><span class="s1">&#39;ende&#39;</span><span class="w"> </span><span class="s1">&#39;ane&#39;</span><span class="w"> </span><span class="s1">&#39;ene&#39;</span><span class="w"> </span><span class="s1">&#39;hetene&#39;</span><span class="w"> </span><span class="s1">&#39;en&#39;</span><span class="w"> </span><span class="s1">&#39;heten&#39;</span><span class="w"> </span><span class="s1">&#39;ar&#39;</span>
 <span class="w">            </span><span class="s1">&#39;er&#39;</span><span class="w"> </span><span class="s1">&#39;heter&#39;</span><span class="w"> </span><span class="s1">&#39;as&#39;</span><span class="w"> </span><span class="s1">&#39;es&#39;</span><span class="w"> </span><span class="s1">&#39;edes&#39;</span><span class="w"> </span><span class="s1">&#39;endes&#39;</span><span class="w"> </span><span class="s1">&#39;enes&#39;</span><span class="w"> </span><span class="s1">&#39;hetenes&#39;</span><span class="w"> </span><span class="s1">&#39;ens&#39;</span>
-<span class="w">            </span><span class="s1">&#39;hetens&#39;</span><span class="w"> </span><span class="s1">&#39;ers&#39;</span><span class="w"> </span><span class="s1">&#39;ets&#39;</span><span class="w"> </span><span class="s1">&#39;et&#39;</span><span class="w"> </span><span class="s1">&#39;het&#39;</span><span class="w"> </span><span class="s1">&#39;ast&#39;</span>
+<span class="w">            </span><span class="s1">&#39;hetens&#39;</span><span class="w"> </span><span class="s1">&#39;ets&#39;</span><span class="w"> </span><span class="s1">&#39;et&#39;</span><span class="w"> </span><span class="s1">&#39;het&#39;</span><span class="w"> </span><span class="s1">&#39;ast&#39;</span>
 <span class="w">                </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ers&#39;</span>
+<span class="w">                </span><span class="p">(</span>
+<span class="w">                  </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                    </span><span class="s1">&#39;amm&#39;</span><span class="w"> </span><span class="s1">&#39;ast&#39;</span><span class="w"> </span><span class="s1">&#39;ind&#39;</span><span class="w"> </span><span class="s1">&#39;kap&#39;</span><span class="w"> </span><span class="s1">&#39;kk&#39;</span><span class="w"> </span><span class="s1">&#39;lt&#39;</span><span class="w"> </span><span class="s1">&#39;nk&#39;</span><span class="w"> </span><span class="s1">&#39;omm&#39;</span><span class="w"> </span><span class="s1">&#39;pp&#39;</span><span class="w"> </span><span class="s1">&#39;v&#39;</span>
+<span class="w">                    </span><span class="s1">&#39;</span><span class="se">{o/}</span><span class="s1">st&#39;</span>
+<span class="w">                        </span><span class="p">()</span>
+<span class="w">                    </span><span class="s1">&#39;giv&#39;</span><span class="w"> </span><span class="s1">&#39;hav&#39;</span><span class="w"> </span><span class="s1">&#39;skap&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+<span class="w">                        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">                  </span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;s&#39;</span>
 <span class="w">                </span><span class="p">(</span><span class="n">s_ending</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;erte&#39;</span><span class="w"> </span><span class="s1">&#39;ert&#39;</span>
