@@ -1,0 +1,91 @@
+[% header('Esperanto stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('esperanto', 'Esperanto') %]
+</ul>
+
+[% algorithm_vocab([16, 'abajo', 'kvazaŭ']) %]
+
+<h2>The stemming algorithm</h2>
+
+<p>
+Letters in Esperanto include the following accented forms:
+</p>
+
+<DL><DD>
+    <B><I>ĉ  &nbsp;  ĝ  &nbsp;  ĥ  &nbsp;  ĵ  &nbsp;  ŝ  &nbsp;  ŭ</I></B>
+</DL>
+
+<p>
+The following letters are vowels:
+</p>
+
+<DL><DD>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  </I></B>
+</DL>
+
+<p>
+The algorithm removes suffixes for part of speech ("-a", "-e", "-i", "-o"),
+verb inflection ("-as", "-is", "-os", "-u", "-us"), number ("-j"), and case
+("-n"). That covers most words in Esperanto. The rest of the algorithm covers
+various exceptions and uncommon patterns. Unofficial words are supported when
+unambiguous.
+</p>
+
+<p>
+The verbal suffixes "-ant", "-int", and "-ont" and prefixes "ek-" and "el-" are
+not removed, because there are too many exceptions where those syllables are
+part of the stem.
+</p>
+
+<p>
+Words containing any of the non-Esperanto letters "á", "é", "í", "ó", "q", "ú",
+"w", "x", or "y" are not stemmed, except that a suffix may follow a
+non-Esperanto word if separated by a hyphen. Stems containing digits may also
+have suffixes, with or without hyphens.
+</p>
+
+<p>
+The x-system sequences "cx", "gx", "hx", "jx", "sx", and "ux" are canonicalized
+to "ĉ", "ĝ", "ĥ", "ĵ", "ŝ", and "ŭ". The h-system is too ambiguous to support.
+</p>
+
+<p>
+Inflections of "'sti" are expanded into forms of "esti". The words "l'" and
+"un'" become "la" and "unu". A final apostrophe becomes "aŭ" after certain
+known stems, or else "o".
+</p>
+
+<p>
+One-syllable words are not stemmed. Each vowel forms a separate syllable. Words
+containing digits are always stemmed because numeral words are inflectable.
+Words containing non-initial hyphens are always stemmed because they might be
+abbreviations with multiple syllables.
+</p>
+
+<p>
+Pronouns, correlatives, and the numeral "unu" have limited inflections. These
+are handled in the <code>pronoun</code>, <code>correlative</code>, and
+<code>ujn_suffix</code> routines. Derived forms like "ilia" and "kieo" follow
+the regular stemming rules.
+</p>
+
+<p>
+Multimorphemic vowel-final numerals like "centunu" and "kvardekdu" are not
+stemmed. These are misspellings (they should be multiple words, like "cent unu"
+and "kvardek du") but they are unambiguous. Merged numerals are not supported
+for "mil" because that would create an ambiguity for "mildu", the imperative
+form of the adjective "milda".
+</p>
+
+<p>
+Certain other multisyllabic words are invariant, including some interjections,
+adverbs, and prepositions. These are listed explicitly in the
+<code>uninflected</code> routine.
+</p>
+
+[% highlight_file('esperanto') %]
+
+[% footer %]
