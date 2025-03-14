@@ -77,6 +77,7 @@ stringdef ik   '{U+012F}' // i ogonek
 stringdef i    '{U+0131}' // LATIN SMALL LETTER I WITHOUT DOT
 stringdef l/   '{U+0142}' // l stroke
 stringdef oq   '{U+0151}' // o-double acute
+stringdef s'   '{U+015B}' // s acute
 stringdef sc   '{U+015F}' // s cedilla
 stringdef sv   '{U+0161}' // s caron
 stringdef tc   '{U+0163}' // t cedilla
