@@ -673,10 +673,8 @@ Here is a list of the commands that can be used to operate on strings.
     The equivalent expression in C has the shape,
 
 [% highlight("
-        {    int i;
-             int limit = AE;
-             for (i = 0; i < limit; i++) C;
-        }
+	 int n = AE;
+	 for (int i = 0; i < n; i++) C;
 ", "c") %]
 
 <DT><code>atleast AE C</code>
