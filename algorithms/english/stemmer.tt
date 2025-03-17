@@ -77,6 +77,7 @@ apostrophe.
 <li>[January 2006] The implementation was fixed to follow the algorithm as documented here and now always treats an initial <b><i>y</i></b> as a consonant.
 <li>[November 2006] <B><I>arsen</I></B> added to exceptional forms
 <li>[October 2023] Don't undouble if preceded by exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b>
+<li>[March 2025] Exception added to prevent <b><i>evening</i></b> from stemming to <b><i>even</i></b>.
 </ol>
 
 <p>
@@ -465,7 +466,7 @@ but placed after the call of &nbsp;<code>Step_1a</code>, which may have removed 
     define exception2 as (
 
         [substring] atlimit among(
-            'inning' 'outing' 'canning' 'herring'
+            'inning' 'outing' 'canning' 'herring' 'earring' 'evening'
             'proceed' 'exceed' 'succeed'
 
             // ... extensions possible here ...
@@ -508,9 +509,9 @@ are only three such verbs: <I>die</I>, <I>lie</I> and <I>tie</I>, so a special c
 <p>
 <I>c</I>)
 One has to be a little careful of certain <B><I>ing</I></B> forms.
-<I>inning</I>, <I>outing</I>, <I>canning</I>, which one does not wish
+<I>inning</I>, <I>outing</I>, <I>canning</I>, <I>herring</I>, <I>earring</I>, <I>evening</I>, which one does not wish
 to be stemmed to
-<I>in</I>, <I>out</I>, <I>can</I>.
+<I>in</I>, <I>out</I>, <I>can</I>, <I>her</I>, <I>ear</I>, <I>even</I>.
 </p>
 
 <p>
@@ -586,7 +587,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>        <I>inning</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>outing</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>canning</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>herring</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>earring</I>
+<TR><TD>        <I>inning</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>outing</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>canning</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>herring</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>earring</I> &nbsp; </TD><TD> &nbsp; <I>evening</I> </TD>
 <TR><TD>        <I>proceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>exceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>succeed</I>
 </TABLE></DL>
 </DL>
