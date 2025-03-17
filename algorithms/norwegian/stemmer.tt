@@ -24,7 +24,7 @@ The following letters are vowels:
 </p>
 
 <DL><DD>
-    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  æ  &nbsp;  å  &nbsp;  ø</I></B>
+    <B><I>a  &nbsp;  e  &nbsp;  ê  &nbsp;  i  &nbsp;  o  &nbsp;  ò  &nbsp;  ó  &nbsp;  ô  &nbsp;  u  &nbsp;  y  &nbsp;  æ  &nbsp;  å  &nbsp;  ø</I></B>
 </DL>
 
 <p>
@@ -114,11 +114,26 @@ Step 3:
 </DL>
 </DL>
 
+<h2>Design Notes</h2>
+
+<p>
+Some other accented vowels are used in a small number of Norwegian words but
+these are deliberately not included in the list of vowels for this algorithm.
+This is not due to the small number of affected words but because including
+them doesn't actually improve the results of stemming.  In most cases it
+would make no difference, but for <b><i>è</i></b> the reasoning is more
+subtle.  Including it would make one difference - it would conflate forms of
+<b><i>léta</i></b> (to paint) but <b><i>lét</i></b> is both the imperative of
+<b><i>léta</i></b> and the past tense of <b><i>la</i></b> (to let/allow) so
+overall this conflation doesn't seem an improvement.
+</p>
+
 <h2>History of functional changes to the algorithm</h2>
 
 <ul>
 <li>Snowball 2.0.0: <B><I>s</I></B>-ending definition adjusted to only include <b><i>k</i></b> when preceded by a non-vowel.
-<li>Snowball 2.3.0: Improve handling of words ending <b><i>ers</i></b>
+<li>Snowball 2.3.0: Improve handling of words ending <b><i>ers</i></b>.
+<li>Snowball 2.3.0: Include <b><i>ê</i></b>, <b><i>ò</i></b>, <b><i>ó</i></b> and <b><i>ô</i></b> in the list of vowels.
 </ul>
 
 <h2>The same algorithm in Snowball</h2>
