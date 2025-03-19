@@ -7,8 +7,8 @@
 
 <ul>
 [% algorithm_lis('hungarian', 'Hungarian') %]
-<li> The <A HREF="http://ilps.science.uva.nl/resources/snowball-hun/">
-isla, Amsterdam</A> page for the Hungarian stemmer
+<li> <a href="https://staff.fnwi.uva.nl/m.derijke/Publications/Files/clef2005-proc-adhoc.pdf">
+A. Tordai and M. de Rijke.  Four Stemmers and a Funeral: Stemming in Hungarian at CLEF 2005</a>
 </ul>
 
 [% algorithm_vocab([40, 'babaháznak', 'muattta']) %]
