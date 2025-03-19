@@ -230,6 +230,7 @@ Step 9: Remove plural suffixes
 <DL>
     <DT><B><I>&aacute;k</I></B>
     <DD>replace with <B><I>a</I></B> if in <I>R</I>1
+    <DT><B><I>&eacute;k</I></B>
     <DD>replace with <B><I>e</I></B> if in <I>R</I>1
     <DT><B><I>&ouml;k  &nbsp;  ok  &nbsp;  ek  &nbsp;  ak  &nbsp;  k</I></B>
     <DD>delete if in <I>R</I>1
