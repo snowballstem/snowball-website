@@ -3,6 +3,7 @@
 /**@constructor*/
 var CatalanStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["", -1, 7],
         ["\u00B7", 0, 6],

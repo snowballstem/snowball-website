@@ -3,6 +3,7 @@
 /**@constructor*/
 var SwedishStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["a", -1, 1],
         ["arna", 0, 1],

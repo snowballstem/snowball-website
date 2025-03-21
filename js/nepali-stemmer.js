@@ -3,6 +3,7 @@
 /**@constructor*/
 var NepaliStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["\u0932\u093E\u0907", -1, 1],
         ["\u0932\u093E\u0908", -1, 1],

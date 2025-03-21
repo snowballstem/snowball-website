@@ -3,6 +3,7 @@
 /**@constructor*/
 var ArabicStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["\u0640", -1, 1],
         ["\u064B", -1, 1],

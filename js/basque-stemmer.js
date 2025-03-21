@@ -3,6 +3,7 @@
 /**@constructor*/
 var BasqueStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["idea", -1, 1],
         ["bidea", 0, 1],

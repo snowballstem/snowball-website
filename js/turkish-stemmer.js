@@ -3,6 +3,7 @@
 /**@constructor*/
 var TurkishStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["m", -1, -1],
         ["n", -1, -1],
@@ -2278,6 +2279,40 @@ var TurkishStemmer = function() {
     };
 
     /** @return {boolean} */
+    function r_remove_proper_noun_suffix() {
+        var /** number */ v_1 = base.cursor;
+        lab0: {
+            golab1: while(true)
+            {
+                var /** number */ v_2 = base.cursor;
+                lab2: {
+                    if (!(base.eq_s("'")))
+                    {
+                        break lab2;
+                    }
+                    base.cursor = v_2;
+                    break golab1;
+                }
+                base.cursor = v_2;
+                if (base.cursor >= base.limit)
+                {
+                    break lab0;
+                }
+                base.cursor++;
+            }
+            base.bra = base.cursor;
+            base.cursor = base.limit;
+            base.ket = base.cursor;
+            if (!base.slice_del())
+            {
+                return false;
+            }
+        }
+        base.cursor = v_1;
+        return true;
+    };
+
+    /** @return {boolean} */
     function r_more_than_one_syllable_word() {
         var /** number */ v_1 = base.cursor;
         for (var /** number */ v_2 = 2; v_2 > 0; v_2--)
@@ -2327,21 +2362,22 @@ var TurkishStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
+        r_remove_proper_noun_suffix();
         if (!r_more_than_one_syllable_word())
         {
             return false;
         }
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_1 = base.limit - base.cursor;
+        var /** number */ v_2 = base.limit - base.cursor;
         r_stem_nominal_verb_suffixes();
-        base.cursor = base.limit - v_1;
+        base.cursor = base.limit - v_2;
         if (!B_continue_stemming_noun_suffixes)
         {
             return false;
         }
-        var /** number */ v_2 = base.limit - base.cursor;
+        var /** number */ v_3 = base.limit - base.cursor;
         r_stem_noun_suffixes();
-        base.cursor = base.limit - v_2;
+        base.cursor = base.limit - v_3;
         base.cursor = base.limit_backward;
         if (!r_postlude())
         {

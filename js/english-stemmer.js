@@ -3,6 +3,7 @@
 /**@constructor*/
 var EnglishStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["arsen", -1, -1],
         ["commun", -1, -1],
@@ -118,6 +119,7 @@ var EnglishStemmer = function() {
         ["succeed", -1, -1],
         ["proceed", -1, -1],
         ["exceed", -1, -1],
+        ["evening", -1, -1],
         ["canning", -1, -1],
         ["inning", -1, -1],
         ["earring", -1, -1],
@@ -829,7 +831,6 @@ var EnglishStemmer = function() {
         switch (among_var) {
             case 1:
                 lab0: {
-                    var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!r_R2())
                         {
@@ -837,7 +838,6 @@ var EnglishStemmer = function() {
                         }
                         break lab0;
                     }
-                    base.cursor = base.limit - v_1;
                     if (!r_R1())
                     {
                         return false;

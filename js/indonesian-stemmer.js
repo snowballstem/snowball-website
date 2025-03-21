@@ -3,6 +3,7 @@
 /**@constructor*/
 var IndonesianStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["kah", -1, 1],
         ["lah", -1, 1],

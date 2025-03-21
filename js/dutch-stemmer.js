@@ -3,6 +3,7 @@
 /**@constructor*/
 var DutchStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["", -1, 6],
         ["\u00E1", 0, 1],
@@ -59,6 +60,7 @@ var DutchStemmer = function() {
 
     /** @const */ var /** Array<int> */ g_v_j = [17, 67, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
+    var /** number */ I_x = 0;
     var /** number */ I_p2 = 0;
     var /** number */ I_p1 = 0;
     var /** boolean */ B_e_found = false;
@@ -198,6 +200,17 @@ var DutchStemmer = function() {
     function r_mark_regions() {
         I_p1 = base.limit;
         I_p2 = base.limit;
+        var /** number */ v_1 = base.cursor;
+        {
+            var /** number */ c1 = base.cursor + 3;
+            if (c1 > base.limit)
+            {
+                return false;
+            }
+            base.cursor = c1;
+        }
+        I_x = base.cursor;
+        base.cursor = v_1;
         golab0: while(true)
         {
             lab1: {
@@ -230,11 +243,11 @@ var DutchStemmer = function() {
         }
         I_p1 = base.cursor;
         lab4: {
-            if (I_p1 >= 3)
+            if (I_p1 >= I_x)
             {
                 break lab4;
             }
-            I_p1 = 3;
+            I_p1 = I_x;
         }
         golab5: while(true)
         {

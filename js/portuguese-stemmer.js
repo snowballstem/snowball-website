@@ -3,6 +3,7 @@
 /**@constructor*/
 var PortugueseStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["", -1, 3],
         ["\u00E3", 0, 1],

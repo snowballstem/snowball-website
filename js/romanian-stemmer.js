@@ -3,6 +3,7 @@
 /**@constructor*/
 var RomanianStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["\u015F", -1, 1],
         ["\u0163", -1, 2]

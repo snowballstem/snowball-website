@@ -3,23 +3,13 @@
 /**@constructor*/
 var HungarianStemmer = function() {
     var base = new BaseStemmer();
-    /** @const */ var a_0 = [
-        ["cs", -1, -1],
-        ["dzs", -1, -1],
-        ["gy", -1, -1],
-        ["ly", -1, -1],
-        ["ny", -1, -1],
-        ["sz", -1, -1],
-        ["ty", -1, -1],
-        ["zs", -1, -1]
-    ];
 
-    /** @const */ var a_1 = [
+    /** @const */ var a_0 = [
         ["\u00E1", -1, 1],
         ["\u00E9", -1, 2]
     ];
 
-    /** @const */ var a_2 = [
+    /** @const */ var a_1 = [
         ["bb", -1, -1],
         ["cc", -1, -1],
         ["dd", -1, -1],
@@ -45,12 +35,12 @@ var HungarianStemmer = function() {
         ["zz", -1, -1]
     ];
 
-    /** @const */ var a_3 = [
+    /** @const */ var a_2 = [
         ["al", -1, 1],
         ["el", -1, 1]
     ];
 
-    /** @const */ var a_4 = [
+    /** @const */ var a_3 = [
         ["ba", -1, -1],
         ["ra", -1, -1],
         ["be", -1, -1],
@@ -97,13 +87,13 @@ var HungarianStemmer = function() {
         ["v\u00E9", -1, -1]
     ];
 
-    /** @const */ var a_5 = [
+    /** @const */ var a_4 = [
         ["\u00E1n", -1, 2],
         ["\u00E9n", -1, 1],
         ["\u00E1nk\u00E9nt", -1, 2]
     ];
 
-    /** @const */ var a_6 = [
+    /** @const */ var a_5 = [
         ["stul", -1, 1],
         ["astul", 0, 1],
         ["\u00E1stul", 0, 2],
@@ -112,12 +102,12 @@ var HungarianStemmer = function() {
         ["\u00E9st\u00FCl", 3, 3]
     ];
 
-    /** @const */ var a_7 = [
+    /** @const */ var a_6 = [
         ["\u00E1", -1, 1],
         ["\u00E9", -1, 1]
     ];
 
-    /** @const */ var a_8 = [
+    /** @const */ var a_7 = [
         ["k", -1, 3],
         ["ak", 0, 3],
         ["ek", 0, 3],
@@ -127,7 +117,7 @@ var HungarianStemmer = function() {
         ["\u00F6k", 0, 3]
     ];
 
-    /** @const */ var a_9 = [
+    /** @const */ var a_8 = [
         ["\u00E9i", -1, 1],
         ["\u00E1\u00E9i", 0, 3],
         ["\u00E9\u00E9i", 0, 2],
@@ -142,7 +132,7 @@ var HungarianStemmer = function() {
         ["\u00E9\u00E9", 3, 2]
     ];
 
-    /** @const */ var a_10 = [
+    /** @const */ var a_9 = [
         ["a", -1, 1],
         ["ja", 0, 1],
         ["d", -1, 1],
@@ -176,7 +166,7 @@ var HungarianStemmer = function() {
         ["\u00E9", -1, 3]
     ];
 
-    /** @const */ var a_11 = [
+    /** @const */ var a_10 = [
         ["id", -1, 1],
         ["aid", 0, 1],
         ["jaid", 1, 1],
@@ -236,56 +226,37 @@ var HungarianStemmer = function() {
                 {
                     break lab1;
                 }
-                golab2: while(true)
-                {
-                    var /** number */ v_2 = base.cursor;
-                    lab3: {
-                        if (!(base.out_grouping(g_v, 97, 369)))
-                        {
-                            break lab3;
-                        }
-                        base.cursor = v_2;
-                        break golab2;
-                    }
-                    base.cursor = v_2;
-                    if (base.cursor >= base.limit)
+                var /** number */ v_2 = base.cursor;
+                lab2: {
+                    golab3: while(true)
                     {
-                        break lab1;
-                    }
-                    base.cursor++;
-                }
-                lab4: {
-                    var /** number */ v_3 = base.cursor;
-                    lab5: {
-                        if (base.find_among(a_0) == 0)
-                        {
-                            break lab5;
+                        lab4: {
+                            if (!(base.out_grouping(g_v, 97, 369)))
+                            {
+                                break lab4;
+                            }
+                            break golab3;
                         }
-                        break lab4;
+                        if (base.cursor >= base.limit)
+                        {
+                            break lab2;
+                        }
+                        base.cursor++;
                     }
-                    base.cursor = v_3;
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab1;
-                    }
-                    base.cursor++;
+                    I_p1 = base.cursor;
                 }
-                I_p1 = base.cursor;
+                base.cursor = v_2;
                 break lab0;
             }
             base.cursor = v_1;
-            if (!(base.out_grouping(g_v, 97, 369)))
+            golab5: while(true)
             {
-                return false;
-            }
-            golab6: while(true)
-            {
-                lab7: {
+                lab6: {
                     if (!(base.in_grouping(g_v, 97, 369)))
                     {
-                        break lab7;
+                        break lab6;
                     }
-                    break golab6;
+                    break golab5;
                 }
                 if (base.cursor >= base.limit)
                 {
@@ -307,7 +278,7 @@ var HungarianStemmer = function() {
     function r_v_ending() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_1);
+        among_var = base.find_among_b(a_0);
         if (among_var == 0)
         {
             return false;
@@ -337,7 +308,7 @@ var HungarianStemmer = function() {
     /** @return {boolean} */
     function r_double() {
         var /** number */ v_1 = base.limit - base.cursor;
-        if (base.find_among_b(a_2) == 0)
+        if (base.find_among_b(a_1) == 0)
         {
             return false;
         }
@@ -353,14 +324,11 @@ var HungarianStemmer = function() {
         }
         base.cursor--;
         base.ket = base.cursor;
+        if (base.cursor <= base.limit_backward)
         {
-            var /** number */ c1 = base.cursor - 1;
-            if (c1 < base.limit_backward)
-            {
-                return false;
-            }
-            base.cursor = c1;
+            return false;
         }
+        base.cursor--;
         base.bra = base.cursor;
         if (!base.slice_del())
         {
@@ -372,7 +340,7 @@ var HungarianStemmer = function() {
     /** @return {boolean} */
     function r_instrum() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_3) == 0)
+        if (base.find_among_b(a_2) == 0)
         {
             return false;
         }
@@ -399,7 +367,7 @@ var HungarianStemmer = function() {
     /** @return {boolean} */
     function r_case() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_4) == 0)
+        if (base.find_among_b(a_3) == 0)
         {
             return false;
         }
@@ -423,7 +391,7 @@ var HungarianStemmer = function() {
     function r_case_special() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_5);
+        among_var = base.find_among_b(a_4);
         if (among_var == 0)
         {
             return false;
@@ -454,7 +422,7 @@ var HungarianStemmer = function() {
     function r_case_other() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_6);
+        among_var = base.find_among_b(a_5);
         if (among_var == 0)
         {
             return false;
@@ -490,7 +458,7 @@ var HungarianStemmer = function() {
     /** @return {boolean} */
     function r_factive() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_7) == 0)
+        if (base.find_among_b(a_6) == 0)
         {
             return false;
         }
@@ -518,7 +486,7 @@ var HungarianStemmer = function() {
     function r_plural() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_8);
+        among_var = base.find_among_b(a_7);
         if (among_var == 0)
         {
             return false;
@@ -555,7 +523,7 @@ var HungarianStemmer = function() {
     function r_owned() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_9);
+        among_var = base.find_among_b(a_8);
         if (among_var == 0)
         {
             return false;
@@ -592,7 +560,7 @@ var HungarianStemmer = function() {
     function r_sing_owner() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_10);
+        among_var = base.find_among_b(a_9);
         if (among_var == 0)
         {
             return false;
@@ -629,7 +597,7 @@ var HungarianStemmer = function() {
     function r_plur_owner() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_11);
+        among_var = base.find_among_b(a_10);
         if (among_var == 0)
         {
             return false;

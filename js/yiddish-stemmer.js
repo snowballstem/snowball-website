@@ -3,6 +3,7 @@
 /**@constructor*/
 var YiddishStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["\u05D5\u05D5", -1, 1],
         ["\u05D5\u05D9", -1, 2],
@@ -391,7 +392,15 @@ var YiddishStemmer = function() {
                             break lab2;
                         }
                         base.cursor = v_3;
-                        if (!(base.eq_s("\u05D1\u05E0")))
+                        lab4: {
+                            if (!(base.eq_s("\u05D1\u05E0")))
+                            {
+                                break lab4;
+                            }
+                            break lab2;
+                        }
+                        base.cursor = v_3;
+                        if (base.cursor < base.limit)
                         {
                             break lab1;
                         }
@@ -407,76 +416,76 @@ var YiddishStemmer = function() {
             }
         }
         var /** number */ v_4 = base.cursor;
-        lab4: {
+        lab5: {
             if (base.find_among(a_1) == 0)
             {
                 base.cursor = v_4;
-                break lab4;
+                break lab5;
             }
-            lab5: {
+            lab6: {
                 var /** number */ v_5 = base.cursor;
-                lab6: {
+                lab7: {
                     var /** number */ v_6 = base.cursor;
-                    lab7: {
+                    lab8: {
                         var /** number */ v_7 = base.cursor;
-                        lab8: {
-                            if (!(base.eq_s("\u05E6\u05D5\u05D2\u05E0")))
-                            {
-                                break lab8;
-                            }
-                            break lab7;
-                        }
-                        base.cursor = v_7;
                         lab9: {
-                            if (!(base.eq_s("\u05E6\u05D5\u05E7\u05D8")))
+                            if (!(base.eq_s("\u05E6\u05D5\u05D2\u05E0")))
                             {
                                 break lab9;
                             }
-                            break lab7;
+                            break lab8;
+                        }
+                        base.cursor = v_7;
+                        lab10: {
+                            if (!(base.eq_s("\u05E6\u05D5\u05E7\u05D8")))
+                            {
+                                break lab10;
+                            }
+                            break lab8;
                         }
                         base.cursor = v_7;
                         if (!(base.eq_s("\u05E6\u05D5\u05E7\u05E0")))
                         {
-                            break lab6;
+                            break lab7;
                         }
                     }
                     if (base.cursor < base.limit)
                     {
-                        break lab6;
+                        break lab7;
                     }
                     base.cursor = v_6;
-                    break lab5;
-                }
-                base.cursor = v_5;
-                lab10: {
-                    var /** number */ v_8 = base.cursor;
-                    if (!(base.eq_s("\u05D2\u05E2\u05D1\u05E0")))
-                    {
-                        break lab10;
-                    }
-                    base.cursor = v_8;
-                    break lab5;
+                    break lab6;
                 }
                 base.cursor = v_5;
                 lab11: {
+                    var /** number */ v_8 = base.cursor;
+                    if (!(base.eq_s("\u05D2\u05E2\u05D1\u05E0")))
+                    {
+                        break lab11;
+                    }
+                    base.cursor = v_8;
+                    break lab6;
+                }
+                base.cursor = v_5;
+                lab12: {
                     base.bra = base.cursor;
                     if (!(base.eq_s("\u05D2\u05E2")))
                     {
-                        break lab11;
+                        break lab12;
                     }
                     base.ket = base.cursor;
                     if (!base.slice_from("GE"))
                     {
                         return false;
                     }
-                    break lab5;
+                    break lab6;
                 }
                 base.cursor = v_5;
                 base.bra = base.cursor;
                 if (!(base.eq_s("\u05E6\u05D5")))
                 {
                     base.cursor = v_4;
-                    break lab4;
+                    break lab5;
                 }
                 base.ket = base.cursor;
                 if (!base.slice_from("TSU"))
@@ -497,43 +506,43 @@ var YiddishStemmer = function() {
         I_x = base.cursor;
         base.cursor = v_9;
         var /** number */ v_10 = base.cursor;
-        lab12: {
+        lab13: {
             if (base.find_among(a_2) == 0)
             {
                 base.cursor = v_10;
-                break lab12;
+                break lab13;
             }
         }
         {
             var /** number */ v_11 = base.cursor;
-            lab13: {
+            lab14: {
                 if (!(base.in_grouping(g_consonant, 1489, 1520)))
                 {
-                    break lab13;
+                    break lab14;
                 }
                 if (!(base.in_grouping(g_consonant, 1489, 1520)))
                 {
-                    break lab13;
+                    break lab14;
                 }
                 if (!(base.in_grouping(g_consonant, 1489, 1520)))
                 {
-                    break lab13;
+                    break lab14;
                 }
                 I_p1 = base.cursor;
                 return false;
             }
             base.cursor = v_11;
         }
-        golab14: while(true)
+        golab15: while(true)
         {
             var /** number */ v_12 = base.cursor;
-            lab15: {
+            lab16: {
                 if (!(base.in_grouping(g_vowel, 1488, 1522)))
                 {
-                    break lab15;
+                    break lab16;
                 }
                 base.cursor = v_12;
-                break golab14;
+                break golab15;
             }
             base.cursor = v_12;
             if (base.cursor >= base.limit)
@@ -544,20 +553,20 @@ var YiddishStemmer = function() {
         }
         while(true)
         {
-            lab16: {
+            lab17: {
                 if (!(base.in_grouping(g_vowel, 1488, 1522)))
                 {
-                    break lab16;
+                    break lab17;
                 }
                 continue;
             }
             break;
         }
         I_p1 = base.cursor;
-        lab17: {
+        lab18: {
             if (I_p1 >= I_x)
             {
-                break lab17;
+                break lab18;
             }
             I_p1 = I_x;
         }

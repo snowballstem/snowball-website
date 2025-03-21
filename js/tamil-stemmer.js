@@ -3,6 +3,7 @@
 /**@constructor*/
 var TamilStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["\u0BB5\u0BC1", -1, 3],
         ["\u0BB5\u0BC2", -1, 4],

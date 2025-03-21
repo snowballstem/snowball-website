@@ -3,6 +3,7 @@
 /**@constructor*/
 var GermanStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["", -1, 5],
         ["ae", 0, 2],
@@ -25,10 +26,14 @@ var GermanStemmer = function() {
         ["e", -1, 3],
         ["em", -1, 1],
         ["en", -1, 3],
+        ["erinnen", 2, 2],
+        ["erin", -1, 2],
+        ["ln", -1, 5],
         ["ern", -1, 2],
         ["er", -1, 2],
         ["s", -1, 4],
-        ["es", 5, 3]
+        ["es", 8, 3],
+        ["lns", 8, 5]
     ];
 
     /** @const */ var a_3 = [
@@ -398,6 +403,12 @@ var GermanStemmer = function() {
                         break lab0;
                     }
                     if (!base.slice_del())
+                    {
+                        return false;
+                    }
+                    break;
+                case 5:
+                    if (!base.slice_from("l"))
                     {
                         return false;
                     }

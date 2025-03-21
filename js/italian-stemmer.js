@@ -3,6 +3,7 @@
 /**@constructor*/
 var ItalianStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["", -1, 7],
         ["qu", 0, 6],

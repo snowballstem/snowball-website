@@ -3,6 +3,7 @@
 /**@constructor*/
 var ArmenianStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["\u0580\u0578\u0580\u0564", -1, 1],
         ["\u0565\u0580\u0578\u0580\u0564", 0, 1],

@@ -3,6 +3,7 @@
 /**@constructor*/
 var GreekStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["", -1, 25],
         ["\u0386", 0, 1],
@@ -1299,7 +1300,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step1() {
+    function r_step_1() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
@@ -1381,7 +1382,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_steps1() {
+    function r_step_s1() {
         var /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_3) == 0)
@@ -1423,7 +1424,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_steps2() {
+    function r_step_s2() {
         base.ket = base.cursor;
         if (base.find_among_b(a_5) == 0)
         {
@@ -1453,26 +1454,17 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_steps3() {
+    function r_step_s3() {
         var /** number */ among_var;
-        base.ket = base.cursor;
-        if (base.find_among_b(a_7) == 0)
-        {
-            return false;
-        }
-        base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
-        B_test1 = false;
         lab0: {
             var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
+                base.ket = base.cursor;
                 if (!(base.eq_s_b("\u03B9\u03C3\u03B1")))
                 {
                     break lab1;
                 }
+                base.bra = base.cursor;
                 if (base.cursor > base.limit_backward)
                 {
                     break lab1;
@@ -1485,36 +1477,47 @@ var GreekStemmer = function() {
             }
             base.cursor = base.limit - v_1;
             base.ket = base.cursor;
-            base.bra = base.cursor;
-            among_var = base.find_among_b(a_6);
-            if (among_var == 0)
-            {
-                return false;
-            }
-            if (base.cursor > base.limit_backward)
-            {
-                return false;
-            }
-            switch (among_var) {
-                case 1:
-                    if (!base.slice_from("\u03B9"))
-                    {
-                        return false;
-                    }
-                    break;
-                case 2:
-                    if (!base.slice_from("\u03B9\u03C3"))
-                    {
-                        return false;
-                    }
-                    break;
-            }
+        }
+        if (base.find_among_b(a_7) == 0)
+        {
+            return false;
+        }
+        base.bra = base.cursor;
+        if (!base.slice_del())
+        {
+            return false;
+        }
+        B_test1 = false;
+        base.ket = base.cursor;
+        base.bra = base.cursor;
+        among_var = base.find_among_b(a_6);
+        if (among_var == 0)
+        {
+            return false;
+        }
+        if (base.cursor > base.limit_backward)
+        {
+            return false;
+        }
+        switch (among_var) {
+            case 1:
+                if (!base.slice_from("\u03B9"))
+                {
+                    return false;
+                }
+                break;
+            case 2:
+                if (!base.slice_from("\u03B9\u03C3"))
+                {
+                    return false;
+                }
+                break;
         }
         return true;
     };
 
     /** @return {boolean} */
-    function r_steps4() {
+    function r_step_s4() {
         base.ket = base.cursor;
         if (base.find_among_b(a_9) == 0)
         {
@@ -1544,7 +1547,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_steps5() {
+    function r_step_s5() {
         var /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_11) == 0)
@@ -1586,7 +1589,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_steps6() {
+    function r_step_s6() {
         var /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_14) == 0)
@@ -1704,7 +1707,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_steps7() {
+    function r_step_s7() {
         base.ket = base.cursor;
         if (base.find_among_b(a_16) == 0)
         {
@@ -1734,7 +1737,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_steps8() {
+    function r_step_s8() {
         var /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_18) == 0)
@@ -1793,7 +1796,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_steps9() {
+    function r_step_s9() {
         base.ket = base.cursor;
         if (base.find_among_b(a_21) == 0)
         {
@@ -1840,7 +1843,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_steps10() {
+    function r_step_s10() {
         base.ket = base.cursor;
         if (base.find_among_b(a_23) == 0)
         {
@@ -1870,7 +1873,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step2a() {
+    function r_step_2a() {
         base.ket = base.cursor;
         if (base.find_among_b(a_24) == 0)
         {
@@ -1901,7 +1904,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step2b() {
+    function r_step_2b() {
         base.ket = base.cursor;
         if (base.find_among_b(a_26) == 0)
         {
@@ -1926,7 +1929,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step2c() {
+    function r_step_2c() {
         base.ket = base.cursor;
         if (base.find_among_b(a_28) == 0)
         {
@@ -1951,7 +1954,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step2d() {
+    function r_step_2d() {
         base.ket = base.cursor;
         if (base.find_among_b(a_30) == 0)
         {
@@ -1981,7 +1984,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step3() {
+    function r_step_3() {
         base.ket = base.cursor;
         if (base.find_among_b(a_32) == 0)
         {
@@ -2007,7 +2010,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step4() {
+    function r_step_4() {
         base.ket = base.cursor;
         if (base.find_among_b(a_33) == 0)
         {
@@ -2054,13 +2057,15 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5a() {
+    function r_step_5a() {
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
+            base.ket = base.cursor;
             if (!(base.eq_s_b("\u03B1\u03B3\u03B1\u03BC\u03B5")))
             {
                 break lab0;
             }
+            base.bra = base.cursor;
             if (base.cursor > base.limit_backward)
             {
                 break lab0;
@@ -2115,7 +2120,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5b() {
+    function r_step_5b() {
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
@@ -2191,7 +2196,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5c() {
+    function r_step_5c() {
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
@@ -2267,7 +2272,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5d() {
+    function r_step_5d() {
         base.ket = base.cursor;
         if (base.find_among_b(a_43) == 0)
         {
@@ -2314,7 +2319,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5e() {
+    function r_step_5e() {
         base.ket = base.cursor;
         if (base.find_among_b(a_44) == 0)
         {
@@ -2344,7 +2349,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5f() {
+    function r_step_5f() {
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
@@ -2403,7 +2408,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5g() {
+    function r_step_5g() {
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
@@ -2465,7 +2470,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5h() {
+    function r_step_5h() {
         base.ket = base.cursor;
         if (base.find_among_b(a_53) == 0)
         {
@@ -2512,7 +2517,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5i() {
+    function r_step_5i() {
         var /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_56) == 0)
@@ -2582,7 +2587,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5j() {
+    function r_step_5j() {
         base.ket = base.cursor;
         if (base.find_among_b(a_57) == 0)
         {
@@ -2612,7 +2617,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5k() {
+    function r_step_5k() {
         base.ket = base.cursor;
         if (base.find_among_b(a_59) == 0)
         {
@@ -2642,7 +2647,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5l() {
+    function r_step_5l() {
         base.ket = base.cursor;
         if (base.find_among_b(a_61) == 0)
         {
@@ -2672,7 +2677,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step5m() {
+    function r_step_5m() {
         base.ket = base.cursor;
         if (base.find_among_b(a_63) == 0)
         {
@@ -2702,7 +2707,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step6() {
+    function r_step_6() {
         var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
@@ -2735,7 +2740,7 @@ var GreekStemmer = function() {
     };
 
     /** @return {boolean} */
-    function r_step7() {
+    function r_step_7() {
         base.ket = base.cursor;
         if (base.find_among_b(a_67) == 0)
         {
@@ -2760,100 +2765,100 @@ var GreekStemmer = function() {
         }
         B_test1 = true;
         var /** number */ v_2 = base.limit - base.cursor;
-        r_step1();
+        r_step_1();
         base.cursor = base.limit - v_2;
         var /** number */ v_3 = base.limit - base.cursor;
-        r_steps1();
+        r_step_s1();
         base.cursor = base.limit - v_3;
         var /** number */ v_4 = base.limit - base.cursor;
-        r_steps2();
+        r_step_s2();
         base.cursor = base.limit - v_4;
         var /** number */ v_5 = base.limit - base.cursor;
-        r_steps3();
+        r_step_s3();
         base.cursor = base.limit - v_5;
         var /** number */ v_6 = base.limit - base.cursor;
-        r_steps4();
+        r_step_s4();
         base.cursor = base.limit - v_6;
         var /** number */ v_7 = base.limit - base.cursor;
-        r_steps5();
+        r_step_s5();
         base.cursor = base.limit - v_7;
         var /** number */ v_8 = base.limit - base.cursor;
-        r_steps6();
+        r_step_s6();
         base.cursor = base.limit - v_8;
         var /** number */ v_9 = base.limit - base.cursor;
-        r_steps7();
+        r_step_s7();
         base.cursor = base.limit - v_9;
         var /** number */ v_10 = base.limit - base.cursor;
-        r_steps8();
+        r_step_s8();
         base.cursor = base.limit - v_10;
         var /** number */ v_11 = base.limit - base.cursor;
-        r_steps9();
+        r_step_s9();
         base.cursor = base.limit - v_11;
         var /** number */ v_12 = base.limit - base.cursor;
-        r_steps10();
+        r_step_s10();
         base.cursor = base.limit - v_12;
         var /** number */ v_13 = base.limit - base.cursor;
-        r_step2a();
+        r_step_2a();
         base.cursor = base.limit - v_13;
         var /** number */ v_14 = base.limit - base.cursor;
-        r_step2b();
+        r_step_2b();
         base.cursor = base.limit - v_14;
         var /** number */ v_15 = base.limit - base.cursor;
-        r_step2c();
+        r_step_2c();
         base.cursor = base.limit - v_15;
         var /** number */ v_16 = base.limit - base.cursor;
-        r_step2d();
+        r_step_2d();
         base.cursor = base.limit - v_16;
         var /** number */ v_17 = base.limit - base.cursor;
-        r_step3();
+        r_step_3();
         base.cursor = base.limit - v_17;
         var /** number */ v_18 = base.limit - base.cursor;
-        r_step4();
+        r_step_4();
         base.cursor = base.limit - v_18;
         var /** number */ v_19 = base.limit - base.cursor;
-        r_step5a();
+        r_step_5a();
         base.cursor = base.limit - v_19;
         var /** number */ v_20 = base.limit - base.cursor;
-        r_step5b();
+        r_step_5b();
         base.cursor = base.limit - v_20;
         var /** number */ v_21 = base.limit - base.cursor;
-        r_step5c();
+        r_step_5c();
         base.cursor = base.limit - v_21;
         var /** number */ v_22 = base.limit - base.cursor;
-        r_step5d();
+        r_step_5d();
         base.cursor = base.limit - v_22;
         var /** number */ v_23 = base.limit - base.cursor;
-        r_step5e();
+        r_step_5e();
         base.cursor = base.limit - v_23;
         var /** number */ v_24 = base.limit - base.cursor;
-        r_step5f();
+        r_step_5f();
         base.cursor = base.limit - v_24;
         var /** number */ v_25 = base.limit - base.cursor;
-        r_step5g();
+        r_step_5g();
         base.cursor = base.limit - v_25;
         var /** number */ v_26 = base.limit - base.cursor;
-        r_step5h();
+        r_step_5h();
         base.cursor = base.limit - v_26;
         var /** number */ v_27 = base.limit - base.cursor;
-        r_step5j();
+        r_step_5j();
         base.cursor = base.limit - v_27;
         var /** number */ v_28 = base.limit - base.cursor;
-        r_step5i();
+        r_step_5i();
         base.cursor = base.limit - v_28;
         var /** number */ v_29 = base.limit - base.cursor;
-        r_step5k();
+        r_step_5k();
         base.cursor = base.limit - v_29;
         var /** number */ v_30 = base.limit - base.cursor;
-        r_step5l();
+        r_step_5l();
         base.cursor = base.limit - v_30;
         var /** number */ v_31 = base.limit - base.cursor;
-        r_step5m();
+        r_step_5m();
         base.cursor = base.limit - v_31;
         var /** number */ v_32 = base.limit - base.cursor;
-        r_step6();
+        r_step_6();
         base.cursor = base.limit - v_32;
         var /** number */ v_33 = base.limit - base.cursor;
-        r_step7();
+        r_step_7();
         base.cursor = base.limit - v_33;
         base.cursor = base.limit_backward;
         return true;

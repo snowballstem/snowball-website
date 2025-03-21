@@ -3,6 +3,7 @@
 /**@constructor*/
 var EstonianStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["gi", -1, 1],
         ["ki", -1, 2]

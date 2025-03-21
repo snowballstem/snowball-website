@@ -3,6 +3,7 @@
 /**@constructor*/
 var PorterStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["s", -1, 3],
         ["ies", 0, 2],
@@ -476,7 +477,6 @@ var PorterStemmer = function() {
         }
         base.bra = base.cursor;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!r_R2())
                 {
@@ -484,7 +484,6 @@ var PorterStemmer = function() {
                 }
                 break lab0;
             }
-            base.cursor = base.limit - v_1;
             if (!r_R1())
             {
                 return false;

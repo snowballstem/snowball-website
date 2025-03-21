@@ -3,6 +3,7 @@
 /**@constructor*/
 var IrishStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["b'", -1, 1],
         ["bh", -1, 4],

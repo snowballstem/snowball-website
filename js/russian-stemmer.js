@@ -3,6 +3,7 @@
 /**@constructor*/
 var RussianStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["\u0432", -1, 1],
         ["\u0438\u0432", 0, 2],

@@ -3,6 +3,7 @@
 /**@constructor*/
 var DanishStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["hed", -1, 1],
         ["ethed", 0, 1],

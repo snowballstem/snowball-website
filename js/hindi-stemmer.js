@@ -3,6 +3,7 @@
 /**@constructor*/
 var HindiStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["\u0906\u0901", -1, -1],
         ["\u093E\u0901", -1, -1],

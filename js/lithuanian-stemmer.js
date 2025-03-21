@@ -3,6 +3,7 @@
 /**@constructor*/
 var LithuanianStemmer = function() {
     var base = new BaseStemmer();
+
     /** @const */ var a_0 = [
         ["a", -1, -1],
         ["ia", 0, -1],
@@ -481,15 +482,12 @@ var LithuanianStemmer = function() {
                     base.cursor = v_2;
                     break lab1;
                 }
+                if (base.cursor >= base.limit)
                 {
-                    var /** number */ c1 = base.cursor + 1;
-                    if (c1 > base.limit)
-                    {
-                        base.cursor = v_2;
-                        break lab1;
-                    }
-                    base.cursor = c1;
+                    base.cursor = v_2;
+                    break lab1;
                 }
+                base.cursor++;
             }
             golab2: while(true)
             {
