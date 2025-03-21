@@ -1,6 +1,8 @@
+// Dutch stemming algorithm developed by Wessel Kraaij and Renée Pohlmann
+
 strings ( ch )
 integers ( p1 p2 )
-booleans ( Y_found stemmed GE_removed )
+booleans ( stemmed GE_removed )
 
 routines (
 
@@ -16,14 +18,43 @@ routines (
 
 externals ( stem )
 
-groupings ( v v_WX AOU AIOU )
+groupings ( v v_WX A AEIOU AIOU E I O U )
 
 stringescapes {}
 
-define v        'aeiouy'
+/* special characters */
+
+stringdef a`   '{U+00E0}'
+stringdef a'   '{U+00E1}'
+stringdef a^   '{U+00E2}'
+stringdef a"   '{U+00E4}'
+stringdef e`   '{U+00E8}'
+stringdef e'   '{U+00E9}'
+stringdef e^   '{U+00EA}'
+stringdef e"   '{U+00EB}'
+stringdef i`   '{U+00EC}'
+stringdef i'   '{U+00ED}'
+stringdef i^   '{U+00EE}'
+stringdef i"   '{U+00EF}'
+stringdef o`   '{U+00F2}'
+stringdef o'   '{U+00F3}'
+stringdef o^   '{U+00F4}'
+stringdef o"   '{U+00F6}'
+stringdef u`   '{U+00F9}'
+stringdef u'   '{U+00FA}'
+stringdef u^   '{U+00FB}'
+stringdef u"   '{U+00FC}'
+
+define A        'a{a"}{a'}{a`}{a^}'
+define E        'e{e"}{e'}{e`}{e^}'
+define I        'i{i"}{i'}{i`}{i^}'
+define O        'o{o"}{o'}{o`}{o^}'
+define U        'u{u"}{u'}{u`}{u^}'
+
+define AIOU     A + I + O + U
+define AEIOU    A + E + I + O + U
+define v        AEIOU + 'y'
 define v_WX     v + 'wx'
-define AOU      'aou'
-define AIOU     'aiou'
 
 backwardmode (
 
@@ -35,11 +66,23 @@ backwardmode (
     define C  as test (not 'ij' non-v)
 
     define lengthen_V as do (
-        non-v_WX [ (AOU] test (non-v or atlimit)) or
-                   ('e'] test (non-v or atlimit
-                               not AIOU
-                               not (next AIOU non-v)))
-        ->ch insert ch
+        non-v_WX
+        [substring] among (
+            'a' '{a"}' '{a'}' '{a`}' '{a^}'
+            'o' '{o"}' '{o'}' '{o`}' '{o^}'
+            'u' '{u"}' '{u'}' '{u`}' '{u^}'
+                (test (non-AEIOU or atlimit)
+                 ->ch insert ch)
+            'e' '{e'}' '{e`}' '{e^}'
+                (test (non-AEIOU or atlimit
+                               not (AIOU or (E atlimit))
+                               not (next AIOU non-AEIOU))
+                 ->ch insert ch)
+            'e{e"}'
+                (<-'e{e"}e')
+            'i{e"}'
+                (<-'iee')
+        )
     )
 
     define Step_1 as
@@ -50,10 +93,12 @@ backwardmode (
             's'    (R1 not ('t' R1) C delete)
             'ies'  (R1 <-'ie')
             'es'
-                   (('ar' R1 C ] delete lengthen_V) or
-                    ('er' R1 C ] delete) or
+                   ((test ('ar' R1 C) delete lengthen_V) or
+                    (test ('er' R1 C) delete) or
                     (R1 C <-'e'))
 
+            '{e'}s'
+                   (R1 <-'{e'}')
             'aus'  (R1 V <-'au')
             'en'   (('hed' R1 ] <-'heid') or
                     ('nd' delete) or
@@ -185,16 +230,26 @@ backwardmode (
 )
 
 define Lose_prefix as (
-    ['ge'] test hop 3 (goto v goto non-v)
+    ['ge'] test hop 3 test (gopast ('ij' or v) repeat ('ij' or v) not atlimit)
     set GE_removed
     delete
+    do ( [substring] among (
+        '{e"}' (<-'e')
+        '{i"}' (<-'i')
+      )
+    )
 )
 
 define Lose_infix as (
     next
-    gopast (['ge']) test hop 3 (goto v goto non-v)
+    gopast (['ge']) test hop 3 test (gopast ('ij' or v) repeat ('ij' or v) not atlimit)
     set GE_removed
     delete
+    do ( [substring] among (
+        '{e"}' (<-'e')
+        '{i"}' (<-'i')
+      )
+    )
 )
 
 define measure as (
@@ -208,10 +263,7 @@ define measure as (
 )
 define stem as (
 
-    unset Y_found
     unset stemmed
-    do ( ['y'] <-'Y' set Y_found )
-    do repeat(goto (v  ['y'])<-'Y' set Y_found )
 
     measure
 
@@ -224,17 +276,16 @@ define stem as (
     unset GE_removed
     do (Lose_prefix and measure)
     backwards (
-            do (GE_removed Step_1c)
+            do (GE_removed set stemmed Step_1c)
         )
     unset GE_removed
     do (Lose_infix and measure)
     backwards (
-            do (GE_removed Step_1c)
+            do (GE_removed set stemmed Step_1c)
         )
     backwards (
             do (Step_7 set stemmed )
-            do (stemmed or GE_removed Step_6)
+            do (stemmed Step_6)
         )
-    do(Y_found  repeat(goto (['Y']) <-'y'))
 )
 

@@ -1,3 +1,5 @@
+// Dutch stemming algorithm developed by Martin Porter
+
 routines (
            prelude postlude
            e_ending
