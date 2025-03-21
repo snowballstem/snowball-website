@@ -416,9 +416,11 @@ This change only affects a very small number of words (11 out of
 <span class="w">        </span><span class="c1">// places where the paper says X|Y... it seems the | binds more</span>
 <span class="w">        </span><span class="c1">// tightly, so it&#39;s (V|K)...cᵢcⱼ not V|(K...cᵢcⱼ).  That seems a bit</span>
 <span class="w">        </span><span class="c1">// odd as the first letter must be either a vowel or a consonant, so</span>
-<span class="w">        </span><span class="c1">// that really just means &quot;ends cᵢcⱼ&quot;.  However, nowhere in the paper</span>
-<span class="w">        </span><span class="c1">// uses or defines a notation such as ...X, which may explain this</span>
-<span class="w">        </span><span class="c1">// seemingly redundant way of specifying this.</span>
+<span class="w">        </span><span class="c1">// that really just means &quot;ends cᵢcⱼ&quot; (and has at least one letter</span>
+<span class="w">        </span><span class="c1">// before cᵢ but we only call SUFFIX_I_OK if $measure &gt; 2 which</span>
+<span class="w">        </span><span class="c1">// ensures that part).  However, nowhere in the paper uses or defines</span>
+<span class="w">        </span><span class="c1">// a notation such as ...X, which may explain this seemingly redundant</span>
+<span class="w">        </span><span class="c1">// way of specifying this.</span>
 <span class="w">        </span><span class="c1">//</span>
 <span class="w">        </span><span class="c1">// The conditions elsewhere on prefix removal (e.g. V...) are clearly</span>
 <span class="w">        </span><span class="c1">// on the stem left after the prefix is removed.  None of the other</span>
