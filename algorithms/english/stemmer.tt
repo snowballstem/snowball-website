@@ -78,6 +78,7 @@ apostrophe.
 <li>[November 2006] <B><I>arsen</I></B> added to exceptional forms
 <li>[October 2023] Don't undouble if preceded by exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b>
 <li>[March 2025] Exception added to prevent <b><i>evening</i></b> from stemming to <b><i>even</i></b>.
+<li>[March 2025] Removed exception for <b><i>skis</i></b> as the algorithm gives the same stem without it!
 </ol>
 
 <p>
