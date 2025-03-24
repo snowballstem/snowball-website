@@ -592,11 +592,10 @@ shape:
 </p>
 <div class="highlight"><pre><span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">exception1</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">         </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
 
 <span class="w">            </span><span class="cm">/* special changes: */</span>
 
-<span class="w">            </span><span class="s1">&#39;skis&#39;</span><span class="w">      </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ski&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;skies&#39;</span><span class="w">     </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;sky&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;dying&#39;</span><span class="w">     </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;die&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;lying&#39;</span><span class="w">     </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;lie&#39;</span><span class="p">)</span>
@@ -736,9 +735,9 @@ want to do it&#8217;), and were derived piecemeal.
 <p>
 <I>a</I>)
 The new stemmer improves on the Porter stemmer in handling short words ending <B><I>e</I></B> and
-<B><I>y</I></B>. There is however a mishandling of the four forms <I>sky</I>, <I>skies</I>, <I>ski</I>,
-<I>skis</I>, which is easily corrected by treating three of these words as
-special cases.
+<B><I>y</I></B>. This results in an unwanted conflation - <I>sky</I>/<I>skies</I> and <I>ski</I>/<I>skis</I>
+would all get stemmed to <i>ski</i>, but this is easily corrected by adding special cases to instead
+stem <i>sky</i> and <i>skies</i> to <i>sky</i>.
 </p>
 
 <p>
@@ -801,7 +800,6 @@ The definition of the English stemmer above is therefore supplemented by the fol
     </p>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD> <I>skis</I>      <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>ski</I>
 <TR><TD> <I>skies</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>sky</I>
 
 <TR><TD> <I>dying <BR> lying <BR> tying</I>
