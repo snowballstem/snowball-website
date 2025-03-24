@@ -86,7 +86,7 @@ To begin with, here is the basic algorithm without reference to the
 exceptional forms. An exact comparison with the Porter algorithm needs to
 be done quite carefully if done at all. Here we indicate by <code><FONT COLOR=BLUE>*</FONT></code> points
 of departure, and by <code><FONT COLOR=BLUE>+</FONT></code> additional features. In the sample vocabulary,
-Porter and Porter2 stem slightly under 5% of words to different forms.
+Porter and Porter2 stem slightly over 5% of words to different forms.
 </p>
 
 <h2>Definition of the English stemmer</h2>
