@@ -17,15 +17,16 @@ the ending <B><I>ede</I></B> can be removed safely, but not in Danish.
 </p>
 
 <p>
-To the definite article (<I>the</I> in English, <I>der</I> etc in German) there
-corresponds
-a noun ending in the Scandinavian languages. This ending cannot always be removed
-with certainty. In Swedish, for example, the <B><I>en</I></B> form is removed, but not the
-<B><I>t</I></B> or <B><I>n</I></B> form,
+The Scandinavian languages have a noun ending corresponding to the definite
+article (<I>the</I> in English).  This ending cannot always be removed
+with certainty. In Swedish, for example, the <B><I>en</I></B> form is removed,
+and the <b><i>et</i></b> form in some cases, but not the <B><I>t</I></B> or
+<B><I>n</I></B> form,
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD>   husen    <TD></TD><TD>           <TD></TD><TD> hus
+<TR><TD>   valet    <TD></TD><TD>           <TD></TD><TD> val
 <TR><TD>   flickan  <TD></TD><TD>  &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> flickan
 <TR><TD>   &auml;pplet <TD></TD><TD>           <TD></TD><TD> &auml;pplet
 

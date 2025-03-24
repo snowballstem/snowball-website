@@ -52,6 +52,34 @@ Define a valid <B><I>öst</I></B>-ending as one of
 </DL>
 
 <p>
+Define a valid <B><I>et</I></B>-ending as at least one letter followed by a vowel followed by a non-vowel, which does not have one of the following as a suffix
+</p>
+
+<dl><dd>
+<b><i>h</i></b>  &nbsp;
+<b><i>iet</i></b>  &nbsp;
+<b><i>uit</i></b>  &nbsp;
+<b><i>fab</i></b>  &nbsp;
+<b><i>cit</i></b>  &nbsp;
+<b><i>dit</i></b>  &nbsp;
+<b><i>alit</i></b>  &nbsp;
+<b><i>ilit</i></b>  &nbsp;
+<b><i>mit</i></b>  &nbsp;
+<b><i>nit</i></b>  &nbsp;
+<b><i>pit</i></b>  &nbsp;
+<b><i>rit</i></b>  &nbsp;
+<b><i>sit</i></b>  &nbsp;
+<b><i>tit</i></b>  &nbsp;
+<b><i>ivit</i></b>  &nbsp;
+<b><i>kvit</i></b>  &nbsp;
+<b><i>xit</i></b>  &nbsp;
+<b><i>kom</i></b>  &nbsp;
+<b><i>rak</i></b>  &nbsp;
+<b><i>pak</i></b>  &nbsp;
+<b><i>stak</i></b>
+</dl>
+
+<p>
 Do each of steps 1, 2 and 3.
 </p>
 
@@ -72,10 +100,15 @@ Step 1:
                 <DD>delete
         <DT>(<I>b</I>)
             <B><I>s</I></B>
-                <DD>delete if preceded by a valid <B><I>s</I></B>-ending
+		<DD>if preceded by <b><i>et</b></i> and that is preceded by a valid
+		<b><i>et</i></b>-ending remove both <b><i>s</b></i> and <b><i>et</b></i>,
+		otherwise delete if preceded by a valid <B><I>s</I></B>-ending
+        <DT>(<I>c</I>)
+            <B><I>et</I></B>
+                <DD>delete if preceded by a valid <b><i>et</i></b>-ending
     </DL>
-    (Note that only the suffix needs to be in <I>R</I>1, the letter of the
-    valid <B><I>s</I></B>-ending is not required to be.)
+    (Note that only the suffix needs to be in <I>R</I>1, the letter(s) of the
+    valid <B><I>s</I></B>-ending or <b><i>et</i></b>-ending are not required to be.)
 </DL>
 
 <p>
@@ -110,6 +143,29 @@ Step 3:
     Prior to Snowball 2.3.0, <B><I>öst</I></B>-ending was effectively just
     <B><I>l</I></B> and <em>was</em> required to be in <I>R</I>1.)
 </DL>
+
+<h2>Design Notes</h2>
+
+<p>
+Swedish has a noun ending corresponding to the definite article (<I>the</I> in English).
+This occurs very commonly but cannot always be removed with certainty.  Currently the
+algorithm removes the <B><I>en</I></B> form, and the <b><i>et</i></b> form in some
+cases, but not the <B><I>t</I></B> or <B><I>n</I></B> forms,
+</p>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>   husen    <TD></TD><TD>           <TD></TD><TD> hus
+<TR><TD>   valet    <TD></TD><TD>           <TD></TD><TD> val
+<TR><TD>   flickan  <TD></TD><TD>  &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> flickan
+<TR><TD>   &auml;pplet <TD></TD><TD>           <TD></TD><TD> &auml;pplet
+</TABLE></DL>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.3.0: Change <b><i>öst</i></b> suffix to <b><i>ös</i></b> in more situations.
+<li>Snowball 2.3.0: New rule to remove some <b><i>et</i></b> suffixes.
+</ul>
 
 <h2>The same algorithm in Snowball</h2>
 
