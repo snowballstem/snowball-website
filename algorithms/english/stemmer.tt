@@ -81,6 +81,39 @@ apostrophe.
 <li>[March 2025] Removed exception for <b><i>skis</i></b> as the algorithm gives the same stem without it!
 </ol>
 
+<h2>Design Notes</h2>
+
+<p>
+Most comparatives (<b><i>-er</i></b>) are not handled.  There is a
+rule to remove <b><i>-er</i></b> in <i>R</i>2 (intended mostly for
+other forms with that ending rather than comparatives - e.g.
+<i>flatterer</i>, <i>observer</i>, <i>publisher</i>) which means longer
+comparatives are handled (e.g. <i>cleverer</i>, <i>yellower</i>) but most
+longer adjectives form the comparative with <i>more</i> e.g. <i>more
+attractive</i> rather than <i>attractiver</i>).  Extending this rule
+to check <i>R</i>1 as well would affect too many words where removal would
+be problematic - for example <i>charter</i>, <i>master</i>, <i>meter</i>,
+<i>number</i>, <i>mother</i>, <i>offer</i>, <i>proper</i>, <i>sober</i>,
+<i>solder</i>, <i>temper</i>, <i>wither</i>.  The problem is worse in US
+English where many words which end <b><i>-re</i></b> in British
+English are instead spelled <b><i>-er</i></b> - e.g. <i>center</i>,
+<i>fiber</i>, <i>liter</i>, <i>luster</i>.
+</p>
+
+<p>
+Superlatives are not handled at all due to too many cases where it would
+be problematic - for example <i>attest</i>, <i>behest</i>,
+<i>request</i>, <i>tempest</i>.  There is not a rule to remove
+<b><i>-est</i></b> only in <i>R</i>2 because it would help in very few cases
+but be harmful for e.g. <i>deforest</i>, <i>disinterest</i>, <i>interest</i>,
+<i>manifest</i>, <i>redigest</i>.  These could be avoided by additional
+conditions on the removal, but the added complexity doesn't seem justifiable by
+the small number of words removing <i>-est</i> in <i>R</i>2 would improve the
+stemming of.
+</p>
+
+<h2>Definition of the English stemmer</h2>
+
 <p>
 To begin with, here is the basic algorithm without reference to the
 exceptional forms. An exact comparison with the Porter algorithm needs to
@@ -88,8 +121,6 @@ be done quite carefully if done at all. Here we indicate by <code><FONT COLOR=BL
 of departure, and by <code><FONT COLOR=BLUE>+</FONT></code> additional features. In the sample vocabulary,
 Porter and Porter2 stem slightly over 5% of words to different forms.
 </p>
-
-<h2>Definition of the English stemmer</h2>
 
 <p>
 Define a <I>vowel</I> as one of
