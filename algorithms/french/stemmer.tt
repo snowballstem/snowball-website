@@ -30,7 +30,9 @@ The following letters are vowels:
 <p>
 The first step removes elisions.  If the word starts with one of
 <b><i>c</i></b> <b><i>d</i></b> <b><i>j</i></b> <b><i>l</i></b> <b><i>m</i></b> <b><i>n</i></b> <b><i>s</i></b> <b><i>t</i></b>
-or <b><i>qu</i></b>, followed by an apostrophe (<b><i>'</i></b>) then remove this unless it comprises the whole word.
+or <b><i>qu</i></b>, followed by an apostrophe (<b><i>'</i></b>) which is not
+at the end of the word, then remove from the prefix of the word up to and
+including this apostrophe.
 </p>
 
 <p>
