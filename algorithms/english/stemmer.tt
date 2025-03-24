@@ -351,7 +351,7 @@ shape:
 [% highlight("
     define exception1 as (
 
-         [substring] atlimit among(
+        [substring] atlimit among(
 
             /* special changes: */
 
