@@ -1,0 +1,14 @@
+[% header('Ukraine stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('ukrainian') %]
+</ul>
+
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('ukrainian') %]
+
+[% footer %]
