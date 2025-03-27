@@ -41,9 +41,16 @@ Conference
 </DL>
 
 <p>
-In addition to the steps described in the paper, as a first step if the
-input contains an apostrophe we truncate it at the first apostrophe, which
-aims to remove proper noun suffixes.  For example, <i>Türkiye'dir</i> ("it is
+In addition to the steps described in the paper, as a first step we:
+</p>
+<ul>
+<li>Remove any apostrophe's from the start of the input (e.g. from tokenisation
+of single quoted text).
+<li>If the input still contains an apostrophe we truncate it at the first
+apostrophe, which aims to remove proper noun suffixes.
+</ul>
+<p>
+For example, <i>Türkiye'dir</i> ("it is
 Turkey") is truncate to <i>Türkiye</i> ("Turkey") which is then stemmed as
 it would be without the proper noun suffix.  (This step was added in Snowball
 2.3.0.)
