@@ -22,6 +22,19 @@ natural feature of stemming, but this leads to certain false conflations
 (for example, <I>sch&ouml;n</I>, beautiful; <I>schon</I>, already).
 </p>
 
+<p>
+There are a few short suffixes (for example, <i>-t</i>, <i>-et</i>) where
+removal would causes problems so the stemmer leaves these alone - for example
+<i>holen</i>, <i>hole</i>, <i>hol</i> and <i>holest</i> are stemmed to
+<i>hol</i>; ideally <i>holt</i> would be too, but a rule to remove <i>-t</i>
+would adversely affect too many other words.
+</p>
+
+<p>
+For similar reasons, some suffixes are only removed when in <i>R</i>2: for
+example <i>-end</i>.
+</p>
+
 <h3>Compound words</h3>
 
 <p>
