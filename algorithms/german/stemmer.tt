@@ -9,6 +9,95 @@
 
 [% algorithm_vocab([40, 'aufeinander', 'kategorie']) %]
 
+<h2>Design Notes</h2>
+
+<p>
+Despite its inflexional complexities, German has quite a simple suffix
+structure, so that, if one ignores the almost intractable problems of
+compound words, separable verb prefixes, and prefixed and infixed <B><I>ge</I></B>, an
+algorithmic stemmer can be made quite short. (Infixed <B><I>zu</I></B> can be removed
+algorithmically, but this minor feature is not shown here.) The umlaut in
+German is a regular feature of plural formation, so its removal is a
+natural feature of stemming, but this leads to certain false conflations
+(for example, <I>sch&ouml;n</I>, beautiful; <I>schon</I>, already).
+</p>
+
+<h3>Compound words</h3>
+
+<p>
+Famously, German allows for the formation of long compound words, written
+without spaces. For retrieval purposes, it is useful to be able to search
+on the parts of such words, as well as the on the complete words
+themselves. This is not just peculiar to German: Dutch, Danish, Norwegian,
+Swedish, Icelandic and Finnish have the same property. To split up
+compound words cannot be done without a dictionary, and the purely
+algorithmic stemmers presented here do not attempt it.
+</p>
+
+<p>
+We would suggest, however, that the need for compound word splitting in
+these languages has been somewhat overstated. In the case of German:
+</p>
+
+<ol>
+<li>
+<p>
+There are many English compounds one would see no advantage in
+splitting,
+</p>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>    blackberry  <TD></TD><TD>  blackboard  <TD></TD><TD>  rainbow  <TD></TD><TD>  coastguard <TD></TD><TD> ....
+</TABLE></DL>
+
+<p>
+Many German compounds are like this,
+</p>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>    Bleistift (pencil)      <TD></TD><TD> = <TD></TD><TD> Blei (lead) + Stift (stick)
+<TR><TD>    Eisenbahn (railway)     <TD></TD><TD> = <TD></TD><TD> Eisen (iron) + Bahn (road)
+<TR><TD>    Unterseeboot (submarine)<TD></TD><TD> = <TD></TD><TD> under + sea + boat
+</TABLE></DL>
+
+<li>
+<p>
+Other compounds correspond to what in English one would want to do by
+phrase searching, so they are ready made for that purpose,
+</p>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD>    Gesundheitspflege      <TD></TD><TD>  = <TD></TD><TD> &#8216;health care&#8217;
+<TR><TD>    Fachhochschule         <TD></TD><TD>  = <TD></TD><TD> &#8216;technical college&#8217;
+<TR><TD>    Kunstmuseum            <TD></TD><TD>  = <TD></TD><TD> &#8216;museum of fine art&#8217;
+</TABLE></DL>
+
+<li>
+<p>
+In any case, longer compounds, especially involving personal names, are
+frequently hyphenated,
+</p>
+
+<DL><DD>    Heinrich-Heine-Universit&auml;t
+</DL>
+
+<li>
+<p>
+It is possible to construct participial adjectives of almost any
+length, but they are little used in contemporary German, and regarded now
+as poor style.
+</p>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.0.0 (2009-12-11): Extra rule for -nisse ending added
+<li>Snowball 2.3.0: Handle ASCII transliterations of umlauts (merging the "german2" variant into the standard algorithm).
+<li>Snowball 2.3.0: Special case for <b><i>-system</i></b> added.
+<li>Snowball 2.3.0: Replace <b><i>-ln</i></b> and <b><i>-lns</i></b> with <b><i>l</i></b>.
+<li>Snowball 2.3.0: Remove <b><i>-erin</i></b> and <b><i>-erinnen</i></b>.
+</ul>
+
 <h2>The stemming algorithm</h2>
 
 <p>
