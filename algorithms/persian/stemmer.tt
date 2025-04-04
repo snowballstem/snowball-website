@@ -1,0 +1,35 @@
+[% header('Persian stemming algorithm') %]
+
+<h2>Introduction</h2>
+
+<p>This is a stemming algorithm for the Persian language. It strip common Persian inflectional suffixes and prefixes while normalizing characters.</p>
+
+<h2>Normalization</h2>
+
+<p>The algorithm begins by removing diacritics, half-spaces (zero-width non-joiners), and then performs normalization to unify various Arabic script variants to their Persian equivalents.</p>
+
+<h2>Stemming Process</h2>
+
+<p>After normalization, the algorithm attempts stemming in the following order:</p>
+
+<ol>
+  <li>Remove common <strong>noun suffixes</strong></li>
+  <li>Remove <strong>noun prefixes</strong></li>
+  <li>Remove <strong>verb prefixes</strong></li>
+  <li>Remove <strong>verb suffixes</strong></li>
+  <li>Remove <strong>adjective suffixes</strong></li>
+</ol>
+
+<p>It also includes a list of exceptions (e.g., high-frequency or irregular forms) which are left unchanged.</p>
+
+<h2>Possible Improvements</h2>
+
+<p>Currently, the stemmer relies on heuristic prefix and suffix patterns to distinguish between nouns, verbs, and adjectives. This method, while efficient and language-agnostic, can introduce conflicts.</p>
+<p>To avoid incorrect reductions, some prefixes and suffixes have been deliberately excluded where they caused frequent conflicts with valid words. While this method isn't perfect and may still miss or over-stem in rare cases, it provides a practical and lightweight solution that works well in many real-world scenarios. More accurate results could be achieved in the future by combining this approach with part-of-speech tagging or deeper morphological analysis.</p>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('persian') %]
+
+[% footer %]
+
