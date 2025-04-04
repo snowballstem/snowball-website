@@ -533,40 +533,20 @@ var YiddishStemmer = function() {
             }
             base.cursor = v_11;
         }
-        golab15: while(true)
+        if (!base.go_out_grouping(g_vowel, 1488, 1522))
         {
-            var /** number */ v_12 = base.cursor;
-            lab16: {
-                if (!(base.in_grouping(g_vowel, 1488, 1522)))
-                {
-                    break lab16;
-                }
-                base.cursor = v_12;
-                break golab15;
-            }
-            base.cursor = v_12;
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
-        while(true)
+        base.cursor++;
+        if (!base.go_in_grouping(g_vowel, 1488, 1522))
         {
-            lab17: {
-                if (!(base.in_grouping(g_vowel, 1488, 1522)))
-                {
-                    break lab17;
-                }
-                continue;
-            }
-            break;
+            return false;
         }
         I_p1 = base.cursor;
-        lab18: {
+        lab15: {
             if (I_p1 >= I_x)
             {
-                break lab18;
+                break lab15;
             }
             I_p1 = I_x;
         }
@@ -1162,9 +1142,9 @@ var YiddishStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         r_prelude();
-        var /** number */ v_2 = base.cursor;
+        var /** number */ v_1 = base.cursor;
         r_mark_regions();
-        base.cursor = v_2;
+        base.cursor = v_1;
         base.limit_backward = base.cursor; base.cursor = base.limit;
         r_standard_suffix();
         base.cursor = base.limit_backward;

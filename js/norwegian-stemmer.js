@@ -95,44 +95,21 @@ var NorwegianStemmer = function() {
         }
         I_x = base.cursor;
         base.cursor = v_1;
-        golab0: while(true)
+        if (!base.go_out_grouping(g_v, 97, 248))
         {
-            var /** number */ v_2 = base.cursor;
-            lab1: {
-                if (!(base.in_grouping(g_v, 97, 248)))
-                {
-                    break lab1;
-                }
-                base.cursor = v_2;
-                break golab0;
-            }
-            base.cursor = v_2;
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
-        golab2: while(true)
+        base.cursor++;
+        if (!base.go_in_grouping(g_v, 97, 248))
         {
-            lab3: {
-                if (!(base.out_grouping(g_v, 97, 248)))
-                {
-                    break lab3;
-                }
-                break golab2;
-            }
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
+        base.cursor++;
         I_p1 = base.cursor;
-        lab4: {
+        lab0: {
             if (I_p1 >= I_x)
             {
-                break lab4;
+                break lab0;
             }
             I_p1 = I_x;
         }
@@ -146,17 +123,17 @@ var NorwegianStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
         if (among_var == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         switch (among_var) {
             case 1:
                 if (!base.slice_del())
@@ -177,7 +154,7 @@ var NorwegianStemmer = function() {
                 break;
             case 3:
                 lab0: {
-                    var /** number */ v_3 = base.limit - base.cursor;
+                    var /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.in_grouping_b(g_s_ending, 98, 122)))
                         {
@@ -185,14 +162,14 @@ var NorwegianStemmer = function() {
                         }
                         break lab0;
                     }
-                    base.cursor = base.limit - v_3;
+                    base.cursor = base.limit - v_2;
                     lab2: {
                         if (!(base.eq_s_b("r")))
                         {
                             break lab2;
                         }
                         {
-                            var /** number */ v_4 = base.limit - base.cursor;
+                            var /** number */ v_3 = base.limit - base.cursor;
                             lab3: {
                                 if (!(base.eq_s_b("e")))
                                 {
@@ -200,11 +177,11 @@ var NorwegianStemmer = function() {
                                 }
                                 break lab2;
                             }
-                            base.cursor = base.limit - v_4;
+                            base.cursor = base.limit - v_3;
                         }
                         break lab0;
                     }
-                    base.cursor = base.limit - v_3;
+                    base.cursor = base.limit - v_2;
                     if (!(base.eq_s_b("k")))
                     {
                         return false;
@@ -236,16 +213,16 @@ var NorwegianStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_3 = base.limit_backward;
+        var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (base.find_among_b(a_2) == 0)
         {
-            base.limit_backward = v_3;
+            base.limit_backward = v_2;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_3;
+        base.limit_backward = v_2;
         base.cursor = base.limit - v_1;
         if (base.cursor <= base.limit_backward)
         {
@@ -266,16 +243,16 @@ var NorwegianStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (base.find_among_b(a_3) == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         if (!base.slice_del())
         {
             return false;

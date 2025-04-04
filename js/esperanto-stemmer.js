@@ -585,64 +585,44 @@ var EsperantoStemmer = function() {
             lab1: {
                 for (var /** number */ v_2 = 2; v_2 > 0; v_2--)
                 {
-                    golab2: while(true)
+                    if (!base.go_out_grouping_b(g_vowel, 97, 117))
                     {
-                        lab3: {
-                            if (!(base.in_grouping_b(g_vowel, 97, 117)))
-                            {
-                                break lab3;
-                            }
-                            break golab2;
-                        }
-                        if (base.cursor <= base.limit_backward)
-                        {
-                            break lab1;
-                        }
-                        base.cursor--;
+                        break lab1;
                     }
+                    base.cursor--;
                 }
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            lab4: {
-                golab5: while(true)
+            lab2: {
+                golab3: while(true)
                 {
-                    lab6: {
+                    lab4: {
                         if (!(base.eq_s_b("-")))
                         {
-                            break lab6;
+                            break lab4;
                         }
-                        break golab5;
+                        break golab3;
                     }
                     if (base.cursor <= base.limit_backward)
                     {
-                        break lab4;
+                        break lab2;
                     }
                     base.cursor--;
                 }
                 if (base.cursor <= base.limit_backward)
                 {
-                    break lab4;
+                    break lab2;
                 }
                 base.cursor--;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            golab7: while(true)
+            if (!base.go_out_grouping_b(g_digit, 48, 57))
             {
-                lab8: {
-                    if (!(base.in_grouping_b(g_digit, 48, 57)))
-                    {
-                        break lab8;
-                    }
-                    break golab7;
-                }
-                if (base.cursor <= base.limit_backward)
-                {
-                    return false;
-                }
-                base.cursor--;
+                return false;
             }
+            base.cursor--;
         }
         return true;
     };

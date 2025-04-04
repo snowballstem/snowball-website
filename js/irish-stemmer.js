@@ -107,68 +107,28 @@ var IrishStemmer = function() {
         I_p2 = base.limit;
         var /** number */ v_1 = base.cursor;
         lab0: {
-            golab1: while(true)
+            if (!base.go_out_grouping(g_v, 97, 250))
             {
-                lab2: {
-                    if (!(base.in_grouping(g_v, 97, 250)))
-                    {
-                        break lab2;
-                    }
-                    break golab1;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             I_pV = base.cursor;
-            golab3: while(true)
+            if (!base.go_in_grouping(g_v, 97, 250))
             {
-                lab4: {
-                    if (!(base.out_grouping(g_v, 97, 250)))
-                    {
-                        break lab4;
-                    }
-                    break golab3;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             I_p1 = base.cursor;
-            golab5: while(true)
+            if (!base.go_out_grouping(g_v, 97, 250))
             {
-                lab6: {
-                    if (!(base.in_grouping(g_v, 97, 250)))
-                    {
-                        break lab6;
-                    }
-                    break golab5;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
-            golab7: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 97, 250))
             {
-                lab8: {
-                    if (!(base.out_grouping(g_v, 97, 250)))
-                    {
-                        break lab8;
-                    }
-                    break golab7;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             I_p2 = base.cursor;
         }
         base.cursor = v_1;
@@ -396,15 +356,15 @@ var IrishStemmer = function() {
         base.cursor = v_1;
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_3 = base.limit - base.cursor;
+        var /** number */ v_2 = base.limit - base.cursor;
         r_noun_sfx();
+        base.cursor = base.limit - v_2;
+        var /** number */ v_3 = base.limit - base.cursor;
+        r_deriv();
         base.cursor = base.limit - v_3;
         var /** number */ v_4 = base.limit - base.cursor;
-        r_deriv();
-        base.cursor = base.limit - v_4;
-        var /** number */ v_5 = base.limit - base.cursor;
         r_verb_sfx();
-        base.cursor = base.limit - v_5;
+        base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;
         return true;
     };

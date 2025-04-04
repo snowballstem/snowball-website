@@ -218,229 +218,103 @@ var TurkishStemmer = function() {
     /** @return {boolean} */
     function r_check_vowel_harmony() {
         var /** number */ v_1 = base.limit - base.cursor;
-        golab0: while(true)
+        if (!base.go_out_grouping_b(g_vowel, 97, 305))
         {
+            return false;
+        }
+        lab0: {
             var /** number */ v_2 = base.limit - base.cursor;
             lab1: {
-                if (!(base.in_grouping_b(g_vowel, 97, 305)))
+                if (!(base.eq_s_b("a")))
                 {
                     break lab1;
                 }
-                base.cursor = base.limit - v_2;
-                break golab0;
+                if (!base.go_out_grouping_b(g_vowel1, 97, 305))
+                {
+                    break lab1;
+                }
+                break lab0;
             }
             base.cursor = base.limit - v_2;
-            if (base.cursor <= base.limit_backward)
-            {
-                return false;
+            lab2: {
+                if (!(base.eq_s_b("e")))
+                {
+                    break lab2;
+                }
+                if (!base.go_out_grouping_b(g_vowel2, 101, 252))
+                {
+                    break lab2;
+                }
+                break lab0;
             }
-            base.cursor--;
-        }
-        lab2: {
-            var /** number */ v_3 = base.limit - base.cursor;
+            base.cursor = base.limit - v_2;
             lab3: {
-                if (!(base.eq_s_b("a")))
+                if (!(base.eq_s_b("\u0131")))
                 {
                     break lab3;
                 }
-                golab4: while(true)
+                if (!base.go_out_grouping_b(g_vowel3, 97, 305))
                 {
-                    var /** number */ v_4 = base.limit - base.cursor;
-                    lab5: {
-                        if (!(base.in_grouping_b(g_vowel1, 97, 305)))
-                        {
-                            break lab5;
-                        }
-                        base.cursor = base.limit - v_4;
-                        break golab4;
-                    }
-                    base.cursor = base.limit - v_4;
-                    if (base.cursor <= base.limit_backward)
-                    {
-                        break lab3;
-                    }
-                    base.cursor--;
+                    break lab3;
                 }
-                break lab2;
+                break lab0;
             }
-            base.cursor = base.limit - v_3;
+            base.cursor = base.limit - v_2;
+            lab4: {
+                if (!(base.eq_s_b("i")))
+                {
+                    break lab4;
+                }
+                if (!base.go_out_grouping_b(g_vowel4, 101, 105))
+                {
+                    break lab4;
+                }
+                break lab0;
+            }
+            base.cursor = base.limit - v_2;
+            lab5: {
+                if (!(base.eq_s_b("o")))
+                {
+                    break lab5;
+                }
+                if (!base.go_out_grouping_b(g_vowel5, 111, 117))
+                {
+                    break lab5;
+                }
+                break lab0;
+            }
+            base.cursor = base.limit - v_2;
             lab6: {
-                if (!(base.eq_s_b("e")))
+                if (!(base.eq_s_b("\u00F6")))
                 {
                     break lab6;
                 }
-                golab7: while(true)
+                if (!base.go_out_grouping_b(g_vowel6, 246, 252))
                 {
-                    var /** number */ v_5 = base.limit - base.cursor;
-                    lab8: {
-                        if (!(base.in_grouping_b(g_vowel2, 101, 252)))
-                        {
-                            break lab8;
-                        }
-                        base.cursor = base.limit - v_5;
-                        break golab7;
-                    }
-                    base.cursor = base.limit - v_5;
-                    if (base.cursor <= base.limit_backward)
-                    {
-                        break lab6;
-                    }
-                    base.cursor--;
+                    break lab6;
                 }
-                break lab2;
+                break lab0;
             }
-            base.cursor = base.limit - v_3;
-            lab9: {
-                if (!(base.eq_s_b("\u0131")))
-                {
-                    break lab9;
-                }
-                golab10: while(true)
-                {
-                    var /** number */ v_6 = base.limit - base.cursor;
-                    lab11: {
-                        if (!(base.in_grouping_b(g_vowel3, 97, 305)))
-                        {
-                            break lab11;
-                        }
-                        base.cursor = base.limit - v_6;
-                        break golab10;
-                    }
-                    base.cursor = base.limit - v_6;
-                    if (base.cursor <= base.limit_backward)
-                    {
-                        break lab9;
-                    }
-                    base.cursor--;
-                }
-                break lab2;
-            }
-            base.cursor = base.limit - v_3;
-            lab12: {
-                if (!(base.eq_s_b("i")))
-                {
-                    break lab12;
-                }
-                golab13: while(true)
-                {
-                    var /** number */ v_7 = base.limit - base.cursor;
-                    lab14: {
-                        if (!(base.in_grouping_b(g_vowel4, 101, 105)))
-                        {
-                            break lab14;
-                        }
-                        base.cursor = base.limit - v_7;
-                        break golab13;
-                    }
-                    base.cursor = base.limit - v_7;
-                    if (base.cursor <= base.limit_backward)
-                    {
-                        break lab12;
-                    }
-                    base.cursor--;
-                }
-                break lab2;
-            }
-            base.cursor = base.limit - v_3;
-            lab15: {
-                if (!(base.eq_s_b("o")))
-                {
-                    break lab15;
-                }
-                golab16: while(true)
-                {
-                    var /** number */ v_8 = base.limit - base.cursor;
-                    lab17: {
-                        if (!(base.in_grouping_b(g_vowel5, 111, 117)))
-                        {
-                            break lab17;
-                        }
-                        base.cursor = base.limit - v_8;
-                        break golab16;
-                    }
-                    base.cursor = base.limit - v_8;
-                    if (base.cursor <= base.limit_backward)
-                    {
-                        break lab15;
-                    }
-                    base.cursor--;
-                }
-                break lab2;
-            }
-            base.cursor = base.limit - v_3;
-            lab18: {
-                if (!(base.eq_s_b("\u00F6")))
-                {
-                    break lab18;
-                }
-                golab19: while(true)
-                {
-                    var /** number */ v_9 = base.limit - base.cursor;
-                    lab20: {
-                        if (!(base.in_grouping_b(g_vowel6, 246, 252)))
-                        {
-                            break lab20;
-                        }
-                        base.cursor = base.limit - v_9;
-                        break golab19;
-                    }
-                    base.cursor = base.limit - v_9;
-                    if (base.cursor <= base.limit_backward)
-                    {
-                        break lab18;
-                    }
-                    base.cursor--;
-                }
-                break lab2;
-            }
-            base.cursor = base.limit - v_3;
-            lab21: {
+            base.cursor = base.limit - v_2;
+            lab7: {
                 if (!(base.eq_s_b("u")))
                 {
-                    break lab21;
+                    break lab7;
                 }
-                golab22: while(true)
+                if (!base.go_out_grouping_b(g_vowel5, 111, 117))
                 {
-                    var /** number */ v_10 = base.limit - base.cursor;
-                    lab23: {
-                        if (!(base.in_grouping_b(g_vowel5, 111, 117)))
-                        {
-                            break lab23;
-                        }
-                        base.cursor = base.limit - v_10;
-                        break golab22;
-                    }
-                    base.cursor = base.limit - v_10;
-                    if (base.cursor <= base.limit_backward)
-                    {
-                        break lab21;
-                    }
-                    base.cursor--;
+                    break lab7;
                 }
-                break lab2;
+                break lab0;
             }
-            base.cursor = base.limit - v_3;
+            base.cursor = base.limit - v_2;
             if (!(base.eq_s_b("\u00FC")))
             {
                 return false;
             }
-            golab24: while(true)
+            if (!base.go_out_grouping_b(g_vowel6, 246, 252))
             {
-                var /** number */ v_11 = base.limit - base.cursor;
-                lab25: {
-                    if (!(base.in_grouping_b(g_vowel6, 246, 252)))
-                    {
-                        break lab25;
-                    }
-                    base.cursor = base.limit - v_11;
-                    break golab24;
-                }
-                base.cursor = base.limit - v_11;
-                if (base.cursor <= base.limit_backward)
-                {
-                    return false;
-                }
-                base.cursor--;
+                return false;
             }
         }
         base.cursor = base.limit - v_1;
@@ -2145,105 +2019,91 @@ var TurkishStemmer = function() {
                 return false;
             }
         }
-        golab2: while(true)
+        if (!base.go_out_grouping_b(g_vowel, 97, 305))
         {
+            return false;
+        }
+        lab2: {
             var /** number */ v_2 = base.limit - base.cursor;
             lab3: {
-                if (!(base.in_grouping_b(g_vowel, 97, 305)))
-                {
-                    break lab3;
-                }
-                base.cursor = base.limit - v_2;
-                break golab2;
-            }
-            base.cursor = base.limit - v_2;
-            if (base.cursor <= base.limit_backward)
-            {
-                return false;
-            }
-            base.cursor--;
-        }
-        lab4: {
-            var /** number */ v_3 = base.limit - base.cursor;
-            lab5: {
-                lab6: {
-                    var /** number */ v_4 = base.limit - base.cursor;
-                    lab7: {
+                lab4: {
+                    var /** number */ v_3 = base.limit - base.cursor;
+                    lab5: {
                         if (!(base.eq_s_b("a")))
                         {
-                            break lab7;
+                            break lab5;
                         }
-                        break lab6;
+                        break lab4;
                     }
-                    base.cursor = base.limit - v_4;
+                    base.cursor = base.limit - v_3;
                     if (!(base.eq_s_b("\u0131")))
                     {
-                        break lab5;
+                        break lab3;
                     }
                 }
                 if (!base.slice_from("\u0131"))
                 {
                     return false;
                 }
-                break lab4;
+                break lab2;
             }
-            base.cursor = base.limit - v_3;
-            lab8: {
-                lab9: {
-                    var /** number */ v_5 = base.limit - base.cursor;
-                    lab10: {
+            base.cursor = base.limit - v_2;
+            lab6: {
+                lab7: {
+                    var /** number */ v_4 = base.limit - base.cursor;
+                    lab8: {
                         if (!(base.eq_s_b("e")))
                         {
-                            break lab10;
+                            break lab8;
                         }
-                        break lab9;
+                        break lab7;
                     }
-                    base.cursor = base.limit - v_5;
+                    base.cursor = base.limit - v_4;
                     if (!(base.eq_s_b("i")))
                     {
-                        break lab8;
+                        break lab6;
                     }
                 }
                 if (!base.slice_from("i"))
                 {
                     return false;
                 }
-                break lab4;
+                break lab2;
             }
-            base.cursor = base.limit - v_3;
-            lab11: {
-                lab12: {
-                    var /** number */ v_6 = base.limit - base.cursor;
-                    lab13: {
+            base.cursor = base.limit - v_2;
+            lab9: {
+                lab10: {
+                    var /** number */ v_5 = base.limit - base.cursor;
+                    lab11: {
                         if (!(base.eq_s_b("o")))
                         {
-                            break lab13;
+                            break lab11;
                         }
-                        break lab12;
+                        break lab10;
                     }
-                    base.cursor = base.limit - v_6;
+                    base.cursor = base.limit - v_5;
                     if (!(base.eq_s_b("u")))
                     {
-                        break lab11;
+                        break lab9;
                     }
                 }
                 if (!base.slice_from("u"))
                 {
                     return false;
                 }
-                break lab4;
+                break lab2;
             }
-            base.cursor = base.limit - v_3;
-            lab14: {
-                var /** number */ v_7 = base.limit - base.cursor;
-                lab15: {
+            base.cursor = base.limit - v_2;
+            lab12: {
+                var /** number */ v_6 = base.limit - base.cursor;
+                lab13: {
                     if (!(base.eq_s_b("\u00F6")))
                     {
-                        break lab15;
+                        break lab13;
                     }
-                    break lab14;
+                    break lab12;
                 }
-                base.cursor = base.limit - v_7;
+                base.cursor = base.limit - v_6;
                 if (!(base.eq_s_b("\u00FC")))
                 {
                     return false;
@@ -2317,21 +2177,11 @@ var TurkishStemmer = function() {
         var /** number */ v_1 = base.cursor;
         for (var /** number */ v_2 = 2; v_2 > 0; v_2--)
         {
-            golab0: while(true)
+            if (!base.go_out_grouping(g_vowel, 97, 305))
             {
-                lab1: {
-                    if (!(base.in_grouping(g_vowel, 97, 305)))
-                    {
-                        break lab1;
-                    }
-                    break golab0;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    return false;
-                }
-                base.cursor++;
+                return false;
             }
+            base.cursor++;
         }
         base.cursor = v_1;
         return true;
@@ -2368,16 +2218,16 @@ var TurkishStemmer = function() {
             return false;
         }
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_2 = base.limit - base.cursor;
+        var /** number */ v_1 = base.limit - base.cursor;
         r_stem_nominal_verb_suffixes();
-        base.cursor = base.limit - v_2;
+        base.cursor = base.limit - v_1;
         if (!B_continue_stemming_noun_suffixes)
         {
             return false;
         }
-        var /** number */ v_3 = base.limit - base.cursor;
+        var /** number */ v_2 = base.limit - base.cursor;
         r_stem_noun_suffixes();
-        base.cursor = base.limit - v_3;
+        base.cursor = base.limit - v_2;
         base.cursor = base.limit_backward;
         if (!r_postlude())
         {

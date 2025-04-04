@@ -142,7 +142,6 @@ var HindiStemmer = function() {
     /** @const */ var /** Array<int> */ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248, 7];
 
 
-
     /** @return {boolean} */
     function r_CONSONANT() {
         if (!(base.in_grouping_b(g_consonant, 2325, 2399)))

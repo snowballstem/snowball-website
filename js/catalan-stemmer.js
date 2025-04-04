@@ -588,67 +588,27 @@ var CatalanStemmer = function() {
         I_p2 = base.limit;
         var /** number */ v_1 = base.cursor;
         lab0: {
-            golab1: while(true)
+            if (!base.go_out_grouping(g_v, 97, 252))
             {
-                lab2: {
-                    if (!(base.in_grouping(g_v, 97, 252)))
-                    {
-                        break lab2;
-                    }
-                    break golab1;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
-            golab3: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 97, 252))
             {
-                lab4: {
-                    if (!(base.out_grouping(g_v, 97, 252)))
-                    {
-                        break lab4;
-                    }
-                    break golab3;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             I_p1 = base.cursor;
-            golab5: while(true)
+            if (!base.go_out_grouping(g_v, 97, 252))
             {
-                lab6: {
-                    if (!(base.in_grouping(g_v, 97, 252)))
-                    {
-                        break lab6;
-                    }
-                    break golab5;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
-            golab7: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 97, 252))
             {
-                lab8: {
-                    if (!(base.out_grouping(g_v, 97, 252)))
-                    {
-                        break lab8;
-                    }
-                    break golab7;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             I_p2 = base.cursor;
         }
         base.cursor = v_1;
@@ -885,13 +845,13 @@ var CatalanStemmer = function() {
     this.stem = /** @return {boolean} */ function() {
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_2 = base.limit - base.cursor;
+        var /** number */ v_1 = base.limit - base.cursor;
         r_attached_pronoun();
-        base.cursor = base.limit - v_2;
-        var /** number */ v_3 = base.limit - base.cursor;
+        base.cursor = base.limit - v_1;
+        var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_4 = base.limit - base.cursor;
+                var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!r_standard_suffix())
                     {
@@ -899,21 +859,21 @@ var CatalanStemmer = function() {
                     }
                     break lab1;
                 }
-                base.cursor = base.limit - v_4;
+                base.cursor = base.limit - v_3;
                 if (!r_verb_suffix())
                 {
                     break lab0;
                 }
             }
         }
-        base.cursor = base.limit - v_3;
-        var /** number */ v_5 = base.limit - base.cursor;
+        base.cursor = base.limit - v_2;
+        var /** number */ v_4 = base.limit - base.cursor;
         r_residual_suffix();
-        base.cursor = base.limit - v_5;
+        base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;
-        var /** number */ v_6 = base.cursor;
+        var /** number */ v_5 = base.cursor;
         r_cleaning();
-        base.cursor = v_6;
+        base.cursor = v_5;
         return true;
     };
 

@@ -410,91 +410,41 @@ var FrenchStemmer = function() {
                     break lab0;
                 }
                 base.cursor++;
-                golab4: while(true)
+                if (!base.go_out_grouping(g_v, 97, 251))
                 {
-                    lab5: {
-                        if (!(base.in_grouping(g_v, 97, 251)))
-                        {
-                            break lab5;
-                        }
-                        break golab4;
-                    }
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab0;
-                    }
-                    base.cursor++;
+                    break lab0;
                 }
+                base.cursor++;
             }
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        var /** number */ v_4 = base.cursor;
-        lab6: {
-            golab7: while(true)
+        var /** number */ v_3 = base.cursor;
+        lab4: {
+            if (!base.go_out_grouping(g_v, 97, 251))
             {
-                lab8: {
-                    if (!(base.in_grouping(g_v, 97, 251)))
-                    {
-                        break lab8;
-                    }
-                    break golab7;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab6;
-                }
-                base.cursor++;
+                break lab4;
             }
-            golab9: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 97, 251))
             {
-                lab10: {
-                    if (!(base.out_grouping(g_v, 97, 251)))
-                    {
-                        break lab10;
-                    }
-                    break golab9;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab6;
-                }
-                base.cursor++;
+                break lab4;
             }
+            base.cursor++;
             I_p1 = base.cursor;
-            golab11: while(true)
+            if (!base.go_out_grouping(g_v, 97, 251))
             {
-                lab12: {
-                    if (!(base.in_grouping(g_v, 97, 251)))
-                    {
-                        break lab12;
-                    }
-                    break golab11;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab6;
-                }
-                base.cursor++;
+                break lab4;
             }
-            golab13: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 97, 251))
             {
-                lab14: {
-                    if (!(base.out_grouping(g_v, 97, 251)))
-                    {
-                        break lab14;
-                    }
-                    break golab13;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab6;
-                }
-                base.cursor++;
+                break lab4;
             }
+            base.cursor++;
             I_p2 = base.cursor;
         }
-        base.cursor = v_4;
+        base.cursor = v_3;
         return true;
     };
 
@@ -996,37 +946,37 @@ var FrenchStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         if (base.find_among_b(a_5) == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
         {
-            var /** number */ v_3 = base.limit - base.cursor;
+            var /** number */ v_2 = base.limit - base.cursor;
             lab0: {
                 if (!(base.eq_s_b("H")))
                 {
                     break lab0;
                 }
-                base.limit_backward = v_2;
+                base.limit_backward = v_1;
                 return false;
             }
-            base.cursor = base.limit - v_3;
+            base.cursor = base.limit - v_2;
         }
         if (!(base.out_grouping_b(g_v, 97, 251)))
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         if (!base.slice_del())
         {
             return false;
         }
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         return true;
     };
 
@@ -1037,13 +987,13 @@ var FrenchStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_6);
         if (among_var == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
@@ -1051,7 +1001,7 @@ var FrenchStemmer = function() {
             case 1:
                 if (!r_R2())
                 {
-                    base.limit_backward = v_2;
+                    base.limit_backward = v_1;
                     return false;
                 }
                 if (!base.slice_del())
@@ -1070,12 +1020,12 @@ var FrenchStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_3 = base.limit - base.cursor;
+                var /** number */ v_2 = base.limit - base.cursor;
                 lab0: {
                     base.ket = base.cursor;
                     if (!(base.eq_s_b("e")))
                     {
-                        base.cursor = base.limit - v_3;
+                        base.cursor = base.limit - v_2;
                         break lab0;
                     }
                     base.bra = base.cursor;
@@ -1086,7 +1036,7 @@ var FrenchStemmer = function() {
                 }
                 break;
         }
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         return true;
     };
 
@@ -1129,13 +1079,13 @@ var FrenchStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_5 = base.limit_backward;
+        var /** number */ v_4 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_7);
         if (among_var == 0)
         {
-            base.limit_backward = v_5;
+            base.limit_backward = v_4;
             return false;
         }
         base.bra = base.cursor;
@@ -1143,11 +1093,11 @@ var FrenchStemmer = function() {
             case 1:
                 if (!r_R2())
                 {
-                    base.limit_backward = v_5;
+                    base.limit_backward = v_4;
                     return false;
                 }
                 lab3: {
-                    var /** number */ v_6 = base.limit - base.cursor;
+                    var /** number */ v_5 = base.limit - base.cursor;
                     lab4: {
                         if (!(base.eq_s_b("s")))
                         {
@@ -1155,10 +1105,10 @@ var FrenchStemmer = function() {
                         }
                         break lab3;
                     }
-                    base.cursor = base.limit - v_6;
+                    base.cursor = base.limit - v_5;
                     if (!(base.eq_s_b("t")))
                     {
-                        base.limit_backward = v_5;
+                        base.limit_backward = v_4;
                         return false;
                     }
                 }
@@ -1180,7 +1130,7 @@ var FrenchStemmer = function() {
                 }
                 break;
         }
-        base.limit_backward = v_5;
+        base.limit_backward = v_4;
         return true;
     };
 
@@ -1229,7 +1179,7 @@ var FrenchStemmer = function() {
         }
         base.ket = base.cursor;
         lab1: {
-            var /** number */ v_3 = base.limit - base.cursor;
+            var /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 if (!(base.eq_s_b("\u00E9")))
                 {
@@ -1237,7 +1187,7 @@ var FrenchStemmer = function() {
                 }
                 break lab1;
             }
-            base.cursor = base.limit - v_3;
+            base.cursor = base.limit - v_2;
             if (!(base.eq_s_b("\u00E8")))
             {
                 return false;
@@ -1260,14 +1210,14 @@ var FrenchStemmer = function() {
         base.cursor = v_2;
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_4 = base.limit - base.cursor;
+        var /** number */ v_3 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_5 = base.limit - base.cursor;
+                var /** number */ v_4 = base.limit - base.cursor;
                 lab2: {
-                    var /** number */ v_6 = base.limit - base.cursor;
+                    var /** number */ v_5 = base.limit - base.cursor;
                     lab3: {
-                        var /** number */ v_7 = base.limit - base.cursor;
+                        var /** number */ v_6 = base.limit - base.cursor;
                         lab4: {
                             if (!r_standard_suffix())
                             {
@@ -1275,7 +1225,7 @@ var FrenchStemmer = function() {
                             }
                             break lab3;
                         }
-                        base.cursor = base.limit - v_7;
+                        base.cursor = base.limit - v_6;
                         lab5: {
                             if (!r_i_verb_suffix())
                             {
@@ -1283,18 +1233,18 @@ var FrenchStemmer = function() {
                             }
                             break lab3;
                         }
-                        base.cursor = base.limit - v_7;
+                        base.cursor = base.limit - v_6;
                         if (!r_verb_suffix())
                         {
                             break lab2;
                         }
                     }
-                    base.cursor = base.limit - v_6;
-                    var /** number */ v_8 = base.limit - base.cursor;
+                    base.cursor = base.limit - v_5;
+                    var /** number */ v_7 = base.limit - base.cursor;
                     lab6: {
                         base.ket = base.cursor;
                         lab7: {
-                            var /** number */ v_9 = base.limit - base.cursor;
+                            var /** number */ v_8 = base.limit - base.cursor;
                             lab8: {
                                 if (!(base.eq_s_b("Y")))
                                 {
@@ -1307,10 +1257,10 @@ var FrenchStemmer = function() {
                                 }
                                 break lab7;
                             }
-                            base.cursor = base.limit - v_9;
+                            base.cursor = base.limit - v_8;
                             if (!(base.eq_s_b("\u00E7")))
                             {
-                                base.cursor = base.limit - v_8;
+                                base.cursor = base.limit - v_7;
                                 break lab6;
                             }
                             base.bra = base.cursor;
@@ -1322,24 +1272,24 @@ var FrenchStemmer = function() {
                     }
                     break lab1;
                 }
-                base.cursor = base.limit - v_5;
+                base.cursor = base.limit - v_4;
                 if (!r_residual_suffix())
                 {
                     break lab0;
                 }
             }
         }
-        base.cursor = base.limit - v_4;
-        var /** number */ v_10 = base.limit - base.cursor;
+        base.cursor = base.limit - v_3;
+        var /** number */ v_9 = base.limit - base.cursor;
         r_un_double();
-        base.cursor = base.limit - v_10;
-        var /** number */ v_11 = base.limit - base.cursor;
+        base.cursor = base.limit - v_9;
+        var /** number */ v_10 = base.limit - base.cursor;
         r_un_accent();
-        base.cursor = base.limit - v_11;
+        base.cursor = base.limit - v_10;
         base.cursor = base.limit_backward;
-        var /** number */ v_12 = base.cursor;
+        var /** number */ v_11 = base.cursor;
         r_postlude();
-        base.cursor = v_12;
+        base.cursor = v_11;
         return true;
     };
 

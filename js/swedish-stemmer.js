@@ -5,6 +5,30 @@ var SwedishStemmer = function() {
     var base = new BaseStemmer();
 
     /** @const */ var a_0 = [
+        ["fab", -1, -1],
+        ["h", -1, -1],
+        ["pak", -1, -1],
+        ["rak", -1, -1],
+        ["stak", -1, -1],
+        ["kom", -1, -1],
+        ["iet", -1, -1],
+        ["cit", -1, -1],
+        ["dit", -1, -1],
+        ["alit", -1, -1],
+        ["ilit", -1, -1],
+        ["mit", -1, -1],
+        ["nit", -1, -1],
+        ["pit", -1, -1],
+        ["rit", -1, -1],
+        ["sit", -1, -1],
+        ["tit", -1, -1],
+        ["uit", -1, -1],
+        ["ivit", -1, -1],
+        ["kvit", -1, -1],
+        ["xit", -1, -1]
+    ];
+
+    /** @const */ var a_1 = [
         ["a", -1, 1],
         ["arna", 0, 1],
         ["erna", 0, 1],
@@ -39,12 +63,13 @@ var SwedishStemmer = function() {
         ["hetens", 29, 1],
         ["erns", 21, 1],
         ["at", -1, 1],
-        ["andet", -1, 1],
-        ["het", -1, 1],
+        ["et", -1, 3],
+        ["andet", 34, 1],
+        ["het", 34, 1],
         ["ast", -1, 1]
     ];
 
-    /** @const */ var a_1 = [
+    /** @const */ var a_2 = [
         ["dd", -1, -1],
         ["gd", -1, -1],
         ["nn", -1, -1],
@@ -54,7 +79,7 @@ var SwedishStemmer = function() {
         ["tt", -1, -1]
     ];
 
-    /** @const */ var a_2 = [
+    /** @const */ var a_3 = [
         ["ig", -1, 1],
         ["lig", 0, 1],
         ["els", -1, 1],
@@ -86,46 +111,56 @@ var SwedishStemmer = function() {
         }
         I_x = base.cursor;
         base.cursor = v_1;
-        golab0: while(true)
+        if (!base.go_out_grouping(g_v, 97, 246))
         {
-            var /** number */ v_2 = base.cursor;
+            return false;
+        }
+        base.cursor++;
+        if (!base.go_in_grouping(g_v, 97, 246))
+        {
+            return false;
+        }
+        base.cursor++;
+        I_p1 = base.cursor;
+        lab0: {
+            if (I_p1 >= I_x)
+            {
+                break lab0;
+            }
+            I_p1 = I_x;
+        }
+        return true;
+    };
+
+    /** @return {boolean} */
+    function r_et_condition() {
+        var /** number */ v_1 = base.limit - base.cursor;
+        if (!(base.out_grouping_b(g_v, 97, 246)))
+        {
+            return false;
+        }
+        if (!(base.in_grouping_b(g_v, 97, 246)))
+        {
+            return false;
+        }
+        lab0: {
+            if (base.cursor > base.limit_backward)
+            {
+                break lab0;
+            }
+            return false;
+        }
+        base.cursor = base.limit - v_1;
+        {
+            var /** number */ v_2 = base.limit - base.cursor;
             lab1: {
-                if (!(base.in_grouping(g_v, 97, 246)))
+                if (base.find_among_b(a_0) == 0)
                 {
                     break lab1;
                 }
-                base.cursor = v_2;
-                break golab0;
-            }
-            base.cursor = v_2;
-            if (base.cursor >= base.limit)
-            {
                 return false;
             }
-            base.cursor++;
-        }
-        golab2: while(true)
-        {
-            lab3: {
-                if (!(base.out_grouping(g_v, 97, 246)))
-                {
-                    break lab3;
-                }
-                break golab2;
-            }
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
-        }
-        I_p1 = base.cursor;
-        lab4: {
-            if (I_p1 >= I_x)
-            {
-                break lab4;
-            }
-            I_p1 = I_x;
+            base.cursor = base.limit - v_2;
         }
         return true;
     };
@@ -137,17 +172,17 @@ var SwedishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_0);
+        among_var = base.find_among_b(a_1);
         if (among_var == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         switch (among_var) {
             case 1:
                 if (!base.slice_del())
@@ -156,7 +191,33 @@ var SwedishStemmer = function() {
                 }
                 break;
             case 2:
-                if (!(base.in_grouping_b(g_s_ending, 98, 121)))
+                lab0: {
+                    var /** number */ v_2 = base.limit - base.cursor;
+                    lab1: {
+                        if (!(base.eq_s_b("et")))
+                        {
+                            break lab1;
+                        }
+                        if (!r_et_condition())
+                        {
+                            break lab1;
+                        }
+                        base.bra = base.cursor;
+                        break lab0;
+                    }
+                    base.cursor = base.limit - v_2;
+                    if (!(base.in_grouping_b(g_s_ending, 98, 121)))
+                    {
+                        return false;
+                    }
+                }
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break;
+            case 3:
+                if (!r_et_condition())
                 {
                     return false;
                 }
@@ -175,19 +236,19 @@ var SwedishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
-        var /** number */ v_3 = base.limit - base.cursor;
-        if (base.find_among_b(a_1) == 0)
+        var /** number */ v_2 = base.limit - base.cursor;
+        if (base.find_among_b(a_2) == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
-        base.cursor = base.limit - v_3;
+        base.cursor = base.limit - v_2;
         base.ket = base.cursor;
         if (base.cursor <= base.limit_backward)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.cursor--;
@@ -196,7 +257,7 @@ var SwedishStemmer = function() {
         {
             return false;
         }
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         return true;
     };
 
@@ -207,17 +268,17 @@ var SwedishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_2);
+        among_var = base.find_among_b(a_3);
         if (among_var == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         switch (among_var) {
             case 1:
                 if (!base.slice_del())

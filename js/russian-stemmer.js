@@ -173,67 +173,27 @@ var RussianStemmer = function() {
         I_p2 = base.limit;
         var /** number */ v_1 = base.cursor;
         lab0: {
-            golab1: while(true)
+            if (!base.go_out_grouping(g_v, 1072, 1103))
             {
-                lab2: {
-                    if (!(base.in_grouping(g_v, 1072, 1103)))
-                    {
-                        break lab2;
-                    }
-                    break golab1;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             I_pV = base.cursor;
-            golab3: while(true)
+            if (!base.go_in_grouping(g_v, 1072, 1103))
             {
-                lab4: {
-                    if (!(base.out_grouping(g_v, 1072, 1103)))
-                    {
-                        break lab4;
-                    }
-                    break golab3;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
-            golab5: while(true)
+            base.cursor++;
+            if (!base.go_out_grouping(g_v, 1072, 1103))
             {
-                lab6: {
-                    if (!(base.in_grouping(g_v, 1072, 1103)))
-                    {
-                        break lab6;
-                    }
-                    break golab5;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
-            golab7: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 1072, 1103))
             {
-                lab8: {
-                    if (!(base.out_grouping(g_v, 1072, 1103)))
-                    {
-                        break lab8;
-                    }
-                    break golab7;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             I_p2 = base.cursor;
         }
         base.cursor = v_1;
@@ -539,12 +499,12 @@ var RussianStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_6 = base.limit_backward;
+        var /** number */ v_4 = base.limit_backward;
         base.limit_backward = I_pV;
-        var /** number */ v_7 = base.limit - base.cursor;
+        var /** number */ v_5 = base.limit - base.cursor;
         lab4: {
             lab5: {
-                var /** number */ v_8 = base.limit - base.cursor;
+                var /** number */ v_6 = base.limit - base.cursor;
                 lab6: {
                     if (!r_perfective_gerund())
                     {
@@ -552,17 +512,17 @@ var RussianStemmer = function() {
                     }
                     break lab5;
                 }
-                base.cursor = base.limit - v_8;
-                var /** number */ v_9 = base.limit - base.cursor;
+                base.cursor = base.limit - v_6;
+                var /** number */ v_7 = base.limit - base.cursor;
                 lab7: {
                     if (!r_reflexive())
                     {
-                        base.cursor = base.limit - v_9;
+                        base.cursor = base.limit - v_7;
                         break lab7;
                     }
                 }
                 lab8: {
-                    var /** number */ v_10 = base.limit - base.cursor;
+                    var /** number */ v_8 = base.limit - base.cursor;
                     lab9: {
                         if (!r_adjectival())
                         {
@@ -570,7 +530,7 @@ var RussianStemmer = function() {
                         }
                         break lab8;
                     }
-                    base.cursor = base.limit - v_10;
+                    base.cursor = base.limit - v_8;
                     lab10: {
                         if (!r_verb())
                         {
@@ -578,7 +538,7 @@ var RussianStemmer = function() {
                         }
                         break lab8;
                     }
-                    base.cursor = base.limit - v_10;
+                    base.cursor = base.limit - v_8;
                     if (!r_noun())
                     {
                         break lab4;
@@ -586,13 +546,13 @@ var RussianStemmer = function() {
                 }
             }
         }
-        base.cursor = base.limit - v_7;
-        var /** number */ v_11 = base.limit - base.cursor;
+        base.cursor = base.limit - v_5;
+        var /** number */ v_9 = base.limit - base.cursor;
         lab11: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u0438")))
             {
-                base.cursor = base.limit - v_11;
+                base.cursor = base.limit - v_9;
                 break lab11;
             }
             base.bra = base.cursor;
@@ -601,13 +561,13 @@ var RussianStemmer = function() {
                 return false;
             }
         }
-        var /** number */ v_12 = base.limit - base.cursor;
+        var /** number */ v_10 = base.limit - base.cursor;
         r_derivational();
-        base.cursor = base.limit - v_12;
-        var /** number */ v_13 = base.limit - base.cursor;
+        base.cursor = base.limit - v_10;
+        var /** number */ v_11 = base.limit - base.cursor;
         r_tidy_up();
-        base.cursor = base.limit - v_13;
-        base.limit_backward = v_6;
+        base.cursor = base.limit - v_11;
+        base.limit_backward = v_4;
         base.cursor = base.limit_backward;
         return true;
     };

@@ -290,21 +290,11 @@ var PortugueseStemmer = function() {
                             {
                                 break lab4;
                             }
-                            golab5: while(true)
+                            if (!base.go_out_grouping(g_v, 97, 250))
                             {
-                                lab6: {
-                                    if (!(base.in_grouping(g_v, 97, 250)))
-                                    {
-                                        break lab6;
-                                    }
-                                    break golab5;
-                                }
-                                if (base.cursor >= base.limit)
-                                {
-                                    break lab4;
-                                }
-                                base.cursor++;
+                                break lab4;
                             }
+                            base.cursor++;
                             break lab3;
                         }
                         base.cursor = v_3;
@@ -312,21 +302,11 @@ var PortugueseStemmer = function() {
                         {
                             break lab2;
                         }
-                        golab7: while(true)
+                        if (!base.go_in_grouping(g_v, 97, 250))
                         {
-                            lab8: {
-                                if (!(base.out_grouping(g_v, 97, 250)))
-                                {
-                                    break lab8;
-                                }
-                                break golab7;
-                            }
-                            if (base.cursor >= base.limit)
-                            {
-                                break lab2;
-                            }
-                            base.cursor++;
+                            break lab2;
                         }
+                        base.cursor++;
                     }
                     break lab1;
                 }
@@ -335,31 +315,21 @@ var PortugueseStemmer = function() {
                 {
                     break lab0;
                 }
-                lab9: {
-                    var /** number */ v_6 = base.cursor;
-                    lab10: {
+                lab5: {
+                    var /** number */ v_4 = base.cursor;
+                    lab6: {
                         if (!(base.out_grouping(g_v, 97, 250)))
                         {
-                            break lab10;
+                            break lab6;
                         }
-                        golab11: while(true)
+                        if (!base.go_out_grouping(g_v, 97, 250))
                         {
-                            lab12: {
-                                if (!(base.in_grouping(g_v, 97, 250)))
-                                {
-                                    break lab12;
-                                }
-                                break golab11;
-                            }
-                            if (base.cursor >= base.limit)
-                            {
-                                break lab10;
-                            }
-                            base.cursor++;
+                            break lab6;
                         }
-                        break lab9;
+                        base.cursor++;
+                        break lab5;
                     }
-                    base.cursor = v_6;
+                    base.cursor = v_4;
                     if (!(base.in_grouping(g_v, 97, 250)))
                     {
                         break lab0;
@@ -374,72 +344,32 @@ var PortugueseStemmer = function() {
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        var /** number */ v_8 = base.cursor;
-        lab13: {
-            golab14: while(true)
+        var /** number */ v_5 = base.cursor;
+        lab7: {
+            if (!base.go_out_grouping(g_v, 97, 250))
             {
-                lab15: {
-                    if (!(base.in_grouping(g_v, 97, 250)))
-                    {
-                        break lab15;
-                    }
-                    break golab14;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab13;
-                }
-                base.cursor++;
+                break lab7;
             }
-            golab16: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 97, 250))
             {
-                lab17: {
-                    if (!(base.out_grouping(g_v, 97, 250)))
-                    {
-                        break lab17;
-                    }
-                    break golab16;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab13;
-                }
-                base.cursor++;
+                break lab7;
             }
+            base.cursor++;
             I_p1 = base.cursor;
-            golab18: while(true)
+            if (!base.go_out_grouping(g_v, 97, 250))
             {
-                lab19: {
-                    if (!(base.in_grouping(g_v, 97, 250)))
-                    {
-                        break lab19;
-                    }
-                    break golab18;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab13;
-                }
-                base.cursor++;
+                break lab7;
             }
-            golab20: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 97, 250))
             {
-                lab21: {
-                    if (!(base.out_grouping(g_v, 97, 250)))
-                    {
-                        break lab21;
-                    }
-                    break golab20;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab13;
-                }
-                base.cursor++;
+                break lab7;
             }
+            base.cursor++;
             I_p2 = base.cursor;
         }
-        base.cursor = v_8;
+        base.cursor = v_5;
         return true;
     };
 
@@ -709,12 +639,12 @@ var PortugueseStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         if (base.find_among_b(a_6) == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
@@ -722,7 +652,7 @@ var PortugueseStemmer = function() {
         {
             return false;
         }
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         return true;
     };
 
@@ -820,14 +750,14 @@ var PortugueseStemmer = function() {
         base.cursor = v_1;
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_3 = base.limit - base.cursor;
+        var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_4 = base.limit - base.cursor;
+                var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    var /** number */ v_5 = base.limit - base.cursor;
+                    var /** number */ v_4 = base.limit - base.cursor;
                     lab3: {
-                        var /** number */ v_6 = base.limit - base.cursor;
+                        var /** number */ v_5 = base.limit - base.cursor;
                         lab4: {
                             if (!r_standard_suffix())
                             {
@@ -835,14 +765,14 @@ var PortugueseStemmer = function() {
                             }
                             break lab3;
                         }
-                        base.cursor = base.limit - v_6;
+                        base.cursor = base.limit - v_5;
                         if (!r_verb_suffix())
                         {
                             break lab2;
                         }
                     }
-                    base.cursor = base.limit - v_5;
-                    var /** number */ v_7 = base.limit - base.cursor;
+                    base.cursor = base.limit - v_4;
+                    var /** number */ v_6 = base.limit - base.cursor;
                     lab5: {
                         base.ket = base.cursor;
                         if (!(base.eq_s_b("i")))
@@ -850,12 +780,12 @@ var PortugueseStemmer = function() {
                             break lab5;
                         }
                         base.bra = base.cursor;
-                        var /** number */ v_8 = base.limit - base.cursor;
+                        var /** number */ v_7 = base.limit - base.cursor;
                         if (!(base.eq_s_b("c")))
                         {
                             break lab5;
                         }
-                        base.cursor = base.limit - v_8;
+                        base.cursor = base.limit - v_7;
                         if (!r_RV())
                         {
                             break lab5;
@@ -865,24 +795,24 @@ var PortugueseStemmer = function() {
                             return false;
                         }
                     }
-                    base.cursor = base.limit - v_7;
+                    base.cursor = base.limit - v_6;
                     break lab1;
                 }
-                base.cursor = base.limit - v_4;
+                base.cursor = base.limit - v_3;
                 if (!r_residual_suffix())
                 {
                     break lab0;
                 }
             }
         }
-        base.cursor = base.limit - v_3;
-        var /** number */ v_9 = base.limit - base.cursor;
+        base.cursor = base.limit - v_2;
+        var /** number */ v_8 = base.limit - base.cursor;
         r_residual_form();
-        base.cursor = base.limit - v_9;
+        base.cursor = base.limit - v_8;
         base.cursor = base.limit_backward;
-        var /** number */ v_10 = base.cursor;
+        var /** number */ v_9 = base.cursor;
         r_postlude();
-        base.cursor = v_10;
+        base.cursor = v_9;
         return true;
     };
 

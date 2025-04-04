@@ -131,7 +131,6 @@ var NepaliStemmer = function() {
     ];
 
 
-
     /** @return {boolean} */
     function r_remove_category_1() {
         var /** number */ among_var;

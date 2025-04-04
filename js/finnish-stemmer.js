@@ -142,73 +142,27 @@ var FinnishStemmer = function() {
     function r_mark_regions() {
         I_p1 = base.limit;
         I_p2 = base.limit;
-        golab0: while(true)
+        if (!base.go_out_grouping(g_V1, 97, 246))
         {
-            var /** number */ v_1 = base.cursor;
-            lab1: {
-                if (!(base.in_grouping(g_V1, 97, 246)))
-                {
-                    break lab1;
-                }
-                base.cursor = v_1;
-                break golab0;
-            }
-            base.cursor = v_1;
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
-        golab2: while(true)
+        base.cursor++;
+        if (!base.go_in_grouping(g_V1, 97, 246))
         {
-            lab3: {
-                if (!(base.out_grouping(g_V1, 97, 246)))
-                {
-                    break lab3;
-                }
-                break golab2;
-            }
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
+        base.cursor++;
         I_p1 = base.cursor;
-        golab4: while(true)
+        if (!base.go_out_grouping(g_V1, 97, 246))
         {
-            var /** number */ v_3 = base.cursor;
-            lab5: {
-                if (!(base.in_grouping(g_V1, 97, 246)))
-                {
-                    break lab5;
-                }
-                base.cursor = v_3;
-                break golab4;
-            }
-            base.cursor = v_3;
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
-        golab6: while(true)
+        base.cursor++;
+        if (!base.go_in_grouping(g_V1, 97, 246))
         {
-            lab7: {
-                if (!(base.out_grouping(g_V1, 97, 246)))
-                {
-                    break lab7;
-                }
-                break golab6;
-            }
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
+        base.cursor++;
         I_p2 = base.cursor;
         return true;
     };
@@ -225,17 +179,17 @@ var FinnishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
         if (among_var == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         switch (among_var) {
             case 1:
                 if (!(base.in_grouping_b(g_particle_end, 97, 246)))
@@ -264,21 +218,21 @@ var FinnishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
         if (among_var == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         switch (among_var) {
             case 1:
                 {
-                    var /** number */ v_3 = base.limit - base.cursor;
+                    var /** number */ v_2 = base.limit - base.cursor;
                     lab0: {
                         if (!(base.eq_s_b("k")))
                         {
@@ -286,7 +240,7 @@ var FinnishStemmer = function() {
                         }
                         return false;
                     }
-                    base.cursor = base.limit - v_3;
+                    base.cursor = base.limit - v_2;
                 }
                 if (!base.slice_del())
                 {
@@ -378,17 +332,17 @@ var FinnishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_6);
         if (among_var == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         switch (among_var) {
             case 1:
                 if (!(base.eq_s_b("a")))
@@ -427,11 +381,11 @@ var FinnishStemmer = function() {
                 }
                 break;
             case 7:
-                var /** number */ v_3 = base.limit - base.cursor;
+                var /** number */ v_2 = base.limit - base.cursor;
                 lab0: {
-                    var /** number */ v_4 = base.limit - base.cursor;
+                    var /** number */ v_3 = base.limit - base.cursor;
                     lab1: {
-                        var /** number */ v_5 = base.limit - base.cursor;
+                        var /** number */ v_4 = base.limit - base.cursor;
                         lab2: {
                             if (!r_LONG())
                             {
@@ -439,17 +393,17 @@ var FinnishStemmer = function() {
                             }
                             break lab1;
                         }
-                        base.cursor = base.limit - v_5;
+                        base.cursor = base.limit - v_4;
                         if (!(base.eq_s_b("ie")))
                         {
-                            base.cursor = base.limit - v_3;
+                            base.cursor = base.limit - v_2;
                             break lab0;
                         }
                     }
-                    base.cursor = base.limit - v_4;
+                    base.cursor = base.limit - v_3;
                     if (base.cursor <= base.limit_backward)
                     {
-                        base.cursor = base.limit - v_3;
+                        base.cursor = base.limit - v_2;
                         break lab0;
                     }
                     base.cursor--;
@@ -482,21 +436,21 @@ var FinnishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p2;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_7);
         if (among_var == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         switch (among_var) {
             case 1:
                 {
-                    var /** number */ v_3 = base.limit - base.cursor;
+                    var /** number */ v_2 = base.limit - base.cursor;
                     lab0: {
                         if (!(base.eq_s_b("po")))
                         {
@@ -504,7 +458,7 @@ var FinnishStemmer = function() {
                         }
                         return false;
                     }
-                    base.cursor = base.limit - v_3;
+                    base.cursor = base.limit - v_2;
                 }
                 break;
         }
@@ -521,16 +475,16 @@ var FinnishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (base.find_among_b(a_8) == 0)
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         if (!base.slice_del())
         {
             return false;
@@ -545,46 +499,46 @@ var FinnishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (!(base.eq_s_b("t")))
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        var /** number */ v_3 = base.limit - base.cursor;
+        var /** number */ v_2 = base.limit - base.cursor;
         if (!(base.in_grouping_b(g_V1, 97, 246)))
         {
-            base.limit_backward = v_2;
+            base.limit_backward = v_1;
             return false;
         }
-        base.cursor = base.limit - v_3;
+        base.cursor = base.limit - v_2;
         if (!base.slice_del())
         {
             return false;
         }
-        base.limit_backward = v_2;
+        base.limit_backward = v_1;
         if (base.cursor < I_p2)
         {
             return false;
         }
-        var /** number */ v_5 = base.limit_backward;
+        var /** number */ v_3 = base.limit_backward;
         base.limit_backward = I_p2;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_9);
         if (among_var == 0)
         {
-            base.limit_backward = v_5;
+            base.limit_backward = v_3;
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_5;
+        base.limit_backward = v_3;
         switch (among_var) {
             case 1:
                 {
-                    var /** number */ v_6 = base.limit - base.cursor;
+                    var /** number */ v_4 = base.limit - base.cursor;
                     lab0: {
                         if (!(base.eq_s_b("po")))
                         {
@@ -592,7 +546,7 @@ var FinnishStemmer = function() {
                         }
                         return false;
                     }
-                    base.cursor = base.limit - v_6;
+                    base.cursor = base.limit - v_4;
                 }
                 break;
         }
@@ -609,16 +563,16 @@ var FinnishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
-        var /** number */ v_3 = base.limit - base.cursor;
+        var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
-            var /** number */ v_4 = base.limit - base.cursor;
+            var /** number */ v_3 = base.limit - base.cursor;
             if (!r_LONG())
             {
                 break lab0;
             }
-            base.cursor = base.limit - v_4;
+            base.cursor = base.limit - v_3;
             base.ket = base.cursor;
             if (base.cursor <= base.limit_backward)
             {
@@ -631,8 +585,8 @@ var FinnishStemmer = function() {
                 return false;
             }
         }
-        base.cursor = base.limit - v_3;
-        var /** number */ v_5 = base.limit - base.cursor;
+        base.cursor = base.limit - v_2;
+        var /** number */ v_4 = base.limit - base.cursor;
         lab1: {
             base.ket = base.cursor;
             if (!(base.in_grouping_b(g_AEI, 97, 228)))
@@ -649,8 +603,8 @@ var FinnishStemmer = function() {
                 return false;
             }
         }
-        base.cursor = base.limit - v_5;
-        var /** number */ v_6 = base.limit - base.cursor;
+        base.cursor = base.limit - v_4;
+        var /** number */ v_5 = base.limit - base.cursor;
         lab2: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("j")))
@@ -659,7 +613,7 @@ var FinnishStemmer = function() {
             }
             base.bra = base.cursor;
             lab3: {
-                var /** number */ v_7 = base.limit - base.cursor;
+                var /** number */ v_6 = base.limit - base.cursor;
                 lab4: {
                     if (!(base.eq_s_b("o")))
                     {
@@ -667,7 +621,7 @@ var FinnishStemmer = function() {
                     }
                     break lab3;
                 }
-                base.cursor = base.limit - v_7;
+                base.cursor = base.limit - v_6;
                 if (!(base.eq_s_b("u")))
                 {
                     break lab2;
@@ -678,8 +632,8 @@ var FinnishStemmer = function() {
                 return false;
             }
         }
-        base.cursor = base.limit - v_6;
-        var /** number */ v_8 = base.limit - base.cursor;
+        base.cursor = base.limit - v_5;
+        var /** number */ v_7 = base.limit - base.cursor;
         lab5: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("o")))
@@ -696,25 +650,11 @@ var FinnishStemmer = function() {
                 return false;
             }
         }
-        base.cursor = base.limit - v_8;
-        base.limit_backward = v_2;
-        golab6: while(true)
+        base.cursor = base.limit - v_7;
+        base.limit_backward = v_1;
+        if (!base.go_in_grouping_b(g_V1, 97, 246))
         {
-            var /** number */ v_9 = base.limit - base.cursor;
-            lab7: {
-                if (!(base.out_grouping_b(g_V1, 97, 246)))
-                {
-                    break lab7;
-                }
-                base.cursor = base.limit - v_9;
-                break golab6;
-            }
-            base.cursor = base.limit - v_9;
-            if (base.cursor <= base.limit_backward)
-            {
-                return false;
-            }
-            base.cursor--;
+            return false;
         }
         base.ket = base.cursor;
         if (!(base.in_grouping_b(g_C, 98, 122)))
@@ -762,18 +702,18 @@ var FinnishStemmer = function() {
                 {
                     break lab1;
                 }
-                var /** number */ v_7 = base.limit - base.cursor;
+                var /** number */ v_6 = base.limit - base.cursor;
                 r_i_plural();
-                base.cursor = base.limit - v_7;
+                base.cursor = base.limit - v_6;
                 break lab0;
             }
-            var /** number */ v_8 = base.limit - base.cursor;
+            var /** number */ v_7 = base.limit - base.cursor;
             r_t_plural();
-            base.cursor = base.limit - v_8;
+            base.cursor = base.limit - v_7;
         }
-        var /** number */ v_9 = base.limit - base.cursor;
+        var /** number */ v_8 = base.limit - base.cursor;
         r_tidy();
-        base.cursor = base.limit - v_9;
+        base.cursor = base.limit - v_8;
         base.cursor = base.limit_backward;
         return true;
     };

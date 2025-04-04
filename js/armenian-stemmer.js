@@ -219,67 +219,27 @@ var ArmenianStemmer = function() {
         I_p2 = base.limit;
         var /** number */ v_1 = base.cursor;
         lab0: {
-            golab1: while(true)
+            if (!base.go_out_grouping(g_v, 1377, 1413))
             {
-                lab2: {
-                    if (!(base.in_grouping(g_v, 1377, 1413)))
-                    {
-                        break lab2;
-                    }
-                    break golab1;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             I_pV = base.cursor;
-            golab3: while(true)
+            if (!base.go_in_grouping(g_v, 1377, 1413))
             {
-                lab4: {
-                    if (!(base.out_grouping(g_v, 1377, 1413)))
-                    {
-                        break lab4;
-                    }
-                    break golab3;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
-            golab5: while(true)
+            base.cursor++;
+            if (!base.go_out_grouping(g_v, 1377, 1413))
             {
-                lab6: {
-                    if (!(base.in_grouping(g_v, 1377, 1413)))
-                    {
-                        break lab6;
-                    }
-                    break golab5;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
-            golab7: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 1377, 1413))
             {
-                lab8: {
-                    if (!(base.out_grouping(g_v, 1377, 1413)))
-                    {
-                        break lab8;
-                    }
-                    break golab7;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             I_p2 = base.cursor;
         }
         base.cursor = v_1;
@@ -362,21 +322,21 @@ var ArmenianStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_3 = base.limit_backward;
+        var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
-        var /** number */ v_4 = base.limit - base.cursor;
+        var /** number */ v_2 = base.limit - base.cursor;
         r_ending();
+        base.cursor = base.limit - v_2;
+        var /** number */ v_3 = base.limit - base.cursor;
+        r_verb();
+        base.cursor = base.limit - v_3;
+        var /** number */ v_4 = base.limit - base.cursor;
+        r_adjective();
         base.cursor = base.limit - v_4;
         var /** number */ v_5 = base.limit - base.cursor;
-        r_verb();
-        base.cursor = base.limit - v_5;
-        var /** number */ v_6 = base.limit - base.cursor;
-        r_adjective();
-        base.cursor = base.limit - v_6;
-        var /** number */ v_7 = base.limit - base.cursor;
         r_noun();
-        base.cursor = base.limit - v_7;
-        base.limit_backward = v_3;
+        base.cursor = base.limit - v_5;
+        base.limit_backward = v_1;
         base.cursor = base.limit_backward;
         return true;
     };

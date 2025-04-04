@@ -1332,41 +1332,41 @@ var ArabicStemmer = function() {
         base.cursor = v_1;
         r_Normalize_pre();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_3 = base.limit - base.cursor;
+        var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_4 = base.limit - base.cursor;
+                var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!B_is_verb)
                     {
                         break lab2;
                     }
                     lab3: {
-                        var /** number */ v_5 = base.limit - base.cursor;
+                        var /** number */ v_4 = base.limit - base.cursor;
                         lab4: {
                             {
-                                var v_6 = 1;
+                                var v_5 = 1;
                                 while(true)
                                 {
-                                    var /** number */ v_7 = base.limit - base.cursor;
+                                    var /** number */ v_6 = base.limit - base.cursor;
                                     lab5: {
                                         if (!r_Suffix_Verb_Step1())
                                         {
                                             break lab5;
                                         }
-                                        v_6--;
+                                        v_5--;
                                         continue;
                                     }
-                                    base.cursor = base.limit - v_7;
+                                    base.cursor = base.limit - v_6;
                                     break;
                                 }
-                                if (v_6 > 0)
+                                if (v_5 > 0)
                                 {
                                     break lab4;
                                 }
                             }
                             lab6: {
-                                var /** number */ v_8 = base.limit - base.cursor;
+                                var /** number */ v_7 = base.limit - base.cursor;
                                 lab7: {
                                     if (!r_Suffix_Verb_Step2a())
                                     {
@@ -1374,7 +1374,7 @@ var ArabicStemmer = function() {
                                     }
                                     break lab6;
                                 }
-                                base.cursor = base.limit - v_8;
+                                base.cursor = base.limit - v_7;
                                 lab8: {
                                     if (!r_Suffix_Verb_Step2c())
                                     {
@@ -1382,7 +1382,7 @@ var ArabicStemmer = function() {
                                     }
                                     break lab6;
                                 }
-                                base.cursor = base.limit - v_8;
+                                base.cursor = base.limit - v_7;
                                 if (base.cursor <= base.limit_backward)
                                 {
                                     break lab4;
@@ -1391,7 +1391,7 @@ var ArabicStemmer = function() {
                             }
                             break lab3;
                         }
-                        base.cursor = base.limit - v_5;
+                        base.cursor = base.limit - v_4;
                         lab9: {
                             if (!r_Suffix_Verb_Step2b())
                             {
@@ -1399,7 +1399,7 @@ var ArabicStemmer = function() {
                             }
                             break lab3;
                         }
-                        base.cursor = base.limit - v_5;
+                        base.cursor = base.limit - v_4;
                         if (!r_Suffix_Verb_Step2a())
                         {
                             break lab2;
@@ -1407,16 +1407,16 @@ var ArabicStemmer = function() {
                     }
                     break lab1;
                 }
-                base.cursor = base.limit - v_4;
+                base.cursor = base.limit - v_3;
                 lab10: {
                     if (!B_is_noun)
                     {
                         break lab10;
                     }
-                    var /** number */ v_9 = base.limit - base.cursor;
+                    var /** number */ v_8 = base.limit - base.cursor;
                     lab11: {
                         lab12: {
-                            var /** number */ v_10 = base.limit - base.cursor;
+                            var /** number */ v_9 = base.limit - base.cursor;
                             lab13: {
                                 if (!r_Suffix_Noun_Step2c2())
                                 {
@@ -1424,7 +1424,7 @@ var ArabicStemmer = function() {
                                 }
                                 break lab12;
                             }
-                            base.cursor = base.limit - v_10;
+                            base.cursor = base.limit - v_9;
                             lab14: {
                                 lab15: {
                                     if (!B_is_defined)
@@ -1438,7 +1438,7 @@ var ArabicStemmer = function() {
                                     break lab14;
                                 }
                                 lab16: {
-                                    var /** number */ v_12 = base.limit - base.cursor;
+                                    var /** number */ v_10 = base.limit - base.cursor;
                                     lab17: {
                                         if (!r_Suffix_Noun_Step2a())
                                         {
@@ -1446,7 +1446,7 @@ var ArabicStemmer = function() {
                                         }
                                         break lab16;
                                     }
-                                    base.cursor = base.limit - v_12;
+                                    base.cursor = base.limit - v_10;
                                     lab18: {
                                         if (!r_Suffix_Noun_Step2b())
                                         {
@@ -1454,7 +1454,7 @@ var ArabicStemmer = function() {
                                         }
                                         break lab16;
                                     }
-                                    base.cursor = base.limit - v_12;
+                                    base.cursor = base.limit - v_10;
                                     lab19: {
                                         if (!r_Suffix_Noun_Step2c1())
                                         {
@@ -1462,7 +1462,7 @@ var ArabicStemmer = function() {
                                         }
                                         break lab16;
                                     }
-                                    base.cursor = base.limit - v_12;
+                                    base.cursor = base.limit - v_10;
                                     if (base.cursor <= base.limit_backward)
                                     {
                                         break lab14;
@@ -1471,14 +1471,14 @@ var ArabicStemmer = function() {
                                 }
                                 break lab12;
                             }
-                            base.cursor = base.limit - v_10;
+                            base.cursor = base.limit - v_9;
                             lab20: {
                                 if (!r_Suffix_Noun_Step1b())
                                 {
                                     break lab20;
                                 }
                                 lab21: {
-                                    var /** number */ v_13 = base.limit - base.cursor;
+                                    var /** number */ v_11 = base.limit - base.cursor;
                                     lab22: {
                                         if (!r_Suffix_Noun_Step2a())
                                         {
@@ -1486,7 +1486,7 @@ var ArabicStemmer = function() {
                                         }
                                         break lab21;
                                     }
-                                    base.cursor = base.limit - v_13;
+                                    base.cursor = base.limit - v_11;
                                     lab23: {
                                         if (!r_Suffix_Noun_Step2b())
                                         {
@@ -1494,7 +1494,7 @@ var ArabicStemmer = function() {
                                         }
                                         break lab21;
                                     }
-                                    base.cursor = base.limit - v_13;
+                                    base.cursor = base.limit - v_11;
                                     if (!r_Suffix_Noun_Step2c1())
                                     {
                                         break lab20;
@@ -1502,7 +1502,7 @@ var ArabicStemmer = function() {
                                 }
                                 break lab12;
                             }
-                            base.cursor = base.limit - v_10;
+                            base.cursor = base.limit - v_9;
                             lab24: {
                                 lab25: {
                                     if (!B_is_defined)
@@ -1517,10 +1517,10 @@ var ArabicStemmer = function() {
                                 }
                                 break lab12;
                             }
-                            base.cursor = base.limit - v_10;
+                            base.cursor = base.limit - v_9;
                             if (!r_Suffix_Noun_Step2b())
                             {
-                                base.cursor = base.limit - v_9;
+                                base.cursor = base.limit - v_8;
                                 break lab11;
                             }
                         }
@@ -1531,35 +1531,35 @@ var ArabicStemmer = function() {
                     }
                     break lab1;
                 }
-                base.cursor = base.limit - v_4;
+                base.cursor = base.limit - v_3;
                 if (!r_Suffix_All_alef_maqsura())
                 {
                     break lab0;
                 }
             }
         }
-        base.cursor = base.limit - v_3;
+        base.cursor = base.limit - v_2;
         base.cursor = base.limit_backward;
-        var /** number */ v_15 = base.cursor;
+        var /** number */ v_12 = base.cursor;
         lab26: {
-            var /** number */ v_16 = base.cursor;
+            var /** number */ v_13 = base.cursor;
             lab27: {
                 if (!r_Prefix_Step1())
                 {
-                    base.cursor = v_16;
+                    base.cursor = v_13;
                     break lab27;
                 }
             }
-            var /** number */ v_17 = base.cursor;
+            var /** number */ v_14 = base.cursor;
             lab28: {
                 if (!r_Prefix_Step2())
                 {
-                    base.cursor = v_17;
+                    base.cursor = v_14;
                     break lab28;
                 }
             }
             lab29: {
-                var /** number */ v_18 = base.cursor;
+                var /** number */ v_15 = base.cursor;
                 lab30: {
                     if (!r_Prefix_Step3a_Noun())
                     {
@@ -1567,7 +1567,7 @@ var ArabicStemmer = function() {
                     }
                     break lab29;
                 }
-                base.cursor = v_18;
+                base.cursor = v_15;
                 lab31: {
                     if (!B_is_noun)
                     {
@@ -1579,16 +1579,16 @@ var ArabicStemmer = function() {
                     }
                     break lab29;
                 }
-                base.cursor = v_18;
+                base.cursor = v_15;
                 if (!B_is_verb)
                 {
                     break lab26;
                 }
-                var /** number */ v_19 = base.cursor;
+                var /** number */ v_16 = base.cursor;
                 lab32: {
                     if (!r_Prefix_Step3_Verb())
                     {
-                        base.cursor = v_19;
+                        base.cursor = v_16;
                         break lab32;
                     }
                 }
@@ -1598,7 +1598,7 @@ var ArabicStemmer = function() {
                 }
             }
         }
-        base.cursor = v_15;
+        base.cursor = v_12;
         r_Normalize_post();
         return true;
     };

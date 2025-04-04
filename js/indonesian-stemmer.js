@@ -311,21 +311,11 @@ var IndonesianStemmer = function() {
             {
                 var /** number */ v_2 = base.cursor;
                 lab1: {
-                    golab2: while(true)
+                    if (!base.go_out_grouping(g_vowel, 97, 117))
                     {
-                        lab3: {
-                            if (!(base.in_grouping(g_vowel, 97, 117)))
-                            {
-                                break lab3;
-                            }
-                            break golab2;
-                        }
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab1;
-                        }
-                        base.cursor++;
+                        break lab1;
                     }
+                    base.cursor++;
                     I_measure += 1;
                     continue;
                 }
@@ -340,74 +330,74 @@ var IndonesianStemmer = function() {
         }
         I_prefix = 0;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_4 = base.limit - base.cursor;
+        var /** number */ v_3 = base.limit - base.cursor;
         r_remove_particle();
-        base.cursor = base.limit - v_4;
+        base.cursor = base.limit - v_3;
         if (I_measure <= 2)
         {
             return false;
         }
-        var /** number */ v_5 = base.limit - base.cursor;
+        var /** number */ v_4 = base.limit - base.cursor;
         r_remove_possessive_pronoun();
-        base.cursor = base.limit - v_5;
+        base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;
         if (I_measure <= 2)
         {
             return false;
         }
-        lab4: {
-            var /** number */ v_6 = base.cursor;
-            lab5: {
-                var /** number */ v_7 = base.cursor;
+        lab2: {
+            var /** number */ v_5 = base.cursor;
+            lab3: {
+                var /** number */ v_6 = base.cursor;
                 if (!r_remove_first_order_prefix())
                 {
-                    break lab5;
+                    break lab3;
                 }
-                var /** number */ v_8 = base.cursor;
-                lab6: {
-                    var /** number */ v_9 = base.cursor;
+                var /** number */ v_7 = base.cursor;
+                lab4: {
+                    var /** number */ v_8 = base.cursor;
                     if (I_measure <= 2)
                     {
-                        break lab6;
+                        break lab4;
                     }
                     base.limit_backward = base.cursor; base.cursor = base.limit;
                     if (!r_remove_suffix())
                     {
-                        break lab6;
+                        break lab4;
                     }
                     base.cursor = base.limit_backward;
-                    base.cursor = v_9;
+                    base.cursor = v_8;
                     if (I_measure <= 2)
                     {
-                        break lab6;
+                        break lab4;
                     }
                     if (!r_remove_second_order_prefix())
                     {
-                        break lab6;
+                        break lab4;
                     }
                 }
-                base.cursor = v_8;
                 base.cursor = v_7;
-                break lab4;
+                base.cursor = v_6;
+                break lab2;
             }
-            base.cursor = v_6;
-            var /** number */ v_10 = base.cursor;
+            base.cursor = v_5;
+            var /** number */ v_9 = base.cursor;
             r_remove_second_order_prefix();
-            base.cursor = v_10;
-            var /** number */ v_11 = base.cursor;
-            lab7: {
+            base.cursor = v_9;
+            var /** number */ v_10 = base.cursor;
+            lab5: {
                 if (I_measure <= 2)
                 {
-                    break lab7;
+                    break lab5;
                 }
                 base.limit_backward = base.cursor; base.cursor = base.limit;
                 if (!r_remove_suffix())
                 {
-                    break lab7;
+                    break lab5;
                 }
                 base.cursor = base.limit_backward;
             }
-            base.cursor = v_11;
+            base.cursor = v_10;
         }
         return true;
     };

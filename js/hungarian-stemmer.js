@@ -228,42 +228,22 @@ var HungarianStemmer = function() {
                 }
                 var /** number */ v_2 = base.cursor;
                 lab2: {
-                    golab3: while(true)
+                    if (!base.go_in_grouping(g_v, 97, 369))
                     {
-                        lab4: {
-                            if (!(base.out_grouping(g_v, 97, 369)))
-                            {
-                                break lab4;
-                            }
-                            break golab3;
-                        }
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab2;
-                        }
-                        base.cursor++;
+                        break lab2;
                     }
+                    base.cursor++;
                     I_p1 = base.cursor;
                 }
                 base.cursor = v_2;
                 break lab0;
             }
             base.cursor = v_1;
-            golab5: while(true)
+            if (!base.go_out_grouping(g_v, 97, 369))
             {
-                lab6: {
-                    if (!(base.in_grouping(g_v, 97, 369)))
-                    {
-                        break lab6;
-                    }
-                    break golab5;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    return false;
-                }
-                base.cursor++;
+                return false;
             }
+            base.cursor++;
             I_p1 = base.cursor;
         }
         return true;

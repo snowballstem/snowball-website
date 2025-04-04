@@ -199,74 +199,34 @@ var GermanStemmer = function() {
         }
         I_x = base.cursor;
         base.cursor = v_1;
-        golab0: while(true)
+        if (!base.go_out_grouping(g_v, 97, 252))
         {
-            lab1: {
-                if (!(base.in_grouping(g_v, 97, 252)))
-                {
-                    break lab1;
-                }
-                break golab0;
-            }
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
-        golab2: while(true)
+        base.cursor++;
+        if (!base.go_in_grouping(g_v, 97, 252))
         {
-            lab3: {
-                if (!(base.out_grouping(g_v, 97, 252)))
-                {
-                    break lab3;
-                }
-                break golab2;
-            }
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
+        base.cursor++;
         I_p1 = base.cursor;
-        lab4: {
+        lab0: {
             if (I_p1 >= I_x)
             {
-                break lab4;
+                break lab0;
             }
             I_p1 = I_x;
         }
-        golab5: while(true)
+        if (!base.go_out_grouping(g_v, 97, 252))
         {
-            lab6: {
-                if (!(base.in_grouping(g_v, 97, 252)))
-                {
-                    break lab6;
-                }
-                break golab5;
-            }
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
-        golab7: while(true)
+        base.cursor++;
+        if (!base.go_in_grouping(g_v, 97, 252))
         {
-            lab8: {
-                if (!(base.out_grouping(g_v, 97, 252)))
-                {
-                    break lab8;
-                }
-                break golab7;
-            }
-            if (base.cursor >= base.limit)
-            {
-                return false;
-            }
-            base.cursor++;
+            return false;
         }
+        base.cursor++;
         I_p2 = base.cursor;
         return true;
     };
@@ -602,9 +562,9 @@ var GermanStemmer = function() {
         base.limit_backward = base.cursor; base.cursor = base.limit;
         r_standard_suffix();
         base.cursor = base.limit_backward;
-        var /** number */ v_4 = base.cursor;
+        var /** number */ v_3 = base.cursor;
         r_postlude();
-        base.cursor = v_4;
+        base.cursor = v_3;
         return true;
     };
 

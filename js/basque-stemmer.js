@@ -464,21 +464,11 @@ var BasqueStemmer = function() {
                             {
                                 break lab4;
                             }
-                            golab5: while(true)
+                            if (!base.go_out_grouping(g_v, 97, 117))
                             {
-                                lab6: {
-                                    if (!(base.in_grouping(g_v, 97, 117)))
-                                    {
-                                        break lab6;
-                                    }
-                                    break golab5;
-                                }
-                                if (base.cursor >= base.limit)
-                                {
-                                    break lab4;
-                                }
-                                base.cursor++;
+                                break lab4;
                             }
+                            base.cursor++;
                             break lab3;
                         }
                         base.cursor = v_3;
@@ -486,21 +476,11 @@ var BasqueStemmer = function() {
                         {
                             break lab2;
                         }
-                        golab7: while(true)
+                        if (!base.go_in_grouping(g_v, 97, 117))
                         {
-                            lab8: {
-                                if (!(base.out_grouping(g_v, 97, 117)))
-                                {
-                                    break lab8;
-                                }
-                                break golab7;
-                            }
-                            if (base.cursor >= base.limit)
-                            {
-                                break lab2;
-                            }
-                            base.cursor++;
+                            break lab2;
                         }
+                        base.cursor++;
                     }
                     break lab1;
                 }
@@ -509,31 +489,21 @@ var BasqueStemmer = function() {
                 {
                     break lab0;
                 }
-                lab9: {
-                    var /** number */ v_6 = base.cursor;
-                    lab10: {
+                lab5: {
+                    var /** number */ v_4 = base.cursor;
+                    lab6: {
                         if (!(base.out_grouping(g_v, 97, 117)))
                         {
-                            break lab10;
+                            break lab6;
                         }
-                        golab11: while(true)
+                        if (!base.go_out_grouping(g_v, 97, 117))
                         {
-                            lab12: {
-                                if (!(base.in_grouping(g_v, 97, 117)))
-                                {
-                                    break lab12;
-                                }
-                                break golab11;
-                            }
-                            if (base.cursor >= base.limit)
-                            {
-                                break lab10;
-                            }
-                            base.cursor++;
+                            break lab6;
                         }
-                        break lab9;
+                        base.cursor++;
+                        break lab5;
                     }
-                    base.cursor = v_6;
+                    base.cursor = v_4;
                     if (!(base.in_grouping(g_v, 97, 117)))
                     {
                         break lab0;
@@ -548,72 +518,32 @@ var BasqueStemmer = function() {
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        var /** number */ v_8 = base.cursor;
-        lab13: {
-            golab14: while(true)
+        var /** number */ v_5 = base.cursor;
+        lab7: {
+            if (!base.go_out_grouping(g_v, 97, 117))
             {
-                lab15: {
-                    if (!(base.in_grouping(g_v, 97, 117)))
-                    {
-                        break lab15;
-                    }
-                    break golab14;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab13;
-                }
-                base.cursor++;
+                break lab7;
             }
-            golab16: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 97, 117))
             {
-                lab17: {
-                    if (!(base.out_grouping(g_v, 97, 117)))
-                    {
-                        break lab17;
-                    }
-                    break golab16;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab13;
-                }
-                base.cursor++;
+                break lab7;
             }
+            base.cursor++;
             I_p1 = base.cursor;
-            golab18: while(true)
+            if (!base.go_out_grouping(g_v, 97, 117))
             {
-                lab19: {
-                    if (!(base.in_grouping(g_v, 97, 117)))
-                    {
-                        break lab19;
-                    }
-                    break golab18;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab13;
-                }
-                base.cursor++;
+                break lab7;
             }
-            golab20: while(true)
+            base.cursor++;
+            if (!base.go_in_grouping(g_v, 97, 117))
             {
-                lab21: {
-                    if (!(base.out_grouping(g_v, 97, 117)))
-                    {
-                        break lab21;
-                    }
-                    break golab20;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab13;
-                }
-                base.cursor++;
+                break lab7;
             }
+            base.cursor++;
             I_p2 = base.cursor;
         }
-        base.cursor = v_8;
+        base.cursor = v_5;
         return true;
     };
 
@@ -808,7 +738,7 @@ var BasqueStemmer = function() {
         base.limit_backward = base.cursor; base.cursor = base.limit;
         while(true)
         {
-            var /** number */ v_2 = base.limit - base.cursor;
+            var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 if (!r_aditzak())
                 {
@@ -816,12 +746,12 @@ var BasqueStemmer = function() {
                 }
                 continue;
             }
-            base.cursor = base.limit - v_2;
+            base.cursor = base.limit - v_1;
             break;
         }
         while(true)
         {
-            var /** number */ v_3 = base.limit - base.cursor;
+            var /** number */ v_2 = base.limit - base.cursor;
             lab1: {
                 if (!r_izenak())
                 {
@@ -829,12 +759,12 @@ var BasqueStemmer = function() {
                 }
                 continue;
             }
-            base.cursor = base.limit - v_3;
+            base.cursor = base.limit - v_2;
             break;
         }
-        var /** number */ v_4 = base.limit - base.cursor;
+        var /** number */ v_3 = base.limit - base.cursor;
         r_adjetiboak();
-        base.cursor = base.limit - v_4;
+        base.cursor = base.limit - v_3;
         base.cursor = base.limit_backward;
         return true;
     };

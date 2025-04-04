@@ -2608,115 +2608,75 @@ var SerbianStemmer = function() {
         B_no_diacritics = true;
         var /** number */ v_1 = base.cursor;
         lab0: {
-            golab1: while(true)
+            if (!base.go_out_grouping(g_sa, 263, 382))
             {
-                lab2: {
-                    if (!(base.in_grouping(g_sa, 263, 382)))
-                    {
-                        break lab2;
-                    }
-                    break golab1;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab0;
-                }
-                base.cursor++;
+                break lab0;
             }
+            base.cursor++;
             B_no_diacritics = false;
         }
         base.cursor = v_1;
         I_p1 = base.limit;
-        var /** number */ v_3 = base.cursor;
-        lab3: {
-            golab4: while(true)
+        var /** number */ v_2 = base.cursor;
+        lab1: {
+            if (!base.go_out_grouping(g_v, 97, 117))
             {
-                lab5: {
-                    if (!(base.in_grouping(g_v, 97, 117)))
-                    {
-                        break lab5;
-                    }
-                    break golab4;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab3;
-                }
-                base.cursor++;
+                break lab1;
             }
+            base.cursor++;
             I_p1 = base.cursor;
             if (I_p1 >= 2)
             {
-                break lab3;
+                break lab1;
             }
-            golab6: while(true)
+            if (!base.go_in_grouping(g_v, 97, 117))
             {
-                lab7: {
-                    if (!(base.out_grouping(g_v, 97, 117)))
+                break lab1;
+            }
+            base.cursor++;
+            I_p1 = base.cursor;
+        }
+        base.cursor = v_2;
+        var /** number */ v_3 = base.cursor;
+        lab2: {
+            golab3: while(true)
+            {
+                lab4: {
+                    if (!(base.eq_s("r")))
                     {
-                        break lab7;
+                        break lab4;
                     }
-                    break golab6;
+                    break golab3;
                 }
                 if (base.cursor >= base.limit)
                 {
-                    break lab3;
+                    break lab2;
                 }
                 base.cursor++;
+            }
+            lab5: {
+                var /** number */ v_4 = base.cursor;
+                lab6: {
+                    if (base.cursor < 2)
+                    {
+                        break lab6;
+                    }
+                    break lab5;
+                }
+                base.cursor = v_4;
+                if (!base.go_in_grouping(g_rg, 114, 114))
+                {
+                    break lab2;
+                }
+                base.cursor++;
+            }
+            if ((I_p1 - base.cursor) <= 1)
+            {
+                break lab2;
             }
             I_p1 = base.cursor;
         }
         base.cursor = v_3;
-        var /** number */ v_6 = base.cursor;
-        lab8: {
-            golab9: while(true)
-            {
-                lab10: {
-                    if (!(base.eq_s("r")))
-                    {
-                        break lab10;
-                    }
-                    break golab9;
-                }
-                if (base.cursor >= base.limit)
-                {
-                    break lab8;
-                }
-                base.cursor++;
-            }
-            lab11: {
-                var /** number */ v_8 = base.cursor;
-                lab12: {
-                    if (base.cursor < 2)
-                    {
-                        break lab12;
-                    }
-                    break lab11;
-                }
-                base.cursor = v_8;
-                golab13: while(true)
-                {
-                    lab14: {
-                        if (!(base.out_grouping(g_rg, 114, 114)))
-                        {
-                            break lab14;
-                        }
-                        break golab13;
-                    }
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab8;
-                    }
-                    base.cursor++;
-                }
-            }
-            if ((I_p1 - base.cursor) <= 1)
-            {
-                break lab8;
-            }
-            I_p1 = base.cursor;
-        }
-        base.cursor = v_6;
         return true;
     };
 
@@ -4521,13 +4481,13 @@ var SerbianStemmer = function() {
         r_prelude();
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_4 = base.limit - base.cursor;
+        var /** number */ v_1 = base.limit - base.cursor;
         r_Step_1();
-        base.cursor = base.limit - v_4;
-        var /** number */ v_5 = base.limit - base.cursor;
+        base.cursor = base.limit - v_1;
+        var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_6 = base.limit - base.cursor;
+                var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!r_Step_2())
                     {
@@ -4535,14 +4495,14 @@ var SerbianStemmer = function() {
                     }
                     break lab1;
                 }
-                base.cursor = base.limit - v_6;
+                base.cursor = base.limit - v_3;
                 if (!r_Step_3())
                 {
                     break lab0;
                 }
             }
         }
-        base.cursor = base.limit - v_5;
+        base.cursor = base.limit - v_2;
         base.cursor = base.limit_backward;
         return true;
     };
