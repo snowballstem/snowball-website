@@ -6,7 +6,7 @@ Representing apostrophe is problematical for various reasons,
 
 <ol style="list-style-type: lower-alpha;">
 <li> <p>There are two Unicode characters for apostrophe, U+0027 and U+2019. The
-former is also in both ASCII and ISO-8859-1 (Latin1) whereas the latter is not
+former is also in both ASCII and ISO-8859-1 (Latin1) whereas the latter is not.
 Compare,
 </p>
 
