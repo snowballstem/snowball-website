@@ -94,19 +94,23 @@ Conference
 </DL>
 
 <p>
-In addition to the steps described in the paper, as a first step we:
+Since Snowball 2.3.0, we do the following as an additional step before the
+steps described in the paper:
 </p>
 <ul>
-<li>Remove any apostrophe's from the start of the input (e.g. from tokenisation
+<li>Remove any apostrophes from the start of the input (e.g. from tokenisation
 of single quoted text).
 <li>If the input still contains an apostrophe we truncate it at the first
-apostrophe, which aims to remove proper noun suffixes.
+apostrophe which is at least two characters from the start of the input.  (This aims to remove proper noun suffixes without adversely affecting foreign names or words, such as <i>o'connor</i>, <i>l'entrée</i>).
 </ul>
 <p>
-For example, <i>Türkiye'dir</i> ("it is
-Turkey") is truncate to <i>Türkiye</i> ("Turkey") which is then stemmed as
-it would be without the proper noun suffix.  (This step was added in Snowball
-2.3.0.)
+For example, <i>Türkiye'dir</i> ("it is Turkey") is truncated to <i>Türkiye</i>
+("Turkey") which is then stemmed as it would be without the proper noun suffix.
+While it might seem that we should stop having removed suffixes to leave a
+proper noun, if we didn't continue to stem then a proper noun with suffixes
+could give a different stem to the same proper noun without suffixes (for
+example, <i>Türkiye</i> gets stemmed to <i>türki</i> so <i>Türkiye'dir</i>
+should too).
 </p>
 
 <h2>The algorithm in Snowball</h2>
@@ -554,11 +558,20 @@ it would be without the proper noun suffix.  (This step was added in Snowball
 <span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">remove_proper_noun_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="c1">// Remove any leading apostrophes (e.g. from tokenisation of single-quoted</span>
+<span class="w">  </span><span class="c1">// text).</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="ow">goto</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+
 <span class="w">  </span><span class="c1">// https://en.wikipedia.org/wiki/Turkish_language says &quot;In modern</span>
 <span class="w">  </span><span class="c1">// Turkish orthography, an apostrophe is used to separate proper names</span>
 <span class="w">  </span><span class="c1">// from any suffixes&quot; with the example &quot;Türkiye&#39;dir (&quot;it is Turkey&quot;)&quot;.</span>
-<span class="w">  </span><span class="c1">// Therefore we truncate at the first apostrophe.</span>
-<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="ow">goto</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="ow">tolimit</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">  </span><span class="c1">// Therefore we truncate at the first apostrophe, provided there are at least</span>
+<span class="w">  </span><span class="c1">// two characters before it (which avoids adversely affecting some foreign</span>
+<span class="w">  </span><span class="c1">// names and words such as &quot;o&#39;connor&quot;, &quot;l&#39;entrée&quot;).</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="ow">goto</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="ow">tolimit</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w">  </span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="c1">// Test if there is more than one syllable.</span>
