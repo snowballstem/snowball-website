@@ -180,7 +180,7 @@ var FrenchStemmer = function() {
 
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 130, 103, 8, 5];
 
-    /** @const */ var /** Array<int> */ g_oux_ending = [65, 85, 1];
+    /** @const */ var /** Array<int> */ g_oux_ending = [65, 85];
 
     /** @const */ var /** Array<int> */ g_elision_char = [131, 14, 3];
 
@@ -865,7 +865,7 @@ var FrenchStemmer = function() {
                 }
                 break;
             case 11:
-                if (!(base.in_grouping_b(g_oux_ending, 98, 114)))
+                if (!(base.in_grouping_b(g_oux_ending, 98, 112)))
                 {
                     return false;
                 }
