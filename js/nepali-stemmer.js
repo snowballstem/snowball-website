@@ -150,10 +150,10 @@ var NepaliStemmer = function() {
                 break;
             case 2:
                 lab0: {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         lab2: {
-                            var /** number */ v_2 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                             lab3: {
                                 if (!(base.eq_s_b("\u090F")))
                                 {
@@ -204,7 +204,7 @@ var NepaliStemmer = function() {
         switch (among_var) {
             case 1:
                 lab0: {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("\u092F\u094C")))
                         {
@@ -270,18 +270,18 @@ var NepaliStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         r_remove_category_1();
         base.cursor = base.limit - v_1;
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             while(true)
             {
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab1: {
-                    var /** number */ v_4 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                     lab2: {
-                        var /** number */ v_5 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                         if (!r_check_category_2())
                         {
                             break lab2;

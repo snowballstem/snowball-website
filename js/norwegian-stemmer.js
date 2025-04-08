@@ -84,9 +84,9 @@ var NorwegianStemmer = function() {
     /** @return {boolean} */
     function r_mark_regions() {
         I_p1 = base.limit;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         {
-            var /** number */ c1 = base.cursor + 3;
+            /** @const */ var /** number */ c1 = base.cursor + 3;
             if (c1 > base.limit)
             {
                 return false;
@@ -123,7 +123,7 @@ var NorwegianStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_1 = base.limit_backward;
+        /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
@@ -154,7 +154,7 @@ var NorwegianStemmer = function() {
                 break;
             case 3:
                 lab0: {
-                    var /** number */ v_2 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.in_grouping_b(g_s_ending, 98, 122)))
                         {
@@ -169,7 +169,7 @@ var NorwegianStemmer = function() {
                             break lab2;
                         }
                         {
-                            var /** number */ v_3 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                             lab3: {
                                 if (!(base.eq_s_b("e")))
                                 {
@@ -208,12 +208,12 @@ var NorwegianStemmer = function() {
 
     /** @return {boolean} */
     function r_consonant_pair() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         if (base.cursor < I_p1)
         {
             return false;
         }
-        var /** number */ v_2 = base.limit_backward;
+        /** @const */ var /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (base.find_among_b(a_2) == 0)
@@ -243,7 +243,7 @@ var NorwegianStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_1 = base.limit_backward;
+        /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (base.find_among_b(a_3) == 0)
@@ -261,17 +261,17 @@ var NorwegianStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         r_mark_regions();
         base.cursor = v_1;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         r_main_suffix();
         base.cursor = base.limit - v_2;
-        var /** number */ v_3 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
         r_consonant_pair();
         base.cursor = base.limit - v_3;
-        var /** number */ v_4 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
         r_other_suffix();
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;

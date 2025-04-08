@@ -163,7 +163,7 @@ var EnglishStemmer = function() {
     /** @return {boolean} */
     function r_prelude() {
         B_Y_found = false;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             base.bra = base.cursor;
             if (!(base.eq_s("'")))
@@ -177,7 +177,7 @@ var EnglishStemmer = function() {
             }
         }
         base.cursor = v_1;
-        var /** number */ v_2 = base.cursor;
+        /** @const */ var /** number */ v_2 = base.cursor;
         lab1: {
             base.bra = base.cursor;
             if (!(base.eq_s("y")))
@@ -192,15 +192,15 @@ var EnglishStemmer = function() {
             B_Y_found = true;
         }
         base.cursor = v_2;
-        var /** number */ v_3 = base.cursor;
+        /** @const */ var /** number */ v_3 = base.cursor;
         lab2: {
             while(true)
             {
-                var /** number */ v_4 = base.cursor;
+                /** @const */ var /** number */ v_4 = base.cursor;
                 lab3: {
                     golab4: while(true)
                     {
-                        var /** number */ v_5 = base.cursor;
+                        /** @const */ var /** number */ v_5 = base.cursor;
                         lab5: {
                             if (!(base.in_grouping(g_v, 97, 121)))
                             {
@@ -241,10 +241,10 @@ var EnglishStemmer = function() {
     function r_mark_regions() {
         I_p1 = base.limit;
         I_p2 = base.limit;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 lab2: {
                     if (base.find_among(a_0) == 0)
                     {
@@ -284,7 +284,7 @@ var EnglishStemmer = function() {
     /** @return {boolean} */
     function r_shortv() {
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.out_grouping_b(g_v_WXY, 89, 121)))
                 {
@@ -330,7 +330,7 @@ var EnglishStemmer = function() {
     /** @return {boolean} */
     function r_Step_1a() {
         var /** number */ among_var;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (base.find_among_b(a_1) == 0)
@@ -360,10 +360,10 @@ var EnglishStemmer = function() {
                 break;
             case 2:
                 lab1: {
-                    var /** number */ v_2 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab2: {
                         {
-                            var /** number */ c1 = base.cursor - 2;
+                            /** @const */ var /** number */ c1 = base.cursor - 2;
                             if (c1 < base.limit_backward)
                             {
                                 break lab2;
@@ -425,7 +425,7 @@ var EnglishStemmer = function() {
                 }
                 break;
             case 2:
-                var /** number */ v_1 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                 if (!base.go_out_grouping_b(g_v, 97, 121))
                 {
                     return false;
@@ -438,7 +438,7 @@ var EnglishStemmer = function() {
                 }
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 among_var = base.find_among_b(a_3);
                 switch (among_var) {
                     case 1:
@@ -449,7 +449,7 @@ var EnglishStemmer = function() {
                         return false;
                     case 2:
                         {
-                            var /** number */ v_3 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                             lab0: {
                                 if (!(base.in_grouping_b(g_aeo, 97, 111)))
                                 {
@@ -469,7 +469,7 @@ var EnglishStemmer = function() {
                         {
                             return false;
                         }
-                        var /** number */ v_4 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                         if (!r_shortv())
                         {
                             return false;
@@ -502,7 +502,7 @@ var EnglishStemmer = function() {
     function r_Step_1c() {
         base.ket = base.cursor;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("y")))
                 {
@@ -734,7 +734,7 @@ var EnglishStemmer = function() {
                 break;
             case 2:
                 lab0: {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("s")))
                         {
@@ -782,7 +782,7 @@ var EnglishStemmer = function() {
                         return false;
                     }
                     {
-                        var /** number */ v_1 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                         lab2: {
                             if (!r_shortv())
                             {
@@ -918,11 +918,11 @@ var EnglishStemmer = function() {
         }
         while(true)
         {
-            var /** number */ v_1 = base.cursor;
+            /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 golab1: while(true)
                 {
-                    var /** number */ v_2 = base.cursor;
+                    /** @const */ var /** number */ v_2 = base.cursor;
                     lab2: {
                         base.bra = base.cursor;
                         if (!(base.eq_s("Y")))
@@ -954,7 +954,7 @@ var EnglishStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         lab0: {
-            var /** number */ v_1 = base.cursor;
+            /** @const */ var /** number */ v_1 = base.cursor;
             lab1: {
                 if (!r_exception1())
                 {
@@ -965,10 +965,10 @@ var EnglishStemmer = function() {
             base.cursor = v_1;
             lab2: {
                 {
-                    var /** number */ v_2 = base.cursor;
+                    /** @const */ var /** number */ v_2 = base.cursor;
                     lab3: {
                         {
-                            var /** number */ c1 = base.cursor + 3;
+                            /** @const */ var /** number */ c1 = base.cursor + 3;
                             if (c1 > base.limit)
                             {
                                 break lab3;
@@ -985,11 +985,11 @@ var EnglishStemmer = function() {
             r_prelude();
             r_mark_regions();
             base.limit_backward = base.cursor; base.cursor = base.limit;
-            var /** number */ v_3 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
             r_Step_1a();
             base.cursor = base.limit - v_3;
             lab4: {
-                var /** number */ v_4 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                 lab5: {
                     if (!r_exception2())
                     {
@@ -998,27 +998,27 @@ var EnglishStemmer = function() {
                     break lab4;
                 }
                 base.cursor = base.limit - v_4;
-                var /** number */ v_5 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                 r_Step_1b();
                 base.cursor = base.limit - v_5;
-                var /** number */ v_6 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                 r_Step_1c();
                 base.cursor = base.limit - v_6;
-                var /** number */ v_7 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                 r_Step_2();
                 base.cursor = base.limit - v_7;
-                var /** number */ v_8 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                 r_Step_3();
                 base.cursor = base.limit - v_8;
-                var /** number */ v_9 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_9 = base.limit - base.cursor;
                 r_Step_4();
                 base.cursor = base.limit - v_9;
-                var /** number */ v_10 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_10 = base.limit - base.cursor;
                 r_Step_5();
                 base.cursor = base.limit - v_10;
             }
             base.cursor = base.limit_backward;
-            var /** number */ v_11 = base.cursor;
+            /** @const */ var /** number */ v_11 = base.cursor;
             r_postlude();
             base.cursor = v_11;
         }

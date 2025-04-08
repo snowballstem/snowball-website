@@ -220,13 +220,13 @@ var HungarianStemmer = function() {
     function r_mark_regions() {
         I_p1 = base.limit;
         lab0: {
-            var /** number */ v_1 = base.cursor;
+            /** @const */ var /** number */ v_1 = base.cursor;
             lab1: {
                 if (!(base.in_grouping(g_v, 97, 369)))
                 {
                     break lab1;
                 }
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 lab2: {
                     if (!base.go_in_grouping(g_v, 97, 369))
                     {
@@ -287,7 +287,7 @@ var HungarianStemmer = function() {
 
     /** @return {boolean} */
     function r_double() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         if (base.find_among_b(a_1) == 0)
         {
             return false;
@@ -611,35 +611,35 @@ var HungarianStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         r_mark_regions();
         base.cursor = v_1;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         r_instrum();
         base.cursor = base.limit - v_2;
-        var /** number */ v_3 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
         r_case();
         base.cursor = base.limit - v_3;
-        var /** number */ v_4 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
         r_case_special();
         base.cursor = base.limit - v_4;
-        var /** number */ v_5 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
         r_case_other();
         base.cursor = base.limit - v_5;
-        var /** number */ v_6 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
         r_factive();
         base.cursor = base.limit - v_6;
-        var /** number */ v_7 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
         r_owned();
         base.cursor = base.limit - v_7;
-        var /** number */ v_8 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
         r_sing_owner();
         base.cursor = base.limit - v_8;
-        var /** number */ v_9 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
         r_plur_owner();
         base.cursor = base.limit - v_9;
-        var /** number */ v_10 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
         r_plural();
         base.cursor = base.limit - v_10;
         base.cursor = base.limit_backward;

@@ -166,7 +166,7 @@ var EsperantoStemmer = function() {
         B_foreign = false;
         while(true)
         {
-            var /** number */ v_1 = base.cursor;
+            /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_0);
@@ -302,7 +302,7 @@ var EsperantoStemmer = function() {
     /** @return {boolean} */
     function r_pronoun() {
         base.ket = base.cursor;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             if (!(base.eq_s_b("n")))
             {
@@ -316,7 +316,7 @@ var EsperantoStemmer = function() {
             return false;
         }
         lab1: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 if (base.cursor > base.limit_backward)
                 {
@@ -346,7 +346,7 @@ var EsperantoStemmer = function() {
         }
         base.bra = base.cursor;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("l")))
                 {
@@ -385,7 +385,7 @@ var EsperantoStemmer = function() {
                     break lab3;
                 }
                 lab4: {
-                    var /** number */ v_2 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab5: {
                         if (base.cursor > base.limit_backward)
                         {
@@ -417,7 +417,7 @@ var EsperantoStemmer = function() {
     /** @return {boolean} */
     function r_ujn_suffix() {
         base.ket = base.cursor;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             if (!(base.eq_s_b("n")))
             {
@@ -425,7 +425,7 @@ var EsperantoStemmer = function() {
                 break lab0;
             }
         }
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab1: {
             if (!(base.eq_s_b("j")))
             {
@@ -439,7 +439,7 @@ var EsperantoStemmer = function() {
             return false;
         }
         lab2: {
-            var /** number */ v_3 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
             lab3: {
                 if (base.cursor > base.limit_backward)
                 {
@@ -467,7 +467,7 @@ var EsperantoStemmer = function() {
             return false;
         }
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (base.cursor > base.limit_backward)
                 {
@@ -501,11 +501,11 @@ var EsperantoStemmer = function() {
     function r_correlative() {
         base.ket = base.cursor;
         base.bra = base.cursor;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab1: {
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!(base.eq_s_b("n")))
                     {
@@ -521,7 +521,7 @@ var EsperantoStemmer = function() {
                 break lab0;
             }
             base.cursor = base.limit - v_2;
-            var /** number */ v_4 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_4 = base.limit - base.cursor;
             lab3: {
                 if (!(base.eq_s_b("n")))
                 {
@@ -529,7 +529,7 @@ var EsperantoStemmer = function() {
                     break lab3;
                 }
             }
-            var /** number */ v_5 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_5 = base.limit - base.cursor;
             lab4: {
                 if (!(base.eq_s_b("j")))
                 {
@@ -547,7 +547,7 @@ var EsperantoStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_6 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
         lab5: {
             if (base.find_among_b(a_8) == 0)
             {
@@ -556,7 +556,7 @@ var EsperantoStemmer = function() {
             }
         }
         lab6: {
-            var /** number */ v_7 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_7 = base.limit - base.cursor;
             lab7: {
                 if (base.cursor > base.limit_backward)
                 {
@@ -581,7 +581,7 @@ var EsperantoStemmer = function() {
     /** @return {boolean} */
     function r_long_word() {
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 for (var /** number */ v_2 = 2; v_2 > 0; v_2--)
                 {
@@ -630,7 +630,7 @@ var EsperantoStemmer = function() {
     /** @return {boolean} */
     function r_not_after_letter() {
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("-")))
                 {
@@ -654,7 +654,7 @@ var EsperantoStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             if (!(base.eq_s_b("-")))
             {
@@ -671,18 +671,18 @@ var EsperantoStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         if (!r_canonical_form())
         {
             return false;
         }
         base.cursor = v_1;
-        var /** number */ v_2 = base.cursor;
+        /** @const */ var /** number */ v_2 = base.cursor;
         r_initial_apostrophe();
         base.cursor = v_2;
         base.limit_backward = base.cursor; base.cursor = base.limit;
         {
-            var /** number */ v_3 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
             lab0: {
                 if (!r_pronoun())
                 {
@@ -692,11 +692,11 @@ var EsperantoStemmer = function() {
             }
             base.cursor = base.limit - v_3;
         }
-        var /** number */ v_4 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
         r_final_apostrophe();
         base.cursor = base.limit - v_4;
         {
-            var /** number */ v_5 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_5 = base.limit - base.cursor;
             lab1: {
                 if (!r_correlative())
                 {
@@ -707,7 +707,7 @@ var EsperantoStemmer = function() {
             base.cursor = base.limit - v_5;
         }
         {
-            var /** number */ v_6 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_6 = base.limit - base.cursor;
             lab2: {
                 if (!r_uninflected())
                 {
@@ -718,7 +718,7 @@ var EsperantoStemmer = function() {
             base.cursor = base.limit - v_6;
         }
         {
-            var /** number */ v_7 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_7 = base.limit - base.cursor;
             lab3: {
                 if (!r_merged_numeral())
                 {
@@ -729,7 +729,7 @@ var EsperantoStemmer = function() {
             base.cursor = base.limit - v_7;
         }
         {
-            var /** number */ v_8 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_8 = base.limit - base.cursor;
             lab4: {
                 if (!r_ujn_suffix())
                 {
@@ -739,7 +739,7 @@ var EsperantoStemmer = function() {
             }
             base.cursor = base.limit - v_8;
         }
-        var /** number */ v_9 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
         if (!r_long_word())
         {
             return false;

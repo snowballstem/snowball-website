@@ -1133,7 +1133,7 @@ var GreekStemmer = function() {
         var /** number */ among_var;
         while(true)
         {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 base.ket = base.cursor;
                 among_var = base.find_among_b(a_0);
@@ -1457,7 +1457,7 @@ var GreekStemmer = function() {
     function r_step_s3() {
         var /** number */ among_var;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 if (!(base.eq_s_b("\u03B9\u03C3\u03B1")))
@@ -1603,7 +1603,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1751,7 +1751,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1809,7 +1809,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1885,7 +1885,7 @@ var GreekStemmer = function() {
             return false;
         }
         {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 if (base.find_among_b(a_25) == 0)
                 {
@@ -1896,7 +1896,7 @@ var GreekStemmer = function() {
             base.cursor = base.limit - v_1;
         }
         {
-            var /** number */ c1 = base.cursor;
+            /** @const */ var /** number */ c1 = base.cursor;
             base.insert(base.cursor, base.cursor, "\u03B1\u03B4");
             base.cursor = c1;
         }
@@ -2023,7 +2023,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -2058,7 +2058,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5a() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u03B1\u03B3\u03B1\u03BC\u03B5")))
@@ -2076,7 +2076,7 @@ var GreekStemmer = function() {
             }
         }
         base.cursor = base.limit - v_1;
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab1: {
             base.ket = base.cursor;
             if (base.find_among_b(a_35) == 0)
@@ -2121,7 +2121,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5b() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (base.find_among_b(a_38) == 0)
@@ -2162,7 +2162,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab1: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -2197,7 +2197,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5c() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (base.find_among_b(a_40) == 0)
@@ -2224,7 +2224,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab1: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -2285,7 +2285,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -2350,7 +2350,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5f() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u03B9\u03B5\u03C3\u03C4\u03B5")))
@@ -2409,7 +2409,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5g() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (base.find_among_b(a_47) == 0)
@@ -2436,7 +2436,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab1: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -2483,7 +2483,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -2531,7 +2531,7 @@ var GreekStemmer = function() {
         }
         B_test1 = false;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -2547,7 +2547,7 @@ var GreekStemmer = function() {
             }
             base.cursor = base.limit - v_1;
             lab2: {
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 lab3: {
                     base.ket = base.cursor;
                     base.bra = base.cursor;
@@ -2708,7 +2708,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_6() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (base.find_among_b(a_65) == 0)
@@ -2756,7 +2756,7 @@ var GreekStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         r_tolower();
         base.cursor = base.limit - v_1;
         if (!r_has_min_length())
@@ -2764,100 +2764,100 @@ var GreekStemmer = function() {
             return false;
         }
         B_test1 = true;
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         r_step_1();
         base.cursor = base.limit - v_2;
-        var /** number */ v_3 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
         r_step_s1();
         base.cursor = base.limit - v_3;
-        var /** number */ v_4 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
         r_step_s2();
         base.cursor = base.limit - v_4;
-        var /** number */ v_5 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
         r_step_s3();
         base.cursor = base.limit - v_5;
-        var /** number */ v_6 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
         r_step_s4();
         base.cursor = base.limit - v_6;
-        var /** number */ v_7 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
         r_step_s5();
         base.cursor = base.limit - v_7;
-        var /** number */ v_8 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
         r_step_s6();
         base.cursor = base.limit - v_8;
-        var /** number */ v_9 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
         r_step_s7();
         base.cursor = base.limit - v_9;
-        var /** number */ v_10 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
         r_step_s8();
         base.cursor = base.limit - v_10;
-        var /** number */ v_11 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_11 = base.limit - base.cursor;
         r_step_s9();
         base.cursor = base.limit - v_11;
-        var /** number */ v_12 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_12 = base.limit - base.cursor;
         r_step_s10();
         base.cursor = base.limit - v_12;
-        var /** number */ v_13 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_13 = base.limit - base.cursor;
         r_step_2a();
         base.cursor = base.limit - v_13;
-        var /** number */ v_14 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_14 = base.limit - base.cursor;
         r_step_2b();
         base.cursor = base.limit - v_14;
-        var /** number */ v_15 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_15 = base.limit - base.cursor;
         r_step_2c();
         base.cursor = base.limit - v_15;
-        var /** number */ v_16 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_16 = base.limit - base.cursor;
         r_step_2d();
         base.cursor = base.limit - v_16;
-        var /** number */ v_17 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_17 = base.limit - base.cursor;
         r_step_3();
         base.cursor = base.limit - v_17;
-        var /** number */ v_18 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_18 = base.limit - base.cursor;
         r_step_4();
         base.cursor = base.limit - v_18;
-        var /** number */ v_19 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_19 = base.limit - base.cursor;
         r_step_5a();
         base.cursor = base.limit - v_19;
-        var /** number */ v_20 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_20 = base.limit - base.cursor;
         r_step_5b();
         base.cursor = base.limit - v_20;
-        var /** number */ v_21 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_21 = base.limit - base.cursor;
         r_step_5c();
         base.cursor = base.limit - v_21;
-        var /** number */ v_22 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_22 = base.limit - base.cursor;
         r_step_5d();
         base.cursor = base.limit - v_22;
-        var /** number */ v_23 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_23 = base.limit - base.cursor;
         r_step_5e();
         base.cursor = base.limit - v_23;
-        var /** number */ v_24 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_24 = base.limit - base.cursor;
         r_step_5f();
         base.cursor = base.limit - v_24;
-        var /** number */ v_25 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_25 = base.limit - base.cursor;
         r_step_5g();
         base.cursor = base.limit - v_25;
-        var /** number */ v_26 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_26 = base.limit - base.cursor;
         r_step_5h();
         base.cursor = base.limit - v_26;
-        var /** number */ v_27 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_27 = base.limit - base.cursor;
         r_step_5j();
         base.cursor = base.limit - v_27;
-        var /** number */ v_28 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_28 = base.limit - base.cursor;
         r_step_5i();
         base.cursor = base.limit - v_28;
-        var /** number */ v_29 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_29 = base.limit - base.cursor;
         r_step_5k();
         base.cursor = base.limit - v_29;
-        var /** number */ v_30 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_30 = base.limit - base.cursor;
         r_step_5l();
         base.cursor = base.limit - v_30;
-        var /** number */ v_31 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_31 = base.limit - base.cursor;
         r_step_5m();
         base.cursor = base.limit - v_31;
-        var /** number */ v_32 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_32 = base.limit - base.cursor;
         r_step_6();
         base.cursor = base.limit - v_32;
-        var /** number */ v_33 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_33 = base.limit - base.cursor;
         r_step_7();
         base.cursor = base.limit - v_33;
         base.cursor = base.limit_backward;

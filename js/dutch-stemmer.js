@@ -170,9 +170,9 @@ var DutchStemmer = function() {
 
     /** @return {boolean} */
     function r_V() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab1: {
                 if (!(base.in_grouping_b(g_v, 97, 252)))
                 {
@@ -192,14 +192,14 @@ var DutchStemmer = function() {
 
     /** @return {boolean} */
     function r_VX() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         if (base.cursor <= base.limit_backward)
         {
             return false;
         }
         base.cursor--;
         lab0: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab1: {
                 if (!(base.in_grouping_b(g_v, 97, 252)))
                 {
@@ -219,9 +219,9 @@ var DutchStemmer = function() {
 
     /** @return {boolean} */
     function r_C() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab0: {
                 if (!(base.eq_s_b("ij")))
                 {
@@ -242,7 +242,7 @@ var DutchStemmer = function() {
     /** @return {boolean} */
     function r_lengthen_V() {
         var /** number */ among_var;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             if (!(base.out_grouping_b(g_v_WX, 97, 252)))
             {
@@ -257,9 +257,9 @@ var DutchStemmer = function() {
             base.bra = base.cursor;
             switch (among_var) {
                 case 1:
-                    var /** number */ v_2 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
-                        var /** number */ v_3 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                         lab2: {
                             if (!(base.out_grouping_b(g_AEIOU, 97, 252)))
                             {
@@ -280,15 +280,15 @@ var DutchStemmer = function() {
                         return false;
                     }
                     {
-                        var /** number */ c1 = base.cursor;
+                        /** @const */ var /** number */ c1 = base.cursor;
                         base.insert(base.cursor, base.cursor, S_ch);
                         base.cursor = c1;
                     }
                     break;
                 case 2:
-                    var /** number */ v_4 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                     lab3: {
-                        var /** number */ v_5 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                         lab4: {
                             if (!(base.out_grouping_b(g_AEIOU, 97, 252)))
                             {
@@ -303,10 +303,10 @@ var DutchStemmer = function() {
                         }
                     }
                     {
-                        var /** number */ v_6 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                         lab5: {
                             lab6: {
-                                var /** number */ v_7 = base.limit - base.cursor;
+                                /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                                 lab7: {
                                     if (!(base.in_grouping_b(g_AIOU, 97, 252)))
                                     {
@@ -329,7 +329,7 @@ var DutchStemmer = function() {
                         base.cursor = base.limit - v_6;
                     }
                     {
-                        var /** number */ v_8 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                         lab8: {
                             if (base.cursor <= base.limit_backward)
                             {
@@ -355,7 +355,7 @@ var DutchStemmer = function() {
                         return false;
                     }
                     {
-                        var /** number */ c2 = base.cursor;
+                        /** @const */ var /** number */ c2 = base.cursor;
                         base.insert(base.cursor, base.cursor, S_ch);
                         base.cursor = c2;
                     }
@@ -401,7 +401,7 @@ var DutchStemmer = function() {
                     return false;
                 }
                 {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab0: {
                         if (!(base.eq_s_b("t")))
                         {
@@ -436,9 +436,9 @@ var DutchStemmer = function() {
                 break;
             case 4:
                 lab1: {
-                    var /** number */ v_2 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab2: {
-                        var /** number */ v_3 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                         if (!(base.eq_s_b("ar")))
                         {
                             break lab2;
@@ -461,7 +461,7 @@ var DutchStemmer = function() {
                     }
                     base.cursor = base.limit - v_2;
                     lab3: {
-                        var /** number */ v_4 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                         if (!(base.eq_s_b("er")))
                         {
                             break lab3;
@@ -522,7 +522,7 @@ var DutchStemmer = function() {
                 break;
             case 7:
                 lab4: {
-                    var /** number */ v_5 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                     lab5: {
                         if (!(base.eq_s_b("hed")))
                         {
@@ -575,7 +575,7 @@ var DutchStemmer = function() {
                     base.cursor = base.limit - v_5;
                     lab8: {
                         lab9: {
-                            var /** number */ v_6 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                             lab10: {
                                 if (!(base.eq_s_b("i")))
                                 {
@@ -638,7 +638,7 @@ var DutchStemmer = function() {
         switch (among_var) {
             case 1:
                 lab0: {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("'t")))
                         {
@@ -1007,7 +1007,7 @@ var DutchStemmer = function() {
     function r_Step_4() {
         var /** number */ among_var;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 among_var = base.find_among_b(a_4);
@@ -1340,7 +1340,7 @@ var DutchStemmer = function() {
         switch (among_var) {
             case 1:
                 {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab0: {
                         if (!(base.eq_s_b("n")))
                         {
@@ -1361,7 +1361,7 @@ var DutchStemmer = function() {
                 break;
             case 2:
                 {
-                    var /** number */ v_2 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("h")))
                         {
@@ -1393,9 +1393,9 @@ var DutchStemmer = function() {
             return false;
         }
         base.ket = base.cursor;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         {
-            var /** number */ c1 = base.cursor + 3;
+            /** @const */ var /** number */ c1 = base.cursor + 3;
             if (c1 > base.limit)
             {
                 return false;
@@ -1403,13 +1403,13 @@ var DutchStemmer = function() {
             base.cursor = c1;
         }
         base.cursor = v_1;
-        var /** number */ v_2 = base.cursor;
+        /** @const */ var /** number */ v_2 = base.cursor;
         golab0: while(true)
         {
-            var /** number */ v_3 = base.cursor;
+            /** @const */ var /** number */ v_3 = base.cursor;
             lab1: {
                 lab2: {
-                    var /** number */ v_4 = base.cursor;
+                    /** @const */ var /** number */ v_4 = base.cursor;
                     lab3: {
                         if (!(base.eq_s("ij")))
                         {
@@ -1434,10 +1434,10 @@ var DutchStemmer = function() {
         }
         while(true)
         {
-            var /** number */ v_5 = base.cursor;
+            /** @const */ var /** number */ v_5 = base.cursor;
             lab4: {
                 lab5: {
-                    var /** number */ v_6 = base.cursor;
+                    /** @const */ var /** number */ v_6 = base.cursor;
                     lab6: {
                         if (!(base.eq_s("ij")))
                         {
@@ -1469,7 +1469,7 @@ var DutchStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_7 = base.cursor;
+        /** @const */ var /** number */ v_7 = base.cursor;
         lab8: {
             base.bra = base.cursor;
             among_var = base.find_among(a_9);
@@ -1522,9 +1522,9 @@ var DutchStemmer = function() {
             }
             base.cursor++;
         }
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         {
-            var /** number */ c1 = base.cursor + 3;
+            /** @const */ var /** number */ c1 = base.cursor + 3;
             if (c1 > base.limit)
             {
                 return false;
@@ -1532,13 +1532,13 @@ var DutchStemmer = function() {
             base.cursor = c1;
         }
         base.cursor = v_1;
-        var /** number */ v_2 = base.cursor;
+        /** @const */ var /** number */ v_2 = base.cursor;
         golab2: while(true)
         {
-            var /** number */ v_3 = base.cursor;
+            /** @const */ var /** number */ v_3 = base.cursor;
             lab3: {
                 lab4: {
-                    var /** number */ v_4 = base.cursor;
+                    /** @const */ var /** number */ v_4 = base.cursor;
                     lab5: {
                         if (!(base.eq_s("ij")))
                         {
@@ -1563,10 +1563,10 @@ var DutchStemmer = function() {
         }
         while(true)
         {
-            var /** number */ v_5 = base.cursor;
+            /** @const */ var /** number */ v_5 = base.cursor;
             lab6: {
                 lab7: {
-                    var /** number */ v_6 = base.cursor;
+                    /** @const */ var /** number */ v_6 = base.cursor;
                     lab8: {
                         if (!(base.eq_s("ij")))
                         {
@@ -1598,7 +1598,7 @@ var DutchStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_7 = base.cursor;
+        /** @const */ var /** number */ v_7 = base.cursor;
         lab10: {
             base.bra = base.cursor;
             among_var = base.find_among(a_10);
@@ -1630,7 +1630,7 @@ var DutchStemmer = function() {
     function r_measure() {
         I_p1 = base.limit;
         I_p2 = base.limit;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             while(true)
             {
@@ -1647,10 +1647,10 @@ var DutchStemmer = function() {
                 var v_2 = 1;
                 while(true)
                 {
-                    var /** number */ v_3 = base.cursor;
+                    /** @const */ var /** number */ v_3 = base.cursor;
                     lab2: {
                         lab3: {
-                            var /** number */ v_4 = base.cursor;
+                            /** @const */ var /** number */ v_4 = base.cursor;
                             lab4: {
                                 if (!(base.eq_s("ij")))
                                 {
@@ -1695,10 +1695,10 @@ var DutchStemmer = function() {
                 var v_5 = 1;
                 while(true)
                 {
-                    var /** number */ v_6 = base.cursor;
+                    /** @const */ var /** number */ v_6 = base.cursor;
                     lab6: {
                         lab7: {
-                            var /** number */ v_7 = base.cursor;
+                            /** @const */ var /** number */ v_7 = base.cursor;
                             lab8: {
                                 if (!(base.eq_s("ij")))
                                 {
@@ -1737,7 +1737,7 @@ var DutchStemmer = function() {
         B_stemmed = false;
         r_measure();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             if (!r_Step_1())
             {
@@ -1746,7 +1746,7 @@ var DutchStemmer = function() {
             B_stemmed = true;
         }
         base.cursor = base.limit - v_1;
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab1: {
             if (!r_Step_2())
             {
@@ -1755,7 +1755,7 @@ var DutchStemmer = function() {
             B_stemmed = true;
         }
         base.cursor = base.limit - v_2;
-        var /** number */ v_3 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
         lab2: {
             if (!r_Step_3())
             {
@@ -1764,7 +1764,7 @@ var DutchStemmer = function() {
             B_stemmed = true;
         }
         base.cursor = base.limit - v_3;
-        var /** number */ v_4 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
         lab3: {
             if (!r_Step_4())
             {
@@ -1775,9 +1775,9 @@ var DutchStemmer = function() {
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;
         B_GE_removed = false;
-        var /** number */ v_5 = base.cursor;
+        /** @const */ var /** number */ v_5 = base.cursor;
         lab4: {
-            var /** number */ v_6 = base.cursor;
+            /** @const */ var /** number */ v_6 = base.cursor;
             if (!r_Lose_prefix())
             {
                 break lab4;
@@ -1787,7 +1787,7 @@ var DutchStemmer = function() {
         }
         base.cursor = v_5;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_7 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
         lab5: {
             if (!B_GE_removed)
             {
@@ -1802,9 +1802,9 @@ var DutchStemmer = function() {
         base.cursor = base.limit - v_7;
         base.cursor = base.limit_backward;
         B_GE_removed = false;
-        var /** number */ v_8 = base.cursor;
+        /** @const */ var /** number */ v_8 = base.cursor;
         lab6: {
-            var /** number */ v_9 = base.cursor;
+            /** @const */ var /** number */ v_9 = base.cursor;
             if (!r_Lose_infix())
             {
                 break lab6;
@@ -1814,7 +1814,7 @@ var DutchStemmer = function() {
         }
         base.cursor = v_8;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_10 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
         lab7: {
             if (!B_GE_removed)
             {
@@ -1829,7 +1829,7 @@ var DutchStemmer = function() {
         base.cursor = base.limit - v_10;
         base.cursor = base.limit_backward;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_11 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_11 = base.limit - base.cursor;
         lab8: {
             if (!r_Step_7())
             {
@@ -1838,7 +1838,7 @@ var DutchStemmer = function() {
             B_stemmed = true;
         }
         base.cursor = base.limit - v_11;
-        var /** number */ v_12 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_12 = base.limit - base.cursor;
         lab9: {
             if (!B_stemmed)
             {

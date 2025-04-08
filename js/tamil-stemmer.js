@@ -396,11 +396,11 @@ var TamilStemmer = function() {
 
     /** @return {boolean} */
     function r_fix_endings() {
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             while(true)
             {
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     if (!r_fix_ending())
                     {
@@ -436,7 +436,7 @@ var TamilStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         r_fix_va_start();
         base.cursor = v_1;
         return true;
@@ -451,7 +451,7 @@ var TamilStemmer = function() {
         }
         base.limit_backward = base.cursor; base.cursor = base.limit;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 among_var = base.find_among_b(a_5);
@@ -468,7 +468,7 @@ var TamilStemmer = function() {
                         }
                         break;
                     case 2:
-                        var /** number */ v_2 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                         if (base.find_among_b(a_2) == 0)
                         {
                             break lab1;
@@ -503,7 +503,7 @@ var TamilStemmer = function() {
                             break lab1;
                         }
                         {
-                            var /** number */ v_3 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                             lab2: {
                                 if (!(base.eq_s_b("\u0BC8")))
                                 {
@@ -526,7 +526,7 @@ var TamilStemmer = function() {
                         break;
                     case 8:
                         {
-                            var /** number */ v_4 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                             lab3: {
                                 if (base.find_among_b(a_3) == 0)
                                 {
@@ -568,13 +568,13 @@ var TamilStemmer = function() {
                 return false;
             }
             lab4: {
-                var /** number */ v_5 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                 lab5: {
                     if (base.find_among_b(a_6) == 0)
                     {
                         break lab5;
                     }
-                    var /** number */ v_6 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                     lab6: {
                         if (!(base.eq_s_b("\u0BCD")))
                         {
@@ -612,7 +612,7 @@ var TamilStemmer = function() {
                     break lab4;
                 }
                 base.cursor = base.limit - v_5;
-                var /** number */ v_7 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                 if (base.find_among_b(a_9) == 0)
                 {
                     return false;
@@ -649,7 +649,7 @@ var TamilStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         r_fix_va_start();
         base.cursor = v_1;
         return true;
@@ -669,7 +669,7 @@ var TamilStemmer = function() {
         switch (among_var) {
             case 1:
                 lab0: {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (base.find_among_b(a_12) == 0)
                         {
@@ -718,7 +718,7 @@ var TamilStemmer = function() {
             return false;
         }
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (base.find_among_b(a_14) == 0)
@@ -776,7 +776,7 @@ var TamilStemmer = function() {
             return false;
         }
         base.cursor = base.limit_backward;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         r_fix_ending();
         base.cursor = v_1;
         return true;
@@ -806,7 +806,7 @@ var TamilStemmer = function() {
                 break;
             case 2:
                 {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab0: {
                         if (base.find_among_b(a_16) == 0)
                         {
@@ -843,9 +843,9 @@ var TamilStemmer = function() {
         }
         base.limit_backward = base.cursor; base.cursor = base.limit;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 base.ket = base.cursor;
                 among_var = base.find_among_b(a_20);
                 if (among_var == 0)
@@ -868,7 +868,7 @@ var TamilStemmer = function() {
                         break;
                     case 3:
                         {
-                            var /** number */ v_3 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                             lab2: {
                                 if (!(base.eq_s_b("\u0BAE")))
                                 {
@@ -895,7 +895,7 @@ var TamilStemmer = function() {
                         break;
                     case 5:
                         {
-                            var /** number */ v_4 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                             lab3: {
                                 if (base.find_among_b(a_18) == 0)
                                 {
@@ -912,7 +912,7 @@ var TamilStemmer = function() {
                         break;
                     case 6:
                         {
-                            var /** number */ v_5 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                             lab4: {
                                 if (base.find_among_b(a_19) == 0)
                                 {
@@ -938,17 +938,17 @@ var TamilStemmer = function() {
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            var /** number */ v_6 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_6 = base.limit - base.cursor;
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u0BC8")))
             {
                 return false;
             }
             lab5: {
-                var /** number */ v_7 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                 lab6: {
                     {
-                        var /** number */ v_8 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                         lab7: {
                             if (base.find_among_b(a_21) == 0)
                             {
@@ -961,7 +961,7 @@ var TamilStemmer = function() {
                     break lab5;
                 }
                 base.cursor = base.limit - v_7;
-                var /** number */ v_9 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_9 = base.limit - base.cursor;
                 if (base.find_among_b(a_22) == 0)
                 {
                     return false;
@@ -980,7 +980,7 @@ var TamilStemmer = function() {
             base.cursor = base.limit - v_6;
         }
         B_found_vetrumai_urupu = true;
-        var /** number */ v_10 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
         lab8: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u0BBF\u0BA9\u0BCD")))
@@ -1004,13 +1004,13 @@ var TamilStemmer = function() {
         B_found_a_match = true;
         while(true)
         {
-            var /** number */ v_1 = base.cursor;
+            /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 if (!B_found_a_match)
                 {
                     break lab0;
                 }
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 r_remove_tense_suffix();
                 base.cursor = v_2;
                 continue;
@@ -1030,9 +1030,9 @@ var TamilStemmer = function() {
             return false;
         }
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             base.ket = base.cursor;
             among_var = base.find_among_b(a_25);
             if (among_var == 0)
@@ -1049,7 +1049,7 @@ var TamilStemmer = function() {
                     break;
                 case 2:
                     {
-                        var /** number */ v_3 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                         lab1: {
                             if (base.find_among_b(a_23) == 0)
                             {
@@ -1066,7 +1066,7 @@ var TamilStemmer = function() {
                     break;
                 case 3:
                     {
-                        var /** number */ v_4 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                         lab2: {
                             if (base.find_among_b(a_24) == 0)
                             {
@@ -1083,7 +1083,7 @@ var TamilStemmer = function() {
                     break;
                 case 4:
                     {
-                        var /** number */ v_5 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                         lab3: {
                             if (!(base.eq_s_b("\u0B9A")))
                             {
@@ -1105,7 +1105,7 @@ var TamilStemmer = function() {
                     }
                     break;
                 case 6:
-                    var /** number */ v_6 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                     if (!(base.eq_s_b("\u0BCD")))
                     {
                         break lab0;
@@ -1121,7 +1121,7 @@ var TamilStemmer = function() {
             base.cursor = base.limit - v_2;
         }
         base.cursor = base.limit - v_1;
-        var /** number */ v_7 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
         lab4: {
             base.ket = base.cursor;
             if (base.find_among_b(a_26) == 0)
@@ -1143,38 +1143,38 @@ var TamilStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         B_found_vetrumai_urupu = false;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         r_fix_ending();
         base.cursor = v_1;
         if (!r_has_min_length())
         {
             return false;
         }
-        var /** number */ v_2 = base.cursor;
+        /** @const */ var /** number */ v_2 = base.cursor;
         r_remove_question_prefixes();
         base.cursor = v_2;
-        var /** number */ v_3 = base.cursor;
+        /** @const */ var /** number */ v_3 = base.cursor;
         r_remove_pronoun_prefixes();
         base.cursor = v_3;
-        var /** number */ v_4 = base.cursor;
+        /** @const */ var /** number */ v_4 = base.cursor;
         r_remove_question_suffixes();
         base.cursor = v_4;
-        var /** number */ v_5 = base.cursor;
+        /** @const */ var /** number */ v_5 = base.cursor;
         r_remove_um();
         base.cursor = v_5;
-        var /** number */ v_6 = base.cursor;
+        /** @const */ var /** number */ v_6 = base.cursor;
         r_remove_common_word_endings();
         base.cursor = v_6;
-        var /** number */ v_7 = base.cursor;
+        /** @const */ var /** number */ v_7 = base.cursor;
         r_remove_vetrumai_urupukal();
         base.cursor = v_7;
-        var /** number */ v_8 = base.cursor;
+        /** @const */ var /** number */ v_8 = base.cursor;
         r_remove_plural_suffix();
         base.cursor = v_8;
-        var /** number */ v_9 = base.cursor;
+        /** @const */ var /** number */ v_9 = base.cursor;
         r_remove_command_suffixes();
         base.cursor = v_9;
-        var /** number */ v_10 = base.cursor;
+        /** @const */ var /** number */ v_10 = base.cursor;
         r_remove_tense_suffixes();
         base.cursor = v_10;
         return true;

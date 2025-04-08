@@ -304,14 +304,14 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Normalize_pre() {
         var /** number */ among_var;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             while(true)
             {
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     lab2: {
-                        var /** number */ v_3 = base.cursor;
+                        /** @const */ var /** number */ v_3 = base.cursor;
                         lab3: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_0);
@@ -650,7 +650,7 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Normalize_post() {
         var /** number */ among_var;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             base.limit_backward = base.cursor; base.cursor = base.limit;
             base.ket = base.cursor;
@@ -666,14 +666,14 @@ var ArabicStemmer = function() {
             base.cursor = base.limit_backward;
         }
         base.cursor = v_1;
-        var /** number */ v_2 = base.cursor;
+        /** @const */ var /** number */ v_2 = base.cursor;
         lab1: {
             while(true)
             {
-                var /** number */ v_3 = base.cursor;
+                /** @const */ var /** number */ v_3 = base.cursor;
                 lab2: {
                     lab3: {
-                        var /** number */ v_4 = base.cursor;
+                        /** @const */ var /** number */ v_4 = base.cursor;
                         lab4: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_2);
@@ -822,7 +822,7 @@ var ArabicStemmer = function() {
             return false;
         }
         {
-            var /** number */ v_1 = base.cursor;
+            /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 if (!(base.eq_s("\u0627")))
                 {
@@ -1327,28 +1327,28 @@ var ArabicStemmer = function() {
         B_is_noun = true;
         B_is_verb = true;
         B_is_defined = false;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         r_Checks1();
         base.cursor = v_1;
         r_Normalize_pre();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!B_is_verb)
                     {
                         break lab2;
                     }
                     lab3: {
-                        var /** number */ v_4 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                         lab4: {
                             {
                                 var v_5 = 1;
                                 while(true)
                                 {
-                                    var /** number */ v_6 = base.limit - base.cursor;
+                                    /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                                     lab5: {
                                         if (!r_Suffix_Verb_Step1())
                                         {
@@ -1366,7 +1366,7 @@ var ArabicStemmer = function() {
                                 }
                             }
                             lab6: {
-                                var /** number */ v_7 = base.limit - base.cursor;
+                                /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                                 lab7: {
                                     if (!r_Suffix_Verb_Step2a())
                                     {
@@ -1413,10 +1413,10 @@ var ArabicStemmer = function() {
                     {
                         break lab10;
                     }
-                    var /** number */ v_8 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                     lab11: {
                         lab12: {
-                            var /** number */ v_9 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_9 = base.limit - base.cursor;
                             lab13: {
                                 if (!r_Suffix_Noun_Step2c2())
                                 {
@@ -1438,7 +1438,7 @@ var ArabicStemmer = function() {
                                     break lab14;
                                 }
                                 lab16: {
-                                    var /** number */ v_10 = base.limit - base.cursor;
+                                    /** @const */ var /** number */ v_10 = base.limit - base.cursor;
                                     lab17: {
                                         if (!r_Suffix_Noun_Step2a())
                                         {
@@ -1478,7 +1478,7 @@ var ArabicStemmer = function() {
                                     break lab20;
                                 }
                                 lab21: {
-                                    var /** number */ v_11 = base.limit - base.cursor;
+                                    /** @const */ var /** number */ v_11 = base.limit - base.cursor;
                                     lab22: {
                                         if (!r_Suffix_Noun_Step2a())
                                         {
@@ -1540,9 +1540,9 @@ var ArabicStemmer = function() {
         }
         base.cursor = base.limit - v_2;
         base.cursor = base.limit_backward;
-        var /** number */ v_12 = base.cursor;
+        /** @const */ var /** number */ v_12 = base.cursor;
         lab26: {
-            var /** number */ v_13 = base.cursor;
+            /** @const */ var /** number */ v_13 = base.cursor;
             lab27: {
                 if (!r_Prefix_Step1())
                 {
@@ -1550,7 +1550,7 @@ var ArabicStemmer = function() {
                     break lab27;
                 }
             }
-            var /** number */ v_14 = base.cursor;
+            /** @const */ var /** number */ v_14 = base.cursor;
             lab28: {
                 if (!r_Prefix_Step2())
                 {
@@ -1559,7 +1559,7 @@ var ArabicStemmer = function() {
                 }
             }
             lab29: {
-                var /** number */ v_15 = base.cursor;
+                /** @const */ var /** number */ v_15 = base.cursor;
                 lab30: {
                     if (!r_Prefix_Step3a_Noun())
                     {
@@ -1584,7 +1584,7 @@ var ArabicStemmer = function() {
                 {
                     break lab26;
                 }
-                var /** number */ v_16 = base.cursor;
+                /** @const */ var /** number */ v_16 = base.cursor;
                 lab32: {
                     if (!r_Prefix_Step3_Verb())
                     {

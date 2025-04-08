@@ -217,13 +217,13 @@ var TurkishStemmer = function() {
 
     /** @return {boolean} */
     function r_check_vowel_harmony() {
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         if (!base.go_out_grouping_b(g_vowel, 97, 305))
         {
             return false;
         }
         lab0: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("a")))
                 {
@@ -324,13 +324,13 @@ var TurkishStemmer = function() {
     /** @return {boolean} */
     function r_mark_suffix_with_optional_n_consonant() {
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("n")))
                 {
                     break lab1;
                 }
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 if (!(base.in_grouping_b(g_vowel, 97, 305)))
                 {
                     break lab1;
@@ -340,9 +340,9 @@ var TurkishStemmer = function() {
             }
             base.cursor = base.limit - v_1;
             {
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    var /** number */ v_4 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                     if (!(base.eq_s_b("n")))
                     {
                         break lab2;
@@ -352,7 +352,7 @@ var TurkishStemmer = function() {
                 }
                 base.cursor = base.limit - v_3;
             }
-            var /** number */ v_5 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_5 = base.limit - base.cursor;
             if (base.cursor <= base.limit_backward)
             {
                 return false;
@@ -370,13 +370,13 @@ var TurkishStemmer = function() {
     /** @return {boolean} */
     function r_mark_suffix_with_optional_s_consonant() {
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("s")))
                 {
                     break lab1;
                 }
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 if (!(base.in_grouping_b(g_vowel, 97, 305)))
                 {
                     break lab1;
@@ -386,9 +386,9 @@ var TurkishStemmer = function() {
             }
             base.cursor = base.limit - v_1;
             {
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    var /** number */ v_4 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                     if (!(base.eq_s_b("s")))
                     {
                         break lab2;
@@ -398,7 +398,7 @@ var TurkishStemmer = function() {
                 }
                 base.cursor = base.limit - v_3;
             }
-            var /** number */ v_5 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_5 = base.limit - base.cursor;
             if (base.cursor <= base.limit_backward)
             {
                 return false;
@@ -416,13 +416,13 @@ var TurkishStemmer = function() {
     /** @return {boolean} */
     function r_mark_suffix_with_optional_y_consonant() {
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("y")))
                 {
                     break lab1;
                 }
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 if (!(base.in_grouping_b(g_vowel, 97, 305)))
                 {
                     break lab1;
@@ -432,9 +432,9 @@ var TurkishStemmer = function() {
             }
             base.cursor = base.limit - v_1;
             {
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    var /** number */ v_4 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                     if (!(base.eq_s_b("y")))
                     {
                         break lab2;
@@ -444,7 +444,7 @@ var TurkishStemmer = function() {
                 }
                 base.cursor = base.limit - v_3;
             }
-            var /** number */ v_5 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_5 = base.limit - base.cursor;
             if (base.cursor <= base.limit_backward)
             {
                 return false;
@@ -462,13 +462,13 @@ var TurkishStemmer = function() {
     /** @return {boolean} */
     function r_mark_suffix_with_optional_U_vowel() {
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.in_grouping_b(g_U, 105, 305)))
                 {
                     break lab1;
                 }
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 if (!(base.out_grouping_b(g_vowel, 97, 305)))
                 {
                     break lab1;
@@ -478,9 +478,9 @@ var TurkishStemmer = function() {
             }
             base.cursor = base.limit - v_1;
             {
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    var /** number */ v_4 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                     if (!(base.in_grouping_b(g_U, 105, 305)))
                     {
                         break lab2;
@@ -490,7 +490,7 @@ var TurkishStemmer = function() {
                 }
                 base.cursor = base.limit - v_3;
             }
-            var /** number */ v_5 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_5 = base.limit - base.cursor;
             if (base.cursor <= base.limit_backward)
             {
                 return false;
@@ -885,10 +885,10 @@ var TurkishStemmer = function() {
         base.ket = base.cursor;
         B_continue_stemming_noun_suffixes = true;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 lab2: {
-                    var /** number */ v_2 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab3: {
                         if (!r_mark_ymUs_())
                         {
@@ -927,7 +927,7 @@ var TurkishStemmer = function() {
                     break lab6;
                 }
                 lab7: {
-                    var /** number */ v_3 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                     lab8: {
                         if (!r_mark_sUnUz())
                         {
@@ -986,11 +986,11 @@ var TurkishStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_4 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                 lab14: {
                     base.ket = base.cursor;
                     lab15: {
-                        var /** number */ v_5 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                         lab16: {
                             if (!r_mark_DUr())
                             {
@@ -1032,7 +1032,7 @@ var TurkishStemmer = function() {
                     break lab19;
                 }
                 lab20: {
-                    var /** number */ v_6 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                     lab21: {
                         if (!r_mark_yDU())
                         {
@@ -1051,7 +1051,7 @@ var TurkishStemmer = function() {
             base.cursor = base.limit - v_1;
             lab22: {
                 lab23: {
-                    var /** number */ v_7 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                     lab24: {
                         if (!r_mark_sUnUz())
                         {
@@ -1086,7 +1086,7 @@ var TurkishStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_8 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                 lab27: {
                     base.ket = base.cursor;
                     if (!r_mark_ymUs_())
@@ -1107,11 +1107,11 @@ var TurkishStemmer = function() {
             {
                 return false;
             }
-            var /** number */ v_9 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_9 = base.limit - base.cursor;
             lab28: {
                 base.ket = base.cursor;
                 lab29: {
-                    var /** number */ v_10 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_10 = base.limit - base.cursor;
                     lab30: {
                         if (!r_mark_sUnUz())
                         {
@@ -1176,7 +1176,7 @@ var TurkishStemmer = function() {
             return false;
         }
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!r_mark_DA())
                 {
@@ -1187,11 +1187,11 @@ var TurkishStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 lab2: {
                     base.ket = base.cursor;
                     lab3: {
-                        var /** number */ v_3 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                         lab4: {
                             if (!r_mark_lAr())
                             {
@@ -1202,7 +1202,7 @@ var TurkishStemmer = function() {
                             {
                                 return false;
                             }
-                            var /** number */ v_4 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                             lab5: {
                                 if (!r_stem_suffix_chain_before_ki())
                                 {
@@ -1223,7 +1223,7 @@ var TurkishStemmer = function() {
                         {
                             return false;
                         }
-                        var /** number */ v_5 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                         lab6: {
                             base.ket = base.cursor;
                             if (!r_mark_lAr())
@@ -1257,11 +1257,11 @@ var TurkishStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_6 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                 lab8: {
                     base.ket = base.cursor;
                     lab9: {
-                        var /** number */ v_7 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                         lab10: {
                             if (!r_mark_lArI())
                             {
@@ -1278,7 +1278,7 @@ var TurkishStemmer = function() {
                         lab11: {
                             base.ket = base.cursor;
                             lab12: {
-                                var /** number */ v_8 = base.limit - base.cursor;
+                                /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                                 lab13: {
                                     if (!r_mark_possessives())
                                     {
@@ -1297,7 +1297,7 @@ var TurkishStemmer = function() {
                             {
                                 return false;
                             }
-                            var /** number */ v_9 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_9 = base.limit - base.cursor;
                             lab14: {
                                 base.ket = base.cursor;
                                 if (!r_mark_lAr())
@@ -1334,7 +1334,7 @@ var TurkishStemmer = function() {
                 return false;
             }
             lab15: {
-                var /** number */ v_10 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_10 = base.limit - base.cursor;
                 lab16: {
                     if (!r_mark_lArI())
                     {
@@ -1358,7 +1358,7 @@ var TurkishStemmer = function() {
                     {
                         return false;
                     }
-                    var /** number */ v_11 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_11 = base.limit - base.cursor;
                     lab18: {
                         base.ket = base.cursor;
                         if (!r_mark_lAr())
@@ -1392,7 +1392,7 @@ var TurkishStemmer = function() {
     /** @return {boolean} */
     function r_stem_noun_suffixes() {
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 if (!r_mark_lAr())
@@ -1404,7 +1404,7 @@ var TurkishStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 lab2: {
                     if (!r_stem_suffix_chain_before_ki())
                     {
@@ -1426,10 +1426,10 @@ var TurkishStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab4: {
                     lab5: {
-                        var /** number */ v_4 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                         lab6: {
                             base.ket = base.cursor;
                             if (!r_mark_lArI())
@@ -1447,7 +1447,7 @@ var TurkishStemmer = function() {
                         lab7: {
                             base.ket = base.cursor;
                             lab8: {
-                                var /** number */ v_5 = base.limit - base.cursor;
+                                /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                                 lab9: {
                                     if (!r_mark_possessives())
                                     {
@@ -1466,7 +1466,7 @@ var TurkishStemmer = function() {
                             {
                                 return false;
                             }
-                            var /** number */ v_6 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                             lab10: {
                                 base.ket = base.cursor;
                                 if (!r_mark_lAr())
@@ -1512,7 +1512,7 @@ var TurkishStemmer = function() {
             lab11: {
                 base.ket = base.cursor;
                 lab12: {
-                    var /** number */ v_7 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                     lab13: {
                         if (!r_mark_ndA())
                         {
@@ -1527,7 +1527,7 @@ var TurkishStemmer = function() {
                     }
                 }
                 lab14: {
-                    var /** number */ v_8 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                     lab15: {
                         if (!r_mark_lArI())
                         {
@@ -1551,7 +1551,7 @@ var TurkishStemmer = function() {
                         {
                             return false;
                         }
-                        var /** number */ v_9 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
                         lab17: {
                             base.ket = base.cursor;
                             if (!r_mark_lAr())
@@ -1584,7 +1584,7 @@ var TurkishStemmer = function() {
             lab18: {
                 base.ket = base.cursor;
                 lab19: {
-                    var /** number */ v_10 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_10 = base.limit - base.cursor;
                     lab20: {
                         if (!r_mark_ndAn())
                         {
@@ -1599,7 +1599,7 @@ var TurkishStemmer = function() {
                     }
                 }
                 lab21: {
-                    var /** number */ v_11 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_11 = base.limit - base.cursor;
                     lab22: {
                         if (!r_mark_sU())
                         {
@@ -1610,7 +1610,7 @@ var TurkishStemmer = function() {
                         {
                             return false;
                         }
-                        var /** number */ v_12 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_12 = base.limit - base.cursor;
                         lab23: {
                             base.ket = base.cursor;
                             if (!r_mark_lAr())
@@ -1651,11 +1651,11 @@ var TurkishStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_13 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_13 = base.limit - base.cursor;
                 lab25: {
                     base.ket = base.cursor;
                     lab26: {
-                        var /** number */ v_14 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_14 = base.limit - base.cursor;
                         lab27: {
                             if (!r_mark_possessives())
                             {
@@ -1666,7 +1666,7 @@ var TurkishStemmer = function() {
                             {
                                 return false;
                             }
-                            var /** number */ v_15 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_15 = base.limit - base.cursor;
                             lab28: {
                                 base.ket = base.cursor;
                                 if (!r_mark_lAr())
@@ -1698,7 +1698,7 @@ var TurkishStemmer = function() {
                             {
                                 return false;
                             }
-                            var /** number */ v_16 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_16 = base.limit - base.cursor;
                             lab30: {
                                 if (!r_stem_suffix_chain_before_ki())
                                 {
@@ -1722,7 +1722,7 @@ var TurkishStemmer = function() {
             lab31: {
                 base.ket = base.cursor;
                 lab32: {
-                    var /** number */ v_17 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_17 = base.limit - base.cursor;
                     lab33: {
                         if (!r_mark_nUn())
                         {
@@ -1741,10 +1741,10 @@ var TurkishStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_18 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_18 = base.limit - base.cursor;
                 lab34: {
                     lab35: {
-                        var /** number */ v_19 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_19 = base.limit - base.cursor;
                         lab36: {
                             base.ket = base.cursor;
                             if (!r_mark_lAr())
@@ -1766,7 +1766,7 @@ var TurkishStemmer = function() {
                         lab37: {
                             base.ket = base.cursor;
                             lab38: {
-                                var /** number */ v_20 = base.limit - base.cursor;
+                                /** @const */ var /** number */ v_20 = base.limit - base.cursor;
                                 lab39: {
                                     if (!r_mark_possessives())
                                     {
@@ -1785,7 +1785,7 @@ var TurkishStemmer = function() {
                             {
                                 return false;
                             }
-                            var /** number */ v_21 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_21 = base.limit - base.cursor;
                             lab40: {
                                 base.ket = base.cursor;
                                 if (!r_mark_lAr())
@@ -1842,7 +1842,7 @@ var TurkishStemmer = function() {
             lab43: {
                 base.ket = base.cursor;
                 lab44: {
-                    var /** number */ v_22 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_22 = base.limit - base.cursor;
                     lab45: {
                         if (!r_mark_DA())
                         {
@@ -1869,11 +1869,11 @@ var TurkishStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_23 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_23 = base.limit - base.cursor;
                 lab47: {
                     base.ket = base.cursor;
                     lab48: {
-                        var /** number */ v_24 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_24 = base.limit - base.cursor;
                         lab49: {
                             if (!r_mark_possessives())
                             {
@@ -1884,7 +1884,7 @@ var TurkishStemmer = function() {
                             {
                                 return false;
                             }
-                            var /** number */ v_25 = base.limit - base.cursor;
+                            /** @const */ var /** number */ v_25 = base.limit - base.cursor;
                             lab50: {
                                 base.ket = base.cursor;
                                 if (!r_mark_lAr())
@@ -1919,7 +1919,7 @@ var TurkishStemmer = function() {
             base.cursor = base.limit - v_1;
             base.ket = base.cursor;
             lab51: {
-                var /** number */ v_26 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_26 = base.limit - base.cursor;
                 lab52: {
                     if (!r_mark_possessives())
                     {
@@ -1938,7 +1938,7 @@ var TurkishStemmer = function() {
             {
                 return false;
             }
-            var /** number */ v_27 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_27 = base.limit - base.cursor;
             lab53: {
                 base.ket = base.cursor;
                 if (!r_mark_lAr())
@@ -2005,7 +2005,7 @@ var TurkishStemmer = function() {
         base.ket = base.cursor;
         base.bra = base.cursor;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("d")))
                 {
@@ -2024,10 +2024,10 @@ var TurkishStemmer = function() {
             return false;
         }
         lab2: {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab3: {
                 lab4: {
-                    var /** number */ v_3 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                     lab5: {
                         if (!(base.eq_s_b("a")))
                         {
@@ -2050,7 +2050,7 @@ var TurkishStemmer = function() {
             base.cursor = base.limit - v_2;
             lab6: {
                 lab7: {
-                    var /** number */ v_4 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                     lab8: {
                         if (!(base.eq_s_b("e")))
                         {
@@ -2073,7 +2073,7 @@ var TurkishStemmer = function() {
             base.cursor = base.limit - v_2;
             lab9: {
                 lab10: {
-                    var /** number */ v_5 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                     lab11: {
                         if (!(base.eq_s_b("o")))
                         {
@@ -2095,7 +2095,7 @@ var TurkishStemmer = function() {
             }
             base.cursor = base.limit - v_2;
             lab12: {
-                var /** number */ v_6 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                 lab13: {
                     if (!(base.eq_s_b("\u00F6")))
                     {
@@ -2123,7 +2123,7 @@ var TurkishStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             if (!(base.eq_s_b("soy")))
             {
@@ -2140,15 +2140,23 @@ var TurkishStemmer = function() {
 
     /** @return {boolean} */
     function r_remove_proper_noun_suffix() {
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
+            base.bra = base.cursor;
             golab1: while(true)
             {
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 lab2: {
-                    if (!(base.eq_s("'")))
                     {
-                        break lab2;
+                        /** @const */ var /** number */ v_3 = base.cursor;
+                        lab3: {
+                            if (!(base.eq_s("'")))
+                            {
+                                break lab3;
+                            }
+                            break lab2;
+                        }
+                        base.cursor = v_3;
                     }
                     base.cursor = v_2;
                     break golab1;
@@ -2160,6 +2168,41 @@ var TurkishStemmer = function() {
                 }
                 base.cursor++;
             }
+            base.ket = base.cursor;
+            if (!base.slice_del())
+            {
+                return false;
+            }
+        }
+        base.cursor = v_1;
+        /** @const */ var /** number */ v_4 = base.cursor;
+        lab4: {
+            {
+                /** @const */ var /** number */ c1 = base.cursor + 2;
+                if (c1 > base.limit)
+                {
+                    break lab4;
+                }
+                base.cursor = c1;
+            }
+            golab5: while(true)
+            {
+                /** @const */ var /** number */ v_5 = base.cursor;
+                lab6: {
+                    if (!(base.eq_s("'")))
+                    {
+                        break lab6;
+                    }
+                    base.cursor = v_5;
+                    break golab5;
+                }
+                base.cursor = v_5;
+                if (base.cursor >= base.limit)
+                {
+                    break lab4;
+                }
+                base.cursor++;
+            }
             base.bra = base.cursor;
             base.cursor = base.limit;
             base.ket = base.cursor;
@@ -2168,13 +2211,13 @@ var TurkishStemmer = function() {
                 return false;
             }
         }
-        base.cursor = v_1;
+        base.cursor = v_4;
         return true;
     };
 
     /** @return {boolean} */
     function r_more_than_one_syllable_word() {
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         for (var /** number */ v_2 = 2; v_2 > 0; v_2--)
         {
             if (!base.go_out_grouping(g_vowel, 97, 305))
@@ -2191,7 +2234,7 @@ var TurkishStemmer = function() {
     function r_postlude() {
         base.limit_backward = base.cursor; base.cursor = base.limit;
         {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 if (!r_is_reserved_word())
                 {
@@ -2201,10 +2244,10 @@ var TurkishStemmer = function() {
             }
             base.cursor = base.limit - v_1;
         }
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         r_append_U_to_stems_ending_with_d_or_g();
         base.cursor = base.limit - v_2;
-        var /** number */ v_3 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
         r_post_process_last_consonants();
         base.cursor = base.limit - v_3;
         base.cursor = base.limit_backward;
@@ -2218,14 +2261,14 @@ var TurkishStemmer = function() {
             return false;
         }
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         r_stem_nominal_verb_suffixes();
         base.cursor = base.limit - v_1;
         if (!B_continue_stemming_noun_suffixes)
         {
             return false;
         }
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         r_stem_noun_suffixes();
         base.cursor = base.limit - v_2;
         base.cursor = base.limit_backward;

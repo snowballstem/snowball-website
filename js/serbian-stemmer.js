@@ -2252,15 +2252,15 @@ var SerbianStemmer = function() {
     /** @return {boolean} */
     function r_cyr_to_lat() {
         var /** number */ among_var;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             while(true)
             {
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
                     {
-                        var /** number */ v_3 = base.cursor;
+                        /** @const */ var /** number */ v_3 = base.cursor;
                         lab3: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_0);
@@ -2473,15 +2473,15 @@ var SerbianStemmer = function() {
 
     /** @return {boolean} */
     function r_prelude() {
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             while(true)
             {
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
                     {
-                        var /** number */ v_3 = base.cursor;
+                        /** @const */ var /** number */ v_3 = base.cursor;
                         lab3: {
                             if (!(base.in_grouping(g_ca, 98, 382)))
                             {
@@ -2518,15 +2518,15 @@ var SerbianStemmer = function() {
             }
         }
         base.cursor = v_1;
-        var /** number */ v_4 = base.cursor;
+        /** @const */ var /** number */ v_4 = base.cursor;
         lab4: {
             while(true)
             {
-                var /** number */ v_5 = base.cursor;
+                /** @const */ var /** number */ v_5 = base.cursor;
                 lab5: {
                     golab6: while(true)
                     {
-                        var /** number */ v_6 = base.cursor;
+                        /** @const */ var /** number */ v_6 = base.cursor;
                         lab7: {
                             if (!(base.in_grouping(g_ca, 98, 382)))
                             {
@@ -2563,15 +2563,15 @@ var SerbianStemmer = function() {
             }
         }
         base.cursor = v_4;
-        var /** number */ v_7 = base.cursor;
+        /** @const */ var /** number */ v_7 = base.cursor;
         lab8: {
             while(true)
             {
-                var /** number */ v_8 = base.cursor;
+                /** @const */ var /** number */ v_8 = base.cursor;
                 lab9: {
                     golab10: while(true)
                     {
-                        var /** number */ v_9 = base.cursor;
+                        /** @const */ var /** number */ v_9 = base.cursor;
                         lab11: {
                             base.bra = base.cursor;
                             if (!(base.eq_s("dj")))
@@ -2606,7 +2606,7 @@ var SerbianStemmer = function() {
     /** @return {boolean} */
     function r_mark_regions() {
         B_no_diacritics = true;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             if (!base.go_out_grouping(g_sa, 263, 382))
             {
@@ -2617,7 +2617,7 @@ var SerbianStemmer = function() {
         }
         base.cursor = v_1;
         I_p1 = base.limit;
-        var /** number */ v_2 = base.cursor;
+        /** @const */ var /** number */ v_2 = base.cursor;
         lab1: {
             if (!base.go_out_grouping(g_v, 97, 117))
             {
@@ -2637,7 +2637,7 @@ var SerbianStemmer = function() {
             I_p1 = base.cursor;
         }
         base.cursor = v_2;
-        var /** number */ v_3 = base.cursor;
+        /** @const */ var /** number */ v_3 = base.cursor;
         lab2: {
             golab3: while(true)
             {
@@ -2655,7 +2655,7 @@ var SerbianStemmer = function() {
                 base.cursor++;
             }
             lab5: {
-                var /** number */ v_4 = base.cursor;
+                /** @const */ var /** number */ v_4 = base.cursor;
                 lab6: {
                     if (base.cursor < 2)
                     {
@@ -4481,13 +4481,13 @@ var SerbianStemmer = function() {
         r_prelude();
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         r_Step_1();
         base.cursor = base.limit - v_1;
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!r_Step_2())
                     {

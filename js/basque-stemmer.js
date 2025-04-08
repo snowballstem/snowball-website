@@ -448,17 +448,17 @@ var BasqueStemmer = function() {
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 lab2: {
                     if (!(base.in_grouping(g_v, 97, 117)))
                     {
                         break lab2;
                     }
                     lab3: {
-                        var /** number */ v_3 = base.cursor;
+                        /** @const */ var /** number */ v_3 = base.cursor;
                         lab4: {
                             if (!(base.out_grouping(g_v, 97, 117)))
                             {
@@ -490,7 +490,7 @@ var BasqueStemmer = function() {
                     break lab0;
                 }
                 lab5: {
-                    var /** number */ v_4 = base.cursor;
+                    /** @const */ var /** number */ v_4 = base.cursor;
                     lab6: {
                         if (!(base.out_grouping(g_v, 97, 117)))
                         {
@@ -518,7 +518,7 @@ var BasqueStemmer = function() {
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        var /** number */ v_5 = base.cursor;
+        /** @const */ var /** number */ v_5 = base.cursor;
         lab7: {
             if (!base.go_out_grouping(g_v, 97, 117))
             {
@@ -738,7 +738,7 @@ var BasqueStemmer = function() {
         base.limit_backward = base.cursor; base.cursor = base.limit;
         while(true)
         {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 if (!r_aditzak())
                 {
@@ -751,7 +751,7 @@ var BasqueStemmer = function() {
         }
         while(true)
         {
-            var /** number */ v_2 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab1: {
                 if (!r_izenak())
                 {
@@ -762,7 +762,7 @@ var BasqueStemmer = function() {
             base.cursor = base.limit - v_2;
             break;
         }
-        var /** number */ v_3 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
         r_adjetiboak();
         base.cursor = base.limit - v_3;
         base.cursor = base.limit_backward;

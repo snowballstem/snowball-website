@@ -586,7 +586,7 @@ var CatalanStemmer = function() {
     function r_mark_regions() {
         I_p1 = base.limit;
         I_p2 = base.limit;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             if (!base.go_out_grouping(g_v, 97, 252))
             {
@@ -620,7 +620,7 @@ var CatalanStemmer = function() {
         var /** number */ among_var;
         while(true)
         {
-            var /** number */ v_1 = base.cursor;
+            /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_0);
@@ -845,13 +845,13 @@ var CatalanStemmer = function() {
     this.stem = /** @return {boolean} */ function() {
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         r_attached_pronoun();
         base.cursor = base.limit - v_1;
-        var /** number */ v_2 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                var /** number */ v_3 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!r_standard_suffix())
                     {
@@ -867,11 +867,11 @@ var CatalanStemmer = function() {
             }
         }
         base.cursor = base.limit - v_2;
-        var /** number */ v_4 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
         r_residual_suffix();
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;
-        var /** number */ v_5 = base.cursor;
+        /** @const */ var /** number */ v_5 = base.cursor;
         r_cleaning();
         base.cursor = v_5;
         return true;

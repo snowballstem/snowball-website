@@ -179,7 +179,7 @@ var PorterStemmer = function() {
                 }
                 break;
             case 2:
-                var /** number */ v_1 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                 if (!base.go_out_grouping_b(g_v, 97, 121))
                 {
                     return false;
@@ -190,13 +190,13 @@ var PorterStemmer = function() {
                 {
                     return false;
                 }
-                var /** number */ v_2 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 among_var = base.find_among_b(a_1);
                 base.cursor = base.limit - v_2;
                 switch (among_var) {
                     case 1:
                         {
-                            var /** number */ c1 = base.cursor;
+                            /** @const */ var /** number */ c1 = base.cursor;
                             base.insert(base.cursor, base.cursor, "e");
                             base.cursor = c1;
                         }
@@ -219,14 +219,14 @@ var PorterStemmer = function() {
                         {
                             return false;
                         }
-                        var /** number */ v_3 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                         if (!r_shortv())
                         {
                             return false;
                         }
                         base.cursor = base.limit - v_3;
                         {
-                            var /** number */ c2 = base.cursor;
+                            /** @const */ var /** number */ c2 = base.cursor;
                             base.insert(base.cursor, base.cursor, "e");
                             base.cursor = c2;
                         }
@@ -241,7 +241,7 @@ var PorterStemmer = function() {
     function r_Step_1c() {
         base.ket = base.cursor;
         lab0: {
-            var /** number */ v_1 = base.limit - base.cursor;
+            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("y")))
                 {
@@ -425,7 +425,7 @@ var PorterStemmer = function() {
                 break;
             case 2:
                 lab0: {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("s")))
                         {
@@ -469,7 +469,7 @@ var PorterStemmer = function() {
                 return false;
             }
             {
-                var /** number */ v_1 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                 lab2: {
                     if (!r_shortv())
                     {
@@ -512,7 +512,7 @@ var PorterStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         B_Y_found = false;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             base.bra = base.cursor;
             if (!(base.eq_s("y")))
@@ -527,15 +527,15 @@ var PorterStemmer = function() {
             B_Y_found = true;
         }
         base.cursor = v_1;
-        var /** number */ v_2 = base.cursor;
+        /** @const */ var /** number */ v_2 = base.cursor;
         lab1: {
             while(true)
             {
-                var /** number */ v_3 = base.cursor;
+                /** @const */ var /** number */ v_3 = base.cursor;
                 lab2: {
                     golab3: while(true)
                     {
-                        var /** number */ v_4 = base.cursor;
+                        /** @const */ var /** number */ v_4 = base.cursor;
                         lab4: {
                             if (!(base.in_grouping(g_v, 97, 121)))
                             {
@@ -571,7 +571,7 @@ var PorterStemmer = function() {
         base.cursor = v_2;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        var /** number */ v_5 = base.cursor;
+        /** @const */ var /** number */ v_5 = base.cursor;
         lab5: {
             if (!base.go_out_grouping(g_v, 97, 121))
             {
@@ -598,32 +598,32 @@ var PorterStemmer = function() {
         }
         base.cursor = v_5;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        var /** number */ v_6 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
         r_Step_1a();
         base.cursor = base.limit - v_6;
-        var /** number */ v_7 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
         r_Step_1b();
         base.cursor = base.limit - v_7;
-        var /** number */ v_8 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
         r_Step_1c();
         base.cursor = base.limit - v_8;
-        var /** number */ v_9 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
         r_Step_2();
         base.cursor = base.limit - v_9;
-        var /** number */ v_10 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
         r_Step_3();
         base.cursor = base.limit - v_10;
-        var /** number */ v_11 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_11 = base.limit - base.cursor;
         r_Step_4();
         base.cursor = base.limit - v_11;
-        var /** number */ v_12 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_12 = base.limit - base.cursor;
         r_Step_5a();
         base.cursor = base.limit - v_12;
-        var /** number */ v_13 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_13 = base.limit - base.cursor;
         r_Step_5b();
         base.cursor = base.limit - v_13;
         base.cursor = base.limit_backward;
-        var /** number */ v_14 = base.cursor;
+        /** @const */ var /** number */ v_14 = base.cursor;
         lab6: {
             if (!B_Y_found)
             {
@@ -631,11 +631,11 @@ var PorterStemmer = function() {
             }
             while(true)
             {
-                var /** number */ v_15 = base.cursor;
+                /** @const */ var /** number */ v_15 = base.cursor;
                 lab7: {
                     golab8: while(true)
                     {
-                        var /** number */ v_16 = base.cursor;
+                        /** @const */ var /** number */ v_16 = base.cursor;
                         lab9: {
                             base.bra = base.cursor;
                             if (!(base.eq_s("Y")))

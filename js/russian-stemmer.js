@@ -171,7 +171,7 @@ var RussianStemmer = function() {
     function r_mark_regions() {
         I_pV = base.limit;
         I_p2 = base.limit;
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             if (!base.go_out_grouping(g_v, 1072, 1103))
             {
@@ -218,7 +218,7 @@ var RussianStemmer = function() {
         switch (among_var) {
             case 1:
                 lab0: {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("\u0430")))
                         {
@@ -269,7 +269,7 @@ var RussianStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_1 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             among_var = base.find_among_b(a_2);
@@ -282,7 +282,7 @@ var RussianStemmer = function() {
             switch (among_var) {
                 case 1:
                     lab1: {
-                        var /** number */ v_2 = base.limit - base.cursor;
+                        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                         lab2: {
                             if (!(base.eq_s_b("\u0430")))
                             {
@@ -341,7 +341,7 @@ var RussianStemmer = function() {
         switch (among_var) {
             case 1:
                 lab0: {
-                    var /** number */ v_1 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("\u0430")))
                         {
@@ -456,15 +456,15 @@ var RussianStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        var /** number */ v_1 = base.cursor;
+        /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             while(true)
             {
-                var /** number */ v_2 = base.cursor;
+                /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
                     {
-                        var /** number */ v_3 = base.cursor;
+                        /** @const */ var /** number */ v_3 = base.cursor;
                         lab3: {
                             base.bra = base.cursor;
                             if (!(base.eq_s("\u0451")))
@@ -499,12 +499,12 @@ var RussianStemmer = function() {
         {
             return false;
         }
-        var /** number */ v_4 = base.limit_backward;
+        /** @const */ var /** number */ v_4 = base.limit_backward;
         base.limit_backward = I_pV;
-        var /** number */ v_5 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
         lab4: {
             lab5: {
-                var /** number */ v_6 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                 lab6: {
                     if (!r_perfective_gerund())
                     {
@@ -513,7 +513,7 @@ var RussianStemmer = function() {
                     break lab5;
                 }
                 base.cursor = base.limit - v_6;
-                var /** number */ v_7 = base.limit - base.cursor;
+                /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                 lab7: {
                     if (!r_reflexive())
                     {
@@ -522,7 +522,7 @@ var RussianStemmer = function() {
                     }
                 }
                 lab8: {
-                    var /** number */ v_8 = base.limit - base.cursor;
+                    /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                     lab9: {
                         if (!r_adjectival())
                         {
@@ -547,7 +547,7 @@ var RussianStemmer = function() {
             }
         }
         base.cursor = base.limit - v_5;
-        var /** number */ v_9 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
         lab11: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u0438")))
@@ -561,10 +561,10 @@ var RussianStemmer = function() {
                 return false;
             }
         }
-        var /** number */ v_10 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
         r_derivational();
         base.cursor = base.limit - v_10;
-        var /** number */ v_11 = base.limit - base.cursor;
+        /** @const */ var /** number */ v_11 = base.limit - base.cursor;
         r_tidy_up();
         base.cursor = base.limit - v_11;
         base.limit_backward = v_4;
