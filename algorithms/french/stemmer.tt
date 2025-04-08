@@ -19,9 +19,8 @@ are quite common, and will appear regularly throughout a stemmed vocabulary.
 
 <p>
 The rule to replace <b><i>-oux</i></b> with <b><i>-ou</i></b> will produce linguistically
-incorrect stems by removing <b><i>x</i></b> from <b><i>courroux</i></b>,
-<b><i>époux</i></b> and <b><i>jaloux</i></b>, but this is harmless as no
-unwanted conflation results.
+incorrect stems by removing <b><i>x</i></b> from <b><i>époux</i></b> and
+<b><i>jaloux</i></b>, but this is harmless as no unwanted conflation results.
 </p>
 
 <h2>The stemming algorithm</h2>
@@ -178,8 +177,8 @@ Step 1: Standard suffix removal
         <DD>replace with <B><I>al</I></B> if in <I>R</I>1
     <DT><B><I>oux</I></B>
         <DD>replace with <B><I>ou</I></B> if preceded by one of
-            <b><i>b</i></b> &nbsp; <b><i>h</i></b> &nbsp; <b><i>j</i></b> &nbsp; <b><i>l</i></b> &nbsp;
-            <b><i>n</i></b> &nbsp; <b><i>p</i></b> &nbsp; <b><i>r</i></b>
+            <b><i>b</i></b> &nbsp; <b><i>h</i></b> &nbsp; <b><i>j</i></b> &nbsp;
+            <b><i>l</i></b> &nbsp; <b><i>n</i></b> &nbsp; <b><i>p</i></b>
     <DT><B><I>euse  &nbsp;  euses</I></B>
         <DD>delete if in <I>R</I>2, else replace by <B><I>eux</I></B> if in <I>R</I>1
     <DT><B><I>issement  &nbsp;  issements</I></B>
