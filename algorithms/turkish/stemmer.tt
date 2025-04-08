@@ -41,19 +41,23 @@ Conference
 </DL>
 
 <p>
-In addition to the steps described in the paper, as a first step we:
+Since Snowball 2.3.0, we do the following as an additional step before the
+steps described in the paper:
 </p>
 <ul>
-<li>Remove any apostrophe's from the start of the input (e.g. from tokenisation
+<li>Remove any apostrophes from the start of the input (e.g. from tokenisation
 of single quoted text).
 <li>If the input still contains an apostrophe we truncate it at the first
-apostrophe, which aims to remove proper noun suffixes.
+apostrophe which is at least two characters from the start of the input.  (This aims to remove proper noun suffixes without adversely affecting foreign names or words, such as <i>o'connor</i>, <i>l'entrée</i>).
 </ul>
 <p>
-For example, <i>Türkiye'dir</i> ("it is
-Turkey") is truncate to <i>Türkiye</i> ("Turkey") which is then stemmed as
-it would be without the proper noun suffix.  (This step was added in Snowball
-2.3.0.)
+For example, <i>Türkiye'dir</i> ("it is Turkey") is truncated to <i>Türkiye</i>
+("Turkey") which is then stemmed as it would be without the proper noun suffix.
+While it might seem that we should stop having removed suffixes to leave a
+proper noun, if we didn't continue to stem then a proper noun with suffixes
+could give a different stem to the same proper noun without suffixes (for
+example, <i>Türkiye</i> gets stemmed to <i>türki</i> so <i>Türkiye'dir</i>
+should too).
 </p>
 
 <h2>The algorithm in Snowball</h2>
