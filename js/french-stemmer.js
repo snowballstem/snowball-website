@@ -43,7 +43,7 @@ var FrenchStemmer = function() {
         ["logie", -1, 3],
         ["able", -1, 1],
         ["isme", -1, 1],
-        ["euse", -1, 11],
+        ["euse", -1, 12],
         ["iste", -1, 1],
         ["ive", -1, 8],
         ["if", -1, 8],
@@ -58,7 +58,7 @@ var FrenchStemmer = function() {
         ["logies", -1, 3],
         ["ables", -1, 1],
         ["ismes", -1, 1],
-        ["euses", -1, 11],
+        ["euses", -1, 12],
         ["istes", -1, 1],
         ["ives", -1, 8],
         ["ifs", -1, 8],
@@ -66,18 +66,19 @@ var FrenchStemmer = function() {
         ["ations", -1, 2],
         ["utions", -1, 4],
         ["ateurs", -1, 2],
-        ["ments", -1, 15],
+        ["ments", -1, 16],
         ["ements", 30, 6],
-        ["issements", 31, 12],
+        ["issements", 31, 13],
         ["it\u00E9s", -1, 7],
-        ["ment", -1, 15],
+        ["ment", -1, 16],
         ["ement", 34, 6],
-        ["issement", 35, 12],
-        ["amment", 34, 13],
-        ["emment", 34, 14],
+        ["issement", 35, 13],
+        ["amment", 34, 14],
+        ["emment", 34, 15],
         ["aux", -1, 10],
         ["eaux", 39, 9],
         ["eux", -1, 1],
+        ["oux", -1, 11],
         ["it\u00E9", -1, 7]
     ];
 
@@ -178,6 +179,8 @@ var FrenchStemmer = function() {
     ];
 
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 130, 103, 8, 5];
+
+    /** @const */ var /** Array<int> */ g_oux_ending = [65, 85, 1];
 
     /** @const */ var /** Array<int> */ g_elision_char = [131, 14, 3];
 
@@ -862,6 +865,16 @@ var FrenchStemmer = function() {
                 }
                 break;
             case 11:
+                if (!(base.in_grouping_b(g_oux_ending, 98, 114)))
+                {
+                    return false;
+                }
+                if (!base.slice_from("ou"))
+                {
+                    return false;
+                }
+                break;
+            case 12:
                 lab14: {
                     /** @const */ var /** number */ v_10 = base.limit - base.cursor;
                     lab15: {
@@ -886,7 +899,7 @@ var FrenchStemmer = function() {
                     }
                 }
                 break;
-            case 12:
+            case 13:
                 if (!r_R1())
                 {
                     return false;
@@ -900,7 +913,7 @@ var FrenchStemmer = function() {
                     return false;
                 }
                 break;
-            case 13:
+            case 14:
                 if (!r_RV())
                 {
                     return false;
@@ -910,7 +923,7 @@ var FrenchStemmer = function() {
                     return false;
                 }
                 return false;
-            case 14:
+            case 15:
                 if (!r_RV())
                 {
                     return false;
@@ -920,7 +933,7 @@ var FrenchStemmer = function() {
                     return false;
                 }
                 return false;
-            case 15:
+            case 16:
                 /** @const */ var /** number */ v_11 = base.limit - base.cursor;
                 if (!(base.in_grouping_b(g_v, 97, 251)))
                 {
