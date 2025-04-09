@@ -254,8 +254,8 @@ maladroit<BR>
 <h2>Design Notes</h2>
 
 <p>
-In French the verb endings <B><I>ent</I></B> and <B><I>ons</I></B> cannot be removed without
-unacceptable overstemming. The <B><I>ons</I></B> form is rarer, but <B><I>ent</I></B> forms
+In French the verb endings <B><I>-ent</I></B> and <B><I>-ons</I></B> cannot be removed without
+unacceptable overstemming. The <B><I>-ons</I></B> form is rarer, but <B><I>-ent</I></B> forms
 are quite common, and will appear regularly throughout a stemmed vocabulary.
 </p>
 
@@ -263,6 +263,24 @@ are quite common, and will appear regularly throughout a stemmed vocabulary.
 The rule to replace <b><i>-oux</i></b> with <b><i>-ou</i></b> will produce linguistically
 incorrect stems by removing <b><i>x</i></b> from <b><i>époux</i></b> and
 <b><i>jaloux</i></b>, but this is harmless as no unwanted conflation results.
+</p>
+
+<p>
+The rule to replace <b><i>-aux</i></b> with <b><i>-al</i></b> stems
+<b><i>travaux</i></b> to <b><i>traval</i></b> and <b><i>vitraux</i></b> to
+<b><i>vitral</i></b> wheras <b><i>-ail</i></b> would be lingusitically correct;
+similarly <b><i>esquimaux</i></b>, <b><i>noyaux</i></b> and
+<b><i>tuyaux</i></b> where <b><i>-au</i></b> would be more correct. None of
+these seem to result in unwanted conflation though.
+</p>
+
+<p>
+The suffix <b><i>-eux</i></b> is removed if in R2.  For a few short words
+(<b><i>cheveux</i></b>, <b><i>jeux</i></b>, <b><i>lieux</i></b> and
+<b><i>neveux</i></b>) removing <b><i>-x</i></b> would conflate a plural
+form with its singular, but the complexity of the rule needed to avoid
+adversely affecting other short words ending <b><i>-eux</i></b> does not
+seem justified for just four cases of understemming.
 </p>
 
 <h2>The stemming algorithm</h2>
@@ -333,9 +351,9 @@ which is true (the examples show <i>RV</i> underlined):
 <li>The word starts <b><i>par</i></b></li> - e.g. <i>par<u>ie</u></i>
 <li>The word starts <b><i>col</i></b></li> - e.g. <i>col<u>is</u></i>
 <li>The word starts <b><i>tap</i></b></li> - e.g. <i>tap<u>is</u></i>
-<li>The word starts <b><i>ni</i></b> followed by any vowel</li> - e.g. <i>niais<u>es</u></i>
-<li>The first vowel not at the beginning of the word</li> - e.g. <i>ador<u>er</u></i>, <i>vol</u>er</u></i>
-<li>The end of the word - e.g. <i>arcs</i></li>
+<li>The word starts <b><i>ni</i></b> followed by any vowel</li> - e.g. <i>nia<u>ises</u></i>
+<li>The first vowel not at the beginning of the word</li> - e.g. <i>ador<u>er</u></i>, <i>vol<u>er</u></i>
+<li>The end of the word - e.g. <i>arcs</i> (RV is an empty region at the end of the word)</li>
 </ol>
 
 <p>
@@ -757,8 +775,8 @@ And finally:
 <span class="w">        </span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">i_verb_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">pV</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">i_verb_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">pV</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
 <span class="w">            </span><span class="s1">&#39;</span><span class="se">{i^}</span><span class="s1">mes&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i^}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i^}</span><span class="s1">tes&#39;</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="s1">&#39;ie&#39;</span><span class="w"> </span><span class="s1">&#39;ies&#39;</span><span class="w"> </span><span class="s1">&#39;ir&#39;</span><span class="w"> </span><span class="s1">&#39;ira&#39;</span><span class="w"> </span><span class="s1">&#39;irai&#39;</span>
 <span class="w">            </span><span class="s1">&#39;iraIent&#39;</span><span class="w"> </span><span class="s1">&#39;irais&#39;</span><span class="w"> </span><span class="s1">&#39;irait&#39;</span><span class="w"> </span><span class="s1">&#39;iras&#39;</span><span class="w"> </span><span class="s1">&#39;irent&#39;</span><span class="w"> </span><span class="s1">&#39;irez&#39;</span><span class="w"> </span><span class="s1">&#39;iriez&#39;</span>
 <span class="w">            </span><span class="s1">&#39;irions&#39;</span><span class="w"> </span><span class="s1">&#39;irons&#39;</span><span class="w"> </span><span class="s1">&#39;iront&#39;</span><span class="w"> </span><span class="s1">&#39;is&#39;</span><span class="w"> </span><span class="s1">&#39;issaIent&#39;</span><span class="w"> </span><span class="s1">&#39;issais&#39;</span><span class="w"> </span><span class="s1">&#39;issait&#39;</span>
