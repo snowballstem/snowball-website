@@ -76,6 +76,8 @@ define mark_regions as (
             'par'  // paris, parie, pari
             'col'  // colis
             'tap'  // tapis
+                ()
+            'ni' (v) // niais/nierais/nié/niâmes/nièrent
             // extensions possible here
         )
         or
@@ -207,9 +209,7 @@ backwardmode (
             '{a^}mes' '{a^}t' '{a^}tes' 'a' 'ai' 'aIent' 'ais' 'ait' 'ant'
             'ante' 'antes' 'ants' 'as' 'asse' 'assent' 'asses' 'assiez'
             'assions'
-                (delete
-                 try(['e'] delete)
-                )
+                ( try('e']) delete )
         )
     )
 

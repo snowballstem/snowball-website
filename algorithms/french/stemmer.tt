@@ -83,20 +83,26 @@ match suffixes beginning in <B><I>e</I></B> or <B><I>i</I></B>.
 </p>
 
 <p>
-If the word begins with two vowels, <I>RV</I> is the region after the third
-letter, otherwise the region after the first vowel not at the beginning of
-the word, or the end of the word if these positions cannot be found. (Exceptionally,
-<B><I>par</I></B>, <B><I>col</I></B> or <B><I>tap</I></B>, at the beginning of a word is also taken to define
-<I>RV</I> as the region to their right.)
+<I>RV</I> is defined as the region to the right of the first of these
+which is true:
 </p>
+<ol>
+<li>The word starts with two vowels followed by another letter</li>
+<li>The word starts <b><i>par</i></b></li>
+<li>The word starts <b><i>col</i></b></li>
+<li>The word starts <b><i>tap</i></b></li>
+<li>The word starts <b><i>ni</i></b> followed by any vowel</li>
+<li>The first vowel not at the beginning of the word</li>
+<li>The end of the word</li>
+</ol>
 
 <p>
 For example,
 </p>
 
 <PRE>
-    a i m e r     a d o r e r     v o l e r    t a p i s
-         |...|         |.....|       |.....|        |...|
+    a i m e r    t a p i s    n i a i s e s    a d o r e r    v o l e r    a r c s
+         |...|        |...|        |.......|        |.....|      |.....|          ||
 </PRE>
 
 <p>
@@ -335,6 +341,7 @@ And finally:
 (done by replacing <B><I>ë</I></B> and <B><I>ï</I></B> with <B><I>He</I></B> and <B><I>Hi</I></B>, during stemming then undoing afterwards).</li>
 <li>Snowball 2.3.0: Added a new first step which removes elisions.</li>
 <li>Snowball 2.3.0: Added rule to replace <b><i>-oux</i></b> with <b><i>-ou</i></b>.</li>
+<li>Snowball 2.3.0: Added RV exception for <b><i>ni</i></b> followed by a vowel.</li>
 </ul>
 
 <h2>The same algorithm in Snowball</h2>

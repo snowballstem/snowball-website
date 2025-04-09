@@ -6,6 +6,7 @@ var FrenchStemmer = function() {
 
     /** @const */ var a_0 = [
         ["col", -1, -1],
+        ["ni", -1, 1],
         ["par", -1, -1],
         ["tap", -1, -1]
     ];
@@ -376,6 +377,7 @@ var FrenchStemmer = function() {
 
     /** @return {boolean} */
     function r_mark_regions() {
+        var /** number */ among_var;
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
@@ -401,9 +403,18 @@ var FrenchStemmer = function() {
                 }
                 base.cursor = v_2;
                 lab3: {
-                    if (base.find_among(a_0) == 0)
+                    among_var = base.find_among(a_0);
+                    if (among_var == 0)
                     {
                         break lab3;
+                    }
+                    switch (among_var) {
+                        case 1:
+                            if (!(base.in_grouping(g_v, 97, 251)))
+                            {
+                                break lab3;
+                            }
+                            break;
                     }
                     break lab1;
                 }
@@ -1029,23 +1040,18 @@ var FrenchStemmer = function() {
                 }
                 break;
             case 3:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
                 /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 lab0: {
-                    base.ket = base.cursor;
                     if (!(base.eq_s_b("e")))
                     {
                         base.cursor = base.limit - v_2;
                         break lab0;
                     }
                     base.bra = base.cursor;
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                }
+                if (!base.slice_del())
+                {
+                    return false;
                 }
                 break;
         }
