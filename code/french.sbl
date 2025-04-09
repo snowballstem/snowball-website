@@ -73,9 +73,9 @@ define mark_regions as (
         ( v v next )
         or
         among ( // this exception list begun Nov 2006
-            'par'  // paris, parie, pari
-            'col'  // colis
-            'tap'  // tapis
+            'par'    // paris, parie, pari
+            'col'    // colis
+            'tap'    // tapis
                 ()
             'ni' (v) // niais/nierais/nié/niâmes/nièrent
             // extensions possible here
@@ -182,8 +182,8 @@ backwardmode (
         )
     )
 
-    define i_verb_suffix as setlimit tomark pV for (
-        [substring] among (
+    define i_verb_suffix as ( setlimit tomark pV for (
+        [substring]) among (
             '{i^}mes' '{i^}t' '{i^}tes' 'i' 'ie' 'ies' 'ir' 'ira' 'irai'
             'iraIent' 'irais' 'irait' 'iras' 'irent' 'irez' 'iriez'
             'irions' 'irons' 'iront' 'is' 'issaIent' 'issais' 'issait'
@@ -193,8 +193,9 @@ backwardmode (
         )
     )
 
-    define verb_suffix as setlimit tomark pV for (
-        [substring] among (
+    define verb_suffix as (
+        setlimit tomark pV for ([substring])
+        among (
             'ions'
                 (R2 delete)
 
@@ -206,10 +207,22 @@ backwardmode (
 
                 (delete)
 
-            '{a^}mes' '{a^}t' '{a^}tes' 'a' 'ai' 'aIent' 'ais' 'ait' 'ant'
+            '{a^}mes' '{a^}t' '{a^}tes' 'a' 'ai' 'aIent' 'ait' 'ant'
             'ante' 'antes' 'ants' 'as' 'asse' 'assent' 'asses' 'assiez'
             'assions'
-                ( try('e']) delete )
+                ( try('e' RV]) delete )
+
+            'ais' 'aise' 'aises'
+                ( not among (
+                      'al'     // balais, calais, galais, malais, palais, valais
+                          (next atlimit)
+                      'auv'    // mauvais
+                      '{e'}pl' // déplais
+                          ()
+                  )
+                  delete )
+            'eais'
+                (delete)
         )
     )
 
