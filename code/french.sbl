@@ -182,8 +182,8 @@ backwardmode (
         )
     )
 
-    define i_verb_suffix as ( setlimit tomark pV for (
-        [substring]) among (
+    define i_verb_suffix as setlimit tomark pV for (
+        [substring] among (
             '{i^}mes' '{i^}t' '{i^}tes' 'i' 'ie' 'ies' 'ir' 'ira' 'irai'
             'iraIent' 'irais' 'irait' 'iras' 'irent' 'irez' 'iriez'
             'irions' 'irons' 'iront' 'is' 'issaIent' 'issais' 'issait'

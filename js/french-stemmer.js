@@ -988,7 +988,6 @@ var FrenchStemmer = function() {
             return false;
         }
         base.bra = base.cursor;
-        base.limit_backward = v_1;
         {
             /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab0: {
@@ -996,18 +995,21 @@ var FrenchStemmer = function() {
                 {
                     break lab0;
                 }
+                base.limit_backward = v_1;
                 return false;
             }
             base.cursor = base.limit - v_2;
         }
         if (!(base.out_grouping_b(g_v, 97, 251)))
         {
+            base.limit_backward = v_1;
             return false;
         }
         if (!base.slice_del())
         {
             return false;
         }
+        base.limit_backward = v_1;
         return true;
     };
 

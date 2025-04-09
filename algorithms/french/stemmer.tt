@@ -12,8 +12,8 @@
 <h2>Design Notes</h2>
 
 <p>
-In French the verb endings <B><I>ent</I></B> and <B><I>ons</I></B> cannot be removed without
-unacceptable overstemming. The <B><I>ons</I></B> form is rarer, but <B><I>ent</I></B> forms
+In French the verb endings <B><I>-ent</I></B> and <B><I>-ons</I></B> cannot be removed without
+unacceptable overstemming. The <B><I>-ons</I></B> form is rarer, but <B><I>-ent</I></B> forms
 are quite common, and will appear regularly throughout a stemmed vocabulary.
 </p>
 
@@ -21,6 +21,24 @@ are quite common, and will appear regularly throughout a stemmed vocabulary.
 The rule to replace <b><i>-oux</i></b> with <b><i>-ou</i></b> will produce linguistically
 incorrect stems by removing <b><i>x</i></b> from <b><i>époux</i></b> and
 <b><i>jaloux</i></b>, but this is harmless as no unwanted conflation results.
+</p>
+
+<p>
+The rule to replace <b><i>-aux</i></b> with <b><i>-al</i></b> stems
+<b><i>travaux</i></b> to <b><i>traval</i></b> and <b><i>vitraux</i></b> to
+<b><i>vitral</i></b> wheras <b><i>-ail</i></b> would be lingusitically correct;
+similarly <b><i>esquimaux</i></b>, <b><i>noyaux</i></b> and
+<b><i>tuyaux</i></b> where <b><i>-au</i></b> would be more correct. None of
+these seem to result in unwanted conflation though.
+</p>
+
+<p>
+The suffix <b><i>-eux</i></b> is removed if in R2.  For a few short words
+(<b><i>cheveux</i></b>, <b><i>jeux</i></b>, <b><i>lieux</i></b> and
+<b><i>neveux</i></b>) removing <b><i>-x</i></b> would conflate a plural
+form with its singular, but the complexity of the rule needed to avoid
+adversely affecting other short words ending <b><i>-eux</i></b> does not
+seem justified for just four cases of understemming.
 </p>
 
 <h2>The stemming algorithm</h2>
