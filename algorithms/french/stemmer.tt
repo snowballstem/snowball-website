@@ -109,9 +109,9 @@ which is true (the examples show <i>RV</i> underlined):
 <li>The word starts <b><i>par</i></b></li> - e.g. <i>par<u>ie</u></i>
 <li>The word starts <b><i>col</i></b></li> - e.g. <i>col<u>is</u></i>
 <li>The word starts <b><i>tap</i></b></li> - e.g. <i>tap<u>is</u></i>
-<li>The word starts <b><i>ni</i></b> followed by any vowel</li> - e.g. <i>niais<u>es</u></i>
-<li>The first vowel not at the beginning of the word</li> - e.g. <i>ador<u>er</u></i>, <i>vol</u>er</u></i>
-<li>The end of the word - e.g. <i>arcs</i></li>
+<li>The word starts <b><i>ni</i></b> followed by any vowel</li> - e.g. <i>nia<u>ises</u></i>
+<li>The first vowel not at the beginning of the word</li> - e.g. <i>ador<u>er</u></i>, <i>vol<u>er</u></i>
+<li>The end of the word - e.g. <i>arcs</i> (RV is an empty region at the end of the word)</li>
 </ol>
 
 <p>
