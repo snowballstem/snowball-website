@@ -325,20 +325,26 @@ match suffixes beginning in <B><I>e</I></B> or <B><I>i</I></B>.
 </p>
 
 <p>
-If the word begins with two vowels, <I>RV</I> is the region after the third
-letter, otherwise the region after the first vowel not at the beginning of
-the word, or the end of the word if these positions cannot be found. (Exceptionally,
-<B><I>par</I></B>, <B><I>col</I></B> or <B><I>tap</I></B>, at the beginning of a word is also taken to define
-<I>RV</I> as the region to their right.)
+<I>RV</I> is defined as the region to the right of the first of these
+which is true:
 </p>
+<ol>
+<li>The word starts with two vowels followed by another letter</li>
+<li>The word starts <b><i>par</i></b></li>
+<li>The word starts <b><i>col</i></b></li>
+<li>The word starts <b><i>tap</i></b></li>
+<li>The word starts <b><i>ni</i></b> followed by any vowel</li>
+<li>The first vowel not at the beginning of the word</li>
+<li>The end of the word</li>
+</ol>
 
 <p>
 For example,
 </p>
 
 <PRE>
-    a i m e r     a d o r e r     v o l e r    t a p i s
-         |...|         |.....|       |.....|        |...|
+    a i m e r    t a p i s    n i a i s e s    a d o r e r    v o l e r    a r c s
+         |...|        |...|        |.......|        |.....|      |.....|          ||
 </PRE>
 
 <p>
@@ -577,6 +583,7 @@ And finally:
 (done by replacing <B><I>ë</I></B> and <B><I>ï</I></B> with <B><I>He</I></B> and <B><I>Hi</I></B>, during stemming then undoing afterwards).</li>
 <li>Snowball 2.3.0: Added a new first step which removes elisions.</li>
 <li>Snowball 2.3.0: Added rule to replace <b><i>-oux</i></b> with <b><i>-ou</i></b>.</li>
+<li>Snowball 2.3.0: Added RV exception for <b><i>ni</i></b> followed by a vowel.</li>
 </ul>
 
 <h2>The same algorithm in Snowball</h2>
@@ -659,6 +666,8 @@ And finally:
 <span class="w">            </span><span class="s1">&#39;par&#39;</span><span class="w">  </span><span class="c1">// paris, parie, pari</span>
 <span class="w">            </span><span class="s1">&#39;col&#39;</span><span class="w">  </span><span class="c1">// colis</span>
 <span class="w">            </span><span class="s1">&#39;tap&#39;</span><span class="w">  </span><span class="c1">// tapis</span>
+<span class="w">                </span><span class="p">()</span>
+<span class="w">            </span><span class="s1">&#39;ni&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="c1">// niais/nierais/nié/niâmes/nièrent</span>
 <span class="w">            </span><span class="c1">// extensions possible here</span>
 <span class="w">        </span><span class="p">)</span>
 <span class="w">        </span><span class="ow">or</span>
@@ -790,9 +799,7 @@ And finally:
 <span class="w">            </span><span class="s1">&#39;</span><span class="se">{a^}</span><span class="s1">mes&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a^}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a^}</span><span class="s1">tes&#39;</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;ai&#39;</span><span class="w"> </span><span class="s1">&#39;aIent&#39;</span><span class="w"> </span><span class="s1">&#39;ais&#39;</span><span class="w"> </span><span class="s1">&#39;ait&#39;</span><span class="w"> </span><span class="s1">&#39;ant&#39;</span>
 <span class="w">            </span><span class="s1">&#39;ante&#39;</span><span class="w"> </span><span class="s1">&#39;antes&#39;</span><span class="w"> </span><span class="s1">&#39;ants&#39;</span><span class="w"> </span><span class="s1">&#39;as&#39;</span><span class="w"> </span><span class="s1">&#39;asse&#39;</span><span class="w"> </span><span class="s1">&#39;assent&#39;</span><span class="w"> </span><span class="s1">&#39;asses&#39;</span><span class="w"> </span><span class="s1">&#39;assiez&#39;</span>
 <span class="w">            </span><span class="s1">&#39;assions&#39;</span>
-<span class="w">                </span><span class="p">(</span><span class="ow">delete</span>
-<span class="w">                 </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;e&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
-<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="p">(</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 <span class="w">        </span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
 
