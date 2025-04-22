@@ -35,7 +35,7 @@ var BasqueStemmer = function() {
         ["kizuna", -1, 1],
         ["era", -1, 1],
         ["bera", 28, 1],
-        ["arabera", 29, 4],
+        ["arabera", 29, -1],
         ["kera", 28, 1],
         ["pera", 28, 1],
         ["orra", -1, 1],
@@ -86,7 +86,7 @@ var BasqueStemmer = function() {
         ["rean", 77, 1],
         ["kan", 76, 1],
         ["etan", 76, 1],
-        ["atseden", -1, 3],
+        ["atseden", -1, -1],
         ["men", -1, 1],
         ["pen", -1, 1],
         ["kin", -1, 1],
@@ -108,7 +108,7 @@ var BasqueStemmer = function() {
         ["atu", 99, 1],
         ["aldatu", 100, 1],
         ["tatu", 100, 1],
-        ["baditu", 99, 5],
+        ["baditu", 99, -1],
         ["ez", -1, 1],
         ["errez", 104, 1],
         ["tzez", 104, 1],
@@ -179,7 +179,7 @@ var BasqueStemmer = function() {
         ["ontzia", -1, 1],
         ["ka", -1, 1],
         ["joka", 60, 3],
-        ["aurka", 60, 10],
+        ["aurka", 60, -1],
         ["ska", 60, 1],
         ["xka", 60, 1],
         ["zka", 60, 1],
@@ -296,7 +296,7 @@ var BasqueStemmer = function() {
         ["di", -1, 1],
         ["aldi", 176, 1],
         ["taldi", 177, 1],
-        ["geldi", 176, 8],
+        ["geldi", 176, -1],
         ["handi", 176, 1],
         ["mendi", 176, 1],
         ["gei", -1, 1],
@@ -365,7 +365,7 @@ var BasqueStemmer = function() {
         ["zino", 244, 1],
         ["ro", -1, 1],
         ["aro", 246, 1],
-        ["igaro", 247, 9],
+        ["igaro", 247, -1],
         ["taro", 247, 1],
         ["zaro", 247, 1],
         ["ero", 246, 1],
@@ -383,7 +383,7 @@ var BasqueStemmer = function() {
         ["ar", -1, 1],
         ["dar", 263, 1],
         ["behar", 263, 1],
-        ["zehar", 263, 7],
+        ["zehar", 263, -1],
         ["liar", 263, 1],
         ["tiar", 263, 1],
         ["tar", 263, 1],
@@ -593,24 +593,6 @@ var BasqueStemmer = function() {
                     return false;
                 }
                 break;
-            case 3:
-                if (!base.slice_from("atseden"))
-                {
-                    return false;
-                }
-                break;
-            case 4:
-                if (!base.slice_from("arabera"))
-                {
-                    return false;
-                }
-                break;
-            case 5:
-                if (!base.slice_from("baditu"))
-                {
-                    return false;
-                }
-                break;
         }
         return true;
     };
@@ -670,30 +652,6 @@ var BasqueStemmer = function() {
                 break;
             case 6:
                 if (!base.slice_from("minutu"))
-                {
-                    return false;
-                }
-                break;
-            case 7:
-                if (!base.slice_from("zehar"))
-                {
-                    return false;
-                }
-                break;
-            case 8:
-                if (!base.slice_from("geldi"))
-                {
-                    return false;
-                }
-                break;
-            case 9:
-                if (!base.slice_from("igaro"))
-                {
-                    return false;
-                }
-                break;
-            case 10:
-                if (!base.slice_from("aurka"))
                 {
                     return false;
                 }
