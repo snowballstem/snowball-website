@@ -121,7 +121,7 @@ Some other accented vowels are used in a small number of Norwegian words but
 these are deliberately not included in the list of vowels for this algorithm.
 This is not due to the small number of affected words but because including
 them doesn't actually improve the results of stemming.  In most cases it
-would make no difference, but for <b><i>è</i></b> the reasoning is more
+would make no difference, but for <b><i>é</i></b> the reasoning is more
 subtle.  Including it would make one difference - it would conflate forms of
 <b><i>léta</i></b> (to paint) but <b><i>lét</i></b> is both the imperative of
 <b><i>léta</i></b> and the past tense of <b><i>la</i></b> (to let/allow) so
