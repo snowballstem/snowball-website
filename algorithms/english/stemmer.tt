@@ -76,9 +76,10 @@ apostrophe.
 <li>[January 2006] "Words" <b><i>ied</i></b> and <b><i>ies</i></b> now stem to <b><i>ie</i></b> rather than <b><i>i</i></b>.
 <li>[January 2006] The implementation was fixed to follow the algorithm as documented here and now always treats an initial <b><i>y</i></b> as a consonant.
 <li>[November 2006] <B><I>arsen</I></B> added to exceptional forms
-<li>[October 2023] Don't undouble if preceded by exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b>
-<li>[March 2025] Exception added to prevent <b><i>evening</i></b> from stemming to <b><i>even</i></b>.
-<li>[March 2025] Removed exception for <b><i>skis</i></b> as the algorithm gives the same stem without it!
+<li>Snowball 2.3.0 Don't undouble if preceded by exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b>
+<li>Snowball 2.3.0 Exception added to prevent <b><i>evening</i></b> from stemming to <b><i>even</i></b>.
+<li>Snowball 2.3.0 Removed exception for <b><i>skis</i></b> as the algorithm gives the same stem without it!
+<li>Snowball 2.3.0 Avoid conflating <b><i>past</i></b> with <b><i>paste</i></b>/<b><i>pastes</i></b>/<b><i>pasted</i></b>/<b><i>pasting</i></b>.
 </ol>
 
 <h2>Design Notes</h2>
@@ -151,12 +152,13 @@ end of the word if there is no such non-vowel.
 Define a <I>short syllable</I> in a word as either (<I>a</I>) a vowel followed by a
 non-vowel other than <B><I>w</I></B>, <B><I>x</I></B> or <B><I>Y</I></B> and preceded by a non-vowel, or
 <code><FONT COLOR=BLUE>*</FONT></code>
-(<I>b</I>) a vowel at the beginning of the word followed by a non-vowel.
+(<I>b</I>) a vowel at the beginning of the word followed by a non-vowel, or
+(<i>c</i>) <b><i>past</i><b>.
 </p>
 
 <p>
 So <I>rap</I>,
-<I>trap</I>, <I>entrap</I> end with a short syllable, and <I>ow</I>, <I>on</I>, <I>at</I> are
+<I>trap</I>, <I>entrap</I> end with a short syllable, and <I>ow</I>, <I>on</I>, <I>at</I>, <i>past</i> are
 classed as short syllables. But <I>uproot</I>, <I>bestow</I>, <I>disturb</I> do not end with a
 short syllable.
 </p>
@@ -581,7 +583,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 <DL><DD>
     <p>
-    If the word begins <B><I>gener</I></B>, <B><I>commun</I></B> or <B><I>arsen</I></B>, set <I>R</I>1 to be the remainder of the
+    If the word begins <B><I>gener</I></B>, <B><I>commun</I></B>, <B><I>arsen</I></B> or <b><i>past</i></b>, set <I>R</I>1 to be the remainder of the
     word.
     </p>
 
