@@ -80,6 +80,7 @@ apostrophe.
 <li>Snowball 2.3.0 Exception added to prevent <b><i>evening</i></b> from stemming to <b><i>even</i></b>.
 <li>Snowball 2.3.0 Removed exception for <b><i>skis</i></b> as the algorithm gives the same stem without it!
 <li>Snowball 2.3.0 Avoid conflating <b><i>past</i></b> with <b><i>paste</i></b>/<b><i>pastes</i></b>/<b><i>pasted</i></b>/<b><i>pasting</i></b>.
+<li>Snowball 2.3.0 Avoid conflating <b><i>universe</i></b>/<b><i>universes</i></b> with <b><i>universal</i></b>/<b><i>universally</i></b> and <b><i>university</i></b>/<b><i>universities</i></b>.
 </ol>
 
 <h2>Design Notes</h2>
@@ -583,8 +584,13 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 <DL><DD>
     <p>
-    If the word begins <B><I>gener</I></B>, <B><I>commun</I></B>, <B><I>arsen</I></B> or <b><i>past</i></b>, set <I>R</I>1 to be the remainder of the
-    word.
+    If the word begins
+    <B><I>gener</I></B>,
+    <B><I>commun</I></B>,
+    <B><I>arsen</I></B>,
+    <b><i>past</i></b> or
+    <b><i>univers</i></b>,
+    set <I>R</I>1 to be the remainder of the word.
     </p>
 
     <p>
