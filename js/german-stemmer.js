@@ -37,6 +37,14 @@ var GermanStemmer = function() {
     ];
 
     /** @const */ var a_3 = [
+        ["tick", -1, -1],
+        ["plan", -1, -1],
+        ["geordn", -1, -1],
+        ["intern", -1, -1],
+        ["tr", -1, -1]
+    ];
+
+    /** @const */ var a_4 = [
         ["en", -1, 1],
         ["er", -1, 1],
         ["et", -1, 3],
@@ -44,12 +52,12 @@ var GermanStemmer = function() {
         ["est", 3, 1]
     ];
 
-    /** @const */ var a_4 = [
+    /** @const */ var a_5 = [
         ["ig", -1, 1],
         ["lich", -1, 1]
     ];
 
-    /** @const */ var a_5 = [
+    /** @const */ var a_6 = [
         ["end", -1, 1],
         ["ig", -1, 2],
         ["ung", -1, 1],
@@ -61,6 +69,8 @@ var GermanStemmer = function() {
     ];
 
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32, 8];
+
+    /** @const */ var /** Array<int> */ g_et_ending = [1, 128, 198, 227, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
     /** @const */ var /** Array<int> */ g_s_ending = [117, 30, 5];
 
@@ -380,7 +390,7 @@ var GermanStemmer = function() {
         /** @const */ var /** number */ v_4 = base.limit - base.cursor;
         lab3: {
             base.ket = base.cursor;
-            among_var = base.find_among_b(a_3);
+            among_var = base.find_among_b(a_4);
             if (among_var == 0)
             {
                 break lab3;
@@ -416,9 +426,22 @@ var GermanStemmer = function() {
                     }
                     break;
                 case 3:
-                    if (!(base.eq_s_b("t")))
+                    /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+                    if (!(base.in_grouping_b(g_et_ending, 85, 228)))
                     {
                         break lab3;
+                    }
+                    base.cursor = base.limit - v_5;
+                    {
+                        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+                        lab4: {
+                            if (base.find_among_b(a_3) == 0)
+                            {
+                                break lab4;
+                            }
+                            break lab3;
+                        }
+                        base.cursor = base.limit - v_6;
                     }
                     if (!base.slice_del())
                     {
@@ -428,18 +451,18 @@ var GermanStemmer = function() {
             }
         }
         base.cursor = base.limit - v_4;
-        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
-        lab4: {
+        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+        lab5: {
             base.ket = base.cursor;
-            among_var = base.find_among_b(a_5);
+            among_var = base.find_among_b(a_6);
             if (among_var == 0)
             {
-                break lab4;
+                break lab5;
             }
             base.bra = base.cursor;
             if (!r_R2())
             {
-                break lab4;
+                break lab5;
             }
             switch (among_var) {
                 case 1:
@@ -447,31 +470,31 @@ var GermanStemmer = function() {
                     {
                         return false;
                     }
-                    /** @const */ var /** number */ v_6 = base.limit - base.cursor;
-                    lab5: {
+                    /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+                    lab6: {
                         base.ket = base.cursor;
                         if (!(base.eq_s_b("ig")))
                         {
-                            base.cursor = base.limit - v_6;
-                            break lab5;
+                            base.cursor = base.limit - v_8;
+                            break lab6;
                         }
                         base.bra = base.cursor;
                         {
-                            /** @const */ var /** number */ v_7 = base.limit - base.cursor;
-                            lab6: {
+                            /** @const */ var /** number */ v_9 = base.limit - base.cursor;
+                            lab7: {
                                 if (!(base.eq_s_b("e")))
                                 {
-                                    break lab6;
+                                    break lab7;
                                 }
-                                base.cursor = base.limit - v_6;
-                                break lab5;
+                                base.cursor = base.limit - v_8;
+                                break lab6;
                             }
-                            base.cursor = base.limit - v_7;
+                            base.cursor = base.limit - v_9;
                         }
                         if (!r_R2())
                         {
-                            base.cursor = base.limit - v_6;
-                            break lab5;
+                            base.cursor = base.limit - v_8;
+                            break lab6;
                         }
                         if (!base.slice_del())
                         {
@@ -481,15 +504,15 @@ var GermanStemmer = function() {
                     break;
                 case 2:
                     {
-                        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
-                        lab7: {
+                        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
+                        lab8: {
                             if (!(base.eq_s_b("e")))
                             {
-                                break lab7;
+                                break lab8;
                             }
-                            break lab4;
+                            break lab5;
                         }
-                        base.cursor = base.limit - v_8;
+                        base.cursor = base.limit - v_10;
                     }
                     if (!base.slice_del())
                     {
@@ -501,30 +524,30 @@ var GermanStemmer = function() {
                     {
                         return false;
                     }
-                    /** @const */ var /** number */ v_9 = base.limit - base.cursor;
-                    lab8: {
+                    /** @const */ var /** number */ v_11 = base.limit - base.cursor;
+                    lab9: {
                         base.ket = base.cursor;
-                        lab9: {
-                            /** @const */ var /** number */ v_10 = base.limit - base.cursor;
-                            lab10: {
+                        lab10: {
+                            /** @const */ var /** number */ v_12 = base.limit - base.cursor;
+                            lab11: {
                                 if (!(base.eq_s_b("er")))
                                 {
-                                    break lab10;
+                                    break lab11;
                                 }
-                                break lab9;
+                                break lab10;
                             }
-                            base.cursor = base.limit - v_10;
+                            base.cursor = base.limit - v_12;
                             if (!(base.eq_s_b("en")))
                             {
-                                base.cursor = base.limit - v_9;
-                                break lab8;
+                                base.cursor = base.limit - v_11;
+                                break lab9;
                             }
                         }
                         base.bra = base.cursor;
                         if (!r_R1())
                         {
-                            base.cursor = base.limit - v_9;
-                            break lab8;
+                            base.cursor = base.limit - v_11;
+                            break lab9;
                         }
                         if (!base.slice_del())
                         {
@@ -537,19 +560,19 @@ var GermanStemmer = function() {
                     {
                         return false;
                     }
-                    /** @const */ var /** number */ v_11 = base.limit - base.cursor;
-                    lab11: {
+                    /** @const */ var /** number */ v_13 = base.limit - base.cursor;
+                    lab12: {
                         base.ket = base.cursor;
-                        if (base.find_among_b(a_4) == 0)
+                        if (base.find_among_b(a_5) == 0)
                         {
-                            base.cursor = base.limit - v_11;
-                            break lab11;
+                            base.cursor = base.limit - v_13;
+                            break lab12;
                         }
                         base.bra = base.cursor;
                         if (!r_R2())
                         {
-                            base.cursor = base.limit - v_11;
-                            break lab11;
+                            base.cursor = base.limit - v_13;
+                            break lab12;
                         }
                         if (!base.slice_del())
                         {
@@ -559,7 +582,7 @@ var GermanStemmer = function() {
                     break;
             }
         }
-        base.cursor = base.limit - v_5;
+        base.cursor = base.limit - v_7;
         return true;
     };
 
