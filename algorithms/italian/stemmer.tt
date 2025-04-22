@@ -41,19 +41,26 @@ and <I>RV</I> have the same definition as in the
 </p>
 
 <p>
-First exceptional cases are checked for.  These need to match the whole word, and currently are:
-</p>
-
-<ul>
-<li><B><I>divano</I></B>: replace with <B><I>divan</I></B> (to avoid conflating with <B><I>diva</I></B>) [Added 2022-11-16]
-</ul>
-
-<p>
-If found then handle as described and that's it.
+<I>R</I>2 is defined in the usual way &#x2014;
+see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.
 </p>
 
 <p>
-Otherwise always do steps 0 and 1.
+<I>RV</I> is defined as follows (this is the same as the
+ <A HREF="../spanish/stemmer.html">Spanish stemmer</A>
+definition, except for the initial exceptional case):
+</p>
+
+<p>If the word begins <i>divan</i> then <i>RV</i> starts after this prefix.
+If the second letter is a consonant, <I>RV</I> is the region after the next
+following vowel, or if the first two letters are vowels, <I>RV</I> is the region
+after the next consonant, and otherwise (consonant-vowel case) <I>RV</I> is the
+region after the third letter. But <I>RV</I> is the end of the word if these
+positions cannot be found.
+</p>
+
+<p>
+Always do steps 0 and 1.
 </p>
 
 <p>
@@ -177,6 +184,13 @@ Finally,
 <DL><DD>
     turn <B><I>I</I></B> and <B><I>U</I></B> back into lower case
 </DL>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>2005-06-15: Remove suffixes <i>-ante</i> and <i>-anti</i>.</li>
+<li>Snowball 2.3.0: Add exception to <i>RV</i> definition to avoid overstemming <i>divano</i>.</li>
+</ul>
 
 <h2>The same algorithm in Snowball</h2>
 

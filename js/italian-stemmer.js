@@ -404,23 +404,31 @@ var ItalianStemmer = function() {
                     break lab1;
                 }
                 base.cursor = v_2;
+                lab5: {
+                    if (!(base.eq_s("divan")))
+                    {
+                        break lab5;
+                    }
+                    break lab1;
+                }
+                base.cursor = v_2;
                 if (!(base.out_grouping(g_v, 97, 249)))
                 {
                     break lab0;
                 }
-                lab5: {
+                lab6: {
                     /** @const */ var /** number */ v_4 = base.cursor;
-                    lab6: {
+                    lab7: {
                         if (!(base.out_grouping(g_v, 97, 249)))
                         {
-                            break lab6;
+                            break lab7;
                         }
                         if (!base.go_out_grouping(g_v, 97, 249))
                         {
-                            break lab6;
+                            break lab7;
                         }
                         base.cursor++;
-                        break lab5;
+                        break lab6;
                     }
                     base.cursor = v_4;
                     if (!(base.in_grouping(g_v, 97, 249)))
@@ -438,26 +446,26 @@ var ItalianStemmer = function() {
         }
         base.cursor = v_1;
         /** @const */ var /** number */ v_5 = base.cursor;
-        lab7: {
+        lab8: {
             if (!base.go_out_grouping(g_v, 97, 249))
             {
-                break lab7;
+                break lab8;
             }
             base.cursor++;
             if (!base.go_in_grouping(g_v, 97, 249))
             {
-                break lab7;
+                break lab8;
             }
             base.cursor++;
             I_p1 = base.cursor;
             if (!base.go_out_grouping(g_v, 97, 249))
             {
-                break lab7;
+                break lab8;
             }
             base.cursor++;
             if (!base.go_in_grouping(g_v, 97, 249))
             {
-                break lab7;
+                break lab8;
             }
             base.cursor++;
             I_p2 = base.cursor;
@@ -860,71 +868,41 @@ var ItalianStemmer = function() {
         return true;
     };
 
-    /** @return {boolean} */
-    function r_exceptions() {
-        base.bra = base.cursor;
-        if (!(base.eq_s("divano")))
-        {
-            return false;
-        }
-        if (base.cursor < base.limit)
-        {
-            return false;
-        }
-        base.ket = base.cursor;
-        if (!base.slice_from("divan"))
-        {
-            return false;
-        }
-        return true;
-    };
-
     this.stem = /** @return {boolean} */ function() {
+        /** @const */ var /** number */ v_1 = base.cursor;
+        r_prelude();
+        base.cursor = v_1;
+        r_mark_regions();
+        base.limit_backward = base.cursor; base.cursor = base.limit;
+        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        r_attached_pronoun();
+        base.cursor = base.limit - v_2;
+        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.cursor;
             lab1: {
-                if (!r_exceptions())
-                {
-                    break lab1;
-                }
-                break lab0;
-            }
-            base.cursor = v_1;
-            /** @const */ var /** number */ v_2 = base.cursor;
-            r_prelude();
-            base.cursor = v_2;
-            r_mark_regions();
-            base.limit_backward = base.cursor; base.cursor = base.limit;
-            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
-            r_attached_pronoun();
-            base.cursor = base.limit - v_3;
-            /** @const */ var /** number */ v_4 = base.limit - base.cursor;
-            lab2: {
-                lab3: {
-                    /** @const */ var /** number */ v_5 = base.limit - base.cursor;
-                    lab4: {
-                        if (!r_standard_suffix())
-                        {
-                            break lab4;
-                        }
-                        break lab3;
-                    }
-                    base.cursor = base.limit - v_5;
-                    if (!r_verb_suffix())
+                /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+                lab2: {
+                    if (!r_standard_suffix())
                     {
                         break lab2;
                     }
+                    break lab1;
+                }
+                base.cursor = base.limit - v_4;
+                if (!r_verb_suffix())
+                {
+                    break lab0;
                 }
             }
-            base.cursor = base.limit - v_4;
-            /** @const */ var /** number */ v_6 = base.limit - base.cursor;
-            r_vowel_suffix();
-            base.cursor = base.limit - v_6;
-            base.cursor = base.limit_backward;
-            /** @const */ var /** number */ v_7 = base.cursor;
-            r_postlude();
-            base.cursor = v_7;
         }
+        base.cursor = base.limit - v_3;
+        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+        r_vowel_suffix();
+        base.cursor = base.limit - v_5;
+        base.cursor = base.limit_backward;
+        /** @const */ var /** number */ v_6 = base.cursor;
+        r_postlude();
+        base.cursor = v_6;
         return true;
     };
 
