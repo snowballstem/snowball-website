@@ -4,6 +4,9 @@
 
 <ul>
 <li> <A HREF="schinke.tgz">zip file</A>
+<li> Schinke R, Greengrass M, Robertson AM and Willett P (1996)
+    <a href="http://caio.ueberalles.net/a_stemming_algorithm_for_latin_text_databases-schinke_et_al.pdf">A stemming algorithm for Latin text
+    databases</a>. <I>Journal of Documentation</I>, <B>52</B>: 172-187.
 </ul>
 
 <p>
@@ -11,13 +14,8 @@
 </p>
 
 <p>
-The Schinke Latin stemming algorithm is described in,
+The Schinke Latin stemming algorithm is described in the paper linked to above.
 </p>
-
-<blockquote>
-    Schinke R, Greengrass M, Robertson AM and Willett P (1996) A stemming algorithm for Latin text
-    databases. <I>Journal of Documentation</I>, <B>52</B>: 172-187.
-</blockquote>
 
 <p>
 It has the feature that it stems each word to two forms, noun and verb. For example,
