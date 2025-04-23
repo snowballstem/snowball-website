@@ -7,7 +7,9 @@ var EnglishStemmer = function() {
     /** @const */ var a_0 = [
         ["arsen", -1, -1],
         ["commun", -1, -1],
-        ["gener", -1, -1]
+        ["gener", -1, -1],
+        ["past", -1, -1],
+        ["univers", -1, -1]
     ];
 
     /** @const */ var a_1 = [
@@ -53,13 +55,13 @@ var EnglishStemmer = function() {
     /** @const */ var a_5 = [
         ["anci", -1, 3],
         ["enci", -1, 2],
-        ["ogi", -1, 13],
-        ["li", -1, 15],
+        ["ogi", -1, 14],
+        ["li", -1, 16],
         ["bli", 3, 12],
         ["abli", 4, 4],
         ["alli", 3, 8],
         ["fulli", 3, 9],
-        ["lessli", 3, 14],
+        ["lessli", 3, 15],
         ["ousli", 3, 10],
         ["entli", 3, 5],
         ["aliti", -1, 8],
@@ -74,7 +76,8 @@ var EnglishStemmer = function() {
         ["ator", -1, 7],
         ["iveness", -1, 11],
         ["fulness", -1, 9],
-        ["ousness", -1, 10]
+        ["ousness", -1, 10],
+        ["ogist", -1, 13]
     ];
 
     /** @const */ var a_6 = [
@@ -301,15 +304,23 @@ var EnglishStemmer = function() {
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            if (!(base.out_grouping_b(g_v, 97, 121)))
-            {
-                return false;
+            lab2: {
+                if (!(base.out_grouping_b(g_v, 97, 121)))
+                {
+                    break lab2;
+                }
+                if (!(base.in_grouping_b(g_v, 97, 121)))
+                {
+                    break lab2;
+                }
+                if (base.cursor > base.limit_backward)
+                {
+                    break lab2;
+                }
+                break lab0;
             }
-            if (!(base.in_grouping_b(g_v, 97, 121)))
-            {
-                return false;
-            }
-            if (base.cursor > base.limit_backward)
+            base.cursor = base.limit - v_1;
+            if (!(base.eq_s_b("past")))
             {
                 return false;
             }
@@ -623,6 +634,12 @@ var EnglishStemmer = function() {
                 }
                 break;
             case 13:
+                if (!base.slice_from("og"))
+                {
+                    return false;
+                }
+                break;
+            case 14:
                 if (!(base.eq_s_b("l")))
                 {
                     return false;
@@ -632,13 +649,13 @@ var EnglishStemmer = function() {
                     return false;
                 }
                 break;
-            case 14:
+            case 15:
                 if (!base.slice_from("less"))
                 {
                     return false;
                 }
                 break;
-            case 15:
+            case 16:
                 if (!(base.in_grouping_b(g_valid_LI, 99, 116)))
                 {
                     return false;
