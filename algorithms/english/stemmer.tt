@@ -70,6 +70,7 @@ The algorithm leaves along strings of length 2 (so
 of the old Porter stemmer were combined into a single step. This means
 that undoubling final <B><I>ll</I></B> is not done with removal of final <B><I>e</I></B>
 <li>[December 2001] In Step 3 <B><I>ative</I></B> is removed only when in region <I>R</I>2.
+<li>[September 2002] Exception added to prevent <b><i>herring</i></b> from stemming to <b><i>her</i></b>.
 <li>[May 2005] <B><I>commun</I></B> added to exceptional forms
 <li>[July 2005] A small adjustment was made (including a new step 0) to handle
 apostrophe.
