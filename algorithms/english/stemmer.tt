@@ -82,6 +82,7 @@ apostrophe.
 <li>Snowball 2.3.0 Removed exception for <b><i>skis</i></b> as the algorithm gives the same stem without it!
 <li>Snowball 2.3.0 Avoid conflating <b><i>past</i></b> with <b><i>paste</i></b>/<b><i>pastes</i></b>/<b><i>pasted</i></b>/<b><i>pasting</i></b>.
 <li>Snowball 2.3.0 Avoid conflating <b><i>universe</i></b>/<b><i>universes</i></b> with <b><i>universal</i></b>/<b><i>universally</i></b> and <b><i>university</i></b>/<b><i>universities</i></b>.
+<li>Snowball 2.3.0 Replace <b><i>-ogist</i></b> with <b><i>-og</i></b> to conflate <b><i>geologist</i></b> with <b><i>geology</i></b>, etc.
 </ol>
 
 <h2>Design Notes</h2>
@@ -281,6 +282,7 @@ Step 2:
     <DT><B><I>ousli &nbsp;  ousness</I></B>:  &nbsp;  replace by <B><I>ous</I></B>
     <DT><B><I>iveness &nbsp;  iviti</I></B>:  &nbsp;  replace by <B><I>ive</I></B>
     <DT><B><I>biliti  &nbsp;  bli</I></B><code><FONT COLOR=BLUE>+</FONT></code>:  &nbsp;  replace by <B><I>ble</I></B>
+    <DT><B><I>ogist</I></B><code><FONT COLOR=BLUE>+</FONT></code>:  &nbsp;  replace by <B><I>og</I></B>
     <DT><B><I>ogi</I></B><code><FONT COLOR=BLUE>+</FONT></code>:  &nbsp;  replace by <B><I>og</I></B> if preceded by <B><I>l</I></B>
     <DT><B><I>fulli</I></B><code><FONT COLOR=BLUE>+</FONT></code>:  &nbsp;  replace by <B><I>ful</I></B>
     <DT><B><I>lessli</I></B><code><FONT COLOR=BLUE>+</FONT></code>:  &nbsp;  replace by <B><I>less</I></B>
