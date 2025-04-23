@@ -114,6 +114,14 @@ the small number of words removing <i>-est</i> in <i>R</i>2 would improve the
 stemming of.
 </p>
 
+<p>
+Suffix <i>-ian</i> is not removed.  A significant problem with removal is
+that sometimes we want to remove the whole three letters (e.g. <i>orwellian</i>,
+<i>politician</i>), sometimes <i>-an</i> (e.g. <i>comedian</i>,
+<i>historian</i>, <i>italian</i>) and sometimes just <i>-n</i> (e.g.
+<i>indian</i>, <i>bolivian</i>, <i>californian</i>).
+</p>
+
 <h2>Definition of the English stemmer</h2>
 
 <p>
