@@ -6,7 +6,7 @@
 [% algorithm_lis('finnish', 'Finnish') %]
 </ul>
 
-[% algorithm_vocab([40, 'edeltäjien', 'innostu']) %]
+<h2>Design Notes</h2>
 
 <p>
 Finnish is not an Indo-European language, but belongs to the Finno-Ugric
@@ -28,6 +28,17 @@ forms after ending removal is not generally possible, although the common case
 where strong and weak forms only differ in the single or double form of a
 final consonant can be dealt with.
 </p>
+
+<p>
+The letter <b><i>å</i></b> is also in the Finnish alphabet, but is only used
+in Scandanavian names.  Treating it as a vowel in the stemmer does not improve
+retrieval results (instead it makes things very slightly worse as it will tend
+to cause the stemmer to conflate names with other words more).
+</p>
+
+[% algorithm_vocab([40, 'edeltäjien', 'innostu']) %]
+
+<h2>The stemming algorithm</h2>
 
 <p>
 Finnish includes the following accented forms,
