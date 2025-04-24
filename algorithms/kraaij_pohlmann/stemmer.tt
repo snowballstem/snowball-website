@@ -10,26 +10,94 @@
 </ul>
 
 <p>
-The Kraaij-Pohlmann stemming algorithm is an ANSI C program for stemming in Dutch. Although
-advertised as an algorithm, it is in fact a program without an accompanying
-algorithmic description. It is possible to produce a fairly clean Snowball
-version, but only by sacrificing exact functional equivalence.
+The original Kraaij-Pohlmann Dutch stemming algorithm is an ANSI C program.
+There's a partial description of the algorithm in the two papers linked to above,
+but these only show a few examples of the suffix removal rules, and even these
+don't fully match up with the rules in the C implementation!
 </p>
 
 <p>
-An older version of this document concluded that this did not
-matter too much, since in the demonstration vocabulary only 32 words out of over
-45,000 stem differently - however that comparison appears to have been done by
-feeding a Dutch wordlist encoded in DOS codepage 850 into the C implementation,
-which expects iso-8859-1.  If the comparison is repeated using the correct
-encoding then there are actually 220 differences.
+For example the papers both say the first step has a rule to remove <i>-e</i>,
+but this rule is not present in the C code, and that the second step has rules
+to remove <i>-etj</i> and <i>-tj</i>, but the C code instead has rules to
+remove <i>-etje</i> and <i>-tje</i>, presumably compensating for not having
+already removed <i>-e</i>.
 </p>
+
+<p>
+The C code also has steps 1c and 7 which the paper doesn't mention, and
+step 7 gets applied <b>before</b> step 6, which suggests it was a later
+addition.  The papers are dated 1994 and 1995, while the C code states a
+copyright date of 1995.  All of this seems to indicate that the C code is a
+newer version of the algorithm than that described in the papers.
+</p>
+
+<p>
+Martin Porter implemented a Snowball version of the Kraaij-Pohlmann Dutch
+stemmer following the rules in the C implementation, but his aim was mainly to
+demonstrate that the then-new Snowball language was flexible enough to
+implement existing stemmers, and he didn't aim for exact functional
+equivalence.  The original conclusion from testing was that only 32 words in a
+list of over 45,000 Dutch words stemmed differently.  However that comparison
+appears to have been done by feeding a Dutch wordlist encoded in DOS codepage
+850 into the C implementation, which expects iso-8859-1.  Repeating the
+comparison using the correct encoding there were are actually 220 differences.
+</p>
+
+<p>
+Based on feedback from Dutch users, in Snowball 2.3.0 we switched the default
+Dutch stemmer to use the Kraaij-Pohlmann algorithm.  As part of doing this we
+resolved all differences in output between the Snowball and C implementations
+of the algorithm (tested with our Dutch vocabulary list, but also a much
+larger list extracted from Dutch wikipedia, and additionally vocabulary lists
+for other languages to check handling of foreign words).
+</p>
+
+<p>
+We then identified cases where Martin Porter's Dutch stemmer did better than
+Kraaij-Pohlmann and adjusted our Kraaij-Pohlmann implementation to address
+these, resulting in the following intentional differences from the C version:
+</p>
+
+<ul>
+<li><p>Step 3: Extra condition on <i>-erij</i> removal to avoid conflating <i>schilderij</i> ("painting") and <i>schild</i> ("shield"):</p>
+
+    <pre>if preceded by 'ild' replace with 'er' instead of normal action</pre>
+
+<li><p>Step 4: Extra condition on <i>-iger</i>/<i>-igst</i>/<i>-ig</i> removal to avoid conflating <i>innig</i> ("intimate") and <i>in</i> ("in").</p>
+
+    <pre>do not replace if preceded by exactly 'inn'</pre>
+
+<li><p>Step 6: Extra condition on undoubling <i>nn</i> to avoid conflating <i>geïnd</i> ("collected"/"cashed") and <i>in</i> ("in"). Instead we conflate <i>geïnd</i> with <i>innen</i>.</p>
+
+    <pre>do not replace if preceded by exactly 'i'</pre>
+
+<li><p>Step 1c: extra condition on <i>-d</i> removal to avoid conflating <i>geïnd</i> ("collected"/"cashed") and <i>in</i> ("in"). Instead we conflate <i>geïnd</i> with <i>innen</i>.</p>
+
+    <pre>if preceded by exactly 'in' replace with 'n' instead of normal action</pre>
+
+<li><p>Step 1c: extra condition on <i>-t</i> removal to avoid conflating <i>geënt</i> ("grafted") and <i>en</i> ("and").</p>
+
+    <pre>do not replace if preceded by 'en'
+
+<li><p>Lose_prefix: extra conditions of removing <i>ge-</i> prefix:</p>
+
+<pre>do not remove if followed by one of:
+
+'eft' // Avoid conflating `geeft` and `effen`/`effende`\`geeffende`.
+
+'val' (unless it's 'vali') // Avoid conflating `gevallen`/`geval` and `vallen`; still remove from e.g. gevalideerd
+
+'vaa' or 'vare' // Avoid conflating `gevaren`/`gevaar` (danger), `gevaarten` (huge objects) and `varen` (to sail)
+</pre>
 
 <p>
 The Kraaij-Pohmann stemmer can make fairly drastic reductions to a word. For
-example, infixed <B><I>ge</I></B> is removed, so <I>geluidgevoelige</I> stems to
-<I>luidvoel</I>. Often, therefore, the original word cannot be easily guessed from
-the stemmed form.
+example, infixed <B><I>ge</I></B> is removed, so <I>geluidgevoelige</I> stems
+to <I>luidvoel</I>.  In such cases it may not be obvious what the original word
+was, but in practice this isn't really a problem as stems are best thought of
+as opaque tokens (albeit opaque tokens that happen to look a lot like words in
+the language being stemmed for convenience of algorithm design).
 </p>
 
 <p>
