@@ -59,8 +59,8 @@ jotka  joiden        joita  joissa  joista  joihin joilla  joilta  joille  joina
 
 että   | that
 ja     | and
-joten  | so
 jos    | if
+joten  | so
 koska  | because
 kuin   | than
 mutta  | but
