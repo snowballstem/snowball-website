@@ -103,8 +103,7 @@ Step 1: Standard suffix removal
      &nbsp;  atrice  &nbsp;  atrici  &nbsp;  ante  &nbsp;  anti</I></B>
         <DD>delete if in <I>R</I>2
     <DT><B><I>azione  &nbsp;  azioni  &nbsp;  atore  &nbsp;  atori</I></B>
-        delete if in <I>R</I>2
-        <DD>if preceded by <B><I>ic</I></B>, delete if in <I>R</I>2
+        <DD>delete if in <I>R</I>2; if preceded by <B><I>ic</I></B> which is also in <I>R</I>2, delete that too
     <DT><B><I>logia  &nbsp;  logie</I></B>
         <DD>replace with <B><I>log</I></B> if in <I>R</I>2
     <DT><B><I>uzione  &nbsp;  uzioni  &nbsp;  usione  &nbsp;  usioni</I></B>
