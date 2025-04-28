@@ -1345,7 +1345,7 @@ were specified before support for specifying Unicode codepoints using the
 
 <p>
 <code>hex</code> and <code>decimal</code> mean that the contents of the string
-are interpreted as characters values written out in hexadecimal, or decimal,
+are interpreted as characters value written out in hexadecimal, or decimal,
 notation.  The characters should be separated by spaces. For example,
 </p>
 
