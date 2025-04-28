@@ -45,7 +45,7 @@ backwardmode (
             'ings' H
 
                    (delete
-                    undouble or (atmark p1  test shortv  <+ 'e')
+                    undouble or (atmark p1  test shortv  insert 'e')
                    )
 
             'd'    J

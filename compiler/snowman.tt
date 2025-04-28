@@ -767,7 +767,7 @@ More simply, text can be inserted at <B><I>c</I></B>.
 <DL>
 <DT>[% highlight_inline("insert S") %]
     <DD>insert variable or literal &nbsp;<code>S</code>&nbsp; before <B><I>c</I></B>, moving <B><I>c</I></B> to the right of the
-    insert. &nbsp;<code>&lt;+</code>&nbsp; is a synonym for &nbsp;<code>insert</code>.
+    insert.
 
 <DT>[% highlight_inline("attach S") %]
     <DD>the same, but leave <B><I>c</I></B> at the left of the insert.
@@ -1504,6 +1504,14 @@ them too.  For example, the first example above can be rewritten as
 
 <p>
 If you have a use which you can't see how to replace, please get in touch and we can advise.
+</p>
+
+<h3>13.4 &lt;+ synonym for insert</h3>
+
+<p>
+Snowball supports &nbsp;<code>&lt;+</code>&nbsp; as a synonym for &nbsp;<code>insert</code>.
+We recommend always using <code>insert</code> instead as it's clearer and not
+unnecessarily verbose.
 </p>
 
 <h2>Snowball syntax</h2>
