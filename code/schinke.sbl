@@ -29,8 +29,8 @@ backwardmode (
                 'obtor' 'optor' 'retor' 'reco' 'attor' 'inco' 'intor'
                 'praetor'
             ) atlimit ]
-            => noun_form
-            => verb_form
+            -> noun_form
+            -> verb_form
         ) or fail(delete)
     )
 )
@@ -41,8 +41,11 @@ define stem as (
 
     backwards (
         que_word or (
-            => noun_form
-            => verb_form
+            do (
+                [tolimit]
+                -> noun_form
+                -> verb_form
+            )
 
             $noun_form backwards try (
                 [substring] hop 2

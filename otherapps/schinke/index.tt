@@ -156,7 +156,7 @@ remained unresolved.
 <p>
 The linked <A HREF="schinke.tgz">zip file</A> contains the stemmer,
 generated C version, and sample data.
-(The stemmer differs slightly from the version in the email above in that
+(The stemmer differs slightly from the version shown above in that
 it assembles the noun- and verb-forms of the stem in a single string with
 space separation.)
 <code>voc.txt</code> is a sample vocabulary, and <code>joined.txt</code> the vocabulary
