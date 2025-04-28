@@ -699,15 +699,7 @@ Here is a list of the commands that can be used to operate on strings.
 
 <p>
 We have seen in (a) that &nbsp;<code>$x = y</code>, when &nbsp;<code>x</code>&nbsp; and &nbsp;<code>y</code>&nbsp; are strings, sets <B><I>c:l</I></B> of &nbsp;<code>x</code>
-to the value of &nbsp;<code>y</code>. Conversely
-</p>
-
-[% highlight('
-        $x => y
-') %]
-
-<p>
-sets the value of &nbsp;<code>y</code>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<code>x</code>.
+to the value of &nbsp;<code>y</code>.
 </p>
 
 <p>
@@ -1464,6 +1456,55 @@ is equivalent to:
            'S<SUB>n1</SUB>' 'S<SUB>n2</SUB>' ... (C<SUB>n</SUB>)
          )
 </PRE>
+
+<h3>13.3 => command</h3>
+
+[% highlight('
+        $x => y
+') %]
+
+<p>
+sets the value of &nbsp;<code>y</code>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<code>x</code>.
+</p>
+
+<p>
+However this was not the implemented behaviour - instead the region copied begins at
+the <b>start</b> of &nbsp;<code>x</code> rather than the cursor.  This difference
+can be seen with code such as
+</p>
+
+[% highlight('
+        $x (next => y)
+') %]
+
+<p>
+which as documented should set &nbsp;<code>y</code>&nbsp; to &nbsp;<code>x</code>&nbsp;
+without the first character but actually does the same as the first example.
+</p>
+
+<p>
+The generated Java code in some cases is invalid and fails to compile.  This
+may also be true for some other target languages.
+</p>
+
+<p>
+There was only a single known use, in Martin Porter's implementation of the Schinke Latin stemmer
+where the code requires the implemented behaviour.
+</p>
+
+<p>
+You should avoid using &nbsp;<code>=></code>&nbsp; in new code.  We've replaced the uses in
+the Schinke stemmer and if there are other existing uses we recommend replacing
+them too.  For example, the first example above can be rewritten as
+</p>
+
+[% highlight('
+        $y = x
+') %]
+
+<p>
+If you have a use which you can't see how to replace, please get in touch and we can advise.
+</p>
 
 <h2>Snowball syntax</h2>
 
