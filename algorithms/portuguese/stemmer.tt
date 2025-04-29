@@ -16,6 +16,12 @@ differences between the two, though removing suffixes will naturally
 tend to do this to some extent.
 </p>
 
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>2005-06-15: Added rules to remove <i>-ante</i>, <i>-antes</i> and <i>-ância</i>
+</ul>
+
 [% algorithm_vocab([40, 'boa', 'quiabo']) %]
 
 <h2>The stemming algorithm</h2>

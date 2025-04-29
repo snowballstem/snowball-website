@@ -470,6 +470,15 @@ Step 9: undouble_kpt
     provided the vowel is in R1.
 </DL>
 
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>January 2019: Contributed by Linda Freienthal
+<li>Snowball 2.3.0: Fix the Snowball implementation to match this description (affects <i>-t</i>, <i>-te</i>, and <code>verb_exceptions</code>)
+<li>Snowball 2.3.0: Add condition on <i>-t</i> case ending removal
+<li>Snowball 2.3.0: Add condition on undoubling (e.g. avoids modifying acronyms/initialisms such as <i>PPE</i>)
+</ul>
+
 <h2>The full algorithm in Snowball</h2>
 
 [% highlight_file('estonian') %]

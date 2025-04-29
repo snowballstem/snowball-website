@@ -9,6 +9,12 @@
 
 [% algorithm_vocab([40, 'che', 'torá']) %]
 
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>2005-06-15: Added rules to remove <i>-ante</i>, <i>-antes</i>, <i>-ancia</i> and <i>-ancias</i>
+</ul>
+
 <h2>The stemming algorithm</h2>
 
 <p>

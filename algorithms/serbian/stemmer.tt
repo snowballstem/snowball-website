@@ -4,6 +4,13 @@
 
 <ul>
 [% algorithm_lis('serbian', 'Serbian') %]
+<li> Based on: <a href="http://nlp.ffzg.hr/resources/tools/stemmer-for-croatian/">Ljubesic, Nikola. Pandzic, Ivan. Stemmer for Croatian</a>
+</ul>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.0.0 (2009-04-20): Contributed by Stefan Petkovic and Dragan Ivanovic
 </ul>
 
 [% algorithm_vocab([

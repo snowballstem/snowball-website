@@ -4,7 +4,20 @@
 
 <ul>
 [% algorithm_lis('basque', 'Basque') %]
+<li> <a href="https://en.wikipedia.org/wiki/Basque_language">Basque language</a> on Wikipedia
 </ul>
+
+<p>
+Basque is spoken in the Basque Country which is a region straddling the
+westernmost Pyrenees in adjacent parts of northern Spain and southwestern
+France.  Basque is classified as a language isolate (unrelated to any other
+known languages) - the only one in Europe.
+</p>
+
+<p>
+In Basque, the language is called "Euskara" (which is why the ISO 639-1 code
+for it is <code>eu</code>).
+</p>
 
 [% algorithm_vocab([12, 'barrutiaren', 'museoak']) %]
 
@@ -16,6 +29,12 @@ The following letters are vowels:
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u</I></B>
 </DL>
 
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>July 2010: Contributed by Mikel Otxandorena
+</ul>
 
 <h2>The stemming algorithm</h2>
 

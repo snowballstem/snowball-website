@@ -340,6 +340,7 @@ And finally:
 <h2>History of functional changes to the algorithm</h2>
 
 <ul>
+<li>September 2002: New rule for <i>-ièr</i>
 <li>Snowball 2.0.0: Suffixes that begin with a diaereses are now removed
 (done by replacing <B><I>ë</I></B> and <B><I>ï</I></B> with <B><I>He</I></B> and <B><I>Hi</I></B>, during stemming then undoing afterwards).</li>
 <li>Snowball 2.3.0: Added a new first step which removes elisions.</li>

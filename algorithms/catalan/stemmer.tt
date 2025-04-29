@@ -5,6 +5,9 @@
 <ul>
 <li> <A HREF="/algorithms/romance.html"> Romance language stemmers</A>
 [% algorithm_lis('catalan', 'Catalan') %]
+<li> <a href="https://ca.wikipedia.org/wiki/Gram%C3%A0tica_del_catal%C3%A0">Catalan Grammar</a> on Catalan Wikipedia (<a href="https://en.wikipedia.org/wiki/Catalan_grammar">English version</a>)
+<li> <a href="https://ca.wikipedia.org/wiki/Llista_de_sufixos">Catalan Suffix List</a> on Catalan Wikipedia
+<li> <a href="https://ca.wikipedia.org/wiki/Flexi%C3%B3_verbal_del_catal%C3%A0">Catalan conjugation</a> on Catalan Wikipedia (<a href="https://en.wikipedia.org/wiki/Catalan_conjugation">English version</a>)
 </ul>
 
 [% algorithm_vocab([12, 'abatuda', 'gore']) %]
@@ -25,6 +28,12 @@ The following letters are vowels:
     <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  ü   &nbsp;  ï</I></B>
 </DL>
 
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>July 2010: Contributed by Mikel Otxandorena
+</ul>
 
 <h2>The stemming algorithm</h2>
 

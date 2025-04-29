@@ -198,8 +198,9 @@ Finally, all remaining GE and TSU are deleted.
 <h2>History of functional changes to the algorithm</h2>
 
 <ul>
-<li>Snowball 2.3.0: Added an exception to the check to replace prefix גע with
-GE to not replace when גע is the entire input word.  This avoids generating an
+<li>Snowball 2.1.0: Contributed by Assaf Urieli
+<li>Snowball 2.3.0: Added an exception to not replace prefix גע with
+GE גע is the entire input word.  This avoids generating an
 empty stem in this case.
 </ul>
 
