@@ -77,13 +77,13 @@ apostrophe.
 <li>[January 2006] "Words" <b><i>ied</i></b> and <b><i>ies</i></b> now stem to <b><i>ie</i></b> rather than <b><i>i</i></b>.
 <li>[January 2006] The implementation was fixed to follow the algorithm as documented here and now always treats an initial <b><i>y</i></b> as a consonant.
 <li>[November 2006] <B><I>arsen</I></B> added to exceptional forms
-<li>Snowball 2.3.0 Don't undouble if preceded by exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b>
-<li>Snowball 2.3.0 Exception added to prevent <b><i>evening</i></b> from stemming to <b><i>even</i></b>.
-<li>Snowball 2.3.0 Removed exception for <b><i>skis</i></b> as the algorithm gives the same stem without it!
-<li>Snowball 2.3.0 Avoid conflating <b><i>past</i></b> with <b><i>paste</i></b>/<b><i>pastes</i></b>/<b><i>pasted</i></b>/<b><i>pasting</i></b>.
-<li>Snowball 2.3.0 Avoid conflating <b><i>universe</i></b>/<b><i>universes</i></b> with <b><i>universal</i></b>/<b><i>universally</i></b> and <b><i>university</i></b>/<b><i>universities</i></b>.
-<li>Snowball 2.3.0 Avoid conflating <b><i>lateral</i></b>/<b><i>laterally</i></b> with <b><i>later</i></b>.
-<li>Snowball 2.3.0 Replace <b><i>-ogist</i></b> with <b><i>-og</i></b> to conflate <b><i>geologist</i></b> with <b><i>geology</i></b>, etc.
+<li>Snowball 3.0.0 Don't undouble if preceded by exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b>
+<li>Snowball 3.0.0 Exception added to prevent <b><i>evening</i></b> from stemming to <b><i>even</i></b>.
+<li>Snowball 3.0.0 Removed exception for <b><i>skis</i></b> as the algorithm gives the same stem without it!
+<li>Snowball 3.0.0 Avoid conflating <b><i>past</i></b> with <b><i>paste</i></b>/<b><i>pastes</i></b>/<b><i>pasted</i></b>/<b><i>pasting</i></b>.
+<li>Snowball 3.0.0 Avoid conflating <b><i>universe</i></b>/<b><i>universes</i></b> with <b><i>universal</i></b>/<b><i>universally</i></b> and <b><i>university</i></b>/<b><i>universities</i></b>.
+<li>Snowball 3.0.0 Avoid conflating <b><i>lateral</i></b>/<b><i>laterally</i></b> with <b><i>later</i></b>.
+<li>Snowball 3.0.0 Replace <b><i>-ogist</i></b> with <b><i>-og</i></b> to conflate <b><i>geologist</i></b> with <b><i>geology</i></b>, etc.
 </ol>
 
 <h2>Design Notes</h2>

@@ -140,7 +140,7 @@ Step 3:
         <DD>replace with <B><I>full</I></B>
     </DL>
     (The letter of the valid <B><I>öst</I></B>-ending is not necessarily in <I>R</I>1.
-    Prior to Snowball 2.3.0, <B><I>öst</I></B>-ending was effectively just
+    Prior to Snowball 3.0.0, <B><I>öst</I></B>-ending was effectively just
     <B><I>l</I></B> and <em>was</em> required to be in <I>R</I>1.)
 </DL>
 
@@ -163,8 +163,8 @@ cases, but not the <B><I>t</I></B> or <B><I>n</I></B> forms,
 <h2>History of functional changes to the algorithm</h2>
 
 <ul>
-<li>Snowball 2.3.0: Change <b><i>öst</i></b> suffix to <b><i>ös</i></b> in more situations.
-<li>Snowball 2.3.0: New rule to remove some <b><i>et</i></b> suffixes.
+<li>Snowball 3.0.0: Change <b><i>öst</i></b> suffix to <b><i>ös</i></b> in more situations.
+<li>Snowball 3.0.0: New rule to remove some <b><i>et</i></b> suffixes.
 </ul>
 
 <h2>The same algorithm in Snowball</h2>

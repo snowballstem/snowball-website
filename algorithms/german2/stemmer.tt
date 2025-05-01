@@ -15,7 +15,7 @@ improve handling of input text where the German letters <B><I>ä</I></B>,
 </p>
 
 <p>
-Snowball 2.3.0 added these adjustments to the main German stemmer, so there
+Snowball 3.0.0 added these adjustments to the main German stemmer, so there
 is no longer a "german2" variant - just use the "german" stemmer.
 </p>
 

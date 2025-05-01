@@ -31,7 +31,7 @@ The Hungrian language has these digraphs:
 
 <p>
 However treating these specially makes no difference to the results of the
-algorithm on valid Hungarian words so (since Snowball 2.3.0) the algorithm
+algorithm on valid Hungarian words so (since Snowball 3.0.0) the algorithm
 doesn't treat digraphs specially, except that some of the double constants
 include digraphs: e.g. <b><i>ccs</i></b>.
 </p>
@@ -271,7 +271,7 @@ contributed algorithm corresponds to <i>Light2</i> in the paper.
 <li>Sep 2014: Fixed encoding problem: <b><i>õ</i></b> was being used instead of
 <b><i>ő</i></b> and <b><i>û</i></b> instead of <b><i>ű</i></b>.
 
-<li><p>Mar 2025 (Snowball 2.3.0): Removed special handling of digraphs.
+<li><p>Snowball 3.0.0: Removed special handling of digraphs.
 We were ensuring <i>R</i>1 didn't start in the middle of a digraph (except that
 "dz" was missing from the Snowball implementation although included in the
 algorithm description).  However having R1 start in the middle of a digraph

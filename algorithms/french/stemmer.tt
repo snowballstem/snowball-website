@@ -343,10 +343,10 @@ And finally:
 <li>September 2002: New rule for <i>-ièr</i>
 <li>Snowball 2.0.0: Suffixes that begin with a diaereses are now removed
 (done by replacing <B><I>ë</I></B> and <B><I>ï</I></B> with <B><I>He</I></B> and <B><I>Hi</I></B>, during stemming then undoing afterwards).</li>
-<li>Snowball 2.3.0: Added a new first step which removes elisions.</li>
-<li>Snowball 2.3.0: Added rule to replace <b><i>-oux</i></b> with <b><i>-ou</i></b>.</li>
-<li>Snowball 2.3.0: Added RV exceptions for <b><i>ni</i></b> followed by a vowel.</li>
-<li>Snowball 2.3.0: Restrict removal of <b><i>-ais</i></b>; remove <b><i>-aise</i></b> and <b><i>-aises</i></b>.</li>
+<li>Snowball 3.0.0: Added a new first step which removes elisions.</li>
+<li>Snowball 3.0.0: Added rule to replace <b><i>-oux</i></b> with <b><i>-ou</i></b>.</li>
+<li>Snowball 3.0.0: Added RV exceptions for <b><i>ni</i></b> followed by a vowel.</li>
+<li>Snowball 3.0.0: Restrict removal of <b><i>-ais</i></b>; remove <b><i>-aise</i></b> and <b><i>-aises</i></b>.</li>
 </ul>
 
 <h2>The same algorithm in Snowball</h2>

@@ -188,7 +188,7 @@ Finally,
 
 <ul>
 <li>2005-06-15: Remove suffixes <i>-ante</i> and <i>-anti</i>.</li>
-<li>Snowball 2.3.0: Add exception to <i>RV</i> definition to avoid overstemming <i>divano</i>.</li>
+<li>Snowball 3.0.0: Add exception to <i>RV</i> definition to avoid overstemming <i>divano</i>.</li>
 </ul>
 
 <h2>The same algorithm in Snowball</h2>

@@ -137,8 +137,8 @@ overall this conflation doesn't seem an improvement.
 
 <ul>
 <li>Snowball 2.0.0: <B><I>s</I></B>-ending definition adjusted to only include <b><i>k</i></b> when preceded by a non-vowel.
-<li>Snowball 2.3.0: Improve handling of words ending <b><i>ers</i></b>.
-<li>Snowball 2.3.0: Include <b><i>ê</i></b>, <b><i>ò</i></b>, <b><i>ó</i></b> and <b><i>ô</i></b> in the list of vowels.
+<li>Snowball 3.0.0: Improve handling of words ending <b><i>ers</i></b>.
+<li>Snowball 3.0.0: Include <b><i>ê</i></b>, <b><i>ò</i></b>, <b><i>ó</i></b> and <b><i>ô</i></b> in the list of vowels.
 </ul>
 
 <h2>The same algorithm in Snowball</h2>

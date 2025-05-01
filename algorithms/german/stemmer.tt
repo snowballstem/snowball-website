@@ -141,11 +141,11 @@ as poor style.
 
 <ul>
 <li>Snowball 2.0.0 (2009-12-11): Extra rule for -nisse ending added
-<li>Snowball 2.3.0: Handle ASCII transliterations of umlauts (merging the "german2" variant into the standard algorithm).
-<li>Snowball 2.3.0: Special case for <b><i>-system</i></b> added.
-<li>Snowball 2.3.0: Replace <b><i>-ln</i></b> and <b><i>-lns</i></b> with <b><i>l</i></b>.
-<li>Snowball 2.3.0: Remove <b><i>-erin</i></b> and <b><i>-erinnen</i></b>.
-<li>Snowball 2.3.0: Remove <b><i>-et</i></b> when safe to do so.
+<li>Snowball 3.0.0: Handle ASCII transliterations of umlauts (merging the "german2" variant into the standard algorithm).
+<li>Snowball 3.0.0: Special case for <b><i>-system</i></b> added.
+<li>Snowball 3.0.0: Replace <b><i>-ln</i></b> and <b><i>-lns</i></b> with <b><i>l</i></b>.
+<li>Snowball 3.0.0: Remove <b><i>-erin</i></b> and <b><i>-erinnen</i></b>.
+<li>Snowball 3.0.0: Remove <b><i>-et</i></b> when safe to do so.
 </ul>
 
 <h2>The stemming algorithm</h2>
@@ -183,7 +183,7 @@ upper case, and then do the following mappings,
 
 <p>
 (The rules here for <B><I>ae</I></B>, <B><I>oe</I></B> and <B><I>ue</I></B> were
-added in Snowball 2.3.0, but were previously present as a variant of the
+added in Snowball 3.0.0, but were previously present as a variant of the
 algorithm termed <a href="../german2/stemmer.tt">"german2"</a>).  The condition
 on the replacement of <B><I>ue</I></B> prevents the unwanted changing of
 <I>quelle</I>.  Also note that <I>feuer</I> is not modified because the first
@@ -220,12 +220,12 @@ Step 1:
 <DL><DD>
     Search for the longest among the following suffixes,
         <DL><DD>
-        (<I>a</I>) <B><I>em</I></B> (not preceded by <B><I>syst</I></B> [condition added in Snowball 2.3.0])<BR>
+        (<I>a</I>) <B><I>em</I></B> (not preceded by <B><I>syst</I></B> [condition added in Snowball 3.0.0])<BR>
         (<I>b</I>) <B><I>ern  &nbsp;  er</I></B><BR>
         (<I>c</I>) <B><I>e  &nbsp;  en  &nbsp;  es</I></B><BR>
         (<I>d</I>) <B><I>s</I></B> (preceded by a valid <B><I>s</I></B>-ending)<BR>
-        (<I>e</I>) <B><I>erin  &nbsp;  erinnen</I></B> [added in Snowball 2.3.0]<BR>
-        (<I>f</I>) <B><I>ln  &nbsp;  lns</I></B> [added in Snowball 2.3.0]
+        (<I>e</I>) <B><I>erin  &nbsp;  erinnen</I></B> [added in Snowball 3.0.0]<BR>
+        (<I>f</I>) <B><I>ln  &nbsp;  lns</I></B> [added in Snowball 3.0.0]
 </DL>
     <p>
     and if in <I>R</I>1 then delete (for (a) to (e)) or replace with <I>l</I> (for (f)).

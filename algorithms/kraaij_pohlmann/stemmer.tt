@@ -45,7 +45,7 @@ comparison using the correct encoding there were are actually 220 differences.
 </p>
 
 <p>
-Based on feedback from Dutch users, in Snowball 2.3.0 we switched the default
+Based on feedback from Dutch users, in Snowball 3.0.0 we switched the default
 Dutch stemmer to use the Kraaij-Pohlmann algorithm.  As part of doing this we
 resolved all differences in output between the Snowball and C implementations
 of the algorithm (tested with our Dutch vocabulary list, but also a much
