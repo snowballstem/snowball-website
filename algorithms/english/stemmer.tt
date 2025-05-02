@@ -644,15 +644,6 @@ The definition of the English stemmer above is therefore supplemented by the fol
 <TR><TD>        <I>atlas</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>cosmos</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>bias</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>andes</I>
 </TABLE></DL>
 
-<p>
-    Following step 1<I>a</I>, leave the following invariant,
-</p>
-
-<DL><DD><TABLE CELLPADDING=0>
-<TR><TD>        <I>proceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>exceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>succeed</I>
-</TABLE></DL>
-</DL>
-
 <h2>The full algorithm in Snowball</h2>
 
 [% highlight_file('english') %]
