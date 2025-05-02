@@ -84,6 +84,7 @@ apostrophe.
 <li>Snowball 3.0.0 Avoid conflating <b><i>universe</i></b>/<b><i>universes</i></b> with <b><i>universal</i></b>/<b><i>universally</i></b> and <b><i>university</i></b>/<b><i>universities</i></b>.
 <li>Snowball 3.0.0 Avoid conflating <b><i>lateral</i></b>/<b><i>laterally</i></b> with <b><i>later</i></b>.
 <li>Snowball 3.0.0 Replace <b><i>-ogist</i></b> with <b><i>-og</i></b> to conflate <b><i>geologist</i></b> with <b><i>geology</i></b>, etc.
+<li>Snowball 3.0.0 Handle <b><i>-ing</i></b> exceptions in <b><i>-ing</i></b> rule.
 </ol>
 
 <h2>Design Notes</h2>
@@ -250,6 +251,11 @@ Step 1<I>b</I>:
     <DT><B><I>eed  &nbsp;  eedly</I></B><code><FONT COLOR=BLUE>+</FONT></code>
         <DD>replace by <B><I>ee</I></B> if in <I>R</I>1
     <DT><B><I>ed  &nbsp;  edly</I></B><code><FONT COLOR=BLUE>+</FONT></code>  &nbsp;  <B><I>ing  &nbsp;  ingly</I></B><code><FONT COLOR=BLUE>+</FONT></code>
+        <DD>for <b><i>ing</i></b>, check if the word before the suffix is exactly one of the following exceptional cases:
+	   <ul>
+	   <li> if it's a non-vowel followed by <b><i>y</i></b>, replace <b><i>y</i></b> and <b><i>ing</i></b> with <b><i>ie</i></b> (so <i>dying<i> &#x2192; <i>die</i>), then go to step 1<i>c</i>.
+	   <li> if it's exactly one of <I>inn</I>, <I>out</I>, <I>cann</I>, <I>herr</I>, <I>earr</I> or <I>even</I> then go to step 1<i>c</i>.
+	   </ul>
         <DD>delete if the preceding word part contains a vowel, and after the deletion:
         <DD>if the word ends <B><I>at</I></B>, <B><I>bl</I></B> or <B><I>iz</I></B> add <B><I>e</I></B> (so <I>luxuriat</I> &#x2192; <I>luxuriate</I>), or
         <DD>if the word ends with a <i>double</i> preceded by something other than exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b> then
@@ -403,9 +409,6 @@ shape:
             /* special changes: */
 
             'skies'     (<-'sky')
-            'dying'     (<-'die')
-            'lying'     (<-'lie')
-            'tying'     (<-'tie')
 
             /* special -LY cases */
 
@@ -512,7 +515,6 @@ but placed after the call of &nbsp;<code>Step_1a</code>, which may have removed 
     define exception2 as (
 
         [substring] atlimit among(
-            'inning' 'outing' 'canning' 'herring' 'earring' 'evening'
             'proceed' 'exceed' 'succeed'
 
             // ... extensions possible here ...
@@ -548,8 +550,8 @@ stem <i>sky</i> and <i>skies</i> to <i>sky</i>.
 <p>
 <I>b</I>)
 Similarly there is a problem with the <B><I>ing</I></B> form of three letter verbs ending <B><I>ie</I></B>. There
-are only three such verbs: <I>die</I>, <I>lie</I> and <I>tie</I>, so a special case is made for
-<I>dying</I>, <I>lying</I> and <I>tying</I>.
+are five such verbs: <I>die</I>, <i>hie</i>, <I>lie</I>, <I>tie</I> and <i>vie</i>, which are handled by a
+special case when <i>-ing</i> is preceded by exactly a non-vowel and <i>y</i>.
 </p>
 
 <p>
@@ -613,11 +615,6 @@ The definition of the English stemmer above is therefore supplemented by the fol
 <DL><DD><TABLE CELLPADDING=0>
 <TR><TD> <I>skies</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>sky</I>
 
-<TR><TD> <I>dying <BR> lying <BR> tying</I>
-                 <TD></TD><TD>  &#x2192;
-                               <TD></TD><TD> <I>die <BR> lie <BR> tie</I>
-
-
 <TR><TD> <I>idly <BR> gently <BR> ugly <BR> early <BR> only <BR> singly</I>
                  <TD></TD><TD>  &#x2192;
                                <TD></TD><TD> <I>idl <BR> gentl <BR> ugli <BR> earli <BR> onli <BR> singl</I>
@@ -638,7 +635,6 @@ The definition of the English stemmer above is therefore supplemented by the fol
 </p>
 
 <DL><DD><TABLE CELLPADDING=0>
-<TR><TD>        <I>inning</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>outing</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>canning</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>herring</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>earring</I> &nbsp; </TD><TD> &nbsp; <I>evening</I> </TD>
 <TR><TD>        <I>proceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>exceed</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>succeed</I>
 </TABLE></DL>
 </DL>
