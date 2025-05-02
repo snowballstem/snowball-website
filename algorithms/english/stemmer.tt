@@ -166,7 +166,7 @@ Define a <I>short syllable</I> in a word as either (<I>a</I>) a vowel followed b
 non-vowel other than <B><I>w</I></B>, <B><I>x</I></B> or <B><I>Y</I></B> and preceded by a non-vowel, or
 <code><FONT COLOR=BLUE>*</FONT></code>
 (<I>b</I>) a vowel at the beginning of the word followed by a non-vowel, or
-(<i>c</i>) <b><i>past</i><b>.
+(<i>c</i>) <b><i>past</i></b>.
 </p>
 
 <p>
@@ -253,7 +253,7 @@ Step 1<I>b</I>:
     <DT><B><I>ed  &nbsp;  edly</I></B><code><FONT COLOR=BLUE>+</FONT></code>  &nbsp;  <B><I>ing  &nbsp;  ingly</I></B><code><FONT COLOR=BLUE>+</FONT></code>
         <DD>for <b><i>ing</i></b>, check if the word before the suffix is exactly one of the following exceptional cases:
 	   <ul>
-	   <li> if it's a non-vowel followed by <b><i>y</i></b>, replace <b><i>y</i></b> and <b><i>ing</i></b> with <b><i>ie</i></b> (so <i>dying<i> &#x2192; <i>die</i>), then go to step 1<i>c</i>.
+	   <li> if it's a non-vowel followed by <b><i>y</i></b>, replace <b><i>y</i></b> and <b><i>ing</i></b> with <b><i>ie</i></b> (so <i>dying</i> &#x2192; <i>die</i>), then go to step 1<i>c</i>.
 	   <li> if it's exactly one of <I>inn</I>, <I>out</I>, <I>cann</I>, <I>herr</I>, <I>earr</I> or <I>even</I> then go to step 1<i>c</i>.
 	   </ul>
         <DD>delete if the preceding word part contains a vowel, and after the deletion:
