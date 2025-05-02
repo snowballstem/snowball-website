@@ -84,7 +84,7 @@ apostrophe.
 <li>Snowball 3.0.0 Avoid conflating <b><i>universe</i></b>/<b><i>universes</i></b> with <b><i>universal</i></b>/<b><i>universally</i></b> and <b><i>university</i></b>/<b><i>universities</i></b>.
 <li>Snowball 3.0.0 Avoid conflating <b><i>lateral</i></b>/<b><i>laterally</i></b> with <b><i>later</i></b>.
 <li>Snowball 3.0.0 Replace <b><i>-ogist</i></b> with <b><i>-og</i></b> to conflate <b><i>geologist</i></b> with <b><i>geology</i></b>, etc.
-<li>Snowball 3.0.0 Handle <b><i>-ing</i></b> exceptions in <b><i>-ing</i></b> rule.
+<li>Snowball 3.0.0 Handle <b><i>-eed</i></b> and <b><i>-ing</i></b> exceptions in respective rules.
 </ol>
 
 <h2>Design Notes</h2>
@@ -464,8 +464,10 @@ Porter stemmer:
 </TABLE></DL>
 
 <p>
-To fix this over-stemming, we make an exception to the usual setting of <I>p</I>1,
-the left point of <I>R</I>1, and therefore replace
+To fix cases of over-stemming like this which involve multiple words and
+suffixes, it's best to add an exception to the definition of the start of
+<i>R</i>1, which in the Snowball implementation means adjusting the code which
+sets <I>p</I>1, so we replace
 </p>
 
 [% highlight("
@@ -507,21 +509,33 @@ after which the words beginning <B><I>gener</I></B> stem as follows:
 </TABLE></DL>
 
 <p>
-Another example is given by the &nbsp;<code>exception2</code>&nbsp; routine, which is similar to &nbsp;<code>exception1</code>,
-but placed after the call of &nbsp;<code>Step_1a</code>, which may have removed terminal <B><I>s</I></B>,
+Exceptions specific to a single suffix are typically better handled where that
+suffix is handled rather than with a global exception, since the overhead of
+checking a global exception is incurred by all words.
+</p>
+
+<p>
+For example, we want to make exceptions to <b><i>-ing</i></b> handling for
+e.g. <i>dying</i> &#x2192; <i>die</i> (done for any word consisting of
+a consonant plus <i>ying</i>), and to leave words such as <i>herring</i>
+alone (rather than stemming to <i>her</i>):
 </p>
 
 [% highlight("
-    define exception2 as (
-
-        [substring] atlimit among(
-            'proceed' 'exceed' 'succeed'
-
-            // ... extensions possible here ...
-
-        )
-    )
+                among (
+                    // dying->die, lying->die, tying->tie, vying->vie
+                    'y'
+                        (test(non-v atlimit) ] <-'ie')
+                    // Leave inning, outing, etc along.
+                    'inn' 'out' 'cann' 'herr' 'earr' 'even'
+                        (atlimit)
+                )
 ") %]
+
+<p>
+This happens in step 1<i>b</i>, so step 1<i>a</i> may have removed terminal <b><i>s</i></b>,
+so we also stem <i>dyings</i> &#x2192; <i>die</i>, <i>herrings</i> &#x2192; <i>herring</i>, etc.
+</p>
 
 <p>
 Snowball makes it easy therefore to add in lists of exceptions. But deciding what the lists of
