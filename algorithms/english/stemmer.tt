@@ -252,9 +252,9 @@ Step 1<I>b</I>:
     <DT><B><I>ed  &nbsp;  edly</I></B><code><FONT COLOR=BLUE>+</FONT></code>  &nbsp;  <B><I>ing  &nbsp;  ingly</I></B><code><FONT COLOR=BLUE>+</FONT></code>
         <DD>delete if the preceding word part contains a vowel, and after the deletion:
         <DD>if the word ends <B><I>at</I></B>, <B><I>bl</I></B> or <B><I>iz</I></B> add <B><I>e</I></B> (so <I>luxuriat</I> &#x2192; <I>luxuriate</I>), or
-        <DD>if the word ends with a double preceded by something other than exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b> then
+        <DD>if the word ends with a <i>double</i> preceded by something other than exactly <b><i>a</i></b>, <b><i>e</i></b> or <b><i>o</i></b> then
         remove the last letter (so <I>hopp</I> &#x2192; <I>hop</I> but <i>add</i>, <i>egg</i> and <i>off</i> are not changed), or
-        <DD>if the word does not end with a double and is short, add <B><I>e</I></B> (so <I>hop</I> &#x2192; <I>hope</I>)
+        <DD>if the word does not end with a <i>double</i> and is short, add <B><I>e</I></B> (so <I>hop</I> &#x2192; <I>hope</I>)
 </DL>
 </DL>
 
