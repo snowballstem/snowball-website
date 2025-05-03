@@ -57,3 +57,4 @@ jobs:
         with:
           folder: ../snowballstem.github.io
           git-config-email: "<>"
+          branch: gh-pages-modern-js
