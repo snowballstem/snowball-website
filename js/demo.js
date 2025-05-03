@@ -1,3 +1,36 @@
+import('./js/arabic-stemmer.mjs');
+import('./js/armenian-stemmer.mjs');
+import('./js/basque-stemmer.mjs');
+import('./js/catalan-stemmer.mjs');
+import('./js/danish-stemmer.mjs');
+import('./js/dutch_porter-stemmer.mjs');
+import('./js/dutch-stemmer.mjs');
+import('./js/english-stemmer.mjs');
+import('./js/esperanto-stemmer.mjs');
+import('./js/estonian-stemmer.mjs');
+import('./js/finnish-stemmer.mjs');
+import('./js/french-stemmer.mjs');
+import('./js/german-stemmer.mjs');
+import('./js/greek-stemmer.mjs');
+import('./js/hindi-stemmer.mjs');
+import('./js/hungarian-stemmer.mjs');
+import('./js/indonesian-stemmer.mjs');
+import('./js/irish-stemmer.mjs');
+import('./js/italian-stemmer.mjs');
+import('./js/lithuanian-stemmer.mjs');
+import('./js/nepali-stemmer.mjs');
+import('./js/norwegian-stemmer.mjs');
+import('./js/porter-stemmer.mjs');
+import('./js/portuguese-stemmer.mjs');
+import('./js/romanian-stemmer.mjs');
+import('./js/russian-stemmer.mjs');
+import('./js/serbian-stemmer.mjs');
+import('./js/spanish-stemmer.mjs');
+import('./js/swedish-stemmer.mjs');
+import('./js/tamil-stemmer.mjs');
+import('./js/turkish-stemmer.mjs');
+import('./js/yiddish-stemmer.mjs');
+
 var old_words;
 function stem_demo(elt) {
   var words = elt.value;
