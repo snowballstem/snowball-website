@@ -273,7 +273,7 @@ my @menu = (
 
     my @stemmer_js_files;
     my $stemmer_select = '<select id="lang" onchange="lang_changed(this);location.hash=this.options[this.selectedIndex].value">';
-    for (sort glob('js/*-stemmer.js')) {
+    for (sort glob('js/*-stemmer.mjs')) {
 	if (m!/(.*)-!) {
 	    push @stemmer_js_files, $_;
 	    if ($1 ne 'base') {
