@@ -2,7 +2,7 @@ name: Update website
 on:
   push:
     branches:
-      - main
+      - modernise-js
   # Allow running manually from the Actions tab (useful if there are changes to
   # snowball and/or snowball-data that affect the website).
   workflow_dispatch:
