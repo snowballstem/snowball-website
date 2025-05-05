@@ -8,14 +8,16 @@ my $coderepo_path_prefix = '../snowball/';
 my $jsdir;
 opendir $jsdir, "$coderepo_path_prefix/js_out" or die $!;
 while (readdir($jsdir)) {
-    next unless /-stemmer\.mjs$/;
+    next unless /-stemmer-es6\.mjs$/;
     my $in = "$coderepo_path_prefix/js_out/$_";
+    s/-es6\././;
     my $out = $js_path_prefix . $_;
     open IN, '<', $in or die $!;
     open OUT, '>', $out or die $!;
     while (<IN>) {
 	#next if m!(const|/\*\* \@const \*/ var) BaseStemmer = require!;
 	#s/.*typeof module.*? = (.*);/window['$1'] = $1;/;
+	s/-es6\.mjs\b/.mjs/;
 	print OUT;
     }
     close IN;
