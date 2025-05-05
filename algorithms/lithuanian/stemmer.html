@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Lithuanian stemming algorithm - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>Lithuanian stemming algorithm</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <a href="/demo.html#Lithuanian">Javascript demo</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/lithuanian.sbl">The stemmer in Snowball</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/lithuanian/voc.txt">Sample Lithuanian vocabulary</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/lithuanian/output.txt">Its stemmed equivalent</a></li>
+</ul>
+
+<p>
+This algorithm was contributed by Dainius Jocas.
+</p>
+
+<p>
+Its intended domain of use is information retrieval, and so handling of nouns
+is considered more important than that of verbs, adjectives, etc.
+</p>
+
+<h2>The full algorithm in Snowball</h2>
+
+<div class="highlight"><pre><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
+
+<span class="c1">// escape symbols for substituting lithuanian characters</span>
+<span class="kr">stringescapes</span><span class="w"> </span><span class="se">{</span><span class="w"> </span><span class="se">}</span>
+
+<span class="cm">/* Special characters in Unicode Latin Extended-A */</span>
+<span class="c1">// &#39; nosine</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ak</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0105}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ą a + ogonek</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ek</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0119}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ę e + ogonek</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ik</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+012F}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// į i + ogonek</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">uk</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0173}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ų u + ogonek</span>
+
+<span class="c1">// . taskas</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">e.</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0117}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ė e + dot</span>
+
+<span class="c1">// - ilgoji</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">u-</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+016B}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ū u + macron</span>
+
+<span class="c1">// v varnele</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">cv</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+010D}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// č c + caron (haček)</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">sv</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0161}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// š s + caron (haček)</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">zv</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+017E}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ž z + caron (haček)</span>
+
+<span class="c1">// [C](VC)^m[V|C]</span>
+<span class="c1">// definitions of variables for</span>
+<span class="c1">// p1 - position of m = 0</span>
+<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="p">)</span>
+
+<span class="c1">// groupings</span>
+<span class="c1">// v - lithuanian vowels</span>
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">)</span>
+
+<span class="c1">// v - all lithuanian vowels</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiyou</span><span class="se">{ak}{ek}{ik}{uk}{e.}{u-}</span><span class="s1">&#39;</span>
+
+<span class="c1">// all lithuanian stemmer routines: 4 steps</span>
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">step2</span><span class="w"> </span><span class="n">step1</span><span class="w"> </span><span class="n">fix_chdz</span><span class="w"> </span><span class="n">fix_gd</span><span class="w"> </span><span class="n">fix_conflicts</span>
+<span class="p">)</span>
+
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">step1</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// Daiktavardžiai (Nouns)</span>
+<span class="w">      </span><span class="c1">// I linksniuotė (declension I)</span>
+<span class="w">      </span><span class="s1">&#39;as&#39;</span><span class="w"> </span><span class="s1">&#39;ias&#39;</span><span class="w"> </span><span class="s1">&#39;is&#39;</span><span class="w"> </span><span class="s1">&#39;ys&#39;</span><span class="w">        </span><span class="c1">// vyras, kelias, brolis, gaidys</span>
+<span class="w">      </span><span class="s1">&#39;o&#39;</span><span class="w">    </span><span class="s1">&#39;io&#39;</span><span class="w">                 </span><span class="c1">// vyro, kelio</span>
+<span class="w">      </span><span class="s1">&#39;ui&#39;</span><span class="w">   </span><span class="s1">&#39;iui&#39;</span><span class="w">                </span><span class="c1">// vyrui, keliui</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ak}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;i</span><span class="se">{ak}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ik}</span><span class="s1">&#39;</span><span class="w">       </span><span class="c1">// vyrą, kelią, brolį</span>
+<span class="w">      </span><span class="s1">&#39;u&#39;</span><span class="w">    </span><span class="s1">&#39;iu&#39;</span><span class="w">                 </span><span class="c1">// vyru, keliu</span>
+<span class="w">      </span><span class="s1">&#39;e&#39;</span><span class="w">    </span><span class="s1">&#39;yje&#39;</span><span class="w">                </span><span class="c1">// vyre, kelyje</span>
+<span class="w">      </span><span class="s1">&#39;y&#39;</span><span class="w">    </span><span class="s1">&#39;au&#39;</span><span class="w">    </span><span class="s1">&#39;i&#39;</span><span class="w">          </span><span class="c1">// kely, brolau, broli,</span>
+<span class="w">      </span><span class="s1">&#39;an&#39;</span><span class="w">                        </span><span class="c1">// nusižengiman</span>
+
+<span class="w">      </span><span class="s1">&#39;ai&#39;</span><span class="w">   </span><span class="s1">&#39;iai&#39;</span><span class="w">                </span><span class="c1">// vyrai, keliai</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{uk}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;i</span><span class="se">{uk}</span><span class="s1">&#39;</span><span class="w">              </span><span class="c1">// vyrų, kelių</span>
+<span class="w">      </span><span class="s1">&#39;ams&#39;</span><span class="w">  </span><span class="s1">&#39;am&#39;</span><span class="w">                 </span><span class="c1">// vyrams, vyram</span>
+<span class="w">      </span><span class="s1">&#39;iams&#39;</span><span class="w"> </span><span class="s1">&#39;iam&#39;</span><span class="w">                </span><span class="c1">// broliams, broliam</span>
+<span class="w">      </span><span class="s1">&#39;us&#39;</span><span class="w">   </span><span class="s1">&#39;ius&#39;</span><span class="w">                </span><span class="c1">// vyrus, brolius</span>
+<span class="w">      </span><span class="s1">&#39;ais&#39;</span><span class="w">  </span><span class="s1">&#39;iais&#39;</span><span class="w">               </span><span class="c1">// vyrais, keliais</span>
+<span class="w">      </span><span class="s1">&#39;uose&#39;</span><span class="w"> </span><span class="s1">&#39;iuose&#39;</span><span class="w"> </span><span class="s1">&#39;uos&#39;</span><span class="w"> </span><span class="s1">&#39;iuos&#39;</span><span class="w"> </span><span class="c1">// vyruose, keliuose, vyruos, keliuos</span>
+<span class="w">      </span><span class="s1">&#39;uosna&#39;</span><span class="w"> </span><span class="s1">&#39;iuosna&#39;</span><span class="w">            </span><span class="c1">// vyruosna, keliuosna</span>
+<span class="w">      </span><span class="s1">&#39;ysna&#39;</span><span class="w">                      </span><span class="c1">// žutysna</span>
+
+<span class="w">      </span><span class="s1">&#39;asis&#39;</span><span class="w"> </span><span class="s1">&#39;aisi&#39;</span><span class="w">               </span><span class="c1">// sukimasis, sukimaisi</span>
+<span class="w">      </span><span class="s1">&#39;osi&#39;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{uk}</span><span class="s1">si&#39;</span><span class="w">             </span><span class="c1">// sukimosi, sukimųsi</span>
+<span class="w">      </span><span class="s1">&#39;uisi&#39;</span><span class="w">                      </span><span class="c1">// sukimuisi</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ak}</span><span class="s1">si&#39;</span><span class="w">                    </span><span class="c1">// sukimąsi</span>
+<span class="w">      </span><span class="s1">&#39;usi&#39;</span><span class="w">                       </span><span class="c1">// sukimusi</span>
+<span class="w">      </span><span class="s1">&#39;esi&#39;</span><span class="w">                       </span><span class="c1">// sukimesi</span>
+
+<span class="w">      </span><span class="s1">&#39;uo&#39;</span><span class="w">                        </span><span class="c1">// mėnuo</span>
+
+
+<span class="w">      </span><span class="c1">// II linksniuote (declension II)</span>
+<span class="w">      </span><span class="s1">&#39;a&#39;</span><span class="w">  </span><span class="s1">&#39;ia&#39;</span><span class="w">                   </span><span class="c1">// galva, vysnios</span>
+<span class="w">      </span><span class="s1">&#39;os&#39;</span><span class="w"> </span><span class="s1">&#39;ios&#39;</span><span class="w">                  </span><span class="c1">// galvos, vysnios</span>
+<span class="w">      </span><span class="s1">&#39;oj&#39;</span><span class="w"> </span><span class="s1">&#39;oje&#39;</span><span class="w"> </span><span class="s1">&#39;ioje&#39;</span><span class="w">           </span><span class="c1">// galvoje, vysnioje</span>
+<span class="w">      </span><span class="s1">&#39;osna&#39;</span><span class="w"> </span><span class="s1">&#39;iosna&#39;</span><span class="w">              </span><span class="c1">// galvosna, vyšniosna</span>
+<span class="w">      </span><span class="s1">&#39;om&#39;</span><span class="w"> </span><span class="s1">&#39;oms&#39;</span><span class="w"> </span><span class="s1">&#39;ioms&#39;</span><span class="w">           </span><span class="c1">// galvoms, vysnioms</span>
+<span class="w">      </span><span class="s1">&#39;omis&#39;</span><span class="w"> </span><span class="s1">&#39;iomis&#39;</span><span class="w">              </span><span class="c1">// galvomis, vysniomis</span>
+<span class="w">      </span><span class="s1">&#39;ose&#39;</span><span class="w"> </span><span class="s1">&#39;iose&#39;</span><span class="w">                </span><span class="c1">// galvose, vysniose</span>
+<span class="w">      </span><span class="s1">&#39;on&#39;</span><span class="w"> </span><span class="s1">&#39;ion&#39;</span><span class="w">                  </span><span class="c1">// galvon, vyšnion</span>
+
+
+<span class="w">      </span><span class="c1">// III linksniuote (declension III)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">&#39;</span><span class="w">                      </span><span class="c1">// gervė</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">                     </span><span class="c1">// gervės</span>
+<span class="w">      </span><span class="s1">&#39;ei&#39;</span><span class="w">                        </span><span class="c1">// gervei</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ek}</span><span class="s1">&#39;</span><span class="w">                      </span><span class="c1">// gervę</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">j&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">je&#39;</span><span class="w">            </span><span class="c1">// gervėj, gervėje</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">ms&#39;</span><span class="w">                    </span><span class="c1">// gervėms</span>
+<span class="w">      </span><span class="s1">&#39;es&#39;</span><span class="w">                        </span><span class="c1">// gerves</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">mis&#39;</span><span class="w">                   </span><span class="c1">// gervėmis</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">se&#39;</span><span class="w">                    </span><span class="c1">// gervėse</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">sna&#39;</span><span class="w">                   </span><span class="c1">// gervėsna</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">n&#39;</span><span class="w">                     </span><span class="c1">// žydaitėn</span>
+
+
+<span class="w">      </span><span class="c1">// IV linksniuote (declension IV)</span>
+<span class="w">      </span><span class="s1">&#39;aus&#39;</span><span class="w"> </span><span class="s1">&#39;iaus&#39;</span><span class="w">                </span><span class="c1">// sūnaus, skaičiaus</span>
+<span class="w">      </span><span class="s1">&#39;umi&#39;</span><span class="w"> </span><span class="s1">&#39;iumi&#39;</span><span class="w">                </span><span class="c1">// sūnumi, skaičiumi</span>
+<span class="w">      </span><span class="s1">&#39;uje&#39;</span><span class="w"> </span><span class="s1">&#39;iuje&#39;</span><span class="w">                </span><span class="c1">// sūnuje, skaičiuje</span>
+<span class="w">      </span><span class="s1">&#39;iau&#39;</span><span class="w">                       </span><span class="c1">// skaičiau</span>
+
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{u-}</span><span class="s1">s&#39;</span><span class="w">                     </span><span class="c1">// sūnūs</span>
+<span class="w">      </span><span class="s1">&#39;ums&#39;</span><span class="w">                       </span><span class="c1">// sūnums</span>
+<span class="w">      </span><span class="s1">&#39;umis&#39;</span><span class="w">                      </span><span class="c1">// sūnumis</span>
+<span class="w">      </span><span class="s1">&#39;un&#39;</span><span class="w"> </span><span class="s1">&#39;iun&#39;</span><span class="w">                  </span><span class="c1">// sūnun, administratoriun</span>
+
+
+<span class="w">      </span><span class="c1">// V linksniuote (declension V)</span>
+<span class="w">      </span><span class="s1">&#39;ies&#39;</span><span class="w"> </span><span class="s1">&#39;ens&#39;</span><span class="w"> </span><span class="s1">&#39;enio&#39;</span><span class="w"> </span><span class="s1">&#39;ers&#39;</span><span class="w">    </span><span class="c1">// avies, vandens, sesers</span>
+<span class="w">      </span><span class="s1">&#39;eniui&#39;</span><span class="w"> </span><span class="s1">&#39;eriai&#39;</span><span class="w">             </span><span class="c1">// vandeniui, eriai</span>
+<span class="w">      </span><span class="s1">&#39;en</span><span class="se">{ik}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;er</span><span class="se">{ik}</span><span class="s1">&#39;</span><span class="w">           </span><span class="c1">// vandenį, seserį</span>
+<span class="w">      </span><span class="s1">&#39;imi&#39;</span><span class="w"> </span><span class="s1">&#39;eniu&#39;</span><span class="w"> </span><span class="s1">&#39;erimi&#39;</span><span class="w"> </span><span class="s1">&#39;eria&#39;</span><span class="w"> </span><span class="c1">// avimi, vandeniu, seserimi, seseria</span>
+<span class="w">      </span><span class="s1">&#39;enyje&#39;</span><span class="w"> </span><span class="s1">&#39;eryje&#39;</span><span class="w">             </span><span class="c1">// vandenyje, seseryje</span>
+<span class="w">      </span><span class="s1">&#39;ie&#39;</span><span class="w"> </span><span class="s1">&#39;enie&#39;</span><span class="w"> </span><span class="s1">&#39;erie&#39;</span><span class="w">          </span><span class="c1">// avie, vandenie, seserie</span>
+
+<span class="w">      </span><span class="s1">&#39;enys&#39;</span><span class="w"> </span><span class="s1">&#39;erys&#39;</span><span class="w">               </span><span class="c1">// vandenys, seserys</span>
+<span class="w">      </span><span class="c1">// &#39;en{uk}&#39; konfliktas su &#39;žandenų&#39; &#39;antenų&#39;</span>
+<span class="w">      </span><span class="s1">&#39;er</span><span class="se">{uk}</span><span class="s1">&#39;</span><span class="w">                    </span><span class="c1">// seserų</span>
+<span class="w">      </span><span class="s1">&#39;ims&#39;</span><span class="w"> </span><span class="s1">&#39;enims&#39;</span><span class="w"> </span><span class="s1">&#39;erims&#39;</span><span class="w">       </span><span class="c1">// avims, vandemins, seserims</span>
+<span class="w">      </span><span class="s1">&#39;enis&#39;</span><span class="w">                      </span><span class="c1">// vandenis</span>
+<span class="w">      </span><span class="s1">&#39;imis&#39;</span><span class="w">                      </span><span class="c1">// žebenkštimis</span>
+<span class="w">      </span><span class="s1">&#39;enimis&#39;</span><span class="w">                    </span><span class="c1">// vandenimis</span>
+<span class="w">      </span><span class="s1">&#39;yse&#39;</span><span class="w"> </span><span class="s1">&#39;enyse&#39;</span><span class="w"> </span><span class="s1">&#39;eryse&#39;</span><span class="w">       </span><span class="c1">// avyse, vandenyse, seseryse</span>
+
+
+<span class="w">      </span><span class="c1">// Būdvardžiai (Adjectives)</span>
+<span class="w">      </span><span class="c1">// (i)a linksniuotė</span>
+<span class="w">      </span><span class="s1">&#39;iem&#39;</span><span class="w"> </span><span class="s1">&#39;iems&#39;</span><span class="w">                </span><span class="c1">// geriem, geriems</span>
+<span class="w">      </span><span class="s1">&#39;ame&#39;</span><span class="w"> </span><span class="s1">&#39;iame&#39;</span><span class="w">                </span><span class="c1">// naujame, mediniame</span>
+
+
+<span class="w">      </span><span class="c1">// Veiksmažodžiai (Verbs)</span>
+<span class="w">      </span><span class="c1">// Tiesioginė nuosaka (indicative mood)</span>
+<span class="w">      </span><span class="c1">// esamasis laikas (present tense)</span>
+<span class="w">      </span><span class="c1">// (i)a asmenuotė (declension (i)a)</span>
+<span class="w">      </span><span class="s1">&#39;uosi&#39;</span><span class="w"> </span><span class="s1">&#39;iuosi&#39;</span><span class="w">              </span><span class="c1">// dirbuosi, traukiuosi</span>
+<span class="w">      </span><span class="s1">&#39;iesi&#39;</span><span class="w">                      </span><span class="c1">// dirbiesi</span>
+<span class="w">      </span><span class="s1">&#39;asi&#39;</span><span class="w"> </span><span class="s1">&#39;iasi&#39;</span><span class="w">                </span><span class="c1">// dirbasi, traukiasi</span>
+<span class="w">      </span><span class="s1">&#39;am</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w"> </span><span class="s1">&#39;iam</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">        </span><span class="c1">// dirbamės, traukiamės</span>
+<span class="w">      </span><span class="s1">&#39;at&#39;</span><span class="w"> </span><span class="s1">&#39;ate&#39;</span><span class="w"> </span><span class="s1">&#39;iat&#39;</span><span class="w"> </span><span class="s1">&#39;iate&#39;</span><span class="w">     </span><span class="c1">// dirbat, dirbate, ariat, traukiate</span>
+<span class="w">      </span><span class="s1">&#39;at</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w"> </span><span class="s1">&#39;iat</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">        </span><span class="c1">// dirbatės, traukiatės</span>
+
+<span class="w">      </span><span class="c1">// i asmenuotė (declension i)</span>
+<span class="w">      </span><span class="s1">&#39;isi&#39;</span><span class="w">                       </span><span class="c1">// tikisi</span>
+<span class="w">      </span><span class="s1">&#39;im&#39;</span><span class="w">                        </span><span class="c1">// mylim</span>
+<span class="w">      </span><span class="c1">// &#39;ime&#39; konfliktassu daiktavardžiu vietininku, pvz. &#39;gėrime&#39;</span>
+<span class="w">      </span><span class="s1">&#39;im</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">                   </span><span class="c1">// tikimės</span>
+<span class="w">      </span><span class="s1">&#39;it&#39;</span><span class="w"> </span><span class="s1">&#39;ite&#39;</span><span class="w">                  </span><span class="c1">// mylit, mylite, tikitės</span>
+<span class="w">      </span><span class="c1">// &#39;it{e.}s&#39; konfliktas su priesaga ir dgs. vardininko galūne -ait-ės pvz. žydaitės</span>
+
+<span class="w">      </span><span class="c1">// o asmenuotė (declension o)</span>
+<span class="w">      </span><span class="s1">&#39;ome&#39;</span><span class="w">                       </span><span class="c1">// mokome</span>
+<span class="w">      </span><span class="s1">&#39;ot&#39;</span><span class="w"> </span><span class="s1">&#39;ote&#39;</span><span class="w">                  </span><span class="c1">// mokot, mokote</span>
+
+<span class="w">      </span><span class="c1">// būtasis laikas</span>
+<span class="w">      </span><span class="c1">// o asmenuotė (declension o)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">jo&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">josi&#39;</span><span class="w">         </span><span class="c1">// tikėjo, tikėjosi</span>
+<span class="w">      </span><span class="s1">&#39;ot</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">                   </span><span class="c1">// tikėjotės/bijotės</span>
+
+<span class="w">      </span><span class="c1">// ė asmenuotė (declension ė)</span>
+<span class="w">      </span><span class="s1">&#39;eisi&#39;</span><span class="w">                      </span><span class="c1">// mokeisi</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">si&#39;</span><span class="w">                    </span><span class="c1">// mokėsi</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">me&#39;</span><span class="w">            </span><span class="c1">// mokėm, mokėme</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">m</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">                </span><span class="c1">// mokėmės</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">te&#39;</span><span class="w">            </span><span class="c1">// mokėt, mokėte</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">t</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">                </span><span class="c1">// mokėtės</span>
+
+<span class="w">      </span><span class="c1">// būtasis dažninis laikas (frequentative past tense)</span>
+<span class="w">      </span><span class="s1">&#39;ausi&#39;</span><span class="w">                      </span><span class="c1">// mokydavausi</span>
+<span class="w">      </span><span class="s1">&#39;om</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">                   </span><span class="c1">// mokydavomės/bijomės</span>
+
+
+<span class="w">      </span><span class="c1">// būsimasis laikas (future tense)</span>
+<span class="w">      </span><span class="s1">&#39;siu&#39;</span><span class="w"> </span><span class="s1">&#39;siuosi&#39;</span><span class="w">              </span><span class="c1">// dirbsiu, mokysiuosi</span>
+<span class="w">      </span><span class="s1">&#39;si&#39;</span><span class="w"> </span><span class="s1">&#39;siesi&#39;</span><span class="w">                </span><span class="c1">// dirbsi, dirbsiesi</span>
+<span class="w">      </span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="s1">&#39;ysis&#39;</span><span class="w">                  </span><span class="c1">// dirbs, mokysis</span>
+<span class="w">      </span><span class="s1">&#39;sim&#39;</span><span class="w"> </span><span class="s1">&#39;sime&#39;</span><span class="w">                </span><span class="c1">// dirbsim, dirbsime</span>
+<span class="w">      </span><span class="s1">&#39;sit&#39;</span><span class="w"> </span><span class="s1">&#39;site&#39;</span><span class="w">                </span><span class="c1">// gersit, gersite</span>
+
+<span class="w">      </span><span class="c1">// tariamoji nuosaka (subjunctive mood)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{cv}</span><span class="s1">iau&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{cv}</span><span class="s1">iausi&#39;</span><span class="w">       </span><span class="c1">// dirbčiau</span>
+<span class="w">      </span><span class="s1">&#39;tum&#39;</span><span class="w"> </span><span class="s1">&#39;tumei&#39;</span><span class="w">               </span><span class="c1">// dirbtum, dirbtumei</span>
+<span class="w">      </span><span class="s1">&#39;tumeis&#39;</span><span class="w"> </span><span class="s1">&#39;tumeisi&#39;</span><span class="w">          </span><span class="c1">// mokytumeis, mokytumeisi</span>
+<span class="w">      </span><span class="c1">// &#39;t{uk}&#39; nes blogai batutų -&gt; batų</span>
+<span class="w">      </span><span class="s1">&#39;t</span><span class="se">{uk}</span><span class="s1">si&#39;</span><span class="w">                   </span><span class="c1">// mokytųsi</span>
+<span class="w">      </span><span class="c1">// &#39;tume&#39; konfliktas su &#39;šventume&#39;</span>
+<span class="w">      </span><span class="s1">&#39;tum</span><span class="se">{e.}</span><span class="s1">m&#39;</span><span class="w">                  </span><span class="c1">// dirbtumėm</span>
+<span class="w">      </span><span class="s1">&#39;tum</span><span class="se">{e.}</span><span class="s1">me&#39;</span><span class="w">                 </span><span class="c1">// dirbtumėme</span>
+<span class="w">      </span><span class="s1">&#39;tum</span><span class="se">{e.}</span><span class="s1">m</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">             </span><span class="c1">// mokytumėmės</span>
+<span class="w">      </span><span class="s1">&#39;tute&#39;</span><span class="w"> </span><span class="s1">&#39;tum</span><span class="se">{e.}</span><span class="s1">t&#39;</span><span class="w">           </span><span class="c1">// dirbtute, dirbtumėt</span>
+<span class="w">      </span><span class="s1">&#39;tum</span><span class="se">{e.}</span><span class="s1">te&#39;</span><span class="w">                 </span><span class="c1">// dirbtumėte</span>
+<span class="w">      </span><span class="s1">&#39;tum</span><span class="se">{e.}</span><span class="s1">t</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">             </span><span class="c1">// mokytumėtės</span>
+
+<span class="w">      </span><span class="c1">// liepiamoji nuosaka (imperative mood)</span>
+<span class="w">      </span><span class="s1">&#39;k&#39;</span><span class="w"> </span><span class="s1">&#39;ki&#39;</span><span class="w">                    </span><span class="c1">// dirbk, dirbki, mokykis</span>
+<span class="w">      </span><span class="c1">// &#39;kis&#39; konfliktas viln-išk-is</span>
+<span class="w">      </span><span class="c1">// &#39;kime&#39; konfliktas, nes pirkime</span>
+<span class="w">      </span><span class="s1">&#39;kim</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">                  </span><span class="c1">// mokykimės</span>
+
+<span class="w">      </span><span class="c1">// bendratis (infinitive)</span>
+<span class="w">      </span><span class="s1">&#39;uoti&#39;</span><span class="w"> </span><span class="s1">&#39;iuoti&#39;</span><span class="w">              </span><span class="c1">// meluoti, dygsniuoti</span>
+<span class="w">      </span><span class="s1">&#39;auti&#39;</span><span class="w"> </span><span class="s1">&#39;iauti&#39;</span><span class="w">              </span><span class="c1">// draugauti, girtuokliauti</span>
+<span class="w">      </span><span class="s1">&#39;oti&#39;</span><span class="w"> </span><span class="s1">&#39;ioti&#39;</span><span class="w">                </span><span class="c1">// dovanoti, meškerioti</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">ti&#39;</span><span class="w">                    </span><span class="c1">// auklėti</span>
+<span class="w">      </span><span class="s1">&#39;yti&#39;</span><span class="w">                       </span><span class="c1">// akyti</span>
+<span class="w">      </span><span class="s1">&#39;inti&#39;</span><span class="w">                      </span><span class="c1">// auginti</span>
+<span class="w">      </span><span class="s1">&#39;in</span><span class="se">{e.}</span><span class="s1">ti&#39;</span><span class="w">                  </span><span class="c1">// blusinėti</span>
+<span class="w">      </span><span class="s1">&#39;enti&#39;</span><span class="w">                      </span><span class="c1">// gyventi</span>
+<span class="w">      </span><span class="s1">&#39;tel</span><span class="se">{e.}</span><span class="s1">ti&#39;</span><span class="w">                 </span><span class="c1">// bumbtelėti</span>
+<span class="w">      </span><span class="s1">&#39;ter</span><span class="se">{e.}</span><span class="s1">ti&#39;</span><span class="w">                 </span><span class="c1">// bumbterėti</span>
+
+<span class="w">      </span><span class="s1">&#39;ti&#39;</span><span class="w">                        </span><span class="c1">// skalbti</span>
+<span class="w">      </span><span class="c1">// &#39;tis&#39; konfliktas, nes rytme-tis -&gt; rytme</span>
+
+<span class="w">      </span><span class="c1">// dalyviai (participles)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ak}</span><span class="s1">s&#39;</span><span class="w"> </span><span class="s1">&#39;i</span><span class="se">{ak}</span><span class="s1">s&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ik}</span><span class="s1">s&#39;</span><span class="w">    </span><span class="c1">// dirbąs, žaidžiąs, gulįs</span>
+<span class="w">      </span><span class="s1">&#39;t</span><span class="se">{uk}</span><span class="s1">s&#39;</span><span class="w">                    </span><span class="c1">// suktųs -&gt; suk</span>
+<span class="w">      </span><span class="s1">&#39;sim</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">                  </span><span class="c1">// suksimės</span>
+<span class="w">      </span><span class="s1">&#39;sit</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w">                  </span><span class="c1">// suksitės</span>
+<span class="w">      </span><span class="s1">&#39;kite&#39;</span><span class="w">                      </span><span class="c1">// supkite</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="ow">delete</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">step2</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// daiktavardziu priesagos (Noun suffixes)</span>
+
+<span class="w">      </span><span class="c1">// budvardziu priesagos (Adjective suffixes)</span>
+<span class="w">      </span><span class="c1">// &#39;in&#39; // konfliktas su &#39;augintinis&#39; ir &#39;akiniais&#39; // lauk-in-is</span>
+<span class="w">      </span><span class="s1">&#39;ing&#39;</span><span class="w">                       </span><span class="c1">// tvark-ing-as</span>
+<span class="w">      </span><span class="s1">&#39;i</span><span class="se">{sv}</span><span class="s1">k&#39;</span><span class="w">                    </span><span class="c1">// lenk-išk-as</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">t&#39;</span><span class="w">                     </span><span class="c1">// dem-ėt-as</span>
+<span class="w">      </span><span class="s1">&#39;ot&#39;</span><span class="w">                        </span><span class="c1">// garban-ot-as</span>
+<span class="w">      </span><span class="s1">&#39;uot&#39;</span><span class="w"> </span><span class="s1">&#39;iuot&#39;</span><span class="w">                </span><span class="c1">// lang-uot-as, akin-iuot-as</span>
+<span class="w">      </span><span class="c1">// &#39;tin&#39;, nes augintinis    // dirb-tin-is</span>
+<span class="w">      </span><span class="c1">// &#39;ut&#39;, nes batutas, degutas etc. // maž-ut-is</span>
+<span class="w">      </span><span class="s1">&#39;yt&#39;</span><span class="w">                        </span><span class="c1">// maž-yt-is</span>
+<span class="w">      </span><span class="s1">&#39;iuk&#39;</span><span class="w">                       </span><span class="c1">// maž-iuk-as</span>
+<span class="w">      </span><span class="s1">&#39;iul&#39;</span><span class="w">                       </span><span class="c1">// maž-ul-is</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">l&#39;</span><span class="w">                     </span><span class="c1">// maž-ėl-is</span>
+<span class="w">      </span><span class="s1">&#39;yl&#39;</span><span class="w">                        </span><span class="c1">// maž-yl-is</span>
+<span class="w">      </span><span class="s1">&#39;u</span><span class="se">{cv}</span><span class="s1">iuk&#39;</span><span class="w">                  </span><span class="c1">// maž-učiuk-as</span>
+<span class="w">      </span><span class="s1">&#39;uliuk&#39;</span><span class="w">                     </span><span class="c1">// maž-uliuk-as</span>
+<span class="w">      </span><span class="s1">&#39;ut</span><span class="se">{e.}</span><span class="s1">ait&#39;</span><span class="w">                 </span><span class="c1">// maž-utėlait-is</span>
+<span class="w">      </span><span class="s1">&#39;ok&#39;</span><span class="w">                        </span><span class="c1">// did-ok-as</span>
+<span class="w">      </span><span class="s1">&#39;iok&#39;</span><span class="w">                       </span><span class="c1">// višč-iok-as</span>
+<span class="w">      </span><span class="s1">&#39;sv&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{sv}</span><span class="s1">v&#39;</span><span class="w"> </span><span class="s1">&#39;zgan&#39;</span><span class="w">         </span><span class="c1">// sal-sv-as, pilk-šv-as, bal-zgan-as</span>
+<span class="w">      </span><span class="s1">&#39;op&#39;</span><span class="w"> </span><span class="s1">&#39;iop&#39;</span><span class="w">                  </span><span class="c1">// dvej-op-as, viener-iop-as</span>
+<span class="w">      </span><span class="s1">&#39;ain&#39;</span><span class="w">                       </span><span class="c1">// apval-ain-as</span>
+<span class="w">      </span><span class="s1">&#39;yk</span><span class="se">{sv}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="s1">&#39;yk</span><span class="se">{sv}{cv}</span><span class="s1">&#39;</span><span class="w">      </span><span class="c1">// ten-ykšt-is, vakar-ykšč-ias</span>
+
+<span class="w">      </span><span class="c1">// laisniai</span>
+<span class="w">      </span><span class="s1">&#39;esn&#39;</span><span class="w">                       </span><span class="c1">// did-esn-is</span>
+<span class="w">      </span><span class="s1">&#39;aus&#39;</span><span class="w"> </span><span class="s1">&#39;iaus&#39;</span><span class="w">                </span><span class="c1">// nauj-aus-ias, ger-iaus-ias</span>
+
+<span class="w">      </span><span class="c1">// ivardziuotiniai budvardziai (Pronominal adjectives)</span>
+<span class="w">      </span><span class="c1">// vyriska gimine (Male gender)</span>
+<span class="w">      </span><span class="s1">&#39;ias&#39;</span><span class="w">                       </span><span class="c1">// žaliasis</span>
+<span class="w">      </span><span class="s1">&#39;oj&#39;</span><span class="w"> </span><span class="s1">&#39;ioj&#39;</span><span class="w">                  </span><span class="c1">// gerojo, žaliojo</span>
+<span class="w">      </span><span class="s1">&#39;aj&#39;</span><span class="w"> </span><span class="s1">&#39;iaj&#39;</span><span class="w">                  </span><span class="c1">// gerajam, žaliajam</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ak}</span><span class="s1">j&#39;</span><span class="w"> </span><span class="s1">&#39;i</span><span class="se">{ak}</span><span class="s1">j&#39;</span><span class="w">            </span><span class="c1">// garąjį, žaliąjį</span>
+<span class="w">      </span><span class="s1">&#39;uoj&#39;</span><span class="w"> </span><span class="s1">&#39;iuoj&#39;</span><span class="w">                </span><span class="c1">// geruoju, žaliuoju</span>
+<span class="w">      </span><span class="s1">&#39;iej&#39;</span><span class="w">                       </span><span class="c1">// gerieji</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{uk}</span><span class="s1">j&#39;</span><span class="w"> </span><span class="s1">&#39;i</span><span class="se">{uk}</span><span class="s1">j&#39;</span><span class="w">            </span><span class="c1">// gerųjų, žaliųjų</span>
+<span class="w">      </span><span class="s1">&#39;ies&#39;</span><span class="w">                       </span><span class="c1">// geriesiems</span>
+<span class="w">      </span><span class="s1">&#39;uos&#39;</span><span class="w"> </span><span class="s1">&#39;iuos&#39;</span><span class="w">                </span><span class="c1">// geruosius, žaliuosius</span>
+<span class="w">      </span><span class="s1">&#39;ais&#39;</span><span class="w"> </span><span class="s1">&#39;iais&#39;</span><span class="w">                </span><span class="c1">// geraisiais, žaliaisiais</span>
+
+<span class="w">      </span><span class="c1">// moteriska gimine (Female gender)</span>
+<span class="w">      </span><span class="s1">&#39;os&#39;</span><span class="w"> </span><span class="s1">&#39;ios&#39;</span><span class="w">                  </span><span class="c1">// gerosios, žaliosios</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ak}</span><span class="s1">s&#39;</span><span class="w"> </span><span class="s1">&#39;i</span><span class="se">{ak}</span><span class="s1">s&#39;</span><span class="w">            </span><span class="c1">// gerąsios, žaliąsias</span>
+
+<span class="w">      </span><span class="c1">// būtasis dažninis laikas (frequentative past tense)</span>
+<span class="w">      </span><span class="s1">&#39;dav&#39;</span><span class="w">                       </span><span class="c1">// ei-dav-o</span>
+
+<span class="w">      </span><span class="c1">// dalyvių priesagos (particple suffix)</span>
+<span class="w">      </span><span class="s1">&#39;ant&#39;</span><span class="w"> </span><span class="s1">&#39;iant&#39;</span>
+<span class="w">      </span><span class="s1">&#39;int&#39;</span><span class="w">                       </span><span class="c1">// tur-int-is</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">j&#39;</span><span class="w">                     </span><span class="c1">// tur-ėj-o</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ek}</span><span class="s1">&#39;</span><span class="w">                      </span><span class="c1">//</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">j</span><span class="se">{ek}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ek}</span><span class="s1">s&#39;</span><span class="w">                     </span><span class="c1">// dirb-ęs-is</span>
+
+<span class="w">      </span><span class="s1">&#39;siant&#39;</span><span class="w">                     </span><span class="c1">// dirb-siant</span>
+
+<span class="w">      </span><span class="c1">// pusdalyviai (participle)</span>
+<span class="w">      </span><span class="s1">&#39;dam&#39;</span><span class="w">                       </span><span class="c1">// bėg-dam-as</span>
+
+<span class="w">      </span><span class="s1">&#39;auj&#39;</span><span class="w">                       </span><span class="c1">// ūkinink-auj-a</span>
+<span class="w">      </span><span class="s1">&#39;jam&#39;</span>
+<span class="w">      </span><span class="s1">&#39;iau&#39;</span>
+<span class="w">      </span><span class="s1">&#39;am&#39;</span><span class="w">                        </span><span class="c1">// baiminim-ams-i</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="ow">delete</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">fix_conflicts</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// &#39;lietuvaite&#39; -&gt; &#39;lietuvaitė&#39;, konfliktas su &#39;myl-ite&#39;</span>
+<span class="w">      </span><span class="s1">&#39;aite&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ait</span><span class="se">{e.}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="c1">// &#39;lietuvaitės&#39; -&gt; &#39;lietuvaitė&#39;, konfliktas su &#39;myl-itės&#39;</span>
+<span class="w">      </span><span class="s1">&#39;ait</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ait</span><span class="se">{e.}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="w">      </span><span class="c1">// &#39;&#39;ūs-uotės&#39; -&gt; &#39;ūs-uotė&#39;, konfliktas &#39;mokotės&#39;</span>
+<span class="w">      </span><span class="s1">&#39;uot</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;uot</span><span class="se">{e.}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="c1">// &#39;&#39;ūs-uote&#39; -&gt; &#39;ūs-uotė&#39;, konfliktas &#39;mokote&#39;</span>
+<span class="w">      </span><span class="s1">&#39;uote&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;uot</span><span class="se">{e.}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="w">      </span><span class="c1">// &#39;žerėjime&#39; -&gt; &#39;žėrėjimas&#39;, konfliktas su &#39;žais-ime&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">jime&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;</span><span class="se">{e.}</span><span class="s1">jimas&#39;</span><span class="p">)</span>
+
+<span class="w">      </span><span class="c1">// &#39;žvilgesiu&#39; -&gt; &#39;žvilgesys&#39;, konfliktas su &#39;dirb-siu&#39;</span>
+<span class="w">      </span><span class="s1">&#39;esiu&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;esys&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="c1">// &#39;duobkasiu&#39; -&gt; &#39;duobkasys&#39;, konfliktas su &#39;pakasiu&#39;</span>
+<span class="w">      </span><span class="s1">&#39;asius&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;asys&#39;</span><span class="p">)</span>
+
+<span class="w">      </span><span class="c1">// &#39;žioravime&#39; -&gt; &#39;žioravimas&#39;, konfliktas su &#39;myl-ime&#39;</span>
+<span class="w">      </span><span class="s1">&#39;avime&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;avimas&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ojime&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ojimas&#39;</span><span class="p">)</span>
+
+<span class="w">      </span><span class="c1">// &#39;advokatės&#39; -&gt; &#39;advokatė&#39;, konfliktas su &#39;dirb-atės&#39;</span>
+<span class="w">      </span><span class="s1">&#39;okat</span><span class="se">{e.}</span><span class="s1">s&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;okat</span><span class="se">{e.}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="c1">// &#39;advokate&#39; -&gt; &#39;advokatė&#39;, konfliktas su &#39;dirb-ate&#39;</span>
+<span class="w">      </span><span class="s1">&#39;okate&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;okat</span><span class="se">{e.}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">fix_chdz</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{cv}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;d</span><span class="se">{zv}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">fix_gd</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;gd&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="c1">// &#39;{e.}k&#39; (&lt;-&#39;{e.}g&#39;)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+
+<span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
+
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="c1">// priešdėlis &#39;a&#39; ilgeniuose nei 6 raidės žodžiuose, pvz. &#39;a-liejus&#39;.</span>
+<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="o">$</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+
+<span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_conflicts</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">step1</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_chdz</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">step2</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_chdz</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_gd</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="p">)</span>
+</pre></div>
+
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

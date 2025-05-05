@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>The Lovins stemming algorithm - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>The Lovins stemming algorithm</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <a href="/demo.html#Lovins">Javascript demo</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/lovins.sbl">The stemmer in Snowball</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/lovins/voc.txt">Sample  vocabulary</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/lovins/output.txt">Its stemmed equivalent</a></li>
+<li> <A HREF="festschrift.html"> (in more depth)</A>
+<!-- link 404 2025-03-04
+<li> <A HREF="http://www.cs.waikato.ac.nz/~eibe/stemmers/index.html">
+An &#8216;unofficial&#8217; home page of the Lovins stemming algorithm</A>
+-->
+</ul>
+
+<p>
+The first ever published stemming algorithm was: Lovins JB (1968) Development of
+a stemming algorithm. Mechanical Translation and Computational Linguistics,
+11: 22-31. Julie Beth Lovins&#8217; paper was remarkable for the early date at which
+it was done, and for its seminal influence on later work in
+this area.
+</p>
+
+<p>
+The design of the algorithm was much influenced by the technical vocabulary
+with which Lovins found herself working (subject term keywords attached to
+documents in the materials science and engineering field). The subject term
+list may also have been slightly limiting in that certain common endings
+are not represented (<B><I>ements</I></B> and <B><I>ents</I></B> for example, corresponding to
+the singular forms <B><I>ement</I></B> and <B><I>ent</I></B>), and also in that the algorithm's
+treatment of short words, or words with short stems, can be rather
+destructive.
+</p>
+
+<p>
+The Lovins algorithm is noticeably bigger than the Porter algorithm,
+because of its very extensive endings list. But in one way that is used to
+advantage: it is faster. It has effectively traded space for time, and with
+its large suffix set it needs just two major steps to remove a suffix,
+compared with the eight of the Porter algorithm.
+</p>
+
+<p>
+<I>transformation rules</I>. Each ending is associated with one of the
+conditions. In the first step the longest ending is found which satisfies
+its associated condition, and is removed. In the second step the 35 rules
+are applied to transform the ending. The second step is done whether or not
+an ending is removed in the first step.
+</p>
+
+<p>
+For example, <I>nationally</I> has the ending <B><I>ationally</I></B>, with associated
+condition, B, &#8216;minimum stem length = 3&#8217;. Since removing <B><I>ationally</I></B>
+would leave a stem of length 1 this is rejected. But it also has ending
+<B><I>ionally</I></B> with associated condition A. Condition A is &#8216;no restriction on
+stem length&#8217;, so <B><I>ionally</I></B> is removed, leaving <B><I>nat</I></B>.
+</p>
+
+<p>
+The transformation rules handle features like letter undoubling (<I>sitting</I>
+&#x2192; <I>sitt</I> &#x2192; <I>sit</I>), irregular plurals (<I>matrix</I> and <I>matrices</I>),
+and English morphological oddities ultimately caused by the behaviour of
+Latin verbs of the second conjugation (<I>assume</I> / <I>assumption</I>,
+<I>commit</I> / <I>commission</I> etc). Although they are described as being
+applied in turn, they can be broken into two stages, rule 1 being done in
+stage 1, and either zero or one of rules 2 to 35 being done in stage 2.
+</p>
+
+<p>
+Here is the list of endings as given in Appendix A of Lovins&#8217; paper. They
+are grouped by length, from 11 characters down to 1. Each ending is
+followed by its condition code.
+</p>
+
+<div style="background-color:silver">
+<h4>Appendix A. The list of endings</h4>
+
+<DL><DD><DL><DD><TABLE CELLPADDING=0>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .11. </TD></TR>
+<TR><TD><TD></TD><TD>    alistically B </TD><TD></TD><TD> arizability A </TD><TD></TD><TD> izationally B </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .10. </TD></TR>
+<TR><TD><TD></TD><TD>   antialness A  </TD><TD></TD><TD> arisations A  </TD><TD></TD><TD> arizations A  </TD><TD></TD><TD> entialness A </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .09. </TD></TR>
+<TR><TD><TD></TD><TD>    allically C </TD><TD></TD><TD> antaneous A </TD><TD></TD><TD> antiality A </TD><TD></TD><TD> arisation A </TD></TR>
+<TR><TD><TD></TD><TD>    arization A </TD><TD></TD><TD> ationally B </TD><TD></TD><TD> ativeness A </TD><TD></TD><TD> eableness E </TD></TR>
+<TR><TD><TD></TD><TD>    entations A </TD><TD></TD><TD> entiality A </TD><TD></TD><TD> entialize A </TD><TD></TD><TD> entiation A </TD></TR>
+<TR><TD><TD></TD><TD>    ionalness A </TD><TD></TD><TD> istically A </TD><TD></TD><TD> itousness A </TD><TD></TD><TD> izability A </TD></TR>
+<TR><TD><TD></TD><TD>    izational A </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .08. </TD></TR>
+<TR><TD><TD></TD><TD>     ableness A  </TD><TD></TD><TD> arizable A  </TD><TD></TD><TD> entation A  </TD><TD></TD><TD> entially A </TD></TR>
+<TR><TD><TD></TD><TD>     eousness A  </TD><TD></TD><TD> ibleness A  </TD><TD></TD><TD> icalness A  </TD><TD></TD><TD> ionalism A </TD></TR>
+<TR><TD><TD></TD><TD>     ionality A  </TD><TD></TD><TD> ionalize A  </TD><TD></TD><TD> iousness A  </TD><TD></TD><TD> izations A </TD></TR>
+<TR><TD><TD></TD><TD>     lessness A </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .07. </TD></TR>
+<TR><TD><TD></TD><TD>    ability A   </TD><TD></TD><TD> aically A   </TD><TD></TD><TD> alistic B   </TD><TD></TD><TD> alities A </TD></TR>
+<TR><TD><TD></TD><TD>    ariness E   </TD><TD></TD><TD> aristic A   </TD><TD></TD><TD> arizing A   </TD><TD></TD><TD> ateness A </TD></TR>
+<TR><TD><TD></TD><TD>    atingly A   </TD><TD></TD><TD> ational B   </TD><TD></TD><TD> atively A   </TD><TD></TD><TD> ativism A </TD></TR>
+<TR><TD><TD></TD><TD>    elihood E   </TD><TD></TD><TD> encible A   </TD><TD></TD><TD> entally A   </TD><TD></TD><TD> entials A </TD></TR>
+<TR><TD><TD></TD><TD>    entiate A   </TD><TD></TD><TD> entness A   </TD><TD></TD><TD> fulness A   </TD><TD></TD><TD> ibility A </TD></TR>
+<TR><TD><TD></TD><TD>    icalism A   </TD><TD></TD><TD> icalist A   </TD><TD></TD><TD> icality A   </TD><TD></TD><TD> icalize A </TD></TR>
+<TR><TD><TD></TD><TD>    ication G   </TD><TD></TD><TD> icianry A   </TD><TD></TD><TD> ination A   </TD><TD></TD><TD> ingness A </TD></TR>
+<TR><TD><TD></TD><TD>    ionally A   </TD><TD></TD><TD> isation A   </TD><TD></TD><TD> ishness A   </TD><TD></TD><TD> istical A </TD></TR>
+<TR><TD><TD></TD><TD>    iteness A   </TD><TD></TD><TD> iveness A   </TD><TD></TD><TD> ivistic A   </TD><TD></TD><TD> ivities A </TD></TR>
+<TR><TD><TD></TD><TD>    ization F   </TD><TD></TD><TD> izement A   </TD><TD></TD><TD> oidally A   </TD><TD></TD><TD> ousness A </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .06. </TD></TR>
+<TR><TD><TD></TD><TD>     aceous A  </TD><TD></TD><TD> acious B  </TD><TD></TD><TD> action G  </TD><TD></TD><TD> alness A </TD></TR>
+<TR><TD><TD></TD><TD>     ancial A  </TD><TD></TD><TD> ancies A  </TD><TD></TD><TD> ancing B  </TD><TD></TD><TD> ariser A </TD></TR>
+<TR><TD><TD></TD><TD>     arized A  </TD><TD></TD><TD> arizer A  </TD><TD></TD><TD> atable A  </TD><TD></TD><TD> ations B </TD></TR>
+<TR><TD><TD></TD><TD>     atives A  </TD><TD></TD><TD> eature Z  </TD><TD></TD><TD> efully A  </TD><TD></TD><TD> encies A </TD></TR>
+<TR><TD><TD></TD><TD>     encing A  </TD><TD></TD><TD> ential A  </TD><TD></TD><TD> enting C  </TD><TD></TD><TD> entist A </TD></TR>
+<TR><TD><TD></TD><TD>     eously A  </TD><TD></TD><TD> ialist A  </TD><TD></TD><TD> iality A  </TD><TD></TD><TD> ialize A </TD></TR>
+<TR><TD><TD></TD><TD>     ically A  </TD><TD></TD><TD> icance A  </TD><TD></TD><TD> icians A  </TD><TD></TD><TD> icists A </TD></TR>
+<TR><TD><TD></TD><TD>     ifully A  </TD><TD></TD><TD> ionals A  </TD><TD></TD><TD> ionate D  </TD><TD></TD><TD> ioning A </TD></TR>
+<TR><TD><TD></TD><TD>     ionist A  </TD><TD></TD><TD> iously A  </TD><TD></TD><TD> istics A  </TD><TD></TD><TD> izable E </TD></TR>
+<TR><TD><TD></TD><TD>     lessly A  </TD><TD></TD><TD> nesses A  </TD><TD></TD><TD> oidism A </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .05. </TD></TR>
+<TR><TD><TD></TD><TD>      acies A   </TD><TD></TD><TD> acity A   </TD><TD></TD><TD> aging B   </TD><TD></TD><TD> aical A </TD></TR>
+<TR><TD><TD></TD><TD>      alist A   </TD><TD></TD><TD> alism B   </TD><TD></TD><TD> ality A   </TD><TD></TD><TD> alize A </TD></TR>
+<TR><TD><TD></TD><TD>      allic BB  </TD><TD></TD><TD> anced B   </TD><TD></TD><TD> ances B   </TD><TD></TD><TD> antic C </TD></TR>
+<TR><TD><TD></TD><TD>      arial A   </TD><TD></TD><TD> aries A   </TD><TD></TD><TD> arily A   </TD><TD></TD><TD> arity B </TD></TR>
+<TR><TD><TD></TD><TD>      arize A   </TD><TD></TD><TD> aroid A   </TD><TD></TD><TD> ately A   </TD><TD></TD><TD> ating I </TD></TR>
+<TR><TD><TD></TD><TD>      ation B   </TD><TD></TD><TD> ative A   </TD><TD></TD><TD> ators A   </TD><TD></TD><TD> atory A </TD></TR>
+<TR><TD><TD></TD><TD>      ature E   </TD><TD></TD><TD> early Y   </TD><TD></TD><TD> ehood A   </TD><TD></TD><TD> eless A </TD></TR>
+<TR><TD><TD></TD><TD>      elity A   </TD><TD></TD><TD> ement A   </TD><TD></TD><TD> enced A   </TD><TD></TD><TD> ences A </TD></TR>
+<TR><TD><TD></TD><TD>      eness E   </TD><TD></TD><TD> ening E   </TD><TD></TD><TD> ental A   </TD><TD></TD><TD> ented C </TD></TR>
+<TR><TD><TD></TD><TD>      ently A   </TD><TD></TD><TD> fully A   </TD><TD></TD><TD> ially A   </TD><TD></TD><TD> icant A </TD></TR>
+<TR><TD><TD></TD><TD>      ician A   </TD><TD></TD><TD> icide A   </TD><TD></TD><TD> icism A   </TD><TD></TD><TD> icist A </TD></TR>
+<TR><TD><TD></TD><TD>      icity A   </TD><TD></TD><TD> idine I   </TD><TD></TD><TD> iedly A   </TD><TD></TD><TD> ihood A </TD></TR>
+<TR><TD><TD></TD><TD>      inate A   </TD><TD></TD><TD> iness A   </TD><TD></TD><TD> ingly B   </TD><TD></TD><TD> inism J </TD></TR>
+<TR><TD><TD></TD><TD>      inity CC  </TD><TD></TD><TD> ional A   </TD><TD></TD><TD> ioned A   </TD><TD></TD><TD> ished A </TD></TR>
+<TR><TD><TD></TD><TD>      istic A   </TD><TD></TD><TD> ities A   </TD><TD></TD><TD> itous A   </TD><TD></TD><TD> ively A </TD></TR>
+<TR><TD><TD></TD><TD>      ivity A   </TD><TD></TD><TD> izers F   </TD><TD></TD><TD> izing F   </TD><TD></TD><TD> oidal A </TD></TR>
+<TR><TD><TD></TD><TD>      oides A   </TD><TD></TD><TD> otide A   </TD><TD></TD><TD> ously A </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .04. </TD></TR>
+<TR><TD><TD></TD><TD>     able A    </TD><TD></TD><TD> ably A    </TD><TD></TD><TD> ages B    </TD><TD></TD><TD> ally B </TD></TR>
+<TR><TD><TD></TD><TD>     ance B    </TD><TD></TD><TD> ancy B    </TD><TD></TD><TD> ants B    </TD><TD></TD><TD> aric A </TD></TR>
+<TR><TD><TD></TD><TD>     arly K    </TD><TD></TD><TD> ated I    </TD><TD></TD><TD> ates A    </TD><TD></TD><TD> atic B </TD></TR>
+<TR><TD><TD></TD><TD>     ator A    </TD><TD></TD><TD> ealy Y    </TD><TD></TD><TD> edly E    </TD><TD></TD><TD> eful A </TD></TR>
+<TR><TD><TD></TD><TD>     eity A    </TD><TD></TD><TD> ence A    </TD><TD></TD><TD> ency A    </TD><TD></TD><TD> ened E </TD></TR>
+<TR><TD><TD></TD><TD>     enly E    </TD><TD></TD><TD> eous A    </TD><TD></TD><TD> hood A    </TD><TD></TD><TD> ials A </TD></TR>
+<TR><TD><TD></TD><TD>     ians A    </TD><TD></TD><TD> ible A    </TD><TD></TD><TD> ibly A    </TD><TD></TD><TD> ical A </TD></TR>
+<TR><TD><TD></TD><TD>     ides L    </TD><TD></TD><TD> iers A    </TD><TD></TD><TD> iful A    </TD><TD></TD><TD> ines M </TD></TR>
+<TR><TD><TD></TD><TD>     ings N    </TD><TD></TD><TD> ions B    </TD><TD></TD><TD> ious A    </TD><TD></TD><TD> isms B </TD></TR>
+<TR><TD><TD></TD><TD>     ists A    </TD><TD></TD><TD> itic H    </TD><TD></TD><TD> ized F    </TD><TD></TD><TD> izer F </TD></TR>
+<TR><TD><TD></TD><TD>     less A    </TD><TD></TD><TD> lily A    </TD><TD></TD><TD> ness A    </TD><TD></TD><TD> ogen A </TD></TR>
+<TR><TD><TD></TD><TD>     ward A    </TD><TD></TD><TD> wise A    </TD><TD></TD><TD> ying B    </TD><TD></TD><TD> yish A </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .03. </TD></TR>
+<TR><TD><TD></TD><TD>      acy A   </TD><TD></TD><TD> age B   </TD><TD></TD><TD> aic A   </TD><TD></TD><TD> als BB </TD></TR>
+<TR><TD><TD></TD><TD>      ant B   </TD><TD></TD><TD> ars O   </TD><TD></TD><TD> ary F   </TD><TD></TD><TD> ata A  </TD></TR>
+<TR><TD><TD></TD><TD>      ate A   </TD><TD></TD><TD> eal Y   </TD><TD></TD><TD> ear Y   </TD><TD></TD><TD> ely E  </TD></TR>
+<TR><TD><TD></TD><TD>      ene E   </TD><TD></TD><TD> ent C   </TD><TD></TD><TD> ery E   </TD><TD></TD><TD> ese A  </TD></TR>
+<TR><TD><TD></TD><TD>      ful A   </TD><TD></TD><TD> ial A   </TD><TD></TD><TD> ian A   </TD><TD></TD><TD> ics A  </TD></TR>
+<TR><TD><TD></TD><TD>      ide L   </TD><TD></TD><TD> ied A   </TD><TD></TD><TD> ier A   </TD><TD></TD><TD> ies P  </TD></TR>
+<TR><TD><TD></TD><TD>      ily A   </TD><TD></TD><TD> ine M   </TD><TD></TD><TD> ing N   </TD><TD></TD><TD> ion Q  </TD></TR>
+<TR><TD><TD></TD><TD>      ish C   </TD><TD></TD><TD> ism B   </TD><TD></TD><TD> ist A   </TD><TD></TD><TD> ite AA </TD></TR>
+<TR><TD><TD></TD><TD>      ity A   </TD><TD></TD><TD> ium A   </TD><TD></TD><TD> ive A   </TD><TD></TD><TD> ize F  </TD></TR>
+<TR><TD><TD></TD><TD>      oid A   </TD><TD></TD><TD> one R   </TD><TD></TD><TD> ous A </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .02. </TD></TR>
+<TR><TD><TD></TD><TD>       ae A    </TD><TD></TD><TD> al BB   </TD><TD></TD><TD> ar X    </TD><TD></TD><TD> as B </TD></TR>
+<TR><TD><TD></TD><TD>       ed E    </TD><TD></TD><TD> en F    </TD><TD></TD><TD> es E    </TD><TD></TD><TD> ia A </TD></TR>
+<TR><TD><TD></TD><TD>       ic A    </TD><TD></TD><TD> is A    </TD><TD></TD><TD> ly B    </TD><TD></TD><TD> on S </TD></TR>
+<TR><TD><TD></TD><TD>       or T    </TD><TD></TD><TD> um U    </TD><TD></TD><TD> us V    </TD><TD></TD><TD> yl R </TD></TR>
+<TR><TD><TD></TD><TD>       s' A    </TD><TD></TD><TD> 's A </TD></TR>
+<TR><TD></TR>
+<TR><TD><TD></TD><TD> .01. </TD></TR>
+<TR><TD><TD></TD><TD>      a A    </TD><TD></TD><TD> e A     </TD><TD></TD><TD> i A     </TD><TD></TD><TD> o A </TD></TR>
+<TR><TD><TD></TD><TD>      s W    </TD><TD></TD><TD> y B </TD></TR>
+</TABLE></DL></DL>
+</div>
+
+<p>
+Here are the 29 conditions, called A to Z, AA, BB and CC (* stands for any letter):
+</p>
+
+<div style="background-color:silver">
+<h4>Appendix B. Codes for context-sensitive rules associated with
+certain endings</h4>
+
+<DL><DD>
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><TD></TD><TD>A </TD><TD></TD><TD>  No restrictions on stem </TD></TR>
+<TR><TD><TD></TD><TD>B </TD><TD></TD><TD>  Minimum stem length = 3 </TD></TR>
+<TR><TD><TD></TD><TD>C </TD><TD></TD><TD>  Minimum stem length = 4 </TD></TR>
+<TR><TD><TD></TD><TD>D </TD><TD></TD><TD>  Minimum stem length = 5 </TD></TR>
+<TR><TD><TD></TD><TD>E </TD><TD></TD><TD>  Do not remove ending after <I>e</I> </TD></TR>
+<TR><TD><TD></TD><TD>F </TD><TD></TD><TD>  Minimum stem length = 3 and do not remove ending after <I>e</I> </TD></TR>
+<TR><TD><TD></TD><TD>G </TD><TD></TD><TD>  Minimum stem length = 3 and remove ending only after <I>f</I> </TD></TR>
+<TR><TD><TD></TD><TD>H </TD><TD></TD><TD>  Remove ending only after <I>t</I> or <I>ll</I> </TD></TR>
+<TR><TD><TD></TD><TD>I </TD><TD></TD><TD>  Do not remove ending after <I>o</I> or <I>e</I> </TD></TR>
+<TR><TD><TD></TD><TD>J </TD><TD></TD><TD>  Do not remove ending after <I>a</I> or <I>e</I> </TD></TR>
+<TR><TD><TD></TD><TD>K </TD><TD></TD><TD>  Minimum stem length = 3 and remove ending only after <I>l, i</I> or <I>u*e</I> </TD></TR>
+<TR><TD><TD></TD><TD>L </TD><TD></TD><TD>  Do not remove ending after <I>u, x</I> or <I>s</I>, unless <I>s</I> follows <I>o</I> </TD></TR>
+<TR><TD><TD></TD><TD>M </TD><TD></TD><TD>  Do not remove ending after <I>a, c, e</I> or <I>m</I> </TD></TR>
+<TR><TD><TD></TD><TD>N </TD><TD></TD><TD>  Minimum stem length = 4 after <I>s**</I>, elsewhere = 3 </TD></TR>
+<TR><TD><TD></TD><TD>O </TD><TD></TD><TD>  Remove ending only after <I>l</I> or <I>i</I> </TD></TR>
+<TR><TD><TD></TD><TD>P </TD><TD></TD><TD>  Do not remove ending after <I>c</I> </TD></TR>
+<TR><TD><TD></TD><TD>Q </TD><TD></TD><TD>  Minimum stem length = 3 and do not remove ending after <I>l</I> or <I>n</I> </TD></TR>
+<TR><TD><TD></TD><TD>R </TD><TD></TD><TD>  Remove ending only after <I>n</I> or <I>r</I> </TD></TR>
+<TR><TD><TD></TD><TD>S </TD><TD></TD><TD>  Remove ending only after <I>dr</I> or <I>t</I>, unless <I>t</I> follows <I>t</I> </TD></TR>
+<TR><TD><TD></TD><TD>T </TD><TD></TD><TD>  Remove ending only after <I>s</I> or <I>t</I>, unless <I>t</I> follows <I>o</I> </TD></TR>
+<TR><TD><TD></TD><TD>U </TD><TD></TD><TD>  Remove ending only after <I>l, m, n</I> or <I>r</I> </TD></TR>
+<TR><TD><TD></TD><TD>V </TD><TD></TD><TD>  Remove ending only after <I>c</I> </TD></TR>
+<TR><TD><TD></TD><TD>W </TD><TD></TD><TD>  Do not remove ending after <I>s</I> or <I>u</I> </TD></TR>
+<TR><TD><TD></TD><TD>X </TD><TD></TD><TD>  Remove ending only after <I>l, i</I> or <I>u*e</I> </TD></TR>
+<TR><TD><TD></TD><TD>Y </TD><TD></TD><TD>  Remove ending only after <I>in</I> </TD></TR>
+<TR><TD><TD></TD><TD>Z </TD><TD></TD><TD>  Do not remove ending after <I>f</I> </TD></TR>
+<TR><TD><TD></TD><TD>AA </TD><TD></TD><TD> Remove ending only after <I>d, f, ph, th, l, er, or, es</I> or <I>t</I> </TD></TR>
+<TR><TD><TD></TD><TD>BB </TD><TD></TD><TD> Minimum stem length = 3 and do not remove ending after <I>met</I> or <I>ryst</I> </TD></TR>
+<TR><TD><TD></TD><TD>CC </TD><TD></TD><TD> Remove ending only after <I>l</I> </TD></TR>
+</TABLE></DL>
+</div>
+
+<p>
+There is an implicit assumption in each condition, A included, that the minimum
+stem length is 2.
+</p>
+
+<p>
+Finally, here are the 35 transformation rules.
+</p>
+
+<div style="background-color:silver">
+<h4>Appendix C. Transformation rules used in recoding stem terminations</h4>
+
+<DL><DD>
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><TD></TD><TD> 1  &nbsp;  &nbsp;  &nbsp;  </TD><TD></TD><TD> remove one of double <I>b, d, g, l, m, n, p, r, s, t</I> </TD></TR>
+<TR><TD><TD></TD><TD> 2  </TD><TD></TD><TD>      iev   &nbsp;  &#x2192;  &nbsp;  ief </TD></TR>
+<TR><TD><TD></TD><TD> 3  </TD><TD></TD><TD>      uct   &nbsp;  &#x2192;  &nbsp;  uc </TD></TR>
+<TR><TD><TD></TD><TD> 4  </TD><TD></TD><TD>      umpt  &nbsp;  &#x2192;  &nbsp;  um </TD></TR>
+<TR><TD><TD></TD><TD> 5  </TD><TD></TD><TD>      rpt   &nbsp;  &#x2192;  &nbsp;  rb </TD></TR>
+<TR><TD><TD></TD><TD> 6  </TD><TD></TD><TD>      urs   &nbsp;  &#x2192;  &nbsp;  ur </TD></TR>
+<TR><TD><TD></TD><TD> 7  </TD><TD></TD><TD>      istr  &nbsp;  &#x2192;  &nbsp;  ister </TD></TR>
+<TR><TD><TD></TD><TD> 7a </TD><TD></TD><TD>     metr  &nbsp;  &#x2192;  &nbsp;  meter </TD></TR>
+<TR><TD><TD></TD><TD> 8  </TD><TD></TD><TD>      olv   &nbsp;  &#x2192;  &nbsp;  olut </TD></TR>
+<TR><TD><TD></TD><TD> 9  </TD><TD></TD><TD>      ul    &nbsp;  &#x2192;  &nbsp;  l except following <I>a, o, i</I> </TD></TR>
+<TR><TD><TD></TD><TD> 10 </TD><TD></TD><TD>     bex   &nbsp;  &#x2192;  &nbsp;  bic </TD></TR>
+<TR><TD><TD></TD><TD> 11 </TD><TD></TD><TD>     dex   &nbsp;  &#x2192;  &nbsp;  dic </TD></TR>
+<TR><TD><TD></TD><TD> 12 </TD><TD></TD><TD>     pex   &nbsp;  &#x2192;  &nbsp;  pic </TD></TR>
+<TR><TD><TD></TD><TD> 13 </TD><TD></TD><TD>     tex   &nbsp;  &#x2192;  &nbsp;  tic </TD></TR>
+<TR><TD><TD></TD><TD> 14 </TD><TD></TD><TD>     ax    &nbsp;  &#x2192;  &nbsp;  ac </TD></TR>
+<TR><TD><TD></TD><TD> 15 </TD><TD></TD><TD>     ex    &nbsp;  &#x2192;  &nbsp;  ec </TD></TR>
+<TR><TD><TD></TD><TD> 16 </TD><TD></TD><TD>     ix    &nbsp;  &#x2192;  &nbsp;  ic </TD></TR>
+<TR><TD><TD></TD><TD> 17 </TD><TD></TD><TD>     lux   &nbsp;  &#x2192;  &nbsp;  luc </TD></TR>
+<TR><TD><TD></TD><TD> 18 </TD><TD></TD><TD>     uad   &nbsp;  &#x2192;  &nbsp;  uas </TD></TR>
+<TR><TD><TD></TD><TD> 19 </TD><TD></TD><TD>     vad   &nbsp;  &#x2192;  &nbsp;  vas </TD></TR>
+<TR><TD><TD></TD><TD> 20 </TD><TD></TD><TD>     cid   &nbsp;  &#x2192;  &nbsp;  cis </TD></TR>
+<TR><TD><TD></TD><TD> 21 </TD><TD></TD><TD>     lid   &nbsp;  &#x2192;  &nbsp;  lis </TD></TR>
+<TR><TD><TD></TD><TD> 22 </TD><TD></TD><TD>     erid  &nbsp;  &#x2192;  &nbsp;  eris </TD></TR>
+<TR><TD><TD></TD><TD> 23 </TD><TD></TD><TD>     pand  &nbsp;  &#x2192;  &nbsp;  pans </TD></TR>
+<TR><TD><TD></TD><TD> 24 </TD><TD></TD><TD>     end   &nbsp;  &#x2192;  &nbsp;  ens except following <I>s</I> </TD></TR>
+<TR><TD><TD></TD><TD> 25 </TD><TD></TD><TD>     ond   &nbsp;  &#x2192;  &nbsp;  ons </TD></TR>
+<TR><TD><TD></TD><TD> 26 </TD><TD></TD><TD>     lud   &nbsp;  &#x2192;  &nbsp;  lus </TD></TR>
+<TR><TD><TD></TD><TD> 27 </TD><TD></TD><TD>     rud   &nbsp;  &#x2192;  &nbsp;  rus </TD></TR>
+<TR><TD><TD></TD><TD> 28 </TD><TD></TD><TD>     her   &nbsp;  &#x2192;  &nbsp;  hes except following <I>p, t</I> </TD></TR>
+<TR><TD><TD></TD><TD> 29 </TD><TD></TD><TD>     mit   &nbsp;  &#x2192;  &nbsp;  mis </TD></TR>
+<TR><TD><TD></TD><TD> 30 </TD><TD></TD><TD>     ent   &nbsp;  &#x2192;  &nbsp;  ens except following <I>m</I> </TD></TR>
+<TR><TD><TD></TD><TD> 31 </TD><TD></TD><TD>     ert   &nbsp;  &#x2192;  &nbsp;  ers </TD></TR>
+<TR><TD><TD></TD><TD> 32 </TD><TD></TD><TD>     et    &nbsp;  &#x2192;  &nbsp;  es except following <I>n</I> </TD></TR>
+<TR><TD><TD></TD><TD> 33 </TD><TD></TD><TD>     yt    &nbsp;  &#x2192;  &nbsp;  ys </TD></TR>
+<TR><TD><TD></TD><TD> 34 </TD><TD></TD><TD>     yz    &nbsp;  &#x2192;  &nbsp;  ys </TD></TR>
+</TABLE></DL>
+</div>
+
+<p>
+(Rule 30 as given here corrects a typographical error in the published
+paper of 1968.)
+</p>
+
+<p>
+The following examples show the intentions behind these rules.
+</p>
+
+<DL><DD>
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD><TD></TD><TD>   1  &nbsp;  &nbsp;  &nbsp;  </TD><TD></TD><TD> rubb[ing] &#x2192; rub, embedd[ed] &#x2192; embed etc </TD></TR>
+<TR><TD><TD></TD><TD>   2  </TD><TD></TD><TD> believ[e] &#x2192; belief </TD></TR>
+<TR><TD><TD></TD><TD>   3  </TD><TD></TD><TD> induct[ion] &#x2192; induc[e] </TD></TR>
+<TR><TD><TD></TD><TD>   4  </TD><TD></TD><TD> consumpt[ion] &#x2192; consum[e] </TD></TR>
+<TR><TD><TD></TD><TD>   5  </TD><TD></TD><TD> absorpt[ion] &#x2192; absorb </TD></TR>
+<TR><TD><TD></TD><TD>   6  </TD><TD></TD><TD> recurs[ive] &#x2192; recur </TD></TR>
+<TR><TD><TD></TD><TD>   7  </TD><TD></TD><TD> administr[ate] &#x2192; administ[er] </TD></TR>
+<TR><TD><TD></TD><TD>   7a </TD><TD></TD><TD> parametr[ic] &#x2192; paramet[er] </TD></TR>
+<TR><TD><TD></TD><TD>   8  </TD><TD></TD><TD> dissolv[ed] &#x2192; dissolut[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   9  </TD><TD></TD><TD> angul[ar] &#x2192; angl[e] </TD></TR>
+<TR><TD><TD></TD><TD>   10 </TD><TD></TD><TD> vibex &#x2192; vibic[es] </TD></TR>
+<TR><TD><TD></TD><TD>   11 </TD><TD></TD><TD> index &#x2192; indic[es] </TD></TR>
+<TR><TD><TD></TD><TD>   12 </TD><TD></TD><TD> apex &#x2192; apic[es] </TD></TR>
+<TR><TD><TD></TD><TD>   13 </TD><TD></TD><TD> cortex &#x2192; cortic[al] </TD></TR>
+<TR><TD><TD></TD><TD>   14 </TD><TD></TD><TD> anthrax &#x2192; anthrac[ite] </TD></TR>
+<TR><TD><TD></TD><TD>   15 </TD><TD></TD><TD> ? </TD></TR>
+<TR><TD><TD></TD><TD>   16 </TD><TD></TD><TD> matrix &#x2192; matric[es] </TD></TR>
+<TR><TD><TD></TD><TD>   17 </TD><TD></TD><TD> ? </TD></TR>
+<TR><TD><TD></TD><TD>   18 </TD><TD></TD><TD> persuad[e] &#x2192; persuas[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   19 </TD><TD></TD><TD> evad[e] &#x2192; evas[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   20 </TD><TD></TD><TD> decid[e] &#x2192; decis[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   21 </TD><TD></TD><TD> elid[e] &#x2192; elis[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   22 </TD><TD></TD><TD> derid[e] &#x2192; deris[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   23 </TD><TD></TD><TD> expand &#x2192; expans[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   24 </TD><TD></TD><TD> defend &#x2192; defens[ive] </TD></TR>
+<TR><TD><TD></TD><TD>   25 </TD><TD></TD><TD> respond &#x2192; respons[ive] </TD></TR>
+<TR><TD><TD></TD><TD>   26 </TD><TD></TD><TD> collud[e] &#x2192; collus[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   27 </TD><TD></TD><TD> obtrud[e] &#x2192; obtrus[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   28 </TD><TD></TD><TD> adher[e] &#x2192; adhes[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   29 </TD><TD></TD><TD> remit &#x2192; remis[s][ion] </TD></TR>
+<TR><TD><TD></TD><TD>   30 </TD><TD></TD><TD> extent &#x2192; extens[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   31 </TD><TD></TD><TD> convert[ed] &#x2192; convers[ion] </TD></TR>
+<TR><TD><TD></TD><TD>   32 </TD><TD></TD><TD> parenthet[ic] &#x2192; parenthes[is] </TD></TR>
+<TR><TD><TD></TD><TD>   33 </TD><TD></TD><TD> analyt[ic] &#x2192; analys[is] </TD></TR>
+<TR><TD><TD></TD><TD>   34 </TD><TD></TD><TD> analyz[ed] &#x2192; analys[ed] </TD></TR>
+</TABLE></DL>
+</DL>
+
+<h4>The Lovins algorithm in Snowball</h4>
+
+<p>
+Here is the Lovins algorithm in Snowball. The tables of endings, conditions and rules from Lovins' paper translate very naturally into Snowball code.
+</p>
+
+<div class="highlight"><pre><span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span>
+
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">   </span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="n">F</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="n">H</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">J</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">O</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="n">W</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="n">AA</span><span class="w"> </span><span class="n">BB</span><span class="w"> </span><span class="n">CC</span>
+
+<span class="w">   </span><span class="n">endings</span>
+
+<span class="w">   </span><span class="n">undouble</span><span class="w"> </span><span class="n">respell</span>
+<span class="p">)</span>
+
+<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
+
+<span class="w">  </span><span class="cm">/* Lovins&#39; conditions A, B ... CC, as given in her Appendix B, where</span>
+<span class="cm">     a test for a two letter prefix (&#39;test hop 2&#39;) is implicitly</span>
+<span class="cm">     assumed. Note that &#39;e&#39; next &#39;u&#39; corresponds to her u*e because</span>
+<span class="cm">     Snowball is scanning backwards. */</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">A</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">B</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">C</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">D</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">E</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">F</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">G</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="s1">&#39;f&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">H</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;t&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;ll&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">I</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">J</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">K</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="ow">next</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">L</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">M</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">N</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">O</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">P</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">Q</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">R</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">S</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;dr&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;t&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">T</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">U</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">V</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">W</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">X</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="ow">next</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">Y</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;in&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">Z</span><span class="w">  </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;f&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">AA</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;d&#39;</span><span class="w"> </span><span class="s1">&#39;f&#39;</span><span class="w"> </span><span class="s1">&#39;ph&#39;</span><span class="w"> </span><span class="s1">&#39;th&#39;</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="w"> </span><span class="s1">&#39;er&#39;</span><span class="w"> </span><span class="s1">&#39;or&#39;</span>
+<span class="w">                                    </span><span class="s1">&#39;es&#39;</span><span class="w"> </span><span class="s1">&#39;t&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">BB</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;met&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;ryst&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">CC</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="w"> </span><span class="p">)</span>
+
+
+<span class="w">  </span><span class="cm">/* The system of endings, as given in Appendix A. */</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">endings</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;alistically&#39;</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="s1">&#39;arizability&#39;</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="s1">&#39;izationally&#39;</span><span class="w"> </span><span class="n">B</span>
+
+<span class="w">     </span><span class="s1">&#39;antialness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">  </span><span class="s1">&#39;arisations&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">  </span><span class="s1">&#39;arizations&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">  </span><span class="s1">&#39;entialness&#39;</span><span class="w"> </span><span class="n">A</span>
+
+<span class="w">      </span><span class="s1">&#39;allically&#39;</span><span class="w"> </span><span class="n">C</span><span class="w">   </span><span class="s1">&#39;antaneous&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;antiality&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;arisation&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">      </span><span class="s1">&#39;arization&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;ationally&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">   </span><span class="s1">&#39;ativeness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;eableness&#39;</span><span class="w"> </span><span class="n">E</span>
+<span class="w">      </span><span class="s1">&#39;entations&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;entiality&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;entialize&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;entiation&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">      </span><span class="s1">&#39;ionalness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;istically&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;itousness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">   </span><span class="s1">&#39;izability&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">      </span><span class="s1">&#39;izational&#39;</span><span class="w"> </span><span class="n">A</span>
+
+<span class="w">       </span><span class="s1">&#39;ableness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="s1">&#39;arizable&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="s1">&#39;entation&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="s1">&#39;entially&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">       </span><span class="s1">&#39;eousness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="s1">&#39;ibleness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="s1">&#39;icalness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="s1">&#39;ionalism&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">       </span><span class="s1">&#39;ionality&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="s1">&#39;ionalize&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="s1">&#39;iousness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="s1">&#39;izations&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">       </span><span class="s1">&#39;lessness&#39;</span><span class="w"> </span><span class="n">A</span>
+
+<span class="w">        </span><span class="s1">&#39;ability&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;aically&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;alistic&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">     </span><span class="s1">&#39;alities&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="s1">&#39;ariness&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">     </span><span class="s1">&#39;aristic&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;arizing&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ateness&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="s1">&#39;atingly&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ational&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">     </span><span class="s1">&#39;atively&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ativism&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="s1">&#39;elihood&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">     </span><span class="s1">&#39;encible&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;entally&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;entials&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="s1">&#39;entiate&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;entness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;fulness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ibility&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="s1">&#39;icalism&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;icalist&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;icality&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;icalize&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="s1">&#39;ication&#39;</span><span class="w"> </span><span class="n">G</span><span class="w">     </span><span class="s1">&#39;icianry&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ination&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ingness&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="s1">&#39;ionally&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;isation&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ishness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;istical&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="s1">&#39;iteness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;iveness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ivistic&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ivities&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">        </span><span class="s1">&#39;ization&#39;</span><span class="w"> </span><span class="n">F</span><span class="w">     </span><span class="s1">&#39;izement&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;oidally&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">     </span><span class="s1">&#39;ousness&#39;</span><span class="w"> </span><span class="n">A</span>
+
+<span class="w">         </span><span class="s1">&#39;aceous&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;acious&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">      </span><span class="s1">&#39;action&#39;</span><span class="w"> </span><span class="n">G</span><span class="w">      </span><span class="s1">&#39;alness&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">         </span><span class="s1">&#39;ancial&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;ancies&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;ancing&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">      </span><span class="s1">&#39;ariser&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">         </span><span class="s1">&#39;arized&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;arizer&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;atable&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;ations&#39;</span><span class="w"> </span><span class="n">B</span>
+<span class="w">         </span><span class="s1">&#39;atives&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;eature&#39;</span><span class="w"> </span><span class="n">Z</span><span class="w">      </span><span class="s1">&#39;efully&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;encies&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">         </span><span class="s1">&#39;encing&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;ential&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;enting&#39;</span><span class="w"> </span><span class="n">C</span><span class="w">      </span><span class="s1">&#39;entist&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">         </span><span class="s1">&#39;eously&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;ialist&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;iality&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;ialize&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">         </span><span class="s1">&#39;ically&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;icance&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;icians&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;icists&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">         </span><span class="s1">&#39;ifully&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;ionals&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;ionate&#39;</span><span class="w"> </span><span class="n">D</span><span class="w">      </span><span class="s1">&#39;ioning&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">         </span><span class="s1">&#39;ionist&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;iously&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;istics&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;izable&#39;</span><span class="w"> </span><span class="n">E</span>
+<span class="w">         </span><span class="s1">&#39;lessly&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;nesses&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">      </span><span class="s1">&#39;oidism&#39;</span><span class="w"> </span><span class="n">A</span>
+
+<span class="w">          </span><span class="s1">&#39;acies&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;acity&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;aging&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">       </span><span class="s1">&#39;aical&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;alist&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;alism&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">       </span><span class="s1">&#39;ality&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;alize&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;allic&#39;</span><span class="n">BB</span><span class="w">       </span><span class="s1">&#39;anced&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">       </span><span class="s1">&#39;ances&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">       </span><span class="s1">&#39;antic&#39;</span><span class="w"> </span><span class="n">C</span>
+<span class="w">          </span><span class="s1">&#39;arial&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;aries&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;arily&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;arity&#39;</span><span class="w"> </span><span class="n">B</span>
+<span class="w">          </span><span class="s1">&#39;arize&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;aroid&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ately&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ating&#39;</span><span class="w"> </span><span class="n">I</span>
+<span class="w">          </span><span class="s1">&#39;ation&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">       </span><span class="s1">&#39;ative&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ators&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;atory&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;ature&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">       </span><span class="s1">&#39;early&#39;</span><span class="w"> </span><span class="n">Y</span><span class="w">       </span><span class="s1">&#39;ehood&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;eless&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;elity&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ement&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;enced&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ences&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;eness&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">       </span><span class="s1">&#39;ening&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">       </span><span class="s1">&#39;ental&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ented&#39;</span><span class="w"> </span><span class="n">C</span>
+<span class="w">          </span><span class="s1">&#39;ently&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;fully&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ially&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;icant&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;ician&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;icide&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;icism&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;icist&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;icity&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;idine&#39;</span><span class="w"> </span><span class="n">I</span><span class="w">       </span><span class="s1">&#39;iedly&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ihood&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;inate&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;iness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ingly&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">       </span><span class="s1">&#39;inism&#39;</span><span class="w"> </span><span class="n">J</span>
+<span class="w">          </span><span class="s1">&#39;inity&#39;</span><span class="n">CC</span><span class="w">       </span><span class="s1">&#39;ional&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ioned&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ished&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;istic&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ities&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;itous&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ively&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;ivity&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;izers&#39;</span><span class="w"> </span><span class="n">F</span><span class="w">       </span><span class="s1">&#39;izing&#39;</span><span class="w"> </span><span class="n">F</span><span class="w">       </span><span class="s1">&#39;oidal&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">          </span><span class="s1">&#39;oides&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;otide&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">       </span><span class="s1">&#39;ously&#39;</span><span class="w"> </span><span class="n">A</span>
+
+<span class="w">           </span><span class="s1">&#39;able&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ably&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ages&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">        </span><span class="s1">&#39;ally&#39;</span><span class="w"> </span><span class="n">B</span>
+<span class="w">           </span><span class="s1">&#39;ance&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">        </span><span class="s1">&#39;ancy&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">        </span><span class="s1">&#39;ants&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">        </span><span class="s1">&#39;aric&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">           </span><span class="s1">&#39;arly&#39;</span><span class="w"> </span><span class="n">K</span><span class="w">        </span><span class="s1">&#39;ated&#39;</span><span class="w"> </span><span class="n">I</span><span class="w">        </span><span class="s1">&#39;ates&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;atic&#39;</span><span class="w"> </span><span class="n">B</span>
+<span class="w">           </span><span class="s1">&#39;ator&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ealy&#39;</span><span class="w"> </span><span class="n">Y</span><span class="w">        </span><span class="s1">&#39;edly&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">        </span><span class="s1">&#39;eful&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">           </span><span class="s1">&#39;eity&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ence&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ency&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ened&#39;</span><span class="w"> </span><span class="n">E</span>
+<span class="w">           </span><span class="s1">&#39;enly&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">        </span><span class="s1">&#39;eous&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;hood&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ials&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">           </span><span class="s1">&#39;ians&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ible&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ibly&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ical&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">           </span><span class="s1">&#39;ides&#39;</span><span class="w"> </span><span class="n">L</span><span class="w">        </span><span class="s1">&#39;iers&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;iful&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ines&#39;</span><span class="w"> </span><span class="n">M</span>
+<span class="w">           </span><span class="s1">&#39;ings&#39;</span><span class="w"> </span><span class="n">N</span><span class="w">        </span><span class="s1">&#39;ions&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">        </span><span class="s1">&#39;ious&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;isms&#39;</span><span class="w"> </span><span class="n">B</span>
+<span class="w">           </span><span class="s1">&#39;ists&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;itic&#39;</span><span class="w"> </span><span class="n">H</span><span class="w">        </span><span class="s1">&#39;ized&#39;</span><span class="w"> </span><span class="n">F</span><span class="w">        </span><span class="s1">&#39;izer&#39;</span><span class="w"> </span><span class="n">F</span>
+<span class="w">           </span><span class="s1">&#39;less&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;lily&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ness&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ogen&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">           </span><span class="s1">&#39;ward&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;wise&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;ying&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">        </span><span class="s1">&#39;yish&#39;</span><span class="w"> </span><span class="n">A</span>
+
+<span class="w">            </span><span class="s1">&#39;acy&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;age&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">         </span><span class="s1">&#39;aic&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;als&#39;</span><span class="n">BB</span>
+<span class="w">            </span><span class="s1">&#39;ant&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">         </span><span class="s1">&#39;ars&#39;</span><span class="w"> </span><span class="n">O</span><span class="w">         </span><span class="s1">&#39;ary&#39;</span><span class="w"> </span><span class="n">F</span><span class="w">         </span><span class="s1">&#39;ata&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">            </span><span class="s1">&#39;ate&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;eal&#39;</span><span class="w"> </span><span class="n">Y</span><span class="w">         </span><span class="s1">&#39;ear&#39;</span><span class="w"> </span><span class="n">Y</span><span class="w">         </span><span class="s1">&#39;ely&#39;</span><span class="w"> </span><span class="n">E</span>
+<span class="w">            </span><span class="s1">&#39;ene&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">         </span><span class="s1">&#39;ent&#39;</span><span class="w"> </span><span class="n">C</span><span class="w">         </span><span class="s1">&#39;ery&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">         </span><span class="s1">&#39;ese&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">            </span><span class="s1">&#39;ful&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ial&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ian&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ics&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">            </span><span class="s1">&#39;ide&#39;</span><span class="w"> </span><span class="n">L</span><span class="w">         </span><span class="s1">&#39;ied&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ier&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ies&#39;</span><span class="w"> </span><span class="n">P</span>
+<span class="w">            </span><span class="s1">&#39;ily&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ine&#39;</span><span class="w"> </span><span class="n">M</span><span class="w">         </span><span class="s1">&#39;ing&#39;</span><span class="w"> </span><span class="n">N</span><span class="w">         </span><span class="s1">&#39;ion&#39;</span><span class="w"> </span><span class="n">Q</span>
+<span class="w">            </span><span class="s1">&#39;ish&#39;</span><span class="w"> </span><span class="n">C</span><span class="w">         </span><span class="s1">&#39;ism&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">         </span><span class="s1">&#39;ist&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ite&#39;</span><span class="n">AA</span>
+<span class="w">            </span><span class="s1">&#39;ity&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ium&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ive&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;ize&#39;</span><span class="w"> </span><span class="n">F</span>
+<span class="w">            </span><span class="s1">&#39;oid&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">         </span><span class="s1">&#39;one&#39;</span><span class="w"> </span><span class="n">R</span><span class="w">         </span><span class="s1">&#39;ous&#39;</span><span class="w"> </span><span class="n">A</span>
+
+<span class="w">             </span><span class="s1">&#39;ae&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">          </span><span class="s1">&#39;al&#39;</span><span class="n">BB</span><span class="w">          </span><span class="s1">&#39;ar&#39;</span><span class="w"> </span><span class="n">X</span><span class="w">          </span><span class="s1">&#39;as&#39;</span><span class="w"> </span><span class="n">B</span>
+<span class="w">             </span><span class="s1">&#39;ed&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">          </span><span class="s1">&#39;en&#39;</span><span class="w"> </span><span class="n">F</span><span class="w">          </span><span class="s1">&#39;es&#39;</span><span class="w"> </span><span class="n">E</span><span class="w">          </span><span class="s1">&#39;ia&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">             </span><span class="s1">&#39;ic&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">          </span><span class="s1">&#39;is&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">          </span><span class="s1">&#39;ly&#39;</span><span class="w"> </span><span class="n">B</span><span class="w">          </span><span class="s1">&#39;on&#39;</span><span class="w"> </span><span class="n">S</span>
+<span class="w">             </span><span class="s1">&#39;or&#39;</span><span class="w"> </span><span class="n">T</span><span class="w">          </span><span class="s1">&#39;um&#39;</span><span class="w"> </span><span class="n">U</span><span class="w">          </span><span class="s1">&#39;us&#39;</span><span class="w"> </span><span class="n">V</span><span class="w">          </span><span class="s1">&#39;yl&#39;</span><span class="w"> </span><span class="n">R</span>
+<span class="w">           </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">s&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">        </span><span class="s1">&#39;s</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">A</span>
+
+<span class="w">              </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">           </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">           </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="n">A</span><span class="w">           </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="n">A</span>
+<span class="w">              </span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="n">W</span><span class="w">           </span><span class="s1">&#39;y&#39;</span><span class="w"> </span><span class="n">B</span>
+
+<span class="w">        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="cm">/* Undoubling is rule 1 of appendix C. */</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">undouble</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">test</span><span class="w"> </span><span class="ow">substring</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;bb&#39;</span><span class="w"> </span><span class="s1">&#39;dd&#39;</span><span class="w"> </span><span class="s1">&#39;gg&#39;</span><span class="w"> </span><span class="s1">&#39;ll&#39;</span><span class="w"> </span><span class="s1">&#39;mm&#39;</span><span class="w"> </span><span class="s1">&#39;nn&#39;</span><span class="w"> </span><span class="s1">&#39;pp&#39;</span><span class="w"> </span><span class="s1">&#39;rr&#39;</span><span class="w"> </span><span class="s1">&#39;ss&#39;</span>
+<span class="w">                          </span><span class="s1">&#39;tt&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">next</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="cm">/* The other appendix C rules can be done together. */</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">respell</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;iev&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ief&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;uct&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;uc&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;umpt&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;um&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;rpt&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;urs&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ur&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;istr&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ister&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;metr&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;meter&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;olv&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;olut&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ul&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;l&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;bex&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;bic&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;dex&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;dic&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;pex&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;pic&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;tex&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;tic&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ax&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ac&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ex&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ec&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ix&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ic&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;lux&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;luc&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;uad&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;uas&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;vad&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;vas&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;cid&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;cis&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;lid&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;lis&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;erid&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;eris&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;pand&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;pans&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;end&#39;</span><span class="w">  </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;ens&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ond&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ons&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;lud&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;lus&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;rud&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;rus&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;her&#39;</span><span class="w">  </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;p&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;t&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;hes&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;mit&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;mis&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ent&#39;</span><span class="w">  </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;ens&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="cm">/* &#39;ent&#39; was &#39;end&#39; in the 1968 paper - a typo. */</span>
+<span class="w">      </span><span class="s1">&#39;ert&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ers&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;et&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;es&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;yt&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ys&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;yz&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ys&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+
+<span class="w">  </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">endings</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">undouble</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">respell</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

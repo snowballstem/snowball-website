@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Turkish stemming algorithm - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>Turkish stemming algorithm</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <a href="/demo.html#Turkish">Javascript demo</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/turkish.sbl">The stemmer in Snowball</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/turkish/voc.txt">Sample Turkish vocabulary</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/turkish/output.txt">Its stemmed equivalent</a></li>
+<li> <a href="accompanying_paper.doc">  Accompanying description</a> (this is a &nbsp;<code>.doc</code>&nbsp; file)
+</ul>
+
+<p>
+The Turkish stemming algorithm was provided by Evren Kapusuz Cilden.  It stems
+only noun and nominal verb suffixes because noun stems are more important for
+information retrieval, and only handling these simplifies the algorithm
+significantly.
+</p>
+
+<p>
+In her paper (linked above) Evren explains
+</p>
+
+<blockquote>
+<p>
+The stemmer can be enhanced to stem all kinds of verb suffixes. In Turkish,
+there are over fifty suffixes that can be affixed to verbs [2]. The
+morphological structure of verb suffixes is more complicated than noun
+suffixes. Despite this, one can use the methodology presented in this paper to
+enhance the stemmer to find stems of all kinds of Turkish words.
+</p>
+</blockquote>
+
+<p>where [2] is a reference to the following paper:</p>
+
+<DL><DD>
+<p>
+Gulsen Eryigit and Esref Adali.
+<B><I>An Affix Stripping Morphological Analyzer for Turkish</I></B>
+Proceedings of the <FONT SIZE=-1>IAESTED</FONT> International
+Conference
+<FONT SIZE=-1>ARTIFICIAL INTELLIGENCE AND APPLICATIONS</FONT>, February 16-18,2004, Innsbruck, Austria.
+</p>
+</DL>
+
+<p>
+Since Snowball 3.0.0, we do the following as an additional step before the
+steps described in the paper:
+</p>
+<ul>
+<li>Remove any apostrophes from the start of the input (e.g. from tokenisation
+of single quoted text).
+<li>If the input still contains an apostrophe we truncate it at the first
+apostrophe which is at least two characters from the start of the input.  (This aims to remove proper noun suffixes without adversely affecting foreign names or words, such as <i>o'connor</i>, <i>l'entrée</i>).
+</ul>
+<p>
+For example, <i>Türkiye'dir</i> ("it is Turkey") is truncated to <i>Türkiye</i>
+("Turkey") which is then stemmed as it would be without the proper noun suffix.
+While it might seem that we should stop having removed suffixes to leave a
+proper noun, if we didn't continue to stem then a proper noun with suffixes
+could give a different stem to the same proper noun without suffixes (for
+example, <i>Türkiye</i> gets stemmed to <i>türki</i> so <i>Türkiye'dir</i>
+should too).
+</p>
+
+<h2>The algorithm in Snowball</h2>
+
+<div class="highlight"><pre><span class="cm">/* Stemmer for Turkish</span>
+<span class="cm"> * author: Evren (Kapusuz) Çilden</span>
+<span class="cm"> * email: evren.kapusuz at gmail.com</span>
+<span class="cm"> *</span>
+<span class="cm"> * stems nominal verb suffixes</span>
+<span class="cm"> * stems nominal inflections</span>
+<span class="cm"> * more than one syllable word check</span>
+<span class="cm"> * (y,n,s,U) context check</span>
+<span class="cm"> * vowel harmony check</span>
+<span class="cm"> * last consonant check and conversion (b, c, d, ğ to p, ç, t, k)</span>
+<span class="cm"> *</span>
+<span class="cm"> * The stemming algorithm is based on the paper &quot;An Affix Stripping</span>
+<span class="cm"> * Morphological Analyzer for Turkish&quot; by Gülşen Eryiğit and</span>
+<span class="cm"> * Eşref Adalı (Proceedings of the IAESTED International Conference</span>
+<span class="cm"> * ARTIFICIAL INTELLIGENCE AND APPLICATIONS, February 16-18,2004,</span>
+<span class="cm"> * Innsbruck, Austria</span>
+<span class="cm"> *</span>
+<span class="cm"> * Turkish is an agglutinative language and has a very rich morphological</span>
+<span class="cm"> * structure. In Turkish, you can form many different words from a single stem</span>
+<span class="cm"> * by appending a sequence of suffixes. Eg. The word &quot;doktoruymuşsunuz&quot; means</span>
+<span class="cm"> * &quot;You had been the doctor of him&quot;. The stem of the word is &quot;doktor&quot; and it</span>
+<span class="cm"> * takes three different suffixes -sU, -ymUs, and -sUnUz. The rules about</span>
+<span class="cm"> * the append order of suffixes can be clearly described as FSMs.</span>
+<span class="cm"> * The paper referenced above defines some FSMs for right to left</span>
+<span class="cm"> * morphological analysis. I generated a method for constructing snowball</span>
+<span class="cm"> * expressions from right to left FSMs for stemming suffixes.</span>
+<span class="cm"> */</span>
+
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">append_U_to_stems_ending_with_d_or_g</span><span class="w"> </span><span class="c1">// for preventing some overstemmings</span>
+<span class="w">  </span><span class="n">check_vowel_harmony</span><span class="w">  </span><span class="c1">// tests vowel harmony for suffixes</span>
+<span class="w">  </span><span class="n">is_reserved_word</span><span class="w">     </span><span class="c1">// tests whether current string is a reserved word (&#39;ad&#39;,&#39;soyad&#39;)</span>
+<span class="w">  </span><span class="n">mark_cAsInA</span><span class="w">          </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_DA</span><span class="w">              </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_DAn</span><span class="w">             </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_DUr</span><span class="w">             </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_ki</span><span class="w">              </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_lAr</span><span class="w">             </span><span class="c1">// noun suffix, nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_lArI</span><span class="w">            </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_nA</span><span class="w">              </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_ncA</span><span class="w">             </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_ndA</span><span class="w">             </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_ndAn</span><span class="w">            </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_nU</span><span class="w">              </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_nUn</span><span class="w">             </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_nUz</span><span class="w">             </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_sU</span><span class="w">              </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_sUn</span><span class="w">             </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_sUnUz</span><span class="w">           </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_possessives</span><span class="w">     </span><span class="c1">// -(U)m,-(U)n,-(U)mUz,-(U)nUz,</span>
+<span class="w">  </span><span class="n">mark_yA</span><span class="w">              </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_ylA</span><span class="w">             </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_yU</span><span class="w">              </span><span class="c1">// noun suffix</span>
+<span class="w">  </span><span class="n">mark_yUm</span><span class="w">             </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_yUz</span><span class="w">             </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_yDU</span><span class="w">             </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_yken</span><span class="w">            </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_ymUs_</span><span class="w">           </span><span class="c1">// nominal verb suffix</span>
+<span class="w">  </span><span class="n">mark_ysA</span><span class="w">             </span><span class="c1">// nominal verb suffix</span>
+
+<span class="w">  </span><span class="n">mark_suffix_with_optional_y_consonant</span>
+<span class="w">  </span><span class="n">mark_suffix_with_optional_U_vowel</span>
+<span class="w">  </span><span class="n">mark_suffix_with_optional_n_consonant</span>
+<span class="w">  </span><span class="n">mark_suffix_with_optional_s_consonant</span>
+
+<span class="w">  </span><span class="n">more_than_one_syllable_word</span>
+
+<span class="w">  </span><span class="n">post_process_last_consonants</span>
+<span class="w">  </span><span class="n">postlude</span>
+
+<span class="w">  </span><span class="n">remove_proper_noun_suffix</span>
+
+<span class="w">  </span><span class="n">stem_nominal_verb_suffixes</span>
+<span class="w">  </span><span class="n">stem_noun_suffixes</span>
+<span class="w">  </span><span class="n">stem_suffix_chain_before_ki</span>
+<span class="p">)</span>
+
+<span class="kr">stringescapes</span><span class="w">  </span><span class="se">{</span><span class="w"> </span><span class="se">}</span>
+
+<span class="cm">/* Special characters in Unicode Latin-1 and Latin Extended-A */</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">cc</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00E7}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// LATIN SMALL LETTER C WITH CEDILLA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">g~</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+011F}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// LATIN SMALL LETTER G WITH BREVE</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">i</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0131}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// LATIN SMALL LETTER I WITHOUT DOT</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">o&quot;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00F6}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// LATIN SMALL LETTER O WITH DIAERESIS</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">sc</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+015F}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// LATIN SMALL LETTER S WITH CEDILLA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">u&quot;</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+00FC}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// LATIN SMALL LETTER U WITH DIAERESIS</span>
+
+<span class="kr">booleans</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">continue_stemming_noun_suffixes</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="n">vowel1</span><span class="w"> </span><span class="n">vowel2</span><span class="w"> </span><span class="n">vowel3</span><span class="w"> </span><span class="n">vowel4</span><span class="w"> </span><span class="n">vowel5</span><span class="w"> </span><span class="n">vowel6</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">vowel</span><span class="w">  </span><span class="s1">&#39;ae</span><span class="se">{i}</span><span class="s1">io</span><span class="se">{o&quot;}</span><span class="s1">u</span><span class="se">{u&quot;}</span><span class="s1">&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">U</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">iu</span><span class="se">{u&quot;}</span><span class="s1">&#39;</span>
+
+<span class="c1">// the vowel grouping definitions below are used for checking vowel harmony</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">vowel1</span><span class="w"> </span><span class="s1">&#39;a</span><span class="se">{i}</span><span class="s1">ou&#39;</span><span class="w">     </span><span class="c1">// vowels that can end with suffixes containing &#39;a&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">vowel2</span><span class="w"> </span><span class="s1">&#39;ei</span><span class="se">{o&quot;}{u&quot;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// vowels that can end with suffixes containing &#39;e&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">vowel3</span><span class="w"> </span><span class="s1">&#39;a</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="w">       </span><span class="c1">// vowels that can end with suffixes containing &#39;{i}&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">vowel4</span><span class="w"> </span><span class="s1">&#39;ei&#39;</span><span class="w">         </span><span class="c1">// vowels that can end with suffixes containing &#39;i&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">vowel5</span><span class="w"> </span><span class="s1">&#39;ou&#39;</span><span class="w">         </span><span class="c1">// vowels that can end with suffixes containing &#39;o&#39; or &#39;u&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">vowel6</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}{u&quot;}</span><span class="s1">&#39;</span><span class="w">   </span><span class="c1">// vowels that can end with suffixes containing &#39;{o&quot;}&#39; or &#39;{u&quot;}&#39;</span>
+
+<span class="kr">externals</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="c1">// checks vowel harmony for possible suffixes,</span>
+<span class="w">  </span><span class="c1">// helps to detect whether the candidate for suffix applies to vowel harmony</span>
+<span class="w">  </span><span class="c1">// this rule is added to prevent over stemming</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">check_vowel_harmony</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">test</span>
+<span class="w">    </span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel</span><span class="p">)</span><span class="w">   </span><span class="c1">// if there is a vowel</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel1</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel2</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel3</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel4</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel5</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel6</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel5</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel6</span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// if the last consonant before suffix is vowel and n then advance and delete</span>
+<span class="w">  </span><span class="c1">// if the last consonant before suffix is non vowel and n do nothing</span>
+<span class="w">  </span><span class="c1">// if the last consonant before suffix is not n then only delete the suffix</span>
+<span class="w">  </span><span class="c1">// assumption: slice beginning is set correctly</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_suffix_with_optional_n_consonant</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">))</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// if the last consonant before suffix is vowel and s then advance and delete</span>
+<span class="w">  </span><span class="c1">// if the last consonant before suffix is non vowel and s do nothing</span>
+<span class="w">  </span><span class="c1">// if the last consonant before suffix is not s then only delete the suffix</span>
+<span class="w">  </span><span class="c1">// assumption: slice beginning is set correctly</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_suffix_with_optional_s_consonant</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="p">))</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// if the last consonant before suffix is vowel and y then advance and delete</span>
+<span class="w">  </span><span class="c1">// if the last consonant before suffix is non vowel and y do nothing</span>
+<span class="w">  </span><span class="c1">// if the last consonant before suffix is not y then only delete the suffix</span>
+<span class="w">  </span><span class="c1">// assumption: slice beginning is set correctly</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="p">))</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_suffix_with_optional_U_vowel</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">(</span><span class="n">U</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="n">U</span><span class="p">))</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_possessives</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;m</span><span class="se">{i}</span><span class="s1">z&#39;</span><span class="w"> </span><span class="s1">&#39;miz&#39;</span><span class="w"> </span><span class="s1">&#39;muz&#39;</span><span class="w"> </span><span class="s1">&#39;m</span><span class="se">{u&quot;}</span><span class="s1">z&#39;</span>
+<span class="w">           </span><span class="s1">&#39;n</span><span class="se">{i}</span><span class="s1">z&#39;</span><span class="w"> </span><span class="s1">&#39;niz&#39;</span><span class="w"> </span><span class="s1">&#39;nuz&#39;</span><span class="w"> </span><span class="s1">&#39;n</span><span class="se">{u&quot;}</span><span class="s1">z&#39;</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_U_vowel</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_sU</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="n">U</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_s_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_lArI</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;leri&#39;</span><span class="w"> </span><span class="s1">&#39;lar</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_yU</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="n">U</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_nU</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;n</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;ni&#39;</span><span class="w"> </span><span class="s1">&#39;nu&#39;</span><span class="w"> </span><span class="s1">&#39;n</span><span class="se">{u&quot;}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_nUn</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="s1">&#39;in&#39;</span><span class="w"> </span><span class="s1">&#39;un&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">n&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_n_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_yA</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_nA</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;na&#39;</span><span class="w"> </span><span class="s1">&#39;ne&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_DA</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;da&#39;</span><span class="w"> </span><span class="s1">&#39;de&#39;</span><span class="w"> </span><span class="s1">&#39;ta&#39;</span><span class="w"> </span><span class="s1">&#39;te&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_ndA</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;nda&#39;</span><span class="w"> </span><span class="s1">&#39;nde&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_DAn</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;dan&#39;</span><span class="w"> </span><span class="s1">&#39;den&#39;</span><span class="w"> </span><span class="s1">&#39;tan&#39;</span><span class="w"> </span><span class="s1">&#39;ten&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_ndAn</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;ndan&#39;</span><span class="w"> </span><span class="s1">&#39;nden&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_ylA</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;la&#39;</span><span class="w"> </span><span class="s1">&#39;le&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_ki</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;ki&#39;</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_ncA</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;ca&#39;</span><span class="w"> </span><span class="s1">&#39;ce&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_n_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_yUm</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;im&#39;</span><span class="w"> </span><span class="s1">&#39;um&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">m&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_sUn</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;s</span><span class="se">{i}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="s1">&#39;sin&#39;</span><span class="w"> </span><span class="s1">&#39;sun&#39;</span><span class="w"> </span><span class="s1">&#39;s</span><span class="se">{u&quot;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_yUz</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">z&#39;</span><span class="w"> </span><span class="s1">&#39;iz&#39;</span><span class="w"> </span><span class="s1">&#39;uz&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">z&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_sUnUz</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;s</span><span class="se">{i}</span><span class="s1">n</span><span class="se">{i}</span><span class="s1">z&#39;</span><span class="w"> </span><span class="s1">&#39;siniz&#39;</span><span class="w"> </span><span class="s1">&#39;sunuz&#39;</span><span class="w"> </span><span class="s1">&#39;s</span><span class="se">{u&quot;}</span><span class="s1">n</span><span class="se">{u&quot;}</span><span class="s1">z&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_lAr</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;ler&#39;</span><span class="w"> </span><span class="s1">&#39;lar&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_nUz</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;n</span><span class="se">{i}</span><span class="s1">z&#39;</span><span class="w"> </span><span class="s1">&#39;niz&#39;</span><span class="w"> </span><span class="s1">&#39;nuz&#39;</span><span class="w"> </span><span class="s1">&#39;n</span><span class="se">{u&quot;}</span><span class="s1">z&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_DUr</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;t</span><span class="se">{i}</span><span class="s1">r&#39;</span><span class="w"> </span><span class="s1">&#39;tir&#39;</span><span class="w"> </span><span class="s1">&#39;tur&#39;</span><span class="w"> </span><span class="s1">&#39;t</span><span class="se">{u&quot;}</span><span class="s1">r&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{i}</span><span class="s1">r&#39;</span><span class="w"> </span><span class="s1">&#39;dir&#39;</span><span class="w"> </span><span class="s1">&#39;dur&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{u&quot;}</span><span class="s1">r&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_cAsInA</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;cas</span><span class="se">{i}</span><span class="s1">na&#39;</span><span class="w"> </span><span class="s1">&#39;cesine&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_yDU</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;t</span><span class="se">{i}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;tim&#39;</span><span class="w"> </span><span class="s1">&#39;tum&#39;</span><span class="w"> </span><span class="s1">&#39;t</span><span class="se">{u&quot;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{i}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;dim&#39;</span><span class="w"> </span><span class="s1">&#39;dum&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{u&quot;}</span><span class="s1">m&#39;</span>
+<span class="w">      </span><span class="s1">&#39;t</span><span class="se">{i}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="s1">&#39;tin&#39;</span><span class="w"> </span><span class="s1">&#39;tun&#39;</span><span class="w"> </span><span class="s1">&#39;t</span><span class="se">{u&quot;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{i}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="s1">&#39;din&#39;</span><span class="w"> </span><span class="s1">&#39;dun&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{u&quot;}</span><span class="s1">n&#39;</span>
+<span class="w">      </span><span class="s1">&#39;t</span><span class="se">{i}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;tik&#39;</span><span class="w"> </span><span class="s1">&#39;tuk&#39;</span><span class="w"> </span><span class="s1">&#39;t</span><span class="se">{u&quot;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{i}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;dik&#39;</span><span class="w"> </span><span class="s1">&#39;duk&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{u&quot;}</span><span class="s1">k&#39;</span>
+<span class="w">      </span><span class="s1">&#39;t</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;ti&#39;</span><span class="w"> </span><span class="s1">&#39;tu&#39;</span><span class="w"> </span><span class="s1">&#39;t</span><span class="se">{u&quot;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;di&#39;</span><span class="w"> </span><span class="s1">&#39;du&#39;</span><span class="w"> </span><span class="s1">&#39;d</span><span class="se">{u&quot;}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// does not fully obey vowel harmony</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_ysA</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;sam&#39;</span><span class="w"> </span><span class="s1">&#39;san&#39;</span><span class="w"> </span><span class="s1">&#39;sak&#39;</span><span class="w"> </span><span class="s1">&#39;sem&#39;</span><span class="w"> </span><span class="s1">&#39;sen&#39;</span><span class="w"> </span><span class="s1">&#39;sek&#39;</span><span class="w"> </span><span class="s1">&#39;sa&#39;</span><span class="w"> </span><span class="s1">&#39;se&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_ymUs_</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">check_vowel_harmony</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;m</span><span class="se">{i}{sc}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;mi</span><span class="se">{sc}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;mu</span><span class="se">{sc}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;m</span><span class="se">{u&quot;}{sc}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_yken</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;ken&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">stem_nominal_verb_suffixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span>
+<span class="w">      </span><span class="ow">set</span><span class="w"> </span><span class="n">continue_stemming_noun_suffixes</span>
+<span class="w">      </span><span class="p">(</span><span class="n">mark_ymUs_</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yDU</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_ysA</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yken</span><span class="p">)</span>
+<span class="w">      </span><span class="ow">or</span>
+<span class="w">      </span><span class="p">(</span><span class="n">mark_cAsInA</span><span class="w"> </span><span class="p">(</span><span class="n">mark_sUnUz</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_lAr</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yUm</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_sUn</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yUz</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">true</span><span class="p">)</span><span class="w"> </span><span class="n">mark_ymUs_</span><span class="p">)</span>
+<span class="w">      </span><span class="ow">or</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="n">mark_lAr</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="p">(</span><span class="n">mark_DUr</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yDU</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_ysA</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_ymUs_</span><span class="p">))</span>
+<span class="w">        </span><span class="ow">unset</span><span class="w"> </span><span class="n">continue_stemming_noun_suffixes</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="ow">or</span>
+<span class="w">      </span><span class="p">(</span><span class="n">mark_nUz</span><span class="w"> </span><span class="p">(</span><span class="n">mark_yDU</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_ysA</span><span class="p">))</span>
+<span class="w">      </span><span class="ow">or</span>
+<span class="w">      </span><span class="p">((</span><span class="n">mark_sUnUz</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yUz</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_sUn</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yUm</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="w"> </span><span class="n">mark_ymUs_</span><span class="p">))</span>
+<span class="w">      </span><span class="ow">or</span>
+<span class="w">      </span><span class="p">(</span><span class="n">mark_DUr</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="w"> </span><span class="p">(</span><span class="n">mark_sUnUz</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_lAr</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yUm</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_sUn</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yUz</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">true</span><span class="p">)</span><span class="w"> </span><span class="n">mark_ymUs_</span><span class="p">))</span>
+<span class="w">    </span><span class="o">]</span><span class="ow">delete</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// stems noun suffix chains ending with -ki</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span>
+<span class="w">      </span><span class="n">mark_ki</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="n">mark_DA</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span>
+<span class="w">          </span><span class="p">(</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">          </span><span class="ow">or</span>
+<span class="w">          </span><span class="p">(</span><span class="n">mark_possessives</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+
+<span class="w">        </span><span class="p">))</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="n">mark_nUn</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span>
+<span class="w">          </span><span class="p">(</span><span class="n">mark_lArI</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">          </span><span class="ow">or</span>
+<span class="w">          </span><span class="p">(</span><span class="o">[</span><span class="n">mark_possessives</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_sU</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">          </span><span class="ow">or</span>
+<span class="w">          </span><span class="p">(</span><span class="n">stem_suffix_chain_before_ki</span><span class="p">)</span>
+<span class="w">        </span><span class="p">))</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="n">mark_ndA</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="p">(</span><span class="n">mark_lArI</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">          </span><span class="ow">or</span>
+<span class="w">          </span><span class="p">((</span><span class="n">mark_sU</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">)))</span>
+<span class="w">          </span><span class="ow">or</span>
+<span class="w">          </span><span class="p">(</span><span class="n">stem_suffix_chain_before_ki</span><span class="p">)</span>
+<span class="w">        </span><span class="p">))</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">stem_noun_suffixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">(</span><span class="o">[</span><span class="n">mark_ncA</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w">      </span><span class="ow">try</span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="o">[</span><span class="n">mark_lArI</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="o">[</span><span class="n">mark_possessives</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_sU</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">(</span><span class="o">[</span><span class="p">(</span><span class="n">mark_ndA</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_nA</span><span class="p">)</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="n">mark_lArI</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="n">mark_sU</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="n">stem_suffix_chain_before_ki</span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">(</span><span class="o">[</span><span class="p">(</span><span class="n">mark_ndAn</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_nU</span><span class="p">)</span><span class="w"> </span><span class="p">((</span><span class="n">mark_sU</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="n">mark_lArI</span><span class="p">)))</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="n">mark_DAn</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="o">[</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="n">mark_possessives</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="n">stem_suffix_chain_before_ki</span><span class="p">)</span>
+<span class="w">      </span><span class="p">))</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">(</span><span class="o">[</span><span class="n">mark_nUn</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_ylA</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w">      </span><span class="ow">try</span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">)</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="p">(</span><span class="o">[</span><span class="n">mark_possessives</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_sU</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">        </span><span class="ow">or</span>
+<span class="w">        </span><span class="n">stem_suffix_chain_before_ki</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">(</span><span class="o">[</span><span class="n">mark_lArI</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">(</span><span class="n">stem_suffix_chain_before_ki</span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">(</span><span class="o">[</span><span class="n">mark_DA</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yU</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_yA</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="p">((</span><span class="n">mark_possessives</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="p">))</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_lAr</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">(</span><span class="o">[</span><span class="n">mark_possessives</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">mark_sU</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">try</span><span class="p">(</span><span class="o">[</span><span class="n">mark_lAr</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">stem_suffix_chain_before_ki</span><span class="p">))</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">post_process_last_consonants</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;b&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;c&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{cc}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;d&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{g~}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// after stemming if the word ends with &#39;d&#39; or &#39;g&#39; most probably last U is</span>
+<span class="w">  </span><span class="c1">// overstemmed like in &#39;kedim&#39; -&gt; &#39;ked&#39;</span>
+<span class="w">  </span><span class="c1">// Turkish words don&#39;t usually end with &#39;d&#39; or &#39;g&#39;</span>
+<span class="w">  </span><span class="c1">// some very well known words are ignored (like &#39;ad&#39; &#39;soyad&#39;</span>
+<span class="w">  </span><span class="c1">// appends U to stems ending with d or g, decides which vowel to add</span>
+<span class="w">  </span><span class="c1">// based on the last vowel in the stem</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">append_U_to_stems_ending_with_d_or_g</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[]</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">goto</span><span class="w"> </span><span class="n">vowel</span>
+
+<span class="w">    </span><span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">((</span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">((</span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="ow">or</span>
+<span class="w">    </span><span class="p">((</span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u&quot;}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">is_reserved_word</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;ad&#39;</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="s1">&#39;soy&#39;</span><span class="w"> </span><span class="ow">atlimit</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_proper_noun_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="c1">// Remove any leading apostrophes (e.g. from tokenisation of single-quoted</span>
+<span class="w">  </span><span class="c1">// text).</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="ow">goto</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// https://en.wikipedia.org/wiki/Turkish_language says &quot;In modern</span>
+<span class="w">  </span><span class="c1">// Turkish orthography, an apostrophe is used to separate proper names</span>
+<span class="w">  </span><span class="c1">// from any suffixes&quot; with the example &quot;Türkiye&#39;dir (&quot;it is Turkey&quot;)&quot;.</span>
+<span class="w">  </span><span class="c1">// Therefore we truncate at the first apostrophe, provided there are at least</span>
+<span class="w">  </span><span class="c1">// two characters before it (which avoids adversely affecting some foreign</span>
+<span class="w">  </span><span class="c1">// names and words such as &quot;o&#39;connor&quot;, &quot;l&#39;entrée&quot;).</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="ow">goto</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="ow">tolimit</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// Test if there is more than one syllable.</span>
+<span class="c1">// In Turkish each vowel indicates a distinct syllable.</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">more_than_one_syllable_word</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="ow">loop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">gopast</span><span class="w"> </span><span class="n">vowel</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">postlude</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">not</span><span class="w"> </span><span class="n">is_reserved_word</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">append_U_to_stems_ending_with_d_or_g</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">post_process_last_consonants</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_proper_noun_suffix</span>
+
+<span class="w">  </span><span class="n">more_than_one_syllable_word</span>
+
+<span class="w">  </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">stem_nominal_verb_suffixes</span>
+<span class="w">    </span><span class="n">continue_stemming_noun_suffixes</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">stem_noun_suffixes</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="n">postlude</span>
+<span class="p">)</span>
+</pre></div>
+
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

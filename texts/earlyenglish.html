@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Stemming early English - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>Stemming early English</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <A HREF="../algorithms/english/stemmer.html">    The English (Porter2) stemmer in Snowball</A>
+<li> <A HREF="../algorithms/porter/stemmer.html">     The Porter stemmer in Snowball</A>
+<li> <A HREF="https://tartarus.org/~martin/PorterStemmer/">
+The &#8216;official&#8217; home page of the Porter stemming algorithm</A>
+<li> <A HREF="https://tartarus.org/~martin/bible/">
+demo of stemmed <B><I>est</I></B>, <B><I>eth</I></B> endings</A>
+</ul>
+
+<p>
+The question occasionally arises of how far the English (or earlier Porter)
+stemming algorithm can be adapted to handle older forms of the English
+language.
+</p>
+
+<p>
+Historically, English is usually divided into three periods of development,
+</p>
+
+<ol>
+<li>Old English (or Anglo-Saxon), the language of Beowulf,
+<li>Middle English, the language of Chaucer,
+<li>Modern English, the language of Shakespeare, Dickens, and people today.
+</ol>
+
+<p>
+Old English is so different from Modern English that it may be regarded as a
+distinct language.
+</p>
+
+<p>
+Middle English is problematical for a number of reasons. There is no standard
+spelling in the original texts, and the grammatical differences between Middle
+and Modern English prevent the spelling from being simply &#8216;modernised&#8217;. It is
+however possible to normalise the spelling according to some modern scheme, but
+again there is no standard modern scheme. Middle
+English itself had great regional variations, so that for example the
+English of Chaucer and his contemporary the Gawain poet (both late 14th century)
+are strikingly different. Finally, grammar was fluid even for one writer, so
+Chaucer might use <I>they love</I> or <I>they loven</I>, <I>he
+sitteth</I> or <I>he sit</I>.
+</p>
+
+<p>
+We may take Modern English to mean English which can be cast into a modern
+spelling form without too much damage being done to the original. From this
+point of view Shakespeare and the Authorised Version of the Bible are in Modern
+English. The ending structure of words in early Modern English differ from
+contemporary English in the <B><I>est</I></B> and <B><I>eth</I></B> endings of verbs in the present
+indicative,
+</p>
+
+<DL><DD>
+    <I>I bring<BR>
+      thou bring<B><I>est</I></B><BR>
+      he bring<B><I>eth</I></B><BR>
+      we bring<BR>
+      you bring<BR>
+      they bring</I>
+</DL>
+
+<p>
+Both of these endings underwent rapid decline. The <B><I>eth</I></B> form occurs in
+Shakespeare, but is much rarer than the modern <B><I>s</I></B> form. The language of the
+Authorised Version,
+in which both forms abound,
+seemed archaic even on its first publication. Consequently
+the <B><I>eth</I></B> form survives now only in the language of the traditional Bible and
+Book of Common Prayer. The <B><I>est</I></B> form disappeared more slowly, as the use of
+<I>thou</I> became displaced by <I>you</I> in conversation.
+</p>
+
+<p>
+To put the endings into the
+<A HREF="../algorithms/porter/stemmer.html">Porter stemmer</A>,
+the rules
+</p>
+
+<DL><DD>
+Step 1b
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD> (m&gt;0) EED <TD></TD><TD> &#x2192; <TD></TD><TD> EE
+<TR><TD> (*v*) ED  <TD></TD><TD> &#x2192; <TD></TD><TD>
+<TR><TD> (*v*) ING <TD></TD><TD> &#x2192; <TD></TD><TD>
+</TABLE></DL>
+</DL>
+
+<p>
+should be extended to
+</p>
+
+<DL><DD>
+Step 1b
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD> (m&gt;0) EED <TD></TD><TD> &#x2192; <TD></TD><TD> EE
+<TR><TD> (*v*) ED  <TD></TD><TD> &#x2192; <TD></TD><TD>
+<TR><TD> (*v*) ING <TD></TD><TD> &#x2192; <TD></TD><TD>
+<TR><TD> (*v*) EST <TD></TD><TD> &#x2192; <TD></TD><TD>
+<TR><TD> (*v*) ETH <TD></TD><TD> &#x2192; <TD></TD><TD>
+</TABLE></DL>
+</DL>
+
+<p>
+And to put the endings into the
+<A HREF="../algorithms/english/stemmer.html">English stemmer</A>,
+the list
+</p>
+
+<DL><DD>
+<B><I>ed  &nbsp;  edly  &nbsp;  ing  &nbsp;  ingly</I></B>
+</DL>
+of Step 1<I>b</I> should be extended to
+<DL><DD>
+<B><I>ed  &nbsp;  edly  &nbsp;  ing  &nbsp;  ingly  &nbsp;  est  &nbsp;  eth</I></B>
+</DL>
+
+<p>
+As far as the Snowball scripts are concerned, the endings &nbsp;<code>'est' 'eth'</code>&nbsp; must
+be added against ending &nbsp;<code>'ing'</code>.
+</p>
+
+<p>
+The inclusion of these endings does produce certain &#8216;side effects&#8217;. <B><I>est</I></B> is
+the ending of adjectival superlatives (<I>greatest</I>, <I>unkindest</I>), where it
+will also be removed. Words like <I>brandreth</I>, <I>deforest</I> will be mis-stemmed.
+Nevertheless, for the vocabulary of the Bible, the inclusion of these extra
+endings is not harmful (see
+<A HREF="https://tartarus.org/~martin/bible/">this demonstration</A> &#x2014;
+for example, search for the text <I>love</I> in 1000 verses).
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

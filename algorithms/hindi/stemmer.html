@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Hindi stemming algorithm - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>Hindi stemming algorithm</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <a href="/demo.html#Hindi">Javascript demo</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/hindi.sbl">The stemmer in Snowball</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/hindi/voc.txt">Sample Hindi vocabulary</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/hindi/output.txt">Its stemmed equivalent</a></li>
+<li> <a href="http://www.kbcs.in/downloads/papers/StmmerHindi.pdf">"A
+Lightweight Stemmer for Hindi", A. Ramanathan and D. Rao (2003)</a>
+</ul>
+
+<p>
+This is an implementation of the "Lightweight Stemmer for Hindi" described in:
+</p>
+
+<blockquote>
+    A. Ramanathan and D. Rao (2003) A Lightweight Stemmer for Hindi
+</blockquote>
+
+<p>
+The major difference in our implementation is that rather than transliterating
+to the Latin alphabet we instead work in the original Devanagari script.  We
+have modified the suffixes in the list by converting them back to Devanagari
+like so:
+</p>
+
+<ul>
+<li> within the suffixes, "<i>a</i>" after a consonant is dropped since
+consonants have an implicit "<i>a</i>".
+<li> within the suffixes, a vowel other than "<i>a</i>" after a consonant
+is a dependent vowel (vowel sign); a vowel (including "<i>a</i>") after a
+non-consonant is an independent vowel.
+<li> to allow for the vowel at the start of each suffix being dependent or
+independent, we include each suffix twice.  For the dependent version, a
+leading "<i>a</i>" is dropped and we check that the suffix is preceded by a
+consonant (which will have an implicit "<i>a</i>").
+</ul>
+
+<p>
+The transliterations of our stems would end with "<i>a</i>" when our
+stems end in a consonant, so we also include the character <i>virama</i> in the
+list of suffixes to remove (this affects 222 words from our sample vocabulary).
+</p>
+
+<p>
+Aside from this, our implementation attempts to be faithful to the algorithm
+described in the paper, though in a few places we've had to resolve ambiguities
+in the paper:
+</p>
+
+<ul>
+
+<li>
+We assume that the whole word doesn't count as a valid suffix to remove, so we
+remove the longest suffix from the list <b>which leaves at least one character</b>.
+The paper doesn't seem to clearly state either way which is intended, but producing
+an empty stem seems unhelpful in general.  If we instead allowed an empty stem
+to be produced this would result in a different stem for 47 words out of the
+65,140 in our sample vocabulary from Hindi wikipedia.
+</li>
+
+<li>
+We add <i>a</i> to the list of suffixes to remove in figure 3.  This needed for
+the example given right at the end of section 5 to work (conflating <i>BarawIya</i>
+and <i>BarawIyawA</i>, and which §3.1 a.v strongly suggests should be in the list:
+<i>"Thus, the following suffix deletions (longest possible match) are required
+to reduce inflected forms of masculine nouns to a common stem: a A i [...]"</i>
+Adding <i>a</i> only affect 2 words out of the 65,140 in our sample vocabulary.
+</li>
+
+<li>
+We've also assumed that <i>Mh</i> in the suffix list isn't meant to match
+<i>M</i> followed by <i>h</i>.  Only one of the 65,140 words in the
+sample vocabulary stems differently due to this (and that word
+seems to be a typo).
+</li>
+
+</ul>
+
+<h2>The full algorithm in Snowball</h2>
+
+<div class="highlight"><pre><span class="c1">// An implementation of &quot;A Lightweight Stemmer for Hindi&quot;:</span>
+<span class="c1">// http://www.kbcs.in/downloads/papers/StmmerHindi.pdf</span>
+
+<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span>
+
+<span class="c1">// The transliteration scheme used for our stringdefs matches that used in the</span>
+<span class="c1">// paper, as documented in the appendix.  It appears to match the WX notation</span>
+<span class="c1">// (https://en.wikipedia.org/wiki/WX_notation) except that WX apparently</span>
+<span class="c1">// uses &#39;z&#39; for Anunasika whereas the paper uses Mh.</span>
+<span class="c1">//</span>
+<span class="c1">// We discriminate dependent vowels by adding a leading &quot;_&quot; to their stringdef</span>
+<span class="c1">// names (mnemonic: the _ signifies removing the implicit a from the preceding</span>
+<span class="c1">// character).</span>
+
+<span class="c1">// Vowels and sonorants:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">a</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0905}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">A</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0906}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">i</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0907}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">I</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0908}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">u</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0909}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">U</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+090A}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">q</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+090B}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">e</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+090F}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">E</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0910}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">o</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0913}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">O</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0914}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Vowel signs:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_A</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+093E}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_i</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+093F}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_I</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0940}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_u</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0941}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_U</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0942}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_q</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0943}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_e</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0947}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_E</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0948}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_o</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+094B}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">_O</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+094C}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Diacritics:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">M</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0902}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">H</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0903}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Mh</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0901}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">Z</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+093C}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// Nukta</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">virama</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+094D}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Velar consonants:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">k</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0915}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">K</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0916}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">g</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0917}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">G</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0918}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">f</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0919}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Palatal consonants:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">c</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+091A}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">C</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+091B}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">j</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+091C}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">J</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+091D}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">F</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+091E}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Retroflex consonants:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">t</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+091F}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">T</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0920}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">d</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0921}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">D</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0922}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">N</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0923}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Dental consonants:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">w</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0924}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">W</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0925}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">x</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0926}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">X</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0927}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">n</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0928}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Labial consonants:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">p</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+092A}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">P</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+092B}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">b</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+092C}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">B</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+092D}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">m</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+092E}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Semi-vowels:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">y</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+092F}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">r</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0930}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">l</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0932}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">v</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0935}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Fricatives:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">S</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0936}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">R</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0937}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">s</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0938}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">h</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0939}</span><span class="s1">&#39;</span>
+
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">lY</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0933}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Precomposed characters - letters + nukta:</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">nZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0929}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {n}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">rZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0931}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {r}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">lYZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0934}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {lY}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">kZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0958}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {k}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">KZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0959}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {K}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">gZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+095A}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {g}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">jZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+095B}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {j}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+095C}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {d}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">DZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+095D}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {D}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">PZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+095E}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {P}{Z}</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">yZ</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+095F}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ≡ {y}{Z}</span>
+
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">CONSONANT</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{k}{K}{g}{G}{f}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                 </span><span class="s1">&#39;</span><span class="se">{c}{C}{j}{J}{F}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                 </span><span class="s1">&#39;</span><span class="se">{t}{T}{d}{D}{N}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                 </span><span class="s1">&#39;</span><span class="se">{w}{W}{x}{X}{n}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                 </span><span class="s1">&#39;</span><span class="se">{p}{P}{b}{B}{m}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                 </span><span class="s1">&#39;</span><span class="se">{y}{r}{l}{v}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                 </span><span class="s1">&#39;</span><span class="se">{S}{R}{s}{h}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                 </span><span class="s1">&#39;</span><span class="se">{lY}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                 </span><span class="s1">&#39;</span><span class="se">{Z}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">// Nukta</span>
+<span class="w">                 </span><span class="c1">// Precomposed characters - letter and nukta:</span>
+<span class="w">                 </span><span class="s1">&#39;</span><span class="se">{nZ}{rZ}{lYZ}{kZ}{KZ}{gZ}{jZ}{dZ}{DZ}{PZ}{yZ}</span><span class="s1">&#39;</span>
+
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="kr">define</span><span class="w"> </span><span class="n">CONSONANT</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">consonant</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="c1">// We assume in this implementation that the whole word doesn&#39;t count</span>
+<span class="w">    </span><span class="c1">// as a valid suffix to remove, so we remove the longest suffix from</span>
+<span class="w">    </span><span class="c1">// the list which leaves at least one character.  This change affects</span>
+<span class="w">    </span><span class="c1">// 47 words out of the 65,140 in the sample vocabulary from Hindi</span>
+<span class="w">    </span><span class="c1">// wikipedia.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// The trick here is we use `next` in forward mode to advance the cursor</span>
+<span class="w">    </span><span class="c1">// to the second character, then `backwards` swaps the cursor and limit.</span>
+<span class="w">    </span><span class="ow">next</span>
+<span class="w">    </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="c1">// The list below is derived from figure 3 in the paper.</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// We perform the stemming on the Devanagari characters rather than</span>
+<span class="w">            </span><span class="c1">// transliterating to Latin, so we have adapted the list below to</span>
+<span class="w">            </span><span class="c1">// reflect this by converting suffixes back to Devanagari as</span>
+<span class="w">            </span><span class="c1">// follows:</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// * within the suffixes, &quot;a&quot; after a consonant is dropped since</span>
+<span class="w">            </span><span class="c1">//   consonants have an implicit &quot;a&quot;.</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// * within the suffixes, a vowel other than &quot;a&quot; after a consonant</span>
+<span class="w">            </span><span class="c1">//   is a dependent vowel (vowel sign); a vowel (including &quot;a&quot;)</span>
+<span class="w">            </span><span class="c1">//   after a non-consonant is an independent vowel.</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// * to allow the vowel at the start of each suffix being dependent</span>
+<span class="w">            </span><span class="c1">//   or independent, we include each suffix twice.  For the</span>
+<span class="w">            </span><span class="c1">//   dependent version, a leading &quot;a&quot; is dropped and we check that</span>
+<span class="w">            </span><span class="c1">//   the suffix is preceded by a consonant (which will have an</span>
+<span class="w">            </span><span class="c1">//   implicit &quot;a&quot;).</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// * we add &#39;{a}&#39;, which is needed for the example given right at</span>
+<span class="w">            </span><span class="c1">//   the end of section 5 to work (conflating BarawIya and</span>
+<span class="w">            </span><span class="c1">//   BarawIyawA), and which 3.1 a.v strongly suggests should be in</span>
+<span class="w">            </span><span class="c1">//   the list:</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">//     Thus, the following suffix deletions (longest possible</span>
+<span class="w">            </span><span class="c1">//     match) are required to reduce inflected forms of masculine</span>
+<span class="w">            </span><span class="c1">//     nouns to a common stem:</span>
+<span class="w">            </span><span class="c1">//     a A i [...]</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">//   Adding &#39;{a}&#39; only affect 2 words out of the 65,140 in the</span>
+<span class="w">            </span><span class="c1">//   sample vocabulary.</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// * The transliterations of our stems would end with &quot;a&quot; when our</span>
+<span class="w">            </span><span class="c1">//   stems end in a consonant, so we also include {virama} in the</span>
+<span class="w">            </span><span class="c1">//   list of suffixes to remove (this affects 222 words from the</span>
+<span class="w">            </span><span class="c1">//   sample vocabulary).</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// We&#39;ve also assumed that Mh in the suffix list always means {Mh}</span>
+<span class="w">            </span><span class="c1">// and never {M}{h}{virama}.  Only one of the 65,140 words in the</span>
+<span class="w">            </span><span class="c1">// sample vocabulary stems differently due to this (and that word</span>
+<span class="w">            </span><span class="c1">// seems to be a typo).</span>
+
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{virama}</span><span class="s1">&#39;</span>
+
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{u}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{U}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{o}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{u}{A}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{u}{e}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{u}{o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{e}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{i}{y}{_A}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{i}{y}{_o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{i}{y}{_A}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{i}{y}{_o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{Mh}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{i}{y}{_A}{Mh}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{i}{y}{_A}{Mh}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{w}{_A}{e}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{w}{_A}{o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{n}{_A}{e}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{n}{_A}{o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{w}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{w}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{I}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{w}{_I}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{w}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{w}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{w}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{w}{_I}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{w}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{n}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{n}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{n}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{n}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{n}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{U}{M}{g}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{U}{M}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{U}{M}{g}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{U}{M}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e}{M}{g}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e}{M}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{e}{M}{g}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{e}{M}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{o}{g}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{o}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{o}{g}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{o}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e}{g}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{e}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{e}{g}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{e}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{y}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{I}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{i}{e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{o}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{i}{e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{a}{k}{r}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{A}{k}{r}</span><span class="s1">&#39;</span>
+
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_i}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_u}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_U}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_o}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_e}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_u}{A}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_u}{e}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_u}{o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{e}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_i}{y}{_A}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_i}{y}{_o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{i}{y}{_A}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{i}{y}{_o}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{Mh}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_i}{y}{_A}{Mh}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{i}{y}{_A}{Mh}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_I}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{w}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{w}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{w}{_I}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{w}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{n}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{n}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_U}{M}{g}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_U}{M}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{U}{M}{g}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{U}{M}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_e}{M}{g}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_e}{M}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{e}{M}{g}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{e}{M}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_o}{g}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_o}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{o}{g}{_e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{o}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_e}{g}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_e}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{e}{g}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{e}{g}{_I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{y}{_A}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{I}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{I}{M}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_i}{e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{o}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{i}{e}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{_A}{k}{r}</span><span class="s1">&#39;</span>
+
+<span class="w">            </span><span class="cm">/* Suffixes with a leading implicit a: */</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{w}{_A}{e}{M}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{w}{_A}{o}{M}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{n}{_A}{e}{M}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{n}{_A}{o}{M}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{w}{_A}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{w}{_I}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{w}{_I}{M}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{w}{_e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{n}{_A}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{n}{_I}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{n}{_e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{k}{r}</span><span class="s1">&#39;</span><span class="w"> </span><span class="n">CONSONANT</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="ow">delete</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

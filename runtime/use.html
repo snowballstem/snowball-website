@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Using Snowball - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>Using Snowball</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <A HREF="../compiler/snowman.html">     Snowball manual</A>
+</ul>
+
+<h2>Compiling Snowball</h2>
+
+<p>
+When you <a href="/download.html">download Snowball</a>,
+it already contains a make file to allow you to build it, like so:
+</p>
+
+<PRE>
+    make
+</PRE>
+
+<p>
+You can confirm it's working with a simple test like so:
+</p>
+
+<PRE>
+    echo "running" | ./stemwords -l en
+</PRE>
+
+<p>
+which should output: <tt>run</tt>
+</p>
+
+<p>
+There's no built in way to install snowball currently - you can either copy
+the <tt>snowball</tt> binary to somewhere that's on your <tt>PATH</tt>
+(e.g. on a typical Linux machine: <tt>sudo cp snowball /usr/local/bin</tt>)
+or just run it from the source tree with <tt>./snowball</tt>).
+</p>
+
+<h2>Running Snowball</h2>
+
+<p>
+The snowball compiler has the following command line syntax,
+</p>
+
+<PRE>
+Usage: snowball SOURCE_FILE... [OPTIONS]
+
+Supported options:
+  -o, -output OUTPUT_BASE
+  -s, -syntax
+  -comments
+  -j, -java
+  -cs, -csharp
+  -c++
+  -pascal
+  -py, -python
+  -js[=TYPE]                       generate Javascript (TYPE values:
+                                   esm global, default: global)
+  -rust
+  -go
+  -ada
+  -w, -widechars
+  -u, -utf8
+  -n, -name CLASS_NAME
+  -ep, -eprefix EXTERNAL_PREFIX
+  -vp, -vprefix VARIABLE_PREFIX
+  -i, -include DIRECTORY
+  -r, -runtime DIRECTORY
+  -p, -parentclassname CLASS_NAME  fully qualified parent class name
+  -P, -Package PACKAGE_NAME        package name for stemmers
+  -S, -Stringclass STRING_CLASS    StringBuffer-compatible class
+  -a, -amongclass AMONG_CLASS      fully qualified name of the Among class
+  -gop, -gopackage PACKAGE_NAME    Go package name for stemmers
+  -gor, -goruntime PACKAGE_NAME    Go snowball runtime package
+  --help                           display this help and exit
+  --version                        output version information and exit
+</PRE>
+
+<p>
+For example,
+</p>
+
+<PRE>
+    snowball danish.sbl -o q/danish
+    snowball danish.sbl -syntax
+    snowball danish.sbl -output q/danish -ep danish_
+</PRE>
+
+<p>
+The first argument, &nbsp;<code>SOURCE_FILE</code>, is the name of the Snowball file to be compiled. Unless you specify a different programming language to
+generate code for, the default is to generate ISO C which results in two output
+files, a C source in &nbsp;<code>OUTPUT_BASE.c</code>&nbsp; and a corresponding header file in &nbsp;<code>OUTPUT_BASE.h</code>.  This is similar for other
+programming languages, e.g. if option &nbsp;<code>-java</code>&nbsp; is
+present, Java output is produced in &nbsp;<code>OUTPUT_BASE.java</code>.
+</p>
+
+<p>
+Some options are only valid when generating code for particular programming
+languages.  For example, the &nbsp;<code>-widechars</code>,
+&nbsp;<code>-utf8</code>, &nbsp;<code>-eprefix</code>&nbsp; and
+&nbsp;<code>-vprefix</code>&nbsp; options are specific to C and C++.
+</p>
+
+<h4>ISO C generation</h4>
+
+<p>
+In the absence of the &nbsp;<code>-eprefix</code>&nbsp; and &nbsp;<code>-vprefix</code>&nbsp; options, the list of
+declared externals in the Snowball program, for example,
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem_1</span><span class="w"> </span><span class="n">stem_2</span><span class="w"> </span><span class="n">moderate</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+
+
+<p>
+gives rise to a header file containing,
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">create_env</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">close_env</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">moderate</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">stem_2</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">stem_1</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+</pre></div>
+
+<p>
+If &nbsp;<code>-eprefix</code>&nbsp; is used, its string, &nbsp;<code>S1</code>, is prefixed to each external
+name, for example
+</p>
+
+<PRE>
+    -eprefix Khotanese_
+</PRE>
+
+<p>
+would give rise to the header file,
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Khotanese_create_env</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Khotanese_close_env</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_moderate</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_stem_2</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_stem_1</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+</pre></div>
+
+<p>
+If &nbsp;<code>-vprefix</code>&nbsp; is used, all Snowball strings, integers and booleans give
+rise to a &nbsp;<code>#define</code>&nbsp; line in the header file. For example
+</p>
+
+<PRE>
+    -eprefix Khotanese_ -vprefix Khotanese_variable
+</PRE>
+
+<p>
+would give rise the header file,
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Khotanese_create_env</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Khotanese_close_env</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cp">#define Khotanese_variable_ch (S[0])</span>
+<span class="w">    </span><span class="cp">#define Khotanese_variable_Y_found (B[0])</span>
+<span class="w">    </span><span class="cp">#define Khotanese_variable_p2 (I[1])</span>
+<span class="w">    </span><span class="cp">#define Khotanese_variable_p1 (I[0])</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_stem</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+</pre></div>
+
+<p>
+The <code>-utf8</code> and <code>-widechars</code>&nbsp; options affects how
+the generated C/C++ code expects strings to be represented - UTF-8 or
+wide-character Unicode (stored using 2 bytes per codepoint), or if neither is
+specified, one byte per codepoint using either ISO-8859-1 or another encoding.
+</p>
+
+<p>
+For other programming languages, one of these three options is effectively
+implicitly hard-coded (except wide-characters may be wider) - e.g. C#, Java,
+Javascript and Python use wide characters; Ada, Go and Rust use UTF-8; Pascal
+uses ISO-8859-1.  Since Snowball 2.0 it's possible with a little care to write
+Snowball code that works regardless of how characters are represented.  See
+section 12 of the <a href="/compiler/snowman.html">Snowball manual</a> for
+more details.
+</p>
+
+<p>
+The &nbsp;<code>-runtime</code>&nbsp;  option is used to prepend a path to any &nbsp;<code>#include</code>
+lines in the generated code, and is useful when the runtime header files (i.e.
+those files in the runtime directory in the standard distribution) are not
+in the same location as the generated source files. It is used when
+building the libstemmer library, and may be useful for other projects.
+</p>
+
+<!--
+<h4>Java generation</h4>
+<p>
+To run Java, download the
+<A HREF="../dist/libstemmer_java-2.2.0.tar.gz">tarball</A>,
+which will unpack into an
+appropriate directory structure.
+</p>
+-->
+
+<h4>Other options</h4>
+
+<p>
+If &nbsp;<code>-syntax</code>&nbsp; is used the other options are ignored, and the syntax tree
+of the Snowball program is directed to &nbsp;<code>stdout</code>. This can be a handy way
+of checking that you have got the bracketing right in the program you have
+written.
+</p>
+
+<p>
+Any number of &nbsp;<code>-include</code>&nbsp; options may be present, for example,
+</p>
+
+<PRE>
+    snowball testfile -output test -ep danish_  \
+             -include /home/martin/Snowball/codesets  \
+             -include extras
+</PRE>
+
+<p>
+Each &nbsp;<code>-include</code>&nbsp; is followed by a directory name. With a chain of
+directories &nbsp;<code>D1</code>, &nbsp;<code>D2</code>&nbsp; ... &nbsp;<code>Dn</code>, a Snowball &nbsp;<code>get</code>&nbsp; directive,
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="kr">get</span><span class="w"> </span><span class="s1">&#39;F&#39;</span>
+</pre></div>
+
+
+<p>
+causes &nbsp;<code>F</code>&nbsp; to be searched for in the successive locations,
+</p>
+
+<PRE>
+    F
+    D1/F
+    D2/F
+    ...
+    Dn/F
+</PRE>
+
+<p>
+&#x2014; that is, the current directory, followed in turn by directories &nbsp;<code>D1</code>&nbsp; to
+<code>Dn</code>.
+</p>
+
+<h2>The Snowball API</h2>
+
+<p>
+To access Snowball from C, include the header &nbsp;<code>api.h</code>, and any headers
+generated from the Snowball scripts you wish to use. &nbsp;<code>api.h</code>&nbsp; declares
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SN_set_current</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
+</pre></div>
+
+<p>
+Continuing the previous example, you set up an environment to call the
+resources of the Khotanese module with
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<span class="w">    </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Khotanese_create_env</span><span class="p">();</span>
+</pre></div>
+
+<p>
+Snowball has the concept of a &#8216;current string&#8217;.
+This can be set up by,
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="n">SN_set_current</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</pre></div>
+
+<p>
+This defines the current string as the &nbsp;<code>i</code>&nbsp; bytes of data starting at
+address &nbsp;<code>b</code>. The externals can then be called,
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="n">Khotanese_moderate</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* ... */</span>
+<span class="w">    </span><span class="n">Khotanese_stem_1</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+</pre></div>
+
+<p>
+They give a 1 or 0 result, corresponding to the <B><I>t</I></B> or <B><I>f</I></B> result of
+the Snowball routine.
+</p>
+
+<p>
+And later,
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="n">Khotanese_close_env</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+</pre></div>
+
+<p>
+To release the space raised by z back to the system. You can do this for a
+number of Snowball modules at the same time: you will need a separate
+<code>struct SN_env * z;</code>&nbsp; for each module.
+</p>
+
+<p>
+The current string is given by the &nbsp;<code>z-&gt;l</code>&nbsp; bytes of data starting at &nbsp;<code>z-&gt;p</code>.
+The string is not zero-terminated, but you can zero terminate it yourself with
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="n">z</span><span class="o">-&gt;</span><span class="n">p</span><span class="p">[</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+
+<p>
+(There is always room for this last zero byte.) For example,
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="n">SN_set_current</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Khotanese_stem_1</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="n">z</span><span class="o">-&gt;</span><span class="n">p</span><span class="p">[</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Khotanese-1 stems &#39;%s&#39; to &#39;%s&#39;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="o">-&gt;</span><span class="n">p</span><span class="p">);</span>
+</pre></div>
+
+<p>
+The values of the other variables can be accessed via the &nbsp;<code>#define</code>
+settings that result from the &nbsp;<code>-vprefix</code>&nbsp; option, although this should not
+usually be necessary:
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;p1 is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="o">-&gt;</span><span class="n">Khotanese_variable_p1</span><span class="p">);</span>
+</pre></div>
+
+<p>
+The stemming scripts on this Web site use Snowball very simply.
+<code>-vprefix</code>&nbsp; is left unset, and &nbsp;<code>-eprefix</code>&nbsp; is set to the name of the
+script (usually the language the script is for).
+</p>
+
+<!-- We should probably reinstate this section: <h2>Getting started</h2> -->
+
+<h2>Debugging snowball scripts</h2>
+
+<p>
+In the rare event that your Snowball script does not run perfectly the first time:
+</p>
+
+<p>
+Remember that the option &nbsp;<code>-syntax</code>&nbsp; prints out the syntax tree. A question
+mark can be included in Snowball as a command, and it will generate a call
+<code>debug(...)</code>. The defined &nbsp;<code>debug</code>&nbsp; in &nbsp;<code>runtime/utilities.c</code>&nbsp; (usually
+commented out) can then be used. It causes the
+current string to sent to &nbsp;<code>stdout</code>, with square brackets marking the
+slice and vertical bar the position of <B><I>c</I></B>. Curly brackets mark the
+end-limits of the string, which may be less than the whole string because
+of the action of &nbsp;<code>setlimit</code>.
+</p>
+
+<p>
+At present there is no way of reporting the value of an integer or boolean.
+</p>
+
+<p>
+If desperate, you can put debugging lines into the generated C program.
+You can pass <code>-comments</code> to the snowball compiler to get it to
+generate comments showing the correspondence with the Snowball source which
+makes it easier to find where to add such debugging code.
+</p>
+
+<h2>Compiler bugs</h2>
+
+<p>
+If you hit a snowball compiler bug, try to
+capture it in a small script before notifying us.
+</p>
+
+<h2>Known problems in Snowball</h2>
+
+<p>
+The main one is that it is possible to &#8216;pull the rug from under your own feet&#8217; in
+constructions like this:
+</p>
+
+<div class="highlight"><pre><span class="w">    </span><span class="o">[</span><span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">something</span><span class="w"> </span><span class="o">]</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">something_else</span>
+<span class="w">    </span><span class="p">(</span><span class="w"> </span><span class="n">C1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">C2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">C3</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+
+
+<p>
+Suppose &nbsp;<code>C1</code>&nbsp; gives <B><I>t</I></B>, the delete removes the slice established on the first
+line, and &nbsp;<code>C2</code>&nbsp; gives <B><I>f</I></B>, so C3 is done with <B><I>c</I></B> set back to the value it had
+before &nbsp;<code>C1</code>&nbsp; was obeyed &#x2014; but this old value does not take account of the byte shift
+caused by the delete. This problem was foreseen from the beginning when designing
+Snowball, and recognised as a minor issue because it is an unnatural thing to want to
+do. (<code>C3</code>&nbsp; should not be an alternative to something which has deletion as an
+occasional side-effect.) It may be addressed in the future.
+</p>
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
