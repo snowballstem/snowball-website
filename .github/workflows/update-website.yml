@@ -54,7 +54,8 @@ jobs:
           mv dist ../snowballstem.github.io
           cd ../snowballstem.github.io
           find . -name '*.tt' -delete
-          rm js/demo.mjs js/*-stemmer.mjs
+          ls -lrt js
+          #rm js/demo.mjs js/*-stemmer.mjs
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
