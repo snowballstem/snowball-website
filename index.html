@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class='list-group'><a class="list-group-item active" href="/">Introduction</a><a class="list-group-item" href="/demo.html">Demo</a><a class="list-group-item" href="/algorithms/">Algorithms</a><a class="list-group-item" href="/download.html">Download</a><a class="list-group-item" href="/lists.html">Mailing Lists</a><a class="list-group-item" href="/license.html">License</a><a class="list-group-item" href="/credits.html">Credits</a><a class="list-group-item" href="/projects.html">Projects</a><a class="list-group-item" href="https://github.com/snowballstem">Source on github</a><br>
+</div>
+
+<!--
+<form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
+<center>
+<input NAME=P VALUE="" SIZE=12>
+<input TYPE=SUBMIT VALUE="Search" BORDER=0>
+<input TYPE=hidden NAME=DB VALUE="snowball-website">
+<input TYPE=hidden NAME=FMT VALUE="snquery">
+</form>
+<br>
+-->
+
+
+        </div>
+        <div class="col-md-10">
+          <h1>Snowball</h1>
+
+
+<div class="row">
+  <div class="col-md-8">
+
+<p>
+<strong>Snowball</strong> is a small string processing language for creating
+stemming algorithms for use in Information Retrieval, plus a collection of
+stemming algorithms implemented using it.
+</p>
+
+<p>
+It was originally designed
+and built by <a href="https://en.wikipedia.org/wiki/Martin_Porter">Martin
+Porter</a>. Martin retired from development in 2014 and Snowball is now
+maintained as a community project. Martin originally chose the name Snowball as
+a tribute to <a href="https://en.wikipedia.org/wiki/SNOBOL">SNOBOL</a>, the
+excellent string handling language from the 1960s.  It now also serves as a
+metaphor for how the project grows by gathering contributions over time.
+</p>
+
+<p>
+The Snowball compiler translates a Snowball program into source code in another
+language - currently Ada, ISO C, C#, Go, Java, Javascript, Object Pascal,
+Python and Rust are supported.
+<p>
+
+<h2>What is Stemming?</h2>
+
+<p>
+Stemming maps different forms of the same word to a common "stem" - for
+example, the English stemmer maps <i>connection</i>, <i>connections</i>,
+<i>connective</i>, <i>connected</i>, and <i>connecting</i> to <i>connect</i>.
+So a searching for <i>connected</i> would also find documents which only
+have the other forms.
+</p>
+
+<p>
+This stem form is often a word itself, but this is not always the case as
+this is not a requirement for text search systems, which are the intended
+field of use.  We also aim to conflate words with the same meaning, rather
+than all words with a common linguistic root (so <i>awe</i> and <i>awful</i>
+don't have the same stem), and over-stemming is more problematic than
+under-stemming so we tend not to stem in cases that are hard to resolve.  If
+you want to always reduce words to a root form and/or get a root form which is
+itself a word then Snowball's stemming algorithms likely aren't the right
+answer.
+</p>
+
+<!--
+FIXME: Incorporate this text from quickintro here:
+
+Discuss somewhere appropriate: thread-safety
+
+<BR><BR>
+- You can look at the stemming algorithm definitions themselves, and use
+them as templates for coding your own versions of stemmers in the computer
+language of your choice.
+
+<BR><BR>
+- You can use the various ANSI C
+and Java stemmers in programs of your own,
+without bothering yourself
+with the Snowball system that generated them. To do that,
+download either the
+
+<A HREF="../dist/libstemmer_c-2.2.0.tar.gz">C</A>
+or the
+<A HREF="../dist/libstemmer_java-2.2.0.tar.gz">Java</A>
+
+version of the libstemmer library, and follow the instructions
+contained in the &nbsp;<code>README</code>&nbsp; files within these tarballs.
+The tarballs also contain simple example
+programs which allow you to run the stemmers from the command line.
+<BR><BR>
+
+- You can get involved in Snowball itself. This is particularly worthwhile
+if you want to adjust the stemmers or develop new stemmers. A typical reason
+for adjusting the stemmers is that you are working with a different encoding
+of accented letters from the ISO Latin I encoding assumed in most of the scripts
+here. Then you need to make your own version of the Snowball compiler and
+work with the Snowball scripts.
+
+Add new backends to the Snowball compiler...
+
+<DL><DD>
+
+ The language has a full
+
+    <A HREF="../compiler/snowman.html"> manual</A>,
+
+and the various stemming scripts act as example programs.
+
+</DL>
+
+- You can get deeply interested in stemming. If you do, read the
+
+    <A HREF="../texts/introduction.html"> introductory paper</A>
+
+about Snowball. It is a bit heavyweight, but provides essential background.
+And look at the
+
+    <A HREF="../texts/howtohelp.html"> notes</A>
+
+on how you can help.
+-->
+
+<p>
+Please address all Snowball-related mail to the <a href="lists.html">snowball-discuss mailing list</a>.
+</p>
+
+<p>
+Any such mail sent directly to individual developers may be answered less
+speedily, and in any case they reserve the right to post their answers on snowball-discuss.
+</p>
+
+<h2>Major events</h2>
+
+
+<ul>
+  <li>
+    <strong>Mar 2025</strong> - Esperanto stemming algorithm contributed by David Corbett.
+  </li>
+  <li>
+    <strong>Sep 2023</strong> - Estonian stemming algorithm contributed by Linda Freienthal.
+  </li>
+  <li>
+    <strong>Nov 2021</strong> - <a href="download.html">Snowball 2.2.0 released!</a>
+  </li>
+  <li>
+    <strong>Jan 2021</strong> - Snowball 2.1.0 released.
+  </li>
+  <li>
+    <strong>Jan 2021</strong> - Armenian stemmer from Astghik Mkrtchyan merged into the distribution.
+  </li>
+  <li>
+    <strong>Jan 2021</strong> - Ada backend contributed by Stephane Carrez.
+  </li>
+  <li>
+    <strong>Nov 2020</strong> - Yiddish stemming algorithm contributed by Assaf Urieli.
+  </li>
+  <li>
+    <strong>Oct 2019</strong> - Serbian stemming algorithm contributed by Stefan Petkovic and Dragan Ivanovic.
+  </li>
+  <li>
+    <strong>Oct 2019</strong> - Snowball 2.0.0 released.
+  </li>
+  <li>
+    <strong>Aug 2019</strong> - Hindi stemming algorithm contributed by Olly Betts.
+  </li>
+  <li>
+    <strong>Aug 2019</strong> - Basque and Catalan merged into the distribution.
+  </li>
+  <li>
+    <strong>Oct 2018</strong> - Greek stemming algorithm contributed by Oleg Smirnov.
+  </li>
+  <li>
+    <strong>Jun 2018</strong> - Object pascal backend from Wout van Wezel merged.
+  </li>
+  <li>
+    <strong>May 2018</strong> - Lithuanian stemming algorithm contributed by Dainius Jocas.
+  </li>
+  <li>
+    <strong>May 2018</strong> - Indonesian stemming algorithm contributed by Olly Betts.
+  </li>
+  <li>
+    <strong>Mar 2018</strong> - C# backend contributed by Cesar Souza.
+  </li>
+  <li>
+    <strong>Mar 2018</strong> - Javascript backend merged.
+  </li>
+  <li>
+    <strong>Jun 2017</strong> - Go backend contributed by Marty Schoch.
+  </li>
+  <li>
+    <strong>Mar 2017</strong> - Rust backend contributed by Jakob Demler.
+  </li>
+  <li>
+    <strong>Jan 2016</strong> - Arabic stemming algorithm contributed by Assem Chelli.
+  </li>
+  <li>
+    <strong>Oct 2015</strong> - Tamil stemming algorithm contributed by Damodharan Rajalingam.
+  </li>
+  <li>
+    <strong>Sep 2015</strong> - New home for snowball on snowballstem.org.
+  </li>
+  <li>
+    <strong>Sep 2014</strong> - Martin Porter <a href="https://lists.tartarus.org/pipermail/snowball-discuss/2014-September/001563.html">retires from snowball development</a>.
+  </li>
+  <li>
+    <strong>May 2012</strong> - Contributed stemmers for Irish and Czech.
+  </li>
+  <li>
+    <strong>Jul 2010</strong> - Contributed stemmers for Armenian, Basque, Catalan.
+  </li>
+  <li>
+    <strong>Mar 2007</strong> - Romanian stemmer.
+  </li>
+  <li>
+    <strong>Jan 2007</strong> - Turkish stemmer. Contributed by Evren (Kapusuz) Cilden.
+  </li>
+  <li>
+    <strong>Sep 2006</strong> - Hungarian stemmer. Contributed by Anna Tordai.
+  </li>
+  <li>
+    <strong>Jun 2006</strong> - Supported and updated Python bindings.
+  </li>
+  <li>
+    <strong>May 2005</strong> - UTF-8 Unicode support.
+  </li>
+  <li>
+    <strong>Sep 2002</strong> - Finnish stemmer.
+  </li>
+  <li>
+    <strong>Jul 2002 - ISO Latin I as default</strong>
+    The use of MS DOS Latin I is now history, but the old versions of the
+    Snowball stemmers are still accessible on the site.
+  </li>
+  <li>
+    <strong>May 2002 - Unicode support</strong>
+  </li>
+  <li>
+    <strong>Feb 2002 - Java support</strong>
+    Richard has modified the snowball code generator to produce Java output as
+    well as ANSI C output.  This means that pure Java systems can now use the
+    snowball stemmers.
+  </li>
+</ul>
+
+  </div>
+  <div class="col-md-4">
+
+    <h2>Links to resources</h2>
+
+    <ul class="list-unstyled">
+      <li><a href="texts/introduction.html">An account of Snowball</a></li>
+      <li><a href="texts/howtohelp.html">How You Can Help</a></li>
+    </ul>
+
+    <h3>Snowball compiler</h3>
+
+    <ul class="list-unstyled">
+      <li><a href="compiler/snowman.html">The Manual</a></li>
+      <li><a href="runtime/use.html">How To Run It</a></li>
+      <li><a href="codesets/guide.html">Character codes</a></li>
+    </ul>
+
+  </div>
+</div>
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

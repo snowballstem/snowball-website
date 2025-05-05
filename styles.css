@@ -1,0 +1,101 @@
+body {
+  min-height: 2000px;
+}
+
+.navbar-static-top {
+  margin-bottom: 19px;
+}
+
+/* From: https://css-tricks.com/snippets/css/make-pre-text-wrap/ */
+.license {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+    td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+    span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
+    pre { line-height: 125%; }
+    body .hll { background-color: #ffffcc }
+    .highlight { background: #f8f8f8; }
+    body .c { color: #408080; font-style: italic } /* Comment */
+    body .err { border: 1px solid #FF0000 } /* Error */
+    body .k { color: #008000; font-weight: bold } /* Keyword */
+    body .o { color: #666666 } /* Operator */
+    body .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+    body .cp { color: #BC7A00 } /* Comment.Preproc */
+    body .c1 { color: #408080; font-style: italic } /* Comment.Single */
+    body .cs { color: #408080; font-style: italic } /* Comment.Special */
+    body .gd { color: #A00000 } /* Generic.Deleted */
+    body .ge { font-style: italic } /* Generic.Emph */
+    body .gr { color: #FF0000 } /* Generic.Error */
+    body .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+    body .gi { color: #00A000 } /* Generic.Inserted */
+    body .go { color: #888888 } /* Generic.Output */
+    body .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+    body .gs { font-weight: bold } /* Generic.Strong */
+    body .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+    body .gt { color: #0044DD } /* Generic.Traceback */
+    body .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+    body .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+    body .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+    body .kp { color: #008000 } /* Keyword.Pseudo */
+    body .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+    body .kt { color: #B00040 } /* Keyword.Type */
+    body .m { color: #666666 } /* Literal.Number */
+    body .s { color: #BA2121 } /* Literal.String */
+    body .na { color: #7D9029 } /* Name.Attribute */
+    body .nb { color: #008000 } /* Name.Builtin */
+    body .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+    body .no { color: #880000 } /* Name.Constant */
+    body .nd { color: #AA22FF } /* Name.Decorator */
+    body .ni { color: #999999; font-weight: bold } /* Name.Entity */
+    body .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+    body .nf { color: #0000FF } /* Name.Function */
+    body .nl { color: #A0A000 } /* Name.Label */
+    body .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+    body .nt { color: #008000; font-weight: bold } /* Name.Tag */
+    body .nv { color: #19177C } /* Name.Variable */
+    body .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+    body .w { color: #bbbbbb } /* Text.Whitespace */
+    body .mf { color: #666666 } /* Literal.Number.Float */
+    body .mh { color: #666666 } /* Literal.Number.Hex */
+    body .mi { color: #666666 } /* Literal.Number.Integer */
+    body .mo { color: #666666 } /* Literal.Number.Oct */
+    body .sb { color: #BA2121 } /* Literal.String.Backtick */
+    body .sc { color: #BA2121 } /* Literal.String.Char */
+    body .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+    body .s2 { color: #BA2121 } /* Literal.String.Double */
+    body .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+    body .sh { color: #BA2121 } /* Literal.String.Heredoc */
+    body .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+    body .sx { color: #008000 } /* Literal.String.Other */
+    body .sr { color: #BB6688 } /* Literal.String.Regex */
+    body .s1 { color: #BA2121 } /* Literal.String.Single */
+    body .ss { color: #19177C } /* Literal.String.Symbol */
+    body .bp { color: #008000 } /* Name.Builtin.Pseudo */
+    body .vc { color: #19177C } /* Name.Variable.Class */
+    body .vg { color: #19177C } /* Name.Variable.Global */
+    body .vi { color: #19177C } /* Name.Variable.Instance */
+    body .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+/* Stop <code> from looking like an error. */
+code {
+    color: #00008B;
+    background-color: #EEEEFF;
+}
+
+/* Indent definition lists. */
+dt { margin-left: 32px; }
+dd { margin-left: 64px; }
+
+/* From: https://codepo8.github.io/css-fork-on-github-ribbon/ */
+#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:30px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}

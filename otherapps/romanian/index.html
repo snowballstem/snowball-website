@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Two Romanian stemmers - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>Two Romanian stemmers</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <A HREF="romanian1.tgz"><code>romanian1.tgz</code>, from Glockner and others</A>
+<li> <A HREF="romanian2.tgz"><code>romanian2.tgz</code>, from Tirdea</A>
+</ul>
+
+<p>
+In swift succession, we received in 2006 two stemmers for Romanian
+written in Snowball.
+Here is the original correspondence,
+</p>
+
+<blockquote><pre>
+From: <B>Erwin Glockner &lt;eglockne&#64;ix.urz.uni-heidelberg.de&gt;</B>
+To: <B>snowball-discuss</B>
+Date: <B>Wed, 07 Jun 2006 00:06:30 +0200</B>
+Subject: <B><I>[Snowball-discuss] romanian stemmer</I></B>
+
+Hello everyone,
+
+my name is Erwín Glockner, I'm a student of computational linguistics in
+Heidelberg, Germany. Together with my fellow students Doina Gliga and
+Marina Stegarescu we started to write a romanian stemmer in Snowball.
+We planned to finish the stemmer until end of this month. We would be
+happy if the stemmer would be accepted as part of the Snowball-distribution.
+There is still some work to do, e.g. evaluating the stemmer, making a
+stopwords-list, unicode support, etc. After finishing this we will send
+you our stemmer with the corresponding files, but I couldn't find any
+email address to whom the stemmer should be sent to.
+Could please someone tell me the address(es)?
+
+With kind regards,
+E. Glockner, D. Gliga, M. Stegarescu.
+</pre></blockquote>
+
+<blockquote><pre>
+From: <B>Erwin Glockner &lt;eglockne&#64;ix.urz.uni-heidelberg.de&gt;</B>
+To: <B>richard&#64;lemurconsulting.com</B>,
+    <B>martin.porter&#64;grapeshot.co.uk</B>
+Date: <B>Tue Jul 18 19:43:39 2006</B>
+Subject: <B><I>romanian stemmer</I></B>
+
+Dear Mr. Porter, dear Mr. Boulton,
+
+we finally finished the Romanian stemmer. Unfortunately evaluation took
+more time than expected.
+However, it was an interesting experience creating the stemmer, and we
+are happy to send you the result of our work.
+The attachment-file is a Tarball-zipped file with (hopefully) all files
+needed. The files and the stemmer as well are encoded in UTF-8. Please
+inform us if something is missing.
+
+We would be happy if the Romanian stemmer would be accepted and
+integrated into the official Snowball distribution. We agree of course
+to license the stemmer under the same terms as the existing snowball
+software.
+
+We're looking forward to hear from you soon.
+
+
+With kind regards,
+
+Marina, Doina and Erwin.
+
+Attachment: [romanian1.tgz]
+</pre></blockquote>
+
+<blockquote><pre>
+From: <B>Irina Tirdea &lt;irina.tirdea&#64;gmail.com&gt;</B>
+To: <B>richard&#64;lemurconsulting.com</B>,
+    <B>martin.porter&#64;grapeshot.co.uk</B>
+Date: <B>Mon Jul 31 10:19:51 2006</B>
+Subject: <B><I>Romanian stemmer</I></B>
+
+Hello,
+
+My name is Irina Tirdea and I have developed a Romanian stemmer in Snowball
+as part of my bachelor thesis, in Bucharest, Romania. I am sending you the
+code attached (with vocabulary and stop word list files) and I hope you will
+accept and integrate it as a part of the Snowball project. I am ready to
+release the stemmer under the BSD license, just as the Snowball software.
+The files have been written in UTF-8 encoding (on a Linux system).
+
+Looking forward to hear from you.
+
+Kind regards,
+Irina Tirdea
+
+Attachment: [romanian2.tgz]
+</pre></blockquote>
+
+<blockquote><pre>
+From: <B>martin.porter&#64;grapeshot.co.uk (Martin Porter)</B>
+To: <B>snowball-discuss</B>
+Cc: atordai&#64;science.uva.nl,
+    eglockne&#64;ix.urz.uni-heidelberg.de,
+    irina.tirdea&#64;gmail.com
+Date: <B>Mon Jul 31 10:43:05 BST 2006</B>
+Subject: <B><I>Tardy response to submissions to Snowball</I></B>
+
+I am sending this general email as a kind of apology, for having done nothing
+so far on the following generously sent Snowball submissions:
+
+7 June, from E. Glockner: a Romanian stemmer
+8 June, from A. Tordai: a Hungarian stemmer
+
+and this morning another Romanian stemmer arrived,
+
+31 July, from I. Tirdea, a Romanian stemmer
+
+After the first submission I promised to look at it "next week", so Mr Glockner
+has probably been wondering what has happened. [. . .] I will make a point of
+looking at these submissions this week,
+
+More soon,
+
+Martin
+</pre></blockquote>
+
+<blockquote><pre>
+From: <B>martin.porter&#64;grapeshot.co.uk (Martin Porter)</B>
+To: <B>snowball-discuss</B>
+Cc: irina.tirdea&#64;gmail.com,
+    eglockne&#64;ix.urz.uni-heidelberg.de,
+    mstegare&#64;hotmail.com,
+    doina_gliga&#64;yahoo.co.uk,
+    eglockner&#64;hotmail.com
+Date: <B>Wed Sep 06 12:39:16 BST 2006</B>
+Subject: <B><I>Romanian stemmer</I></B>
+
+To the originators of the Romanian stemmers,
+
+I have now found time to do some preliminary work on the Romanian stemmer. I
+should explain that part of the complication has been the receipt, no more
+than ten days apart, of two Romanian stemmers in Snowball, the first
+(romanian1) from [Glockner, Gliga, and Stegarescu] in Heidelberg, the second
+(romanian2) from Tirdea in Bucharest.
+
+[. . . .]
+
+I have put together a vocabulary by combining the vocabularies provided with
+romanian1 and romanian2. This appears in column 1. Column 2 is the stemmed
+form produced by romanian1, and column 3 the stemmed form produced by
+romanian2. If the entry in column 3 is blank, both stemmers are producing the
+same result.
+
+You might care to compare the two approaches.
+
+My own feeling is that romanian1 does a more thorough job of ending removal,
+but unlike romanian2 has a habit of discarding too much from short words.
+aberant-&gt;ab, abatere-&gt;ab, aburi-&gt;ab are examples of this. In romanian1 the R2
+test is rarely used (it seems to me that 'R1 or R2' is equivalent to 'R1',
+since p2 is never to the left of p1.)
+
+I might have a go at making some modifications here. Needless to say, I am
+not familiar with Romanian, but the similarity to the other Romance
+languages, especially Italian, enables one to grasp the essential features of
+the morphology.
+
+What we would like to do is to have a single stemmer for release from the
+snowball site, if that is possible, and giving all necessary credits, along
+the lines of the recent addition,
+
+http://snowballstem.org/algorithms/hungarian/stemmer.html
+
+Hope to hear from you,
+
+Martin Porter
+</pre></blockquote>
+
+<p>
+Finally we decided to produce our own Romanian stemmer as described on the
+Romanian stemmer page. The submitted stemmers both contain stop word lists,
+available inside the tarballs.
+</p>
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

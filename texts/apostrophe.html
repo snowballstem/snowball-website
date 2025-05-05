@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>The apostrophe character - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>The apostrophe character</h1>
+
+
+<p>
+Representing apostrophe is problematical for various reasons,
+</p>
+
+<ol style="list-style-type: lower-alpha;">
+<li> <p>There are two Unicode characters for apostrophe, U+0027 and U+2019. The
+former is also in both ASCII and ISO-8859-1 (Latin1) whereas the latter is not.
+Compare,
+</p>
+
+<PRE>
+        Hamlet's father's ghost (U+0027)
+        Hamlet&#8217;s father&#8217;s ghost (U+2019)
+</PRE>
+
+<li> <p>Although conceptually different from an apostrophe, a single closing
+quote is also represented by character U+2019.
+</p>
+
+<li> <p>Character U+0027 is used for apostrophe, single closing quote and
+single opening quote (U+2018).
+</p>
+
+<li> <p>A fourth character, U+201B, like U+2018 but with the tail &#8216;rising&#8217;
+instead of &#8216;descending&#8217;, is also sometimes used as apostrophe (in the
+house style of certain publishers, for surnames like <I>M&#8217;Coy</I> and so on.)
+</p>
+</ol>
+
+<p>
+In the English stemming algorithm, it is assumed that apostrophe is
+represented by U+0027. This makes it ASCII compatible. Clearly other codes
+for apostrophe can be mapped to this code prior to stemming.
+</p>
+
+<p>
+In English orthography, apostrophe has one of three functions.
+</p>
+
+<ol>
+<li><p>It indicates a contraction in what is now accepted as a single word:
+<I>o&#8217;clock</I>, <I>O&#8217;Reilly</I>, <I>M&#8217;Coy</I>. Except in proper names such forms
+are rare: the apostrophe in <I>Hallowe&#8217;en</I> is disappearing, and in
+<I>&#8217;bus</I> has disappeared.
+</p>
+
+<li><p>It indicates a standard contraction with auxiliary or modal verbs:
+<I>you&#8217;re</I>, <I>isn&#8217;t</I>, <I>we&#8217;d</I>. There are about forty of these forms in
+contemporary English, and their use is increasing as they displace the full
+forms that were at one time used in formal documents. Although they can be
+reduced to word pairs, it is more convenient to treat them as single items
+(usually stopwords) in IR work. And then preserving the apostrophe is
+important, so that <I>he&#8217;ll</I>, <I>she&#8217;ll</I>, <I>we&#8217;ll</I> are not equated with
+<I>hell</I>, <I>shell</I>, <I>well</I> etc.
+</p>
+
+<li><p>It is used to form the &#8216;English genitive&#8217;, <I>John's book</I>, <I>the horses&#8217;
+hooves</I> etc. This is a development of (1), where historically the apostrophe
+stood for an elided <B><I>e</I></B>. (Similarly the printed form <B><I>&#8217;d</I></B> for <B><I>ed</I></B> was
+very common before the nineteenth century.) Although in decline (witness <I>pigs
+trotters</I>, <I>Girls School Trust</I>), its use continues in contemporary
+English, where it is fiercely promoted as correct grammar, despite (or it might
+be closer to the truth to say <I>because of</I>) its complete semantic redundancy.
+</p>
+</ol>
+
+<p>
+For these reasons, the English stemmer treats apostrophe as if it were a letter, removing
+it from the beginning of a word, where it might have stood for an opening
+quote, from the end of the word, where it might have stood for a closing quote,
+or been an apostrophe following <B><I>s</I></B>. The form <B><I>&#8217;s</I></B> is also treated as an ending.
+</p>
+
+<p>
+The Kraaij Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
+treats apostrophe as part of the alphabet (so <B><I>&#8217;s</I></B>, <B><I>&#8217;tje</I></B> and <B><I>&#8217;je</I></B> are three
+of their endings). The Dutch stemmer presented here assumes hyphen and
+apostrophe have already been removed from the word to be stemmed.
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

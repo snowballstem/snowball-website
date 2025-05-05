@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Marking vowels as consonants - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>Marking vowels as consonants</h1>
+
+
+<p>
+Some of the algorithms begin with a step which puts letters which are
+normally classed as vowels into upper case to indicate that they are are to be
+treated as consonants (the assumption being that the words are presented to
+the stemmers in lower case). Upper case therefore acts as a flag indicating a
+consonant.
+</p>
+
+<p>
+For example, the English stemmer begins with the step
+<DL><DD>
+    Set initial <B><I>y</I></B>, or <B><I>y</I></B> after a vowel, to <B><I>Y</I></B>,
+</DL>
+giving rise to the following changes,
+</p>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD> <I>youth</I>      <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>Youth</I>
+<TR><TD> <I>boy</I>        <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>boY</I>
+<TR><TD> <I>boyish</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>boYish</I>
+<TR><TD> <I>fly</I>        <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>fly</I>
+<TR><TD> <I>flying</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>flying</I>
+<TR><TD> <I>syzygy</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>syzygy</I>
+</TABLE></DL>
+
+<p>
+This process works from left to right, and
+if a word contains <B><I>Vyy</I></B>, where <B><I>V</I></B> is a vowel, the first <B><I>y</I></B> is put
+into upper case, but the second <B><I>y</I></B> is left alone, since it is preceded by
+upper case <B><I>Y</I></B> which is a consonant. A sequence <B><I>Vyyyyy...</I></B> would be
+changed to <B><I>VYyYyY...</I></B>.
+</p>
+
+<p>
+The combination <B><I>yy</I></B> never occurs in English, although it might appear in
+foreign words:
+</p>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD> <I>sayyid</I>      <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>saYyid</I>
+</TABLE></DL>
+
+<p>
+(A <I>sayyid</I>, my dictionary tells me, is a descendant of Mohammed's daughter
+Fatima.) But the left-to-right process is significant in other languages, for
+example French. In French the rule for marking vowels as consonants is,
+</p>
+
+<DL><DD>
+    Put into upper case <B><I>u</I></B> or <B><I>i</I></B> preceded and followed by a vowel, and
+    <B><I>y</I></B> preceded or followed by a vowel. Put <B><I>u</I></B> after <B><I>q</I></B> into upper
+    case.
+</DL>
+
+<p>
+which gives rise to,
+</p>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD> <I>ennuie</I>       <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>ennuIe</I>
+<TR><TD> <I>inqui&eacute;tude</I> <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>inqUi&eacute;tude</I>
+</TABLE></DL>
+
+<p>
+In the first word, <B><I>i</I></B> is put into upper case since it has a vowel on both
+sides of it.
+In the second word, <B><I>u</I></B> after <B><I>q</I></B> is put into upper case, and again the
+following <B><I>i</I></B> is left alone, since it is preceded by upper case <B><I>U</I></B> which
+is a consonant.
+</p>
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

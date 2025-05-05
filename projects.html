@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Projects - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class='list-group'><a class="list-group-item" href="/">Introduction</a><a class="list-group-item" href="/demo.html">Demo</a><a class="list-group-item" href="/algorithms/">Algorithms</a><a class="list-group-item" href="/download.html">Download</a><a class="list-group-item" href="/lists.html">Mailing Lists</a><a class="list-group-item" href="/license.html">License</a><a class="list-group-item" href="/credits.html">Credits</a><a class="list-group-item active" href="/projects.html">Projects</a><a class="list-group-item" href="https://github.com/snowballstem">Source on github</a><br>
+</div>
+
+<!--
+<form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
+<center>
+<input NAME=P VALUE="" SIZE=12>
+<input TYPE=SUBMIT VALUE="Search" BORDER=0>
+<input TYPE=hidden NAME=DB VALUE="snowball-website">
+<input TYPE=hidden NAME=FMT VALUE="snquery">
+</form>
+<br>
+-->
+
+
+        </div>
+        <div class="col-md-10">
+          <h1>Projects</h1>
+
+
+<p>
+This page lists projects which are related to Snowball in some way.
+</p>
+
+<hr>
+
+<h2>Wrappers</h2>
+
+<p>
+These projects allow Snowball-generated stemmers to be used from other
+languages.
+</p>
+
+<p>
+Aside from PyStemmer, we've not tested them to see if they successfully wrap
+the Snowball-generated code, are well implemented, etc.  These projects aren't
+endorsed or recommended as such, but we hope they may be of interest.
+</p>
+
+<h3><a href="https://github.com/tebeka/snowball">libstemmer in Go</a></h3>
+<p>
+(added Feb 2013) Miki Tebeka has ported libstemmer_c to the Go programming
+language.
+</p>
+
+<h3><a href="https://github.com/snowballstem/pystemmer">PyStemmer</a></h3>
+
+<p>
+Richard Boulton put together some new Python bindings for snowball, inspired by
+Andreas Jung's initial implementation of PyStemmer from 2001, but with a
+different API.  PyStemmer's current home is as part of the snowballstem github
+project.
+</p>
+
+<h3><a href="https://metacpan.org/pod/Lingua::Stem::Snowball">Lingua::Stem::Snowball</a></h3>
+<p>
+Lingua::Stem::Snowball is an XS module which provides a Perl interface to the
+C versions of the Snowball stemmers.  The Snowball stopwords lists are also
+wrapped by <a href="https://metacpan.org/pod/Lingua::StopWords">Lingua::StopWords</a>.
+</p>
+
+<h3><a href="https://github.com/amaccis/php-stemmer">PHP Stemmer</a></h3>
+<p>
+PHP bindings written by Andrea Maccis, and largely inspired by Richard Boulton's PyStemmer. 
+</p>
+
+<h3><a href="https://github.com/amaccis/node-stemmer">Node.js Stemmer</a></h3>
+<p>
+A Node.js interface to the Snowball stemming algorithms, written by Andrea Maccis and largely inspired by Richard Boulton's PyStemmer.
+</p>
+
+<hr>
+
+<h2>Reimplementations of the Stemming Algorithms</h2>
+
+<p>
+These projects reimplement the Snowball algorithms, either in hand-written
+code, or in code manually translated from the generated output for another
+language.
+</p>
+
+<p>
+We've not tested them to see if they correctly implement the stemming
+algorithms, are well implemented, etc.  These projects aren't endorsed
+or recommended as such, but we hope they may be of interest.
+</p>
+
+<p>
+If you want to use one of these stemmers, we suggest you take the sample
+vocabulary for the corresponding natural language, and check that the
+stemmer produces the corresponding stemmed output.
+</p>
+
+<h3><a href="https://www.oleandersolutions.com/stemming/stemming.html">Oleander Stemming Library</a></h3>
+<p>
+A reimplementation of the Snowball stemming algorithms in C++.
+</p>
+
+<h3><a href="https://bitbucket.org/smassung/porter2_stemmer">English (porter2) Stemmer in C++11</a></h3>
+<p>
+(added Oct 2012) Sean Massung of the University of Illinois has implemented the porter2 stemmer in
+C++11.
+</p>
+
+<h3><a href="https://www.nltk.org/">NLTK</a></h3>
+<p>
+(added June 2010) Python versions of nearly all the stemmers have been made
+available by Peter Stahl at NLTK&#8217;s code repository.
+</p>
+
+<h3><a href="https://github.com/mazko/jssnowball/">Javascript stemmers</a></h3>
+<p>
+Javascript versions of nearly all the stemmers, created by Oleg Mazko by hand
+from the C/Java output of the Snowball compiler.
+</p>
+
+<h3><a href="https://code.google.com/p/js-lingua-stem-ru/">js-lingua-stem-ru</a></h3>
+<p>
+This is a different implementation of the Russian stemmer in Javascript,
+created by Mark A. Prisyazhnyuk.
+</p>
+
+<h3><a href="https://github.com/projectEndings/staticSearch/blob/master/xsl/porter2Stemmer.xsl">XSLT 3 Porter2 stemmer</a></h3>
+<p>
+(added July 2019). Martin Holmes has implemented Porter2 in XSLT 3. In the same repo, there is also a re-implementation
+of Porter2 in JavaScript.
+</p>
+
+<h3><a href="http://snowball.tartarus.org/otherlangs/">Contributed Stemmers on the old Snowball Website</a></h3>
+<p>
+Martin and Richard collected and hosted contributed stemmers in a number
+of programming languages, which you can still find on the old website.
+</p>
+
+<hr>
+
+<h2>Consumers</h2>
+
+<p>
+These projects use Snowball stemmers:
+</p>
+
+<h3><a href="https://xapian.org/">Xapian</a></h3>
+<p>
+A probabilistic search engine which supports stemming using Snowball.
+</p>
+
+<h3><a href="https://github.com/mazko/jstaggregator">urim</a></h3>
+<p>
+Developed by Oleg Mazko, Urim is a standalone,
+offline tag-cloud builder engine, fully written in JavaScript and so
+capable of integration into all Internet browsers. Available as
+a Firefox add-on and a Chrome extension.
+With a JavaScript port of the Snowball stemmers (danish,
+dutch, english, finnish, french, german, hungarian, italian,
+norwegian, portuguese, russian, spanish, swedish, romanian, turkish)
+also available as a separate library ready for developers.
+</p>
+
+<h3><a href="https://openfts.sourceforge.net">OpenFTS</a></h3>
+<p>
+OpenFTS is an advanced PostgreSQL-based search engine, which supports using
+Snowball for stemming.
+</p>
+
+<h3><a href="https://manticoresearch.com/">Manticore Search</a></h3>
+<p>
+Manticore Search in an open source search server which supports stemming using Snowball.
+</p>
+
+<h3><a href="https://www.postgresql.org/">PostgreSQL</a></h3>
+<p>
+PostgreSQL is a relational database which can be
+<a href="https://www.postgresql.org/docs/current/textsearch-dictionaries.html#TEXTSEARCH-SNOWBALL-DICTIONARY">configured to use Snowball stemmers</a>.
+</p>
+
+<h2>Snowball support in other tools</h2>
+
+<p>
+These projects add Snowball support to other tools, or are tools including
+support for Snowball.
+</p>
+
+<h3><a href="https://pygments.org/">Pygments</a></h3>
+<p>
+Pygments is a syntax highlighter written in Python, and includes support for
+syntax highlighting Snowball code (since version 2.2).
+</p>
+
+<hr>
+<p>
+<a href="lists.html">Contact us</a> if you have a project that you would like to be listed here.
+</p>
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
