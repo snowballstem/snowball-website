@@ -283,7 +283,7 @@ my @menu = (
 	}
     }
 
-run ['deno', 'run', '-'],
+run ['deno', 'run', '--allow-net', '-'],
      \'import { transform } from "https://deno.land/x/swc@0.2.1/mod.ts";
 
 const dirName = "js";
