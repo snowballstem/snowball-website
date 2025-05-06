@@ -99,8 +99,8 @@ these, resulting in the following intentional differences from the C version:
 </pre>
 
 <p>
-The Kraaij-Pohmann stemmer can make fairly drastic reductions to a word. For
-example, both prefixed and infixed <B><I>ge</I></B> are removed, so
+The Kraaij-Pohmann stemmer can make fairly drastic reductions to a word. Both
+prefixed and infixed <B><I>ge</I></B> are removed, so for example
 <I>geluidgevoelige</I> stems to <I>luidvoel</I>.  In such cases it may not be
 obvious what the original word was, but in practice this isn't really a problem
 as stems are best thought of as opaque tokens (albeit opaque tokens that happen
