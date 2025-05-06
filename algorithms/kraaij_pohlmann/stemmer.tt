@@ -6,27 +6,32 @@
 [% algorithm_lis('kraaij_pohlmann', '') %]
 <li> <a href="https://liacs.leidenuniv.nl/~kraaijw/papers/kraaij94porters.pdf">Wessel Kraaij and Renée Pohlmann. Porter's Stemming Algorithm for Dutch</a>
 <li> <a href="https://liacs.leidenuniv.nl/~kraaijw/papers/kraaij95evaluation.pdf">Wessel Kraaij and Renée Pohlmann. Evaluation of a Dutch Stemming Algorithm</a>
-<li> <a href="kraij-pohlmann-uplift-dutch-stemmer.zip">The source of the original stemmer</a>
+<li> <a href="kraij-pohlmann-uplift-dutch-stemmer.zip">The source of the original stemmer</a> (provided for reference only - beware that the C code invokes undefined behaviour)
 </ul>
 
+[% algorithm_vocab([40, 'lichaamsziek', 'opgingen']) %]
+
+<h2>Design Notes</h2>
+
 <p>
-The original Kraaij-Pohlmann Dutch stemming algorithm is an ANSI C program.
-There's a partial description of the algorithm in the two papers linked to above,
-but these only show a few examples of the suffix removal rules, and even these
-don't fully match up with the rules in the C implementation!
+The original Kraaij-Pohlmann Dutch stemming algorithm is effectively only
+specified by its implementation in ANSI C.  There is a partial description of
+the algorithm in the two papers linked to above, but these only show a few
+examples of the suffix removal rules, and even these don't fully match up with
+the rules in the C implementation!
 </p>
 
 <p>
-For example the papers both say the first step has a rule to remove <i>-e</i>,
-but this rule is not present in the C code, and that the second step has rules
-to remove <i>-etj</i> and <i>-tj</i>, but the C code instead has rules to
+For example both papers say the first step has a rule to remove <i>-e</i>
+and that the second step has rules to remove <i>-etj</i> and <i>-tj</i>, but
+the C code lacks the <i>-e</e> rule and the second step instead has rules to
 remove <i>-etje</i> and <i>-tje</i>, presumably compensating for not having
 already removed <i>-e</i>.
 </p>
 
 <p>
-The C code also has steps 1c and 7 which the paper doesn't mention, and
-step 7 gets applied <b>before</b> step 6, which suggests it was a later
+The C code also has steps 1c and 7 which the paper doesn't mention.  Step 7
+gets applied <b>before</b> step 6, which suggests it was a later
 addition.  The papers are dated 1994 and 1995, while the C code states a
 copyright date of 1995.  All of this seems to indicate that the C code is a
 newer version of the algorithm than that described in the papers.
@@ -37,11 +42,13 @@ Martin Porter implemented a Snowball version of the Kraaij-Pohlmann Dutch
 stemmer following the rules in the C implementation, but his aim was mainly to
 demonstrate that the then-new Snowball language was flexible enough to
 implement existing stemmers, and he didn't aim for exact functional
-equivalence.  The original conclusion from testing was that only 32 words in a
+equivalence.  His original conclusion from testing was that only 32 words in a
 list of over 45,000 Dutch words stemmed differently.  However that comparison
 appears to have been done by feeding a Dutch wordlist encoded in DOS codepage
-850 into the C implementation, which expects iso-8859-1.  Repeating the
-comparison using the correct encoding there were are actually 220 differences.
+850 into the C implementation, which expects iso-8859-1.  These character sets
+are also respectively known as "DOS Latin 1" and "ISO Latin 1" which likely
+explains the mix-up.  Repeating the comparison using the correct encoding there
+were are actually 220 differences.
 </p>
 
 <p>
@@ -93,11 +100,12 @@ these, resulting in the following intentional differences from the C version:
 
 <p>
 The Kraaij-Pohmann stemmer can make fairly drastic reductions to a word. For
-example, infixed <B><I>ge</I></B> is removed, so <I>geluidgevoelige</I> stems
-to <I>luidvoel</I>.  In such cases it may not be obvious what the original word
-was, but in practice this isn't really a problem as stems are best thought of
-as opaque tokens (albeit opaque tokens that happen to look a lot like words in
-the language being stemmed for convenience of algorithm design).
+example, both prefixed and infixed <B><I>ge</I></B> are removed, so
+<I>geluidgevoelige</I> stems to <I>luidvoel</I>.  In such cases it may not be
+obvious what the original word was, but in practice this isn't really a problem
+as stems are best thought of as opaque tokens (albeit opaque tokens that happen
+to look a lot like words in the language being stemmed for convenience of
+algorithm design).
 </p>
 
 <p>
