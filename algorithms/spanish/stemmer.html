@@ -251,10 +251,21 @@ torrescan<BR>
 </TABLE>
 </div>
 
+<h2>Design Notes</h2>
+
+<p>
+Accents are often missing in informally written Spanish.  Since Snowball 3.0.0
+some additional rules are included to try to handle commonly occurring cases
+where accents are omitted and an additional rule doesn't cause problems with
+other words.  There's likely scope for further such improvements - please
+report instances.
+</p>
+
 <h2>History of functional changes to the algorithm</h2>
 
 <ul>
 <li>2005-06-15: Added rules to remove <i>-ante</i>, <i>-antes</i>, <i>-ancia</i> and <i>-ancias</i>
+<li>Snowball 3.0.0: Added rules to remove <i>-acion</i> and <i>-ucion</i>.
 </ul>
 
 <h2>The stemming algorithm</h2>
@@ -345,12 +356,12 @@ Step 1: Standard suffix removal
      &nbsp;  istas  &nbsp;  oso  &nbsp;  osa  &nbsp;  osos  &nbsp;  osas  &nbsp;  amiento  &nbsp;  amientos  &nbsp;  imiento  &nbsp;
     imientos</I></B>
         <DD>delete if in <I>R</I>2
-    <DT><B><I>adora  &nbsp;  ador  &nbsp;  ación  &nbsp;  adoras  &nbsp;  adores  &nbsp;  aciones  &nbsp;  ante  &nbsp;  antes  &nbsp;  ancia  &nbsp;  ancias</I></B>
+    <DT><B><I>adora  &nbsp;  ador  &nbsp;  ación  &nbsp;  adoras  &nbsp;  adores  &nbsp;  aciones  &nbsp;  ante  &nbsp;  antes  &nbsp;  ancia  &nbsp;  ancias  &nbsp;  acion</I></B>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>ic</I></B>, delete if in <I>R</I>2
     <DT><B><I>logía  &nbsp;  logías</I></B>
         <DD>replace with <B><I>log</I></B> if in <I>R</I>2
-    <DT><B><I>ución  &nbsp;  uciones</I></B>
+    <DT><B><I>ución  &nbsp;  uciones  &nbsp;  ucion</I></B>
         <DD>replace with <B><I>u</I></B> if in <I>R</I>2
     <DT><B><I>encia  &nbsp;  encias</I></B>
         <DD>replace with <B><I>ente</I></B> if in <I>R</I>2
@@ -551,6 +562,7 @@ And finally:
 <span class="w">            </span><span class="s1">&#39;adora&#39;</span><span class="w"> </span><span class="s1">&#39;ador&#39;</span><span class="w"> </span><span class="s1">&#39;aci</span><span class="se">{o&#39;}</span><span class="s1">n&#39;</span>
 <span class="w">            </span><span class="s1">&#39;adoras&#39;</span><span class="w"> </span><span class="s1">&#39;adores&#39;</span><span class="w"> </span><span class="s1">&#39;aciones&#39;</span>
 <span class="w">            </span><span class="s1">&#39;ante&#39;</span><span class="w"> </span><span class="s1">&#39;antes&#39;</span><span class="w"> </span><span class="s1">&#39;ancia&#39;</span><span class="w"> </span><span class="s1">&#39;ancias&#39;</span>
+<span class="w">            </span><span class="s1">&#39;acion&#39;</span><span class="w"> </span><span class="c1">// Misspelling of &#39;-ación&#39;.</span>
 <span class="w">            </span><span class="p">(</span>
 <span class="w">                </span><span class="n">R2</span><span class="w"> </span><span class="ow">delete</span>
 <span class="w">                </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;ic&#39;</span><span class="o">]</span><span class="w"> </span><span class="n">R2</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
@@ -561,6 +573,7 @@ And finally:
 <span class="w">                </span><span class="n">R2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;log&#39;</span>
 <span class="w">            </span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;uci</span><span class="se">{o&#39;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="s1">&#39;uciones&#39;</span>
+<span class="w">            </span><span class="s1">&#39;ucion&#39;</span><span class="w"> </span><span class="c1">// Misspelling of &#39;-ución&#39;.</span>
 <span class="w">            </span><span class="p">(</span>
 <span class="w">                </span><span class="n">R2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;u&#39;</span>
 <span class="w">            </span><span class="p">)</span>

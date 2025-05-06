@@ -303,7 +303,11 @@ Here then is the Snowball equivalent of the Kraaij-Pohlmann algorithm.
 <span class="w">            </span><span class="s1">&#39;rder&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;ing&#39;</span>
 <span class="w">            </span><span class="s1">&#39;isme&#39;</span>
-<span class="w">            </span><span class="s1">&#39;erij&#39;</span><span class="w">  </span><span class="p">(</span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">lengthen_V</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;erij&#39;</span><span class="w">  </span><span class="p">(</span><span class="c1">// Exception added to avoid conflating</span>
+<span class="w">                     </span><span class="c1">// `schilderij` (painting) and `schild` (shield).</span>
+<span class="w">                     </span><span class="p">(</span><span class="s1">&#39;ild&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;er&#39;</span><span class="p">)</span>
+<span class="w">                     </span><span class="ow">or</span>
+<span class="w">                     </span><span class="p">(</span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">lengthen_V</span><span class="p">))</span>
 <span class="w">            </span><span class="s1">&#39;arij&#39;</span><span class="w">  </span><span class="p">(</span><span class="n">R1</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;aar&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;fie&#39;</span><span class="w">   </span><span class="p">(</span><span class="n">R2</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">attach</span><span class="w"> </span><span class="s1">&#39;f&#39;</span><span class="w"> </span><span class="n">lengthen_V</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;gie&#39;</span><span class="w">   </span><span class="p">(</span><span class="n">R2</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">attach</span><span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="w"> </span><span class="n">lengthen_V</span><span class="p">)</span>
@@ -337,7 +341,11 @@ Here then is the Snowball equivalent of the Kraaij-Pohlmann algorithm.
 <span class="w">        </span><span class="p">(</span><span class="w">   </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
 <span class="w">                </span><span class="s1">&#39;iger&#39;</span>
 <span class="w">                </span><span class="s1">&#39;igst&#39;</span>
-<span class="w">                </span><span class="s1">&#39;ig&#39;</span><span class="w">      </span><span class="p">(</span><span class="n">R1</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">lengthen_V</span><span class="p">)</span>
+<span class="w">                </span><span class="s1">&#39;ig&#39;</span><span class="w">      </span><span class="p">(</span><span class="n">R1</span>
+<span class="w">                           </span><span class="c1">// Exception added to avoid conflating</span>
+<span class="w">                           </span><span class="c1">// `innig` (intimate) and `in` (in).</span>
+<span class="w">                           </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;inn&#39;</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span>
+<span class="w">                           </span><span class="n">C</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="n">lengthen_V</span><span class="p">)</span>
 <span class="w">            </span><span class="p">)</span>
 <span class="w">        </span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
@@ -364,7 +372,10 @@ Here then is the Snowball equivalent of the Kraaij-Pohlmann algorithm.
 <span class="w">            </span><span class="s1">&#39;kk&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;ll&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;l&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;mm&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="s1">&#39;nn&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;nn&#39;</span><span class="w">   </span><span class="p">(</span><span class="c1">// Exception added to avoid conflating</span>
+<span class="w">                    </span><span class="c1">// `innen` (to collect/cash) and `in` (in).</span>
+<span class="w">                    </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span>
+<span class="w">                    </span><span class="o">&lt;-</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;pp&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;qq&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;rr&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
@@ -381,15 +392,40 @@ Here then is the Snowball equivalent of the Kraaij-Pohlmann algorithm.
 
 <span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">Step_1c</span><span class="w"> </span><span class="kr">as</span>
 <span class="w">    </span><span class="p">(</span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">R1</span><span class="w"> </span><span class="n">C</span><span class="p">)</span>
-<span class="w">            </span><span class="s1">&#39;d&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="n">R1</span><span class="p">)</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
-<span class="w">            </span><span class="s1">&#39;t&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="w"> </span><span class="n">R1</span><span class="p">)</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;d&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="n">R1</span><span class="p">)</span>
+<span class="w">                 </span><span class="c1">// Exception added to avoid conflating</span>
+<span class="w">                 </span><span class="c1">// `geïnd` (collected/cashed) and `in` (in).</span>
+<span class="w">                 </span><span class="c1">// Instead we conflate `geïnd` with `innen`.</span>
+<span class="w">                 </span><span class="p">(</span><span class="s1">&#39;in&#39;</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;n&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">                 </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;t&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="w"> </span><span class="n">R1</span><span class="p">)</span>
+<span class="w">                 </span><span class="c1">// Exception added to avoid conflating</span>
+<span class="w">                 </span><span class="c1">// `geënt` (grafted) and `en` (and).</span>
+<span class="w">                 </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span>
+<span class="w">                 </span><span class="ow">delete</span>
+<span class="w">            </span><span class="p">)</span>
 <span class="w">        </span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">Lose_prefix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="o">[</span><span class="s1">&#39;ge&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="ow">gopast</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;ij&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;ij&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// Exceptions added:</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="c1">// Avoid conflating `geeft` and `effen`/`effende`\`geeffende`.</span>
+<span class="w">        </span><span class="s1">&#39;eft&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">false</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Avoid conflating `gevallen`/`geval` and `vallen`.</span>
+<span class="w">        </span><span class="s1">&#39;val&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">false</span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;vali&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">true</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Avoid conflating `gevaren`/`gevaar` (danger), `gevaarten` (huge</span>
+<span class="w">        </span><span class="c1">// objects) and `varen` (to sail)</span>
+<span class="w">        </span><span class="s1">&#39;vaa&#39;</span><span class="w"> </span><span class="s1">&#39;vare&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">false</span><span class="p">)</span>
+
+<span class="w">        </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">true</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
 <span class="w">    </span><span class="ow">set</span><span class="w"> </span><span class="n">GE_removed</span>
 <span class="w">    </span><span class="ow">delete</span>
 <span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
