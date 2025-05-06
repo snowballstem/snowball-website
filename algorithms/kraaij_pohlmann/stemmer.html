@@ -266,7 +266,7 @@ the rules in the C implementation!
 <p>
 For example both papers say the first step has a rule to remove <i>-e</i>
 and that the second step has rules to remove <i>-etj</i> and <i>-tj</i>, but
-the C code lacks the <i>-e</e> rule and the second step instead has rules to
+the C code lacks the <i>-e</i> rule and the second step instead has rules to
 remove <i>-etje</i> and <i>-tje</i>, presumably compensating for not having
 already removed <i>-e</i>.
 </p>
@@ -341,8 +341,8 @@ these, resulting in the following intentional differences from the C version:
 </pre>
 
 <p>
-The Kraaij-Pohmann stemmer can make fairly drastic reductions to a word. For
-example, both prefixed and infixed <B><I>ge</I></B> are removed, so
+The Kraaij-Pohmann stemmer can make fairly drastic reductions to a word. Both
+prefixed and infixed <B><I>ge</I></B> are removed, so for example
 <I>geluidgevoelige</I> stems to <I>luidvoel</I>.  In such cases it may not be
 obvious what the original word was, but in practice this isn't really a problem
 as stems are best thought of as opaque tokens (albeit opaque tokens that happen
