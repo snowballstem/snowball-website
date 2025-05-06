@@ -1,0 +1,30 @@
+[% header('English stemmers') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+<li>(The early <a href="/algorithms/lovins/stemmer.html">Lovins' English stemmer from 1968</a>)
+li><a href="/algorithms/porter/stemmer.html">(The original English Porter stemmer from 1980)</a>
+<li><a href="/algorithms/english/stemmer.html">English stemmer (a significantly improved version, aka "porter2")</a>
+<li><a href="/texts/earlyenglish.html">A note on early English</a></li>
+</ul>
+
+<p>
+For general use, we strongly recommended the <a
+href="/algorithms/english/stemmer.html">English stemmer</a>.
+</p>
+
+<p>
+Implementations of Beth Lovins' English stemmer from 1968 and Martin Porter's
+original English stemmer are provided largely for academic interest.  The
+original Porter stemmer might conceivably be useful if you're wanting to
+reproduce results which used it.
+</p>
+
+<p>
+If you're stemming English from the time of Shakespeare or the Authorised Version
+of the bible, the adjustments to the English stemmer to better support "early
+modern English" are likely of interest.
+</p>
+
+[% footer %]
