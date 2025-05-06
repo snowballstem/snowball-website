@@ -78,6 +78,8 @@ var SpanishStemmer = function() {
         ["ante", -1, 2],
         ["mente", -1, 7],
         ["amente", 13, 6],
+        ["acion", -1, 2],
+        ["ucion", -1, 4],
         ["aci\u00F3n", -1, 2],
         ["uci\u00F3n", -1, 4],
         ["ico", -1, 1],
