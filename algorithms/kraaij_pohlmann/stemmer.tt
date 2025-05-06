@@ -85,7 +85,7 @@ these, resulting in the following intentional differences from the C version:
 
 <li><p>Step 1c: extra condition on <i>-t</i> removal to avoid conflating <i>geënt</i> ("grafted") and <i>en</i> ("and").</p>
 
-    <pre>do not replace if preceded by 'en'
+    <pre>do not replace if preceded by 'en'</pre>
 
 <li><p>Lose_prefix: extra conditions of removing <i>ge-</i> prefix:</p>
 
