@@ -24,7 +24,7 @@ the rules in the C implementation!
 <p>
 For example both papers say the first step has a rule to remove <i>-e</i>
 and that the second step has rules to remove <i>-etj</i> and <i>-tj</i>, but
-the C code lacks the <i>-e</e> rule and the second step instead has rules to
+the C code lacks the <i>-e</i> rule and the second step instead has rules to
 remove <i>-etje</i> and <i>-tje</i>, presumably compensating for not having
 already removed <i>-e</i>.
 </p>
