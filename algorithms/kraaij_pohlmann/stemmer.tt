@@ -104,6 +104,6 @@ the language being stemmed for convenience of algorithm design).
 Here then is the Snowball equivalent of the Kraaij-Pohlmann algorithm.
 </p>
 
-[% highlight_file('kraaij_pohlmann') %]
+[% highlight_file('dutch') %]
 
 [% footer %]

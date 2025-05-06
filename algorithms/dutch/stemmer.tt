@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/germanic.html"> Germanic language stemmers</A>
-[% algorithm_lis('dutch', 'Dutch') %]
+[% algorithm_lis('dutch_porter', 'Dutch') %]
 </ul>
 
 [% algorithm_vocab([40, 'lichaamsziek', 'opgingen']) %]
@@ -98,6 +98,6 @@ Finally,
 
 <h2>The same algorithm in Snowball</h2>
 
-[% highlight_file('dutch') %]
+[% highlight_file('dutch_porter') %]
 
 [% footer %]
