@@ -7,7 +7,7 @@
 <li> <a href="https://en.wikipedia.org/wiki/Tamil_language">Tamil language</a> on Wikipedia
 </ul>
 
-<-- FIXME: Need to pick a couple of good spots in our word list to show stemming -->
+<!-- FIXME: Need to pick a couple of good spots in our word list to show stemming -->
 [% #algorithm_vocab([12, 'example', 'test']) %]
 
 <ul>
