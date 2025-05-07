@@ -62,6 +62,8 @@
 
 <!-- FIXME: Need to pick a couple of good spots in our word list to show stemming -->
 
+<h2>History of functional changes to the algorithm</h2>
+
 <ul>
 <li>October 2015: Contributed by Damodharan Rajalingam
 </ul>
@@ -402,10 +404,10 @@
 <span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">remove_tense_suffixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w"> </span><span class="ow">set</span><span class="w"> </span><span class="n">found_a_match</span>
-<span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">found_a_match</span><span class="w"> </span><span class="p">(</span><span class="ow">do</span><span class="w"> </span><span class="n">remove_tense_suffix</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="n">remove_tense_suffix</span>
 <span class="p">)</span>
 
+<span class="c1">// Gives signal t if a tense suffix was removed, signal f otherwise.</span>
 <span class="kr">define</span><span class="w"> </span><span class="n">remove_tense_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w"> </span><span class="ow">unset</span><span class="w"> </span><span class="n">found_a_match</span>
 <span class="w"> </span><span class="n">has_min_length</span>
@@ -487,6 +489,7 @@
 <span class="w">    </span><span class="p">)</span>
 <span class="w"> </span><span class="p">)</span>
 <span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_endings</span>
+<span class="w"> </span><span class="n">found_a_match</span>
 <span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
