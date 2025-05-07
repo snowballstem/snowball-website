@@ -10,6 +10,8 @@
 <!-- FIXME: Need to pick a couple of good spots in our word list to show stemming -->
 [% #algorithm_vocab([12, 'example', 'test']) %]
 
+<h2>History of functional changes to the algorithm</h2>
+
 <ul>
 <li>October 2015: Contributed by Damodharan Rajalingam
 </ul>
