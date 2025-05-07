@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Tamil stemming algorithm - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>Tamil stemming algorithm</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <a href="/demo.html#Tamil">Javascript demo</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/tamil.sbl">The stemmer in Snowball</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/tamil/voc.txt">Sample Tamil vocabulary</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/tamil/output.txt">Its stemmed equivalent</a></li>
+<li> <a href="https://en.wikipedia.org/wiki/Tamil_language">Tamil language</a> on Wikipedia
+</ul>
+
+<-- FIXME: Need to pick a couple of good spots in our word list to show stemming -->
+
+<ul>
+<li>October 2015: Contributed by Damodharan Rajalingam
+</ul>
+
+<h2>The stemming algorithm</h2>
+
+<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">* Affix stripping stemming algorithm for Tamil</span>
+<span class="cm">* By Damodharan Rajalingam</span>
+<span class="cm">*/</span>
+
+<span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span>
+
+<span class="cm">/* Aytham */</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">aytham</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0B83}</span><span class="s1">&#39;</span>
+
+<span class="cm">/* Uyir - independent vowels */</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">a</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0B85}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">aa</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B86}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">i</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0B87}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ii</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B88}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">u</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0B89}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">uu</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B8A}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">e</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0B8E}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ee</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B8F}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ai</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B90}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">o</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0B92}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">oo</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B93}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">au</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B94}</span><span class="s1">&#39;</span>
+
+<span class="cm">/* Consonants */</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ka</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B95}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">nga</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0B99}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ca</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B9A}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ja</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0B9C}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">nya</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0B9E}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">tta</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0B9F}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">nna</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0BA3}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ta</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BA4}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">tha</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0BA4}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">na</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BA8}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">nnna</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0BA9}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">pa</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BAA}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ma</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BAE}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ya</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BAF}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ra</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BB0}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">rra</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0BB1}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">la</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BB2}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">lla</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0BB3}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">llla</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0BB4}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">zha</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0BB4}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">va</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BB5}</span><span class="s1">&#39;</span>
+
+<span class="cm">/* Vatamozi - borrowed */</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">sha</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0BB6}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ssa</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+0BB7}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">sa</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BB8}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ha</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0BB9}</span><span class="s1">&#39;</span>
+
+
+<span class="cm">/* Dependent vowel signs (kombu etc.) */</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_aa</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0BBE}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_i</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0BBF}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_ii</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0BC0}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_u</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0BC1}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_uu</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0BC2}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_e</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0BC6}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_ee</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0BC7}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_ai</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0BC8}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_o</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0BCA}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_oo</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0BCB}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vs_au</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0BCC}</span><span class="s1">&#39;</span>
+
+<span class="cm">/* Pulli */</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">pulli</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0BCD}</span><span class="s1">&#39;</span>
+
+<span class="cm">/* AU length mark */</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">au_lmark</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0BD7}</span><span class="s1">&#39;</span>
+
+
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="n">remove_plural_suffix</span>
+<span class="w"> </span><span class="n">remove_question_suffixes</span>
+<span class="w"> </span><span class="n">remove_question_prefixes</span>
+<span class="w"> </span><span class="n">remove_pronoun_prefixes</span>
+<span class="w"> </span><span class="n">remove_command_suffixes</span>
+<span class="w"> </span><span class="n">remove_um</span>
+<span class="w"> </span><span class="n">remove_vetrumai_urupukal</span>
+<span class="w"> </span><span class="n">fix_va_start</span>
+<span class="w"> </span><span class="n">fix_ending</span>
+<span class="w"> </span><span class="n">fix_endings</span>
+<span class="w"> </span><span class="n">remove_tense_suffix</span>
+<span class="w"> </span><span class="n">remove_tense_suffixes</span>
+<span class="w"> </span><span class="n">remove_common_word_endings</span>
+<span class="w"> </span><span class="n">has_min_length</span>
+<span class="p">)</span>
+
+<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">booleans</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="n">found_a_match</span>
+<span class="w"> </span><span class="n">found_vetrumai_urupu</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">has_min_length</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="o">$</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">fix_va_start</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;</span><span class="se">{va}{vs_oo}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{oo}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="s1">&#39;</span><span class="se">{va}{vs_o}</span><span class="s1">&#39;</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="s1">&#39;</span><span class="se">{va}{vs_u}</span><span class="s1">&#39;</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="s1">&#39;</span><span class="se">{va}{vs_uu}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{uu}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">fix_endings</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="n">fix_ending</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_question_prefixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{ka}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ca}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tha}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{va}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{na}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ma}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ya}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{nga}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{nya}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_va_start</span>
+<span class="p">)</span>
+
+<span class="c1">// Gives signal t if an ending was fixed, signal f otherwise.</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">fix_ending</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="o">$</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+<span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="p">(</span>
+<span class="w">  </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{na}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{na}{pulli}{ta}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{na}{pulli}{ta}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{ya}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ii}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{tta}{pulli}{pa}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{tta}{pulli}{ka}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{lla}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{nnna}{pulli}{rra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{la}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{rra}{pulli}{ka}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="c1">// &#39;{nnna}{pulli}{nnna}{pulli}&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{la}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{tta}{pulli}{tta}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tta}{vs_u}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{ta}{pulli}{ta}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="n">found_vetrumai_urupu</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ma}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{vs_u}{ka}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{vs_u}{ka}{pulli}{ka}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{va}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{ya}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{va}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{nnna}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="ow">not</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{vs_aa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ii}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ee}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_u}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_uu}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="ow">delete</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{nga}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">          </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">          </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ma}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{ka}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ca}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tta}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tha}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{rra}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{ka}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ca}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tta}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tha}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{rra}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="ow">or</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{ya}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ra}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{la}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{va}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{zha}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{lla}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="s1">&#39;</span><span class="se">{nya}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{nna}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{na}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ma}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{nnna}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="ow">or</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{vs_aa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ii}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ee}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_u}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_uu}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_pronoun_prefixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{a}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{ka}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ca}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tha}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{va}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{na}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ma}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ya}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{nga}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{nya}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_va_start</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_plural_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{vs_u}{nga}{pulli}{ka}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{ka}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ca}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tta}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tha}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{rra}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_u}{nga}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="ow">or</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{rra}{pulli}{ka}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{la}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{tta}{pulli}{ka}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{lla}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{ka}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_question_suffixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="n">has_min_length</span>
+<span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">   </span><span class="o">[</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{vs_oo}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ee}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_aa}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_endings</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_command_suffixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="n">has_min_length</span>
+<span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{pa}{vs_i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{va}{vs_i}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_um</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="n">has_min_length</span>
+<span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_u}{ma}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_ending</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_common_word_endings</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="c1">// These are not suffixes actually but are</span>
+<span class="w"> </span><span class="c1">// some words that are attached to other words</span>
+<span class="w"> </span><span class="c1">// but can be removed for stemming</span>
+<span class="w"> </span><span class="n">has_min_length</span>
+<span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">   </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_u}{tta}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_i}{la}{pulli}{la}{vs_ai}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_i}{tta}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_i}{nnna}{pulli}{rra}{vs_i}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_aa}{ka}{vs_i}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_aa}{ka}{vs_i}{ya}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_e}{nnna}{pulli}{rra}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_u}{lla}{pulli}{lla}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_u}{tta}{vs_ai}{ya}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_u}{tta}{vs_ai}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_e}{nnna}{vs_u}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_e}{nnna}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{la}{pulli}{la}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="p">(</span>
+<span class="w">         </span><span class="ow">not</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{vs_aa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ii}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ee}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_u}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_uu}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">         </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="p">)</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{pa}{tta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{pa}{tta}{pulli}{tta}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{pa}{tta}{pulli}{tta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{pa}{tta}{pulli}{tta}{ta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{pa}{tta}{pulli}{tta}{nna}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{ka}{vs_u}{ra}{vs_i}{ya}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{pa}{rra}{pulli}{rra}{vs_i}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{va}{vs_i}{tta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{va}{vs_i}{tta}{pulli}{tta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{pa}{tta}{vs_i}{ta}{vs_aa}{nnna}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{pa}{tta}{vs_i}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{ta}{vs_aa}{nnna}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="s1">&#39;</span><span class="se">{vs_e}{la}{pulli}{la}{vs_aa}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_endings</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_vetrumai_urupukal</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="ow">unset</span><span class="w"> </span><span class="n">found_vetrumai_urupu</span>
+<span class="w"> </span><span class="n">has_min_length</span>
+<span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="p">(</span>
+<span class="w">   </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span>
+<span class="w">     </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{nnna}{vs_ai}</span><span class="s1">&#39;</span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_o}{tta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_oo}{tta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_i}{la}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_i}{rra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_i}{nnna}{pulli}{rra}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_i}{ra}{vs_u}{na}{pulli}{ta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{va}{vs_i}{tta}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_aa}{la}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_u}{tta}{vs_ai}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_aa}{ma}{la}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_u}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_i}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ma}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_i}{tta}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">$</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{la}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">         </span><span class="p">(</span>
+<span class="w">           </span><span class="ow">not</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{vs_aa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ii}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ee}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_u}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_uu}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span>
+<span class="w">         </span><span class="p">)</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{ka}{nna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{ma}{vs_u}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{ma}{vs_ee}{la}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{ma}{vs_ee}{rra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{ka}{vs_ii}{llla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">         </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{ta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">         </span><span class="p">(</span>
+<span class="w">           </span><span class="ow">not</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{vs_aa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ii}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ee}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_u}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_uu}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="ow">delete</span>
+<span class="w">         </span><span class="p">)</span>
+<span class="w">       </span><span class="s1">&#39;</span><span class="se">{vs_ii}</span><span class="s1">&#39;</span>
+<span class="w">         </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">   </span><span class="p">)</span>
+<span class="w">   </span><span class="ow">or</span>
+<span class="w">   </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span>
+<span class="w">     </span><span class="o">[</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span>
+<span class="w">     </span><span class="p">(</span>
+<span class="w">       </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{ka}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ca}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tta}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tha}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{rra}</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="w">     </span><span class="ow">or</span>
+<span class="w">       </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{ka}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ca}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tta}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tha}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{rra}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="w">     </span><span class="p">)</span>
+<span class="w">     </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span>
+<span class="w">   </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="p">(</span><span class="ow">set</span><span class="w"> </span><span class="n">found_vetrumai_urupu</span><span class="p">)</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_i}{nnna}{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_endings</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_tense_suffixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="ow">set</span><span class="w"> </span><span class="n">found_a_match</span>
+<span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">found_a_match</span><span class="w"> </span><span class="p">(</span><span class="ow">do</span><span class="w"> </span><span class="n">remove_tense_suffix</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_tense_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="ow">unset</span><span class="w"> </span><span class="n">found_a_match</span>
+<span class="w"> </span><span class="n">has_min_length</span>
+<span class="w"> </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">   </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ka}{vs_o}{nna}{pulli}{tta}{vs_i}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{pa}{tta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ma}{vs_aa}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ma}{vs_i}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{vs_aa}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{vs_aa}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{vs_aa}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{va}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{va}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{pa}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ka}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ta}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ya}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{pa}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{pa}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{pa}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_i}{rra}{pulli}{rra}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{pa}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ta}{vs_u}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{rra}{vs_u}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ka}{vs_u}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{vs_e}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{vs_ai}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{va}{vs_ai}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{va}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="p">(</span>
+<span class="w">              </span><span class="ow">not</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{a}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{aa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ii}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{uu}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ee}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ai}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{oo}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{au}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="ow">delete</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ta}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="p">(</span>
+<span class="w">              </span><span class="ow">not</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{vs_aa}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_i}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ii}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_e}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ee}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_u}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_uu}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vs_ai}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">              </span><span class="ow">delete</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_aa}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ca}</span><span class="s1">&#39;</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_aa}{lla}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_aa}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_ee}{nnna}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_aa}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_aa}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_e}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_ee}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_oo}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{tta}{vs_u}{ma}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_aa}{ya}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nnna}{vs_i}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_ii}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vs_ii}{ya}{ra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ka}{vs_u}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{pulli}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="p">(</span><span class="ow">set</span><span class="w"> </span><span class="n">found_a_match</span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="kr">among</span><span class="p">(</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{vs_aa}{na}{vs_i}{nnna}{pulli}{rra}</span><span class="s1">&#39;</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{vs_aa}{na}{vs_i}{nnna}{pulli}{rra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{ka}{vs_i}{nnna}{pulli}{rra}</span><span class="s1">&#39;</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{ka}{vs_i}{nnna}{pulli}{rra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{ka}{vs_i}{rra}</span><span class="s1">&#39;</span>
+<span class="w">              </span><span class="s1">&#39;</span><span class="se">{ka}{vs_i}{rra}{pulli}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="p">)</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
+<span class="w">    </span><span class="p">(</span><span class="ow">set</span><span class="w"> </span><span class="n">found_a_match</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_endings</span>
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="ow">unset</span><span class="w"> </span><span class="n">found_vetrumai_urupu</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">fix_ending</span>
+<span class="w"> </span><span class="n">has_min_length</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_question_prefixes</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_pronoun_prefixes</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_question_suffixes</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_um</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_common_word_endings</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_vetrumai_urupukal</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_plural_suffix</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_command_suffixes</span>
+<span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_tense_suffixes</span>
+<span class="p">)</span>
+</pre></div>
+
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
