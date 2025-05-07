@@ -41,7 +41,7 @@ in parentheses:
         <li><a href="/algorithms/norwegian/stemmer.html">Norwegian (Bokm&aring;l and Nynorsk)</a>
         <li><a href="/algorithms/swedish/stemmer.html">Swedish</a>
     </ul>
-    <li>Arabic (no summary page yet)<!-- FIXME -->
+    <li><a href="/algorithms/arabic/stemmer.html">Arabic</a></li>
     <li><a href="/algorithms/armenian/stemmer.html">Armenian</a></li>
     <li><a href="/algorithms/basque/stemmer.html">Basque (Euskera)</a>
     <li><a href="/algorithms/esperanto/stemmer.html">Esperanto</a></li>
@@ -53,10 +53,10 @@ in parentheses:
     <li><a href="/algorithms/indonesian/stemmer.html">Indonesian</a></li>
     <li><a href="/algorithms/irish/stemmer.html">Irish Gaelic</a></li>
     <li><a href="/algorithms/lithuanian/stemmer.html">Lithuanian</a></li>
-    <li>Nepali (no summary page yet)<!-- FIXME -->
+    <li><a href="/algorithms/nepali/stemmer.html">Nepali</a>
     <li><a href="/algorithms/russian/stemmer.html">Russian</a>
     <li><a href="/algorithms/serbian/stemmer.html">Serbian</a></li>
-    <li>Tamil (no summary page yet)<!-- FIXME -->
+    <li><a href="/algorithms/tamil/stemmer.html">Tamil</a>
     <li><a href="/algorithms/turkish/stemmer.html">Turkish</a></li>
 </ul>
 

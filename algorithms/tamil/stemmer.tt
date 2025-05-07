@@ -1,0 +1,21 @@
+[% header('Tamil stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('tamil', 'Tamil') %]
+<li> <a href="https://en.wikipedia.org/wiki/Tamil_language">Tamil language</a> on Wikipedia
+</ul>
+
+<-- FIXME: Need to pick a couple of good spots in our word list to show stemming -->
+[% #algorithm_vocab([12, 'example', 'test']) %]
+
+<ul>
+<li>October 2015: Contributed by Damodharan Rajalingam
+</ul>
+
+<h2>The stemming algorithm</h2>
+
+[% highlight_file('tamil') %]
+
+[% footer %]

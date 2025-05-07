@@ -1,0 +1,24 @@
+[% header('Arabic stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('arabic', 'Arabic') %]
+<li> <a href="https://en.wikipedia.org/wiki/Arabic">Arabic language</a> on Wikipedia
+</ul>
+
+<-- FIXME: Need to pick a couple of good spots in our word list to show stemming -->
+[% #algorithm_vocab([12, 'example', 'test']) %]
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>July 2016: Contributed by Assem Chelli
+<li>December 2016: Changed to not remove punctuation marks (Snowball assumes tokenisation does that)
+</ul>
+
+<h2>The stemming algorithm</h2>
+
+[% highlight_file('arabic') %]
+
+[% footer %]
