@@ -37,9 +37,8 @@ function stem_demo(elt) {
   elt.rows = lines;
   var lang = document.getElementById('lang').value;
   if (lang.search(/[^-A-Za-z0-9_]/) >= 0) return;
-  lang = lang.replace('_', '');
+  lang = lang.replace('_p', 'P');
   lang += "Stemmer";
-  alert(lang);
   var s = eval("new "+lang+"()");
   var result = '';
   var i = 0;
