@@ -37,7 +37,9 @@ function stem_demo(elt) {
   elt.rows = lines;
   var lang = document.getElementById('lang').value;
   if (lang.search(/[^-A-Za-z0-9_]/) >= 0) return;
+  lang = lang.replace('_', '');
   lang += "Stemmer";
+  alert(lang);
   var s = eval("new "+lang+"()");
   var result = '';
   var i = 0;
@@ -64,10 +66,45 @@ function lang_changed(elt) {
     if (lang === 'Arabic' || lang === 'Yiddish') {
         words_elt.dir = results_elt.dir = 'rtl';
     } else {
-	if (lang === 'Porter') lang = 'English';
         words_elt.dir = results_elt.dir = 'ltr';
+	if (lang === 'Porter') lang = 'English';
+	else if (lang === 'Dutch_porter') lang = 'Dutch';
     }
     words_elt.placeholder = "Enter some " + lang + " text";
+    var code = '';
+    switch (lang) {
+        case 'Arabic': code = 'ar'; break;
+        case 'Armenian': code = 'hy'; break;
+        case 'Basque': code = 'eu'; break;
+        case 'Catalan': code = 'ca'; break;
+        case 'Danish': code = 'da'; break;
+        case 'Dutch': code = 'nl'; break;
+        case 'English': code = 'en'; break;
+        case 'Esperanto': code = 'eo'; break;
+        case 'Estonian': code = 'et'; break;
+        case 'Finnish': code = 'fi'; break;
+        case 'French': code = 'fr'; break;
+        case 'German': code = 'de'; break;
+        case 'Greek': code = 'el'; break;
+        case 'Hindi': code = 'hi'; break;
+        case 'Hungarian': code = 'hu'; break;
+        case 'Indonesian': code = 'id'; break;
+        case 'Irish': code = 'ga'; break;
+        case 'Italian': code = 'it'; break;
+        case 'Lithuanian': code = 'lt'; break;
+        case 'Nepali': code = 'ne'; break;
+        case 'Norwegian': code = 'no'; break;
+        case 'Portuguese': code = 'pt'; break;
+        case 'Romanian': code = 'ro'; break;
+        case 'Russian': code = 'ru'; break;
+        case 'Serbian': code = 'sr'; break;
+        case 'Spanish': code = 'es'; break;
+        case 'Swedish': code = 'sv'; break;
+        case 'Tamil': code = 'ta'; break;
+        case 'Turkish': code = 'tr'; break;
+        case 'Yiddish': code = 'yi'; break;
+    }
+    words_elt.lang = code;
     stem_demo(document.getElementById('words'));
 }
 window.onload = function() {
