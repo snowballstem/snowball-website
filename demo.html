@@ -75,7 +75,7 @@ Try the
 <select id="lang" onchange="lang_changed(this);location.hash=this.options[this.selectedIndex].value"><option value='Arabic'>Arabic</option><option value='Armenian'>Armenian</option><option value='Basque'>Basque</option><option value='Catalan'>Catalan</option><option value='Danish'>Danish</option><option value='Dutch'>Dutch</option><option value='Dutch_porter'>Dutch_porter</option><option value='English' selected>English</option><option value='Esperanto'>Esperanto</option><option value='Estonian'>Estonian</option><option value='Finnish'>Finnish</option><option value='French'>French</option><option value='German'>German</option><option value='Greek'>Greek</option><option value='Hindi'>Hindi</option><option value='Hungarian'>Hungarian</option><option value='Indonesian'>Indonesian</option><option value='Irish'>Irish</option><option value='Italian'>Italian</option><option value='Lithuanian'>Lithuanian</option><option value='Nepali'>Nepali</option><option value='Norwegian'>Norwegian</option><option value='Porter'>Porter</option><option value='Portuguese'>Portuguese</option><option value='Romanian'>Romanian</option><option value='Russian'>Russian</option><option value='Serbian'>Serbian</option><option value='Spanish'>Spanish</option><option value='Swedish'>Swedish</option><option value='Tamil'>Tamil</option><option value='Turkish'>Turkish</option><option value='Yiddish'>Yiddish</option></select>stemming algorithm:
 </p>
 <table border='0'><tr><td width="50%">
-<textarea id="words" rows="1" cols="50" placeholder="Enter some English text" oninput="stem_demo(this);">
+<textarea id="words" rows="1" cols="50" spellcheck="false" placeholder="Enter some English text" oninput="stem_demo(this);">
 </textarea>
 </td>
 <td id="results" class="license" style='border:1px;border-style:solid;'></td>
@@ -131,40 +131,6 @@ function lang_changed(elt) {
 	else if (lang === 'Dutch_porter') lang = 'Dutch';
     }
     words_elt.placeholder = "Enter some " + lang + " text";
-    var code = '';
-    switch (lang) {
-        case 'Arabic': code = 'ar'; break;
-        case 'Armenian': code = 'hy'; break;
-        case 'Basque': code = 'eu'; break;
-        case 'Catalan': code = 'ca'; break;
-        case 'Danish': code = 'da'; break;
-        case 'Dutch': code = 'nl'; break;
-        case 'English': code = 'en'; break;
-        case 'Esperanto': code = 'eo'; break;
-        case 'Estonian': code = 'et'; break;
-        case 'Finnish': code = 'fi'; break;
-        case 'French': code = 'fr'; break;
-        case 'German': code = 'de'; break;
-        case 'Greek': code = 'el'; break;
-        case 'Hindi': code = 'hi'; break;
-        case 'Hungarian': code = 'hu'; break;
-        case 'Indonesian': code = 'id'; break;
-        case 'Irish': code = 'ga'; break;
-        case 'Italian': code = 'it'; break;
-        case 'Lithuanian': code = 'lt'; break;
-        case 'Nepali': code = 'ne'; break;
-        case 'Norwegian': code = 'no'; break;
-        case 'Portuguese': code = 'pt'; break;
-        case 'Romanian': code = 'ro'; break;
-        case 'Russian': code = 'ru'; break;
-        case 'Serbian': code = 'sr'; break;
-        case 'Spanish': code = 'es'; break;
-        case 'Swedish': code = 'sv'; break;
-        case 'Tamil': code = 'ta'; break;
-        case 'Turkish': code = 'tr'; break;
-        case 'Yiddish': code = 'yi'; break;
-    }
-    words_elt.lang = code;
     stem_demo(document.getElementById('words'));
 }
 window.onload = function() {
