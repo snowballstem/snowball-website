@@ -12,7 +12,7 @@ Try the
 stemming algorithm:
 </p>
 <table border='0'><tr><td width="50%">
-<textarea id="words" rows="1" cols="50" placeholder="Enter some English text" oninput="stem_demo(this);">
+<textarea id="words" rows="1" cols="50" spellcheck="false" placeholder="Enter some English text" oninput="stem_demo(this);">
 </textarea>
 </td>
 <td id="results" class="license" style='border:1px;border-style:solid;'></td>
@@ -70,40 +70,6 @@ function lang_changed(elt) {
 	else if (lang === 'Dutch_porter') lang = 'Dutch';
     }
     words_elt.placeholder = "Enter some " + lang + " text";
-    var code = '';
-    switch (lang) {
-        case 'Arabic': code = 'ar'; break;
-        case 'Armenian': code = 'hy'; break;
-        case 'Basque': code = 'eu'; break;
-        case 'Catalan': code = 'ca'; break;
-        case 'Danish': code = 'da'; break;
-        case 'Dutch': code = 'nl'; break;
-        case 'English': code = 'en'; break;
-        case 'Esperanto': code = 'eo'; break;
-        case 'Estonian': code = 'et'; break;
-        case 'Finnish': code = 'fi'; break;
-        case 'French': code = 'fr'; break;
-        case 'German': code = 'de'; break;
-        case 'Greek': code = 'el'; break;
-        case 'Hindi': code = 'hi'; break;
-        case 'Hungarian': code = 'hu'; break;
-        case 'Indonesian': code = 'id'; break;
-        case 'Irish': code = 'ga'; break;
-        case 'Italian': code = 'it'; break;
-        case 'Lithuanian': code = 'lt'; break;
-        case 'Nepali': code = 'ne'; break;
-        case 'Norwegian': code = 'no'; break;
-        case 'Portuguese': code = 'pt'; break;
-        case 'Romanian': code = 'ro'; break;
-        case 'Russian': code = 'ru'; break;
-        case 'Serbian': code = 'sr'; break;
-        case 'Spanish': code = 'es'; break;
-        case 'Swedish': code = 'sv'; break;
-        case 'Tamil': code = 'ta'; break;
-        case 'Turkish': code = 'tr'; break;
-        case 'Yiddish': code = 'yi'; break;
-    }
-    words_elt.lang = code;
     stem_demo(document.getElementById('words'));
 }
 window.onload = function() {
