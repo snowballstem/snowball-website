@@ -858,7 +858,7 @@ In this account of string commands we see <B><I>c</I></B> moving right towards <
          for                // below, '|' marks c after each goto
          ( goto 'a' and     // '|animadver}sion'
            goto 'e' and     // 'animadv|er}sion'
-           goto 'i' and     // 'an|imadver}sion'
+           goto 'i'         // 'an|imadver}sion'
          )
        )
 ") %]
