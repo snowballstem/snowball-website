@@ -37,10 +37,6 @@ jobs:
           #perl -pi -e '/--accept_const_keyword/ and $_="";s/closure-compiler/google-closure-compiler/;s/ADVANCED_OPTIMIZATIONS/ADVANCED/' generate
           npm install uglify-js -g
 
-      - uses: denoland/setup-deno@v2
-        with:
-          deno-version: vx.x.x
-
       - name: Build snowball
         run: |
           mv snowball ../snowball
@@ -55,8 +51,7 @@ jobs:
           mv dist ../snowballstem.github.io
           cd ../snowballstem.github.io
           find . -name '*.tt' -delete
-          find . -name '*.mjs' -ls
-          #rm js/demo.mjs js/*-stemmer.mjs
+          rm js/demo.js js/*-stemmer.js
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
