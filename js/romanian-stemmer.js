@@ -1,4 +1,4 @@
-// Generated from romanian.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from romanian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var RomanianStemmer = function() {
@@ -256,9 +256,9 @@ var RomanianStemmer = function() {
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 32, 0, 0, 4];
 
     var /** boolean */ B_standard_suffix_removed = false;
-    var /** number */ I_p2 = 0;
-    var /** number */ I_p1 = 0;
-    var /** number */ I_pV = 0;
+    var /** number */ I_p2;
+    var /** number */ I_p1;
+    var /** number */ I_pV;
 
 
     /** @return {boolean} */
@@ -266,8 +266,7 @@ var RomanianStemmer = function() {
         var /** number */ among_var;
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
@@ -276,33 +275,21 @@ var RomanianStemmer = function() {
                         lab3: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_0);
-                            if (among_var == 0)
-                            {
-                                break lab3;
-                            }
+                            if (among_var == 0) break lab3;
                             base.ket = base.cursor;
                             switch (among_var) {
                                 case 1:
-                                    if (!base.slice_from("\u0219"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0219")) return false;
                                     break;
                                 case 2:
-                                    if (!base.slice_from("\u021B"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u021B")) return false;
                                     break;
                             }
                             base.cursor = v_3;
                             break golab2;
                         }
                         base.cursor = v_3;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab1;
-                        }
+                        if (base.cursor >= base.limit) break lab1;
                         base.cursor++;
                     }
                     continue;
@@ -317,60 +304,35 @@ var RomanianStemmer = function() {
 
     /** @return {boolean} */
     function r_prelude() {
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 golab1: while(true)
                 {
                     /** @const */ var /** number */ v_2 = base.cursor;
                     lab2: {
-                        if (!(base.in_grouping(g_v, 97, 259)))
-                        {
-                            break lab2;
-                        }
+                        if (!(base.in_grouping(g_v, 97, 259))) break lab2;
                         base.bra = base.cursor;
                         lab3: {
                             /** @const */ var /** number */ v_3 = base.cursor;
                             lab4: {
-                                if (!(base.eq_s("u")))
-                                {
-                                    break lab4;
-                                }
+                                if (!(base.eq_s("u"))) break lab4;
                                 base.ket = base.cursor;
-                                if (!(base.in_grouping(g_v, 97, 259)))
-                                {
-                                    break lab4;
-                                }
-                                if (!base.slice_from("U"))
-                                {
-                                    return false;
-                                }
+                                if (!(base.in_grouping(g_v, 97, 259))) break lab4;
+                                if (!base.slice_from("U")) return false;
                                 break lab3;
                             }
                             base.cursor = v_3;
-                            if (!(base.eq_s("i")))
-                            {
-                                break lab2;
-                            }
+                            if (!(base.eq_s("i"))) break lab2;
                             base.ket = base.cursor;
-                            if (!(base.in_grouping(g_v, 97, 259)))
-                            {
-                                break lab2;
-                            }
-                            if (!base.slice_from("I"))
-                            {
-                                return false;
-                            }
+                            if (!(base.in_grouping(g_v, 97, 259))) break lab2;
+                            if (!base.slice_from("I")) return false;
                         }
                         base.cursor = v_2;
                         break golab1;
                     }
                     base.cursor = v_2;
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab0;
-                    }
+                    if (base.cursor >= base.limit) break lab0;
                     base.cursor++;
                 }
                 continue;
@@ -391,65 +353,35 @@ var RomanianStemmer = function() {
             lab1: {
                 /** @const */ var /** number */ v_2 = base.cursor;
                 lab2: {
-                    if (!(base.in_grouping(g_v, 97, 259)))
-                    {
-                        break lab2;
-                    }
+                    if (!(base.in_grouping(g_v, 97, 259))) break lab2;
                     lab3: {
                         /** @const */ var /** number */ v_3 = base.cursor;
                         lab4: {
-                            if (!(base.out_grouping(g_v, 97, 259)))
-                            {
-                                break lab4;
-                            }
-                            if (!base.go_out_grouping(g_v, 97, 259))
-                            {
-                                break lab4;
-                            }
+                            if (!(base.out_grouping(g_v, 97, 259))) break lab4;
+                            if (!base.go_out_grouping(g_v, 97, 259)) break lab4;
                             base.cursor++;
                             break lab3;
                         }
                         base.cursor = v_3;
-                        if (!(base.in_grouping(g_v, 97, 259)))
-                        {
-                            break lab2;
-                        }
-                        if (!base.go_in_grouping(g_v, 97, 259))
-                        {
-                            break lab2;
-                        }
+                        if (!(base.in_grouping(g_v, 97, 259))) break lab2;
+                        if (!base.go_in_grouping(g_v, 97, 259)) break lab2;
                         base.cursor++;
                     }
                     break lab1;
                 }
                 base.cursor = v_2;
-                if (!(base.out_grouping(g_v, 97, 259)))
-                {
-                    break lab0;
-                }
+                if (!(base.out_grouping(g_v, 97, 259))) break lab0;
                 lab5: {
                     /** @const */ var /** number */ v_4 = base.cursor;
                     lab6: {
-                        if (!(base.out_grouping(g_v, 97, 259)))
-                        {
-                            break lab6;
-                        }
-                        if (!base.go_out_grouping(g_v, 97, 259))
-                        {
-                            break lab6;
-                        }
+                        if (!(base.out_grouping(g_v, 97, 259))) break lab6;
+                        if (!base.go_out_grouping(g_v, 97, 259)) break lab6;
                         base.cursor++;
                         break lab5;
                     }
                     base.cursor = v_4;
-                    if (!(base.in_grouping(g_v, 97, 259)))
-                    {
-                        break lab0;
-                    }
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab0;
-                    }
+                    if (!(base.in_grouping(g_v, 97, 259))) break lab0;
+                    if (base.cursor >= base.limit) break lab0;
                     base.cursor++;
                 }
             }
@@ -458,26 +390,14 @@ var RomanianStemmer = function() {
         base.cursor = v_1;
         /** @const */ var /** number */ v_5 = base.cursor;
         lab7: {
-            if (!base.go_out_grouping(g_v, 97, 259))
-            {
-                break lab7;
-            }
+            if (!base.go_out_grouping(g_v, 97, 259)) break lab7;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 259))
-            {
-                break lab7;
-            }
+            if (!base.go_in_grouping(g_v, 97, 259)) break lab7;
             base.cursor++;
             I_p1 = base.cursor;
-            if (!base.go_out_grouping(g_v, 97, 259))
-            {
-                break lab7;
-            }
+            if (!base.go_out_grouping(g_v, 97, 259)) break lab7;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 259))
-            {
-                break lab7;
-            }
+            if (!base.go_in_grouping(g_v, 97, 259)) break lab7;
             base.cursor++;
             I_p2 = base.cursor;
         }
@@ -488,8 +408,7 @@ var RomanianStemmer = function() {
     /** @return {boolean} */
     function r_postlude() {
         var /** number */ among_var;
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
@@ -497,22 +416,13 @@ var RomanianStemmer = function() {
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        if (!base.slice_from("i"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("i")) return false;
                         break;
                     case 2:
-                        if (!base.slice_from("u"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("u")) return false;
                         break;
                     case 3:
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab0;
-                        }
+                        if (base.cursor >= base.limit) break lab0;
                         base.cursor++;
                         break;
                 }
@@ -544,68 +454,38 @@ var RomanianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
             case 3:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
             case 4:
-                if (!base.slice_from("i"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("i")) return false;
                 break;
             case 5:
                 {
                     /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab0: {
-                        if (!(base.eq_s_b("ab")))
-                        {
-                            break lab0;
-                        }
+                        if (!(base.eq_s_b("ab"))) break lab0;
                         return false;
                     }
                     base.cursor = base.limit - v_1;
                 }
-                if (!base.slice_from("i"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("i")) return false;
                 break;
             case 6:
-                if (!base.slice_from("at"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("at")) return false;
                 break;
             case 7:
-                if (!base.slice_from("a\u021Bi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a\u021Bi")) return false;
                 break;
         }
         return true;
@@ -617,51 +497,27 @@ var RomanianStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("abil"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("abil")) return false;
                 break;
             case 2:
-                if (!base.slice_from("ibil"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ibil")) return false;
                 break;
             case 3:
-                if (!base.slice_from("iv"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("iv")) return false;
                 break;
             case 4:
-                if (!base.slice_from("ic"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ic")) return false;
                 break;
             case 5:
-                if (!base.slice_from("at"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("at")) return false;
                 break;
             case 6:
-                if (!base.slice_from("it"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("it")) return false;
                 break;
         }
         B_standard_suffix_removed = true;
@@ -673,14 +529,10 @@ var RomanianStemmer = function() {
     function r_standard_suffix() {
         var /** number */ among_var;
         B_standard_suffix_removed = false;
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
-                if (!r_combo_suffix())
-                {
-                    break lab0;
-                }
+                if (!r_combo_suffix()) break lab0;
                 continue;
             }
             base.cursor = base.limit - v_1;
@@ -688,38 +540,20 @@ var RomanianStemmer = function() {
         }
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R2())
-        {
-            return false;
-        }
+        if (!r_R2()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!(base.eq_s_b("\u021B")))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("\u021B"))) return false;
                 base.bra = base.cursor;
-                if (!base.slice_from("t"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("t")) return false;
                 break;
             case 3:
-                if (!base.slice_from("ist"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ist")) return false;
                 break;
         }
         B_standard_suffix_removed = true;
@@ -729,16 +563,12 @@ var RomanianStemmer = function() {
     /** @return {boolean} */
     function r_verb_suffix() {
         var /** number */ among_var;
-        if (base.cursor < I_pV)
-        {
-            return false;
-        }
+        if (base.cursor < I_pV) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_5);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -748,29 +578,19 @@ var RomanianStemmer = function() {
                 lab0: {
                     /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
-                        if (!(base.out_grouping_b(g_v, 97, 259)))
-                        {
-                            break lab1;
-                        }
+                        if (!(base.out_grouping_b(g_v, 97, 259))) break lab1;
                         break lab0;
                     }
                     base.cursor = base.limit - v_2;
-                    if (!(base.eq_s_b("u")))
-                    {
+                    if (!(base.eq_s_b("u"))) {
                         base.limit_backward = v_1;
                         return false;
                     }
                 }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
         }
         base.limit_backward = v_1;
@@ -780,19 +600,10 @@ var RomanianStemmer = function() {
     /** @return {boolean} */
     function r_vowel_suffix() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_6) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_6) == 0) return false;
         base.bra = base.cursor;
-        if (!r_RV())
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!r_RV()) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -814,17 +625,11 @@ var RomanianStemmer = function() {
             lab1: {
                 /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                 lab2: {
-                    if (!B_standard_suffix_removed)
-                    {
-                        break lab2;
-                    }
+                    if (!B_standard_suffix_removed) break lab2;
                     break lab1;
                 }
                 base.cursor = base.limit - v_5;
-                if (!r_verb_suffix())
-                {
-                    break lab0;
-                }
+                if (!r_verb_suffix()) break lab0;
             }
         }
         base.cursor = base.limit - v_4;

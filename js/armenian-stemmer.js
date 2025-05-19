@@ -1,4 +1,4 @@
-// Generated from armenian.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from armenian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var ArmenianStemmer = function() {
@@ -209,8 +209,8 @@ var ArmenianStemmer = function() {
 
     /** @const */ var /** Array<int> */ g_v = [209, 4, 128, 0, 18];
 
-    var /** number */ I_p2 = 0;
-    var /** number */ I_pV = 0;
+    var /** number */ I_p2;
+    var /** number */ I_pV;
 
 
     /** @return {boolean} */
@@ -219,26 +219,14 @@ var ArmenianStemmer = function() {
         I_p2 = base.limit;
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
-            if (!base.go_out_grouping(g_v, 1377, 1413))
-            {
-                break lab0;
-            }
+            if (!base.go_out_grouping(g_v, 1377, 1413)) break lab0;
             base.cursor++;
             I_pV = base.cursor;
-            if (!base.go_in_grouping(g_v, 1377, 1413))
-            {
-                break lab0;
-            }
+            if (!base.go_in_grouping(g_v, 1377, 1413)) break lab0;
             base.cursor++;
-            if (!base.go_out_grouping(g_v, 1377, 1413))
-            {
-                break lab0;
-            }
+            if (!base.go_out_grouping(g_v, 1377, 1413)) break lab0;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 1377, 1413))
-            {
-                break lab0;
-            }
+            if (!base.go_in_grouping(g_v, 1377, 1413)) break lab0;
             base.cursor++;
             I_p2 = base.cursor;
         }
@@ -254,74 +242,44 @@ var ArmenianStemmer = function() {
     /** @return {boolean} */
     function r_adjective() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_0) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_0) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_verb() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_1) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_1) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_noun() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_2) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_2) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_ending() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_3) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_3) == 0) return false;
         base.bra = base.cursor;
-        if (!r_R2())
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!r_R2()) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
     this.stem = /** @return {boolean} */ function() {
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        if (base.cursor < I_pV)
-        {
-            return false;
-        }
+        if (base.cursor < I_pV) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         /** @const */ var /** number */ v_2 = base.limit - base.cursor;

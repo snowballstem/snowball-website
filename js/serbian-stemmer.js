@@ -1,4 +1,4 @@
-// Generated from serbian.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from serbian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var SerbianStemmer = function() {
@@ -2245,7 +2245,7 @@ var SerbianStemmer = function() {
 
     /** @const */ var /** Array<int> */ g_rg = [1];
 
-    var /** number */ I_p1 = 0;
+    var /** number */ I_p1;
     var /** boolean */ B_no_diacritics = false;
 
 
@@ -2254,8 +2254,7 @@ var SerbianStemmer = function() {
         var /** number */ among_var;
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
@@ -2264,201 +2263,105 @@ var SerbianStemmer = function() {
                         lab3: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_0);
-                            if (among_var == 0)
-                            {
-                                break lab3;
-                            }
+                            if (among_var == 0) break lab3;
                             base.ket = base.cursor;
                             switch (among_var) {
                                 case 1:
-                                    if (!base.slice_from("a"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("a")) return false;
                                     break;
                                 case 2:
-                                    if (!base.slice_from("b"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("b")) return false;
                                     break;
                                 case 3:
-                                    if (!base.slice_from("v"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("v")) return false;
                                     break;
                                 case 4:
-                                    if (!base.slice_from("g"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("g")) return false;
                                     break;
                                 case 5:
-                                    if (!base.slice_from("d"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("d")) return false;
                                     break;
                                 case 6:
-                                    if (!base.slice_from("\u0111"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0111")) return false;
                                     break;
                                 case 7:
-                                    if (!base.slice_from("e"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("e")) return false;
                                     break;
                                 case 8:
-                                    if (!base.slice_from("\u017E"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u017E")) return false;
                                     break;
                                 case 9:
-                                    if (!base.slice_from("z"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("z")) return false;
                                     break;
                                 case 10:
-                                    if (!base.slice_from("i"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("i")) return false;
                                     break;
                                 case 11:
-                                    if (!base.slice_from("j"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("j")) return false;
                                     break;
                                 case 12:
-                                    if (!base.slice_from("k"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("k")) return false;
                                     break;
                                 case 13:
-                                    if (!base.slice_from("l"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("l")) return false;
                                     break;
                                 case 14:
-                                    if (!base.slice_from("lj"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("lj")) return false;
                                     break;
                                 case 15:
-                                    if (!base.slice_from("m"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("m")) return false;
                                     break;
                                 case 16:
-                                    if (!base.slice_from("n"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("n")) return false;
                                     break;
                                 case 17:
-                                    if (!base.slice_from("nj"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("nj")) return false;
                                     break;
                                 case 18:
-                                    if (!base.slice_from("o"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("o")) return false;
                                     break;
                                 case 19:
-                                    if (!base.slice_from("p"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("p")) return false;
                                     break;
                                 case 20:
-                                    if (!base.slice_from("r"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("r")) return false;
                                     break;
                                 case 21:
-                                    if (!base.slice_from("s"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("s")) return false;
                                     break;
                                 case 22:
-                                    if (!base.slice_from("t"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("t")) return false;
                                     break;
                                 case 23:
-                                    if (!base.slice_from("\u0107"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0107")) return false;
                                     break;
                                 case 24:
-                                    if (!base.slice_from("u"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("u")) return false;
                                     break;
                                 case 25:
-                                    if (!base.slice_from("f"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("f")) return false;
                                     break;
                                 case 26:
-                                    if (!base.slice_from("h"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("h")) return false;
                                     break;
                                 case 27:
-                                    if (!base.slice_from("c"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("c")) return false;
                                     break;
                                 case 28:
-                                    if (!base.slice_from("\u010D"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u010D")) return false;
                                     break;
                                 case 29:
-                                    if (!base.slice_from("d\u017E"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("d\u017E")) return false;
                                     break;
                                 case 30:
-                                    if (!base.slice_from("\u0161"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0161")) return false;
                                     break;
                             }
                             base.cursor = v_3;
                             break golab2;
                         }
                         base.cursor = v_3;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab1;
-                        }
+                        if (base.cursor >= base.limit) break lab1;
                         base.cursor++;
                     }
                     continue;
@@ -2475,40 +2378,24 @@ var SerbianStemmer = function() {
     function r_prelude() {
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
                     {
                         /** @const */ var /** number */ v_3 = base.cursor;
                         lab3: {
-                            if (!(base.in_grouping(g_ca, 98, 382)))
-                            {
-                                break lab3;
-                            }
+                            if (!(base.in_grouping(g_ca, 98, 382))) break lab3;
                             base.bra = base.cursor;
-                            if (!(base.eq_s("ije")))
-                            {
-                                break lab3;
-                            }
+                            if (!(base.eq_s("ije"))) break lab3;
                             base.ket = base.cursor;
-                            if (!(base.in_grouping(g_ca, 98, 382)))
-                            {
-                                break lab3;
-                            }
-                            if (!base.slice_from("e"))
-                            {
-                                return false;
-                            }
+                            if (!(base.in_grouping(g_ca, 98, 382))) break lab3;
+                            if (!base.slice_from("e")) return false;
                             base.cursor = v_3;
                             break golab2;
                         }
                         base.cursor = v_3;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab1;
-                        }
+                        if (base.cursor >= base.limit) break lab1;
                         base.cursor++;
                     }
                     continue;
@@ -2520,40 +2407,24 @@ var SerbianStemmer = function() {
         base.cursor = v_1;
         /** @const */ var /** number */ v_4 = base.cursor;
         lab4: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_5 = base.cursor;
                 lab5: {
                     golab6: while(true)
                     {
                         /** @const */ var /** number */ v_6 = base.cursor;
                         lab7: {
-                            if (!(base.in_grouping(g_ca, 98, 382)))
-                            {
-                                break lab7;
-                            }
+                            if (!(base.in_grouping(g_ca, 98, 382))) break lab7;
                             base.bra = base.cursor;
-                            if (!(base.eq_s("je")))
-                            {
-                                break lab7;
-                            }
+                            if (!(base.eq_s("je"))) break lab7;
                             base.ket = base.cursor;
-                            if (!(base.in_grouping(g_ca, 98, 382)))
-                            {
-                                break lab7;
-                            }
-                            if (!base.slice_from("e"))
-                            {
-                                return false;
-                            }
+                            if (!(base.in_grouping(g_ca, 98, 382))) break lab7;
+                            if (!base.slice_from("e")) return false;
                             base.cursor = v_6;
                             break golab6;
                         }
                         base.cursor = v_6;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab5;
-                        }
+                        if (base.cursor >= base.limit) break lab5;
                         base.cursor++;
                     }
                     continue;
@@ -2565,8 +2436,7 @@ var SerbianStemmer = function() {
         base.cursor = v_4;
         /** @const */ var /** number */ v_7 = base.cursor;
         lab8: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_8 = base.cursor;
                 lab9: {
                     golab10: while(true)
@@ -2574,23 +2444,14 @@ var SerbianStemmer = function() {
                         /** @const */ var /** number */ v_9 = base.cursor;
                         lab11: {
                             base.bra = base.cursor;
-                            if (!(base.eq_s("dj")))
-                            {
-                                break lab11;
-                            }
+                            if (!(base.eq_s("dj"))) break lab11;
                             base.ket = base.cursor;
-                            if (!base.slice_from("\u0111"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u0111")) return false;
                             base.cursor = v_9;
                             break golab10;
                         }
                         base.cursor = v_9;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab9;
-                        }
+                        if (base.cursor >= base.limit) break lab9;
                         base.cursor++;
                     }
                     continue;
@@ -2608,10 +2469,7 @@ var SerbianStemmer = function() {
         B_no_diacritics = true;
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
-            if (!base.go_out_grouping(g_sa, 263, 382))
-            {
-                break lab0;
-            }
+            if (!base.go_out_grouping(g_sa, 263, 382)) break lab0;
             base.cursor++;
             B_no_diacritics = false;
         }
@@ -2619,20 +2477,11 @@ var SerbianStemmer = function() {
         I_p1 = base.limit;
         /** @const */ var /** number */ v_2 = base.cursor;
         lab1: {
-            if (!base.go_out_grouping(g_v, 97, 117))
-            {
-                break lab1;
-            }
+            if (!base.go_out_grouping(g_v, 97, 117)) break lab1;
             base.cursor++;
             I_p1 = base.cursor;
-            if (I_p1 >= 2)
-            {
-                break lab1;
-            }
-            if (!base.go_in_grouping(g_v, 97, 117))
-            {
-                break lab1;
-            }
+            if (I_p1 >= 2) break lab1;
+            if (!base.go_in_grouping(g_v, 97, 117)) break lab1;
             base.cursor++;
             I_p1 = base.cursor;
         }
@@ -2642,38 +2491,23 @@ var SerbianStemmer = function() {
             golab3: while(true)
             {
                 lab4: {
-                    if (!(base.eq_s("r")))
-                    {
-                        break lab4;
-                    }
+                    if (!(base.eq_s("r"))) break lab4;
                     break golab3;
                 }
-                if (base.cursor >= base.limit)
-                {
-                    break lab2;
-                }
+                if (base.cursor >= base.limit) break lab2;
                 base.cursor++;
             }
             lab5: {
                 /** @const */ var /** number */ v_4 = base.cursor;
                 lab6: {
-                    if (base.cursor < 2)
-                    {
-                        break lab6;
-                    }
+                    if (base.cursor < 2) break lab6;
                     break lab5;
                 }
                 base.cursor = v_4;
-                if (!base.go_in_grouping(g_rg, 114, 114))
-                {
-                    break lab2;
-                }
+                if (!base.go_in_grouping(g_rg, 114, 114)) break lab2;
                 base.cursor++;
             }
-            if ((I_p1 - base.cursor) <= 1)
-            {
-                break lab2;
-            }
+            if ((I_p1 - base.cursor) <= 1) break lab2;
             I_p1 = base.cursor;
         }
         base.cursor = v_3;
@@ -2690,589 +2524,289 @@ var SerbianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("loga"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("loga")) return false;
                 break;
             case 2:
-                if (!base.slice_from("peh"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("peh")) return false;
                 break;
             case 3:
-                if (!base.slice_from("vojka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("vojka")) return false;
                 break;
             case 4:
-                if (!base.slice_from("bojka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("bojka")) return false;
                 break;
             case 5:
-                if (!base.slice_from("jak"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("jak")) return false;
                 break;
             case 6:
-                if (!base.slice_from("\u010Dajni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u010Dajni")) return false;
                 break;
             case 7:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("cajni"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("cajni")) return false;
                 break;
             case 8:
-                if (!base.slice_from("erni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("erni")) return false;
                 break;
             case 9:
-                if (!base.slice_from("larni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("larni")) return false;
                 break;
             case 10:
-                if (!base.slice_from("esni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("esni")) return false;
                 break;
             case 11:
-                if (!base.slice_from("anjca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("anjca")) return false;
                 break;
             case 12:
-                if (!base.slice_from("ajca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ajca")) return false;
                 break;
             case 13:
-                if (!base.slice_from("ljca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ljca")) return false;
                 break;
             case 14:
-                if (!base.slice_from("ejca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ejca")) return false;
                 break;
             case 15:
-                if (!base.slice_from("ojca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ojca")) return false;
                 break;
             case 16:
-                if (!base.slice_from("ajka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ajka")) return false;
                 break;
             case 17:
-                if (!base.slice_from("ojka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ojka")) return false;
                 break;
             case 18:
-                if (!base.slice_from("\u0161ca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u0161ca")) return false;
                 break;
             case 19:
-                if (!base.slice_from("ing"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ing")) return false;
                 break;
             case 20:
-                if (!base.slice_from("tvenik"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tvenik")) return false;
                 break;
             case 21:
-                if (!base.slice_from("tetika"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tetika")) return false;
                 break;
             case 22:
-                if (!base.slice_from("nstva"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("nstva")) return false;
                 break;
             case 23:
-                if (!base.slice_from("nik"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("nik")) return false;
                 break;
             case 24:
-                if (!base.slice_from("tik"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tik")) return false;
                 break;
             case 25:
-                if (!base.slice_from("zik"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("zik")) return false;
                 break;
             case 26:
-                if (!base.slice_from("snik"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("snik")) return false;
                 break;
             case 27:
-                if (!base.slice_from("kusi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("kusi")) return false;
                 break;
             case 28:
-                if (!base.slice_from("kusni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("kusni")) return false;
                 break;
             case 29:
-                if (!base.slice_from("kustva"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("kustva")) return false;
                 break;
             case 30:
-                if (!base.slice_from("du\u0161ni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("du\u0161ni")) return false;
                 break;
             case 31:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("dusni"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("dusni")) return false;
                 break;
             case 32:
-                if (!base.slice_from("antni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("antni")) return false;
                 break;
             case 33:
-                if (!base.slice_from("bilni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("bilni")) return false;
                 break;
             case 34:
-                if (!base.slice_from("tilni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tilni")) return false;
                 break;
             case 35:
-                if (!base.slice_from("avilni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("avilni")) return false;
                 break;
             case 36:
-                if (!base.slice_from("silni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("silni")) return false;
                 break;
             case 37:
-                if (!base.slice_from("gilni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("gilni")) return false;
                 break;
             case 38:
-                if (!base.slice_from("rilni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("rilni")) return false;
                 break;
             case 39:
-                if (!base.slice_from("nilni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("nilni")) return false;
                 break;
             case 40:
-                if (!base.slice_from("alni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("alni")) return false;
                 break;
             case 41:
-                if (!base.slice_from("ozni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ozni")) return false;
                 break;
             case 42:
-                if (!base.slice_from("ravi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ravi")) return false;
                 break;
             case 43:
-                if (!base.slice_from("stavni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("stavni")) return false;
                 break;
             case 44:
-                if (!base.slice_from("pravni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("pravni")) return false;
                 break;
             case 45:
-                if (!base.slice_from("tivni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tivni")) return false;
                 break;
             case 46:
-                if (!base.slice_from("sivni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("sivni")) return false;
                 break;
             case 47:
-                if (!base.slice_from("atni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("atni")) return false;
                 break;
             case 48:
-                if (!base.slice_from("enta"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("enta")) return false;
                 break;
             case 49:
-                if (!base.slice_from("tetni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tetni")) return false;
                 break;
             case 50:
-                if (!base.slice_from("pletni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("pletni")) return false;
                 break;
             case 51:
-                if (!base.slice_from("\u0161avi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u0161avi")) return false;
                 break;
             case 52:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("savi"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("savi")) return false;
                 break;
             case 53:
-                if (!base.slice_from("anta"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("anta")) return false;
                 break;
             case 54:
-                if (!base.slice_from("a\u010Dka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a\u010Dka")) return false;
                 break;
             case 55:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("acka"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("acka")) return false;
                 break;
             case 56:
-                if (!base.slice_from("u\u0161ka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("u\u0161ka")) return false;
                 break;
             case 57:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("uska"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("uska")) return false;
                 break;
             case 58:
-                if (!base.slice_from("atka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("atka")) return false;
                 break;
             case 59:
-                if (!base.slice_from("etka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("etka")) return false;
                 break;
             case 60:
-                if (!base.slice_from("itka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("itka")) return false;
                 break;
             case 61:
-                if (!base.slice_from("otka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("otka")) return false;
                 break;
             case 62:
-                if (!base.slice_from("utka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("utka")) return false;
                 break;
             case 63:
-                if (!base.slice_from("eskna"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("eskna")) return false;
                 break;
             case 64:
-                if (!base.slice_from("ti\u010Dni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ti\u010Dni")) return false;
                 break;
             case 65:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ticni"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ticni")) return false;
                 break;
             case 66:
-                if (!base.slice_from("ojska"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ojska")) return false;
                 break;
             case 67:
-                if (!base.slice_from("esma"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("esma")) return false;
                 break;
             case 68:
-                if (!base.slice_from("metra"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("metra")) return false;
                 break;
             case 69:
-                if (!base.slice_from("centra"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("centra")) return false;
                 break;
             case 70:
-                if (!base.slice_from("istra"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("istra")) return false;
                 break;
             case 71:
-                if (!base.slice_from("osti"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("osti")) return false;
                 break;
             case 72:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("osti"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("osti")) return false;
                 break;
             case 73:
-                if (!base.slice_from("dba"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("dba")) return false;
                 break;
             case 74:
-                if (!base.slice_from("\u010Dka"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u010Dka")) return false;
                 break;
             case 75:
-                if (!base.slice_from("mca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("mca")) return false;
                 break;
             case 76:
-                if (!base.slice_from("nca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("nca")) return false;
                 break;
             case 77:
-                if (!base.slice_from("voljni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("voljni")) return false;
                 break;
             case 78:
-                if (!base.slice_from("anki"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("anki")) return false;
                 break;
             case 79:
-                if (!base.slice_from("vca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("vca")) return false;
                 break;
             case 80:
-                if (!base.slice_from("sca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("sca")) return false;
                 break;
             case 81:
-                if (!base.slice_from("rca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("rca")) return false;
                 break;
             case 82:
-                if (!base.slice_from("alca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("alca")) return false;
                 break;
             case 83:
-                if (!base.slice_from("elca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("elca")) return false;
                 break;
             case 84:
-                if (!base.slice_from("olca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("olca")) return false;
                 break;
             case 85:
-                if (!base.slice_from("njca"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("njca")) return false;
                 break;
             case 86:
-                if (!base.slice_from("ekta"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ekta")) return false;
                 break;
             case 87:
-                if (!base.slice_from("izma"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("izma")) return false;
                 break;
             case 88:
-                if (!base.slice_from("jebi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("jebi")) return false;
                 break;
             case 89:
-                if (!base.slice_from("baci"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("baci")) return false;
                 break;
             case 90:
-                if (!base.slice_from("a\u0161ni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a\u0161ni")) return false;
                 break;
             case 91:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("asni"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("asni")) return false;
                 break;
         }
         return true;
@@ -3283,1175 +2817,545 @@ var SerbianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("sk"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("sk")) return false;
                 break;
             case 2:
-                if (!base.slice_from("\u0161k"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u0161k")) return false;
                 break;
             case 3:
-                if (!base.slice_from("stv"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("stv")) return false;
                 break;
             case 4:
-                if (!base.slice_from("\u0161tv"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u0161tv")) return false;
                 break;
             case 5:
-                if (!base.slice_from("tanij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tanij")) return false;
                 break;
             case 6:
-                if (!base.slice_from("manij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("manij")) return false;
                 break;
             case 7:
-                if (!base.slice_from("panij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("panij")) return false;
                 break;
             case 8:
-                if (!base.slice_from("ranij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ranij")) return false;
                 break;
             case 9:
-                if (!base.slice_from("ganij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ganij")) return false;
                 break;
             case 10:
-                if (!base.slice_from("an"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("an")) return false;
                 break;
             case 11:
-                if (!base.slice_from("in"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("in")) return false;
                 break;
             case 12:
-                if (!base.slice_from("on"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("on")) return false;
                 break;
             case 13:
-                if (!base.slice_from("n"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("n")) return false;
                 break;
             case 14:
-                if (!base.slice_from("a\u0107"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a\u0107")) return false;
                 break;
             case 15:
-                if (!base.slice_from("e\u0107"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e\u0107")) return false;
                 break;
             case 16:
-                if (!base.slice_from("u\u0107"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("u\u0107")) return false;
                 break;
             case 17:
-                if (!base.slice_from("ugov"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ugov")) return false;
                 break;
             case 18:
-                if (!base.slice_from("ug"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ug")) return false;
                 break;
             case 19:
-                if (!base.slice_from("log"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("log")) return false;
                 break;
             case 20:
-                if (!base.slice_from("g"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("g")) return false;
                 break;
             case 21:
-                if (!base.slice_from("rari"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("rari")) return false;
                 break;
             case 22:
-                if (!base.slice_from("oti"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("oti")) return false;
                 break;
             case 23:
-                if (!base.slice_from("si"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("si")) return false;
                 break;
             case 24:
-                if (!base.slice_from("li"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("li")) return false;
                 break;
             case 25:
-                if (!base.slice_from("uj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("uj")) return false;
                 break;
             case 26:
-                if (!base.slice_from("caj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("caj")) return false;
                 break;
             case 27:
-                if (!base.slice_from("\u010Daj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u010Daj")) return false;
                 break;
             case 28:
-                if (!base.slice_from("\u0107aj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u0107aj")) return false;
                 break;
             case 29:
-                if (!base.slice_from("\u0111aj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u0111aj")) return false;
                 break;
             case 30:
-                if (!base.slice_from("laj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("laj")) return false;
                 break;
             case 31:
-                if (!base.slice_from("raj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("raj")) return false;
                 break;
             case 32:
-                if (!base.slice_from("bij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("bij")) return false;
                 break;
             case 33:
-                if (!base.slice_from("cij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("cij")) return false;
                 break;
             case 34:
-                if (!base.slice_from("dij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("dij")) return false;
                 break;
             case 35:
-                if (!base.slice_from("lij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("lij")) return false;
                 break;
             case 36:
-                if (!base.slice_from("nij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("nij")) return false;
                 break;
             case 37:
-                if (!base.slice_from("mij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("mij")) return false;
                 break;
             case 38:
-                if (!base.slice_from("\u017Eij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u017Eij")) return false;
                 break;
             case 39:
-                if (!base.slice_from("gij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("gij")) return false;
                 break;
             case 40:
-                if (!base.slice_from("fij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("fij")) return false;
                 break;
             case 41:
-                if (!base.slice_from("pij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("pij")) return false;
                 break;
             case 42:
-                if (!base.slice_from("rij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("rij")) return false;
                 break;
             case 43:
-                if (!base.slice_from("sij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("sij")) return false;
                 break;
             case 44:
-                if (!base.slice_from("tij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tij")) return false;
                 break;
             case 45:
-                if (!base.slice_from("zij"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("zij")) return false;
                 break;
             case 46:
-                if (!base.slice_from("nal"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("nal")) return false;
                 break;
             case 47:
-                if (!base.slice_from("ijal"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ijal")) return false;
                 break;
             case 48:
-                if (!base.slice_from("ozil"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ozil")) return false;
                 break;
             case 49:
-                if (!base.slice_from("olov"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("olov")) return false;
                 break;
             case 50:
-                if (!base.slice_from("ol"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ol")) return false;
                 break;
             case 51:
-                if (!base.slice_from("lem"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("lem")) return false;
                 break;
             case 52:
-                if (!base.slice_from("ram"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ram")) return false;
                 break;
             case 53:
-                if (!base.slice_from("ar"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ar")) return false;
                 break;
             case 54:
-                if (!base.slice_from("dr"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("dr")) return false;
                 break;
             case 55:
-                if (!base.slice_from("er"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("er")) return false;
                 break;
             case 56:
-                if (!base.slice_from("or"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("or")) return false;
                 break;
             case 57:
-                if (!base.slice_from("es"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("es")) return false;
                 break;
             case 58:
-                if (!base.slice_from("is"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("is")) return false;
                 break;
             case 59:
-                if (!base.slice_from("ta\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ta\u0161")) return false;
                 break;
             case 60:
-                if (!base.slice_from("na\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("na\u0161")) return false;
                 break;
             case 61:
-                if (!base.slice_from("ja\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ja\u0161")) return false;
                 break;
             case 62:
-                if (!base.slice_from("ka\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ka\u0161")) return false;
                 break;
             case 63:
-                if (!base.slice_from("ba\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ba\u0161")) return false;
                 break;
             case 64:
-                if (!base.slice_from("ga\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ga\u0161")) return false;
                 break;
             case 65:
-                if (!base.slice_from("va\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("va\u0161")) return false;
                 break;
             case 66:
-                if (!base.slice_from("e\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e\u0161")) return false;
                 break;
             case 67:
-                if (!base.slice_from("i\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("i\u0161")) return false;
                 break;
             case 68:
-                if (!base.slice_from("ikat"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ikat")) return false;
                 break;
             case 69:
-                if (!base.slice_from("lat"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("lat")) return false;
                 break;
             case 70:
-                if (!base.slice_from("et"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("et")) return false;
                 break;
             case 71:
-                if (!base.slice_from("est"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("est")) return false;
                 break;
             case 72:
-                if (!base.slice_from("ist"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ist")) return false;
                 break;
             case 73:
-                if (!base.slice_from("kst"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("kst")) return false;
                 break;
             case 74:
-                if (!base.slice_from("ost"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ost")) return false;
                 break;
             case 75:
-                if (!base.slice_from("i\u0161t"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("i\u0161t")) return false;
                 break;
             case 76:
-                if (!base.slice_from("ova"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ova")) return false;
                 break;
             case 77:
-                if (!base.slice_from("av"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("av")) return false;
                 break;
             case 78:
-                if (!base.slice_from("ev"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ev")) return false;
                 break;
             case 79:
-                if (!base.slice_from("iv"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("iv")) return false;
                 break;
             case 80:
-                if (!base.slice_from("ov"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ov")) return false;
                 break;
             case 81:
-                if (!base.slice_from("mov"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("mov")) return false;
                 break;
             case 82:
-                if (!base.slice_from("lov"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("lov")) return false;
                 break;
             case 83:
-                if (!base.slice_from("el"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("el")) return false;
                 break;
             case 84:
-                if (!base.slice_from("anj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("anj")) return false;
                 break;
             case 85:
-                if (!base.slice_from("enj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("enj")) return false;
                 break;
             case 86:
-                if (!base.slice_from("\u0161nj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u0161nj")) return false;
                 break;
             case 87:
-                if (!base.slice_from("en"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("en")) return false;
                 break;
             case 88:
-                if (!base.slice_from("\u0161n"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u0161n")) return false;
                 break;
             case 89:
-                if (!base.slice_from("\u010Din"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u010Din")) return false;
                 break;
             case 90:
-                if (!base.slice_from("ro\u0161i"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ro\u0161i")) return false;
                 break;
             case 91:
-                if (!base.slice_from("o\u0161"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("o\u0161")) return false;
                 break;
             case 92:
-                if (!base.slice_from("evit"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("evit")) return false;
                 break;
             case 93:
-                if (!base.slice_from("ovit"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ovit")) return false;
                 break;
             case 94:
-                if (!base.slice_from("ast"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ast")) return false;
                 break;
             case 95:
-                if (!base.slice_from("k"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("k")) return false;
                 break;
             case 96:
-                if (!base.slice_from("eva"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("eva")) return false;
                 break;
             case 97:
-                if (!base.slice_from("ava"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ava")) return false;
                 break;
             case 98:
-                if (!base.slice_from("iva"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("iva")) return false;
                 break;
             case 99:
-                if (!base.slice_from("uva"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("uva")) return false;
                 break;
             case 100:
-                if (!base.slice_from("ir"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ir")) return false;
                 break;
             case 101:
-                if (!base.slice_from("a\u010D"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a\u010D")) return false;
                 break;
             case 102:
-                if (!base.slice_from("a\u010Da"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a\u010Da")) return false;
                 break;
             case 103:
-                if (!base.slice_from("ni"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ni")) return false;
                 break;
             case 104:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
             case 105:
-                if (!base.slice_from("ur"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ur")) return false;
                 break;
             case 106:
-                if (!base.slice_from("astaj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("astaj")) return false;
                 break;
             case 107:
-                if (!base.slice_from("istaj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("istaj")) return false;
                 break;
             case 108:
-                if (!base.slice_from("ostaj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ostaj")) return false;
                 break;
             case 109:
-                if (!base.slice_from("aj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("aj")) return false;
                 break;
             case 110:
-                if (!base.slice_from("asta"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("asta")) return false;
                 break;
             case 111:
-                if (!base.slice_from("ista"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ista")) return false;
                 break;
             case 112:
-                if (!base.slice_from("osta"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("osta")) return false;
                 break;
             case 113:
-                if (!base.slice_from("ta"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ta")) return false;
                 break;
             case 114:
-                if (!base.slice_from("inj"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("inj")) return false;
                 break;
             case 115:
-                if (!base.slice_from("as"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("as")) return false;
                 break;
             case 116:
-                if (!base.slice_from("i"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("i")) return false;
                 break;
             case 117:
-                if (!base.slice_from("lu\u010D"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("lu\u010D")) return false;
                 break;
             case 118:
-                if (!base.slice_from("jeti"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("jeti")) return false;
                 break;
             case 119:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
             case 120:
-                if (!base.slice_from("at"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("at")) return false;
                 break;
             case 121:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("luc"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("luc")) return false;
                 break;
             case 122:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("snj"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("snj")) return false;
                 break;
             case 123:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("os"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("os")) return false;
                 break;
             case 124:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ac"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ac")) return false;
                 break;
             case 125:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ec"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ec")) return false;
                 break;
             case 126:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("uc"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("uc")) return false;
                 break;
             case 127:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("rosi"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("rosi")) return false;
                 break;
             case 128:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("aca"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("aca")) return false;
                 break;
             case 129:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("jas"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("jas")) return false;
                 break;
             case 130:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("tas"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("tas")) return false;
                 break;
             case 131:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("gas"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("gas")) return false;
                 break;
             case 132:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("nas"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("nas")) return false;
                 break;
             case 133:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("kas"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("kas")) return false;
                 break;
             case 134:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("vas"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("vas")) return false;
                 break;
             case 135:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("bas"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("bas")) return false;
                 break;
             case 136:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("as"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("as")) return false;
                 break;
             case 137:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("cin"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("cin")) return false;
                 break;
             case 138:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("astaj"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("astaj")) return false;
                 break;
             case 139:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("istaj"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("istaj")) return false;
                 break;
             case 140:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ostaj"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ostaj")) return false;
                 break;
             case 141:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("asta"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("asta")) return false;
                 break;
             case 142:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ista"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ista")) return false;
                 break;
             case 143:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("osta"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("osta")) return false;
                 break;
             case 144:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ava"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ava")) return false;
                 break;
             case 145:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("eva"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("eva")) return false;
                 break;
             case 146:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("iva"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("iva")) return false;
                 break;
             case 147:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("uva"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("uva")) return false;
                 break;
             case 148:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ova"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ova")) return false;
                 break;
             case 149:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("jeti"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("jeti")) return false;
                 break;
             case 150:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("inj"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("inj")) return false;
                 break;
             case 151:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ist"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ist")) return false;
                 break;
             case 152:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("es"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("es")) return false;
                 break;
             case 153:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("et"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("et")) return false;
                 break;
             case 154:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("is"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("is")) return false;
                 break;
             case 155:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ir"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ir")) return false;
                 break;
             case 156:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ur"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ur")) return false;
                 break;
             case 157:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("uj"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("uj")) return false;
                 break;
             case 158:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ni"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ni")) return false;
                 break;
             case 159:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("sn"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("sn")) return false;
                 break;
             case 160:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("ta"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("ta")) return false;
                 break;
             case 161:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("a")) return false;
                 break;
             case 162:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("i"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("i")) return false;
                 break;
             case 163:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("e")) return false;
                 break;
             case 164:
-                if (!B_no_diacritics)
-                {
-                    return false;
-                }
-                if (!base.slice_from("n"))
-                {
-                    return false;
-                }
+                if (!B_no_diacritics) return false;
+                if (!base.slice_from("n")) return false;
                 break;
         }
         return true;
@@ -4460,19 +3364,10 @@ var SerbianStemmer = function() {
     /** @return {boolean} */
     function r_Step_3() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_3) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_3) == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
-        if (!base.slice_from(""))
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
+        if (!base.slice_from("")) return false;
         return true;
     };
 
@@ -4489,17 +3384,11 @@ var SerbianStemmer = function() {
             lab1: {
                 /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    if (!r_Step_2())
-                    {
-                        break lab2;
-                    }
+                    if (!r_Step_2()) break lab2;
                     break lab1;
                 }
                 base.cursor = base.limit - v_3;
-                if (!r_Step_3())
-                {
-                    break lab0;
-                }
+                if (!r_Step_3()) break lab0;
             }
         }
         base.cursor = base.limit - v_2;

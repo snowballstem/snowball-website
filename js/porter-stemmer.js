@@ -1,4 +1,4 @@
-// Generated from porter.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from porter.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var PorterStemmer = function() {
@@ -93,24 +93,15 @@ var PorterStemmer = function() {
     /** @const */ var /** Array<int> */ g_v_WXY = [1, 17, 65, 208, 1];
 
     var /** boolean */ B_Y_found = false;
-    var /** number */ I_p2 = 0;
-    var /** number */ I_p1 = 0;
+    var /** number */ I_p2;
+    var /** number */ I_p1;
 
 
     /** @return {boolean} */
     function r_shortv() {
-        if (!(base.out_grouping_b(g_v_WXY, 89, 121)))
-        {
-            return false;
-        }
-        if (!(base.in_grouping_b(g_v, 97, 121)))
-        {
-            return false;
-        }
-        if (!(base.out_grouping_b(g_v, 97, 121)))
-        {
-            return false;
-        }
+        if (!(base.out_grouping_b(g_v_WXY, 89, 121))) return false;
+        if (!(base.in_grouping_b(g_v, 97, 121))) return false;
+        if (!(base.out_grouping_b(g_v, 97, 121))) return false;
         return true;
     };
 
@@ -129,29 +120,17 @@ var PorterStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("ss"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ss")) return false;
                 break;
             case 2:
-                if (!base.slice_from("i"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("i")) return false;
                 break;
             case 3:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -162,34 +141,19 @@ var PorterStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_from("ee"))
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_from("ee")) return false;
                 break;
             case 2:
                 /** @const */ var /** number */ v_1 = base.limit - base.cursor;
-                if (!base.go_out_grouping_b(g_v, 97, 121))
-                {
-                    return false;
-                }
+                if (!base.go_out_grouping_b(g_v, 97, 121)) return false;
                 base.cursor--;
                 base.cursor = base.limit - v_1;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 among_var = base.find_among_b(a_1);
                 base.cursor = base.limit - v_2;
@@ -203,27 +167,15 @@ var PorterStemmer = function() {
                         break;
                     case 2:
                         base.ket = base.cursor;
-                        if (base.cursor <= base.limit_backward)
-                        {
-                            return false;
-                        }
+                        if (base.cursor <= base.limit_backward) return false;
                         base.cursor--;
                         base.bra = base.cursor;
-                        if (!base.slice_del())
-                        {
-                            return false;
-                        }
+                        if (!base.slice_del()) return false;
                         break;
                     case 3:
-                        if (base.cursor != I_p1)
-                        {
-                            return false;
-                        }
+                        if (base.cursor != I_p1) return false;
                         /** @const */ var /** number */ v_3 = base.limit - base.cursor;
-                        if (!r_shortv())
-                        {
-                            return false;
-                        }
+                        if (!r_shortv()) return false;
                         base.cursor = base.limit - v_3;
                         {
                             /** @const */ var /** number */ c2 = base.cursor;
@@ -243,28 +195,16 @@ var PorterStemmer = function() {
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                if (!(base.eq_s_b("y")))
-                {
-                    break lab1;
-                }
+                if (!(base.eq_s_b("y"))) break lab1;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            if (!(base.eq_s_b("Y")))
-            {
-                return false;
-            }
+            if (!(base.eq_s_b("Y"))) return false;
         }
         base.bra = base.cursor;
-        if (!base.go_out_grouping_b(g_v, 97, 121))
-        {
-            return false;
-        }
+        if (!base.go_out_grouping_b(g_v, 97, 121)) return false;
         base.cursor--;
-        if (!base.slice_from("i"))
-        {
-            return false;
-        }
+        if (!base.slice_from("i")) return false;
         return true;
     };
 
@@ -273,93 +213,48 @@ var PorterStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("tion"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tion")) return false;
                 break;
             case 2:
-                if (!base.slice_from("ence"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ence")) return false;
                 break;
             case 3:
-                if (!base.slice_from("ance"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ance")) return false;
                 break;
             case 4:
-                if (!base.slice_from("able"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("able")) return false;
                 break;
             case 5:
-                if (!base.slice_from("ent"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ent")) return false;
                 break;
             case 6:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
             case 7:
-                if (!base.slice_from("ize"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ize")) return false;
                 break;
             case 8:
-                if (!base.slice_from("ate"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ate")) return false;
                 break;
             case 9:
-                if (!base.slice_from("al"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("al")) return false;
                 break;
             case 10:
-                if (!base.slice_from("ful"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ful")) return false;
                 break;
             case 11:
-                if (!base.slice_from("ous"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ous")) return false;
                 break;
             case 12:
-                if (!base.slice_from("ive"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ive")) return false;
                 break;
             case 13:
-                if (!base.slice_from("ble"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ble")) return false;
                 break;
         }
         return true;
@@ -370,33 +265,18 @@ var PorterStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("al"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("al")) return false;
                 break;
             case 2:
-                if (!base.slice_from("ic"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ic")) return false;
                 break;
             case 3:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -407,42 +287,24 @@ var PorterStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_5);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R2())
-        {
-            return false;
-        }
+        if (!r_R2()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
                 lab0: {
                     /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
-                        if (!(base.eq_s_b("s")))
-                        {
-                            break lab1;
-                        }
+                        if (!(base.eq_s_b("s"))) break lab1;
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
-                    if (!(base.eq_s_b("t")))
-                    {
-                        return false;
-                    }
+                    if (!(base.eq_s_b("t"))) return false;
                 }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -451,62 +313,35 @@ var PorterStemmer = function() {
     /** @return {boolean} */
     function r_Step_5a() {
         base.ket = base.cursor;
-        if (!(base.eq_s_b("e")))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("e"))) return false;
         base.bra = base.cursor;
         lab0: {
             lab1: {
-                if (!r_R2())
-                {
-                    break lab1;
-                }
+                if (!r_R2()) break lab1;
                 break lab0;
             }
-            if (!r_R1())
-            {
-                return false;
-            }
+            if (!r_R1()) return false;
             {
                 /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                 lab2: {
-                    if (!r_shortv())
-                    {
-                        break lab2;
-                    }
+                    if (!r_shortv()) break lab2;
                     return false;
                 }
                 base.cursor = base.limit - v_1;
             }
         }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_Step_5b() {
         base.ket = base.cursor;
-        if (!(base.eq_s_b("l")))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("l"))) return false;
         base.bra = base.cursor;
-        if (!r_R2())
-        {
-            return false;
-        }
-        if (!(base.eq_s_b("l")))
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!r_R2()) return false;
+        if (!(base.eq_s_b("l"))) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -515,52 +350,33 @@ var PorterStemmer = function() {
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             base.bra = base.cursor;
-            if (!(base.eq_s("y")))
-            {
-                break lab0;
-            }
+            if (!(base.eq_s("y"))) break lab0;
             base.ket = base.cursor;
-            if (!base.slice_from("Y"))
-            {
-                return false;
-            }
+            if (!base.slice_from("Y")) return false;
             B_Y_found = true;
         }
         base.cursor = v_1;
         /** @const */ var /** number */ v_2 = base.cursor;
         lab1: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_3 = base.cursor;
                 lab2: {
                     golab3: while(true)
                     {
                         /** @const */ var /** number */ v_4 = base.cursor;
                         lab4: {
-                            if (!(base.in_grouping(g_v, 97, 121)))
-                            {
-                                break lab4;
-                            }
+                            if (!(base.in_grouping(g_v, 97, 121))) break lab4;
                             base.bra = base.cursor;
-                            if (!(base.eq_s("y")))
-                            {
-                                break lab4;
-                            }
+                            if (!(base.eq_s("y"))) break lab4;
                             base.ket = base.cursor;
                             base.cursor = v_4;
                             break golab3;
                         }
                         base.cursor = v_4;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab2;
-                        }
+                        if (base.cursor >= base.limit) break lab2;
                         base.cursor++;
                     }
-                    if (!base.slice_from("Y"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("Y")) return false;
                     B_Y_found = true;
                     continue;
                 }
@@ -573,26 +389,14 @@ var PorterStemmer = function() {
         I_p2 = base.limit;
         /** @const */ var /** number */ v_5 = base.cursor;
         lab5: {
-            if (!base.go_out_grouping(g_v, 97, 121))
-            {
-                break lab5;
-            }
+            if (!base.go_out_grouping(g_v, 97, 121)) break lab5;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 121))
-            {
-                break lab5;
-            }
+            if (!base.go_in_grouping(g_v, 97, 121)) break lab5;
             base.cursor++;
             I_p1 = base.cursor;
-            if (!base.go_out_grouping(g_v, 97, 121))
-            {
-                break lab5;
-            }
+            if (!base.go_out_grouping(g_v, 97, 121)) break lab5;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 121))
-            {
-                break lab5;
-            }
+            if (!base.go_in_grouping(g_v, 97, 121)) break lab5;
             base.cursor++;
             I_p2 = base.cursor;
         }
@@ -625,12 +429,8 @@ var PorterStemmer = function() {
         base.cursor = base.limit_backward;
         /** @const */ var /** number */ v_14 = base.cursor;
         lab6: {
-            if (!B_Y_found)
-            {
-                break lab6;
-            }
-            while(true)
-            {
+            if (!B_Y_found) break lab6;
+            while(true) {
                 /** @const */ var /** number */ v_15 = base.cursor;
                 lab7: {
                     golab8: while(true)
@@ -638,25 +438,16 @@ var PorterStemmer = function() {
                         /** @const */ var /** number */ v_16 = base.cursor;
                         lab9: {
                             base.bra = base.cursor;
-                            if (!(base.eq_s("Y")))
-                            {
-                                break lab9;
-                            }
+                            if (!(base.eq_s("Y"))) break lab9;
                             base.ket = base.cursor;
                             base.cursor = v_16;
                             break golab8;
                         }
                         base.cursor = v_16;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab7;
-                        }
+                        if (base.cursor >= base.limit) break lab7;
                         base.cursor++;
                     }
-                    if (!base.slice_from("y"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("y")) return false;
                     continue;
                 }
                 base.cursor = v_15;

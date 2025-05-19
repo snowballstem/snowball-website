@@ -1,4 +1,4 @@
-// Generated from estonian.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from estonian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var EstonianStemmer = function() {
@@ -415,21 +415,15 @@ var EstonianStemmer = function() {
 
     /** @const */ var /** Array<int> */ g_GI = [21, 123, 243, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 48, 8];
 
-    var /** number */ I_p1 = 0;
+    var /** number */ I_p1;
 
 
     /** @return {boolean} */
     function r_mark_regions() {
         I_p1 = base.limit;
-        if (!base.go_out_grouping(g_V1, 97, 252))
-        {
-            return false;
-        }
+        if (!base.go_out_grouping(g_V1, 97, 252)) return false;
         base.cursor++;
-        if (!base.go_in_grouping(g_V1, 97, 252))
-        {
-            return false;
-        }
+        if (!base.go_in_grouping(g_V1, 97, 252)) return false;
         base.cursor++;
         I_p1 = base.cursor;
         return true;
@@ -438,16 +432,12 @@ var EstonianStemmer = function() {
     /** @return {boolean} */
     function r_emphasis() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -456,46 +446,28 @@ var EstonianStemmer = function() {
         /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         {
             /** @const */ var /** number */ c1 = base.cursor - 4;
-            if (c1 < base.limit_backward)
-            {
-                return false;
-            }
+            if (c1 < base.limit_backward) return false;
             base.cursor = c1;
         }
         base.cursor = base.limit - v_2;
         switch (among_var) {
             case 1:
                 /** @const */ var /** number */ v_3 = base.limit - base.cursor;
-                if (!(base.in_grouping_b(g_GI, 97, 252)))
-                {
-                    return false;
-                }
+                if (!(base.in_grouping_b(g_GI, 97, 252))) return false;
                 base.cursor = base.limit - v_3;
                 {
                     /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                     lab0: {
-                        if (!r_LONGV())
-                        {
-                            break lab0;
-                        }
+                        if (!r_LONGV()) break lab0;
                         return false;
                     }
                     base.cursor = base.limit - v_4;
                 }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!(base.in_grouping_b(g_KI, 98, 382)))
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!(base.in_grouping_b(g_KI, 98, 382))) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -504,16 +476,12 @@ var EstonianStemmer = function() {
     /** @return {boolean} */
     function r_verb() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -521,26 +489,14 @@ var EstonianStemmer = function() {
         base.limit_backward = v_1;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
             case 3:
-                if (!(base.in_grouping_b(g_V1, 97, 252)))
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!(base.in_grouping_b(g_V1, 97, 252))) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -548,53 +504,35 @@ var EstonianStemmer = function() {
 
     /** @return {boolean} */
     function r_LONGV() {
-        if (base.find_among_b(a_2) == 0)
-        {
-            return false;
-        }
-        return true;
+        return base.find_among_b(a_2) != 0;
     };
 
     /** @return {boolean} */
     function r_i_plural() {
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        if (base.find_among_b(a_3) == 0)
-        {
+        if (base.find_among_b(a_3) == 0) {
             base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
         base.limit_backward = v_1;
-        if (!(base.in_grouping_b(g_RV, 97, 117)))
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!(base.in_grouping_b(g_RV, 97, 117))) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_special_noun_endings() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -602,22 +540,13 @@ var EstonianStemmer = function() {
         base.limit_backward = v_1;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("lase"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("lase")) return false;
                 break;
             case 2:
-                if (!base.slice_from("mise"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("mise")) return false;
                 break;
             case 3:
-                if (!base.slice_from("lise"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("lise")) return false;
                 break;
         }
         return true;
@@ -626,16 +555,12 @@ var EstonianStemmer = function() {
     /** @return {boolean} */
     function r_case_ending() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_5);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -646,52 +571,36 @@ var EstonianStemmer = function() {
                 lab0: {
                     /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
-                        if (!(base.in_grouping_b(g_RV, 97, 117)))
-                        {
-                            break lab1;
-                        }
+                        if (!(base.in_grouping_b(g_RV, 97, 117))) break lab1;
                         break lab0;
                     }
                     base.cursor = base.limit - v_2;
-                    if (!r_LONGV())
-                    {
-                        return false;
-                    }
+                    if (!r_LONGV()) return false;
                 }
                 break;
             case 2:
                 /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 {
                     /** @const */ var /** number */ c1 = base.cursor - 4;
-                    if (c1 < base.limit_backward)
-                    {
-                        return false;
-                    }
+                    if (c1 < base.limit_backward) return false;
                     base.cursor = c1;
                 }
                 base.cursor = base.limit - v_3;
                 break;
         }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_plural_three_first_cases() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_7);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -699,27 +608,18 @@ var EstonianStemmer = function() {
         base.limit_backward = v_1;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("iku"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("iku")) return false;
                 break;
             case 2:
                 {
                     /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab0: {
-                        if (!r_LONGV())
-                        {
-                            break lab0;
-                        }
+                        if (!r_LONGV()) break lab0;
                         return false;
                     }
                     base.cursor = base.limit - v_2;
                 }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 3:
                 lab1: {
@@ -728,57 +628,36 @@ var EstonianStemmer = function() {
                         /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                         {
                             /** @const */ var /** number */ c1 = base.cursor - 4;
-                            if (c1 < base.limit_backward)
-                            {
-                                break lab2;
-                            }
+                            if (c1 < base.limit_backward) break lab2;
                             base.cursor = c1;
                         }
                         base.cursor = base.limit - v_4;
                         among_var = base.find_among_b(a_6);
                         switch (among_var) {
                             case 1:
-                                if (!base.slice_from("e"))
-                                {
-                                    return false;
-                                }
+                                if (!base.slice_from("e")) return false;
                                 break;
                             case 2:
-                                if (!base.slice_del())
-                                {
-                                    return false;
-                                }
+                                if (!base.slice_del()) return false;
                                 break;
                         }
                         break lab1;
                     }
                     base.cursor = base.limit - v_3;
-                    if (!base.slice_from("t"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("t")) return false;
                 }
                 break;
             case 4:
                 lab3: {
                     /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                     lab4: {
-                        if (!(base.in_grouping_b(g_RV, 97, 117)))
-                        {
-                            break lab4;
-                        }
+                        if (!(base.in_grouping_b(g_RV, 97, 117))) break lab4;
                         break lab3;
                     }
                     base.cursor = base.limit - v_5;
-                    if (!r_LONGV())
-                    {
-                        return false;
-                    }
+                    if (!r_LONGV()) return false;
                 }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -786,63 +665,38 @@ var EstonianStemmer = function() {
 
     /** @return {boolean} */
     function r_nu() {
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        if (base.find_among_b(a_8) == 0)
-        {
+        if (base.find_among_b(a_8) == 0) {
             base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
         base.limit_backward = v_1;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_undouble_kpt() {
         var /** number */ among_var;
-        if (!(base.in_grouping_b(g_V1, 97, 252)))
-        {
-            return false;
-        }
-        if (I_p1 > base.cursor)
-        {
-            return false;
-        }
+        if (!(base.in_grouping_b(g_V1, 97, 252))) return false;
+        if (I_p1 > base.cursor) return false;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_9);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("k"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("k")) return false;
                 break;
             case 2:
-                if (!base.slice_from("p"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("p")) return false;
                 break;
             case 3:
-                if (!base.slice_from("t"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("t")) return false;
                 break;
         }
         return true;
@@ -851,16 +705,12 @@ var EstonianStemmer = function() {
     /** @return {boolean} */
     function r_degrees() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_10);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -868,20 +718,11 @@ var EstonianStemmer = function() {
         base.limit_backward = v_1;
         switch (among_var) {
             case 1:
-                if (!(base.in_grouping_b(g_RV, 97, 117)))
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!(base.in_grouping_b(g_RV, 97, 117))) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -915,123 +756,63 @@ var EstonianStemmer = function() {
         var /** number */ among_var;
         base.bra = base.cursor;
         among_var = base.find_among(a_11);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.ket = base.cursor;
-        if (base.cursor < base.limit)
-        {
-            return false;
-        }
+        if (base.cursor < base.limit) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("joo"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("joo")) return false;
                 break;
             case 2:
-                if (!base.slice_from("saa"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("saa")) return false;
                 break;
             case 3:
-                if (!base.slice_from("viima"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("viima")) return false;
                 break;
             case 4:
-                if (!base.slice_from("keesi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("keesi")) return false;
                 break;
             case 5:
-                if (!base.slice_from("l\u00F6\u00F6"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("l\u00F6\u00F6")) return false;
                 break;
             case 6:
-                if (!base.slice_from("l\u00F5i"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("l\u00F5i")) return false;
                 break;
             case 7:
-                if (!base.slice_from("loo"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("loo")) return false;
                 break;
             case 8:
-                if (!base.slice_from("k\u00E4isi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("k\u00E4isi")) return false;
                 break;
             case 9:
-                if (!base.slice_from("s\u00F6\u00F6"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("s\u00F6\u00F6")) return false;
                 break;
             case 10:
-                if (!base.slice_from("too"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("too")) return false;
                 break;
             case 11:
-                if (!base.slice_from("v\u00F5isi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("v\u00F5isi")) return false;
                 break;
             case 12:
-                if (!base.slice_from("j\u00E4\u00E4ma"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("j\u00E4\u00E4ma")) return false;
                 break;
             case 13:
-                if (!base.slice_from("m\u00FC\u00FCsi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("m\u00FC\u00FCsi")) return false;
                 break;
             case 14:
-                if (!base.slice_from("luge"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("luge")) return false;
                 break;
             case 15:
-                if (!base.slice_from("p\u00F5de"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("p\u00F5de")) return false;
                 break;
             case 16:
-                if (!base.slice_from("ladu"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ladu")) return false;
                 break;
             case 17:
-                if (!base.slice_from("tegi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tegi")) return false;
                 break;
             case 18:
-                if (!base.slice_from("n\u00E4gi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("n\u00E4gi")) return false;
                 break;
         }
         return true;
@@ -1041,10 +822,7 @@ var EstonianStemmer = function() {
         {
             /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
-                if (!r_verb_exceptions())
-                {
-                    break lab0;
-                }
+                if (!r_verb_exceptions()) break lab0;
                 return false;
             }
             base.cursor = v_1;
@@ -1061,10 +839,7 @@ var EstonianStemmer = function() {
             lab2: {
                 /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                 lab3: {
-                    if (!r_verb())
-                    {
-                        break lab3;
-                    }
+                    if (!r_verb()) break lab3;
                     break lab2;
                 }
                 base.cursor = base.limit - v_5;

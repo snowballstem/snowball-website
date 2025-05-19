@@ -1,4 +1,4 @@
-// Generated from portuguese.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from portuguese.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var PortugueseStemmer = function() {
@@ -225,16 +225,15 @@ var PortugueseStemmer = function() {
 
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19, 12, 2];
 
-    var /** number */ I_p2 = 0;
-    var /** number */ I_p1 = 0;
-    var /** number */ I_pV = 0;
+    var /** number */ I_p2;
+    var /** number */ I_p1;
+    var /** number */ I_pV;
 
 
     /** @return {boolean} */
     function r_prelude() {
         var /** number */ among_var;
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
@@ -242,22 +241,13 @@ var PortugueseStemmer = function() {
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        if (!base.slice_from("a~"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("a~")) return false;
                         break;
                     case 2:
-                        if (!base.slice_from("o~"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("o~")) return false;
                         break;
                     case 3:
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab0;
-                        }
+                        if (base.cursor >= base.limit) break lab0;
                         base.cursor++;
                         break;
                 }
@@ -279,65 +269,35 @@ var PortugueseStemmer = function() {
             lab1: {
                 /** @const */ var /** number */ v_2 = base.cursor;
                 lab2: {
-                    if (!(base.in_grouping(g_v, 97, 250)))
-                    {
-                        break lab2;
-                    }
+                    if (!(base.in_grouping(g_v, 97, 250))) break lab2;
                     lab3: {
                         /** @const */ var /** number */ v_3 = base.cursor;
                         lab4: {
-                            if (!(base.out_grouping(g_v, 97, 250)))
-                            {
-                                break lab4;
-                            }
-                            if (!base.go_out_grouping(g_v, 97, 250))
-                            {
-                                break lab4;
-                            }
+                            if (!(base.out_grouping(g_v, 97, 250))) break lab4;
+                            if (!base.go_out_grouping(g_v, 97, 250)) break lab4;
                             base.cursor++;
                             break lab3;
                         }
                         base.cursor = v_3;
-                        if (!(base.in_grouping(g_v, 97, 250)))
-                        {
-                            break lab2;
-                        }
-                        if (!base.go_in_grouping(g_v, 97, 250))
-                        {
-                            break lab2;
-                        }
+                        if (!(base.in_grouping(g_v, 97, 250))) break lab2;
+                        if (!base.go_in_grouping(g_v, 97, 250)) break lab2;
                         base.cursor++;
                     }
                     break lab1;
                 }
                 base.cursor = v_2;
-                if (!(base.out_grouping(g_v, 97, 250)))
-                {
-                    break lab0;
-                }
+                if (!(base.out_grouping(g_v, 97, 250))) break lab0;
                 lab5: {
                     /** @const */ var /** number */ v_4 = base.cursor;
                     lab6: {
-                        if (!(base.out_grouping(g_v, 97, 250)))
-                        {
-                            break lab6;
-                        }
-                        if (!base.go_out_grouping(g_v, 97, 250))
-                        {
-                            break lab6;
-                        }
+                        if (!(base.out_grouping(g_v, 97, 250))) break lab6;
+                        if (!base.go_out_grouping(g_v, 97, 250)) break lab6;
                         base.cursor++;
                         break lab5;
                     }
                     base.cursor = v_4;
-                    if (!(base.in_grouping(g_v, 97, 250)))
-                    {
-                        break lab0;
-                    }
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab0;
-                    }
+                    if (!(base.in_grouping(g_v, 97, 250))) break lab0;
+                    if (base.cursor >= base.limit) break lab0;
                     base.cursor++;
                 }
             }
@@ -346,26 +306,14 @@ var PortugueseStemmer = function() {
         base.cursor = v_1;
         /** @const */ var /** number */ v_5 = base.cursor;
         lab7: {
-            if (!base.go_out_grouping(g_v, 97, 250))
-            {
-                break lab7;
-            }
+            if (!base.go_out_grouping(g_v, 97, 250)) break lab7;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 250))
-            {
-                break lab7;
-            }
+            if (!base.go_in_grouping(g_v, 97, 250)) break lab7;
             base.cursor++;
             I_p1 = base.cursor;
-            if (!base.go_out_grouping(g_v, 97, 250))
-            {
-                break lab7;
-            }
+            if (!base.go_out_grouping(g_v, 97, 250)) break lab7;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 250))
-            {
-                break lab7;
-            }
+            if (!base.go_in_grouping(g_v, 97, 250)) break lab7;
             base.cursor++;
             I_p2 = base.cursor;
         }
@@ -376,8 +324,7 @@ var PortugueseStemmer = function() {
     /** @return {boolean} */
     function r_postlude() {
         var /** number */ among_var;
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
@@ -385,22 +332,13 @@ var PortugueseStemmer = function() {
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        if (!base.slice_from("\u00E3"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u00E3")) return false;
                         break;
                     case 2:
-                        if (!base.slice_from("\u00F5"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u00F5")) return false;
                         break;
                     case 3:
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab0;
-                        }
+                        if (base.cursor >= base.limit) break lab0;
                         base.cursor++;
                         break;
                 }
@@ -432,202 +370,117 @@ var PortugueseStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_5);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_from("log"))
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_from("log")) return false;
                 break;
             case 3:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_from("u"))
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_from("u")) return false;
                 break;
             case 4:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_from("ente"))
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_from("ente")) return false;
                 break;
             case 5:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_del()) return false;
                 /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                 lab0: {
                     base.ket = base.cursor;
                     among_var = base.find_among_b(a_2);
-                    if (among_var == 0)
-                    {
+                    if (among_var == 0) {
                         base.cursor = base.limit - v_1;
                         break lab0;
                     }
                     base.bra = base.cursor;
-                    if (!r_R2())
-                    {
+                    if (!r_R2()) {
                         base.cursor = base.limit - v_1;
                         break lab0;
                     }
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                    if (!base.slice_del()) return false;
                     switch (among_var) {
                         case 1:
                             base.ket = base.cursor;
-                            if (!(base.eq_s_b("at")))
-                            {
+                            if (!(base.eq_s_b("at"))) {
                                 base.cursor = base.limit - v_1;
                                 break lab0;
                             }
                             base.bra = base.cursor;
-                            if (!r_R2())
-                            {
+                            if (!r_R2()) {
                                 base.cursor = base.limit - v_1;
                                 break lab0;
                             }
-                            if (!base.slice_del())
-                            {
-                                return false;
-                            }
+                            if (!base.slice_del()) return false;
                             break;
                     }
                 }
                 break;
             case 6:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                 lab1: {
                     base.ket = base.cursor;
-                    if (base.find_among_b(a_3) == 0)
-                    {
+                    if (base.find_among_b(a_3) == 0) {
                         base.cursor = base.limit - v_2;
                         break lab1;
                     }
                     base.bra = base.cursor;
-                    if (!r_R2())
-                    {
+                    if (!r_R2()) {
                         base.cursor = base.limit - v_2;
                         break lab1;
                     }
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                    if (!base.slice_del()) return false;
                 }
                 break;
             case 7:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     base.ket = base.cursor;
-                    if (base.find_among_b(a_4) == 0)
-                    {
+                    if (base.find_among_b(a_4) == 0) {
                         base.cursor = base.limit - v_3;
                         break lab2;
                     }
                     base.bra = base.cursor;
-                    if (!r_R2())
-                    {
+                    if (!r_R2()) {
                         base.cursor = base.limit - v_3;
                         break lab2;
                     }
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                    if (!base.slice_del()) return false;
                 }
                 break;
             case 8:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                 lab3: {
                     base.ket = base.cursor;
-                    if (!(base.eq_s_b("at")))
-                    {
+                    if (!(base.eq_s_b("at"))) {
                         base.cursor = base.limit - v_4;
                         break lab3;
                     }
                     base.bra = base.cursor;
-                    if (!r_R2())
-                    {
+                    if (!r_R2()) {
                         base.cursor = base.limit - v_4;
                         break lab3;
                     }
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                    if (!base.slice_del()) return false;
                 }
                 break;
             case 9:
-                if (!r_RV())
-                {
-                    return false;
-                }
-                if (!(base.eq_s_b("e")))
-                {
-                    return false;
-                }
-                if (!base.slice_from("ir"))
-                {
-                    return false;
-                }
+                if (!r_RV()) return false;
+                if (!(base.eq_s_b("e"))) return false;
+                if (!base.slice_from("ir")) return false;
                 break;
         }
         return true;
@@ -635,23 +488,16 @@ var PortugueseStemmer = function() {
 
     /** @return {boolean} */
     function r_verb_suffix() {
-        if (base.cursor < I_pV)
-        {
-            return false;
-        }
+        if (base.cursor < I_pV) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
-        if (base.find_among_b(a_6) == 0)
-        {
+        if (base.find_among_b(a_6) == 0) {
             base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         base.limit_backward = v_1;
         return true;
     };
@@ -659,19 +505,10 @@ var PortugueseStemmer = function() {
     /** @return {boolean} */
     function r_residual_suffix() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_7) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_7) == 0) return false;
         base.bra = base.cursor;
-        if (!r_RV())
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!r_RV()) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -680,65 +517,35 @@ var PortugueseStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_8);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_RV())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_RV()) return false;
+                if (!base.slice_del()) return false;
                 base.ket = base.cursor;
                 lab0: {
                     /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
-                        if (!(base.eq_s_b("u")))
-                        {
-                            break lab1;
-                        }
+                        if (!(base.eq_s_b("u"))) break lab1;
                         base.bra = base.cursor;
                         /** @const */ var /** number */ v_2 = base.limit - base.cursor;
-                        if (!(base.eq_s_b("g")))
-                        {
-                            break lab1;
-                        }
+                        if (!(base.eq_s_b("g"))) break lab1;
                         base.cursor = base.limit - v_2;
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
-                    if (!(base.eq_s_b("i")))
-                    {
-                        return false;
-                    }
+                    if (!(base.eq_s_b("i"))) return false;
                     base.bra = base.cursor;
                     /** @const */ var /** number */ v_3 = base.limit - base.cursor;
-                    if (!(base.eq_s_b("c")))
-                    {
-                        return false;
-                    }
+                    if (!(base.eq_s_b("c"))) return false;
                     base.cursor = base.limit - v_3;
                 }
-                if (!r_RV())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_RV()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("c"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("c")) return false;
                 break;
         }
         return true;
@@ -759,50 +566,29 @@ var PortugueseStemmer = function() {
                     lab3: {
                         /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                         lab4: {
-                            if (!r_standard_suffix())
-                            {
-                                break lab4;
-                            }
+                            if (!r_standard_suffix()) break lab4;
                             break lab3;
                         }
                         base.cursor = base.limit - v_5;
-                        if (!r_verb_suffix())
-                        {
-                            break lab2;
-                        }
+                        if (!r_verb_suffix()) break lab2;
                     }
                     base.cursor = base.limit - v_4;
                     /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                     lab5: {
                         base.ket = base.cursor;
-                        if (!(base.eq_s_b("i")))
-                        {
-                            break lab5;
-                        }
+                        if (!(base.eq_s_b("i"))) break lab5;
                         base.bra = base.cursor;
                         /** @const */ var /** number */ v_7 = base.limit - base.cursor;
-                        if (!(base.eq_s_b("c")))
-                        {
-                            break lab5;
-                        }
+                        if (!(base.eq_s_b("c"))) break lab5;
                         base.cursor = base.limit - v_7;
-                        if (!r_RV())
-                        {
-                            break lab5;
-                        }
-                        if (!base.slice_del())
-                        {
-                            return false;
-                        }
+                        if (!r_RV()) break lab5;
+                        if (!base.slice_del()) return false;
                     }
                     base.cursor = base.limit - v_6;
                     break lab1;
                 }
                 base.cursor = base.limit - v_3;
-                if (!r_residual_suffix())
-                {
-                    break lab0;
-                }
+                if (!r_residual_suffix()) break lab0;
             }
         }
         base.cursor = base.limit - v_2;

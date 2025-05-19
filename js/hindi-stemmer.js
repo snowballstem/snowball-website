@@ -1,4 +1,4 @@
-// Generated from hindi.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from hindi.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var HindiStemmer = function() {
@@ -144,30 +144,18 @@ var HindiStemmer = function() {
 
     /** @return {boolean} */
     function r_CONSONANT() {
-        if (!(base.in_grouping_b(g_consonant, 2325, 2399)))
-        {
-            return false;
-        }
+        if (!(base.in_grouping_b(g_consonant, 2325, 2399))) return false;
         return true;
     };
 
     this.stem = /** @return {boolean} */ function() {
-        if (base.cursor >= base.limit)
-        {
-            return false;
-        }
+        if (base.cursor >= base.limit) return false;
         base.cursor++;
         base.limit_backward = base.cursor; base.cursor = base.limit;
         base.ket = base.cursor;
-        if (base.find_among_b(a_0) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_0) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         base.cursor = base.limit_backward;
         return true;
     };

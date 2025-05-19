@@ -1,4 +1,4 @@
-// Generated from basque.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from basque.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var BasqueStemmer = function() {
@@ -438,9 +438,9 @@ var BasqueStemmer = function() {
 
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16];
 
-    var /** number */ I_p2 = 0;
-    var /** number */ I_p1 = 0;
-    var /** number */ I_pV = 0;
+    var /** number */ I_p2;
+    var /** number */ I_p1;
+    var /** number */ I_pV;
 
 
     /** @return {boolean} */
@@ -453,65 +453,35 @@ var BasqueStemmer = function() {
             lab1: {
                 /** @const */ var /** number */ v_2 = base.cursor;
                 lab2: {
-                    if (!(base.in_grouping(g_v, 97, 117)))
-                    {
-                        break lab2;
-                    }
+                    if (!(base.in_grouping(g_v, 97, 117))) break lab2;
                     lab3: {
                         /** @const */ var /** number */ v_3 = base.cursor;
                         lab4: {
-                            if (!(base.out_grouping(g_v, 97, 117)))
-                            {
-                                break lab4;
-                            }
-                            if (!base.go_out_grouping(g_v, 97, 117))
-                            {
-                                break lab4;
-                            }
+                            if (!(base.out_grouping(g_v, 97, 117))) break lab4;
+                            if (!base.go_out_grouping(g_v, 97, 117)) break lab4;
                             base.cursor++;
                             break lab3;
                         }
                         base.cursor = v_3;
-                        if (!(base.in_grouping(g_v, 97, 117)))
-                        {
-                            break lab2;
-                        }
-                        if (!base.go_in_grouping(g_v, 97, 117))
-                        {
-                            break lab2;
-                        }
+                        if (!(base.in_grouping(g_v, 97, 117))) break lab2;
+                        if (!base.go_in_grouping(g_v, 97, 117)) break lab2;
                         base.cursor++;
                     }
                     break lab1;
                 }
                 base.cursor = v_2;
-                if (!(base.out_grouping(g_v, 97, 117)))
-                {
-                    break lab0;
-                }
+                if (!(base.out_grouping(g_v, 97, 117))) break lab0;
                 lab5: {
                     /** @const */ var /** number */ v_4 = base.cursor;
                     lab6: {
-                        if (!(base.out_grouping(g_v, 97, 117)))
-                        {
-                            break lab6;
-                        }
-                        if (!base.go_out_grouping(g_v, 97, 117))
-                        {
-                            break lab6;
-                        }
+                        if (!(base.out_grouping(g_v, 97, 117))) break lab6;
+                        if (!base.go_out_grouping(g_v, 97, 117)) break lab6;
                         base.cursor++;
                         break lab5;
                     }
                     base.cursor = v_4;
-                    if (!(base.in_grouping(g_v, 97, 117)))
-                    {
-                        break lab0;
-                    }
-                    if (base.cursor >= base.limit)
-                    {
-                        break lab0;
-                    }
+                    if (!(base.in_grouping(g_v, 97, 117))) break lab0;
+                    if (base.cursor >= base.limit) break lab0;
                     base.cursor++;
                 }
             }
@@ -520,26 +490,14 @@ var BasqueStemmer = function() {
         base.cursor = v_1;
         /** @const */ var /** number */ v_5 = base.cursor;
         lab7: {
-            if (!base.go_out_grouping(g_v, 97, 117))
-            {
-                break lab7;
-            }
+            if (!base.go_out_grouping(g_v, 97, 117)) break lab7;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 117))
-            {
-                break lab7;
-            }
+            if (!base.go_in_grouping(g_v, 97, 117)) break lab7;
             base.cursor++;
             I_p1 = base.cursor;
-            if (!base.go_out_grouping(g_v, 97, 117))
-            {
-                break lab7;
-            }
+            if (!base.go_out_grouping(g_v, 97, 117)) break lab7;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 117))
-            {
-                break lab7;
-            }
+            if (!base.go_in_grouping(g_v, 97, 117)) break lab7;
             base.cursor++;
             I_p2 = base.cursor;
         }
@@ -567,31 +525,16 @@ var BasqueStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_RV())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_RV()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -602,59 +545,29 @@ var BasqueStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_RV())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_RV()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 3:
-                if (!base.slice_from("jok"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("jok")) return false;
                 break;
             case 4:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 5:
-                if (!base.slice_from("tra"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("tra")) return false;
                 break;
             case 6:
-                if (!base.slice_from("minutu"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("minutu")) return false;
                 break;
         }
         return true;
@@ -665,27 +578,15 @@ var BasqueStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_RV())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_RV()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("z"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("z")) return false;
                 break;
         }
         return true;
@@ -694,27 +595,19 @@ var BasqueStemmer = function() {
     this.stem = /** @return {boolean} */ function() {
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
-                if (!r_aditzak())
-                {
-                    break lab0;
-                }
+                if (!r_aditzak()) break lab0;
                 continue;
             }
             base.cursor = base.limit - v_1;
             break;
         }
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab1: {
-                if (!r_izenak())
-                {
-                    break lab1;
-                }
+                if (!r_izenak()) break lab1;
                 continue;
             }
             base.cursor = base.limit - v_2;

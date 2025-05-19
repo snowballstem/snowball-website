@@ -1,4 +1,4 @@
-// Generated from hungarian.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from hungarian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var HungarianStemmer = function() {
@@ -213,7 +213,7 @@ var HungarianStemmer = function() {
 
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 36, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
 
-    var /** number */ I_p1 = 0;
+    var /** number */ I_p1;
 
 
     /** @return {boolean} */
@@ -222,16 +222,10 @@ var HungarianStemmer = function() {
         lab0: {
             /** @const */ var /** number */ v_1 = base.cursor;
             lab1: {
-                if (!(base.in_grouping(g_v, 97, 369)))
-                {
-                    break lab1;
-                }
+                if (!(base.in_grouping(g_v, 97, 369))) break lab1;
                 /** @const */ var /** number */ v_2 = base.cursor;
                 lab2: {
-                    if (!base.go_in_grouping(g_v, 97, 369))
-                    {
-                        break lab2;
-                    }
+                    if (!base.go_in_grouping(g_v, 97, 369)) break lab2;
                     base.cursor++;
                     I_p1 = base.cursor;
                 }
@@ -239,10 +233,7 @@ var HungarianStemmer = function() {
                 break lab0;
             }
             base.cursor = v_1;
-            if (!base.go_out_grouping(g_v, 97, 369))
-            {
-                return false;
-            }
+            if (!base.go_out_grouping(g_v, 97, 369)) return false;
             base.cursor++;
             I_p1 = base.cursor;
         }
@@ -259,27 +250,15 @@ var HungarianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
             case 2:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
         }
         return true;
@@ -288,83 +267,42 @@ var HungarianStemmer = function() {
     /** @return {boolean} */
     function r_double() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
-        if (base.find_among_b(a_1) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_1) == 0) return false;
         base.cursor = base.limit - v_1;
         return true;
     };
 
     /** @return {boolean} */
     function r_undouble() {
-        if (base.cursor <= base.limit_backward)
-        {
-            return false;
-        }
+        if (base.cursor <= base.limit_backward) return false;
         base.cursor--;
         base.ket = base.cursor;
-        if (base.cursor <= base.limit_backward)
-        {
-            return false;
-        }
+        if (base.cursor <= base.limit_backward) return false;
         base.cursor--;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_instrum() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_2) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_2) == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
-        if (!r_double())
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
-        if (!r_undouble())
-        {
-            return false;
-        }
-        return true;
+        if (!r_R1()) return false;
+        if (!r_double()) return false;
+        if (!base.slice_del()) return false;
+        return r_undouble();
     };
 
     /** @return {boolean} */
     function r_case() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_3) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_3) == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
-        if (!r_v_ending())
-        {
-            return false;
-        }
-        return true;
+        if (!r_R1()) return false;
+        if (!base.slice_del()) return false;
+        return r_v_ending();
     };
 
     /** @return {boolean} */
@@ -372,27 +310,15 @@ var HungarianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
             case 2:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
         }
         return true;
@@ -403,33 +329,18 @@ var HungarianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_5);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
             case 3:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
         }
         return true;
@@ -438,28 +349,12 @@ var HungarianStemmer = function() {
     /** @return {boolean} */
     function r_factive() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_6) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_6) == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
-        if (!r_double())
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
-        if (!r_undouble())
-        {
-            return false;
-        }
-        return true;
+        if (!r_R1()) return false;
+        if (!r_double()) return false;
+        if (!base.slice_del()) return false;
+        return r_undouble();
     };
 
     /** @return {boolean} */
@@ -467,33 +362,18 @@ var HungarianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_7);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
             case 2:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
             case 3:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -504,33 +384,18 @@ var HungarianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_8);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
             case 3:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
         }
         return true;
@@ -541,33 +406,18 @@ var HungarianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_9);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
             case 3:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
         }
         return true;
@@ -578,33 +428,18 @@ var HungarianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_10);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a")) return false;
                 break;
             case 3:
-                if (!base.slice_from("e"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("e")) return false;
                 break;
         }
         return true;

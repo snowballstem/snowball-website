@@ -1,4 +1,4 @@
-// Generated from finnish.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from finnish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var FinnishStemmer = function() {
@@ -134,34 +134,22 @@ var FinnishStemmer = function() {
 
     var /** boolean */ B_ending_removed = false;
     var /** string */ S_x = '';
-    var /** number */ I_p2 = 0;
-    var /** number */ I_p1 = 0;
+    var /** number */ I_p2;
+    var /** number */ I_p1;
 
 
     /** @return {boolean} */
     function r_mark_regions() {
         I_p1 = base.limit;
         I_p2 = base.limit;
-        if (!base.go_out_grouping(g_V1, 97, 246))
-        {
-            return false;
-        }
+        if (!base.go_out_grouping(g_V1, 97, 246)) return false;
         base.cursor++;
-        if (!base.go_in_grouping(g_V1, 97, 246))
-        {
-            return false;
-        }
+        if (!base.go_in_grouping(g_V1, 97, 246)) return false;
         base.cursor++;
         I_p1 = base.cursor;
-        if (!base.go_out_grouping(g_V1, 97, 246))
-        {
-            return false;
-        }
+        if (!base.go_out_grouping(g_V1, 97, 246)) return false;
         base.cursor++;
-        if (!base.go_in_grouping(g_V1, 97, 246))
-        {
-            return false;
-        }
+        if (!base.go_in_grouping(g_V1, 97, 246)) return false;
         base.cursor++;
         I_p2 = base.cursor;
         return true;
@@ -175,16 +163,12 @@ var FinnishStemmer = function() {
     /** @return {boolean} */
     function r_particle_etc() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -192,38 +176,25 @@ var FinnishStemmer = function() {
         base.limit_backward = v_1;
         switch (among_var) {
             case 1:
-                if (!(base.in_grouping_b(g_particle_end, 97, 246)))
-                {
-                    return false;
-                }
+                if (!(base.in_grouping_b(g_particle_end, 97, 246))) return false;
                 break;
             case 2:
-                if (!r_R2())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
                 break;
         }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_possessive() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -234,70 +205,34 @@ var FinnishStemmer = function() {
                 {
                     /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab0: {
-                        if (!(base.eq_s_b("k")))
-                        {
-                            break lab0;
-                        }
+                        if (!(base.eq_s_b("k"))) break lab0;
                         return false;
                     }
                     base.cursor = base.limit - v_2;
                 }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 base.ket = base.cursor;
-                if (!(base.eq_s_b("kse")))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("kse"))) return false;
                 base.bra = base.cursor;
-                if (!base.slice_from("ksi"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ksi")) return false;
                 break;
             case 3:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 4:
-                if (base.find_among_b(a_1) == 0)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.find_among_b(a_1) == 0) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 5:
-                if (base.find_among_b(a_2) == 0)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.find_among_b(a_2) == 0) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 6:
-                if (base.find_among_b(a_3) == 0)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.find_among_b(a_3) == 0) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -305,39 +240,25 @@ var FinnishStemmer = function() {
 
     /** @return {boolean} */
     function r_LONG() {
-        if (base.find_among_b(a_5) == 0)
-        {
-            return false;
-        }
-        return true;
+        return base.find_among_b(a_5) != 0;
     };
 
     /** @return {boolean} */
     function r_VI() {
-        if (!(base.eq_s_b("i")))
-        {
-            return false;
-        }
-        if (!(base.in_grouping_b(g_V2, 97, 246)))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("i"))) return false;
+        if (!(base.in_grouping_b(g_V2, 97, 246))) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_case_ending() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_6);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -345,40 +266,22 @@ var FinnishStemmer = function() {
         base.limit_backward = v_1;
         switch (among_var) {
             case 1:
-                if (!(base.eq_s_b("a")))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("a"))) return false;
                 break;
             case 2:
-                if (!(base.eq_s_b("e")))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("e"))) return false;
                 break;
             case 3:
-                if (!(base.eq_s_b("i")))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("i"))) return false;
                 break;
             case 4:
-                if (!(base.eq_s_b("o")))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("o"))) return false;
                 break;
             case 5:
-                if (!(base.eq_s_b("\u00E4")))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("\u00E4"))) return false;
                 break;
             case 6:
-                if (!(base.eq_s_b("\u00F6")))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("\u00F6"))) return false;
                 break;
             case 7:
                 /** @const */ var /** number */ v_2 = base.limit - base.cursor;
@@ -387,22 +290,17 @@ var FinnishStemmer = function() {
                     lab1: {
                         /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                         lab2: {
-                            if (!r_LONG())
-                            {
-                                break lab2;
-                            }
+                            if (!r_LONG()) break lab2;
                             break lab1;
                         }
                         base.cursor = base.limit - v_4;
-                        if (!(base.eq_s_b("ie")))
-                        {
+                        if (!(base.eq_s_b("ie"))) {
                             base.cursor = base.limit - v_2;
                             break lab0;
                         }
                     }
                     base.cursor = base.limit - v_3;
-                    if (base.cursor <= base.limit_backward)
-                    {
+                    if (base.cursor <= base.limit_backward) {
                         base.cursor = base.limit - v_2;
                         break lab0;
                     }
@@ -411,20 +309,11 @@ var FinnishStemmer = function() {
                 }
                 break;
             case 8:
-                if (!(base.in_grouping_b(g_V1, 97, 246)))
-                {
-                    return false;
-                }
-                if (!(base.in_grouping_b(g_C, 98, 122)))
-                {
-                    return false;
-                }
+                if (!(base.in_grouping_b(g_V1, 97, 246))) return false;
+                if (!(base.in_grouping_b(g_C, 98, 122))) return false;
                 break;
         }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_ending_removed = true;
         return true;
     };
@@ -432,16 +321,12 @@ var FinnishStemmer = function() {
     /** @return {boolean} */
     function r_other_endings() {
         var /** number */ among_var;
-        if (base.cursor < I_p2)
-        {
-            return false;
-        }
+        if (base.cursor < I_p2) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p2;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_7);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -452,84 +337,59 @@ var FinnishStemmer = function() {
                 {
                     /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab0: {
-                        if (!(base.eq_s_b("po")))
-                        {
-                            break lab0;
-                        }
+                        if (!(base.eq_s_b("po"))) break lab0;
                         return false;
                     }
                     base.cursor = base.limit - v_2;
                 }
                 break;
         }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_i_plural() {
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        if (base.find_among_b(a_8) == 0)
-        {
+        if (base.find_among_b(a_8) == 0) {
             base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
         base.limit_backward = v_1;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_t_plural() {
         var /** number */ among_var;
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        if (!(base.eq_s_b("t")))
-        {
+        if (!(base.eq_s_b("t"))) {
             base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
         /** @const */ var /** number */ v_2 = base.limit - base.cursor;
-        if (!(base.in_grouping_b(g_V1, 97, 246)))
-        {
+        if (!(base.in_grouping_b(g_V1, 97, 246))) {
             base.limit_backward = v_1;
             return false;
         }
         base.cursor = base.limit - v_2;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         base.limit_backward = v_1;
-        if (base.cursor < I_p2)
-        {
-            return false;
-        }
+        if (base.cursor < I_p2) return false;
         /** @const */ var /** number */ v_3 = base.limit_backward;
         base.limit_backward = I_p2;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_9);
-        if (among_var == 0)
-        {
+        if (among_var == 0) {
             base.limit_backward = v_3;
             return false;
         }
@@ -540,141 +400,78 @@ var FinnishStemmer = function() {
                 {
                     /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                     lab0: {
-                        if (!(base.eq_s_b("po")))
-                        {
-                            break lab0;
-                        }
+                        if (!(base.eq_s_b("po"))) break lab0;
                         return false;
                     }
                     base.cursor = base.limit - v_4;
                 }
                 break;
         }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_tidy() {
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             /** @const */ var /** number */ v_3 = base.limit - base.cursor;
-            if (!r_LONG())
-            {
-                break lab0;
-            }
+            if (!r_LONG()) break lab0;
             base.cursor = base.limit - v_3;
             base.ket = base.cursor;
-            if (base.cursor <= base.limit_backward)
-            {
-                break lab0;
-            }
+            if (base.cursor <= base.limit_backward) break lab0;
             base.cursor--;
             base.bra = base.cursor;
-            if (!base.slice_del())
-            {
-                return false;
-            }
+            if (!base.slice_del()) return false;
         }
         base.cursor = base.limit - v_2;
         /** @const */ var /** number */ v_4 = base.limit - base.cursor;
         lab1: {
             base.ket = base.cursor;
-            if (!(base.in_grouping_b(g_AEI, 97, 228)))
-            {
-                break lab1;
-            }
+            if (!(base.in_grouping_b(g_AEI, 97, 228))) break lab1;
             base.bra = base.cursor;
-            if (!(base.in_grouping_b(g_C, 98, 122)))
-            {
-                break lab1;
-            }
-            if (!base.slice_del())
-            {
-                return false;
-            }
+            if (!(base.in_grouping_b(g_C, 98, 122))) break lab1;
+            if (!base.slice_del()) return false;
         }
         base.cursor = base.limit - v_4;
         /** @const */ var /** number */ v_5 = base.limit - base.cursor;
         lab2: {
             base.ket = base.cursor;
-            if (!(base.eq_s_b("j")))
-            {
-                break lab2;
-            }
+            if (!(base.eq_s_b("j"))) break lab2;
             base.bra = base.cursor;
             lab3: {
                 /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                 lab4: {
-                    if (!(base.eq_s_b("o")))
-                    {
-                        break lab4;
-                    }
+                    if (!(base.eq_s_b("o"))) break lab4;
                     break lab3;
                 }
                 base.cursor = base.limit - v_6;
-                if (!(base.eq_s_b("u")))
-                {
-                    break lab2;
-                }
+                if (!(base.eq_s_b("u"))) break lab2;
             }
-            if (!base.slice_del())
-            {
-                return false;
-            }
+            if (!base.slice_del()) return false;
         }
         base.cursor = base.limit - v_5;
         /** @const */ var /** number */ v_7 = base.limit - base.cursor;
         lab5: {
             base.ket = base.cursor;
-            if (!(base.eq_s_b("o")))
-            {
-                break lab5;
-            }
+            if (!(base.eq_s_b("o"))) break lab5;
             base.bra = base.cursor;
-            if (!(base.eq_s_b("j")))
-            {
-                break lab5;
-            }
-            if (!base.slice_del())
-            {
-                return false;
-            }
+            if (!(base.eq_s_b("j"))) break lab5;
+            if (!base.slice_del()) return false;
         }
         base.cursor = base.limit - v_7;
         base.limit_backward = v_1;
-        if (!base.go_in_grouping_b(g_V1, 97, 246))
-        {
-            return false;
-        }
+        if (!base.go_in_grouping_b(g_V1, 97, 246)) return false;
         base.ket = base.cursor;
-        if (!(base.in_grouping_b(g_C, 98, 122)))
-        {
-            return false;
-        }
+        if (!(base.in_grouping_b(g_C, 98, 122))) return false;
         base.bra = base.cursor;
         S_x = base.slice_to();
-        if (S_x == '')
-        {
-            return false;
-        }
-        if (!(base.eq_s_b(S_x)))
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (S_x == '') return false;
+        if (!(base.eq_s_b(S_x))) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -698,10 +495,7 @@ var FinnishStemmer = function() {
         base.cursor = base.limit - v_5;
         lab0: {
             lab1: {
-                if (!B_ending_removed)
-                {
-                    break lab1;
-                }
+                if (!B_ending_removed) break lab1;
                 /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                 r_i_plural();
                 base.cursor = base.limit - v_6;

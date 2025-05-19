@@ -1,4 +1,4 @@
-// Generated from arabic.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from arabic.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var ArabicStemmer = function() {
@@ -306,8 +306,7 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     lab2: {
@@ -315,326 +314,167 @@ var ArabicStemmer = function() {
                         lab3: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_0);
-                            if (among_var == 0)
-                            {
-                                break lab3;
-                            }
+                            if (among_var == 0) break lab3;
                             base.ket = base.cursor;
                             switch (among_var) {
                                 case 1:
-                                    if (!base.slice_del())
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_del()) return false;
                                     break;
                                 case 2:
-                                    if (!base.slice_from("0"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("0")) return false;
                                     break;
                                 case 3:
-                                    if (!base.slice_from("1"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("1")) return false;
                                     break;
                                 case 4:
-                                    if (!base.slice_from("2"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("2")) return false;
                                     break;
                                 case 5:
-                                    if (!base.slice_from("3"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("3")) return false;
                                     break;
                                 case 6:
-                                    if (!base.slice_from("4"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("4")) return false;
                                     break;
                                 case 7:
-                                    if (!base.slice_from("5"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("5")) return false;
                                     break;
                                 case 8:
-                                    if (!base.slice_from("6"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("6")) return false;
                                     break;
                                 case 9:
-                                    if (!base.slice_from("7"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("7")) return false;
                                     break;
                                 case 10:
-                                    if (!base.slice_from("8"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("8")) return false;
                                     break;
                                 case 11:
-                                    if (!base.slice_from("9"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("9")) return false;
                                     break;
                                 case 12:
-                                    if (!base.slice_from("\u0621"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0621")) return false;
                                     break;
                                 case 13:
-                                    if (!base.slice_from("\u0623"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0623")) return false;
                                     break;
                                 case 14:
-                                    if (!base.slice_from("\u0625"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0625")) return false;
                                     break;
                                 case 15:
-                                    if (!base.slice_from("\u0626"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0626")) return false;
                                     break;
                                 case 16:
-                                    if (!base.slice_from("\u0622"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0622")) return false;
                                     break;
                                 case 17:
-                                    if (!base.slice_from("\u0624"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0624")) return false;
                                     break;
                                 case 18:
-                                    if (!base.slice_from("\u0627"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0627")) return false;
                                     break;
                                 case 19:
-                                    if (!base.slice_from("\u0628"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0628")) return false;
                                     break;
                                 case 20:
-                                    if (!base.slice_from("\u0629"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0629")) return false;
                                     break;
                                 case 21:
-                                    if (!base.slice_from("\u062A"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u062A")) return false;
                                     break;
                                 case 22:
-                                    if (!base.slice_from("\u062B"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u062B")) return false;
                                     break;
                                 case 23:
-                                    if (!base.slice_from("\u062C"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u062C")) return false;
                                     break;
                                 case 24:
-                                    if (!base.slice_from("\u062D"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u062D")) return false;
                                     break;
                                 case 25:
-                                    if (!base.slice_from("\u062E"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u062E")) return false;
                                     break;
                                 case 26:
-                                    if (!base.slice_from("\u062F"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u062F")) return false;
                                     break;
                                 case 27:
-                                    if (!base.slice_from("\u0630"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0630")) return false;
                                     break;
                                 case 28:
-                                    if (!base.slice_from("\u0631"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0631")) return false;
                                     break;
                                 case 29:
-                                    if (!base.slice_from("\u0632"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0632")) return false;
                                     break;
                                 case 30:
-                                    if (!base.slice_from("\u0633"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0633")) return false;
                                     break;
                                 case 31:
-                                    if (!base.slice_from("\u0634"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0634")) return false;
                                     break;
                                 case 32:
-                                    if (!base.slice_from("\u0635"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0635")) return false;
                                     break;
                                 case 33:
-                                    if (!base.slice_from("\u0636"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0636")) return false;
                                     break;
                                 case 34:
-                                    if (!base.slice_from("\u0637"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0637")) return false;
                                     break;
                                 case 35:
-                                    if (!base.slice_from("\u0638"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0638")) return false;
                                     break;
                                 case 36:
-                                    if (!base.slice_from("\u0639"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0639")) return false;
                                     break;
                                 case 37:
-                                    if (!base.slice_from("\u063A"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u063A")) return false;
                                     break;
                                 case 38:
-                                    if (!base.slice_from("\u0641"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0641")) return false;
                                     break;
                                 case 39:
-                                    if (!base.slice_from("\u0642"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0642")) return false;
                                     break;
                                 case 40:
-                                    if (!base.slice_from("\u0643"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0643")) return false;
                                     break;
                                 case 41:
-                                    if (!base.slice_from("\u0644"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0644")) return false;
                                     break;
                                 case 42:
-                                    if (!base.slice_from("\u0645"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0645")) return false;
                                     break;
                                 case 43:
-                                    if (!base.slice_from("\u0646"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0646")) return false;
                                     break;
                                 case 44:
-                                    if (!base.slice_from("\u0647"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0647")) return false;
                                     break;
                                 case 45:
-                                    if (!base.slice_from("\u0648"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0648")) return false;
                                     break;
                                 case 46:
-                                    if (!base.slice_from("\u0649"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0649")) return false;
                                     break;
                                 case 47:
-                                    if (!base.slice_from("\u064A"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u064A")) return false;
                                     break;
                                 case 48:
-                                    if (!base.slice_from("\u0644\u0627"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0644\u0627")) return false;
                                     break;
                                 case 49:
-                                    if (!base.slice_from("\u0644\u0623"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0644\u0623")) return false;
                                     break;
                                 case 50:
-                                    if (!base.slice_from("\u0644\u0625"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0644\u0625")) return false;
                                     break;
                                 case 51:
-                                    if (!base.slice_from("\u0644\u0622"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0644\u0622")) return false;
                                     break;
                             }
                             break lab2;
                         }
                         base.cursor = v_3;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab1;
-                        }
+                        if (base.cursor >= base.limit) break lab1;
                         base.cursor++;
                     }
                     continue;
@@ -654,22 +494,15 @@ var ArabicStemmer = function() {
         lab0: {
             base.limit_backward = base.cursor; base.cursor = base.limit;
             base.ket = base.cursor;
-            if (base.find_among_b(a_1) == 0)
-            {
-                break lab0;
-            }
+            if (base.find_among_b(a_1) == 0) break lab0;
             base.bra = base.cursor;
-            if (!base.slice_from("\u0621"))
-            {
-                return false;
-            }
+            if (!base.slice_from("\u0621")) return false;
             base.cursor = base.limit_backward;
         }
         base.cursor = v_1;
         /** @const */ var /** number */ v_2 = base.cursor;
         lab1: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_3 = base.cursor;
                 lab2: {
                     lab3: {
@@ -677,38 +510,23 @@ var ArabicStemmer = function() {
                         lab4: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_2);
-                            if (among_var == 0)
-                            {
-                                break lab4;
-                            }
+                            if (among_var == 0) break lab4;
                             base.ket = base.cursor;
                             switch (among_var) {
                                 case 1:
-                                    if (!base.slice_from("\u0627"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0627")) return false;
                                     break;
                                 case 2:
-                                    if (!base.slice_from("\u0648"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u0648")) return false;
                                     break;
                                 case 3:
-                                    if (!base.slice_from("\u064A"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u064A")) return false;
                                     break;
                             }
                             break lab3;
                         }
                         base.cursor = v_4;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab2;
-                        }
+                        if (base.cursor >= base.limit) break lab2;
                         base.cursor++;
                     }
                     continue;
@@ -726,26 +544,17 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         base.bra = base.cursor;
         among_var = base.find_among(a_3);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (base.current.length <= 4)
-                {
-                    return false;
-                }
+                if (base.current.length <= 4) return false;
                 B_is_noun = true;
                 B_is_verb = false;
                 B_is_defined = true;
                 break;
             case 2:
-                if (base.current.length <= 3)
-                {
-                    return false;
-                }
+                if (base.current.length <= 3) return false;
                 B_is_noun = true;
                 B_is_verb = false;
                 B_is_defined = true;
@@ -759,51 +568,24 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         base.bra = base.cursor;
         among_var = base.find_among(a_4);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (base.current.length <= 3)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u0623"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 3) return false;
+                if (!base.slice_from("\u0623")) return false;
                 break;
             case 2:
-                if (base.current.length <= 3)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u0622"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 3) return false;
+                if (!base.slice_from("\u0622")) return false;
                 break;
             case 3:
-                if (base.current.length <= 3)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u0627"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 3) return false;
+                if (!base.slice_from("\u0627")) return false;
                 break;
             case 4:
-                if (base.current.length <= 3)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u0625"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 3) return false;
+                if (!base.slice_from("\u0625")) return false;
                 break;
         }
         return true;
@@ -812,30 +594,18 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Prefix_Step2() {
         base.bra = base.cursor;
-        if (base.find_among(a_5) == 0)
-        {
-            return false;
-        }
+        if (base.find_among(a_5) == 0) return false;
         base.ket = base.cursor;
-        if (base.current.length <= 3)
-        {
-            return false;
-        }
+        if (base.current.length <= 3) return false;
         {
             /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
-                if (!(base.eq_s("\u0627")))
-                {
-                    break lab0;
-                }
+                if (!(base.eq_s("\u0627"))) break lab0;
                 return false;
             }
             base.cursor = v_1;
         }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -844,31 +614,16 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         base.bra = base.cursor;
         among_var = base.find_among(a_6);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (base.current.length <= 5)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length <= 5) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (base.current.length <= 4)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length <= 4) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -879,41 +634,20 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         base.bra = base.cursor;
         among_var = base.find_among(a_7);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (base.current.length <= 3)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length <= 3) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (base.current.length <= 3)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u0628"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 3) return false;
+                if (!base.slice_from("\u0628")) return false;
                 break;
             case 3:
-                if (base.current.length <= 3)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u0643"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 3) return false;
+                if (!base.slice_from("\u0643")) return false;
                 break;
         }
         return true;
@@ -924,51 +658,24 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         base.bra = base.cursor;
         among_var = base.find_among(a_8);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (base.current.length <= 4)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u064A"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 4) return false;
+                if (!base.slice_from("\u064A")) return false;
                 break;
             case 2:
-                if (base.current.length <= 4)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u062A"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 4) return false;
+                if (!base.slice_from("\u062A")) return false;
                 break;
             case 3:
-                if (base.current.length <= 4)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u0646"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 4) return false;
+                if (!base.slice_from("\u0646")) return false;
                 break;
             case 4:
-                if (base.current.length <= 4)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u0623"))
-                {
-                    return false;
-                }
+                if (base.current.length <= 4) return false;
+                if (!base.slice_from("\u0623")) return false;
                 break;
         }
         return true;
@@ -977,21 +684,12 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Prefix_Step4_Verb() {
         base.bra = base.cursor;
-        if (base.find_among(a_9) == 0)
-        {
-            return false;
-        }
+        if (base.find_among(a_9) == 0) return false;
         base.ket = base.cursor;
-        if (base.current.length <= 4)
-        {
-            return false;
-        }
+        if (base.current.length <= 4) return false;
         B_is_verb = true;
         B_is_noun = false;
-        if (!base.slice_from("\u0627\u0633\u062A"))
-        {
-            return false;
-        }
+        if (!base.slice_from("\u0627\u0633\u062A")) return false;
         return true;
     };
 
@@ -1000,41 +698,20 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_10);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (base.current.length < 4)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 4) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (base.current.length < 5)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 5) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 3:
-                if (base.current.length < 6)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 6) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -1043,114 +720,60 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_Noun_Step1b() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_11) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_11) == 0) return false;
         base.bra = base.cursor;
-        if (base.current.length <= 5)
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (base.current.length <= 5) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step2a() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_12) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_12) == 0) return false;
         base.bra = base.cursor;
-        if (base.current.length <= 4)
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (base.current.length <= 4) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step2b() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_13) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_13) == 0) return false;
         base.bra = base.cursor;
-        if (base.current.length < 5)
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (base.current.length < 5) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step2c1() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_14) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_14) == 0) return false;
         base.bra = base.cursor;
-        if (base.current.length < 4)
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (base.current.length < 4) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step2c2() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_15) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_15) == 0) return false;
         base.bra = base.cursor;
-        if (base.current.length < 4)
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (base.current.length < 4) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_Suffix_Noun_Step3() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_16) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_16) == 0) return false;
         base.bra = base.cursor;
-        if (base.current.length < 3)
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (base.current.length < 3) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -1159,41 +782,20 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_17);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (base.current.length < 4)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 4) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (base.current.length < 5)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 5) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 3:
-                if (base.current.length < 6)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 6) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -1204,51 +806,24 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_18);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (base.current.length < 4)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 4) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (base.current.length < 5)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 5) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 3:
-                if (base.current.length <= 5)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length <= 5) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 4:
-                if (base.current.length < 6)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 6) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -1257,19 +832,10 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_Verb_Step2b() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_19) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_19) == 0) return false;
         base.bra = base.cursor;
-        if (base.current.length < 5)
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (base.current.length < 5) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -1278,31 +844,16 @@ var ArabicStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_20);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (base.current.length < 4)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 4) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (base.current.length < 6)
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (base.current.length < 6) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -1311,15 +862,9 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_All_alef_maqsura() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_21) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_21) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_from("\u064A"))
-        {
-            return false;
-        }
+        if (!base.slice_from("\u064A")) return false;
         return true;
     };
 
@@ -1337,265 +882,167 @@ var ArabicStemmer = function() {
             lab1: {
                 /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    if (!B_is_verb)
-                    {
-                        break lab2;
-                    }
+                    if (!B_is_verb) break lab2;
                     lab3: {
                         /** @const */ var /** number */ v_4 = base.limit - base.cursor;
                         lab4: {
                             {
                                 var v_5 = 1;
-                                while(true)
-                                {
+                                while(true) {
                                     /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                                     lab5: {
-                                        if (!r_Suffix_Verb_Step1())
-                                        {
-                                            break lab5;
-                                        }
+                                        if (!r_Suffix_Verb_Step1()) break lab5;
                                         v_5--;
                                         continue;
                                     }
                                     base.cursor = base.limit - v_6;
                                     break;
                                 }
-                                if (v_5 > 0)
-                                {
-                                    break lab4;
-                                }
+                                if (v_5 > 0) break lab4;
                             }
                             lab6: {
                                 /** @const */ var /** number */ v_7 = base.limit - base.cursor;
                                 lab7: {
-                                    if (!r_Suffix_Verb_Step2a())
-                                    {
-                                        break lab7;
-                                    }
+                                    if (!r_Suffix_Verb_Step2a()) break lab7;
                                     break lab6;
                                 }
                                 base.cursor = base.limit - v_7;
                                 lab8: {
-                                    if (!r_Suffix_Verb_Step2c())
-                                    {
-                                        break lab8;
-                                    }
+                                    if (!r_Suffix_Verb_Step2c()) break lab8;
                                     break lab6;
                                 }
                                 base.cursor = base.limit - v_7;
-                                if (base.cursor <= base.limit_backward)
-                                {
-                                    break lab4;
-                                }
+                                if (base.cursor <= base.limit_backward) break lab4;
                                 base.cursor--;
                             }
                             break lab3;
                         }
                         base.cursor = base.limit - v_4;
                         lab9: {
-                            if (!r_Suffix_Verb_Step2b())
-                            {
-                                break lab9;
-                            }
+                            if (!r_Suffix_Verb_Step2b()) break lab9;
                             break lab3;
                         }
                         base.cursor = base.limit - v_4;
-                        if (!r_Suffix_Verb_Step2a())
-                        {
-                            break lab2;
-                        }
+                        if (!r_Suffix_Verb_Step2a()) break lab2;
                     }
                     break lab1;
                 }
                 base.cursor = base.limit - v_3;
                 lab10: {
-                    if (!B_is_noun)
-                    {
-                        break lab10;
-                    }
+                    if (!B_is_noun) break lab10;
                     /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                     lab11: {
                         lab12: {
                             /** @const */ var /** number */ v_9 = base.limit - base.cursor;
                             lab13: {
-                                if (!r_Suffix_Noun_Step2c2())
-                                {
-                                    break lab13;
-                                }
+                                if (!r_Suffix_Noun_Step2c2()) break lab13;
                                 break lab12;
                             }
                             base.cursor = base.limit - v_9;
                             lab14: {
+                                if (B_is_defined) break lab14;
+                                if (!r_Suffix_Noun_Step1a()) break lab14;
                                 lab15: {
-                                    if (!B_is_defined)
-                                    {
+                                    /** @const */ var /** number */ v_10 = base.limit - base.cursor;
+                                    lab16: {
+                                        if (!r_Suffix_Noun_Step2a()) break lab16;
                                         break lab15;
                                     }
-                                    break lab14;
-                                }
-                                if (!r_Suffix_Noun_Step1a())
-                                {
-                                    break lab14;
-                                }
-                                lab16: {
-                                    /** @const */ var /** number */ v_10 = base.limit - base.cursor;
+                                    base.cursor = base.limit - v_10;
                                     lab17: {
-                                        if (!r_Suffix_Noun_Step2a())
-                                        {
-                                            break lab17;
-                                        }
-                                        break lab16;
+                                        if (!r_Suffix_Noun_Step2b()) break lab17;
+                                        break lab15;
                                     }
                                     base.cursor = base.limit - v_10;
                                     lab18: {
-                                        if (!r_Suffix_Noun_Step2b())
-                                        {
-                                            break lab18;
-                                        }
-                                        break lab16;
+                                        if (!r_Suffix_Noun_Step2c1()) break lab18;
+                                        break lab15;
                                     }
                                     base.cursor = base.limit - v_10;
-                                    lab19: {
-                                        if (!r_Suffix_Noun_Step2c1())
-                                        {
-                                            break lab19;
-                                        }
-                                        break lab16;
-                                    }
-                                    base.cursor = base.limit - v_10;
-                                    if (base.cursor <= base.limit_backward)
-                                    {
-                                        break lab14;
-                                    }
+                                    if (base.cursor <= base.limit_backward) break lab14;
                                     base.cursor--;
                                 }
                                 break lab12;
                             }
                             base.cursor = base.limit - v_9;
-                            lab20: {
-                                if (!r_Suffix_Noun_Step1b())
-                                {
-                                    break lab20;
-                                }
-                                lab21: {
+                            lab19: {
+                                if (!r_Suffix_Noun_Step1b()) break lab19;
+                                lab20: {
                                     /** @const */ var /** number */ v_11 = base.limit - base.cursor;
-                                    lab22: {
-                                        if (!r_Suffix_Noun_Step2a())
-                                        {
-                                            break lab22;
-                                        }
-                                        break lab21;
-                                    }
-                                    base.cursor = base.limit - v_11;
-                                    lab23: {
-                                        if (!r_Suffix_Noun_Step2b())
-                                        {
-                                            break lab23;
-                                        }
-                                        break lab21;
-                                    }
-                                    base.cursor = base.limit - v_11;
-                                    if (!r_Suffix_Noun_Step2c1())
-                                    {
+                                    lab21: {
+                                        if (!r_Suffix_Noun_Step2a()) break lab21;
                                         break lab20;
                                     }
-                                }
-                                break lab12;
-                            }
-                            base.cursor = base.limit - v_9;
-                            lab24: {
-                                lab25: {
-                                    if (!B_is_defined)
-                                    {
-                                        break lab25;
+                                    base.cursor = base.limit - v_11;
+                                    lab22: {
+                                        if (!r_Suffix_Noun_Step2b()) break lab22;
+                                        break lab20;
                                     }
-                                    break lab24;
-                                }
-                                if (!r_Suffix_Noun_Step2a())
-                                {
-                                    break lab24;
+                                    base.cursor = base.limit - v_11;
+                                    if (!r_Suffix_Noun_Step2c1()) break lab19;
                                 }
                                 break lab12;
                             }
                             base.cursor = base.limit - v_9;
-                            if (!r_Suffix_Noun_Step2b())
-                            {
+                            lab23: {
+                                if (B_is_defined) break lab23;
+                                if (!r_Suffix_Noun_Step2a()) break lab23;
+                                break lab12;
+                            }
+                            base.cursor = base.limit - v_9;
+                            if (!r_Suffix_Noun_Step2b()) {
                                 base.cursor = base.limit - v_8;
                                 break lab11;
                             }
                         }
                     }
-                    if (!r_Suffix_Noun_Step3())
-                    {
-                        break lab10;
-                    }
+                    if (!r_Suffix_Noun_Step3()) break lab10;
                     break lab1;
                 }
                 base.cursor = base.limit - v_3;
-                if (!r_Suffix_All_alef_maqsura())
-                {
-                    break lab0;
-                }
+                if (!r_Suffix_All_alef_maqsura()) break lab0;
             }
         }
         base.cursor = base.limit - v_2;
         base.cursor = base.limit_backward;
         /** @const */ var /** number */ v_12 = base.cursor;
-        lab26: {
+        lab24: {
             /** @const */ var /** number */ v_13 = base.cursor;
-            lab27: {
-                if (!r_Prefix_Step1())
-                {
+            lab25: {
+                if (!r_Prefix_Step1()) {
                     base.cursor = v_13;
-                    break lab27;
+                    break lab25;
                 }
             }
             /** @const */ var /** number */ v_14 = base.cursor;
-            lab28: {
-                if (!r_Prefix_Step2())
-                {
+            lab26: {
+                if (!r_Prefix_Step2()) {
                     base.cursor = v_14;
-                    break lab28;
+                    break lab26;
                 }
             }
-            lab29: {
+            lab27: {
                 /** @const */ var /** number */ v_15 = base.cursor;
+                lab28: {
+                    if (!r_Prefix_Step3a_Noun()) break lab28;
+                    break lab27;
+                }
+                base.cursor = v_15;
+                lab29: {
+                    if (!B_is_noun) break lab29;
+                    if (!r_Prefix_Step3b_Noun()) break lab29;
+                    break lab27;
+                }
+                base.cursor = v_15;
+                if (!B_is_verb) break lab24;
+                /** @const */ var /** number */ v_16 = base.cursor;
                 lab30: {
-                    if (!r_Prefix_Step3a_Noun())
-                    {
+                    if (!r_Prefix_Step3_Verb()) {
+                        base.cursor = v_16;
                         break lab30;
                     }
-                    break lab29;
                 }
-                base.cursor = v_15;
-                lab31: {
-                    if (!B_is_noun)
-                    {
-                        break lab31;
-                    }
-                    if (!r_Prefix_Step3b_Noun())
-                    {
-                        break lab31;
-                    }
-                    break lab29;
-                }
-                base.cursor = v_15;
-                if (!B_is_verb)
-                {
-                    break lab26;
-                }
-                /** @const */ var /** number */ v_16 = base.cursor;
-                lab32: {
-                    if (!r_Prefix_Step3_Verb())
-                    {
-                        base.cursor = v_16;
-                        break lab32;
-                    }
-                }
-                if (!r_Prefix_Step4_Verb())
-                {
-                    break lab26;
-                }
+                if (!r_Prefix_Step4_Verb()) break lab24;
             }
         }
         base.cursor = v_12;

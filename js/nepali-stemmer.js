@@ -1,4 +1,4 @@
-// Generated from nepali.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from nepali.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var NepaliStemmer = function() {
@@ -25,18 +25,12 @@ var NepaliStemmer = function() {
     ];
 
     /** @const */ var a_1 = [
-        ["\u0901", -1, -1],
-        ["\u0902", -1, -1],
-        ["\u0948", -1, -1]
-    ];
-
-    /** @const */ var a_2 = [
         ["\u0901", -1, 1],
         ["\u0902", -1, 1],
         ["\u0948", -1, 2]
     ];
 
-    /** @const */ var a_3 = [
+    /** @const */ var a_2 = [
         ["\u0925\u093F\u090F", -1, 1],
         ["\u091B", -1, 1],
         ["\u0907\u091B", 1, 1],
@@ -136,58 +130,29 @@ var NepaliStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
                 lab0: {
                     /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
-                        lab2: {
-                            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
-                            lab3: {
-                                if (!(base.eq_s_b("\u090F")))
-                                {
-                                    break lab3;
-                                }
-                                break lab2;
-                            }
-                            base.cursor = base.limit - v_2;
-                            if (!(base.eq_s_b("\u0947")))
-                            {
-                                break lab1;
-                            }
-                        }
+                        if (!(base.eq_s_b("\u090F"))) break lab1;
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
-                    if (!base.slice_del())
-                    {
-                        return false;
+                    lab2: {
+                        if (!(base.eq_s_b("\u0947"))) break lab2;
+                        break lab0;
                     }
+                    base.cursor = base.limit - v_1;
+                    if (!base.slice_del()) return false;
                 }
                 break;
         }
-        return true;
-    };
-
-    /** @return {boolean} */
-    function r_check_category_2() {
-        base.ket = base.cursor;
-        if (base.find_among_b(a_1) == 0)
-        {
-            return false;
-        }
-        base.bra = base.cursor;
         return true;
     };
 
@@ -195,59 +160,35 @@ var NepaliStemmer = function() {
     function r_remove_category_2() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_2);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        among_var = base.find_among_b(a_1);
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
                 lab0: {
                     /** @const */ var /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
-                        if (!(base.eq_s_b("\u092F\u094C")))
-                        {
-                            break lab1;
-                        }
+                        if (!(base.eq_s_b("\u092F\u094C"))) break lab1;
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
                     lab2: {
-                        if (!(base.eq_s_b("\u091B\u094C")))
-                        {
-                            break lab2;
-                        }
+                        if (!(base.eq_s_b("\u091B\u094C"))) break lab2;
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
                     lab3: {
-                        if (!(base.eq_s_b("\u0928\u094C")))
-                        {
-                            break lab3;
-                        }
+                        if (!(base.eq_s_b("\u0928\u094C"))) break lab3;
                         break lab0;
                     }
                     base.cursor = base.limit - v_1;
-                    if (!(base.eq_s_b("\u0925\u0947")))
-                    {
-                        return false;
-                    }
+                    if (!(base.eq_s_b("\u0925\u0947"))) return false;
                 }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!(base.eq_s_b("\u0924\u094D\u0930")))
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("\u0924\u094D\u0930"))) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -256,15 +197,9 @@ var NepaliStemmer = function() {
     /** @return {boolean} */
     function r_remove_category_3() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_3) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_2) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -273,37 +208,18 @@ var NepaliStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         r_remove_category_1();
         base.cursor = base.limit - v_1;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
-        lab0: {
-            while(true)
-            {
+        while(true) {
+            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            lab0: {
                 /** @const */ var /** number */ v_3 = base.limit - base.cursor;
-                lab1: {
-                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
-                    lab2: {
-                        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
-                        if (!r_check_category_2())
-                        {
-                            break lab2;
-                        }
-                        base.cursor = base.limit - v_5;
-                        if (!r_remove_category_2())
-                        {
-                            break lab2;
-                        }
-                    }
-                    base.cursor = base.limit - v_4;
-                    if (!r_remove_category_3())
-                    {
-                        break lab1;
-                    }
-                    continue;
-                }
+                r_remove_category_2();
                 base.cursor = base.limit - v_3;
-                break;
+                if (!r_remove_category_3()) break lab0;
+                continue;
             }
+            base.cursor = base.limit - v_2;
+            break;
         }
-        base.cursor = base.limit - v_2;
         base.cursor = base.limit_backward;
         return true;
     };

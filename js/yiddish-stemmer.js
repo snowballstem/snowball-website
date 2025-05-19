@@ -1,4 +1,4 @@
-// Generated from yiddish.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from yiddish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var YiddishStemmer = function() {
@@ -203,8 +203,8 @@ var YiddishStemmer = function() {
 
     /** @const */ var /** Array<int> */ g_consonant = [239, 254, 253, 131];
 
-    var /** number */ I_x = 0;
-    var /** number */ I_p1 = 0;
+    var /** number */ I_x;
+    var /** number */ I_p1;
 
 
     /** @return {boolean} */
@@ -212,8 +212,7 @@ var YiddishStemmer = function() {
         var /** number */ among_var;
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
@@ -222,102 +221,63 @@ var YiddishStemmer = function() {
                         lab3: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_0);
-                            if (among_var == 0)
-                            {
-                                break lab3;
-                            }
+                            if (among_var == 0) break lab3;
                             base.ket = base.cursor;
                             switch (among_var) {
                                 case 1:
                                     {
                                         /** @const */ var /** number */ v_4 = base.cursor;
                                         lab4: {
-                                            if (!(base.eq_s("\u05BC")))
-                                            {
-                                                break lab4;
-                                            }
+                                            if (!(base.eq_s("\u05BC"))) break lab4;
                                             break lab3;
                                         }
                                         base.cursor = v_4;
                                     }
-                                    if (!base.slice_from("\u05F0"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u05F0")) return false;
                                     break;
                                 case 2:
                                     {
                                         /** @const */ var /** number */ v_5 = base.cursor;
                                         lab5: {
-                                            if (!(base.eq_s("\u05B4")))
-                                            {
-                                                break lab5;
-                                            }
+                                            if (!(base.eq_s("\u05B4"))) break lab5;
                                             break lab3;
                                         }
                                         base.cursor = v_5;
                                     }
-                                    if (!base.slice_from("\u05F1"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u05F1")) return false;
                                     break;
                                 case 3:
                                     {
                                         /** @const */ var /** number */ v_6 = base.cursor;
                                         lab6: {
-                                            if (!(base.eq_s("\u05B4")))
-                                            {
-                                                break lab6;
-                                            }
+                                            if (!(base.eq_s("\u05B4"))) break lab6;
                                             break lab3;
                                         }
                                         base.cursor = v_6;
                                     }
-                                    if (!base.slice_from("\u05F2"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u05F2")) return false;
                                     break;
                                 case 4:
-                                    if (!base.slice_from("\u05DB"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u05DB")) return false;
                                     break;
                                 case 5:
-                                    if (!base.slice_from("\u05DE"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u05DE")) return false;
                                     break;
                                 case 6:
-                                    if (!base.slice_from("\u05E0"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u05E0")) return false;
                                     break;
                                 case 7:
-                                    if (!base.slice_from("\u05E4"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u05E4")) return false;
                                     break;
                                 case 8:
-                                    if (!base.slice_from("\u05E6"))
-                                    {
-                                        return false;
-                                    }
+                                    if (!base.slice_from("\u05E6")) return false;
                                     break;
                             }
                             base.cursor = v_3;
                             break golab2;
                         }
                         base.cursor = v_3;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab1;
-                        }
+                        if (base.cursor >= base.limit) break lab1;
                         base.cursor++;
                     }
                     continue;
@@ -329,8 +289,7 @@ var YiddishStemmer = function() {
         base.cursor = v_1;
         /** @const */ var /** number */ v_7 = base.cursor;
         lab7: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_8 = base.cursor;
                 lab8: {
                     golab9: while(true)
@@ -338,23 +297,14 @@ var YiddishStemmer = function() {
                         /** @const */ var /** number */ v_9 = base.cursor;
                         lab10: {
                             base.bra = base.cursor;
-                            if (!(base.in_grouping(g_niked, 1456, 1474)))
-                            {
-                                break lab10;
-                            }
+                            if (!(base.in_grouping(g_niked, 1456, 1474))) break lab10;
                             base.ket = base.cursor;
-                            if (!base.slice_del())
-                            {
-                                return false;
-                            }
+                            if (!base.slice_del()) return false;
                             base.cursor = v_9;
                             break golab9;
                         }
                         base.cursor = v_9;
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab8;
-                        }
+                        if (base.cursor >= base.limit) break lab8;
                         base.cursor++;
                     }
                     continue;
@@ -373,8 +323,7 @@ var YiddishStemmer = function() {
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
             base.bra = base.cursor;
-            if (!(base.eq_s("\u05D2\u05E2")))
-            {
+            if (!(base.eq_s("\u05D2\u05E2"))) {
                 base.cursor = v_1;
                 break lab0;
             }
@@ -385,40 +334,27 @@ var YiddishStemmer = function() {
                     lab2: {
                         /** @const */ var /** number */ v_3 = base.cursor;
                         lab3: {
-                            if (!(base.eq_s("\u05DC\u05D8")))
-                            {
-                                break lab3;
-                            }
+                            if (!(base.eq_s("\u05DC\u05D8"))) break lab3;
                             break lab2;
                         }
                         base.cursor = v_3;
                         lab4: {
-                            if (!(base.eq_s("\u05D1\u05E0")))
-                            {
-                                break lab4;
-                            }
+                            if (!(base.eq_s("\u05D1\u05E0"))) break lab4;
                             break lab2;
                         }
                         base.cursor = v_3;
-                        if (base.cursor < base.limit)
-                        {
-                            break lab1;
-                        }
+                        if (base.cursor < base.limit) break lab1;
                     }
                     base.cursor = v_1;
                     break lab0;
                 }
                 base.cursor = v_2;
             }
-            if (!base.slice_from("GE"))
-            {
-                return false;
-            }
+            if (!base.slice_from("GE")) return false;
         }
         /** @const */ var /** number */ v_4 = base.cursor;
         lab5: {
-            if (base.find_among(a_1) == 0)
-            {
+            if (base.find_among(a_1) == 0) {
                 base.cursor = v_4;
                 break lab5;
             }
@@ -429,86 +365,57 @@ var YiddishStemmer = function() {
                     lab8: {
                         /** @const */ var /** number */ v_7 = base.cursor;
                         lab9: {
-                            if (!(base.eq_s("\u05E6\u05D5\u05D2\u05E0")))
-                            {
-                                break lab9;
-                            }
+                            if (!(base.eq_s("\u05E6\u05D5\u05D2\u05E0"))) break lab9;
                             break lab8;
                         }
                         base.cursor = v_7;
                         lab10: {
-                            if (!(base.eq_s("\u05E6\u05D5\u05E7\u05D8")))
-                            {
-                                break lab10;
-                            }
+                            if (!(base.eq_s("\u05E6\u05D5\u05E7\u05D8"))) break lab10;
                             break lab8;
                         }
                         base.cursor = v_7;
-                        if (!(base.eq_s("\u05E6\u05D5\u05E7\u05E0")))
-                        {
-                            break lab7;
-                        }
+                        if (!(base.eq_s("\u05E6\u05D5\u05E7\u05E0"))) break lab7;
                     }
-                    if (base.cursor < base.limit)
-                    {
-                        break lab7;
-                    }
+                    if (base.cursor < base.limit) break lab7;
                     base.cursor = v_6;
                     break lab6;
                 }
                 base.cursor = v_5;
                 lab11: {
                     /** @const */ var /** number */ v_8 = base.cursor;
-                    if (!(base.eq_s("\u05D2\u05E2\u05D1\u05E0")))
-                    {
-                        break lab11;
-                    }
+                    if (!(base.eq_s("\u05D2\u05E2\u05D1\u05E0"))) break lab11;
                     base.cursor = v_8;
                     break lab6;
                 }
                 base.cursor = v_5;
                 lab12: {
                     base.bra = base.cursor;
-                    if (!(base.eq_s("\u05D2\u05E2")))
-                    {
-                        break lab12;
-                    }
+                    if (!(base.eq_s("\u05D2\u05E2"))) break lab12;
                     base.ket = base.cursor;
-                    if (!base.slice_from("GE"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("GE")) return false;
                     break lab6;
                 }
                 base.cursor = v_5;
                 base.bra = base.cursor;
-                if (!(base.eq_s("\u05E6\u05D5")))
-                {
+                if (!(base.eq_s("\u05E6\u05D5"))) {
                     base.cursor = v_4;
                     break lab5;
                 }
                 base.ket = base.cursor;
-                if (!base.slice_from("TSU"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("TSU")) return false;
             }
         }
         /** @const */ var /** number */ v_9 = base.cursor;
         {
             /** @const */ var /** number */ c1 = base.cursor + 3;
-            if (c1 > base.limit)
-            {
-                return false;
-            }
+            if (c1 > base.limit) return false;
             base.cursor = c1;
         }
         I_x = base.cursor;
         base.cursor = v_9;
         /** @const */ var /** number */ v_10 = base.cursor;
         lab13: {
-            if (base.find_among(a_2) == 0)
-            {
+            if (base.find_among(a_2) == 0) {
                 base.cursor = v_10;
                 break lab13;
             }
@@ -516,38 +423,20 @@ var YiddishStemmer = function() {
         {
             /** @const */ var /** number */ v_11 = base.cursor;
             lab14: {
-                if (!(base.in_grouping(g_consonant, 1489, 1520)))
-                {
-                    break lab14;
-                }
-                if (!(base.in_grouping(g_consonant, 1489, 1520)))
-                {
-                    break lab14;
-                }
-                if (!(base.in_grouping(g_consonant, 1489, 1520)))
-                {
-                    break lab14;
-                }
+                if (!(base.in_grouping(g_consonant, 1489, 1520))) break lab14;
+                if (!(base.in_grouping(g_consonant, 1489, 1520))) break lab14;
+                if (!(base.in_grouping(g_consonant, 1489, 1520))) break lab14;
                 I_p1 = base.cursor;
                 return false;
             }
             base.cursor = v_11;
         }
-        if (!base.go_out_grouping(g_vowel, 1488, 1522))
-        {
-            return false;
-        }
+        if (!base.go_out_grouping(g_vowel, 1488, 1522)) return false;
         base.cursor++;
-        if (!base.go_in_grouping(g_vowel, 1488, 1522))
-        {
-            return false;
-        }
+        if (!base.go_in_grouping(g_vowel, 1488, 1522)) return false;
         I_p1 = base.cursor;
         lab15: {
-            if (I_p1 >= I_x)
-            {
-                break lab15;
-            }
+            if (I_p1 >= I_x) break lab15;
             I_p1 = I_x;
         }
         return true;
@@ -570,204 +459,102 @@ var YiddishStemmer = function() {
         lab0: {
             base.ket = base.cursor;
             among_var = base.find_among_b(a_4);
-            if (among_var == 0)
-            {
-                break lab0;
-            }
+            if (among_var == 0) break lab0;
             base.bra = base.cursor;
             switch (among_var) {
                 case 1:
-                    if (!r_R1())
-                    {
-                        break lab0;
-                    }
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                    if (!r_R1()) break lab0;
+                    if (!base.slice_del()) return false;
                     break;
                 case 2:
-                    if (!r_R1())
-                    {
-                        break lab0;
-                    }
-                    if (!base.slice_from("\u05D9\u05E2"))
-                    {
-                        return false;
-                    }
+                    if (!r_R1()) break lab0;
+                    if (!base.slice_from("\u05D9\u05E2")) return false;
                     break;
                 case 3:
-                    if (!r_R1())
-                    {
-                        break lab0;
-                    }
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                    if (!r_R1()) break lab0;
+                    if (!base.slice_del()) return false;
                     base.ket = base.cursor;
                     among_var = base.find_among_b(a_3);
-                    if (among_var == 0)
-                    {
-                        break lab0;
-                    }
+                    if (among_var == 0) break lab0;
                     base.bra = base.cursor;
                     switch (among_var) {
                         case 1:
-                            if (!base.slice_from("\u05D2\u05F2"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05D2\u05F2")) return false;
                             break;
                         case 2:
-                            if (!base.slice_from("\u05E0\u05E2\u05DE"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E0\u05E2\u05DE")) return false;
                             break;
                         case 3:
-                            if (!base.slice_from("\u05DE\u05F2\u05D3"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05DE\u05F2\u05D3")) return false;
                             break;
                         case 4:
-                            if (!base.slice_from("\u05D1\u05F2\u05D8"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05D1\u05F2\u05D8")) return false;
                             break;
                         case 5:
-                            if (!base.slice_from("\u05D1\u05F2\u05E1"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05D1\u05F2\u05E1")) return false;
                             break;
                         case 6:
-                            if (!base.slice_from("\u05F0\u05F2\u05D6"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05F0\u05F2\u05D6")) return false;
                             break;
                         case 7:
-                            if (!base.slice_from("\u05D8\u05E8\u05F2\u05D1"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05D8\u05E8\u05F2\u05D1")) return false;
                             break;
                         case 8:
-                            if (!base.slice_from("\u05DC\u05F2\u05D8"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05DC\u05F2\u05D8")) return false;
                             break;
                         case 9:
-                            if (!base.slice_from("\u05E7\u05DC\u05F2\u05D1"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E7\u05DC\u05F2\u05D1")) return false;
                             break;
                         case 10:
-                            if (!base.slice_from("\u05E8\u05F2\u05D1"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E8\u05F2\u05D1")) return false;
                             break;
                         case 11:
-                            if (!base.slice_from("\u05E8\u05F2\u05E1"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E8\u05F2\u05E1")) return false;
                             break;
                         case 12:
-                            if (!base.slice_from("\u05E9\u05F0\u05F2\u05D2"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E9\u05F0\u05F2\u05D2")) return false;
                             break;
                         case 13:
-                            if (!base.slice_from("\u05E9\u05DE\u05F2\u05E1"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E9\u05DE\u05F2\u05E1")) return false;
                             break;
                         case 14:
-                            if (!base.slice_from("\u05E9\u05E0\u05F2\u05D3"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E9\u05E0\u05F2\u05D3")) return false;
                             break;
                         case 15:
-                            if (!base.slice_from("\u05E9\u05E8\u05F2\u05D1"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E9\u05E8\u05F2\u05D1")) return false;
                             break;
                         case 16:
-                            if (!base.slice_from("\u05D1\u05D9\u05E0\u05D3"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05D1\u05D9\u05E0\u05D3")) return false;
                             break;
                         case 17:
-                            if (!base.slice_from("\u05F0\u05D9\u05D8\u05E9"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05F0\u05D9\u05D8\u05E9")) return false;
                             break;
                         case 18:
-                            if (!base.slice_from("\u05D6\u05D9\u05E0\u05D2"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05D6\u05D9\u05E0\u05D2")) return false;
                             break;
                         case 19:
-                            if (!base.slice_from("\u05D8\u05E8\u05D9\u05E0\u05E7"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05D8\u05E8\u05D9\u05E0\u05E7")) return false;
                             break;
                         case 20:
-                            if (!base.slice_from("\u05E6\u05F0\u05D9\u05E0\u05D2"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E6\u05F0\u05D9\u05E0\u05D2")) return false;
                             break;
                         case 21:
-                            if (!base.slice_from("\u05E9\u05DC\u05D9\u05E0\u05D2"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E9\u05DC\u05D9\u05E0\u05D2")) return false;
                             break;
                         case 22:
-                            if (!base.slice_from("\u05D1\u05F2\u05D2"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05D1\u05F2\u05D2")) return false;
                             break;
                         case 23:
-                            if (!base.slice_from("\u05D4\u05F2\u05D1"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05D4\u05F2\u05D1")) return false;
                             break;
                         case 24:
-                            if (!base.slice_from("\u05E4\u05D0\u05E8\u05DC\u05D9\u05E8"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E4\u05D0\u05E8\u05DC\u05D9\u05E8")) return false;
                             break;
                         case 25:
-                            if (!base.slice_from("\u05E9\u05D8\u05F2"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E9\u05D8\u05F2")) return false;
                             break;
                         case 26:
-                            if (!base.slice_from("\u05E9\u05F0\u05E2\u05E8"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u05E9\u05F0\u05E2\u05E8")) return false;
                             break;
                     }
                     break;
@@ -775,212 +562,109 @@ var YiddishStemmer = function() {
                     lab1: {
                         /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                         lab2: {
-                            if (!r_R1())
-                            {
-                                break lab2;
-                            }
-                            if (!base.slice_del())
-                            {
-                                return false;
-                            }
+                            if (!r_R1()) break lab2;
+                            if (!base.slice_del()) return false;
                             break lab1;
                         }
                         base.cursor = base.limit - v_2;
-                        if (!base.slice_from("\u05D8"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u05D8")) return false;
                     }
                     base.ket = base.cursor;
-                    if (!(base.eq_s_b("\u05D1\u05E8\u05D0\u05DB")))
-                    {
-                        break lab0;
-                    }
+                    if (!(base.eq_s_b("\u05D1\u05E8\u05D0\u05DB"))) break lab0;
                     /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                     lab3: {
-                        if (!(base.eq_s_b("\u05D2\u05E2")))
-                        {
+                        if (!(base.eq_s_b("\u05D2\u05E2"))) {
                             base.cursor = base.limit - v_3;
                             break lab3;
                         }
                     }
                     base.bra = base.cursor;
-                    if (!base.slice_from("\u05D1\u05E8\u05E2\u05E0\u05D2"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D1\u05E8\u05E2\u05E0\u05D2")) return false;
                     break;
                 case 5:
-                    if (!base.slice_from("\u05D2\u05F2"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D2\u05F2")) return false;
                     break;
                 case 6:
-                    if (!base.slice_from("\u05E0\u05E2\u05DE"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E0\u05E2\u05DE")) return false;
                     break;
                 case 7:
-                    if (!base.slice_from("\u05E9\u05E8\u05F2\u05D1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E9\u05E8\u05F2\u05D1")) return false;
                     break;
                 case 8:
-                    if (!base.slice_from("\u05DE\u05F2\u05D3"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05DE\u05F2\u05D3")) return false;
                     break;
                 case 9:
-                    if (!base.slice_from("\u05D1\u05F2\u05D8"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D1\u05F2\u05D8")) return false;
                     break;
                 case 10:
-                    if (!base.slice_from("\u05D1\u05F2\u05E1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D1\u05F2\u05E1")) return false;
                     break;
                 case 11:
-                    if (!base.slice_from("\u05F0\u05F2\u05D6"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05F0\u05F2\u05D6")) return false;
                     break;
                 case 12:
-                    if (!base.slice_from("\u05D8\u05E8\u05F2\u05D1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D8\u05E8\u05F2\u05D1")) return false;
                     break;
                 case 13:
-                    if (!base.slice_from("\u05DC\u05F2\u05D8"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05DC\u05F2\u05D8")) return false;
                     break;
                 case 14:
-                    if (!base.slice_from("\u05E7\u05DC\u05F2\u05D1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E7\u05DC\u05F2\u05D1")) return false;
                     break;
                 case 15:
-                    if (!base.slice_from("\u05E8\u05F2\u05D1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E8\u05F2\u05D1")) return false;
                     break;
                 case 16:
-                    if (!base.slice_from("\u05E8\u05F2\u05E1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E8\u05F2\u05E1")) return false;
                     break;
                 case 17:
-                    if (!base.slice_from("\u05E9\u05F0\u05F2\u05D2"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E9\u05F0\u05F2\u05D2")) return false;
                     break;
                 case 18:
-                    if (!base.slice_from("\u05E9\u05DE\u05F2\u05E1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E9\u05DE\u05F2\u05E1")) return false;
                     break;
                 case 19:
-                    if (!base.slice_from("\u05E9\u05E0\u05F2\u05D3"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E9\u05E0\u05F2\u05D3")) return false;
                     break;
                 case 20:
-                    if (!base.slice_from("\u05D1\u05D9\u05E0\u05D3"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D1\u05D9\u05E0\u05D3")) return false;
                     break;
                 case 21:
-                    if (!base.slice_from("\u05F0\u05D9\u05D8\u05E9"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05F0\u05D9\u05D8\u05E9")) return false;
                     break;
                 case 22:
-                    if (!base.slice_from("\u05D6\u05D9\u05E0\u05D2"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D6\u05D9\u05E0\u05D2")) return false;
                     break;
                 case 23:
-                    if (!base.slice_from("\u05D8\u05E8\u05D9\u05E0\u05E7"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D8\u05E8\u05D9\u05E0\u05E7")) return false;
                     break;
                 case 24:
-                    if (!base.slice_from("\u05E6\u05F0\u05D9\u05E0\u05D2"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E6\u05F0\u05D9\u05E0\u05D2")) return false;
                     break;
                 case 25:
-                    if (!base.slice_from("\u05E9\u05DC\u05D9\u05E0\u05D2"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E9\u05DC\u05D9\u05E0\u05D2")) return false;
                     break;
                 case 26:
-                    if (!base.slice_from("\u05D1\u05F2\u05D2"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D1\u05F2\u05D2")) return false;
                     break;
                 case 27:
-                    if (!base.slice_from("\u05D4\u05F2\u05D1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D4\u05F2\u05D1")) return false;
                     break;
                 case 28:
-                    if (!base.slice_from("\u05E4\u05D0\u05E8\u05DC\u05D9\u05E8"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E4\u05D0\u05E8\u05DC\u05D9\u05E8")) return false;
                     break;
                 case 29:
-                    if (!base.slice_from("\u05E9\u05D8\u05F2"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E9\u05D8\u05F2")) return false;
                     break;
                 case 30:
-                    if (!base.slice_from("\u05E9\u05F0\u05E2\u05E8"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05E9\u05F0\u05E2\u05E8")) return false;
                     break;
                 case 31:
-                    if (!base.slice_from("\u05D1\u05E8\u05E2\u05E0\u05D2"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u05D1\u05E8\u05E2\u05E0\u05D2")) return false;
                     break;
                 case 32:
-                    if (!r_R1())
-                    {
-                        break lab0;
-                    }
-                    if (!base.slice_from("\u05D4"))
-                    {
-                        return false;
-                    }
+                    if (!r_R1()) break lab0;
+                    if (!base.slice_from("\u05D4")) return false;
                     break;
                 case 33:
                     lab4: {
@@ -989,41 +673,25 @@ var YiddishStemmer = function() {
                             lab6: {
                                 /** @const */ var /** number */ v_5 = base.limit - base.cursor;
                                 lab7: {
-                                    if (!(base.eq_s_b("\u05D2")))
-                                    {
-                                        break lab7;
-                                    }
+                                    if (!(base.eq_s_b("\u05D2"))) break lab7;
                                     break lab6;
                                 }
                                 base.cursor = base.limit - v_5;
-                                if (!(base.eq_s_b("\u05E9")))
-                                {
-                                    break lab5;
-                                }
+                                if (!(base.eq_s_b("\u05E9"))) break lab5;
                             }
                             /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                             lab8: {
-                                if (!r_R1plus3())
-                                {
+                                if (!r_R1plus3()) {
                                     base.cursor = base.limit - v_6;
                                     break lab8;
                                 }
-                                if (!base.slice_from("\u05D9\u05E1"))
-                                {
-                                    return false;
-                                }
+                                if (!base.slice_from("\u05D9\u05E1")) return false;
                             }
                             break lab4;
                         }
                         base.cursor = base.limit - v_4;
-                        if (!r_R1())
-                        {
-                            break lab0;
-                        }
-                        if (!base.slice_del())
-                        {
-                            return false;
-                        }
+                        if (!r_R1()) break lab0;
+                        if (!base.slice_del()) return false;
                     }
                     break;
             }
@@ -1033,35 +701,17 @@ var YiddishStemmer = function() {
         lab9: {
             base.ket = base.cursor;
             among_var = base.find_among_b(a_5);
-            if (among_var == 0)
-            {
-                break lab9;
-            }
+            if (among_var == 0) break lab9;
             base.bra = base.cursor;
             switch (among_var) {
                 case 1:
-                    if (!r_R1())
-                    {
-                        break lab9;
-                    }
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                    if (!r_R1()) break lab9;
+                    if (!base.slice_del()) return false;
                     break;
                 case 2:
-                    if (!r_R1())
-                    {
-                        break lab9;
-                    }
-                    if (!(base.in_grouping_b(g_consonant, 1489, 1520)))
-                    {
-                        break lab9;
-                    }
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                    if (!r_R1()) break lab9;
+                    if (!(base.in_grouping_b(g_consonant, 1489, 1520))) break lab9;
+                    if (!base.slice_del()) return false;
                     break;
             }
         }
@@ -1070,29 +720,19 @@ var YiddishStemmer = function() {
         lab10: {
             base.ket = base.cursor;
             among_var = base.find_among_b(a_6);
-            if (among_var == 0)
-            {
-                break lab10;
-            }
+            if (among_var == 0) break lab10;
             base.bra = base.cursor;
             switch (among_var) {
                 case 1:
-                    if (!r_R1())
-                    {
-                        break lab10;
-                    }
-                    if (!base.slice_del())
-                    {
-                        return false;
-                    }
+                    if (!r_R1()) break lab10;
+                    if (!base.slice_del()) return false;
                     break;
             }
         }
         base.cursor = base.limit - v_8;
         /** @const */ var /** number */ v_9 = base.limit - base.cursor;
         lab11: {
-            while(true)
-            {
+            while(true) {
                 /** @const */ var /** number */ v_10 = base.limit - base.cursor;
                 lab12: {
                     golab13: while(true)
@@ -1103,31 +743,19 @@ var YiddishStemmer = function() {
                             lab15: {
                                 /** @const */ var /** number */ v_12 = base.limit - base.cursor;
                                 lab16: {
-                                    if (!(base.eq_s_b("GE")))
-                                    {
-                                        break lab16;
-                                    }
+                                    if (!(base.eq_s_b("GE"))) break lab16;
                                     break lab15;
                                 }
                                 base.cursor = base.limit - v_12;
-                                if (!(base.eq_s_b("TSU")))
-                                {
-                                    break lab14;
-                                }
+                                if (!(base.eq_s_b("TSU"))) break lab14;
                             }
                             base.bra = base.cursor;
-                            if (!base.slice_del())
-                            {
-                                return false;
-                            }
+                            if (!base.slice_del()) return false;
                             base.cursor = base.limit - v_11;
                             break golab13;
                         }
                         base.cursor = base.limit - v_11;
-                        if (base.cursor <= base.limit_backward)
-                        {
-                            break lab12;
-                        }
+                        if (base.cursor <= base.limit_backward) break lab12;
                         base.cursor--;
                     }
                     continue;
