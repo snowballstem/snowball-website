@@ -75,7 +75,7 @@ Try the
 <select id="lang" onchange="lang_changed(this);location.hash=this.options[this.selectedIndex].value"><option value='Arabic'>Arabic</option><option value='Armenian'>Armenian</option><option value='Basque'>Basque</option><option value='Catalan'>Catalan</option><option value='Danish'>Danish</option><option value='Dutch'>Dutch</option><option value='Dutch_porter'>Dutch_porter</option><option value='English' selected>English</option><option value='Esperanto'>Esperanto</option><option value='Estonian'>Estonian</option><option value='Finnish'>Finnish</option><option value='French'>French</option><option value='German'>German</option><option value='Greek'>Greek</option><option value='Hindi'>Hindi</option><option value='Hungarian'>Hungarian</option><option value='Indonesian'>Indonesian</option><option value='Irish'>Irish</option><option value='Italian'>Italian</option><option value='Lithuanian'>Lithuanian</option><option value='Nepali'>Nepali</option><option value='Norwegian'>Norwegian</option><option value='Porter'>Porter</option><option value='Portuguese'>Portuguese</option><option value='Romanian'>Romanian</option><option value='Russian'>Russian</option><option value='Serbian'>Serbian</option><option value='Spanish'>Spanish</option><option value='Swedish'>Swedish</option><option value='Tamil'>Tamil</option><option value='Turkish'>Turkish</option><option value='Yiddish'>Yiddish</option></select>stemming algorithm:
 </p>
 <table border='0'><tr><td width="50%">
-<textarea id="words" rows="1" cols="50" placeholder="Enter some English text" oninput="stem_demo(this);">
+<textarea id="words" rows="1" cols="50" spellcheck="false" placeholder="Enter some English text" oninput="stem_demo(this);">
 </textarea>
 </td>
 <td id="results" class="license" style='border:1px;border-style:solid;'></td>
@@ -98,6 +98,7 @@ function stem_demo(elt) {
   elt.rows = lines;
   var lang = document.getElementById('lang').value;
   if (lang.search(/[^-A-Za-z0-9_]/) >= 0) return;
+  lang = lang.replace('_p', 'P');
   lang += "Stemmer";
   var s = eval("new "+lang+"()");
   var result = '';
@@ -125,8 +126,9 @@ function lang_changed(elt) {
     if (lang === 'Arabic' || lang === 'Yiddish') {
         words_elt.dir = results_elt.dir = 'rtl';
     } else {
-	if (lang === 'Porter') lang = 'English';
         words_elt.dir = results_elt.dir = 'ltr';
+	if (lang === 'Porter') lang = 'English';
+	else if (lang === 'Dutch_porter') lang = 'Dutch';
     }
     words_elt.placeholder = "Enter some " + lang + " text";
     stem_demo(document.getElementById('words'));

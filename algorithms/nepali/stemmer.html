@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Nepali stemming algorithm - Snowball</title>
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a class="navbar-brand" href="/">Snowball</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/credits.html">Credits</a></li>
+          </ul>
+	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-10">
+          <h1>Nepali stemming algorithm</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <a href="/demo.html#Nepali">Javascript demo</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/nepali.sbl">The stemmer in Snowball</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/nepali/voc.txt">Sample Nepali vocabulary</a></li>
+<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/nepali/output.txt">Its stemmed equivalent</a></li>
+<li> <a href="https://en.wikipedia.org/wiki/Nepali_language">Nepali language</a> on Wikipedia
+</ul>
+
+<!-- FIXME: Need to pick a couple of good spots in our word list to show stemming -->
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>April 2018: Contributed by Ingroj Shrestha, Oleg Bartunov and Shreeya Singh Dhakal
+</ul>
+
+<h2>The stemming algorithm</h2>
+
+<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm"> * Authors:</span>
+<span class="cm"> * - Ingroj Shrestha &lt;ing.stha@gmail.com&gt;, Nepali NLP Group</span>
+<span class="cm"> * - Oleg Bartunov &lt;obartunov@gmail.com&gt;, Postgres Professional Ltd.</span>
+<span class="cm"> * - Shreeya Singh Dhakal, Nepali NLP Group</span>
+<span class="cm"> */</span>
+
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">remove_category_1</span>
+<span class="w">  </span><span class="n">remove_category_2</span>
+<span class="w">  </span><span class="n">remove_category_3</span>
+<span class="p">)</span>
+
+<span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span>
+
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dsc</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0901}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_SIGN_CANDRABINDU</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dsa</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0902}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_SIGN_ANUSVARA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dli</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0907}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_I</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlii</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0908}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_II</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dle</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+090F}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_E</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlka</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0915}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_KA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlkha</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0916}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_KHA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlg</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0917}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_GA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlc</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+091B}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_CHA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlta</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0924}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_TA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dltha</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0925}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_THA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dld</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0926}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_DA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dln</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0928}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_NA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlpa</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+092A}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_PA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlpha</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+092B}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_PHA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlb</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+092D}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_BHA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlm</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+092E}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_MA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dly</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+092F}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_YA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlr</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0930}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_RA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dll</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0932}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_LA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlv</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0935}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_VA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dls</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0938}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_SA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dlh</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+0939}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_LETTER_HA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dvsaa</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+093E}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_VOWEL_SIGN_AA</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dvsi</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+093F}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_VOWEL_SIGN_I</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dvsii</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0940}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_VOWEL_SIGN_II</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dvsu</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0941}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_VOWEL_SIGN_U</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dvsuu</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0942}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_VOWEL_SIGN_UU</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dvse</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+0947}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_VOWEL_SIGN_E</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dvsai</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0948}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_VOWEL_SIGN_AI</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dvso</span><span class="w">    </span><span class="s1">&#39;</span><span class="se">{U+094B}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_VOWEL_SIGN_O</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dvsau</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+094C}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_VOWEL_SIGN_AU</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dsv</span><span class="w">     </span><span class="s1">&#39;</span><span class="se">{U+094D}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// DEVANAGARI_SIGN_VIRAMA</span>
+
+<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">remove_category_1</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlm}{dvsaa}{dlr}{dsv}{dlpha}{dlta}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dld}{dsv}{dlv}{dvsaa}{dlr}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dls}{dsc}{dlg}{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dls}{dsa}{dlg}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dls}{dsc}{dlg}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dll}{dvsaa}{dli}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dll}{dvsaa}{dlii}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlpa}{dlc}{dvsi}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dll}{dvse}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlr}{dlta}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlm}{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlm}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlka}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlka}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlka}{dvsi}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlka}{dvsii}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlka}{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{dle}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{dvse}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">remove_category_2</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dsc}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{dsa}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{dly}{dvsau}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{dlc}{dvsau}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{dln}{dvsau}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{dltha}{dvse}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{dlta}{dsv}{dlr}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">remove_category_3</span><span class="w"> </span><span class="kr">as</span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dvsi}{dli}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlh}{dvsu}{dln}{dvse}{dlc}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlh}{dvsu}{dln}{dsv}{dlc}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvse}{dlc}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvse}{dlc}{dln}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dle}{dlka}{dvsii}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dle}{dlka}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dle}{dlka}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dle}{dlka}{dvsii}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dle}{dlka}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dle}{dlka}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dlc}{dln}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dlc}{dln}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dlc}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dlc}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dle}{dlc}{dln}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvse}{dlc}{dln}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dle}{dlc}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvse}{dlc}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlc}{dvsi}{dln}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlc}{dvse}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlc}{dsv}{dly}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dvsi}{dln}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dvsi}{dly}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dvsi}{dly}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dvsi}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dsv}{dly}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dsv}{dly}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dld}{dvsi}{dly}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dld}{dvse}{dlkha}{dvsi}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dld}{dvse}{dlkha}{dvsii}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dll}{dvsaa}{dln}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlm}{dvsaa}{dltha}{dvsi}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvse}{dlka}{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvse}{dlka}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvse}{dlka}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvse}{dlc}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlh}{dvso}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dln}{dsv}{dlc}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dln}{dsv}{dlc}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvse}{dlc}{dvsu}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dlc}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dlc}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dly}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dly}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dle}{dlka}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvse}{dlka}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dle}{dlka}{dvsii}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvse}{dlka}{dvsii}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dle}{dlka}{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvse}{dlka}{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dle}{dlka}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvse}{dlka}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dle}{dlc}{dvsu}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvse}{dlc}{dvsu}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dle}{dlc}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvse}{dlc}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlc}{dln}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlc}{dls}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dvsi}{dle}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlpa}{dlr}{dsv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlb}{dly}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlh}{dlr}{dvsu}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlh}{dlr}{dvsuu}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dld}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dld}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dld}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dld}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dld}{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dld}{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvse}{dlc}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dli}{dlc}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvsi}{dlc}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dle}{dlc}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dvse}{dlc}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlc}{dvsu}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlc}{dvse}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlc}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dvsii}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dltha}{dvse}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dld}{dvsaa}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dld}{dvsii}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dld}{dvsai}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dld}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvsu}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dln}{dvse}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dly}{dvso}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dly}{dvsau}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dlc}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="p">)</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_category_1</span>
+<span class="w">    </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_category_2</span>
+<span class="w">      </span><span class="n">remove_category_3</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+
+        </div><!-- /.col-md-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
