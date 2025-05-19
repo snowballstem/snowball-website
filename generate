@@ -283,8 +283,15 @@ my @menu = (
 	}
     }
 
+run ['closure-compiler',
+     '--accept_const_keyword',
+     '--charset', 'UTF-8',
+     qw(--compilation_level ADVANCED_OPTIMIZATIONS),
+     qw(--warning_level VERBOSE),
+     @stemmer_js_files],
+     \undef, '>', $outpath."/js/stemmers.js", '2>', \*STDERR;
 run ['npx', 'uglifyjs', @stemmer_js_files, '--compress', '--mangle',
-    '-o', $outpath."/js/stemmers.js"];
+    '-o', $outpath."/js/uglified.js"];
 
 $stemmer_select .= "</select>";
 $$vars{stemmer_js_files} = ['js/stemmers.js']; #\@stemmer_js_files;
