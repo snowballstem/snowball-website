@@ -285,6 +285,7 @@ my @menu = (
 
 run ['closure-compiler',
      '--accept_const_keyword',
+     '--charset', 'UTF-8',
      qw(--compilation_level ADVANCED_OPTIMIZATIONS),
      qw(--warning_level VERBOSE),
      @stemmer_js_files],
