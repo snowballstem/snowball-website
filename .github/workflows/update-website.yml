@@ -35,6 +35,7 @@ jobs:
           sudo apt-get install libipc-run-perl libtemplate-perl graphviz pngcrush python3-pygments
           #npm i -g google-closure-compiler
           #perl -pi -e '/--accept_const_keyword/ and $_="";s/closure-compiler/google-closure-compiler/;s/ADVANCED_OPTIMIZATIONS/ADVANCED/' generate
+          npm install uglify-js -g
 
       - uses: denoland/setup-deno@v2
         with:
