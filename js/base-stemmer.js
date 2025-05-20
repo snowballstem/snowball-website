@@ -1,7 +1,7 @@
 // @ts-check
 
 /**@constructor*/
-const BaseStemmer = function() {
+/** @const */ var BaseStemmer = function() {
     /** @protected */
     this.current = '';
     this.cursor = 0;
