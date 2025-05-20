@@ -58,7 +58,7 @@ var IndonesianStemmer = function() {
         if (base.find_among_b(a_0) == 0) return false;
         base.bra = base.cursor;
         if (!base.slice_del()) return false;
-        I_measure -= 1;
+        --I_measure;
         return true;
     };
 
@@ -68,7 +68,7 @@ var IndonesianStemmer = function() {
         if (base.find_among_b(a_1) == 0) return false;
         base.bra = base.cursor;
         if (!base.slice_del()) return false;
-        I_measure -= 1;
+        --I_measure;
         return true;
     };
 
@@ -104,7 +104,7 @@ var IndonesianStemmer = function() {
         if (base.find_among_b(a_2) == 0) return false;
         base.bra = base.cursor;
         if (!base.slice_del()) return false;
-        I_measure -= 1;
+        --I_measure;
         return true;
     };
 
@@ -132,26 +132,26 @@ var IndonesianStemmer = function() {
             case 1:
                 if (!base.slice_del()) return false;
                 I_prefix = 1;
-                I_measure -= 1;
+                --I_measure;
                 break;
             case 2:
                 if (!base.slice_del()) return false;
                 I_prefix = 3;
-                I_measure -= 1;
+                --I_measure;
                 break;
             case 3:
                 I_prefix = 1;
                 if (!base.slice_from("s")) return false;
-                I_measure -= 1;
+                --I_measure;
                 break;
             case 4:
                 I_prefix = 3;
                 if (!base.slice_from("s")) return false;
-                I_measure -= 1;
+                --I_measure;
                 break;
             case 5:
                 I_prefix = 1;
-                I_measure -= 1;
+                --I_measure;
                 lab0: {
                     /** @const */ var /** number */ v_1 = base.cursor;
                     lab1: {
@@ -167,7 +167,7 @@ var IndonesianStemmer = function() {
                 break;
             case 6:
                 I_prefix = 3;
-                I_measure -= 1;
+                --I_measure;
                 lab2: {
                     /** @const */ var /** number */ v_3 = base.cursor;
                     lab3: {
@@ -196,21 +196,21 @@ var IndonesianStemmer = function() {
             case 1:
                 if (!base.slice_del()) return false;
                 I_prefix = 2;
-                I_measure -= 1;
+                --I_measure;
                 break;
             case 2:
                 if (!base.slice_from("ajar")) return false;
-                I_measure -= 1;
+                --I_measure;
                 break;
             case 3:
                 if (!base.slice_del()) return false;
                 I_prefix = 4;
-                I_measure -= 1;
+                --I_measure;
                 break;
             case 4:
                 if (!base.slice_from("ajar")) return false;
                 I_prefix = 4;
-                I_measure -= 1;
+                --I_measure;
                 break;
         }
         return true;
@@ -225,7 +225,7 @@ var IndonesianStemmer = function() {
                 lab1: {
                     if (!base.go_out_grouping(g_vowel, 97, 117)) break lab1;
                     base.cursor++;
-                    I_measure += 1;
+                    ++I_measure;
                     continue;
                 }
                 base.cursor = v_2;
