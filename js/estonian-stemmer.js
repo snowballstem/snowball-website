@@ -46,10 +46,6 @@ var EstonianStemmer = function() {
     ];
 
     /** @const */ var a_3 = [
-        ["i", -1, 1]
-    ];
-
-    /** @const */ var a_4 = [
         ["lane", -1, 1],
         ["line", -1, 3],
         ["mine", -1, 2],
@@ -64,7 +60,7 @@ var EstonianStemmer = function() {
         ["mist", -1, 2]
     ];
 
-    /** @const */ var a_5 = [
+    /** @const */ var a_4 = [
         ["ga", -1, 1],
         ["ta", -1, 1],
         ["le", -1, 1],
@@ -77,7 +73,7 @@ var EstonianStemmer = function() {
         ["st", 7, 1]
     ];
 
-    /** @const */ var a_6 = [
+    /** @const */ var a_5 = [
         ["", -1, 2],
         ["las", 0, 1],
         ["lis", 0, 1],
@@ -85,7 +81,7 @@ var EstonianStemmer = function() {
         ["t", 0, -1]
     ];
 
-    /** @const */ var a_7 = [
+    /** @const */ var a_6 = [
         ["d", -1, 4],
         ["sid", 0, 2],
         ["de", -1, 4],
@@ -95,26 +91,26 @@ var EstonianStemmer = function() {
         ["te", -1, 3]
     ];
 
-    /** @const */ var a_8 = [
+    /** @const */ var a_7 = [
         ["va", -1, -1],
         ["du", -1, -1],
         ["nu", -1, -1],
         ["tu", -1, -1]
     ];
 
-    /** @const */ var a_9 = [
+    /** @const */ var a_8 = [
         ["kk", -1, 1],
         ["pp", -1, 2],
         ["tt", -1, 3]
     ];
 
-    /** @const */ var a_10 = [
+    /** @const */ var a_9 = [
         ["ma", -1, 2],
         ["mai", -1, 1],
         ["m", -1, 1]
     ];
 
-    /** @const */ var a_11 = [
+    /** @const */ var a_10 = [
         ["joob", -1, 1],
         ["jood", -1, 1],
         ["joodakse", 1, 1],
@@ -513,7 +509,7 @@ var EstonianStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        if (base.find_among_b(a_3) == 0) {
+        if (!(base.eq_s_b("i"))) {
             base.limit_backward = v_1;
             return false;
         }
@@ -531,7 +527,7 @@ var EstonianStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_4);
+        among_var = base.find_among_b(a_3);
         if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
@@ -559,7 +555,7 @@ var EstonianStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_5);
+        among_var = base.find_among_b(a_4);
         if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
@@ -599,7 +595,7 @@ var EstonianStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_7);
+        among_var = base.find_among_b(a_6);
         if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
@@ -632,7 +628,7 @@ var EstonianStemmer = function() {
                             base.cursor = c1;
                         }
                         base.cursor = base.limit - v_4;
-                        among_var = base.find_among_b(a_6);
+                        among_var = base.find_among_b(a_5);
                         switch (among_var) {
                             case 1:
                                 if (!base.slice_from("e")) return false;
@@ -669,7 +665,7 @@ var EstonianStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        if (base.find_among_b(a_8) == 0) {
+        if (base.find_among_b(a_7) == 0) {
             base.limit_backward = v_1;
             return false;
         }
@@ -685,7 +681,7 @@ var EstonianStemmer = function() {
         if (!(base.in_grouping_b(g_V1, 97, 252))) return false;
         if (I_p1 > base.cursor) return false;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_9);
+        among_var = base.find_among_b(a_8);
         if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
@@ -709,7 +705,7 @@ var EstonianStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_10);
+        among_var = base.find_among_b(a_9);
         if (among_var == 0) {
             base.limit_backward = v_1;
             return false;
@@ -755,7 +751,7 @@ var EstonianStemmer = function() {
     function r_verb_exceptions() {
         var /** number */ among_var;
         base.bra = base.cursor;
-        among_var = base.find_among(a_11);
+        among_var = base.find_among(a_10);
         if (among_var == 0) return false;
         base.ket = base.cursor;
         if (base.cursor < base.limit) return false;

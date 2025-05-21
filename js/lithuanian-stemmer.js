@@ -295,10 +295,6 @@ var LithuanianStemmer = function() {
         ["d\u017E", -1, 2]
     ];
 
-    /** @const */ var a_4 = [
-        ["gd", -1, 1]
-    ];
-
     /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 64, 1, 0, 64, 0, 0, 0, 0, 0, 0, 0, 4, 4];
 
     var /** number */ I_p1;
@@ -401,7 +397,7 @@ var LithuanianStemmer = function() {
     /** @return {boolean} */
     function r_fix_gd() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_4) == 0) return false;
+        if (!(base.eq_s_b("gd"))) return false;
         base.bra = base.cursor;
         if (!base.slice_from("g")) return false;
         return true;

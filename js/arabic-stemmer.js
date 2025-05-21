@@ -228,32 +228,12 @@ var ArabicStemmer = function() {
     ];
 
     /** @const */ var a_11 = [
-        ["\u0646", -1, 1]
-    ];
-
-    /** @const */ var a_12 = [
         ["\u0627", -1, 1],
         ["\u0648", -1, 1],
         ["\u064A", -1, 1]
     ];
 
-    /** @const */ var a_13 = [
-        ["\u0627\u062A", -1, 1]
-    ];
-
-    /** @const */ var a_14 = [
-        ["\u062A", -1, 1]
-    ];
-
-    /** @const */ var a_15 = [
-        ["\u0629", -1, 1]
-    ];
-
-    /** @const */ var a_16 = [
-        ["\u064A", -1, 1]
-    ];
-
-    /** @const */ var a_17 = [
+    /** @const */ var a_12 = [
         ["\u0643\u0645\u0627", -1, 3],
         ["\u0647\u0645\u0627", -1, 3],
         ["\u0646\u0627", -1, 2],
@@ -268,7 +248,7 @@ var ArabicStemmer = function() {
         ["\u0646\u064A", -1, 2]
     ];
 
-    /** @const */ var a_18 = [
+    /** @const */ var a_13 = [
         ["\u0627", -1, 1],
         ["\u062A\u0627", 0, 2],
         ["\u062A\u0645\u0627", 0, 4],
@@ -282,18 +262,14 @@ var ArabicStemmer = function() {
         ["\u064A", -1, 1]
     ];
 
-    /** @const */ var a_19 = [
+    /** @const */ var a_14 = [
         ["\u0648\u0627", -1, 1],
         ["\u062A\u0645", -1, 1]
     ];
 
-    /** @const */ var a_20 = [
+    /** @const */ var a_15 = [
         ["\u0648", -1, 1],
         ["\u062A\u0645\u0648", 0, 2]
-    ];
-
-    /** @const */ var a_21 = [
-        ["\u0649", -1, 1]
     ];
 
     var /** boolean */ B_is_defined = false;
@@ -720,7 +696,7 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_Noun_Step1b() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_11) == 0) return false;
+        if (!(base.eq_s_b("\u0646"))) return false;
         base.bra = base.cursor;
         if (base.current.length <= 5) return false;
         if (!base.slice_del()) return false;
@@ -730,7 +706,7 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_Noun_Step2a() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_12) == 0) return false;
+        if (base.find_among_b(a_11) == 0) return false;
         base.bra = base.cursor;
         if (base.current.length <= 4) return false;
         if (!base.slice_del()) return false;
@@ -740,7 +716,7 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_Noun_Step2b() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_13) == 0) return false;
+        if (!(base.eq_s_b("\u0627\u062A"))) return false;
         base.bra = base.cursor;
         if (base.current.length < 5) return false;
         if (!base.slice_del()) return false;
@@ -750,7 +726,7 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_Noun_Step2c1() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_14) == 0) return false;
+        if (!(base.eq_s_b("\u062A"))) return false;
         base.bra = base.cursor;
         if (base.current.length < 4) return false;
         if (!base.slice_del()) return false;
@@ -760,7 +736,7 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_Noun_Step2c2() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_15) == 0) return false;
+        if (!(base.eq_s_b("\u0629"))) return false;
         base.bra = base.cursor;
         if (base.current.length < 4) return false;
         if (!base.slice_del()) return false;
@@ -770,7 +746,7 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_Noun_Step3() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_16) == 0) return false;
+        if (!(base.eq_s_b("\u064A"))) return false;
         base.bra = base.cursor;
         if (base.current.length < 3) return false;
         if (!base.slice_del()) return false;
@@ -781,7 +757,7 @@ var ArabicStemmer = function() {
     function r_Suffix_Verb_Step1() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_17);
+        among_var = base.find_among_b(a_12);
         if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
@@ -805,7 +781,7 @@ var ArabicStemmer = function() {
     function r_Suffix_Verb_Step2a() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_18);
+        among_var = base.find_among_b(a_13);
         if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
@@ -832,7 +808,7 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_Verb_Step2b() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_19) == 0) return false;
+        if (base.find_among_b(a_14) == 0) return false;
         base.bra = base.cursor;
         if (base.current.length < 5) return false;
         if (!base.slice_del()) return false;
@@ -843,7 +819,7 @@ var ArabicStemmer = function() {
     function r_Suffix_Verb_Step2c() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        among_var = base.find_among_b(a_20);
+        among_var = base.find_among_b(a_15);
         if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
@@ -862,7 +838,7 @@ var ArabicStemmer = function() {
     /** @return {boolean} */
     function r_Suffix_All_alef_maqsura() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_21) == 0) return false;
+        if (!(base.eq_s_b("\u0649"))) return false;
         base.bra = base.cursor;
         if (!base.slice_from("\u064A")) return false;
         return true;
