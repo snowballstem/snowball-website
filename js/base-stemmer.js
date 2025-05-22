@@ -2,17 +2,11 @@
 
 /**@constructor*/
 const BaseStemmer = function() {
-    /** @protected */
     this.current = '';
-    /** @protected */
     this.cursor = 0;
-    /** @protected */
     this.limit = 0;
-    /** @protected */
     this.limit_backward = 0;
-    /** @protected */
     this.bra = 0;
-    /** @protected */
     this.ket = 0;
 
     /**
@@ -36,7 +30,6 @@ const BaseStemmer = function() {
 
     /**
      * @param {BaseStemmer} other
-     * @protected
      */
     this.copy_from = function(other) {
         this.current          = other.current;
@@ -52,7 +45,6 @@ const BaseStemmer = function() {
      * @param {number} min
      * @param {number} max
      * @return {boolean}
-     * @protected
      */
     this.in_grouping = function(s, min, max) {
         if (this.cursor >= this.limit) return false;
@@ -69,7 +61,6 @@ const BaseStemmer = function() {
      * @param {number} min
      * @param {number} max
      * @return {boolean}
-     * @protected
      */
     this.go_in_grouping = function(s, min, max) {
         while (this.cursor < this.limit) {
@@ -89,7 +80,6 @@ const BaseStemmer = function() {
      * @param {number} min
      * @param {number} max
      * @return {boolean}
-     * @protected
      */
     this.in_grouping_b = function(s, min, max) {
         if (this.cursor <= this.limit_backward) return false;
@@ -106,7 +96,6 @@ const BaseStemmer = function() {
      * @param {number} min
      * @param {number} max
      * @return {boolean}
-     * @protected
      */
     this.go_in_grouping_b = function(s, min, max) {
         while (this.cursor > this.limit_backward) {
@@ -124,7 +113,6 @@ const BaseStemmer = function() {
      * @param {number} min
      * @param {number} max
      * @return {boolean}
-     * @protected
      */
     this.out_grouping = function(s, min, max) {
         if (this.cursor >= this.limit) return false;
@@ -146,7 +134,6 @@ const BaseStemmer = function() {
      * @param {number} min
      * @param {number} max
      * @return {boolean}
-     * @protected
      */
     this.go_out_grouping = function(s, min, max) {
         while (this.cursor < this.limit) {
@@ -167,7 +154,6 @@ const BaseStemmer = function() {
      * @param {number} min
      * @param {number} max
      * @return {boolean}
-     * @protected
      */
     this.out_grouping_b = function(s, min, max) {
         if (this.cursor <= this.limit_backward) return false;
@@ -189,7 +175,6 @@ const BaseStemmer = function() {
      * @param {number} min
      * @param {number} max
      * @return {boolean}
-     * @protected
      */
     this.go_out_grouping_b = function(s, min, max) {
         while (this.cursor > this.limit_backward) {
@@ -208,7 +193,6 @@ const BaseStemmer = function() {
     /**
      * @param {string} s
      * @return {boolean}
-     * @protected
      */
     this.eq_s = function(s)
     {
@@ -224,7 +208,6 @@ const BaseStemmer = function() {
     /**
      * @param {string} s
      * @return {boolean}
-     * @protected
      */
     this.eq_s_b = function(s)
     {
@@ -240,7 +223,6 @@ const BaseStemmer = function() {
     /**
      * @param {Array<Array>} v
      * @return {number}
-     * @protected
      */
     this.find_among = function(v)
     {
@@ -316,7 +298,6 @@ const BaseStemmer = function() {
     /**
      * @param {Array<Array>} v
      * @return {number}
-     * @protected
      */
     this.find_among_b = function(v)
     {
@@ -390,7 +371,6 @@ const BaseStemmer = function() {
      * @param {number} c_ket
      * @param {string} s
      * @return {number}
-     * @protected
      */
     this.replace_s = function(c_bra, c_ket, s)
     {
@@ -404,7 +384,6 @@ const BaseStemmer = function() {
 
     /**
      * @return {boolean}
-     * @protected
      */
     this.slice_check = function()
     {
@@ -421,7 +400,6 @@ const BaseStemmer = function() {
     /**
      * @param {string} s
      * @return {boolean}
-     * @protected
      */
     this.slice_from = function(s)
     {
@@ -436,7 +414,6 @@ const BaseStemmer = function() {
 
     /**
      * @return {boolean}
-     * @protected
      */
     this.slice_del = function()
     {
@@ -447,7 +424,6 @@ const BaseStemmer = function() {
      * @param {number} c_bra
      * @param {number} c_ket
      * @param {string} s
-     * @protected
      */
     this.insert = function(c_bra, c_ket, s)
     {
@@ -458,7 +434,6 @@ const BaseStemmer = function() {
 
     /**
      * @return {string}
-     * @protected
      */
     this.slice_to = function()
     {
