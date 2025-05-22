@@ -228,4 +228,4 @@ const NorwegianStemmer = function() {
     };
 };
 
-export { NorwegianStemmer };
+globalThis.NorwegianStemmer = NorwegianStemmer;

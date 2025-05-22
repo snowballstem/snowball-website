@@ -630,4 +630,4 @@ const BasqueStemmer = function() {
     };
 };
 
-export { BasqueStemmer };
+globalThis.BasqueStemmer = BasqueStemmer;

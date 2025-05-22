@@ -789,4 +789,4 @@ const YiddishStemmer = function() {
     };
 };
 
-export { YiddishStemmer };
+globalThis.YiddishStemmer = YiddishStemmer;

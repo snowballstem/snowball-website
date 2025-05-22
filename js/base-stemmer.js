@@ -446,4 +446,4 @@ const BaseStemmer = function() {
     };
 };
 
-export { BaseStemmer };
+globalThis.BaseStemmer = BaseStemmer;

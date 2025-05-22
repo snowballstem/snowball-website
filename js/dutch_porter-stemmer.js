@@ -418,4 +418,4 @@ const DutchPorterStemmer = function() {
     };
 };
 
-export { DutchPorterStemmer };
+globalThis.DutchPorterStemmer = DutchPorterStemmer;

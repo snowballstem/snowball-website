@@ -234,4 +234,4 @@ const NepaliStemmer = function() {
     };
 };
 
-export { NepaliStemmer };
+globalThis.NepaliStemmer = NepaliStemmer;

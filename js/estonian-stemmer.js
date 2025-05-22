@@ -860,4 +860,4 @@ const EstonianStemmer = function() {
     };
 };
 
-export { EstonianStemmer };
+globalThis.EstonianStemmer = EstonianStemmer;

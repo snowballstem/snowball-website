@@ -465,4 +465,4 @@ const LithuanianStemmer = function() {
     };
 };
 
-export { LithuanianStemmer };
+globalThis.LithuanianStemmer = LithuanianStemmer;

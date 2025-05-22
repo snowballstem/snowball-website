@@ -683,4 +683,4 @@ const ItalianStemmer = function() {
     };
 };
 
-export { ItalianStemmer };
+globalThis.ItalianStemmer = ItalianStemmer;

@@ -937,4 +937,4 @@ const FrenchStemmer = function() {
     };
 };
 
-export { FrenchStemmer };
+globalThis.FrenchStemmer = FrenchStemmer;

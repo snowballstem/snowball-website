@@ -445,4 +445,4 @@ const RussianStemmer = function() {
     };
 };
 
-export { RussianStemmer };
+globalThis.RussianStemmer = RussianStemmer;

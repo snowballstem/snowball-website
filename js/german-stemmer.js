@@ -436,4 +436,4 @@ const GermanStemmer = function() {
     };
 };
 
-export { GermanStemmer };
+globalThis.GermanStemmer = GermanStemmer;

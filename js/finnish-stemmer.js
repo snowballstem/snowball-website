@@ -522,4 +522,4 @@ const FinnishStemmer = function() {
     };
 };
 
-export { FinnishStemmer };
+globalThis.FinnishStemmer = FinnishStemmer;

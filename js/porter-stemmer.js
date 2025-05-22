@@ -468,4 +468,4 @@ const PorterStemmer = function() {
     };
 };
 
-export { PorterStemmer };
+globalThis.PorterStemmer = PorterStemmer;

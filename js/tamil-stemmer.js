@@ -894,4 +894,4 @@ const TamilStemmer = function() {
     };
 };
 
-export { TamilStemmer };
+globalThis.TamilStemmer = TamilStemmer;
