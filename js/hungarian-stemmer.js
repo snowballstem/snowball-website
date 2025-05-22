@@ -491,4 +491,4 @@ const HungarianStemmer = function() {
     };
 };
 
-globalThis.HungarianStemmer = HungarianStemmer;
+globalThis['HungarianStemmer'] = HungarianStemmer;

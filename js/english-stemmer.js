@@ -731,4 +731,4 @@ const EnglishStemmer = function() {
     };
 };
 
-globalThis.EnglishStemmer = EnglishStemmer;
+globalThis['EnglishStemmer'] = EnglishStemmer;

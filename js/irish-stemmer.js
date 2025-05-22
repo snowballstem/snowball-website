@@ -280,4 +280,4 @@ const IrishStemmer = function() {
     };
 };
 
-globalThis.IrishStemmer = IrishStemmer;
+globalThis['IrishStemmer'] = IrishStemmer;

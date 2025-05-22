@@ -14,7 +14,7 @@ while (readdir($jsdir)) {
     open IN, '<', $in or die $!;
     open OUT, '>', $out or die $!;
     while (<IN>) {
-	s/^export \{ (.*) \};/globalThis.$1 = $1;/;
+	s/^export \{ (.*) \};/globalThis['$1'] = $1;/;
 	print OUT;
     }
     close IN;

@@ -309,4 +309,4 @@ const ArmenianStemmer = function() {
     };
 };
 
-globalThis.ArmenianStemmer = ArmenianStemmer;
+globalThis['ArmenianStemmer'] = ArmenianStemmer;

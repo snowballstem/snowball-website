@@ -612,4 +612,4 @@ const PortugueseStemmer = function() {
     };
 };
 
-globalThis.PortugueseStemmer = PortugueseStemmer;
+globalThis['PortugueseStemmer'] = PortugueseStemmer;

@@ -170,4 +170,4 @@ const HindiStemmer = function() {
     };
 };
 
-globalThis.HindiStemmer = HindiStemmer;
+globalThis['HindiStemmer'] = HindiStemmer;

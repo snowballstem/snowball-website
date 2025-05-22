@@ -1505,4 +1505,4 @@ const TurkishStemmer = function() {
     };
 };
 
-globalThis.TurkishStemmer = TurkishStemmer;
+globalThis['TurkishStemmer'] = TurkishStemmer;

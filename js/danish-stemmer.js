@@ -222,4 +222,4 @@ const DanishStemmer = function() {
     };
 };
 
-globalThis.DanishStemmer = DanishStemmer;
+globalThis['DanishStemmer'] = DanishStemmer;

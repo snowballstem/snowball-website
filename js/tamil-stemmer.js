@@ -894,4 +894,4 @@ const TamilStemmer = function() {
     };
 };
 
-globalThis.TamilStemmer = TamilStemmer;
+globalThis['TamilStemmer'] = TamilStemmer;

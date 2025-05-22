@@ -1036,4 +1036,4 @@ const ArabicStemmer = function() {
     };
 };
 
-globalThis.ArabicStemmer = ArabicStemmer;
+globalThis['ArabicStemmer'] = ArabicStemmer;

@@ -2130,4 +2130,4 @@ const GreekStemmer = function() {
     };
 };
 
-globalThis.GreekStemmer = GreekStemmer;
+globalThis['GreekStemmer'] = GreekStemmer;

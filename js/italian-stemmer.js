@@ -683,4 +683,4 @@ const ItalianStemmer = function() {
     };
 };
 
-globalThis.ItalianStemmer = ItalianStemmer;
+globalThis['ItalianStemmer'] = ItalianStemmer;

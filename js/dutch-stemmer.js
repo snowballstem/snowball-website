@@ -1197,4 +1197,4 @@ const DutchStemmer = function() {
     };
 };
 
-globalThis.DutchStemmer = DutchStemmer;
+globalThis['DutchStemmer'] = DutchStemmer;

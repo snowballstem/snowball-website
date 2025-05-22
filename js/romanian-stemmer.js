@@ -653,4 +653,4 @@ const RomanianStemmer = function() {
     };
 };
 
-globalThis.RomanianStemmer = RomanianStemmer;
+globalThis['RomanianStemmer'] = RomanianStemmer;

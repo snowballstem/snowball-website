@@ -261,4 +261,4 @@ const SwedishStemmer = function() {
     };
 };
 
-globalThis.SwedishStemmer = SwedishStemmer;
+globalThis['SwedishStemmer'] = SwedishStemmer;

@@ -775,4 +775,4 @@ const CatalanStemmer = function() {
     };
 };
 
-globalThis.CatalanStemmer = CatalanStemmer;
+globalThis['CatalanStemmer'] = CatalanStemmer;

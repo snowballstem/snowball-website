@@ -234,4 +234,4 @@ const NepaliStemmer = function() {
     };
 };
 
-globalThis.NepaliStemmer = NepaliStemmer;
+globalThis['NepaliStemmer'] = NepaliStemmer;

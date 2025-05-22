@@ -291,4 +291,4 @@ const IndonesianStemmer = function() {
     };
 };
 
-globalThis.IndonesianStemmer = IndonesianStemmer;
+globalThis['IndonesianStemmer'] = IndonesianStemmer;

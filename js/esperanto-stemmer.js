@@ -551,4 +551,4 @@ const EsperantoStemmer = function() {
     };
 };
 
-globalThis.EsperantoStemmer = EsperantoStemmer;
+globalThis['EsperantoStemmer'] = EsperantoStemmer;
