@@ -43,7 +43,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {number[]} s
+     * @param {Array<number>} s
      * @param {number} min
      * @param {number} max
      * @return {boolean}
@@ -60,7 +60,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {number[]} s
+     * @param {Array<number>} s
      * @param {number} min
      * @param {number} max
      * @return {boolean}
@@ -80,7 +80,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {number[]} s
+     * @param {Array<number>} s
      * @param {number} min
      * @param {number} max
      * @return {boolean}
@@ -97,7 +97,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {number[]} s
+     * @param {Array<number>} s
      * @param {number} min
      * @param {number} max
      * @return {boolean}
@@ -115,7 +115,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {number[]} s
+     * @param {Array<number>} s
      * @param {number} min
      * @param {number} max
      * @return {boolean}
@@ -137,7 +137,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {number[]} s
+     * @param {Array<number>} s
      * @param {number} min
      * @param {number} max
      * @return {boolean}
@@ -158,7 +158,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {number[]} s
+     * @param {Array<number>} s
      * @param {number} min
      * @param {number} max
      * @return {boolean}
@@ -180,7 +180,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {number[]} s
+     * @param {Array<number>} s
      * @param {number} min
      * @param {number} max
      * @return {boolean}
@@ -233,7 +233,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {Among[]} v
+     * @param {Array<Array>} v
      * @return {number}
      */
     this.find_among = function(v)
@@ -309,7 +309,7 @@ const BaseStemmer = function() {
 
     // find_among_b is for backwards processing. Same comments apply
     /**
-     * @param {Among[]} v
+     * @param {Array<Array>} v
      * @return {number}
      */
     this.find_among_b = function(v)
@@ -414,7 +414,7 @@ const BaseStemmer = function() {
     };
 
     /**
-     * @param {number} c_bra
+     * @param {string} s
      * @return {boolean}
      */
     this.slice_from = function(s)
@@ -463,15 +463,6 @@ const BaseStemmer = function() {
             result = this.current.slice(this.bra, this.ket);
         }
         return result;
-    };
-
-    /**
-     * @return {string}
-     */
-    this.assign_to = function()
-    {
-        /** @protected */
-        return this.current.slice(0, this.limit);
     };
 };
 

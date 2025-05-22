@@ -1,4 +1,4 @@
-// Generated from irish.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from irish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var IrishStemmer = function() {
@@ -93,7 +93,7 @@ var IrishStemmer = function() {
         ["tar", -1, 2]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 4, 2];
+    /** @const */ var /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 4, 2];
 
     var /** number */ I_p2 = 0;
     var /** number */ I_p1 = 0;
@@ -107,27 +107,15 @@ var IrishStemmer = function() {
         I_p2 = base.limit;
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
-            if (!base.go_out_grouping(g_v, 97, 250))
-            {
-                break lab0;
-            }
+            if (!base.go_out_grouping(g_v, 97, 250)) break lab0;
             base.cursor++;
             I_pV = base.cursor;
-            if (!base.go_in_grouping(g_v, 97, 250))
-            {
-                break lab0;
-            }
+            if (!base.go_in_grouping(g_v, 97, 250)) break lab0;
             base.cursor++;
             I_p1 = base.cursor;
-            if (!base.go_out_grouping(g_v, 97, 250))
-            {
-                break lab0;
-            }
+            if (!base.go_out_grouping(g_v, 97, 250)) break lab0;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 250))
-            {
-                break lab0;
-            }
+            if (!base.go_in_grouping(g_v, 97, 250)) break lab0;
             base.cursor++;
             I_p2 = base.cursor;
         }
@@ -140,71 +128,38 @@ var IrishStemmer = function() {
         var /** number */ among_var;
         base.bra = base.cursor;
         among_var = base.find_among(a_0);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.ket = base.cursor;
         switch (among_var) {
             case 1:
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("f"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("f")) return false;
                 break;
             case 3:
-                if (!base.slice_from("s"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("s")) return false;
                 break;
             case 4:
-                if (!base.slice_from("b"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("b")) return false;
                 break;
             case 5:
-                if (!base.slice_from("c"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("c")) return false;
                 break;
             case 6:
-                if (!base.slice_from("d"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("d")) return false;
                 break;
             case 7:
-                if (!base.slice_from("g"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("g")) return false;
                 break;
             case 8:
-                if (!base.slice_from("p"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("p")) return false;
                 break;
             case 9:
-                if (!base.slice_from("t"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("t")) return false;
                 break;
             case 10:
-                if (!base.slice_from("m"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("m")) return false;
                 break;
         }
         return true;
@@ -230,31 +185,16 @@ var IrishStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -265,51 +205,27 @@ var IrishStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!base.slice_from("arc"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("arc")) return false;
                 break;
             case 3:
-                if (!base.slice_from("gin"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("gin")) return false;
                 break;
             case 4:
-                if (!base.slice_from("graf"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("graf")) return false;
                 break;
             case 5:
-                if (!base.slice_from("paite"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("paite")) return false;
                 break;
             case 6:
-                if (!base.slice_from("\u00F3id"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u00F3id")) return false;
                 break;
         }
         return true;
@@ -320,31 +236,16 @@ var IrishStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_RV())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_RV()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;

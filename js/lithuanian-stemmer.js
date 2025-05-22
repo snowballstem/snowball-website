@@ -1,4 +1,4 @@
-// Generated from lithuanian.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from lithuanian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var LithuanianStemmer = function() {
@@ -295,62 +295,43 @@ var LithuanianStemmer = function() {
         ["d\u017E", -1, 2]
     ];
 
-    /** @const */ var a_4 = [
-        ["gd", -1, 1]
-    ];
-
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 64, 1, 0, 64, 0, 0, 0, 0, 0, 0, 0, 4, 4];
+    /** @const */ var /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 64, 1, 0, 64, 0, 0, 0, 0, 0, 0, 0, 4, 4];
 
     var /** number */ I_p1 = 0;
 
 
     /** @return {boolean} */
     function r_step1() {
-        if (base.cursor < I_p1)
-        {
-            return false;
-        }
+        if (base.cursor < I_p1) return false;
         /** @const */ var /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
-        if (base.find_among_b(a_0) == 0)
-        {
+        if (base.find_among_b(a_0) == 0) {
             base.limit_backward = v_1;
             return false;
         }
         base.bra = base.cursor;
         base.limit_backward = v_1;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step2() {
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
-                if (base.cursor < I_p1)
-                {
-                    break lab0;
-                }
+                if (base.cursor < I_p1) break lab0;
                 /** @const */ var /** number */ v_2 = base.limit_backward;
                 base.limit_backward = I_p1;
                 base.ket = base.cursor;
-                if (base.find_among_b(a_1) == 0)
-                {
+                if (base.find_among_b(a_1) == 0) {
                     base.limit_backward = v_2;
                     break lab0;
                 }
                 base.bra = base.cursor;
                 base.limit_backward = v_2;
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!base.slice_del()) return false;
                 continue;
             }
             base.cursor = base.limit - v_1;
@@ -364,59 +345,32 @@ var LithuanianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("ait\u0117"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ait\u0117")) return false;
                 break;
             case 2:
-                if (!base.slice_from("uot\u0117"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("uot\u0117")) return false;
                 break;
             case 3:
-                if (!base.slice_from("\u0117jimas"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u0117jimas")) return false;
                 break;
             case 4:
-                if (!base.slice_from("esys"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("esys")) return false;
                 break;
             case 5:
-                if (!base.slice_from("asys"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("asys")) return false;
                 break;
             case 6:
-                if (!base.slice_from("avimas"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("avimas")) return false;
                 break;
             case 7:
-                if (!base.slice_from("ojimas"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("ojimas")) return false;
                 break;
             case 8:
-                if (!base.slice_from("okat\u0117"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("okat\u0117")) return false;
                 break;
         }
         return true;
@@ -427,23 +381,14 @@ var LithuanianStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("t"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("t")) return false;
                 break;
             case 2:
-                if (!base.slice_from("d"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("d")) return false;
                 break;
         }
         return true;
@@ -452,15 +397,9 @@ var LithuanianStemmer = function() {
     /** @return {boolean} */
     function r_fix_gd() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_4) == 0)
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("gd"))) return false;
         base.bra = base.cursor;
-        if (!base.slice_from("g"))
-        {
-            return false;
-        }
+        if (!base.slice_from("g")) return false;
         return true;
     };
 
@@ -471,33 +410,24 @@ var LithuanianStemmer = function() {
             /** @const */ var /** number */ v_2 = base.cursor;
             lab1: {
                 /** @const */ var /** number */ v_3 = base.cursor;
-                if (!(base.eq_s("a")))
-                {
+                if (!(base.eq_s("a"))) {
                     base.cursor = v_2;
                     break lab1;
                 }
                 base.cursor = v_3;
-                if (base.current.length <= 6)
-                {
+                if (base.current.length <= 6) {
                     base.cursor = v_2;
                     break lab1;
                 }
-                if (base.cursor >= base.limit)
-                {
+                if (base.cursor >= base.limit) {
                     base.cursor = v_2;
                     break lab1;
                 }
                 base.cursor++;
             }
-            if (!base.go_out_grouping(g_v, 97, 371))
-            {
-                break lab0;
-            }
+            if (!base.go_out_grouping(g_v, 97, 371)) break lab0;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 371))
-            {
-                break lab0;
-            }
+            if (!base.go_in_grouping(g_v, 97, 371)) break lab0;
             base.cursor++;
             I_p1 = base.cursor;
         }

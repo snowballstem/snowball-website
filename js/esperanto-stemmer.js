@@ -1,4 +1,4 @@
-// Generated from esperanto.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from esperanto.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var EsperantoStemmer = function() {
@@ -151,11 +151,11 @@ var EsperantoStemmer = function() {
         ["u", -1, -1]
     ];
 
-    /** @const */ var /** Array<int> */ g_vowel = [17, 65, 16];
+    /** @const */ var /** Array<number> */ g_vowel = [17, 65, 16];
 
-    /** @const */ var /** Array<int> */ g_aou = [1, 64, 16];
+    /** @const */ var /** Array<number> */ g_aou = [1, 64, 16];
 
-    /** @const */ var /** Array<int> */ g_digit = [255, 3];
+    /** @const */ var /** Array<number> */ g_digit = [255, 3];
 
     var /** boolean */ B_foreign = false;
 
@@ -164,8 +164,7 @@ var EsperantoStemmer = function() {
     function r_canonical_form() {
         var /** number */ among_var;
         B_foreign = false;
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
@@ -173,74 +172,41 @@ var EsperantoStemmer = function() {
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        if (!base.slice_from("\u0109"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u0109")) return false;
                         break;
                     case 2:
-                        if (!base.slice_from("\u011D"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u011D")) return false;
                         break;
                     case 3:
-                        if (!base.slice_from("\u0125"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u0125")) return false;
                         break;
                     case 4:
-                        if (!base.slice_from("\u0135"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u0135")) return false;
                         break;
                     case 5:
-                        if (!base.slice_from("\u015D"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u015D")) return false;
                         break;
                     case 6:
-                        if (!base.slice_from("\u016D"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u016D")) return false;
                         break;
                     case 7:
-                        if (!base.slice_from("a"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("a")) return false;
                         B_foreign = true;
                         break;
                     case 8:
-                        if (!base.slice_from("e"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("e")) return false;
                         B_foreign = true;
                         break;
                     case 9:
-                        if (!base.slice_from("i"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("i")) return false;
                         B_foreign = true;
                         break;
                     case 10:
-                        if (!base.slice_from("o"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("o")) return false;
                         B_foreign = true;
                         break;
                     case 11:
-                        if (!base.slice_from("u"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("u")) return false;
                         B_foreign = true;
                         break;
                     case 12:
@@ -250,10 +216,7 @@ var EsperantoStemmer = function() {
                         B_foreign = false;
                         break;
                     case 14:
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab0;
-                        }
+                        if (base.cursor >= base.limit) break lab0;
                         base.cursor++;
                         break;
                 }
@@ -262,40 +225,18 @@ var EsperantoStemmer = function() {
             base.cursor = v_1;
             break;
         }
-        lab1: {
-            if (!B_foreign)
-            {
-                break lab1;
-            }
-            return false;
-        }
-        return true;
+        return !B_foreign;
     };
 
     /** @return {boolean} */
     function r_initial_apostrophe() {
         base.bra = base.cursor;
-        if (!(base.eq_s("'")))
-        {
-            return false;
-        }
+        if (!(base.eq_s("'"))) return false;
         base.ket = base.cursor;
-        if (!(base.eq_s("st")))
-        {
-            return false;
-        }
-        if (base.find_among(a_1) == 0)
-        {
-            return false;
-        }
-        if (base.cursor < base.limit)
-        {
-            return false;
-        }
-        if (!base.slice_from("e"))
-        {
-            return false;
-        }
+        if (!(base.eq_s("st"))) return false;
+        if (base.find_among(a_1) == 0) return false;
+        if (base.cursor < base.limit) return false;
+        if (!base.slice_from("e")) return false;
         return true;
     };
 
@@ -304,112 +245,63 @@ var EsperantoStemmer = function() {
         base.ket = base.cursor;
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            if (!(base.eq_s_b("n")))
-            {
+            if (!(base.eq_s_b("n"))) {
                 base.cursor = base.limit - v_1;
                 break lab0;
             }
         }
         base.bra = base.cursor;
-        if (base.find_among_b(a_2) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_2) == 0) return false;
         lab1: {
             /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab2: {
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab2;
-                }
+                if (base.cursor > base.limit_backward) break lab2;
                 break lab1;
             }
             base.cursor = base.limit - v_2;
-            if (!(base.eq_s_b("-")))
-            {
-                return false;
-            }
+            if (!(base.eq_s_b("-"))) return false;
         }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_final_apostrophe() {
         base.ket = base.cursor;
-        if (!(base.eq_s_b("'")))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("'"))) return false;
         base.bra = base.cursor;
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                if (!(base.eq_s_b("l")))
-                {
-                    break lab1;
-                }
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab1;
-                }
-                if (!base.slice_from("a"))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("l"))) break lab1;
+                if (base.cursor > base.limit_backward) break lab1;
+                if (!base.slice_from("a")) return false;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
             lab2: {
-                if (!(base.eq_s_b("un")))
-                {
-                    break lab2;
-                }
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab2;
-                }
-                if (!base.slice_from("u"))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("un"))) break lab2;
+                if (base.cursor > base.limit_backward) break lab2;
+                if (!base.slice_from("u")) return false;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
             lab3: {
-                if (base.find_among_b(a_3) == 0)
-                {
-                    break lab3;
-                }
+                if (base.find_among_b(a_3) == 0) break lab3;
                 lab4: {
                     /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                     lab5: {
-                        if (base.cursor > base.limit_backward)
-                        {
-                            break lab5;
-                        }
+                        if (base.cursor > base.limit_backward) break lab5;
                         break lab4;
                     }
                     base.cursor = base.limit - v_2;
-                    if (!(base.eq_s_b("-")))
-                    {
-                        break lab3;
-                    }
+                    if (!(base.eq_s_b("-"))) break lab3;
                 }
-                if (!base.slice_from("a\u016D"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("a\u016D")) return false;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            if (!base.slice_from("o"))
-            {
-                return false;
-            }
+            if (!base.slice_from("o")) return false;
         }
         return true;
     };
@@ -419,82 +311,52 @@ var EsperantoStemmer = function() {
         base.ket = base.cursor;
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            if (!(base.eq_s_b("n")))
-            {
+            if (!(base.eq_s_b("n"))) {
                 base.cursor = base.limit - v_1;
                 break lab0;
             }
         }
         /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab1: {
-            if (!(base.eq_s_b("j")))
-            {
+            if (!(base.eq_s_b("j"))) {
                 base.cursor = base.limit - v_2;
                 break lab1;
             }
         }
         base.bra = base.cursor;
-        if (base.find_among_b(a_4) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_4) == 0) return false;
         lab2: {
             /** @const */ var /** number */ v_3 = base.limit - base.cursor;
             lab3: {
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab3;
-                }
+                if (base.cursor > base.limit_backward) break lab3;
                 break lab2;
             }
             base.cursor = base.limit - v_3;
-            if (!(base.eq_s_b("-")))
-            {
-                return false;
-            }
+            if (!(base.eq_s_b("-"))) return false;
         }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_uninflected() {
-        if (base.find_among_b(a_5) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_5) == 0) return false;
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab1;
-                }
+                if (base.cursor > base.limit_backward) break lab1;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            if (!(base.eq_s_b("-")))
-            {
-                return false;
-            }
+            if (!(base.eq_s_b("-"))) return false;
         }
         return true;
     };
 
     /** @return {boolean} */
     function r_merged_numeral() {
-        if (base.find_among_b(a_6) == 0)
-        {
-            return false;
-        }
-        if (base.find_among_b(a_7) == 0)
-        {
-            return false;
-        }
-        return true;
+        if (base.find_among_b(a_6) == 0) return false;
+        return base.find_among_b(a_7) != 0;
     };
 
     /** @return {boolean} */
@@ -507,50 +369,37 @@ var EsperantoStemmer = function() {
             lab1: {
                 /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    if (!(base.eq_s_b("n")))
-                    {
+                    if (!(base.eq_s_b("n"))) {
                         base.cursor = base.limit - v_3;
                         break lab2;
                     }
                 }
                 base.bra = base.cursor;
-                if (!(base.eq_s_b("e")))
-                {
-                    break lab1;
-                }
+                if (!(base.eq_s_b("e"))) break lab1;
                 break lab0;
             }
             base.cursor = base.limit - v_2;
             /** @const */ var /** number */ v_4 = base.limit - base.cursor;
             lab3: {
-                if (!(base.eq_s_b("n")))
-                {
+                if (!(base.eq_s_b("n"))) {
                     base.cursor = base.limit - v_4;
                     break lab3;
                 }
             }
             /** @const */ var /** number */ v_5 = base.limit - base.cursor;
             lab4: {
-                if (!(base.eq_s_b("j")))
-                {
+                if (!(base.eq_s_b("j"))) {
                     base.cursor = base.limit - v_5;
                     break lab4;
                 }
             }
             base.bra = base.cursor;
-            if (!(base.in_grouping_b(g_aou, 97, 117)))
-            {
-                return false;
-            }
+            if (!(base.in_grouping_b(g_aou, 97, 117))) return false;
         }
-        if (!(base.eq_s_b("i")))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("i"))) return false;
         /** @const */ var /** number */ v_6 = base.limit - base.cursor;
         lab5: {
-            if (base.find_among_b(a_8) == 0)
-            {
+            if (base.find_among_b(a_8) == 0) {
                 base.cursor = base.limit - v_6;
                 break lab5;
             }
@@ -558,23 +407,14 @@ var EsperantoStemmer = function() {
         lab6: {
             /** @const */ var /** number */ v_7 = base.limit - base.cursor;
             lab7: {
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab7;
-                }
+                if (base.cursor > base.limit_backward) break lab7;
                 break lab6;
             }
             base.cursor = base.limit - v_7;
-            if (!(base.eq_s_b("-")))
-            {
-                return false;
-            }
+            if (!(base.eq_s_b("-"))) return false;
         }
         base.cursor = base.limit - v_1;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -585,10 +425,7 @@ var EsperantoStemmer = function() {
             lab1: {
                 for (var /** number */ v_2 = 2; v_2 > 0; v_2--)
                 {
-                    if (!base.go_out_grouping_b(g_vowel, 97, 117))
-                    {
-                        break lab1;
-                    }
+                    if (!base.go_out_grouping_b(g_vowel, 97, 117)) break lab1;
                     base.cursor--;
                 }
                 break lab0;
@@ -598,30 +435,18 @@ var EsperantoStemmer = function() {
                 golab3: while(true)
                 {
                     lab4: {
-                        if (!(base.eq_s_b("-")))
-                        {
-                            break lab4;
-                        }
+                        if (!(base.eq_s_b("-"))) break lab4;
                         break golab3;
                     }
-                    if (base.cursor <= base.limit_backward)
-                    {
-                        break lab2;
-                    }
+                    if (base.cursor <= base.limit_backward) break lab2;
                     base.cursor--;
                 }
-                if (base.cursor <= base.limit_backward)
-                {
-                    break lab2;
-                }
+                if (base.cursor <= base.limit_backward) break lab2;
                 base.cursor--;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            if (!base.go_out_grouping_b(g_digit, 48, 57))
-            {
-                return false;
-            }
+            if (!base.go_out_grouping_b(g_digit, 48, 57)) return false;
             base.cursor--;
         }
         return true;
@@ -632,17 +457,11 @@ var EsperantoStemmer = function() {
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                if (!(base.eq_s_b("-")))
-                {
-                    break lab1;
-                }
+                if (!(base.eq_s_b("-"))) break lab1;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
-            if (!(base.in_grouping_b(g_digit, 48, 57)))
-            {
-                return false;
-            }
+            if (!(base.in_grouping_b(g_digit, 48, 57))) return false;
         }
         return true;
     };
@@ -650,32 +469,22 @@ var EsperantoStemmer = function() {
     /** @return {boolean} */
     function r_standard_suffix() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_9) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_9) == 0) return false;
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            if (!(base.eq_s_b("-")))
-            {
+            if (!(base.eq_s_b("-"))) {
                 base.cursor = base.limit - v_1;
                 break lab0;
             }
         }
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     this.stem = /** @return {boolean} */ function() {
         /** @const */ var /** number */ v_1 = base.cursor;
-        if (!r_canonical_form())
-        {
-            return false;
-        }
+        if (!r_canonical_form()) return false;
         base.cursor = v_1;
         /** @const */ var /** number */ v_2 = base.cursor;
         r_initial_apostrophe();
@@ -684,10 +493,7 @@ var EsperantoStemmer = function() {
         {
             /** @const */ var /** number */ v_3 = base.limit - base.cursor;
             lab0: {
-                if (!r_pronoun())
-                {
-                    break lab0;
-                }
+                if (!r_pronoun()) break lab0;
                 return false;
             }
             base.cursor = base.limit - v_3;
@@ -698,10 +504,7 @@ var EsperantoStemmer = function() {
         {
             /** @const */ var /** number */ v_5 = base.limit - base.cursor;
             lab1: {
-                if (!r_correlative())
-                {
-                    break lab1;
-                }
+                if (!r_correlative()) break lab1;
                 return false;
             }
             base.cursor = base.limit - v_5;
@@ -709,10 +512,7 @@ var EsperantoStemmer = function() {
         {
             /** @const */ var /** number */ v_6 = base.limit - base.cursor;
             lab2: {
-                if (!r_uninflected())
-                {
-                    break lab2;
-                }
+                if (!r_uninflected()) break lab2;
                 return false;
             }
             base.cursor = base.limit - v_6;
@@ -720,10 +520,7 @@ var EsperantoStemmer = function() {
         {
             /** @const */ var /** number */ v_7 = base.limit - base.cursor;
             lab3: {
-                if (!r_merged_numeral())
-                {
-                    break lab3;
-                }
+                if (!r_merged_numeral()) break lab3;
                 return false;
             }
             base.cursor = base.limit - v_7;
@@ -731,24 +528,15 @@ var EsperantoStemmer = function() {
         {
             /** @const */ var /** number */ v_8 = base.limit - base.cursor;
             lab4: {
-                if (!r_ujn_suffix())
-                {
-                    break lab4;
-                }
+                if (!r_ujn_suffix()) break lab4;
                 return false;
             }
             base.cursor = base.limit - v_8;
         }
         /** @const */ var /** number */ v_9 = base.limit - base.cursor;
-        if (!r_long_word())
-        {
-            return false;
-        }
+        if (!r_long_word()) return false;
         base.cursor = base.limit - v_9;
-        if (!r_standard_suffix())
-        {
-            return false;
-        }
+        if (!r_standard_suffix()) return false;
         base.cursor = base.limit_backward;
         return true;
     };

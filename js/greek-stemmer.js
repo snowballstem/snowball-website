@@ -1,4 +1,4 @@
-// Generated from greek.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from greek.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var GreekStemmer = function() {
@@ -707,10 +707,6 @@ var GreekStemmer = function() {
     ];
 
     /** @const */ var a_40 = [
-        ["\u03B7\u03C3\u03B5\u03C4\u03B5", -1, 1]
-    ];
-
-    /** @const */ var a_41 = [
         ["\u03B5\u03BD\u03B4", -1, 1],
         ["\u03C3\u03C5\u03BD\u03B4", -1, 1],
         ["\u03BF\u03B4", -1, 1],
@@ -744,7 +740,7 @@ var GreekStemmer = function() {
         ["\u03C3\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_42 = [
+    /** @const */ var a_41 = [
         ["\u03C0\u03B1\u03B3", -1, 1],
         ["\u03B4", -1, 1],
         ["\u03B1\u03B4", 1, 1],
@@ -772,17 +768,17 @@ var GreekStemmer = function() {
         ["\u03C3\u03C5\u03C1\u03C6", -1, 1]
     ];
 
-    /** @const */ var a_43 = [
+    /** @const */ var a_42 = [
         ["\u03BF\u03BD\u03C4\u03B1\u03C3", -1, 1],
         ["\u03C9\u03BD\u03C4\u03B1\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_44 = [
+    /** @const */ var a_43 = [
         ["\u03BF\u03BC\u03B1\u03C3\u03C4\u03B5", -1, 1],
         ["\u03B9\u03BF\u03BC\u03B1\u03C3\u03C4\u03B5", 0, 1]
     ];
 
-    /** @const */ var a_45 = [
+    /** @const */ var a_44 = [
         ["\u03C0", -1, 1],
         ["\u03B1\u03C0", 0, 1],
         ["\u03B1\u03BA\u03B1\u03C4\u03B1\u03C0", 1, 1],
@@ -791,7 +787,7 @@ var GreekStemmer = function() {
         ["\u03B1\u03BC\u03B5\u03C4\u03B1\u03BC\u03C6", -1, 1]
     ];
 
-    /** @const */ var a_46 = [
+    /** @const */ var a_45 = [
         ["\u03B6", -1, 1],
         ["\u03B1\u03BB", -1, 1],
         ["\u03C0\u03B1\u03C1\u03B1\u03BA\u03B1\u03BB", 1, 1],
@@ -803,13 +799,13 @@ var GreekStemmer = function() {
         ["\u03BD\u03B9\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_47 = [
+    /** @const */ var a_46 = [
         ["\u03B7\u03B8\u03B7\u03BA\u03B1", -1, 1],
         ["\u03B7\u03B8\u03B7\u03BA\u03B5", -1, 1],
         ["\u03B7\u03B8\u03B7\u03BA\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_48 = [
+    /** @const */ var a_47 = [
         ["\u03C0\u03B9\u03B8", -1, 1],
         ["\u03BF\u03B8", -1, 1],
         ["\u03BD\u03B1\u03C1\u03B8", -1, 1],
@@ -818,7 +814,7 @@ var GreekStemmer = function() {
         ["\u03C3\u03C6", -1, 1]
     ];
 
-    /** @const */ var a_49 = [
+    /** @const */ var a_48 = [
         ["\u03B8", -1, 1],
         ["\u03B4\u03B9\u03B1\u03B8", 0, 1],
         ["\u03C0\u03B1\u03C1\u03B1\u03BA\u03B1\u03C4\u03B1\u03B8", 0, 1],
@@ -826,13 +822,13 @@ var GreekStemmer = function() {
         ["\u03C0\u03C1\u03BF\u03C3\u03B8", 0, 1]
     ];
 
-    /** @const */ var a_50 = [
+    /** @const */ var a_49 = [
         ["\u03B7\u03BA\u03B1", -1, 1],
         ["\u03B7\u03BA\u03B5", -1, 1],
         ["\u03B7\u03BA\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_51 = [
+    /** @const */ var a_50 = [
         ["\u03C6\u03B1\u03B3", -1, 1],
         ["\u03BB\u03B7\u03B3", -1, 1],
         ["\u03C6\u03C1\u03C5\u03B4", -1, 1],
@@ -847,7 +843,7 @@ var GreekStemmer = function() {
         ["\u03C0\u03B1\u03BD\u03C4\u03B1\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_52 = [
+    /** @const */ var a_51 = [
         ["\u03C4\u03C3\u03B1", -1, 1],
         ["\u03C7\u03B1\u03B4", -1, 1],
         ["\u03BC\u03B5\u03B4", -1, 1],
@@ -875,13 +871,13 @@ var GreekStemmer = function() {
         ["\u03BB\u03B5\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_53 = [
+    /** @const */ var a_52 = [
         ["\u03BF\u03C5\u03C3\u03B1", -1, 1],
         ["\u03BF\u03C5\u03C3\u03B5", -1, 1],
         ["\u03BF\u03C5\u03C3\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_54 = [
+    /** @const */ var a_53 = [
         ["\u03C0\u03B5\u03BB", -1, 1],
         ["\u03BB\u03BB", -1, 1],
         ["\u03C3\u03BC\u03B7\u03BD", -1, 1],
@@ -896,7 +892,7 @@ var GreekStemmer = function() {
         ["\u03BD\u03B1\u03C5\u03BB\u03BF\u03C7", 10, -1]
     ];
 
-    /** @const */ var a_55 = [
+    /** @const */ var a_54 = [
         ["\u03B1\u03BC\u03B1\u03BB\u03BB\u03B9", -1, 1],
         ["\u03BB", -1, 1],
         ["\u03B1\u03BC\u03B1\u03BB", 1, 1],
@@ -943,19 +939,19 @@ var GreekStemmer = function() {
         ["\u03C0\u03BF\u03BB\u03C5\u03C6", -1, 1]
     ];
 
-    /** @const */ var a_56 = [
+    /** @const */ var a_55 = [
         ["\u03B1\u03B3\u03B1", -1, 1],
         ["\u03B1\u03B3\u03B5", -1, 1],
         ["\u03B1\u03B3\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_57 = [
+    /** @const */ var a_56 = [
         ["\u03B7\u03C3\u03B1", -1, 1],
         ["\u03B7\u03C3\u03B5", -1, 1],
         ["\u03B7\u03C3\u03BF\u03C5", -1, 1]
     ];
 
-    /** @const */ var a_58 = [
+    /** @const */ var a_57 = [
         ["\u03BD", -1, 1],
         ["\u03B4\u03C9\u03B4\u03B5\u03BA\u03B1\u03BD", 0, 1],
         ["\u03B5\u03C0\u03C4\u03B1\u03BD", 0, 1],
@@ -964,11 +960,7 @@ var GreekStemmer = function() {
         ["\u03C7\u03B5\u03C1\u03C3\u03BF\u03BD", 0, 1]
     ];
 
-    /** @const */ var a_59 = [
-        ["\u03B7\u03C3\u03C4\u03B5", -1, 1]
-    ];
-
-    /** @const */ var a_60 = [
+    /** @const */ var a_58 = [
         ["\u03C3\u03B2", -1, 1],
         ["\u03B1\u03C3\u03B2", 0, 1],
         ["\u03B1\u03C0\u03BB", -1, 1],
@@ -981,13 +973,13 @@ var GreekStemmer = function() {
         ["\u03C0\u03B1\u03BB\u03B9\u03BC\u03C8", -1, 1]
     ];
 
-    /** @const */ var a_61 = [
+    /** @const */ var a_59 = [
         ["\u03BF\u03C5\u03BD\u03B5", -1, 1],
         ["\u03B7\u03B8\u03BF\u03C5\u03BD\u03B5", 0, 1],
         ["\u03B7\u03C3\u03BF\u03C5\u03BD\u03B5", 0, 1]
     ];
 
-    /** @const */ var a_62 = [
+    /** @const */ var a_60 = [
         ["\u03C3\u03C0\u03B9", -1, 1],
         ["\u03BD", -1, 1],
         ["\u03B5\u03BE\u03C9\u03BD", 1, 1],
@@ -996,13 +988,13 @@ var GreekStemmer = function() {
         ["\u03BA\u03B1\u03BA\u03BF\u03BC\u03BF\u03C5\u03C4\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_63 = [
+    /** @const */ var a_61 = [
         ["\u03BF\u03C5\u03BC\u03B5", -1, 1],
         ["\u03B7\u03B8\u03BF\u03C5\u03BC\u03B5", 0, 1],
         ["\u03B7\u03C3\u03BF\u03C5\u03BC\u03B5", 0, 1]
     ];
 
-    /** @const */ var a_64 = [
+    /** @const */ var a_62 = [
         ["\u03B1\u03B6", -1, 1],
         ["\u03C9\u03C1\u03B9\u03BF\u03C0\u03BB", -1, 1],
         ["\u03B1\u03C3\u03BF\u03C5\u03C3", -1, 1],
@@ -1012,13 +1004,13 @@ var GreekStemmer = function() {
         ["\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_65 = [
+    /** @const */ var a_63 = [
         ["\u03BC\u03B1\u03C4\u03B1", -1, 1],
         ["\u03BC\u03B1\u03C4\u03C9\u03BD", -1, 1],
         ["\u03BC\u03B1\u03C4\u03BF\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_66 = [
+    /** @const */ var a_64 = [
         ["\u03B1", -1, 1],
         ["\u03B9\u03BF\u03C5\u03BC\u03B1", 0, 1],
         ["\u03BF\u03BC\u03BF\u03C5\u03BD\u03B1", 0, 1],
@@ -1105,7 +1097,7 @@ var GreekStemmer = function() {
         ["\u03B7\u03C3\u03C9", 80, 1]
     ];
 
-    /** @const */ var a_67 = [
+    /** @const */ var a_65 = [
         ["\u03BF\u03C4\u03B5\u03C1", -1, 1],
         ["\u03B5\u03C3\u03C4\u03B5\u03C1", -1, 1],
         ["\u03C5\u03C4\u03B5\u03C1", -1, 1],
@@ -1116,9 +1108,9 @@ var GreekStemmer = function() {
         ["\u03C9\u03C4\u03B1\u03C4", -1, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [81, 65, 16, 1];
+    /** @const */ var /** Array<number> */ g_v = [81, 65, 16, 1];
 
-    /** @const */ var /** Array<int> */ g_v2 = [81, 65, 0, 1];
+    /** @const */ var /** Array<number> */ g_v2 = [81, 65, 0, 1];
 
     var /** boolean */ B_test1 = false;
 
@@ -1131,8 +1123,7 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_tolower() {
         var /** number */ among_var;
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 base.ket = base.cursor;
@@ -1140,154 +1131,79 @@ var GreekStemmer = function() {
                 base.bra = base.cursor;
                 switch (among_var) {
                     case 1:
-                        if (!base.slice_from("\u03B1"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B1")) return false;
                         break;
                     case 2:
-                        if (!base.slice_from("\u03B2"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B2")) return false;
                         break;
                     case 3:
-                        if (!base.slice_from("\u03B3"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B3")) return false;
                         break;
                     case 4:
-                        if (!base.slice_from("\u03B4"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B4")) return false;
                         break;
                     case 5:
-                        if (!base.slice_from("\u03B5"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B5")) return false;
                         break;
                     case 6:
-                        if (!base.slice_from("\u03B6"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B6")) return false;
                         break;
                     case 7:
-                        if (!base.slice_from("\u03B7"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B7")) return false;
                         break;
                     case 8:
-                        if (!base.slice_from("\u03B8"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B8")) return false;
                         break;
                     case 9:
-                        if (!base.slice_from("\u03B9"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B9")) return false;
                         break;
                     case 10:
-                        if (!base.slice_from("\u03BA"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03BA")) return false;
                         break;
                     case 11:
-                        if (!base.slice_from("\u03BB"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03BB")) return false;
                         break;
                     case 12:
-                        if (!base.slice_from("\u03BC"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03BC")) return false;
                         break;
                     case 13:
-                        if (!base.slice_from("\u03BD"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03BD")) return false;
                         break;
                     case 14:
-                        if (!base.slice_from("\u03BE"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03BE")) return false;
                         break;
                     case 15:
-                        if (!base.slice_from("\u03BF"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03BF")) return false;
                         break;
                     case 16:
-                        if (!base.slice_from("\u03C0"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03C0")) return false;
                         break;
                     case 17:
-                        if (!base.slice_from("\u03C1"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03C1")) return false;
                         break;
                     case 18:
-                        if (!base.slice_from("\u03C3"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03C3")) return false;
                         break;
                     case 19:
-                        if (!base.slice_from("\u03C4"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03C4")) return false;
                         break;
                     case 20:
-                        if (!base.slice_from("\u03C5"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03C5")) return false;
                         break;
                     case 21:
-                        if (!base.slice_from("\u03C6"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03C6")) return false;
                         break;
                     case 22:
-                        if (!base.slice_from("\u03C7"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03C7")) return false;
                         break;
                     case 23:
-                        if (!base.slice_from("\u03C8"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03C8")) return false;
                         break;
                     case 24:
-                        if (!base.slice_from("\u03C9"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03C9")) return false;
                         break;
                     case 25:
-                        if (base.cursor <= base.limit_backward)
-                        {
-                            break lab0;
-                        }
+                        if (base.cursor <= base.limit_backward) break lab0;
                         base.cursor--;
                         break;
                 }
@@ -1304,77 +1220,41 @@ var GreekStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("\u03C6\u03B1"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03C6\u03B1")) return false;
                 break;
             case 2:
-                if (!base.slice_from("\u03C3\u03BA\u03B1"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03C3\u03BA\u03B1")) return false;
                 break;
             case 3:
-                if (!base.slice_from("\u03BF\u03BB\u03BF"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03BF\u03BB\u03BF")) return false;
                 break;
             case 4:
-                if (!base.slice_from("\u03C3\u03BF"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03C3\u03BF")) return false;
                 break;
             case 5:
-                if (!base.slice_from("\u03C4\u03B1\u03C4\u03BF"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03C4\u03B1\u03C4\u03BF")) return false;
                 break;
             case 6:
-                if (!base.slice_from("\u03BA\u03C1\u03B5"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03BA\u03C1\u03B5")) return false;
                 break;
             case 7:
-                if (!base.slice_from("\u03C0\u03B5\u03C1"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03C0\u03B5\u03C1")) return false;
                 break;
             case 8:
-                if (!base.slice_from("\u03C4\u03B5\u03C1"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03C4\u03B5\u03C1")) return false;
                 break;
             case 9:
-                if (!base.slice_from("\u03C6\u03C9"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03C6\u03C9")) return false;
                 break;
             case 10:
-                if (!base.slice_from("\u03BA\u03B1\u03B8\u03B5\u03C3\u03C4"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03BA\u03B1\u03B8\u03B5\u03C3\u03C4")) return false;
                 break;
             case 11:
-                if (!base.slice_from("\u03B3\u03B5\u03B3\u03BF\u03BD"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03B3\u03B5\u03B3\u03BF\u03BD")) return false;
                 break;
         }
         B_test1 = false;
@@ -1385,39 +1265,21 @@ var GreekStemmer = function() {
     function r_step_s1() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        if (base.find_among_b(a_3) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_3) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
         among_var = base.find_among_b(a_2);
-        if (among_var == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("\u03B9"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03B9")) return false;
                 break;
             case 2:
-                if (!base.slice_from("\u03B9\u03B6"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03B9\u03B6")) return false;
                 break;
         }
         return true;
@@ -1426,30 +1288,15 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_step_s2() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_5) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_5) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_4) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03C9\u03BD"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_4) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03C9\u03BD")) return false;
         return true;
     };
 
@@ -1460,57 +1307,30 @@ var GreekStemmer = function() {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
-                if (!(base.eq_s_b("\u03B9\u03C3\u03B1")))
-                {
-                    break lab1;
-                }
+                if (!(base.eq_s_b("\u03B9\u03C3\u03B1"))) break lab1;
                 base.bra = base.cursor;
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab1;
-                }
-                if (!base.slice_from("\u03B9\u03C3"))
-                {
-                    return false;
-                }
+                if (base.cursor > base.limit_backward) break lab1;
+                if (!base.slice_from("\u03B9\u03C3")) return false;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
             base.ket = base.cursor;
         }
-        if (base.find_among_b(a_7) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_7) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
         among_var = base.find_among_b(a_6);
-        if (among_var == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("\u03B9"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03B9")) return false;
                 break;
             case 2:
-                if (!base.slice_from("\u03B9\u03C3"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03B9\u03C3")) return false;
                 break;
         }
         return true;
@@ -1519,30 +1339,15 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_step_s4() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_9) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_9) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_8) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B9"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_8) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B9")) return false;
         return true;
     };
 
@@ -1550,39 +1355,21 @@ var GreekStemmer = function() {
     function r_step_s5() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        if (base.find_among_b(a_11) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_11) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
         among_var = base.find_among_b(a_10);
-        if (among_var == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
         switch (among_var) {
             case 1:
-                if (!base.slice_from("\u03B9"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03B9")) return false;
                 break;
             case 2:
-                if (!base.slice_from("\u03B9\u03C3\u03C4"))
-                {
-                    return false;
-                }
+                if (!base.slice_from("\u03B9\u03C3\u03C4")) return false;
                 break;
         }
         return true;
@@ -1592,15 +1379,9 @@ var GreekStemmer = function() {
     function r_step_s6() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        if (base.find_among_b(a_14) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_14) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
@@ -1608,26 +1389,14 @@ var GreekStemmer = function() {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
                 among_var = base.find_among_b(a_12);
-                if (among_var == 0)
-                {
-                    break lab1;
-                }
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab1;
-                }
+                if (among_var == 0) break lab1;
+                if (base.cursor > base.limit_backward) break lab1;
                 switch (among_var) {
                     case 1:
-                        if (!base.slice_from("\u03B9\u03C3\u03BC"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B9\u03C3\u03BC")) return false;
                         break;
                     case 2:
-                        if (!base.slice_from("\u03B9"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B9")) return false;
                         break;
                 }
                 break lab0;
@@ -1635,71 +1404,38 @@ var GreekStemmer = function() {
             base.cursor = base.limit - v_1;
             base.ket = base.cursor;
             among_var = base.find_among_b(a_13);
-            if (among_var == 0)
-            {
-                return false;
-            }
+            if (among_var == 0) return false;
             base.bra = base.cursor;
             switch (among_var) {
                 case 1:
-                    if (!base.slice_from("\u03B1\u03B3\u03BD\u03C9\u03C3\u03C4"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03B1\u03B3\u03BD\u03C9\u03C3\u03C4")) return false;
                     break;
                 case 2:
-                    if (!base.slice_from("\u03B1\u03C4\u03BF\u03BC"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03B1\u03C4\u03BF\u03BC")) return false;
                     break;
                 case 3:
-                    if (!base.slice_from("\u03B3\u03BD\u03C9\u03C3\u03C4"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03B3\u03BD\u03C9\u03C3\u03C4")) return false;
                     break;
                 case 4:
-                    if (!base.slice_from("\u03B5\u03B8\u03BD"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03B5\u03B8\u03BD")) return false;
                     break;
                 case 5:
-                    if (!base.slice_from("\u03B5\u03BA\u03BB\u03B5\u03BA\u03C4"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03B5\u03BA\u03BB\u03B5\u03BA\u03C4")) return false;
                     break;
                 case 6:
-                    if (!base.slice_from("\u03C3\u03BA\u03B5\u03C0\u03C4"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03C3\u03BA\u03B5\u03C0\u03C4")) return false;
                     break;
                 case 7:
-                    if (!base.slice_from("\u03C4\u03BF\u03C0"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03C4\u03BF\u03C0")) return false;
                     break;
                 case 8:
-                    if (!base.slice_from("\u03B1\u03BB\u03B5\u03BE\u03B1\u03BD\u03B4\u03C1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03B1\u03BB\u03B5\u03BE\u03B1\u03BD\u03B4\u03C1")) return false;
                     break;
                 case 9:
-                    if (!base.slice_from("\u03B2\u03C5\u03B6\u03B1\u03BD\u03C4"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03B2\u03C5\u03B6\u03B1\u03BD\u03C4")) return false;
                     break;
                 case 10:
-                    if (!base.slice_from("\u03B8\u03B5\u03B1\u03C4\u03C1"))
-                    {
-                        return false;
-                    }
+                    if (!base.slice_from("\u03B8\u03B5\u03B1\u03C4\u03C1")) return false;
                     break;
             }
         }
@@ -1709,30 +1445,15 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_step_s7() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_16) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_16) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_15) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B1\u03C1\u03B1\u03BA"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_15) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B1\u03C1\u03B1\u03BA")) return false;
         return true;
     };
 
@@ -1740,15 +1461,9 @@ var GreekStemmer = function() {
     function r_step_s8() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        if (base.find_among_b(a_18) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_18) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
@@ -1756,26 +1471,14 @@ var GreekStemmer = function() {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
                 among_var = base.find_among_b(a_17);
-                if (among_var == 0)
-                {
-                    break lab1;
-                }
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab1;
-                }
+                if (among_var == 0) break lab1;
+                if (base.cursor > base.limit_backward) break lab1;
                 switch (among_var) {
                     case 1:
-                        if (!base.slice_from("\u03B1\u03BA"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B1\u03BA")) return false;
                         break;
                     case 2:
-                        if (!base.slice_from("\u03B9\u03C4\u03C3"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("\u03B9\u03C4\u03C3")) return false;
                         break;
                 }
                 break lab0;
@@ -1783,14 +1486,8 @@ var GreekStemmer = function() {
             base.cursor = base.limit - v_1;
             base.ket = base.cursor;
             base.bra = base.cursor;
-            if (!(base.eq_s_b("\u03BA\u03BF\u03C1")))
-            {
-                return false;
-            }
-            if (!base.slice_from("\u03B9\u03C4\u03C3"))
-            {
-                return false;
-            }
+            if (!(base.eq_s_b("\u03BA\u03BF\u03C1"))) return false;
+            if (!base.slice_from("\u03B9\u03C4\u03C3")) return false;
         }
         return true;
     };
@@ -1798,46 +1495,25 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_step_s9() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_21) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_21) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (base.find_among_b(a_19) == 0)
-                {
-                    break lab1;
-                }
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab1;
-                }
-                if (!base.slice_from("\u03B9\u03B4"))
-                {
-                    return false;
-                }
+                if (base.find_among_b(a_19) == 0) break lab1;
+                if (base.cursor > base.limit_backward) break lab1;
+                if (!base.slice_from("\u03B9\u03B4")) return false;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
             base.ket = base.cursor;
             base.bra = base.cursor;
-            if (base.find_among_b(a_20) == 0)
-            {
-                return false;
-            }
-            if (!base.slice_from("\u03B9\u03B4"))
-            {
-                return false;
-            }
+            if (base.find_among_b(a_20) == 0) return false;
+            if (!base.slice_from("\u03B9\u03B4")) return false;
         }
         return true;
     };
@@ -1845,52 +1521,28 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_step_s10() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_23) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_23) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_22) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B9\u03C3\u03BA"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_22) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B9\u03C3\u03BA")) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_2a() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_24) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_24) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab0: {
-                if (base.find_among_b(a_25) == 0)
-                {
-                    break lab0;
-                }
+                if (base.find_among_b(a_25) == 0) break lab0;
                 return false;
             }
             base.cursor = base.limit - v_1;
@@ -1906,153 +1558,81 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_step_2b() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_26) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_26) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_27) == 0)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B5\u03B4"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_27) == 0) return false;
+        if (!base.slice_from("\u03B5\u03B4")) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_2c() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_28) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_28) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_29) == 0)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03BF\u03C5\u03B4"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_29) == 0) return false;
+        if (!base.slice_from("\u03BF\u03C5\u03B4")) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_2d() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_30) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_30) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_31) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B5"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_31) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B5")) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_3() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_32) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_32) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (!(base.in_grouping_b(g_v, 945, 969)))
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B9"))
-        {
-            return false;
-        }
+        if (!(base.in_grouping_b(g_v, 945, 969))) return false;
+        if (!base.slice_from("\u03B9")) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_4() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_33) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_33) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (!(base.in_grouping_b(g_v, 945, 969)))
-                {
-                    break lab1;
-                }
-                if (!base.slice_from("\u03B9\u03BA"))
-                {
-                    return false;
-                }
+                if (!(base.in_grouping_b(g_v, 945, 969))) break lab1;
+                if (!base.slice_from("\u03B9\u03BA")) return false;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
             base.ket = base.cursor;
         }
         base.bra = base.cursor;
-        if (base.find_among_b(a_34) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B9\u03BA"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_34) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B9\u03BA")) return false;
         return true;
     };
 
@@ -2061,61 +1641,31 @@ var GreekStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
-            if (!(base.eq_s_b("\u03B1\u03B3\u03B1\u03BC\u03B5")))
-            {
-                break lab0;
-            }
+            if (!(base.eq_s_b("\u03B1\u03B3\u03B1\u03BC\u03B5"))) break lab0;
             base.bra = base.cursor;
-            if (base.cursor > base.limit_backward)
-            {
-                break lab0;
-            }
-            if (!base.slice_from("\u03B1\u03B3\u03B1\u03BC"))
-            {
-                return false;
-            }
+            if (base.cursor > base.limit_backward) break lab0;
+            if (!base.slice_from("\u03B1\u03B3\u03B1\u03BC")) return false;
         }
         base.cursor = base.limit - v_1;
         /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         lab1: {
             base.ket = base.cursor;
-            if (base.find_among_b(a_35) == 0)
-            {
-                break lab1;
-            }
+            if (base.find_among_b(a_35) == 0) break lab1;
             base.bra = base.cursor;
-            if (!base.slice_del())
-            {
-                return false;
-            }
+            if (!base.slice_del()) return false;
             B_test1 = false;
         }
         base.cursor = base.limit - v_2;
         base.ket = base.cursor;
-        if (!(base.eq_s_b("\u03B1\u03BC\u03B5")))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("\u03B1\u03BC\u03B5"))) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_36) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B1\u03BC"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_36) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B1\u03BC")) return false;
         return true;
     };
 
@@ -2124,74 +1674,38 @@ var GreekStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
-            if (base.find_among_b(a_38) == 0)
-            {
-                break lab0;
-            }
+            if (base.find_among_b(a_38) == 0) break lab0;
             base.bra = base.cursor;
-            if (!base.slice_del())
-            {
-                return false;
-            }
+            if (!base.slice_del()) return false;
             B_test1 = false;
             base.ket = base.cursor;
             base.bra = base.cursor;
-            if (base.find_among_b(a_37) == 0)
-            {
-                break lab0;
-            }
-            if (base.cursor > base.limit_backward)
-            {
-                break lab0;
-            }
-            if (!base.slice_from("\u03B1\u03B3\u03B1\u03BD"))
-            {
-                return false;
-            }
+            if (base.find_among_b(a_37) == 0) break lab0;
+            if (base.cursor > base.limit_backward) break lab0;
+            if (!base.slice_from("\u03B1\u03B3\u03B1\u03BD")) return false;
         }
         base.cursor = base.limit - v_1;
         base.ket = base.cursor;
-        if (!(base.eq_s_b("\u03B1\u03BD\u03B5")))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("\u03B1\u03BD\u03B5"))) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab1: {
             /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (!(base.in_grouping_b(g_v2, 945, 969)))
-                {
-                    break lab2;
-                }
-                if (!base.slice_from("\u03B1\u03BD"))
-                {
-                    return false;
-                }
+                if (!(base.in_grouping_b(g_v2, 945, 969))) break lab2;
+                if (!base.slice_from("\u03B1\u03BD")) return false;
                 break lab1;
             }
             base.cursor = base.limit - v_2;
             base.ket = base.cursor;
         }
         base.bra = base.cursor;
-        if (base.find_among_b(a_39) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B1\u03BD"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_39) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B1\u03BD")) return false;
         return true;
     };
 
@@ -2200,120 +1714,66 @@ var GreekStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
-            if (base.find_among_b(a_40) == 0)
-            {
-                break lab0;
-            }
+            if (!(base.eq_s_b("\u03B7\u03C3\u03B5\u03C4\u03B5"))) break lab0;
             base.bra = base.cursor;
-            if (!base.slice_del())
-            {
-                return false;
-            }
+            if (!base.slice_del()) return false;
             B_test1 = false;
         }
         base.cursor = base.limit - v_1;
         base.ket = base.cursor;
-        if (!(base.eq_s_b("\u03B5\u03C4\u03B5")))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("\u03B5\u03C4\u03B5"))) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab1: {
             /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (!(base.in_grouping_b(g_v2, 945, 969)))
-                {
-                    break lab2;
-                }
-                if (!base.slice_from("\u03B5\u03C4"))
-                {
-                    return false;
-                }
+                if (!(base.in_grouping_b(g_v2, 945, 969))) break lab2;
+                if (!base.slice_from("\u03B5\u03C4")) return false;
                 break lab1;
             }
             base.cursor = base.limit - v_2;
             lab3: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (base.find_among_b(a_41) == 0)
-                {
-                    break lab3;
-                }
-                if (!base.slice_from("\u03B5\u03C4"))
-                {
-                    return false;
-                }
+                if (base.find_among_b(a_40) == 0) break lab3;
+                if (!base.slice_from("\u03B5\u03C4")) return false;
                 break lab1;
             }
             base.cursor = base.limit - v_2;
             base.ket = base.cursor;
         }
         base.bra = base.cursor;
-        if (base.find_among_b(a_42) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B5\u03C4"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_41) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B5\u03C4")) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_5d() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_43) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_42) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (!(base.eq_s_b("\u03B1\u03C1\u03C7")))
-                {
-                    break lab1;
-                }
-                if (base.cursor > base.limit_backward)
-                {
-                    break lab1;
-                }
-                if (!base.slice_from("\u03BF\u03BD\u03C4"))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("\u03B1\u03C1\u03C7"))) break lab1;
+                if (base.cursor > base.limit_backward) break lab1;
+                if (!base.slice_from("\u03BF\u03BD\u03C4")) return false;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
             base.ket = base.cursor;
             base.bra = base.cursor;
-            if (!(base.eq_s_b("\u03BA\u03C1\u03B5")))
-            {
-                return false;
-            }
-            if (!base.slice_from("\u03C9\u03BD\u03C4"))
-            {
-                return false;
-            }
+            if (!(base.eq_s_b("\u03BA\u03C1\u03B5"))) return false;
+            if (!base.slice_from("\u03C9\u03BD\u03C4")) return false;
         }
         return true;
     };
@@ -2321,30 +1781,15 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_step_5e() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_44) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_43) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (!(base.eq_s_b("\u03BF\u03BD")))
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03BF\u03BC\u03B1\u03C3\u03C4"))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("\u03BF\u03BD"))) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03BF\u03BC\u03B1\u03C3\u03C4")) return false;
         return true;
     };
 
@@ -2353,57 +1798,27 @@ var GreekStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
-            if (!(base.eq_s_b("\u03B9\u03B5\u03C3\u03C4\u03B5")))
-            {
-                break lab0;
-            }
+            if (!(base.eq_s_b("\u03B9\u03B5\u03C3\u03C4\u03B5"))) break lab0;
             base.bra = base.cursor;
-            if (!base.slice_del())
-            {
-                return false;
-            }
+            if (!base.slice_del()) return false;
             B_test1 = false;
             base.ket = base.cursor;
             base.bra = base.cursor;
-            if (base.find_among_b(a_45) == 0)
-            {
-                break lab0;
-            }
-            if (base.cursor > base.limit_backward)
-            {
-                break lab0;
-            }
-            if (!base.slice_from("\u03B9\u03B5\u03C3\u03C4"))
-            {
-                return false;
-            }
+            if (base.find_among_b(a_44) == 0) break lab0;
+            if (base.cursor > base.limit_backward) break lab0;
+            if (!base.slice_from("\u03B9\u03B5\u03C3\u03C4")) return false;
         }
         base.cursor = base.limit - v_1;
         base.ket = base.cursor;
-        if (!(base.eq_s_b("\u03B5\u03C3\u03C4\u03B5")))
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("\u03B5\u03C3\u03C4\u03B5"))) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_46) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B9\u03B5\u03C3\u03C4"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_45) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B9\u03B5\u03C3\u03C4")) return false;
         return true;
     };
 
@@ -2412,59 +1827,32 @@ var GreekStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
-            if (base.find_among_b(a_47) == 0)
-            {
-                break lab0;
-            }
+            if (base.find_among_b(a_46) == 0) break lab0;
             base.bra = base.cursor;
-            if (!base.slice_del())
-            {
-                return false;
-            }
+            if (!base.slice_del()) return false;
             B_test1 = false;
         }
         base.cursor = base.limit - v_1;
         base.ket = base.cursor;
-        if (base.find_among_b(a_50) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_49) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab1: {
             /** @const */ var /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (base.find_among_b(a_48) == 0)
-                {
-                    break lab2;
-                }
-                if (!base.slice_from("\u03B7\u03BA"))
-                {
-                    return false;
-                }
+                if (base.find_among_b(a_47) == 0) break lab2;
+                if (!base.slice_from("\u03B7\u03BA")) return false;
                 break lab1;
             }
             base.cursor = base.limit - v_2;
             base.ket = base.cursor;
             base.bra = base.cursor;
-            if (base.find_among_b(a_49) == 0)
-            {
-                return false;
-            }
-            if (base.cursor > base.limit_backward)
-            {
-                return false;
-            }
-            if (!base.slice_from("\u03B7\u03BA"))
-            {
-                return false;
-            }
+            if (base.find_among_b(a_48) == 0) return false;
+            if (base.cursor > base.limit_backward) return false;
+            if (!base.slice_from("\u03B7\u03BA")) return false;
         }
         return true;
     };
@@ -2472,46 +1860,25 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_step_5h() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_53) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_52) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (base.find_among_b(a_51) == 0)
-                {
-                    break lab1;
-                }
-                if (!base.slice_from("\u03BF\u03C5\u03C3"))
-                {
-                    return false;
-                }
+                if (base.find_among_b(a_50) == 0) break lab1;
+                if (!base.slice_from("\u03BF\u03C5\u03C3")) return false;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
             base.ket = base.cursor;
             base.bra = base.cursor;
-            if (base.find_among_b(a_52) == 0)
-            {
-                return false;
-            }
-            if (base.cursor > base.limit_backward)
-            {
-                return false;
-            }
-            if (!base.slice_from("\u03BF\u03C5\u03C3"))
-            {
-                return false;
-            }
+            if (base.find_among_b(a_51) == 0) return false;
+            if (base.cursor > base.limit_backward) return false;
+            if (!base.slice_from("\u03BF\u03C5\u03C3")) return false;
         }
         return true;
     };
@@ -2520,29 +1887,17 @@ var GreekStemmer = function() {
     function r_step_5i() {
         var /** number */ among_var;
         base.ket = base.cursor;
-        if (base.find_among_b(a_56) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_55) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
             /** @const */ var /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (!(base.eq_s_b("\u03BA\u03BF\u03BB\u03BB")))
-                {
-                    break lab1;
-                }
-                if (!base.slice_from("\u03B1\u03B3"))
-                {
-                    return false;
-                }
+                if (!(base.eq_s_b("\u03BA\u03BF\u03BB\u03BB"))) break lab1;
+                if (!base.slice_from("\u03B1\u03B3")) return false;
                 break lab0;
             }
             base.cursor = base.limit - v_1;
@@ -2551,17 +1906,11 @@ var GreekStemmer = function() {
                 lab3: {
                     base.ket = base.cursor;
                     base.bra = base.cursor;
-                    among_var = base.find_among_b(a_54);
-                    if (among_var == 0)
-                    {
-                        break lab3;
-                    }
+                    among_var = base.find_among_b(a_53);
+                    if (among_var == 0) break lab3;
                     switch (among_var) {
                         case 1:
-                            if (!base.slice_from("\u03B1\u03B3"))
-                            {
-                                return false;
-                            }
+                            if (!base.slice_from("\u03B1\u03B3")) return false;
                             break;
                     }
                     break lab2;
@@ -2569,18 +1918,9 @@ var GreekStemmer = function() {
                 base.cursor = base.limit - v_2;
                 base.ket = base.cursor;
                 base.bra = base.cursor;
-                if (base.find_among_b(a_55) == 0)
-                {
-                    return false;
-                }
-                if (base.cursor > base.limit_backward)
-                {
-                    return false;
-                }
-                if (!base.slice_from("\u03B1\u03B3"))
-                {
-                    return false;
-                }
+                if (base.find_among_b(a_54) == 0) return false;
+                if (base.cursor > base.limit_backward) return false;
+                if (!base.slice_from("\u03B1\u03B3")) return false;
             }
         }
         return true;
@@ -2589,120 +1929,60 @@ var GreekStemmer = function() {
     /** @return {boolean} */
     function r_step_5j() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_57) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_56) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_58) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B7\u03C3"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_57) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B7\u03C3")) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_5k() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_59) == 0)
-        {
-            return false;
-        }
+        if (!(base.eq_s_b("\u03B7\u03C3\u03C4\u03B5"))) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_60) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03B7\u03C3\u03C4"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_58) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03B7\u03C3\u03C4")) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_5l() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_61) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_59) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_62) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03BF\u03C5\u03BD"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_60) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03BF\u03C5\u03BD")) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_5m() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_63) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_61) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         B_test1 = false;
         base.ket = base.cursor;
         base.bra = base.cursor;
-        if (base.find_among_b(a_64) == 0)
-        {
-            return false;
-        }
-        if (base.cursor > base.limit_backward)
-        {
-            return false;
-        }
-        if (!base.slice_from("\u03BF\u03C5\u03BC"))
-        {
-            return false;
-        }
+        if (base.find_among_b(a_62) == 0) return false;
+        if (base.cursor > base.limit_backward) return false;
+        if (!base.slice_from("\u03BF\u03C5\u03BC")) return false;
         return true;
     };
 
@@ -2711,46 +1991,25 @@ var GreekStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
-            if (base.find_among_b(a_65) == 0)
-            {
-                break lab0;
-            }
+            if (base.find_among_b(a_63) == 0) break lab0;
             base.bra = base.cursor;
-            if (!base.slice_from("\u03BC\u03B1"))
-            {
-                return false;
-            }
+            if (!base.slice_from("\u03BC\u03B1")) return false;
         }
         base.cursor = base.limit - v_1;
-        if (!B_test1)
-        {
-            return false;
-        }
+        if (!B_test1) return false;
         base.ket = base.cursor;
-        if (base.find_among_b(a_66) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_64) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
     /** @return {boolean} */
     function r_step_7() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_67) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_65) == 0) return false;
         base.bra = base.cursor;
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -2759,10 +2018,7 @@ var GreekStemmer = function() {
         /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         r_tolower();
         base.cursor = base.limit - v_1;
-        if (!r_has_min_length())
-        {
-            return false;
-        }
+        if (!r_has_min_length()) return false;
         B_test1 = true;
         /** @const */ var /** number */ v_2 = base.limit - base.cursor;
         r_step_1();

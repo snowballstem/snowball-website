@@ -1,4 +1,4 @@
-// Generated from catalan.sbl by Snowball 2.2.0 - https://snowballstem.org/
+// Generated from catalan.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 /**@constructor*/
 var CatalanStemmer = function() {
@@ -576,7 +576,7 @@ var CatalanStemmer = function() {
         ["\u00F3", -1, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 129, 81, 6, 10];
+    /** @const */ var /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 129, 81, 6, 10];
 
     var /** number */ I_p2 = 0;
     var /** number */ I_p1 = 0;
@@ -588,26 +588,14 @@ var CatalanStemmer = function() {
         I_p2 = base.limit;
         /** @const */ var /** number */ v_1 = base.cursor;
         lab0: {
-            if (!base.go_out_grouping(g_v, 97, 252))
-            {
-                break lab0;
-            }
+            if (!base.go_out_grouping(g_v, 97, 252)) break lab0;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 252))
-            {
-                break lab0;
-            }
+            if (!base.go_in_grouping(g_v, 97, 252)) break lab0;
             base.cursor++;
             I_p1 = base.cursor;
-            if (!base.go_out_grouping(g_v, 97, 252))
-            {
-                break lab0;
-            }
+            if (!base.go_out_grouping(g_v, 97, 252)) break lab0;
             base.cursor++;
-            if (!base.go_in_grouping(g_v, 97, 252))
-            {
-                break lab0;
-            }
+            if (!base.go_in_grouping(g_v, 97, 252)) break lab0;
             base.cursor++;
             I_p2 = base.cursor;
         }
@@ -618,8 +606,7 @@ var CatalanStemmer = function() {
     /** @return {boolean} */
     function r_cleaning() {
         var /** number */ among_var;
-        while(true)
-        {
+        while(true) {
             /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
@@ -627,46 +614,25 @@ var CatalanStemmer = function() {
                 base.ket = base.cursor;
                 switch (among_var) {
                     case 1:
-                        if (!base.slice_from("a"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("a")) return false;
                         break;
                     case 2:
-                        if (!base.slice_from("e"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("e")) return false;
                         break;
                     case 3:
-                        if (!base.slice_from("i"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("i")) return false;
                         break;
                     case 4:
-                        if (!base.slice_from("o"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("o")) return false;
                         break;
                     case 5:
-                        if (!base.slice_from("u"))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from("u")) return false;
                         break;
                     case 6:
-                        if (!base.slice_from("."))
-                        {
-                            return false;
-                        }
+                        if (!base.slice_from(".")) return false;
                         break;
                     case 7:
-                        if (base.cursor >= base.limit)
-                        {
-                            break lab0;
-                        }
+                        if (base.cursor >= base.limit) break lab0;
                         base.cursor++;
                         break;
                 }
@@ -691,19 +657,10 @@ var CatalanStemmer = function() {
     /** @return {boolean} */
     function r_attached_pronoun() {
         base.ket = base.cursor;
-        if (base.find_among_b(a_1) == 0)
-        {
-            return false;
-        }
+        if (base.find_among_b(a_1) == 0) return false;
         base.bra = base.cursor;
-        if (!r_R1())
-        {
-            return false;
-        }
-        if (!base.slice_del())
-        {
-            return false;
-        }
+        if (!r_R1()) return false;
+        if (!base.slice_del()) return false;
         return true;
     };
 
@@ -712,61 +669,28 @@ var CatalanStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 3:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_from("log"))
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_from("log")) return false;
                 break;
             case 4:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_from("ic"))
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_from("ic")) return false;
                 break;
             case 5:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_from("c"))
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_from("c")) return false;
                 break;
         }
         return true;
@@ -777,31 +701,16 @@ var CatalanStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!r_R2())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R2()) return false;
+                if (!base.slice_del()) return false;
                 break;
         }
         return true;
@@ -812,31 +721,16 @@ var CatalanStemmer = function() {
         var /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
-        if (among_var == 0)
-        {
-            return false;
-        }
+        if (among_var == 0) return false;
         base.bra = base.cursor;
         switch (among_var) {
             case 1:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_del())
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_del()) return false;
                 break;
             case 2:
-                if (!r_R1())
-                {
-                    return false;
-                }
-                if (!base.slice_from("ic"))
-                {
-                    return false;
-                }
+                if (!r_R1()) return false;
+                if (!base.slice_from("ic")) return false;
                 break;
         }
         return true;
@@ -853,17 +747,11 @@ var CatalanStemmer = function() {
             lab1: {
                 /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    if (!r_standard_suffix())
-                    {
-                        break lab2;
-                    }
+                    if (!r_standard_suffix()) break lab2;
                     break lab1;
                 }
                 base.cursor = base.limit - v_3;
-                if (!r_verb_suffix())
-                {
-                    break lab0;
-                }
+                if (!r_verb_suffix()) break lab0;
             }
         }
         base.cursor = base.limit - v_2;
