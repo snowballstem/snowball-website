@@ -75,9 +75,9 @@ const NorwegianStemmer = function() {
         ["hetslov", 9, 1]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 2, 142];
+    const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 2, 142];
 
-    const /** Array<int> */ g_s_ending = [119, 125, 148, 1];
+    const /** Array<number> */ g_s_ending = [119, 125, 148, 1];
 
     let /** number */ I_x = 0;
     let /** number */ I_p1 = 0;

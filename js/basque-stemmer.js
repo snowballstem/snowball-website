@@ -438,7 +438,7 @@ const BasqueStemmer = function() {
         ["to", -1, 1]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16];
+    const /** Array<number> */ g_v = [17, 65, 16];
 
     let /** number */ I_p2 = 0;
     let /** number */ I_p1 = 0;

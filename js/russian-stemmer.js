@@ -163,7 +163,7 @@ const RussianStemmer = function() {
         ["\u044C", -1, 3]
     ];
 
-    const /** Array<int> */ g_v = [33, 65, 8, 232];
+    const /** Array<number> */ g_v = [33, 65, 8, 232];
 
     let /** number */ I_p2 = 0;
     let /** number */ I_pV = 0;

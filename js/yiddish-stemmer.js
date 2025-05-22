@@ -199,11 +199,11 @@ const YiddishStemmer = function() {
         ["\u05D9\u05E9", -1, 1]
     ];
 
-    const /** Array<int> */ g_niked = [255, 155, 6];
+    const /** Array<number> */ g_niked = [255, 155, 6];
 
-    const /** Array<int> */ g_vowel = [33, 2, 4, 0, 6];
+    const /** Array<number> */ g_vowel = [33, 2, 4, 0, 6];
 
-    const /** Array<int> */ g_consonant = [239, 254, 253, 131];
+    const /** Array<number> */ g_consonant = [239, 254, 253, 131];
 
     let /** number */ I_x = 0;
     let /** number */ I_p1 = 0;

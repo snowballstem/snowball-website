@@ -255,7 +255,7 @@ const RomanianStemmer = function() {
         ["\u0103", -1, 1]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 32, 0, 0, 4];
+    const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 32, 0, 0, 4];
 
     let /** boolean */ B_standard_suffix_removed = false;
     let /** number */ I_p2 = 0;

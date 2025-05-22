@@ -157,13 +157,13 @@ const EnglishStemmer = function() {
         ["ugly", -1, 4]
     ];
 
-    const /** Array<int> */ g_aeo = [17, 64];
+    const /** Array<number> */ g_aeo = [17, 64];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 1];
+    const /** Array<number> */ g_v = [17, 65, 16, 1];
 
-    const /** Array<int> */ g_v_WXY = [1, 17, 65, 208, 1];
+    const /** Array<number> */ g_v_WXY = [1, 17, 65, 208, 1];
 
-    const /** Array<int> */ g_valid_LI = [55, 141, 2];
+    const /** Array<number> */ g_valid_LI = [55, 141, 2];
 
     let /** boolean */ B_Y_found = false;
     let /** number */ I_p2 = 0;

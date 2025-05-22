@@ -225,7 +225,7 @@ const PortugueseStemmer = function() {
         ["\u00EA", -1, 1]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19, 12, 2];
+    const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19, 12, 2];
 
     let /** number */ I_p2 = 0;
     let /** number */ I_p1 = 0;

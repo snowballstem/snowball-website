@@ -227,11 +227,11 @@ const ItalianStemmer = function() {
         ["ir\u00F2", -1, 1]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 8, 2, 1];
+    const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 8, 2, 1];
 
-    const /** Array<int> */ g_AEIO = [17, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 8, 2];
+    const /** Array<number> */ g_AEIO = [17, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 128, 8, 2];
 
-    const /** Array<int> */ g_CG = [17];
+    const /** Array<number> */ g_CG = [17];
 
     let /** number */ I_p2 = 0;
     let /** number */ I_p1 = 0;

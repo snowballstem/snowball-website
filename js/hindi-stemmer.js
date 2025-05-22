@@ -141,7 +141,7 @@ const HindiStemmer = function() {
         ["\u094D", -1, -1]
     ];
 
-    const /** Array<int> */ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248, 7];
+    const /** Array<number> */ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248, 7];
 
 
     /** @return {boolean} */

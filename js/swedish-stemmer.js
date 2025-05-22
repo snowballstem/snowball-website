@@ -89,11 +89,11 @@ const SwedishStemmer = function() {
         ["\u00F6st", -1, 2]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 32];
+    const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 32];
 
-    const /** Array<int> */ g_s_ending = [119, 127, 149];
+    const /** Array<number> */ g_s_ending = [119, 127, 149];
 
-    const /** Array<int> */ g_ost_ending = [173, 58];
+    const /** Array<number> */ g_ost_ending = [173, 58];
 
     let /** number */ I_x = 0;
     let /** number */ I_p1 = 0;

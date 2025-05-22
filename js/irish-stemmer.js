@@ -95,7 +95,7 @@ const IrishStemmer = function() {
         ["tar", -1, 2]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 4, 2];
+    const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 4, 2];
 
     let /** number */ I_p2 = 0;
     let /** number */ I_p1 = 0;

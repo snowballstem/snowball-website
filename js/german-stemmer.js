@@ -70,13 +70,13 @@ const GermanStemmer = function() {
         ["keit", -1, 4]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32, 8];
+    const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32, 8];
 
-    const /** Array<int> */ g_et_ending = [1, 128, 198, 227, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
+    const /** Array<number> */ g_et_ending = [1, 128, 198, 227, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
-    const /** Array<int> */ g_s_ending = [117, 30, 5];
+    const /** Array<number> */ g_s_ending = [117, 30, 5];
 
-    const /** Array<int> */ g_st_ending = [117, 30, 4];
+    const /** Array<number> */ g_st_ending = [117, 30, 4];
 
     let /** number */ I_x = 0;
     let /** number */ I_p2 = 0;

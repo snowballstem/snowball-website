@@ -90,9 +90,9 @@ const PorterStemmer = function() {
         ["ou", -1, 1]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 1];
+    const /** Array<number> */ g_v = [17, 65, 16, 1];
 
-    const /** Array<int> */ g_v_WXY = [1, 17, 65, 208, 1];
+    const /** Array<number> */ g_v_WXY = [1, 17, 65, 208, 1];
 
     let /** boolean */ B_Y_found = false;
     let /** number */ I_p2 = 0;

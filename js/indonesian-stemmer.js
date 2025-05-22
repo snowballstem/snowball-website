@@ -48,7 +48,7 @@ const IndonesianStemmer = function() {
         ["per", 3, 1]
     ];
 
-    const /** Array<int> */ g_vowel = [17, 65, 16];
+    const /** Array<number> */ g_vowel = [17, 65, 16];
 
     let /** number */ I_prefix = 0;
     let /** number */ I_measure = 0;

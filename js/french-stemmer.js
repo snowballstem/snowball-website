@@ -190,13 +190,13 @@ const FrenchStemmer = function() {
         ["ett", -1, -1]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 130, 103, 8, 5];
+    const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 130, 103, 8, 5];
 
-    const /** Array<int> */ g_oux_ending = [65, 85];
+    const /** Array<number> */ g_oux_ending = [65, 85];
 
-    const /** Array<int> */ g_elision_char = [131, 14, 3];
+    const /** Array<number> */ g_elision_char = [131, 14, 3];
 
-    const /** Array<int> */ g_keep_with_s = [1, 65, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
+    const /** Array<number> */ g_keep_with_s = [1, 65, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
     let /** number */ I_p2 = 0;
     let /** number */ I_p1 = 0;

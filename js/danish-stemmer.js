@@ -56,11 +56,11 @@ const DanishStemmer = function() {
         ["l\u00F8st", -1, 2]
     ];
 
-    const /** Array<int> */ g_c = [119, 223, 119, 1];
+    const /** Array<number> */ g_c = [119, 223, 119, 1];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 128];
+    const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 128];
 
-    const /** Array<int> */ g_s_ending = [239, 254, 42, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16];
+    const /** Array<number> */ g_s_ending = [239, 254, 42, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16];
 
     let /** number */ I_x = 0;
     let /** number */ I_p1 = 0;

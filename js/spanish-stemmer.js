@@ -240,7 +240,7 @@ const SpanishStemmer = function() {
         ["\u00F3", -1, 1]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 4, 10];
+    const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 4, 10];
 
     let /** number */ I_p2 = 0;
     let /** number */ I_p1 = 0;

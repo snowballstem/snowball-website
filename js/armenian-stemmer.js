@@ -209,7 +209,7 @@ const ArmenianStemmer = function() {
         ["\u0578\u0582\u0581", 47, 1]
     ];
 
-    const /** Array<int> */ g_v = [209, 4, 128, 0, 18];
+    const /** Array<number> */ g_v = [209, 4, 128, 0, 18];
 
     let /** number */ I_p2 = 0;
     let /** number */ I_pV = 0;

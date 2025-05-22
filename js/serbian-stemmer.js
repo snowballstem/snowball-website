@@ -2239,13 +2239,13 @@ const SerbianStemmer = function() {
         ["enu", 24, 1]
     ];
 
-    const /** Array<int> */ g_v = [17, 65, 16];
+    const /** Array<number> */ g_v = [17, 65, 16];
 
-    const /** Array<int> */ g_sa = [65, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 128];
+    const /** Array<number> */ g_sa = [65, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 128];
 
-    const /** Array<int> */ g_ca = [119, 95, 23, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 136, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0, 0, 0, 16];
+    const /** Array<number> */ g_ca = [119, 95, 23, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 136, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0, 0, 0, 16];
 
-    const /** Array<int> */ g_rg = [1];
+    const /** Array<number> */ g_rg = [1];
 
     let /** number */ I_p1 = 0;
     let /** boolean */ B_no_diacritics = false;

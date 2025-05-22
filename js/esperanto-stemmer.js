@@ -153,11 +153,11 @@ const EsperantoStemmer = function() {
         ["u", -1, -1]
     ];
 
-    const /** Array<int> */ g_vowel = [17, 65, 16];
+    const /** Array<number> */ g_vowel = [17, 65, 16];
 
-    const /** Array<int> */ g_aou = [1, 64, 16];
+    const /** Array<number> */ g_aou = [1, 64, 16];
 
-    const /** Array<int> */ g_digit = [255, 3];
+    const /** Array<number> */ g_digit = [255, 3];
 
     let /** boolean */ B_foreign = false;
 

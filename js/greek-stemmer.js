@@ -1110,9 +1110,9 @@ const GreekStemmer = function() {
         ["\u03C9\u03C4\u03B1\u03C4", -1, 1]
     ];
 
-    const /** Array<int> */ g_v = [81, 65, 16, 1];
+    const /** Array<number> */ g_v = [81, 65, 16, 1];
 
-    const /** Array<int> */ g_v2 = [81, 65, 0, 1];
+    const /** Array<number> */ g_v2 = [81, 65, 0, 1];
 
     let /** boolean */ B_test1 = false;
 
