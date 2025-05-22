@@ -466,4 +466,4 @@ const BaseStemmer = function() {
     };
 };
 
-window['BaseStemmer'] = BaseStemmer;
+export { BaseStemmer };

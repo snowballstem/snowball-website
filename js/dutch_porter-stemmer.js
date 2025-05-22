@@ -1,10 +1,12 @@
 // Generated from dutch_porter.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var DutchPorterStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const DutchPorterStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["", -1, 6],
         ["\u00E1", 0, 1],
         ["\u00E4", 0, 1],
@@ -18,19 +20,19 @@ var DutchPorterStemmer = function() {
         ["\u00FC", 0, 5]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["", -1, 3],
         ["I", 0, 2],
         ["Y", 0, 1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["dd", -1, -1],
         ["kk", -1, -1],
         ["tt", -1, -1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["ene", -1, 2],
         ["se", -1, 3],
         ["en", -1, 2],
@@ -38,7 +40,7 @@ var DutchPorterStemmer = function() {
         ["s", -1, 3]
     ];
 
-    /** @const */ var a_4 = [
+    const a_4 = [
         ["end", -1, 1],
         ["ig", -1, 2],
         ["ing", -1, 1],
@@ -47,31 +49,31 @@ var DutchPorterStemmer = function() {
         ["bar", -1, 5]
     ];
 
-    /** @const */ var a_5 = [
+    const a_5 = [
         ["aa", -1, -1],
         ["ee", -1, -1],
         ["oo", -1, -1],
         ["uu", -1, -1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
+    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
-    /** @const */ var /** Array<int> */ g_v_I = [1, 0, 0, 17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
+    const /** Array<int> */ g_v_I = [1, 0, 0, 17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
-    /** @const */ var /** Array<int> */ g_v_j = [17, 67, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
+    const /** Array<int> */ g_v_j = [17, 67, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
-    var /** number */ I_x;
-    var /** number */ I_p2;
-    var /** number */ I_p1;
-    var /** boolean */ B_e_found = false;
+    let /** number */ I_x = 0;
+    let /** number */ I_p2 = 0;
+    let /** number */ I_p1 = 0;
+    let /** boolean */ B_e_found = false;
 
 
     /** @return {boolean} */
     function r_prelude() {
-        var /** number */ among_var;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        let /** number */ among_var;
+        const /** number */ v_1 = base.cursor;
         while(true) {
-            /** @const */ var /** number */ v_2 = base.cursor;
+            const /** number */ v_2 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_0);
@@ -103,7 +105,7 @@ var DutchPorterStemmer = function() {
             break;
         }
         base.cursor = v_1;
-        /** @const */ var /** number */ v_3 = base.cursor;
+        const /** number */ v_3 = base.cursor;
         lab1: {
             base.bra = base.cursor;
             if (!(base.eq_s("y"))) {
@@ -114,19 +116,19 @@ var DutchPorterStemmer = function() {
             if (!base.slice_from("Y")) return false;
         }
         while(true) {
-            /** @const */ var /** number */ v_4 = base.cursor;
+            const /** number */ v_4 = base.cursor;
             lab2: {
                 if (!base.go_out_grouping(g_v, 97, 232)) break lab2;
                 base.cursor++;
-                /** @const */ var /** number */ v_5 = base.cursor;
+                const /** number */ v_5 = base.cursor;
                 lab3: {
                     base.bra = base.cursor;
                     lab4: {
-                        /** @const */ var /** number */ v_6 = base.cursor;
+                        const /** number */ v_6 = base.cursor;
                         lab5: {
                             if (!(base.eq_s("i"))) break lab5;
                             base.ket = base.cursor;
-                            /** @const */ var /** number */ v_7 = base.cursor;
+                            const /** number */ v_7 = base.cursor;
                             lab6: {
                                 if (!(base.in_grouping(g_v, 97, 232))) break lab6;
                                 if (!base.slice_from("I")) return false;
@@ -155,9 +157,9 @@ var DutchPorterStemmer = function() {
     function r_mark_regions() {
         I_p1 = base.limit;
         I_p2 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         {
-            /** @const */ var /** number */ c1 = base.cursor + 3;
+            const /** number */ c1 = base.cursor + 3;
             if (c1 > base.limit) return false;
             base.cursor = c1;
         }
@@ -182,9 +184,9 @@ var DutchPorterStemmer = function() {
 
     /** @return {boolean} */
     function r_postlude() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_1);
@@ -221,7 +223,7 @@ var DutchPorterStemmer = function() {
 
     /** @return {boolean} */
     function r_undouble() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         if (base.find_among_b(a_2) == 0) return false;
         base.cursor = base.limit - v_1;
         base.ket = base.cursor;
@@ -239,7 +241,7 @@ var DutchPorterStemmer = function() {
         if (!(base.eq_s_b("e"))) return false;
         base.bra = base.cursor;
         if (!r_R1()) return false;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         if (!(base.out_grouping_b(g_v, 97, 232))) return false;
         base.cursor = base.limit - v_1;
         if (!base.slice_del()) return false;
@@ -250,11 +252,11 @@ var DutchPorterStemmer = function() {
     /** @return {boolean} */
     function r_en_ending() {
         if (!r_R1()) return false;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         if (!(base.out_grouping_b(g_v, 97, 232))) return false;
         base.cursor = base.limit - v_1;
         {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab0: {
                 if (!(base.eq_s_b("gem"))) break lab0;
                 return false;
@@ -267,8 +269,8 @@ var DutchPorterStemmer = function() {
 
     /** @return {boolean} */
     function r_standard_suffix() {
-        var /** number */ among_var;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        let /** number */ among_var;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             among_var = base.find_among_b(a_3);
@@ -290,17 +292,17 @@ var DutchPorterStemmer = function() {
             }
         }
         base.cursor = base.limit - v_1;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         r_e_ending();
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         lab1: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("heid"))) break lab1;
             base.bra = base.cursor;
             if (!r_R2()) break lab1;
             {
-                /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+                const /** number */ v_4 = base.limit - base.cursor;
                 lab2: {
                     if (!(base.eq_s_b("c"))) break lab2;
                     break lab1;
@@ -314,7 +316,7 @@ var DutchPorterStemmer = function() {
             if (!r_en_ending()) break lab1;
         }
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+        const /** number */ v_5 = base.limit - base.cursor;
         lab3: {
             base.ket = base.cursor;
             among_var = base.find_among_b(a_4);
@@ -325,14 +327,14 @@ var DutchPorterStemmer = function() {
                     if (!r_R2()) break lab3;
                     if (!base.slice_del()) return false;
                     lab4: {
-                        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+                        const /** number */ v_6 = base.limit - base.cursor;
                         lab5: {
                             base.ket = base.cursor;
                             if (!(base.eq_s_b("ig"))) break lab5;
                             base.bra = base.cursor;
                             if (!r_R2()) break lab5;
                             {
-                                /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+                                const /** number */ v_7 = base.limit - base.cursor;
                                 lab6: {
                                     if (!(base.eq_s_b("e"))) break lab6;
                                     break lab5;
@@ -349,7 +351,7 @@ var DutchPorterStemmer = function() {
                 case 2:
                     if (!r_R2()) break lab3;
                     {
-                        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+                        const /** number */ v_8 = base.limit - base.cursor;
                         lab7: {
                             if (!(base.eq_s_b("e"))) break lab7;
                             break lab3;
@@ -375,10 +377,10 @@ var DutchPorterStemmer = function() {
             }
         }
         base.cursor = base.limit - v_5;
-        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
+        const /** number */ v_9 = base.limit - base.cursor;
         lab8: {
             if (!(base.out_grouping_b(g_v_I, 73, 232))) break lab8;
-            /** @const */ var /** number */ v_10 = base.limit - base.cursor;
+            const /** number */ v_10 = base.limit - base.cursor;
             if (base.find_among_b(a_5) == 0) break lab8;
             if (!(base.out_grouping_b(g_v, 97, 232))) break lab8;
             base.cursor = base.limit - v_10;
@@ -393,16 +395,16 @@ var DutchPorterStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         r_prelude();
         base.cursor = v_1;
-        /** @const */ var /** number */ v_2 = base.cursor;
+        const /** number */ v_2 = base.cursor;
         r_mark_regions();
         base.cursor = v_2;
         base.limit_backward = base.cursor; base.cursor = base.limit;
         r_standard_suffix();
         base.cursor = base.limit_backward;
-        /** @const */ var /** number */ v_3 = base.cursor;
+        const /** number */ v_3 = base.cursor;
         r_postlude();
         base.cursor = v_3;
         return true;
@@ -416,4 +418,4 @@ var DutchPorterStemmer = function() {
     };
 };
 
-window['DutchPorterStemmer'] = DutchPorterStemmer;
+export { DutchPorterStemmer };

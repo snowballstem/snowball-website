@@ -1,10 +1,12 @@
 // Generated from greek.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var GreekStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const GreekStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["", -1, 25],
         ["\u0386", 0, 1],
         ["\u0388", 0, 5],
@@ -53,7 +55,7 @@ var GreekStemmer = function() {
         ["\u03CE", 0, 24]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["\u03C3\u03BA\u03B1\u03B3\u03B9\u03B1", -1, 2],
         ["\u03C6\u03B1\u03B3\u03B9\u03B1", -1, 1],
         ["\u03BF\u03BB\u03BF\u03B3\u03B9\u03B1", -1, 3],
@@ -96,7 +98,7 @@ var GreekStemmer = function() {
         ["\u03C4\u03B1\u03C4\u03BF\u03B3\u03B9\u03BF\u03C5", -1, 5]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["\u03C0\u03B1", -1, 1],
         ["\u03BE\u03B1\u03BD\u03B1\u03C0\u03B1", 0, 1],
         ["\u03B5\u03C0\u03B1", 0, 1],
@@ -130,7 +132,7 @@ var GreekStemmer = function() {
         ["\u03BB\u03BF\u03C5", -1, 2]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["\u03B9\u03B6\u03B1", -1, 1],
         ["\u03B9\u03B6\u03B5", -1, 1],
         ["\u03B9\u03B6\u03B1\u03BC\u03B5", -1, 1],
@@ -147,7 +149,7 @@ var GreekStemmer = function() {
         ["\u03B9\u03B6\u03C9", -1, 1]
     ];
 
-    /** @const */ var a_4 = [
+    const a_4 = [
         ["\u03B2\u03B9", -1, 1],
         ["\u03BB\u03B9", -1, 1],
         ["\u03B1\u03BB", -1, 1],
@@ -158,7 +160,7 @@ var GreekStemmer = function() {
         ["\u03B6\u03C9", -1, 1]
     ];
 
-    /** @const */ var a_5 = [
+    const a_5 = [
         ["\u03C9\u03B8\u03B7\u03BA\u03B1", -1, 1],
         ["\u03C9\u03B8\u03B7\u03BA\u03B5", -1, 1],
         ["\u03C9\u03B8\u03B7\u03BA\u03B1\u03BC\u03B5", -1, 1],
@@ -168,7 +170,7 @@ var GreekStemmer = function() {
         ["\u03C9\u03B8\u03B7\u03BA\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_6 = [
+    const a_6 = [
         ["\u03BE\u03B1\u03BD\u03B1\u03C0\u03B1", -1, 1],
         ["\u03B5\u03C0\u03B1", -1, 1],
         ["\u03C0\u03B5\u03C1\u03B9\u03C0\u03B1", -1, 1],
@@ -203,7 +205,7 @@ var GreekStemmer = function() {
         ["\u03B3\u03B9\u03B3\u03B1\u03BD\u03C4\u03BF\u03B1\u03C6", 30, 2]
     ];
 
-    /** @const */ var a_7 = [
+    const a_7 = [
         ["\u03B9\u03C3\u03B1", -1, 1],
         ["\u03B9\u03C3\u03B1\u03BC\u03B5", -1, 1],
         ["\u03B9\u03C3\u03B1\u03BD\u03B5", -1, 1],
@@ -213,7 +215,7 @@ var GreekStemmer = function() {
         ["\u03B9\u03C3\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_8 = [
+    const a_8 = [
         ["\u03BE\u03B1\u03BD\u03B1\u03C0\u03B1", -1, 1],
         ["\u03B5\u03C0\u03B1", -1, 1],
         ["\u03C0\u03B5\u03C1\u03B9\u03C0\u03B1", -1, 1],
@@ -235,7 +237,7 @@ var GreekStemmer = function() {
         ["\u03C3\u03C5\u03BD\u03B1\u03B8\u03C1\u03BF", 17, 1]
     ];
 
-    /** @const */ var a_9 = [
+    const a_9 = [
         ["\u03B9\u03C3\u03BF\u03C5\u03BC\u03B5", -1, 1],
         ["\u03B9\u03C3\u03BF\u03C5\u03BD\u03B5", -1, 1],
         ["\u03B9\u03C3\u03B5\u03C4\u03B5", -1, 1],
@@ -245,7 +247,7 @@ var GreekStemmer = function() {
         ["\u03B9\u03C3\u03C9", -1, 1]
     ];
 
-    /** @const */ var a_10 = [
+    const a_10 = [
         ["\u03B1\u03C4\u03B1", -1, 2],
         ["\u03C6\u03B1", -1, 2],
         ["\u03B7\u03C6\u03B1", 1, 2],
@@ -288,7 +290,7 @@ var GreekStemmer = function() {
         ["\u03C5\u03C8", -1, 2]
     ];
 
-    /** @const */ var a_11 = [
+    const a_11 = [
         ["\u03B9\u03C3\u03C4\u03B1", -1, 1],
         ["\u03B9\u03C3\u03C4\u03B5", -1, 1],
         ["\u03B9\u03C3\u03C4\u03B7", -1, 1],
@@ -302,7 +304,7 @@ var GreekStemmer = function() {
         ["\u03B9\u03C3\u03C4\u03BF\u03C5", -1, 1]
     ];
 
-    /** @const */ var a_12 = [
+    const a_12 = [
         ["\u03B5\u03B3\u03BA\u03BB\u03B5", -1, 1],
         ["\u03B1\u03C0\u03BF\u03BA\u03BB\u03B5", -1, 1],
         ["\u03B4\u03B1\u03BD\u03B5", -1, 2],
@@ -312,7 +314,7 @@ var GreekStemmer = function() {
         ["\u03BC\u03B9\u03BA\u03C1\u03BF\u03C3\u03B5", 4, 1]
     ];
 
-    /** @const */ var a_13 = [
+    const a_13 = [
         ["\u03B1\u03C4\u03BF\u03BC\u03B9\u03BA", -1, 2],
         ["\u03B5\u03B8\u03BD\u03B9\u03BA", -1, 4],
         ["\u03C4\u03BF\u03C0\u03B9\u03BA", -1, 7],
@@ -325,7 +327,7 @@ var GreekStemmer = function() {
         ["\u03B2\u03C5\u03B6\u03B1\u03BD\u03C4\u03B9\u03BD", -1, 9]
     ];
 
-    /** @const */ var a_14 = [
+    const a_14 = [
         ["\u03B9\u03C3\u03BC\u03BF\u03B9", -1, 1],
         ["\u03B9\u03C3\u03BC\u03C9\u03BD", -1, 1],
         ["\u03B9\u03C3\u03BC\u03BF", -1, 1],
@@ -334,19 +336,19 @@ var GreekStemmer = function() {
         ["\u03B9\u03C3\u03BC\u03BF\u03C5", -1, 1]
     ];
 
-    /** @const */ var a_15 = [
+    const a_15 = [
         ["\u03C3", -1, 1],
         ["\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_16 = [
+    const a_16 = [
         ["\u03BF\u03C5\u03B4\u03B1\u03BA\u03B9\u03B1", -1, 1],
         ["\u03B1\u03C1\u03B1\u03BA\u03B9\u03B1", -1, 1],
         ["\u03BF\u03C5\u03B4\u03B1\u03BA\u03B9", -1, 1],
         ["\u03B1\u03C1\u03B1\u03BA\u03B9", -1, 1]
     ];
 
-    /** @const */ var a_17 = [
+    const a_17 = [
         ["\u03B2", -1, 2],
         ["\u03B2\u03B1\u03BC\u03B2", 0, 1],
         ["\u03C3\u03BB\u03BF\u03B2", 0, 1],
@@ -395,7 +397,7 @@ var GreekStemmer = function() {
         ["\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_18 = [
+    const a_18 = [
         ["\u03B1\u03BA\u03B9\u03B1", -1, 1],
         ["\u03B1\u03C1\u03B1\u03BA\u03B9\u03B1", 0, 1],
         ["\u03B9\u03C4\u03C3\u03B1", -1, 1],
@@ -406,25 +408,25 @@ var GreekStemmer = function() {
         ["\u03B9\u03C4\u03C3\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_19 = [
+    const a_19 = [
         ["\u03C8\u03B1\u03BB", -1, 1],
         ["\u03B1\u03B9\u03C6\u03BD", -1, 1],
         ["\u03BF\u03BB\u03BF", -1, 1],
         ["\u03B9\u03C1", -1, 1]
     ];
 
-    /** @const */ var a_20 = [
+    const a_20 = [
         ["\u03B5", -1, 1],
         ["\u03C0\u03B1\u03B9\u03C7\u03BD", -1, 1]
     ];
 
-    /** @const */ var a_21 = [
+    const a_21 = [
         ["\u03B9\u03B4\u03B9\u03B1", -1, 1],
         ["\u03B9\u03B4\u03B9\u03C9\u03BD", -1, 1],
         ["\u03B9\u03B4\u03B9\u03BF", -1, 1]
     ];
 
-    /** @const */ var a_22 = [
+    const a_22 = [
         ["\u03B9\u03B2", -1, 1],
         ["\u03B4", -1, 1],
         ["\u03C6\u03C1\u03B1\u03B3\u03BA", -1, 1],
@@ -434,19 +436,19 @@ var GreekStemmer = function() {
         ["\u03C1", -1, 1]
     ];
 
-    /** @const */ var a_23 = [
+    const a_23 = [
         ["\u03B9\u03C3\u03BA\u03B5", -1, 1],
         ["\u03B9\u03C3\u03BA\u03BF", -1, 1],
         ["\u03B9\u03C3\u03BA\u03BF\u03C3", -1, 1],
         ["\u03B9\u03C3\u03BA\u03BF\u03C5", -1, 1]
     ];
 
-    /** @const */ var a_24 = [
+    const a_24 = [
         ["\u03B1\u03B4\u03C9\u03BD", -1, 1],
         ["\u03B1\u03B4\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_25 = [
+    const a_25 = [
         ["\u03B3\u03B9\u03B1\u03B3\u03B9", -1, -1],
         ["\u03B8\u03B5\u03B9", -1, -1],
         ["\u03BF\u03BA", -1, -1],
@@ -459,12 +461,12 @@ var GreekStemmer = function() {
         ["\u03BD\u03C4\u03B1\u03BD\u03C4", -1, -1]
     ];
 
-    /** @const */ var a_26 = [
+    const a_26 = [
         ["\u03B5\u03B4\u03C9\u03BD", -1, 1],
         ["\u03B5\u03B4\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_27 = [
+    const a_27 = [
         ["\u03BC\u03B9\u03BB", -1, 1],
         ["\u03B4\u03B1\u03C0", -1, 1],
         ["\u03B3\u03B7\u03C0", -1, 1],
@@ -475,12 +477,12 @@ var GreekStemmer = function() {
         ["\u03C5\u03C0", -1, 1]
     ];
 
-    /** @const */ var a_28 = [
+    const a_28 = [
         ["\u03BF\u03C5\u03B4\u03C9\u03BD", -1, 1],
         ["\u03BF\u03C5\u03B4\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_29 = [
+    const a_29 = [
         ["\u03C4\u03C1\u03B1\u03B3", -1, 1],
         ["\u03C6\u03B5", -1, 1],
         ["\u03BA\u03B1\u03BB\u03B9\u03B1\u03BA", -1, 1],
@@ -498,12 +500,12 @@ var GreekStemmer = function() {
         ["\u03BB\u03B9\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_30 = [
+    const a_30 = [
         ["\u03B5\u03C9\u03BD", -1, 1],
         ["\u03B5\u03C9\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_31 = [
+    const a_31 = [
         ["\u03B4", -1, 1],
         ["\u03B9\u03B4", 0, 1],
         ["\u03B8", -1, 1],
@@ -514,20 +516,20 @@ var GreekStemmer = function() {
         ["\u03C0\u03B1\u03C1", -1, 1]
     ];
 
-    /** @const */ var a_32 = [
+    const a_32 = [
         ["\u03B9\u03B1", -1, 1],
         ["\u03B9\u03C9\u03BD", -1, 1],
         ["\u03B9\u03BF\u03C5", -1, 1]
     ];
 
-    /** @const */ var a_33 = [
+    const a_33 = [
         ["\u03B9\u03BA\u03B1", -1, 1],
         ["\u03B9\u03BA\u03C9\u03BD", -1, 1],
         ["\u03B9\u03BA\u03BF", -1, 1],
         ["\u03B9\u03BA\u03BF\u03C5", -1, 1]
     ];
 
-    /** @const */ var a_34 = [
+    const a_34 = [
         ["\u03B1\u03B4", -1, 1],
         ["\u03C3\u03C5\u03BD\u03B1\u03B4", 0, 1],
         ["\u03BA\u03B1\u03C4\u03B1\u03B4", 0, 1],
@@ -566,7 +568,7 @@ var GreekStemmer = function() {
         ["\u03C3\u03B5\u03C1\u03C4", -1, 1]
     ];
 
-    /** @const */ var a_35 = [
+    const a_35 = [
         ["\u03B1\u03B3\u03B1\u03BC\u03B5", -1, 1],
         ["\u03B7\u03BA\u03B1\u03BC\u03B5", -1, 1],
         ["\u03B7\u03B8\u03B7\u03BA\u03B1\u03BC\u03B5", 1, 1],
@@ -574,7 +576,7 @@ var GreekStemmer = function() {
         ["\u03BF\u03C5\u03C3\u03B1\u03BC\u03B5", -1, 1]
     ];
 
-    /** @const */ var a_36 = [
+    const a_36 = [
         ["\u03B2\u03BF\u03C5\u03B2", -1, 1],
         ["\u03BE\u03B5\u03B8", -1, 1],
         ["\u03C0\u03B5\u03B8", -1, 1],
@@ -589,12 +591,12 @@ var GreekStemmer = function() {
         ["\u03C3\u03B9\u03C7", 10, 1]
     ];
 
-    /** @const */ var a_37 = [
+    const a_37 = [
         ["\u03C4\u03C1", -1, 1],
         ["\u03C4\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_38 = [
+    const a_38 = [
         ["\u03B1\u03B3\u03B1\u03BD\u03B5", -1, 1],
         ["\u03B7\u03BA\u03B1\u03BD\u03B5", -1, 1],
         ["\u03B7\u03B8\u03B7\u03BA\u03B1\u03BD\u03B5", 1, 1],
@@ -608,7 +610,7 @@ var GreekStemmer = function() {
         ["\u03B9\u03BF\u03C4\u03B1\u03BD\u03B5", 9, 1]
     ];
 
-    /** @const */ var a_39 = [
+    const a_39 = [
         ["\u03C4\u03B1\u03B2", -1, 1],
         ["\u03BD\u03C4\u03B1\u03B2", 0, 1],
         ["\u03C8\u03B7\u03BB\u03BF\u03C4\u03B1\u03B2", 0, 1],
@@ -706,7 +708,7 @@ var GreekStemmer = function() {
         ["\u03BB\u03B9\u03C7", 87, 1]
     ];
 
-    /** @const */ var a_40 = [
+    const a_40 = [
         ["\u03B5\u03BD\u03B4", -1, 1],
         ["\u03C3\u03C5\u03BD\u03B4", -1, 1],
         ["\u03BF\u03B4", -1, 1],
@@ -740,7 +742,7 @@ var GreekStemmer = function() {
         ["\u03C3\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_41 = [
+    const a_41 = [
         ["\u03C0\u03B1\u03B3", -1, 1],
         ["\u03B4", -1, 1],
         ["\u03B1\u03B4", 1, 1],
@@ -768,17 +770,17 @@ var GreekStemmer = function() {
         ["\u03C3\u03C5\u03C1\u03C6", -1, 1]
     ];
 
-    /** @const */ var a_42 = [
+    const a_42 = [
         ["\u03BF\u03BD\u03C4\u03B1\u03C3", -1, 1],
         ["\u03C9\u03BD\u03C4\u03B1\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_43 = [
+    const a_43 = [
         ["\u03BF\u03BC\u03B1\u03C3\u03C4\u03B5", -1, 1],
         ["\u03B9\u03BF\u03BC\u03B1\u03C3\u03C4\u03B5", 0, 1]
     ];
 
-    /** @const */ var a_44 = [
+    const a_44 = [
         ["\u03C0", -1, 1],
         ["\u03B1\u03C0", 0, 1],
         ["\u03B1\u03BA\u03B1\u03C4\u03B1\u03C0", 1, 1],
@@ -787,7 +789,7 @@ var GreekStemmer = function() {
         ["\u03B1\u03BC\u03B5\u03C4\u03B1\u03BC\u03C6", -1, 1]
     ];
 
-    /** @const */ var a_45 = [
+    const a_45 = [
         ["\u03B6", -1, 1],
         ["\u03B1\u03BB", -1, 1],
         ["\u03C0\u03B1\u03C1\u03B1\u03BA\u03B1\u03BB", 1, 1],
@@ -799,13 +801,13 @@ var GreekStemmer = function() {
         ["\u03BD\u03B9\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_46 = [
+    const a_46 = [
         ["\u03B7\u03B8\u03B7\u03BA\u03B1", -1, 1],
         ["\u03B7\u03B8\u03B7\u03BA\u03B5", -1, 1],
         ["\u03B7\u03B8\u03B7\u03BA\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_47 = [
+    const a_47 = [
         ["\u03C0\u03B9\u03B8", -1, 1],
         ["\u03BF\u03B8", -1, 1],
         ["\u03BD\u03B1\u03C1\u03B8", -1, 1],
@@ -814,7 +816,7 @@ var GreekStemmer = function() {
         ["\u03C3\u03C6", -1, 1]
     ];
 
-    /** @const */ var a_48 = [
+    const a_48 = [
         ["\u03B8", -1, 1],
         ["\u03B4\u03B9\u03B1\u03B8", 0, 1],
         ["\u03C0\u03B1\u03C1\u03B1\u03BA\u03B1\u03C4\u03B1\u03B8", 0, 1],
@@ -822,13 +824,13 @@ var GreekStemmer = function() {
         ["\u03C0\u03C1\u03BF\u03C3\u03B8", 0, 1]
     ];
 
-    /** @const */ var a_49 = [
+    const a_49 = [
         ["\u03B7\u03BA\u03B1", -1, 1],
         ["\u03B7\u03BA\u03B5", -1, 1],
         ["\u03B7\u03BA\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_50 = [
+    const a_50 = [
         ["\u03C6\u03B1\u03B3", -1, 1],
         ["\u03BB\u03B7\u03B3", -1, 1],
         ["\u03C6\u03C1\u03C5\u03B4", -1, 1],
@@ -843,7 +845,7 @@ var GreekStemmer = function() {
         ["\u03C0\u03B1\u03BD\u03C4\u03B1\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_51 = [
+    const a_51 = [
         ["\u03C4\u03C3\u03B1", -1, 1],
         ["\u03C7\u03B1\u03B4", -1, 1],
         ["\u03BC\u03B5\u03B4", -1, 1],
@@ -871,13 +873,13 @@ var GreekStemmer = function() {
         ["\u03BB\u03B5\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_52 = [
+    const a_52 = [
         ["\u03BF\u03C5\u03C3\u03B1", -1, 1],
         ["\u03BF\u03C5\u03C3\u03B5", -1, 1],
         ["\u03BF\u03C5\u03C3\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_53 = [
+    const a_53 = [
         ["\u03C0\u03B5\u03BB", -1, 1],
         ["\u03BB\u03BB", -1, 1],
         ["\u03C3\u03BC\u03B7\u03BD", -1, 1],
@@ -892,7 +894,7 @@ var GreekStemmer = function() {
         ["\u03BD\u03B1\u03C5\u03BB\u03BF\u03C7", 10, -1]
     ];
 
-    /** @const */ var a_54 = [
+    const a_54 = [
         ["\u03B1\u03BC\u03B1\u03BB\u03BB\u03B9", -1, 1],
         ["\u03BB", -1, 1],
         ["\u03B1\u03BC\u03B1\u03BB", 1, 1],
@@ -939,19 +941,19 @@ var GreekStemmer = function() {
         ["\u03C0\u03BF\u03BB\u03C5\u03C6", -1, 1]
     ];
 
-    /** @const */ var a_55 = [
+    const a_55 = [
         ["\u03B1\u03B3\u03B1", -1, 1],
         ["\u03B1\u03B3\u03B5", -1, 1],
         ["\u03B1\u03B3\u03B5\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_56 = [
+    const a_56 = [
         ["\u03B7\u03C3\u03B1", -1, 1],
         ["\u03B7\u03C3\u03B5", -1, 1],
         ["\u03B7\u03C3\u03BF\u03C5", -1, 1]
     ];
 
-    /** @const */ var a_57 = [
+    const a_57 = [
         ["\u03BD", -1, 1],
         ["\u03B4\u03C9\u03B4\u03B5\u03BA\u03B1\u03BD", 0, 1],
         ["\u03B5\u03C0\u03C4\u03B1\u03BD", 0, 1],
@@ -960,7 +962,7 @@ var GreekStemmer = function() {
         ["\u03C7\u03B5\u03C1\u03C3\u03BF\u03BD", 0, 1]
     ];
 
-    /** @const */ var a_58 = [
+    const a_58 = [
         ["\u03C3\u03B2", -1, 1],
         ["\u03B1\u03C3\u03B2", 0, 1],
         ["\u03B1\u03C0\u03BB", -1, 1],
@@ -973,13 +975,13 @@ var GreekStemmer = function() {
         ["\u03C0\u03B1\u03BB\u03B9\u03BC\u03C8", -1, 1]
     ];
 
-    /** @const */ var a_59 = [
+    const a_59 = [
         ["\u03BF\u03C5\u03BD\u03B5", -1, 1],
         ["\u03B7\u03B8\u03BF\u03C5\u03BD\u03B5", 0, 1],
         ["\u03B7\u03C3\u03BF\u03C5\u03BD\u03B5", 0, 1]
     ];
 
-    /** @const */ var a_60 = [
+    const a_60 = [
         ["\u03C3\u03C0\u03B9", -1, 1],
         ["\u03BD", -1, 1],
         ["\u03B5\u03BE\u03C9\u03BD", 1, 1],
@@ -988,13 +990,13 @@ var GreekStemmer = function() {
         ["\u03BA\u03B1\u03BA\u03BF\u03BC\u03BF\u03C5\u03C4\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_61 = [
+    const a_61 = [
         ["\u03BF\u03C5\u03BC\u03B5", -1, 1],
         ["\u03B7\u03B8\u03BF\u03C5\u03BC\u03B5", 0, 1],
         ["\u03B7\u03C3\u03BF\u03C5\u03BC\u03B5", 0, 1]
     ];
 
-    /** @const */ var a_62 = [
+    const a_62 = [
         ["\u03B1\u03B6", -1, 1],
         ["\u03C9\u03C1\u03B9\u03BF\u03C0\u03BB", -1, 1],
         ["\u03B1\u03C3\u03BF\u03C5\u03C3", -1, 1],
@@ -1004,13 +1006,13 @@ var GreekStemmer = function() {
         ["\u03C7", -1, 1]
     ];
 
-    /** @const */ var a_63 = [
+    const a_63 = [
         ["\u03BC\u03B1\u03C4\u03B1", -1, 1],
         ["\u03BC\u03B1\u03C4\u03C9\u03BD", -1, 1],
         ["\u03BC\u03B1\u03C4\u03BF\u03C3", -1, 1]
     ];
 
-    /** @const */ var a_64 = [
+    const a_64 = [
         ["\u03B1", -1, 1],
         ["\u03B9\u03BF\u03C5\u03BC\u03B1", 0, 1],
         ["\u03BF\u03BC\u03BF\u03C5\u03BD\u03B1", 0, 1],
@@ -1097,7 +1099,7 @@ var GreekStemmer = function() {
         ["\u03B7\u03C3\u03C9", 80, 1]
     ];
 
-    /** @const */ var a_65 = [
+    const a_65 = [
         ["\u03BF\u03C4\u03B5\u03C1", -1, 1],
         ["\u03B5\u03C3\u03C4\u03B5\u03C1", -1, 1],
         ["\u03C5\u03C4\u03B5\u03C1", -1, 1],
@@ -1108,11 +1110,11 @@ var GreekStemmer = function() {
         ["\u03C9\u03C4\u03B1\u03C4", -1, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [81, 65, 16, 1];
+    const /** Array<int> */ g_v = [81, 65, 16, 1];
 
-    /** @const */ var /** Array<int> */ g_v2 = [81, 65, 0, 1];
+    const /** Array<int> */ g_v2 = [81, 65, 0, 1];
 
-    var /** boolean */ B_test1 = false;
+    let /** boolean */ B_test1 = false;
 
 
     /** @return {boolean} */
@@ -1122,9 +1124,9 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_tolower() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 base.ket = base.cursor;
                 among_var = base.find_among_b(a_0);
@@ -1217,7 +1219,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_1() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
         if (among_var == 0) return false;
@@ -1263,7 +1265,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_s1() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_3) == 0) return false;
         base.bra = base.cursor;
@@ -1302,9 +1304,9 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_s3() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 if (!(base.eq_s_b("\u03B9\u03C3\u03B1"))) break lab1;
@@ -1353,7 +1355,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_s5() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_11) == 0) return false;
         base.bra = base.cursor;
@@ -1377,14 +1379,14 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_s6() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_14) == 0) return false;
         base.bra = base.cursor;
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1459,14 +1461,14 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_s8() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_18) == 0) return false;
         base.bra = base.cursor;
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1500,7 +1502,7 @@ var GreekStemmer = function() {
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1540,7 +1542,7 @@ var GreekStemmer = function() {
         base.bra = base.cursor;
         if (!base.slice_del()) return false;
         {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 if (base.find_among_b(a_25) == 0) break lab0;
                 return false;
@@ -1548,7 +1550,7 @@ var GreekStemmer = function() {
             base.cursor = base.limit - v_1;
         }
         {
-            /** @const */ var /** number */ c1 = base.cursor;
+            const /** number */ c1 = base.cursor;
             base.insert(base.cursor, base.cursor, "\u03B1\u03B4");
             base.cursor = c1;
         }
@@ -1618,7 +1620,7 @@ var GreekStemmer = function() {
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1638,7 +1640,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5a() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u03B1\u03B3\u03B1\u03BC\u03B5"))) break lab0;
@@ -1647,7 +1649,7 @@ var GreekStemmer = function() {
             if (!base.slice_from("\u03B1\u03B3\u03B1\u03BC")) return false;
         }
         base.cursor = base.limit - v_1;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         lab1: {
             base.ket = base.cursor;
             if (base.find_among_b(a_35) == 0) break lab1;
@@ -1671,7 +1673,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5b() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (base.find_among_b(a_38) == 0) break lab0;
@@ -1691,7 +1693,7 @@ var GreekStemmer = function() {
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab1: {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1711,7 +1713,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5c() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u03B7\u03C3\u03B5\u03C4\u03B5"))) break lab0;
@@ -1726,7 +1728,7 @@ var GreekStemmer = function() {
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab1: {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1760,7 +1762,7 @@ var GreekStemmer = function() {
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1795,7 +1797,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5f() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("\u03B9\u03B5\u03C3\u03C4\u03B5"))) break lab0;
@@ -1824,7 +1826,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5g() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (base.find_among_b(a_46) == 0) break lab0;
@@ -1839,7 +1841,7 @@ var GreekStemmer = function() {
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab1: {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1865,7 +1867,7 @@ var GreekStemmer = function() {
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1885,14 +1887,14 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_5i() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         if (base.find_among_b(a_55) == 0) return false;
         base.bra = base.cursor;
         if (!base.slice_del()) return false;
         B_test1 = false;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 base.ket = base.cursor;
                 base.bra = base.cursor;
@@ -1902,7 +1904,7 @@ var GreekStemmer = function() {
             }
             base.cursor = base.limit - v_1;
             lab2: {
-                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                const /** number */ v_2 = base.limit - base.cursor;
                 lab3: {
                     base.ket = base.cursor;
                     base.bra = base.cursor;
@@ -1988,7 +1990,7 @@ var GreekStemmer = function() {
 
     /** @return {boolean} */
     function r_step_6() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (base.find_among_b(a_63) == 0) break lab0;
@@ -2015,105 +2017,105 @@ var GreekStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         r_tolower();
         base.cursor = base.limit - v_1;
         if (!r_has_min_length()) return false;
         B_test1 = true;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         r_step_1();
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         r_step_s1();
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_step_s2();
         base.cursor = base.limit - v_4;
-        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+        const /** number */ v_5 = base.limit - base.cursor;
         r_step_s3();
         base.cursor = base.limit - v_5;
-        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+        const /** number */ v_6 = base.limit - base.cursor;
         r_step_s4();
         base.cursor = base.limit - v_6;
-        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+        const /** number */ v_7 = base.limit - base.cursor;
         r_step_s5();
         base.cursor = base.limit - v_7;
-        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+        const /** number */ v_8 = base.limit - base.cursor;
         r_step_s6();
         base.cursor = base.limit - v_8;
-        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
+        const /** number */ v_9 = base.limit - base.cursor;
         r_step_s7();
         base.cursor = base.limit - v_9;
-        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
+        const /** number */ v_10 = base.limit - base.cursor;
         r_step_s8();
         base.cursor = base.limit - v_10;
-        /** @const */ var /** number */ v_11 = base.limit - base.cursor;
+        const /** number */ v_11 = base.limit - base.cursor;
         r_step_s9();
         base.cursor = base.limit - v_11;
-        /** @const */ var /** number */ v_12 = base.limit - base.cursor;
+        const /** number */ v_12 = base.limit - base.cursor;
         r_step_s10();
         base.cursor = base.limit - v_12;
-        /** @const */ var /** number */ v_13 = base.limit - base.cursor;
+        const /** number */ v_13 = base.limit - base.cursor;
         r_step_2a();
         base.cursor = base.limit - v_13;
-        /** @const */ var /** number */ v_14 = base.limit - base.cursor;
+        const /** number */ v_14 = base.limit - base.cursor;
         r_step_2b();
         base.cursor = base.limit - v_14;
-        /** @const */ var /** number */ v_15 = base.limit - base.cursor;
+        const /** number */ v_15 = base.limit - base.cursor;
         r_step_2c();
         base.cursor = base.limit - v_15;
-        /** @const */ var /** number */ v_16 = base.limit - base.cursor;
+        const /** number */ v_16 = base.limit - base.cursor;
         r_step_2d();
         base.cursor = base.limit - v_16;
-        /** @const */ var /** number */ v_17 = base.limit - base.cursor;
+        const /** number */ v_17 = base.limit - base.cursor;
         r_step_3();
         base.cursor = base.limit - v_17;
-        /** @const */ var /** number */ v_18 = base.limit - base.cursor;
+        const /** number */ v_18 = base.limit - base.cursor;
         r_step_4();
         base.cursor = base.limit - v_18;
-        /** @const */ var /** number */ v_19 = base.limit - base.cursor;
+        const /** number */ v_19 = base.limit - base.cursor;
         r_step_5a();
         base.cursor = base.limit - v_19;
-        /** @const */ var /** number */ v_20 = base.limit - base.cursor;
+        const /** number */ v_20 = base.limit - base.cursor;
         r_step_5b();
         base.cursor = base.limit - v_20;
-        /** @const */ var /** number */ v_21 = base.limit - base.cursor;
+        const /** number */ v_21 = base.limit - base.cursor;
         r_step_5c();
         base.cursor = base.limit - v_21;
-        /** @const */ var /** number */ v_22 = base.limit - base.cursor;
+        const /** number */ v_22 = base.limit - base.cursor;
         r_step_5d();
         base.cursor = base.limit - v_22;
-        /** @const */ var /** number */ v_23 = base.limit - base.cursor;
+        const /** number */ v_23 = base.limit - base.cursor;
         r_step_5e();
         base.cursor = base.limit - v_23;
-        /** @const */ var /** number */ v_24 = base.limit - base.cursor;
+        const /** number */ v_24 = base.limit - base.cursor;
         r_step_5f();
         base.cursor = base.limit - v_24;
-        /** @const */ var /** number */ v_25 = base.limit - base.cursor;
+        const /** number */ v_25 = base.limit - base.cursor;
         r_step_5g();
         base.cursor = base.limit - v_25;
-        /** @const */ var /** number */ v_26 = base.limit - base.cursor;
+        const /** number */ v_26 = base.limit - base.cursor;
         r_step_5h();
         base.cursor = base.limit - v_26;
-        /** @const */ var /** number */ v_27 = base.limit - base.cursor;
+        const /** number */ v_27 = base.limit - base.cursor;
         r_step_5j();
         base.cursor = base.limit - v_27;
-        /** @const */ var /** number */ v_28 = base.limit - base.cursor;
+        const /** number */ v_28 = base.limit - base.cursor;
         r_step_5i();
         base.cursor = base.limit - v_28;
-        /** @const */ var /** number */ v_29 = base.limit - base.cursor;
+        const /** number */ v_29 = base.limit - base.cursor;
         r_step_5k();
         base.cursor = base.limit - v_29;
-        /** @const */ var /** number */ v_30 = base.limit - base.cursor;
+        const /** number */ v_30 = base.limit - base.cursor;
         r_step_5l();
         base.cursor = base.limit - v_30;
-        /** @const */ var /** number */ v_31 = base.limit - base.cursor;
+        const /** number */ v_31 = base.limit - base.cursor;
         r_step_5m();
         base.cursor = base.limit - v_31;
-        /** @const */ var /** number */ v_32 = base.limit - base.cursor;
+        const /** number */ v_32 = base.limit - base.cursor;
         r_step_6();
         base.cursor = base.limit - v_32;
-        /** @const */ var /** number */ v_33 = base.limit - base.cursor;
+        const /** number */ v_33 = base.limit - base.cursor;
         r_step_7();
         base.cursor = base.limit - v_33;
         base.cursor = base.limit_backward;
@@ -2128,4 +2130,4 @@ var GreekStemmer = function() {
     };
 };
 
-window['GreekStemmer'] = GreekStemmer;
+export { GreekStemmer };

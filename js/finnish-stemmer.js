@@ -1,10 +1,12 @@
 // Generated from finnish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var FinnishStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const FinnishStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["pa", -1, 1],
         ["sti", -1, 2],
         ["kaan", -1, 1],
@@ -17,7 +19,7 @@ var FinnishStemmer = function() {
         ["k\u00F6", -1, 1]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["lla", -1, -1],
         ["na", -1, -1],
         ["ssa", -1, -1],
@@ -26,7 +28,7 @@ var FinnishStemmer = function() {
         ["sta", 3, -1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["ll\u00E4", -1, -1],
         ["n\u00E4", -1, -1],
         ["ss\u00E4", -1, -1],
@@ -35,12 +37,12 @@ var FinnishStemmer = function() {
         ["st\u00E4", 3, -1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["lle", -1, -1],
         ["ine", -1, -1]
     ];
 
-    /** @const */ var a_4 = [
+    const a_4 = [
         ["nsa", -1, 3],
         ["mme", -1, 3],
         ["nne", -1, 3],
@@ -52,7 +54,7 @@ var FinnishStemmer = function() {
         ["ns\u00E4", -1, 3]
     ];
 
-    /** @const */ var a_5 = [
+    const a_5 = [
         ["aa", -1, -1],
         ["ee", -1, -1],
         ["ii", -1, -1],
@@ -62,7 +64,7 @@ var FinnishStemmer = function() {
         ["\u00F6\u00F6", -1, -1]
     ];
 
-    /** @const */ var a_6 = [
+    const a_6 = [
         ["a", -1, 8],
         ["lla", 0, -1],
         ["na", 0, -1],
@@ -95,7 +97,7 @@ var FinnishStemmer = function() {
         ["tt\u00E4", 26, 2]
     ];
 
-    /** @const */ var a_7 = [
+    const a_7 = [
         ["eja", -1, -1],
         ["mma", -1, 1],
         ["imma", 1, -1],
@@ -112,30 +114,30 @@ var FinnishStemmer = function() {
         ["imp\u00E4", 12, -1]
     ];
 
-    /** @const */ var a_8 = [
+    const a_8 = [
         ["i", -1, -1],
         ["j", -1, -1]
     ];
 
-    /** @const */ var a_9 = [
+    const a_9 = [
         ["mma", -1, 1],
         ["imma", 0, -1]
     ];
 
-    /** @const */ var /** Array<int> */ g_AEI = [17, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8];
+    const /** Array<int> */ g_AEI = [17, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8];
 
-    /** @const */ var /** Array<int> */ g_C = [119, 223, 119, 1];
+    const /** Array<int> */ g_C = [119, 223, 119, 1];
 
-    /** @const */ var /** Array<int> */ g_V1 = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
+    const /** Array<int> */ g_V1 = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
 
-    /** @const */ var /** Array<int> */ g_V2 = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
+    const /** Array<int> */ g_V2 = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
 
-    /** @const */ var /** Array<int> */ g_particle_end = [17, 97, 24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
+    const /** Array<int> */ g_particle_end = [17, 97, 24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
 
-    var /** boolean */ B_ending_removed = false;
-    var /** string */ S_x = '';
-    var /** number */ I_p2;
-    var /** number */ I_p1;
+    let /** boolean */ B_ending_removed = false;
+    let /** string */ S_x = '';
+    let /** number */ I_p2 = 0;
+    let /** number */ I_p1 = 0;
 
 
     /** @return {boolean} */
@@ -162,9 +164,9 @@ var FinnishStemmer = function() {
 
     /** @return {boolean} */
     function r_particle_etc() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
@@ -188,9 +190,9 @@ var FinnishStemmer = function() {
 
     /** @return {boolean} */
     function r_possessive() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
@@ -203,7 +205,7 @@ var FinnishStemmer = function() {
         switch (among_var) {
             case 1:
                 {
-                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                    const /** number */ v_2 = base.limit - base.cursor;
                     lab0: {
                         if (!(base.eq_s_b("k"))) break lab0;
                         return false;
@@ -252,9 +254,9 @@ var FinnishStemmer = function() {
 
     /** @return {boolean} */
     function r_case_ending() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_6);
@@ -284,11 +286,11 @@ var FinnishStemmer = function() {
                 if (!(base.eq_s_b("\u00F6"))) return false;
                 break;
             case 7:
-                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                const /** number */ v_2 = base.limit - base.cursor;
                 lab0: {
-                    /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                    const /** number */ v_3 = base.limit - base.cursor;
                     lab1: {
-                        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+                        const /** number */ v_4 = base.limit - base.cursor;
                         lab2: {
                             if (!r_LONG()) break lab2;
                             break lab1;
@@ -320,9 +322,9 @@ var FinnishStemmer = function() {
 
     /** @return {boolean} */
     function r_other_endings() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_p2) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p2;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_7);
@@ -335,7 +337,7 @@ var FinnishStemmer = function() {
         switch (among_var) {
             case 1:
                 {
-                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                    const /** number */ v_2 = base.limit - base.cursor;
                     lab0: {
                         if (!(base.eq_s_b("po"))) break lab0;
                         return false;
@@ -351,7 +353,7 @@ var FinnishStemmer = function() {
     /** @return {boolean} */
     function r_i_plural() {
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (base.find_among_b(a_8) == 0) {
@@ -366,9 +368,9 @@ var FinnishStemmer = function() {
 
     /** @return {boolean} */
     function r_t_plural() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (!(base.eq_s_b("t"))) {
@@ -376,7 +378,7 @@ var FinnishStemmer = function() {
             return false;
         }
         base.bra = base.cursor;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         if (!(base.in_grouping_b(g_V1, 97, 246))) {
             base.limit_backward = v_1;
             return false;
@@ -385,7 +387,7 @@ var FinnishStemmer = function() {
         if (!base.slice_del()) return false;
         base.limit_backward = v_1;
         if (base.cursor < I_p2) return false;
-        /** @const */ var /** number */ v_3 = base.limit_backward;
+        const /** number */ v_3 = base.limit_backward;
         base.limit_backward = I_p2;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_9);
@@ -398,7 +400,7 @@ var FinnishStemmer = function() {
         switch (among_var) {
             case 1:
                 {
-                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+                    const /** number */ v_4 = base.limit - base.cursor;
                     lab0: {
                         if (!(base.eq_s_b("po"))) break lab0;
                         return false;
@@ -414,11 +416,11 @@ var FinnishStemmer = function() {
     /** @return {boolean} */
     function r_tidy() {
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         lab0: {
-            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+            const /** number */ v_3 = base.limit - base.cursor;
             if (!r_LONG()) break lab0;
             base.cursor = base.limit - v_3;
             base.ket = base.cursor;
@@ -428,7 +430,7 @@ var FinnishStemmer = function() {
             if (!base.slice_del()) return false;
         }
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         lab1: {
             base.ket = base.cursor;
             if (!(base.in_grouping_b(g_AEI, 97, 228))) break lab1;
@@ -437,13 +439,13 @@ var FinnishStemmer = function() {
             if (!base.slice_del()) return false;
         }
         base.cursor = base.limit - v_4;
-        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+        const /** number */ v_5 = base.limit - base.cursor;
         lab2: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("j"))) break lab2;
             base.bra = base.cursor;
             lab3: {
-                /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+                const /** number */ v_6 = base.limit - base.cursor;
                 lab4: {
                     if (!(base.eq_s_b("o"))) break lab4;
                     break lab3;
@@ -454,7 +456,7 @@ var FinnishStemmer = function() {
             if (!base.slice_del()) return false;
         }
         base.cursor = base.limit - v_5;
-        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+        const /** number */ v_7 = base.limit - base.cursor;
         lab5: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("o"))) break lab5;
@@ -476,36 +478,36 @@ var FinnishStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         r_mark_regions();
         base.cursor = v_1;
         B_ending_removed = false;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         r_particle_etc();
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         r_possessive();
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_case_ending();
         base.cursor = base.limit - v_4;
-        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+        const /** number */ v_5 = base.limit - base.cursor;
         r_other_endings();
         base.cursor = base.limit - v_5;
         lab0: {
             lab1: {
                 if (!B_ending_removed) break lab1;
-                /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+                const /** number */ v_6 = base.limit - base.cursor;
                 r_i_plural();
                 base.cursor = base.limit - v_6;
                 break lab0;
             }
-            /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+            const /** number */ v_7 = base.limit - base.cursor;
             r_t_plural();
             base.cursor = base.limit - v_7;
         }
-        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+        const /** number */ v_8 = base.limit - base.cursor;
         r_tidy();
         base.cursor = base.limit - v_8;
         base.cursor = base.limit_backward;
@@ -520,4 +522,4 @@ var FinnishStemmer = function() {
     };
 };
 
-window['FinnishStemmer'] = FinnishStemmer;
+export { FinnishStemmer };

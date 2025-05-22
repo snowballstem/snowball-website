@@ -1,10 +1,12 @@
 // Generated from armenian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var ArmenianStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const ArmenianStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["\u0580\u0578\u0580\u0564", -1, 1],
         ["\u0565\u0580\u0578\u0580\u0564", 0, 1],
         ["\u0561\u056C\u056B", -1, 1],
@@ -30,7 +32,7 @@ var ArmenianStemmer = function() {
         ["\u0562\u0561\u0580", -1, 1]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["\u0561", -1, 1],
         ["\u0561\u0581\u0561", 0, 1],
         ["\u0565\u0581\u0561", 0, 1],
@@ -104,7 +106,7 @@ var ArmenianStemmer = function() {
         ["\u057E\u0565\u0581\u056B\u0576\u0584", 69, 1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["\u0578\u0580\u0564", -1, 1],
         ["\u0578\u0582\u0575\u0569", -1, 1],
         ["\u0578\u0582\u0570\u056B", -1, 1],
@@ -147,7 +149,7 @@ var ArmenianStemmer = function() {
         ["\u0561\u0580\u0584", 27, 1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["\u057D\u0561", -1, 1],
         ["\u057E\u0561", -1, 1],
         ["\u0561\u0574\u0562", -1, 1],
@@ -207,17 +209,17 @@ var ArmenianStemmer = function() {
         ["\u0578\u0582\u0581", 47, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [209, 4, 128, 0, 18];
+    const /** Array<int> */ g_v = [209, 4, 128, 0, 18];
 
-    var /** number */ I_p2;
-    var /** number */ I_pV;
+    let /** number */ I_p2 = 0;
+    let /** number */ I_pV = 0;
 
 
     /** @return {boolean} */
     function r_mark_regions() {
         I_pV = base.limit;
         I_p2 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             if (!base.go_out_grouping(g_v, 1377, 1413)) break lab0;
             base.cursor++;
@@ -280,18 +282,18 @@ var ArmenianStemmer = function() {
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
         if (base.cursor < I_pV) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         r_ending();
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         r_verb();
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_adjective();
         base.cursor = base.limit - v_4;
-        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+        const /** number */ v_5 = base.limit - base.cursor;
         r_noun();
         base.cursor = base.limit - v_5;
         base.limit_backward = v_1;
@@ -307,4 +309,4 @@ var ArmenianStemmer = function() {
     };
 };
 
-window['ArmenianStemmer'] = ArmenianStemmer;
+export { ArmenianStemmer };

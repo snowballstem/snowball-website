@@ -1,17 +1,19 @@
 // Generated from french.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var FrenchStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const FrenchStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["col", -1, -1],
         ["ni", -1, 1],
         ["par", -1, -1],
         ["tap", -1, -1]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["", -1, 7],
         ["H", 0, 6],
         ["He", 1, 4],
@@ -21,7 +23,7 @@ var FrenchStemmer = function() {
         ["Y", 0, 3]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["iqU", -1, 3],
         ["abl", -1, 3],
         ["I\u00E8r", -1, 4],
@@ -30,13 +32,13 @@ var FrenchStemmer = function() {
         ["iv", -1, 1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["ic", -1, 2],
         ["abil", -1, 1],
         ["iv", -1, 3]
     ];
 
-    /** @const */ var a_4 = [
+    const a_4 = [
         ["iqUe", -1, 1],
         ["atrice", -1, 2],
         ["ance", -1, 1],
@@ -83,7 +85,7 @@ var FrenchStemmer = function() {
         ["it\u00E9", -1, 7]
     ];
 
-    /** @const */ var a_5 = [
+    const a_5 = [
         ["ira", -1, 1],
         ["ie", -1, 1],
         ["isse", -1, 1],
@@ -121,13 +123,13 @@ var FrenchStemmer = function() {
         ["issez", -1, 1]
     ];
 
-    /** @const */ var a_6 = [
+    const a_6 = [
         ["al", -1, 1],
         ["\u00E9pl", -1, -1],
         ["auv", -1, -1]
     ];
 
-    /** @const */ var a_7 = [
+    const a_7 = [
         ["a", -1, 3],
         ["era", 0, 2],
         ["aise", -1, 4],
@@ -171,7 +173,7 @@ var FrenchStemmer = function() {
         ["\u00E9", -1, 2]
     ];
 
-    /** @const */ var a_8 = [
+    const a_8 = [
         ["e", -1, 3],
         ["I\u00E8re", 0, 2],
         ["i\u00E8re", 0, 2],
@@ -180,7 +182,7 @@ var FrenchStemmer = function() {
         ["ier", -1, 2]
     ];
 
-    /** @const */ var a_9 = [
+    const a_9 = [
         ["ell", -1, -1],
         ["eill", -1, -1],
         ["enn", -1, -1],
@@ -188,24 +190,24 @@ var FrenchStemmer = function() {
         ["ett", -1, -1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 130, 103, 8, 5];
+    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 130, 103, 8, 5];
 
-    /** @const */ var /** Array<int> */ g_oux_ending = [65, 85];
+    const /** Array<int> */ g_oux_ending = [65, 85];
 
-    /** @const */ var /** Array<int> */ g_elision_char = [131, 14, 3];
+    const /** Array<int> */ g_elision_char = [131, 14, 3];
 
-    /** @const */ var /** Array<int> */ g_keep_with_s = [1, 65, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
+    const /** Array<int> */ g_keep_with_s = [1, 65, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
-    var /** number */ I_p2;
-    var /** number */ I_p1;
-    var /** number */ I_pV;
+    let /** number */ I_p2 = 0;
+    let /** number */ I_p1 = 0;
+    let /** number */ I_pV = 0;
 
 
     /** @return {boolean} */
     function r_elisions() {
         base.bra = base.cursor;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab1: {
                 if (!(base.in_grouping(g_elision_char, 99, 116))) break lab1;
                 break lab0;
@@ -226,19 +228,19 @@ var FrenchStemmer = function() {
     /** @return {boolean} */
     function r_prelude() {
         while(true) {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab0: {
                 golab1: while(true)
                 {
-                    /** @const */ var /** number */ v_2 = base.cursor;
+                    const /** number */ v_2 = base.cursor;
                     lab2: {
                         lab3: {
-                            /** @const */ var /** number */ v_3 = base.cursor;
+                            const /** number */ v_3 = base.cursor;
                             lab4: {
                                 if (!(base.in_grouping(g_v, 97, 251))) break lab4;
                                 base.bra = base.cursor;
                                 lab5: {
-                                    /** @const */ var /** number */ v_4 = base.cursor;
+                                    const /** number */ v_4 = base.cursor;
                                     lab6: {
                                         if (!(base.eq_s("u"))) break lab6;
                                         base.ket = base.cursor;
@@ -310,14 +312,14 @@ var FrenchStemmer = function() {
 
     /** @return {boolean} */
     function r_mark_regions() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             lab1: {
-                /** @const */ var /** number */ v_2 = base.cursor;
+                const /** number */ v_2 = base.cursor;
                 lab2: {
                     if (!(base.in_grouping(g_v, 97, 251))) break lab2;
                     if (!(base.in_grouping(g_v, 97, 251))) break lab2;
@@ -345,7 +347,7 @@ var FrenchStemmer = function() {
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        /** @const */ var /** number */ v_3 = base.cursor;
+        const /** number */ v_3 = base.cursor;
         lab4: {
             if (!base.go_out_grouping(g_v, 97, 251)) break lab4;
             base.cursor++;
@@ -364,9 +366,9 @@ var FrenchStemmer = function() {
 
     /** @return {boolean} */
     function r_postlude() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_1);
@@ -420,7 +422,7 @@ var FrenchStemmer = function() {
 
     /** @return {boolean} */
     function r_standard_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
         if (among_var == 0) return false;
@@ -433,7 +435,7 @@ var FrenchStemmer = function() {
             case 2:
                 if (!r_R2()) return false;
                 if (!base.slice_del()) return false;
-                /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+                const /** number */ v_1 = base.limit - base.cursor;
                 lab0: {
                     base.ket = base.cursor;
                     if (!(base.eq_s_b("ic"))) {
@@ -442,7 +444,7 @@ var FrenchStemmer = function() {
                     }
                     base.bra = base.cursor;
                     lab1: {
-                        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                        const /** number */ v_2 = base.limit - base.cursor;
                         lab2: {
                             if (!r_R2()) break lab2;
                             if (!base.slice_del()) return false;
@@ -468,7 +470,7 @@ var FrenchStemmer = function() {
             case 6:
                 if (!r_RV()) return false;
                 if (!base.slice_del()) return false;
-                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                const /** number */ v_3 = base.limit - base.cursor;
                 lab3: {
                     base.ket = base.cursor;
                     among_var = base.find_among_b(a_2);
@@ -498,7 +500,7 @@ var FrenchStemmer = function() {
                             break;
                         case 2:
                             lab4: {
-                                /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+                                const /** number */ v_4 = base.limit - base.cursor;
                                 lab5: {
                                     if (!r_R2()) break lab5;
                                     if (!base.slice_del()) return false;
@@ -532,7 +534,7 @@ var FrenchStemmer = function() {
             case 7:
                 if (!r_R2()) return false;
                 if (!base.slice_del()) return false;
-                /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+                const /** number */ v_5 = base.limit - base.cursor;
                 lab6: {
                     base.ket = base.cursor;
                     among_var = base.find_among_b(a_3);
@@ -544,7 +546,7 @@ var FrenchStemmer = function() {
                     switch (among_var) {
                         case 1:
                             lab7: {
-                                /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+                                const /** number */ v_6 = base.limit - base.cursor;
                                 lab8: {
                                     if (!r_R2()) break lab8;
                                     if (!base.slice_del()) return false;
@@ -556,7 +558,7 @@ var FrenchStemmer = function() {
                             break;
                         case 2:
                             lab9: {
-                                /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+                                const /** number */ v_7 = base.limit - base.cursor;
                                 lab10: {
                                     if (!r_R2()) break lab10;
                                     if (!base.slice_del()) return false;
@@ -579,7 +581,7 @@ var FrenchStemmer = function() {
             case 8:
                 if (!r_R2()) return false;
                 if (!base.slice_del()) return false;
-                /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+                const /** number */ v_8 = base.limit - base.cursor;
                 lab11: {
                     base.ket = base.cursor;
                     if (!(base.eq_s_b("at"))) {
@@ -599,7 +601,7 @@ var FrenchStemmer = function() {
                     }
                     base.bra = base.cursor;
                     lab12: {
-                        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
+                        const /** number */ v_9 = base.limit - base.cursor;
                         lab13: {
                             if (!r_R2()) break lab13;
                             if (!base.slice_del()) return false;
@@ -623,7 +625,7 @@ var FrenchStemmer = function() {
                 break;
             case 12:
                 lab14: {
-                    /** @const */ var /** number */ v_10 = base.limit - base.cursor;
+                    const /** number */ v_10 = base.limit - base.cursor;
                     lab15: {
                         if (!r_R2()) break lab15;
                         if (!base.slice_del()) return false;
@@ -648,7 +650,7 @@ var FrenchStemmer = function() {
                 if (!base.slice_from("ent")) return false;
                 return false;
             case 16:
-                /** @const */ var /** number */ v_11 = base.limit - base.cursor;
+                const /** number */ v_11 = base.limit - base.cursor;
                 if (!(base.in_grouping_b(g_v, 97, 251))) return false;
                 if (!r_RV()) return false;
                 base.cursor = base.limit - v_11;
@@ -661,7 +663,7 @@ var FrenchStemmer = function() {
     /** @return {boolean} */
     function r_i_verb_suffix() {
         if (base.cursor < I_pV) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         if (base.find_among_b(a_5) == 0) {
@@ -670,7 +672,7 @@ var FrenchStemmer = function() {
         }
         base.bra = base.cursor;
         {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab0: {
                 if (!(base.eq_s_b("H"))) break lab0;
                 base.limit_backward = v_1;
@@ -689,9 +691,9 @@ var FrenchStemmer = function() {
 
     /** @return {boolean} */
     function r_verb_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_pV) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_7);
@@ -710,7 +712,7 @@ var FrenchStemmer = function() {
                 if (!base.slice_del()) return false;
                 break;
             case 3:
-                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                const /** number */ v_2 = base.limit - base.cursor;
                 lab0: {
                     if (!(base.eq_s_b("e"))) {
                         base.cursor = base.limit - v_2;
@@ -726,7 +728,7 @@ var FrenchStemmer = function() {
                 break;
             case 4:
                 {
-                    /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                    const /** number */ v_3 = base.limit - base.cursor;
                     lab1: {
                         among_var = base.find_among_b(a_6);
                         if (among_var == 0) break lab1;
@@ -749,8 +751,8 @@ var FrenchStemmer = function() {
 
     /** @return {boolean} */
     function r_residual_suffix() {
-        var /** number */ among_var;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        let /** number */ among_var;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             base.ket = base.cursor;
             if (!(base.eq_s_b("s"))) {
@@ -758,9 +760,9 @@ var FrenchStemmer = function() {
                 break lab0;
             }
             base.bra = base.cursor;
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab1: {
-                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                const /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!(base.eq_s_b("Hi"))) break lab2;
                     break lab1;
@@ -775,7 +777,7 @@ var FrenchStemmer = function() {
             if (!base.slice_del()) return false;
         }
         if (base.cursor < I_pV) return false;
-        /** @const */ var /** number */ v_4 = base.limit_backward;
+        const /** number */ v_4 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_8);
@@ -791,7 +793,7 @@ var FrenchStemmer = function() {
                     return false;
                 }
                 lab3: {
-                    /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+                    const /** number */ v_5 = base.limit - base.cursor;
                     lab4: {
                         if (!(base.eq_s_b("s"))) break lab4;
                         break lab3;
@@ -817,7 +819,7 @@ var FrenchStemmer = function() {
 
     /** @return {boolean} */
     function r_un_double() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         if (base.find_among_b(a_9) == 0) return false;
         base.cursor = base.limit - v_1;
         base.ket = base.cursor;
@@ -831,7 +833,7 @@ var FrenchStemmer = function() {
     /** @return {boolean} */
     function r_un_accent() {
         {
-            var v_1 = 1;
+            let v_1 = 1;
             while(true) {
                 lab0: {
                     if (!(base.out_grouping_b(g_v, 97, 251))) break lab0;
@@ -844,7 +846,7 @@ var FrenchStemmer = function() {
         }
         base.ket = base.cursor;
         lab1: {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 if (!(base.eq_s_b("\u00E9"))) break lab2;
                 break lab1;
@@ -858,22 +860,22 @@ var FrenchStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         r_elisions();
         base.cursor = v_1;
-        /** @const */ var /** number */ v_2 = base.cursor;
+        const /** number */ v_2 = base.cursor;
         r_prelude();
         base.cursor = v_2;
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+                const /** number */ v_4 = base.limit - base.cursor;
                 lab2: {
-                    /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+                    const /** number */ v_5 = base.limit - base.cursor;
                     lab3: {
-                        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+                        const /** number */ v_6 = base.limit - base.cursor;
                         lab4: {
                             if (!r_standard_suffix()) break lab4;
                             break lab3;
@@ -887,11 +889,11 @@ var FrenchStemmer = function() {
                         if (!r_verb_suffix()) break lab2;
                     }
                     base.cursor = base.limit - v_5;
-                    /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+                    const /** number */ v_7 = base.limit - base.cursor;
                     lab6: {
                         base.ket = base.cursor;
                         lab7: {
-                            /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+                            const /** number */ v_8 = base.limit - base.cursor;
                             lab8: {
                                 if (!(base.eq_s_b("Y"))) break lab8;
                                 base.bra = base.cursor;
@@ -914,14 +916,14 @@ var FrenchStemmer = function() {
             }
         }
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
+        const /** number */ v_9 = base.limit - base.cursor;
         r_un_double();
         base.cursor = base.limit - v_9;
-        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
+        const /** number */ v_10 = base.limit - base.cursor;
         r_un_accent();
         base.cursor = base.limit - v_10;
         base.cursor = base.limit_backward;
-        /** @const */ var /** number */ v_11 = base.cursor;
+        const /** number */ v_11 = base.cursor;
         r_postlude();
         base.cursor = v_11;
         return true;
@@ -935,4 +937,4 @@ var FrenchStemmer = function() {
     };
 };
 
-window['FrenchStemmer'] = FrenchStemmer;
+export { FrenchStemmer };

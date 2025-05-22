@@ -1,10 +1,12 @@
 // Generated from serbian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var SerbianStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const SerbianStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["\u0430", -1, 1],
         ["\u0431", -1, 2],
         ["\u0432", -1, 3],
@@ -37,7 +39,7 @@ var SerbianStemmer = function() {
         ["\u045F", -1, 29]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["daba", -1, 73],
         ["ajaca", -1, 12],
         ["ejaca", -1, 14],
@@ -170,7 +172,7 @@ var SerbianStemmer = function() {
         ["o\u0161\u0107u", -1, 71]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["aca", -1, 124],
         ["eca", -1, 125],
         ["uca", -1, 126],
@@ -2208,7 +2210,7 @@ var SerbianStemmer = function() {
         ["ro\u0161i\u0161", 2029, 90]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["a", -1, 1],
         ["oga", 0, 1],
         ["ama", 0, 1],
@@ -2237,29 +2239,29 @@ var SerbianStemmer = function() {
         ["enu", 24, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16];
+    const /** Array<int> */ g_v = [17, 65, 16];
 
-    /** @const */ var /** Array<int> */ g_sa = [65, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 128];
+    const /** Array<int> */ g_sa = [65, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 128];
 
-    /** @const */ var /** Array<int> */ g_ca = [119, 95, 23, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 136, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0, 0, 0, 16];
+    const /** Array<int> */ g_ca = [119, 95, 23, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 136, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0, 0, 0, 16];
 
-    /** @const */ var /** Array<int> */ g_rg = [1];
+    const /** Array<int> */ g_rg = [1];
 
-    var /** number */ I_p1;
-    var /** boolean */ B_no_diacritics = false;
+    let /** number */ I_p1 = 0;
+    let /** boolean */ B_no_diacritics = false;
 
 
     /** @return {boolean} */
     function r_cyr_to_lat() {
-        var /** number */ among_var;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        let /** number */ among_var;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             while(true) {
-                /** @const */ var /** number */ v_2 = base.cursor;
+                const /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
                     {
-                        /** @const */ var /** number */ v_3 = base.cursor;
+                        const /** number */ v_3 = base.cursor;
                         lab3: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_0);
@@ -2376,14 +2378,14 @@ var SerbianStemmer = function() {
 
     /** @return {boolean} */
     function r_prelude() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             while(true) {
-                /** @const */ var /** number */ v_2 = base.cursor;
+                const /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
                     {
-                        /** @const */ var /** number */ v_3 = base.cursor;
+                        const /** number */ v_3 = base.cursor;
                         lab3: {
                             if (!(base.in_grouping(g_ca, 98, 382))) break lab3;
                             base.bra = base.cursor;
@@ -2405,14 +2407,14 @@ var SerbianStemmer = function() {
             }
         }
         base.cursor = v_1;
-        /** @const */ var /** number */ v_4 = base.cursor;
+        const /** number */ v_4 = base.cursor;
         lab4: {
             while(true) {
-                /** @const */ var /** number */ v_5 = base.cursor;
+                const /** number */ v_5 = base.cursor;
                 lab5: {
                     golab6: while(true)
                     {
-                        /** @const */ var /** number */ v_6 = base.cursor;
+                        const /** number */ v_6 = base.cursor;
                         lab7: {
                             if (!(base.in_grouping(g_ca, 98, 382))) break lab7;
                             base.bra = base.cursor;
@@ -2434,14 +2436,14 @@ var SerbianStemmer = function() {
             }
         }
         base.cursor = v_4;
-        /** @const */ var /** number */ v_7 = base.cursor;
+        const /** number */ v_7 = base.cursor;
         lab8: {
             while(true) {
-                /** @const */ var /** number */ v_8 = base.cursor;
+                const /** number */ v_8 = base.cursor;
                 lab9: {
                     golab10: while(true)
                     {
-                        /** @const */ var /** number */ v_9 = base.cursor;
+                        const /** number */ v_9 = base.cursor;
                         lab11: {
                             base.bra = base.cursor;
                             if (!(base.eq_s("dj"))) break lab11;
@@ -2467,7 +2469,7 @@ var SerbianStemmer = function() {
     /** @return {boolean} */
     function r_mark_regions() {
         B_no_diacritics = true;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             if (!base.go_out_grouping(g_sa, 263, 382)) break lab0;
             base.cursor++;
@@ -2475,7 +2477,7 @@ var SerbianStemmer = function() {
         }
         base.cursor = v_1;
         I_p1 = base.limit;
-        /** @const */ var /** number */ v_2 = base.cursor;
+        const /** number */ v_2 = base.cursor;
         lab1: {
             if (!base.go_out_grouping(g_v, 97, 117)) break lab1;
             base.cursor++;
@@ -2486,7 +2488,7 @@ var SerbianStemmer = function() {
             I_p1 = base.cursor;
         }
         base.cursor = v_2;
-        /** @const */ var /** number */ v_3 = base.cursor;
+        const /** number */ v_3 = base.cursor;
         lab2: {
             golab3: while(true)
             {
@@ -2498,7 +2500,7 @@ var SerbianStemmer = function() {
                 base.cursor++;
             }
             lab5: {
-                /** @const */ var /** number */ v_4 = base.cursor;
+                const /** number */ v_4 = base.cursor;
                 lab6: {
                     if (base.cursor < 2) break lab6;
                     break lab5;
@@ -2521,7 +2523,7 @@ var SerbianStemmer = function() {
 
     /** @return {boolean} */
     function r_Step_1() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
         if (among_var == 0) return false;
@@ -2814,7 +2816,7 @@ var SerbianStemmer = function() {
 
     /** @return {boolean} */
     function r_Step_2() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
         if (among_var == 0) return false;
@@ -3376,13 +3378,13 @@ var SerbianStemmer = function() {
         r_prelude();
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         r_Step_1();
         base.cursor = base.limit - v_1;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                const /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!r_Step_2()) break lab2;
                     break lab1;
@@ -3404,4 +3406,4 @@ var SerbianStemmer = function() {
     };
 };
 
-window['SerbianStemmer'] = SerbianStemmer;
+export { SerbianStemmer };

@@ -1,10 +1,12 @@
 // Generated from esperanto.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var EsperantoStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const EsperantoStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["", -1, 14],
         ["-", 0, 13],
         ["cx", 0, 1],
@@ -24,7 +26,7 @@ var EsperantoStemmer = function() {
         ["\u00FA", 0, 11]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["as", -1, -1],
         ["i", -1, -1],
         ["is", 1, -1],
@@ -33,7 +35,7 @@ var EsperantoStemmer = function() {
         ["us", 4, -1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["ci", -1, -1],
         ["gi", -1, -1],
         ["hi", -1, -1],
@@ -53,7 +55,7 @@ var EsperantoStemmer = function() {
         ["mal\u015Di", 14, -1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["amb", -1, -1],
         ["bald", -1, -1],
         ["malbald", 1, -1],
@@ -76,12 +78,12 @@ var EsperantoStemmer = function() {
         ["kvaz", -1, -1]
     ];
 
-    /** @const */ var a_4 = [
+    const a_4 = [
         ["aliu", -1, -1],
         ["unu", -1, -1]
     ];
 
-    /** @const */ var a_5 = [
+    const a_5 = [
         ["aha", -1, -1],
         ["haha", 0, -1],
         ["haleluja", -1, -1],
@@ -108,18 +110,18 @@ var EsperantoStemmer = function() {
         ["muu", -1, -1]
     ];
 
-    /** @const */ var a_6 = [
+    const a_6 = [
         ["tri", -1, -1],
         ["du", -1, -1],
         ["unu", -1, -1]
     ];
 
-    /** @const */ var a_7 = [
+    const a_7 = [
         ["dek", -1, -1],
         ["cent", -1, -1]
     ];
 
-    /** @const */ var a_8 = [
+    const a_8 = [
         ["k", -1, -1],
         ["kelk", 0, -1],
         ["nen", -1, -1],
@@ -129,7 +131,7 @@ var EsperantoStemmer = function() {
         ["\u0109", -1, -1]
     ];
 
-    /** @const */ var a_9 = [
+    const a_9 = [
         ["a", -1, -1],
         ["e", -1, -1],
         ["i", -1, -1],
@@ -151,21 +153,21 @@ var EsperantoStemmer = function() {
         ["u", -1, -1]
     ];
 
-    /** @const */ var /** Array<int> */ g_vowel = [17, 65, 16];
+    const /** Array<int> */ g_vowel = [17, 65, 16];
 
-    /** @const */ var /** Array<int> */ g_aou = [1, 64, 16];
+    const /** Array<int> */ g_aou = [1, 64, 16];
 
-    /** @const */ var /** Array<int> */ g_digit = [255, 3];
+    const /** Array<int> */ g_digit = [255, 3];
 
-    var /** boolean */ B_foreign = false;
+    let /** boolean */ B_foreign = false;
 
 
     /** @return {boolean} */
     function r_canonical_form() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         B_foreign = false;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_0);
@@ -243,7 +245,7 @@ var EsperantoStemmer = function() {
     /** @return {boolean} */
     function r_pronoun() {
         base.ket = base.cursor;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             if (!(base.eq_s_b("n"))) {
                 base.cursor = base.limit - v_1;
@@ -253,7 +255,7 @@ var EsperantoStemmer = function() {
         base.bra = base.cursor;
         if (base.find_among_b(a_2) == 0) return false;
         lab1: {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab2: {
                 if (base.cursor > base.limit_backward) break lab2;
                 break lab1;
@@ -271,7 +273,7 @@ var EsperantoStemmer = function() {
         if (!(base.eq_s_b("'"))) return false;
         base.bra = base.cursor;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("l"))) break lab1;
                 if (base.cursor > base.limit_backward) break lab1;
@@ -289,7 +291,7 @@ var EsperantoStemmer = function() {
             lab3: {
                 if (base.find_among_b(a_3) == 0) break lab3;
                 lab4: {
-                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                    const /** number */ v_2 = base.limit - base.cursor;
                     lab5: {
                         if (base.cursor > base.limit_backward) break lab5;
                         break lab4;
@@ -309,14 +311,14 @@ var EsperantoStemmer = function() {
     /** @return {boolean} */
     function r_ujn_suffix() {
         base.ket = base.cursor;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             if (!(base.eq_s_b("n"))) {
                 base.cursor = base.limit - v_1;
                 break lab0;
             }
         }
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         lab1: {
             if (!(base.eq_s_b("j"))) {
                 base.cursor = base.limit - v_2;
@@ -326,7 +328,7 @@ var EsperantoStemmer = function() {
         base.bra = base.cursor;
         if (base.find_among_b(a_4) == 0) return false;
         lab2: {
-            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+            const /** number */ v_3 = base.limit - base.cursor;
             lab3: {
                 if (base.cursor > base.limit_backward) break lab3;
                 break lab2;
@@ -342,7 +344,7 @@ var EsperantoStemmer = function() {
     function r_uninflected() {
         if (base.find_among_b(a_5) == 0) return false;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (base.cursor > base.limit_backward) break lab1;
                 break lab0;
@@ -363,11 +365,11 @@ var EsperantoStemmer = function() {
     function r_correlative() {
         base.ket = base.cursor;
         base.bra = base.cursor;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab1: {
-                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                const /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!(base.eq_s_b("n"))) {
                         base.cursor = base.limit - v_3;
@@ -379,14 +381,14 @@ var EsperantoStemmer = function() {
                 break lab0;
             }
             base.cursor = base.limit - v_2;
-            /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+            const /** number */ v_4 = base.limit - base.cursor;
             lab3: {
                 if (!(base.eq_s_b("n"))) {
                     base.cursor = base.limit - v_4;
                     break lab3;
                 }
             }
-            /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+            const /** number */ v_5 = base.limit - base.cursor;
             lab4: {
                 if (!(base.eq_s_b("j"))) {
                     base.cursor = base.limit - v_5;
@@ -397,7 +399,7 @@ var EsperantoStemmer = function() {
             if (!(base.in_grouping_b(g_aou, 97, 117))) return false;
         }
         if (!(base.eq_s_b("i"))) return false;
-        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+        const /** number */ v_6 = base.limit - base.cursor;
         lab5: {
             if (base.find_among_b(a_8) == 0) {
                 base.cursor = base.limit - v_6;
@@ -405,7 +407,7 @@ var EsperantoStemmer = function() {
             }
         }
         lab6: {
-            /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+            const /** number */ v_7 = base.limit - base.cursor;
             lab7: {
                 if (base.cursor > base.limit_backward) break lab7;
                 break lab6;
@@ -421,9 +423,9 @@ var EsperantoStemmer = function() {
     /** @return {boolean} */
     function r_long_word() {
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
-                for (var /** number */ v_2 = 2; v_2 > 0; v_2--)
+                for (let /** number */ v_2 = 2; v_2 > 0; v_2--)
                 {
                     if (!base.go_out_grouping_b(g_vowel, 97, 117)) break lab1;
                     base.cursor--;
@@ -455,7 +457,7 @@ var EsperantoStemmer = function() {
     /** @return {boolean} */
     function r_not_after_letter() {
         lab0: {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab1: {
                 if (!(base.eq_s_b("-"))) break lab1;
                 break lab0;
@@ -470,7 +472,7 @@ var EsperantoStemmer = function() {
     function r_standard_suffix() {
         base.ket = base.cursor;
         if (base.find_among_b(a_9) == 0) return false;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         lab0: {
             if (!(base.eq_s_b("-"))) {
                 base.cursor = base.limit - v_1;
@@ -483,26 +485,26 @@ var EsperantoStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         if (!r_canonical_form()) return false;
         base.cursor = v_1;
-        /** @const */ var /** number */ v_2 = base.cursor;
+        const /** number */ v_2 = base.cursor;
         r_initial_apostrophe();
         base.cursor = v_2;
         base.limit_backward = base.cursor; base.cursor = base.limit;
         {
-            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+            const /** number */ v_3 = base.limit - base.cursor;
             lab0: {
                 if (!r_pronoun()) break lab0;
                 return false;
             }
             base.cursor = base.limit - v_3;
         }
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_final_apostrophe();
         base.cursor = base.limit - v_4;
         {
-            /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+            const /** number */ v_5 = base.limit - base.cursor;
             lab1: {
                 if (!r_correlative()) break lab1;
                 return false;
@@ -510,7 +512,7 @@ var EsperantoStemmer = function() {
             base.cursor = base.limit - v_5;
         }
         {
-            /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+            const /** number */ v_6 = base.limit - base.cursor;
             lab2: {
                 if (!r_uninflected()) break lab2;
                 return false;
@@ -518,7 +520,7 @@ var EsperantoStemmer = function() {
             base.cursor = base.limit - v_6;
         }
         {
-            /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+            const /** number */ v_7 = base.limit - base.cursor;
             lab3: {
                 if (!r_merged_numeral()) break lab3;
                 return false;
@@ -526,14 +528,14 @@ var EsperantoStemmer = function() {
             base.cursor = base.limit - v_7;
         }
         {
-            /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+            const /** number */ v_8 = base.limit - base.cursor;
             lab4: {
                 if (!r_ujn_suffix()) break lab4;
                 return false;
             }
             base.cursor = base.limit - v_8;
         }
-        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
+        const /** number */ v_9 = base.limit - base.cursor;
         if (!r_long_word()) return false;
         base.cursor = base.limit - v_9;
         if (!r_standard_suffix()) return false;
@@ -549,4 +551,4 @@ var EsperantoStemmer = function() {
     };
 };
 
-window['EsperantoStemmer'] = EsperantoStemmer;
+export { EsperantoStemmer };

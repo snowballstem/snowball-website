@@ -1,10 +1,12 @@
 // Generated from swedish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var SwedishStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const SwedishStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["fab", -1, -1],
         ["h", -1, -1],
         ["pak", -1, -1],
@@ -28,7 +30,7 @@ var SwedishStemmer = function() {
         ["xit", -1, -1]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["a", -1, 1],
         ["arna", 0, 1],
         ["erna", 0, 1],
@@ -69,7 +71,7 @@ var SwedishStemmer = function() {
         ["ast", -1, 1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["dd", -1, -1],
         ["gd", -1, -1],
         ["nn", -1, -1],
@@ -79,7 +81,7 @@ var SwedishStemmer = function() {
         ["tt", -1, -1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["ig", -1, 1],
         ["lig", 0, 1],
         ["els", -1, 1],
@@ -87,22 +89,22 @@ var SwedishStemmer = function() {
         ["\u00F6st", -1, 2]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 32];
+    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 32];
 
-    /** @const */ var /** Array<int> */ g_s_ending = [119, 127, 149];
+    const /** Array<int> */ g_s_ending = [119, 127, 149];
 
-    /** @const */ var /** Array<int> */ g_ost_ending = [173, 58];
+    const /** Array<int> */ g_ost_ending = [173, 58];
 
-    var /** number */ I_x;
-    var /** number */ I_p1;
+    let /** number */ I_x = 0;
+    let /** number */ I_p1 = 0;
 
 
     /** @return {boolean} */
     function r_mark_regions() {
         I_p1 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         {
-            /** @const */ var /** number */ c1 = base.cursor + 3;
+            const /** number */ c1 = base.cursor + 3;
             if (c1 > base.limit) return false;
             base.cursor = c1;
         }
@@ -122,7 +124,7 @@ var SwedishStemmer = function() {
 
     /** @return {boolean} */
     function r_et_condition() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         if (!(base.out_grouping_b(g_v, 97, 246))) return false;
         if (!(base.in_grouping_b(g_v, 97, 246))) return false;
         lab0: {
@@ -131,7 +133,7 @@ var SwedishStemmer = function() {
         }
         base.cursor = base.limit - v_1;
         {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab1: {
                 if (base.find_among_b(a_0) == 0) break lab1;
                 return false;
@@ -143,9 +145,9 @@ var SwedishStemmer = function() {
 
     /** @return {boolean} */
     function r_main_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
@@ -161,7 +163,7 @@ var SwedishStemmer = function() {
                 break;
             case 2:
                 lab0: {
-                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                    const /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("et"))) break lab1;
                         if (!r_et_condition()) break lab1;
@@ -184,9 +186,9 @@ var SwedishStemmer = function() {
     /** @return {boolean} */
     function r_consonant_pair() {
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         if (base.find_among_b(a_2) == 0) {
             base.limit_backward = v_1;
             return false;
@@ -206,9 +208,9 @@ var SwedishStemmer = function() {
 
     /** @return {boolean} */
     function r_other_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
@@ -234,17 +236,17 @@ var SwedishStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         r_mark_regions();
         base.cursor = v_1;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         r_main_suffix();
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         r_consonant_pair();
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_other_suffix();
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;
@@ -259,4 +261,4 @@ var SwedishStemmer = function() {
     };
 };
 
-window['SwedishStemmer'] = SwedishStemmer;
+export { SwedishStemmer };

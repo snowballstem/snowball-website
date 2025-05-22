@@ -1,10 +1,12 @@
 // Generated from irish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var IrishStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const IrishStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["b'", -1, 1],
         ["bh", -1, 4],
         ["bhf", 1, 2],
@@ -31,7 +33,7 @@ var IrishStemmer = function() {
         ["ts", -1, 3]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["\u00EDochta", -1, 1],
         ["a\u00EDochta", 0, 1],
         ["ire", -1, 2],
@@ -50,7 +52,7 @@ var IrishStemmer = function() {
         ["air\u00ED", 14, 2]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["\u00F3ideacha", -1, 6],
         ["patacha", -1, 5],
         ["achta", -1, 1],
@@ -78,7 +80,7 @@ var IrishStemmer = function() {
         ["grafa\u00EDochta\u00ED", -1, 4]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["imid", -1, 1],
         ["aimid", 0, 1],
         ["\u00EDmid", -1, 1],
@@ -93,11 +95,11 @@ var IrishStemmer = function() {
         ["tar", -1, 2]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 4, 2];
+    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 4, 2];
 
-    var /** number */ I_p2;
-    var /** number */ I_p1;
-    var /** number */ I_pV;
+    let /** number */ I_p2 = 0;
+    let /** number */ I_p1 = 0;
+    let /** number */ I_pV = 0;
 
 
     /** @return {boolean} */
@@ -105,7 +107,7 @@ var IrishStemmer = function() {
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             if (!base.go_out_grouping(g_v, 97, 250)) break lab0;
             base.cursor++;
@@ -125,7 +127,7 @@ var IrishStemmer = function() {
 
     /** @return {boolean} */
     function r_initial_morph() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.bra = base.cursor;
         among_var = base.find_among(a_0);
         if (among_var == 0) return false;
@@ -182,7 +184,7 @@ var IrishStemmer = function() {
 
     /** @return {boolean} */
     function r_noun_sfx() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
         if (among_var == 0) return false;
@@ -202,7 +204,7 @@ var IrishStemmer = function() {
 
     /** @return {boolean} */
     function r_deriv() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
         if (among_var == 0) return false;
@@ -233,7 +235,7 @@ var IrishStemmer = function() {
 
     /** @return {boolean} */
     function r_verb_sfx() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
         if (among_var == 0) return false;
@@ -252,18 +254,18 @@ var IrishStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         r_initial_morph();
         base.cursor = v_1;
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         r_noun_sfx();
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         r_deriv();
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_verb_sfx();
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;
@@ -278,4 +280,4 @@ var IrishStemmer = function() {
     };
 };
 
-window['IrishStemmer'] = IrishStemmer;
+export { IrishStemmer };

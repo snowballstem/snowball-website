@@ -1,10 +1,12 @@
 // Generated from hindi.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var HindiStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const HindiStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["\u0906\u0901", -1, -1],
         ["\u093E\u0901", -1, -1],
         ["\u0907\u092F\u093E\u0901", 1, -1],
@@ -139,7 +141,7 @@ var HindiStemmer = function() {
         ["\u094D", -1, -1]
     ];
 
-    /** @const */ var /** Array<int> */ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248, 7];
+    const /** Array<int> */ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248, 7];
 
 
     /** @return {boolean} */
@@ -168,4 +170,4 @@ var HindiStemmer = function() {
     };
 };
 
-window['HindiStemmer'] = HindiStemmer;
+export { HindiStemmer };

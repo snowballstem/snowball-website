@@ -1,41 +1,43 @@
 // Generated from portuguese.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var PortugueseStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const PortugueseStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["", -1, 3],
         ["\u00E3", 0, 1],
         ["\u00F5", 0, 2]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["", -1, 3],
         ["a~", 0, 1],
         ["o~", 0, 2]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["ic", -1, -1],
         ["ad", -1, -1],
         ["os", -1, -1],
         ["iv", -1, 1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["ante", -1, 1],
         ["avel", -1, 1],
         ["\u00EDvel", -1, 1]
     ];
 
-    /** @const */ var a_4 = [
+    const a_4 = [
         ["ic", -1, 1],
         ["abil", -1, 1],
         ["iv", -1, 1]
     ];
 
-    /** @const */ var a_5 = [
+    const a_5 = [
         ["ica", -1, 1],
         ["\u00E2ncia", -1, 1],
         ["\u00EAncia", -1, 4],
@@ -83,7 +85,7 @@ var PortugueseStemmer = function() {
         ["ivos", -1, 8]
     ];
 
-    /** @const */ var a_6 = [
+    const a_6 = [
         ["ada", -1, 1],
         ["ida", -1, 1],
         ["ia", -1, 1],
@@ -206,7 +208,7 @@ var PortugueseStemmer = function() {
         ["ir\u00E1", -1, 1]
     ];
 
-    /** @const */ var a_7 = [
+    const a_7 = [
         ["a", -1, 1],
         ["i", -1, 1],
         ["o", -1, 1],
@@ -216,25 +218,25 @@ var PortugueseStemmer = function() {
         ["\u00F3", -1, 1]
     ];
 
-    /** @const */ var a_8 = [
+    const a_8 = [
         ["e", -1, 1],
         ["\u00E7", -1, 2],
         ["\u00E9", -1, 1],
         ["\u00EA", -1, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19, 12, 2];
+    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19, 12, 2];
 
-    var /** number */ I_p2;
-    var /** number */ I_p1;
-    var /** number */ I_pV;
+    let /** number */ I_p2 = 0;
+    let /** number */ I_p1 = 0;
+    let /** number */ I_pV = 0;
 
 
     /** @return {boolean} */
     function r_prelude() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_0);
@@ -264,14 +266,14 @@ var PortugueseStemmer = function() {
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             lab1: {
-                /** @const */ var /** number */ v_2 = base.cursor;
+                const /** number */ v_2 = base.cursor;
                 lab2: {
                     if (!(base.in_grouping(g_v, 97, 250))) break lab2;
                     lab3: {
-                        /** @const */ var /** number */ v_3 = base.cursor;
+                        const /** number */ v_3 = base.cursor;
                         lab4: {
                             if (!(base.out_grouping(g_v, 97, 250))) break lab4;
                             if (!base.go_out_grouping(g_v, 97, 250)) break lab4;
@@ -288,7 +290,7 @@ var PortugueseStemmer = function() {
                 base.cursor = v_2;
                 if (!(base.out_grouping(g_v, 97, 250))) break lab0;
                 lab5: {
-                    /** @const */ var /** number */ v_4 = base.cursor;
+                    const /** number */ v_4 = base.cursor;
                     lab6: {
                         if (!(base.out_grouping(g_v, 97, 250))) break lab6;
                         if (!base.go_out_grouping(g_v, 97, 250)) break lab6;
@@ -304,7 +306,7 @@ var PortugueseStemmer = function() {
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        /** @const */ var /** number */ v_5 = base.cursor;
+        const /** number */ v_5 = base.cursor;
         lab7: {
             if (!base.go_out_grouping(g_v, 97, 250)) break lab7;
             base.cursor++;
@@ -323,9 +325,9 @@ var PortugueseStemmer = function() {
 
     /** @return {boolean} */
     function r_postlude() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_1);
@@ -367,7 +369,7 @@ var PortugueseStemmer = function() {
 
     /** @return {boolean} */
     function r_standard_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_5);
         if (among_var == 0) return false;
@@ -392,7 +394,7 @@ var PortugueseStemmer = function() {
             case 5:
                 if (!r_R1()) return false;
                 if (!base.slice_del()) return false;
-                /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+                const /** number */ v_1 = base.limit - base.cursor;
                 lab0: {
                     base.ket = base.cursor;
                     among_var = base.find_among_b(a_2);
@@ -426,7 +428,7 @@ var PortugueseStemmer = function() {
             case 6:
                 if (!r_R2()) return false;
                 if (!base.slice_del()) return false;
-                /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                const /** number */ v_2 = base.limit - base.cursor;
                 lab1: {
                     base.ket = base.cursor;
                     if (base.find_among_b(a_3) == 0) {
@@ -444,7 +446,7 @@ var PortugueseStemmer = function() {
             case 7:
                 if (!r_R2()) return false;
                 if (!base.slice_del()) return false;
-                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                const /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     base.ket = base.cursor;
                     if (base.find_among_b(a_4) == 0) {
@@ -462,7 +464,7 @@ var PortugueseStemmer = function() {
             case 8:
                 if (!r_R2()) return false;
                 if (!base.slice_del()) return false;
-                /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+                const /** number */ v_4 = base.limit - base.cursor;
                 lab3: {
                     base.ket = base.cursor;
                     if (!(base.eq_s_b("at"))) {
@@ -489,7 +491,7 @@ var PortugueseStemmer = function() {
     /** @return {boolean} */
     function r_verb_suffix() {
         if (base.cursor < I_pV) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         if (base.find_among_b(a_6) == 0) {
@@ -514,7 +516,7 @@ var PortugueseStemmer = function() {
 
     /** @return {boolean} */
     function r_residual_form() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_8);
         if (among_var == 0) return false;
@@ -525,11 +527,11 @@ var PortugueseStemmer = function() {
                 if (!base.slice_del()) return false;
                 base.ket = base.cursor;
                 lab0: {
-                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+                    const /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("u"))) break lab1;
                         base.bra = base.cursor;
-                        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                        const /** number */ v_2 = base.limit - base.cursor;
                         if (!(base.eq_s_b("g"))) break lab1;
                         base.cursor = base.limit - v_2;
                         break lab0;
@@ -537,7 +539,7 @@ var PortugueseStemmer = function() {
                     base.cursor = base.limit - v_1;
                     if (!(base.eq_s_b("i"))) return false;
                     base.bra = base.cursor;
-                    /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                    const /** number */ v_3 = base.limit - base.cursor;
                     if (!(base.eq_s_b("c"))) return false;
                     base.cursor = base.limit - v_3;
                 }
@@ -552,19 +554,19 @@ var PortugueseStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         r_prelude();
         base.cursor = v_1;
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                const /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
-                    /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+                    const /** number */ v_4 = base.limit - base.cursor;
                     lab3: {
-                        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+                        const /** number */ v_5 = base.limit - base.cursor;
                         lab4: {
                             if (!r_standard_suffix()) break lab4;
                             break lab3;
@@ -573,12 +575,12 @@ var PortugueseStemmer = function() {
                         if (!r_verb_suffix()) break lab2;
                     }
                     base.cursor = base.limit - v_4;
-                    /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+                    const /** number */ v_6 = base.limit - base.cursor;
                     lab5: {
                         base.ket = base.cursor;
                         if (!(base.eq_s_b("i"))) break lab5;
                         base.bra = base.cursor;
-                        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+                        const /** number */ v_7 = base.limit - base.cursor;
                         if (!(base.eq_s_b("c"))) break lab5;
                         base.cursor = base.limit - v_7;
                         if (!r_RV()) break lab5;
@@ -592,11 +594,11 @@ var PortugueseStemmer = function() {
             }
         }
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+        const /** number */ v_8 = base.limit - base.cursor;
         r_residual_form();
         base.cursor = base.limit - v_8;
         base.cursor = base.limit_backward;
-        /** @const */ var /** number */ v_9 = base.cursor;
+        const /** number */ v_9 = base.cursor;
         r_postlude();
         base.cursor = v_9;
         return true;
@@ -610,4 +612,4 @@ var PortugueseStemmer = function() {
     };
 };
 
-window['PortugueseStemmer'] = PortugueseStemmer;
+export { PortugueseStemmer };

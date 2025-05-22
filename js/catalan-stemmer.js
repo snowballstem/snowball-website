@@ -1,10 +1,12 @@
 // Generated from catalan.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var CatalanStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const CatalanStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["", -1, 7],
         ["\u00B7", 0, 6],
         ["\u00E0", 0, 1],
@@ -20,7 +22,7 @@ var CatalanStemmer = function() {
         ["\u00FC", 0, 5]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["la", -1, 1],
         ["-la", 0, 1],
         ["sela", 0, 1],
@@ -62,7 +64,7 @@ var CatalanStemmer = function() {
         ["'t", -1, 1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["ica", -1, 4],
         ["l\u00F3gica", 0, 3],
         ["enca", -1, 1],
@@ -265,7 +267,7 @@ var CatalanStemmer = function() {
         ["aci\u00F3", 198, 1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["aba", -1, 1],
         ["esca", -1, 1],
         ["isca", -1, 1],
@@ -551,7 +553,7 @@ var CatalanStemmer = function() {
         ["i\u00F3", -1, 1]
     ];
 
-    /** @const */ var a_4 = [
+    const a_4 = [
         ["a", -1, 1],
         ["e", -1, 1],
         ["i", -1, 1],
@@ -576,17 +578,17 @@ var CatalanStemmer = function() {
         ["\u00F3", -1, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 129, 81, 6, 10];
+    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 129, 81, 6, 10];
 
-    var /** number */ I_p2;
-    var /** number */ I_p1;
+    let /** number */ I_p2 = 0;
+    let /** number */ I_p1 = 0;
 
 
     /** @return {boolean} */
     function r_mark_regions() {
         I_p1 = base.limit;
         I_p2 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             if (!base.go_out_grouping(g_v, 97, 252)) break lab0;
             base.cursor++;
@@ -605,9 +607,9 @@ var CatalanStemmer = function() {
 
     /** @return {boolean} */
     function r_cleaning() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_0);
@@ -666,7 +668,7 @@ var CatalanStemmer = function() {
 
     /** @return {boolean} */
     function r_standard_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
         if (among_var == 0) return false;
@@ -698,7 +700,7 @@ var CatalanStemmer = function() {
 
     /** @return {boolean} */
     function r_verb_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
         if (among_var == 0) return false;
@@ -718,7 +720,7 @@ var CatalanStemmer = function() {
 
     /** @return {boolean} */
     function r_residual_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
         if (among_var == 0) return false;
@@ -739,13 +741,13 @@ var CatalanStemmer = function() {
     this.stem = /** @return {boolean} */ function() {
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         r_attached_pronoun();
         base.cursor = base.limit - v_1;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                const /** number */ v_3 = base.limit - base.cursor;
                 lab2: {
                     if (!r_standard_suffix()) break lab2;
                     break lab1;
@@ -755,11 +757,11 @@ var CatalanStemmer = function() {
             }
         }
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_residual_suffix();
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;
-        /** @const */ var /** number */ v_5 = base.cursor;
+        const /** number */ v_5 = base.cursor;
         r_cleaning();
         base.cursor = v_5;
         return true;
@@ -773,4 +775,4 @@ var CatalanStemmer = function() {
     };
 };
 
-window['CatalanStemmer'] = CatalanStemmer;
+export { CatalanStemmer };

@@ -1,15 +1,17 @@
 // Generated from hungarian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var HungarianStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const HungarianStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["\u00E1", -1, 1],
         ["\u00E9", -1, 2]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["bb", -1, -1],
         ["cc", -1, -1],
         ["dd", -1, -1],
@@ -35,12 +37,12 @@ var HungarianStemmer = function() {
         ["zz", -1, -1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["al", -1, 1],
         ["el", -1, 1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["ba", -1, -1],
         ["ra", -1, -1],
         ["be", -1, -1],
@@ -87,13 +89,13 @@ var HungarianStemmer = function() {
         ["v\u00E9", -1, -1]
     ];
 
-    /** @const */ var a_4 = [
+    const a_4 = [
         ["\u00E1n", -1, 2],
         ["\u00E9n", -1, 1],
         ["\u00E1nk\u00E9nt", -1, 2]
     ];
 
-    /** @const */ var a_5 = [
+    const a_5 = [
         ["stul", -1, 1],
         ["astul", 0, 1],
         ["\u00E1stul", 0, 2],
@@ -102,12 +104,12 @@ var HungarianStemmer = function() {
         ["\u00E9st\u00FCl", 3, 3]
     ];
 
-    /** @const */ var a_6 = [
+    const a_6 = [
         ["\u00E1", -1, 1],
         ["\u00E9", -1, 1]
     ];
 
-    /** @const */ var a_7 = [
+    const a_7 = [
         ["k", -1, 3],
         ["ak", 0, 3],
         ["ek", 0, 3],
@@ -117,7 +119,7 @@ var HungarianStemmer = function() {
         ["\u00F6k", 0, 3]
     ];
 
-    /** @const */ var a_8 = [
+    const a_8 = [
         ["\u00E9i", -1, 1],
         ["\u00E1\u00E9i", 0, 3],
         ["\u00E9\u00E9i", 0, 2],
@@ -132,7 +134,7 @@ var HungarianStemmer = function() {
         ["\u00E9\u00E9", 3, 2]
     ];
 
-    /** @const */ var a_9 = [
+    const a_9 = [
         ["a", -1, 1],
         ["ja", 0, 1],
         ["d", -1, 1],
@@ -166,7 +168,7 @@ var HungarianStemmer = function() {
         ["\u00E9", -1, 3]
     ];
 
-    /** @const */ var a_10 = [
+    const a_10 = [
         ["id", -1, 1],
         ["aid", 0, 1],
         ["jaid", 1, 1],
@@ -211,19 +213,19 @@ var HungarianStemmer = function() {
         ["\u00E9im", 35, 3]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 36, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
+    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 36, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
 
-    var /** number */ I_p1;
+    let /** number */ I_p1 = 0;
 
 
     /** @return {boolean} */
     function r_mark_regions() {
         I_p1 = base.limit;
         lab0: {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab1: {
                 if (!(base.in_grouping(g_v, 97, 369))) break lab1;
-                /** @const */ var /** number */ v_2 = base.cursor;
+                const /** number */ v_2 = base.cursor;
                 lab2: {
                     if (!base.go_in_grouping(g_v, 97, 369)) break lab2;
                     base.cursor++;
@@ -247,7 +249,7 @@ var HungarianStemmer = function() {
 
     /** @return {boolean} */
     function r_v_ending() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
         if (among_var == 0) return false;
@@ -266,7 +268,7 @@ var HungarianStemmer = function() {
 
     /** @return {boolean} */
     function r_double() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         if (base.find_among_b(a_1) == 0) return false;
         base.cursor = base.limit - v_1;
         return true;
@@ -307,7 +309,7 @@ var HungarianStemmer = function() {
 
     /** @return {boolean} */
     function r_case_special() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_4);
         if (among_var == 0) return false;
@@ -326,7 +328,7 @@ var HungarianStemmer = function() {
 
     /** @return {boolean} */
     function r_case_other() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_5);
         if (among_var == 0) return false;
@@ -359,7 +361,7 @@ var HungarianStemmer = function() {
 
     /** @return {boolean} */
     function r_plural() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_7);
         if (among_var == 0) return false;
@@ -381,7 +383,7 @@ var HungarianStemmer = function() {
 
     /** @return {boolean} */
     function r_owned() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_8);
         if (among_var == 0) return false;
@@ -403,7 +405,7 @@ var HungarianStemmer = function() {
 
     /** @return {boolean} */
     function r_sing_owner() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_9);
         if (among_var == 0) return false;
@@ -425,7 +427,7 @@ var HungarianStemmer = function() {
 
     /** @return {boolean} */
     function r_plur_owner() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_10);
         if (among_var == 0) return false;
@@ -446,35 +448,35 @@ var HungarianStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         r_mark_regions();
         base.cursor = v_1;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         r_instrum();
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         r_case();
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_case_special();
         base.cursor = base.limit - v_4;
-        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+        const /** number */ v_5 = base.limit - base.cursor;
         r_case_other();
         base.cursor = base.limit - v_5;
-        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+        const /** number */ v_6 = base.limit - base.cursor;
         r_factive();
         base.cursor = base.limit - v_6;
-        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+        const /** number */ v_7 = base.limit - base.cursor;
         r_owned();
         base.cursor = base.limit - v_7;
-        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+        const /** number */ v_8 = base.limit - base.cursor;
         r_sing_owner();
         base.cursor = base.limit - v_8;
-        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
+        const /** number */ v_9 = base.limit - base.cursor;
         r_plur_owner();
         base.cursor = base.limit - v_9;
-        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
+        const /** number */ v_10 = base.limit - base.cursor;
         r_plural();
         base.cursor = base.limit - v_10;
         base.cursor = base.limit_backward;
@@ -489,4 +491,4 @@ var HungarianStemmer = function() {
     };
 };
 
-window['HungarianStemmer'] = HungarianStemmer;
+export { HungarianStemmer };

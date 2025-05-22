@@ -1,21 +1,23 @@
 // Generated from romanian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var RomanianStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const RomanianStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["\u015F", -1, 1],
         ["\u0163", -1, 2]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["", -1, 3],
         ["I", 0, 1],
         ["U", 0, 2]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["ea", -1, 3],
         ["a\u021Bia", -1, 7],
         ["aua", -1, 2],
@@ -34,7 +36,7 @@ var RomanianStemmer = function() {
         ["iilor", 14, 4]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["icala", -1, 4],
         ["iciva", -1, 4],
         ["ativa", -1, 5],
@@ -83,7 +85,7 @@ var RomanianStemmer = function() {
         ["itiv\u0103", -1, 6]
     ];
 
-    /** @const */ var a_4 = [
+    const a_4 = [
         ["ica", -1, 1],
         ["abila", -1, 1],
         ["ibila", -1, 1],
@@ -148,7 +150,7 @@ var RomanianStemmer = function() {
         ["iv\u0103", -1, 1]
     ];
 
-    /** @const */ var a_5 = [
+    const a_5 = [
         ["ea", -1, 1],
         ["ia", -1, 1],
         ["esc", -1, 1],
@@ -245,7 +247,7 @@ var RomanianStemmer = function() {
         ["eaz\u0103", -1, 1]
     ];
 
-    /** @const */ var a_6 = [
+    const a_6 = [
         ["a", -1, 1],
         ["e", -1, 1],
         ["ie", 1, 1],
@@ -253,25 +255,25 @@ var RomanianStemmer = function() {
         ["\u0103", -1, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 32, 0, 0, 4];
+    const /** Array<int> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 32, 0, 0, 4];
 
-    var /** boolean */ B_standard_suffix_removed = false;
-    var /** number */ I_p2;
-    var /** number */ I_p1;
-    var /** number */ I_pV;
+    let /** boolean */ B_standard_suffix_removed = false;
+    let /** number */ I_p2 = 0;
+    let /** number */ I_p1 = 0;
+    let /** number */ I_pV = 0;
 
 
     /** @return {boolean} */
     function r_norm() {
-        var /** number */ among_var;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        let /** number */ among_var;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             while(true) {
-                /** @const */ var /** number */ v_2 = base.cursor;
+                const /** number */ v_2 = base.cursor;
                 lab1: {
                     golab2: while(true)
                     {
-                        /** @const */ var /** number */ v_3 = base.cursor;
+                        const /** number */ v_3 = base.cursor;
                         lab3: {
                             base.bra = base.cursor;
                             among_var = base.find_among(a_0);
@@ -305,16 +307,16 @@ var RomanianStemmer = function() {
     /** @return {boolean} */
     function r_prelude() {
         while(true) {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab0: {
                 golab1: while(true)
                 {
-                    /** @const */ var /** number */ v_2 = base.cursor;
+                    const /** number */ v_2 = base.cursor;
                     lab2: {
                         if (!(base.in_grouping(g_v, 97, 259))) break lab2;
                         base.bra = base.cursor;
                         lab3: {
-                            /** @const */ var /** number */ v_3 = base.cursor;
+                            const /** number */ v_3 = base.cursor;
                             lab4: {
                                 if (!(base.eq_s("u"))) break lab4;
                                 base.ket = base.cursor;
@@ -348,14 +350,14 @@ var RomanianStemmer = function() {
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             lab1: {
-                /** @const */ var /** number */ v_2 = base.cursor;
+                const /** number */ v_2 = base.cursor;
                 lab2: {
                     if (!(base.in_grouping(g_v, 97, 259))) break lab2;
                     lab3: {
-                        /** @const */ var /** number */ v_3 = base.cursor;
+                        const /** number */ v_3 = base.cursor;
                         lab4: {
                             if (!(base.out_grouping(g_v, 97, 259))) break lab4;
                             if (!base.go_out_grouping(g_v, 97, 259)) break lab4;
@@ -372,7 +374,7 @@ var RomanianStemmer = function() {
                 base.cursor = v_2;
                 if (!(base.out_grouping(g_v, 97, 259))) break lab0;
                 lab5: {
-                    /** @const */ var /** number */ v_4 = base.cursor;
+                    const /** number */ v_4 = base.cursor;
                     lab6: {
                         if (!(base.out_grouping(g_v, 97, 259))) break lab6;
                         if (!base.go_out_grouping(g_v, 97, 259)) break lab6;
@@ -388,7 +390,7 @@ var RomanianStemmer = function() {
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        /** @const */ var /** number */ v_5 = base.cursor;
+        const /** number */ v_5 = base.cursor;
         lab7: {
             if (!base.go_out_grouping(g_v, 97, 259)) break lab7;
             base.cursor++;
@@ -407,9 +409,9 @@ var RomanianStemmer = function() {
 
     /** @return {boolean} */
     function r_postlude() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.cursor;
+            const /** number */ v_1 = base.cursor;
             lab0: {
                 base.bra = base.cursor;
                 among_var = base.find_among(a_1);
@@ -451,7 +453,7 @@ var RomanianStemmer = function() {
 
     /** @return {boolean} */
     function r_step_0() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
         if (among_var == 0) return false;
@@ -472,7 +474,7 @@ var RomanianStemmer = function() {
                 break;
             case 5:
                 {
-                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+                    const /** number */ v_1 = base.limit - base.cursor;
                     lab0: {
                         if (!(base.eq_s_b("ab"))) break lab0;
                         return false;
@@ -493,8 +495,8 @@ var RomanianStemmer = function() {
 
     /** @return {boolean} */
     function r_combo_suffix() {
-        var /** number */ among_var;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        let /** number */ among_var;
+        const /** number */ v_1 = base.limit - base.cursor;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
         if (among_var == 0) return false;
@@ -527,10 +529,10 @@ var RomanianStemmer = function() {
 
     /** @return {boolean} */
     function r_standard_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         B_standard_suffix_removed = false;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 if (!r_combo_suffix()) break lab0;
                 continue;
@@ -562,9 +564,9 @@ var RomanianStemmer = function() {
 
     /** @return {boolean} */
     function r_verb_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_pV) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_pV;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_5);
@@ -576,7 +578,7 @@ var RomanianStemmer = function() {
         switch (among_var) {
             case 1:
                 lab0: {
-                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                    const /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.out_grouping_b(g_v, 97, 259))) break lab1;
                         break lab0;
@@ -609,21 +611,21 @@ var RomanianStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         r_norm();
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         r_prelude();
         base.cursor = v_1;
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         r_step_0();
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         r_standard_suffix();
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         lab0: {
             lab1: {
-                /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+                const /** number */ v_5 = base.limit - base.cursor;
                 lab2: {
                     if (!B_standard_suffix_removed) break lab2;
                     break lab1;
@@ -633,11 +635,11 @@ var RomanianStemmer = function() {
             }
         }
         base.cursor = base.limit - v_4;
-        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+        const /** number */ v_6 = base.limit - base.cursor;
         r_vowel_suffix();
         base.cursor = base.limit - v_6;
         base.cursor = base.limit_backward;
-        /** @const */ var /** number */ v_7 = base.cursor;
+        const /** number */ v_7 = base.cursor;
         r_postlude();
         base.cursor = v_7;
         return true;
@@ -651,4 +653,4 @@ var RomanianStemmer = function() {
     };
 };
 
-window['RomanianStemmer'] = RomanianStemmer;
+export { RomanianStemmer };

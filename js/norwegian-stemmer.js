@@ -1,10 +1,12 @@
 // Generated from norwegian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var NorwegianStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const NorwegianStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["", -1, 1],
         ["ind", 0, -1],
         ["kk", 0, -1],
@@ -22,7 +24,7 @@ var NorwegianStemmer = function() {
         ["giv", 12, 1]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["a", -1, 1],
         ["e", -1, 1],
         ["ede", 1, 1],
@@ -54,12 +56,12 @@ var NorwegianStemmer = function() {
         ["ast", -1, 1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["dt", -1, -1],
         ["vt", -1, -1]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["leg", -1, 1],
         ["eleg", 0, 1],
         ["ig", -1, 1],
@@ -73,20 +75,20 @@ var NorwegianStemmer = function() {
         ["hetslov", 9, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 2, 142];
+    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 2, 142];
 
-    /** @const */ var /** Array<int> */ g_s_ending = [119, 125, 148, 1];
+    const /** Array<int> */ g_s_ending = [119, 125, 148, 1];
 
-    var /** number */ I_x;
-    var /** number */ I_p1;
+    let /** number */ I_x = 0;
+    let /** number */ I_p1 = 0;
 
 
     /** @return {boolean} */
     function r_mark_regions() {
         I_p1 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         {
-            /** @const */ var /** number */ c1 = base.cursor + 3;
+            const /** number */ c1 = base.cursor + 3;
             if (c1 > base.limit) return false;
             base.cursor = c1;
         }
@@ -106,9 +108,9 @@ var NorwegianStemmer = function() {
 
     /** @return {boolean} */
     function r_main_suffix() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
@@ -132,7 +134,7 @@ var NorwegianStemmer = function() {
                 break;
             case 3:
                 lab0: {
-                    /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+                    const /** number */ v_2 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.in_grouping_b(g_s_ending, 98, 122))) break lab1;
                         break lab0;
@@ -141,7 +143,7 @@ var NorwegianStemmer = function() {
                     lab2: {
                         if (!(base.eq_s_b("r"))) break lab2;
                         {
-                            /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                            const /** number */ v_3 = base.limit - base.cursor;
                             lab3: {
                                 if (!(base.eq_s_b("e"))) break lab3;
                                 break lab2;
@@ -165,9 +167,9 @@ var NorwegianStemmer = function() {
 
     /** @return {boolean} */
     function r_consonant_pair() {
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_2 = base.limit_backward;
+        const /** number */ v_2 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (base.find_among_b(a_2) == 0) {
@@ -187,7 +189,7 @@ var NorwegianStemmer = function() {
     /** @return {boolean} */
     function r_other_suffix() {
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (base.find_among_b(a_3) == 0) {
@@ -201,17 +203,17 @@ var NorwegianStemmer = function() {
     };
 
     this.stem = /** @return {boolean} */ function() {
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         r_mark_regions();
         base.cursor = v_1;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+        const /** number */ v_2 = base.limit - base.cursor;
         r_main_suffix();
         base.cursor = base.limit - v_2;
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         r_consonant_pair();
         base.cursor = base.limit - v_3;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_other_suffix();
         base.cursor = base.limit - v_4;
         base.cursor = base.limit_backward;
@@ -226,4 +228,4 @@ var NorwegianStemmer = function() {
     };
 };
 
-window['NorwegianStemmer'] = NorwegianStemmer;
+export { NorwegianStemmer };

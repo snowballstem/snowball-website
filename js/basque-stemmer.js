@@ -1,10 +1,12 @@
 // Generated from basque.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var BasqueStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const BasqueStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["idea", -1, 1],
         ["bidea", 0, 1],
         ["kidea", 0, 1],
@@ -116,7 +118,7 @@ var BasqueStemmer = function() {
         ["kaitz", -1, 1]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["ada", -1, 1],
         ["kada", 0, 1],
         ["anda", -1, 1],
@@ -414,7 +416,7 @@ var BasqueStemmer = function() {
         ["koitz", 293, 1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["zlea", -1, 2],
         ["keria", -1, 1],
         ["la", -1, 1],
@@ -436,11 +438,11 @@ var BasqueStemmer = function() {
         ["to", -1, 1]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16];
+    const /** Array<int> */ g_v = [17, 65, 16];
 
-    var /** number */ I_p2;
-    var /** number */ I_p1;
-    var /** number */ I_pV;
+    let /** number */ I_p2 = 0;
+    let /** number */ I_p1 = 0;
+    let /** number */ I_pV = 0;
 
 
     /** @return {boolean} */
@@ -448,14 +450,14 @@ var BasqueStemmer = function() {
         I_pV = base.limit;
         I_p1 = base.limit;
         I_p2 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
             lab1: {
-                /** @const */ var /** number */ v_2 = base.cursor;
+                const /** number */ v_2 = base.cursor;
                 lab2: {
                     if (!(base.in_grouping(g_v, 97, 117))) break lab2;
                     lab3: {
-                        /** @const */ var /** number */ v_3 = base.cursor;
+                        const /** number */ v_3 = base.cursor;
                         lab4: {
                             if (!(base.out_grouping(g_v, 97, 117))) break lab4;
                             if (!base.go_out_grouping(g_v, 97, 117)) break lab4;
@@ -472,7 +474,7 @@ var BasqueStemmer = function() {
                 base.cursor = v_2;
                 if (!(base.out_grouping(g_v, 97, 117))) break lab0;
                 lab5: {
-                    /** @const */ var /** number */ v_4 = base.cursor;
+                    const /** number */ v_4 = base.cursor;
                     lab6: {
                         if (!(base.out_grouping(g_v, 97, 117))) break lab6;
                         if (!base.go_out_grouping(g_v, 97, 117)) break lab6;
@@ -488,7 +490,7 @@ var BasqueStemmer = function() {
             I_pV = base.cursor;
         }
         base.cursor = v_1;
-        /** @const */ var /** number */ v_5 = base.cursor;
+        const /** number */ v_5 = base.cursor;
         lab7: {
             if (!base.go_out_grouping(g_v, 97, 117)) break lab7;
             base.cursor++;
@@ -522,7 +524,7 @@ var BasqueStemmer = function() {
 
     /** @return {boolean} */
     function r_aditzak() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
         if (among_var == 0) return false;
@@ -542,7 +544,7 @@ var BasqueStemmer = function() {
 
     /** @return {boolean} */
     function r_izenak() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
         if (among_var == 0) return false;
@@ -575,7 +577,7 @@ var BasqueStemmer = function() {
 
     /** @return {boolean} */
     function r_adjetiboak() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
         if (among_var == 0) return false;
@@ -596,7 +598,7 @@ var BasqueStemmer = function() {
         r_mark_regions();
         base.limit_backward = base.cursor; base.cursor = base.limit;
         while(true) {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 if (!r_aditzak()) break lab0;
                 continue;
@@ -605,7 +607,7 @@ var BasqueStemmer = function() {
             break;
         }
         while(true) {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab1: {
                 if (!r_izenak()) break lab1;
                 continue;
@@ -613,7 +615,7 @@ var BasqueStemmer = function() {
             base.cursor = base.limit - v_2;
             break;
         }
-        /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+        const /** number */ v_3 = base.limit - base.cursor;
         r_adjetiboak();
         base.cursor = base.limit - v_3;
         base.cursor = base.limit_backward;
@@ -628,4 +630,4 @@ var BasqueStemmer = function() {
     };
 };
 
-window['BasqueStemmer'] = BasqueStemmer;
+export { BasqueStemmer };

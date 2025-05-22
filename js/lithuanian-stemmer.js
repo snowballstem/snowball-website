@@ -1,10 +1,12 @@
 // Generated from lithuanian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var LithuanianStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const LithuanianStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["a", -1, -1],
         ["ia", 0, -1],
         ["eria", 1, -1],
@@ -211,7 +213,7 @@ var LithuanianStemmer = function() {
         ["er\u0173", 201, -1]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["ing", -1, -1],
         ["aj", -1, -1],
         ["iaj", 1, -1],
@@ -276,7 +278,7 @@ var LithuanianStemmer = function() {
         ["\u0117j\u0119", 60, -1]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["ojime", -1, 7],
         ["\u0117jime", -1, 3],
         ["avime", -1, 6],
@@ -290,20 +292,20 @@ var LithuanianStemmer = function() {
         ["esiu", -1, 4]
     ];
 
-    /** @const */ var a_3 = [
+    const a_3 = [
         ["\u010D", -1, 1],
         ["d\u017E", -1, 2]
     ];
 
-    /** @const */ var /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 64, 1, 0, 64, 0, 0, 0, 0, 0, 0, 0, 4, 4];
+    const /** Array<int> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 64, 1, 0, 64, 0, 0, 0, 0, 0, 0, 0, 4, 4];
 
-    var /** number */ I_p1;
+    let /** number */ I_p1 = 0;
 
 
     /** @return {boolean} */
     function r_step1() {
         if (base.cursor < I_p1) return false;
-        /** @const */ var /** number */ v_1 = base.limit_backward;
+        const /** number */ v_1 = base.limit_backward;
         base.limit_backward = I_p1;
         base.ket = base.cursor;
         if (base.find_among_b(a_0) == 0) {
@@ -319,10 +321,10 @@ var LithuanianStemmer = function() {
     /** @return {boolean} */
     function r_step2() {
         while(true) {
-            /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+            const /** number */ v_1 = base.limit - base.cursor;
             lab0: {
                 if (base.cursor < I_p1) break lab0;
-                /** @const */ var /** number */ v_2 = base.limit_backward;
+                const /** number */ v_2 = base.limit_backward;
                 base.limit_backward = I_p1;
                 base.ket = base.cursor;
                 if (base.find_among_b(a_1) == 0) {
@@ -342,7 +344,7 @@ var LithuanianStemmer = function() {
 
     /** @return {boolean} */
     function r_fix_conflicts() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_2);
         if (among_var == 0) return false;
@@ -378,7 +380,7 @@ var LithuanianStemmer = function() {
 
     /** @return {boolean} */
     function r_fix_chdz() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_3);
         if (among_var == 0) return false;
@@ -405,11 +407,11 @@ var LithuanianStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         I_p1 = base.limit;
-        /** @const */ var /** number */ v_1 = base.cursor;
+        const /** number */ v_1 = base.cursor;
         lab0: {
-            /** @const */ var /** number */ v_2 = base.cursor;
+            const /** number */ v_2 = base.cursor;
             lab1: {
-                /** @const */ var /** number */ v_3 = base.cursor;
+                const /** number */ v_3 = base.cursor;
                 if (!(base.eq_s("a"))) {
                     base.cursor = v_2;
                     break lab1;
@@ -433,22 +435,22 @@ var LithuanianStemmer = function() {
         }
         base.cursor = v_1;
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
+        const /** number */ v_4 = base.limit - base.cursor;
         r_fix_conflicts();
         base.cursor = base.limit - v_4;
-        /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+        const /** number */ v_5 = base.limit - base.cursor;
         r_step1();
         base.cursor = base.limit - v_5;
-        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
+        const /** number */ v_6 = base.limit - base.cursor;
         r_fix_chdz();
         base.cursor = base.limit - v_6;
-        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
+        const /** number */ v_7 = base.limit - base.cursor;
         r_step2();
         base.cursor = base.limit - v_7;
-        /** @const */ var /** number */ v_8 = base.limit - base.cursor;
+        const /** number */ v_8 = base.limit - base.cursor;
         r_fix_chdz();
         base.cursor = base.limit - v_8;
-        /** @const */ var /** number */ v_9 = base.limit - base.cursor;
+        const /** number */ v_9 = base.limit - base.cursor;
         r_fix_gd();
         base.cursor = base.limit - v_9;
         base.cursor = base.limit_backward;
@@ -463,4 +465,4 @@ var LithuanianStemmer = function() {
     };
 };
 
-window['LithuanianStemmer'] = LithuanianStemmer;
+export { LithuanianStemmer };

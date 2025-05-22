@@ -1,10 +1,12 @@
 // Generated from nepali.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-/**@constructor*/
-var NepaliStemmer = function() {
-    var base = new BaseStemmer();
+import { BaseStemmer } from './base-stemmer.js'
 
-    /** @const */ var a_0 = [
+/** @constructor */
+const NepaliStemmer = function() {
+    const base = new BaseStemmer();
+
+    const a_0 = [
         ["\u0932\u093E\u0907", -1, 1],
         ["\u0932\u093E\u0908", -1, 1],
         ["\u0938\u0901\u0917", -1, 1],
@@ -24,13 +26,13 @@ var NepaliStemmer = function() {
         ["\u0915\u094B", -1, 2]
     ];
 
-    /** @const */ var a_1 = [
+    const a_1 = [
         ["\u0901", -1, 1],
         ["\u0902", -1, 1],
         ["\u0948", -1, 2]
     ];
 
-    /** @const */ var a_2 = [
+    const a_2 = [
         ["\u0925\u093F\u090F", -1, 1],
         ["\u091B", -1, 1],
         ["\u0907\u091B", 1, 1],
@@ -127,7 +129,7 @@ var NepaliStemmer = function() {
 
     /** @return {boolean} */
     function r_remove_category_1() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_0);
         if (among_var == 0) return false;
@@ -138,7 +140,7 @@ var NepaliStemmer = function() {
                 break;
             case 2:
                 lab0: {
-                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+                    const /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("\u090F"))) break lab1;
                         break lab0;
@@ -158,7 +160,7 @@ var NepaliStemmer = function() {
 
     /** @return {boolean} */
     function r_remove_category_2() {
-        var /** number */ among_var;
+        let /** number */ among_var;
         base.ket = base.cursor;
         among_var = base.find_among_b(a_1);
         if (among_var == 0) return false;
@@ -166,7 +168,7 @@ var NepaliStemmer = function() {
         switch (among_var) {
             case 1:
                 lab0: {
-                    /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+                    const /** number */ v_1 = base.limit - base.cursor;
                     lab1: {
                         if (!(base.eq_s_b("\u092F\u094C"))) break lab1;
                         break lab0;
@@ -205,13 +207,13 @@ var NepaliStemmer = function() {
 
     this.stem = /** @return {boolean} */ function() {
         base.limit_backward = base.cursor; base.cursor = base.limit;
-        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
+        const /** number */ v_1 = base.limit - base.cursor;
         r_remove_category_1();
         base.cursor = base.limit - v_1;
         while(true) {
-            /** @const */ var /** number */ v_2 = base.limit - base.cursor;
+            const /** number */ v_2 = base.limit - base.cursor;
             lab0: {
-                /** @const */ var /** number */ v_3 = base.limit - base.cursor;
+                const /** number */ v_3 = base.limit - base.cursor;
                 r_remove_category_2();
                 base.cursor = base.limit - v_3;
                 if (!r_remove_category_3()) break lab0;
@@ -232,4 +234,4 @@ var NepaliStemmer = function() {
     };
 };
 
-window['NepaliStemmer'] = NepaliStemmer;
+export { NepaliStemmer };
