@@ -309,4 +309,5 @@ const ArmenianStemmer = function() {
     };
 };
 
-window['ArmenianStemmer'] = ArmenianStemmer;
+export { ArmenianStemmer };
+window['ArmenianStemmer'] = ArmenianStemmer

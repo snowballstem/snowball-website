@@ -775,4 +775,5 @@ const CatalanStemmer = function() {
     };
 };
 
-window['CatalanStemmer'] = CatalanStemmer;
+export { CatalanStemmer };
+window['CatalanStemmer'] = CatalanStemmer

@@ -491,4 +491,5 @@ const HungarianStemmer = function() {
     };
 };
 
-window['HungarianStemmer'] = HungarianStemmer;
+export { HungarianStemmer };
+window['HungarianStemmer'] = HungarianStemmer

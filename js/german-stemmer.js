@@ -436,4 +436,5 @@ const GermanStemmer = function() {
     };
 };
 
-window['GermanStemmer'] = GermanStemmer;
+export { GermanStemmer };
+window['GermanStemmer'] = GermanStemmer

@@ -280,4 +280,5 @@ const IrishStemmer = function() {
     };
 };
 
-window['IrishStemmer'] = IrishStemmer;
+export { IrishStemmer };
+window['IrishStemmer'] = IrishStemmer

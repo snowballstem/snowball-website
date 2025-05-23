@@ -445,4 +445,5 @@ const RussianStemmer = function() {
     };
 };
 
-window['RussianStemmer'] = RussianStemmer;
+export { RussianStemmer };
+window['RussianStemmer'] = RussianStemmer

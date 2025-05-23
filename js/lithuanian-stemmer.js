@@ -465,4 +465,5 @@ const LithuanianStemmer = function() {
     };
 };
 
-window['LithuanianStemmer'] = LithuanianStemmer;
+export { LithuanianStemmer };
+window['LithuanianStemmer'] = LithuanianStemmer

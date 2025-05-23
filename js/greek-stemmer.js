@@ -2130,4 +2130,5 @@ const GreekStemmer = function() {
     };
 };
 
-window['GreekStemmer'] = GreekStemmer;
+export { GreekStemmer };
+window['GreekStemmer'] = GreekStemmer

@@ -418,4 +418,5 @@ const DutchPorterStemmer = function() {
     };
 };
 
-window['DutchPorterStemmer'] = DutchPorterStemmer;
+export { DutchPorterStemmer };
+window['DutchPorterStemmer'] = DutchPorterStemmer

@@ -222,4 +222,5 @@ const DanishStemmer = function() {
     };
 };
 
-window['DanishStemmer'] = DanishStemmer;
+export { DanishStemmer };
+window['DanishStemmer'] = DanishStemmer

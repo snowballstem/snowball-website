@@ -234,4 +234,5 @@ const NepaliStemmer = function() {
     };
 };
 
-window['NepaliStemmer'] = NepaliStemmer;
+export { NepaliStemmer };
+window['NepaliStemmer'] = NepaliStemmer

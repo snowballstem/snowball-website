@@ -630,4 +630,5 @@ const BasqueStemmer = function() {
     };
 };
 
-window['BasqueStemmer'] = BasqueStemmer;
+export { BasqueStemmer };
+window['BasqueStemmer'] = BasqueStemmer

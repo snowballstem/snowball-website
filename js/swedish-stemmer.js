@@ -261,4 +261,5 @@ const SwedishStemmer = function() {
     };
 };
 
-window['SwedishStemmer'] = SwedishStemmer;
+export { SwedishStemmer };
+window['SwedishStemmer'] = SwedishStemmer

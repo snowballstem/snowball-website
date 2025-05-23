@@ -468,4 +468,5 @@ const PorterStemmer = function() {
     };
 };
 
-window['PorterStemmer'] = PorterStemmer;
+export { PorterStemmer };
+window['PorterStemmer'] = PorterStemmer

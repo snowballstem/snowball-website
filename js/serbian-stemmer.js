@@ -3406,4 +3406,5 @@ const SerbianStemmer = function() {
     };
 };
 
-window['SerbianStemmer'] = SerbianStemmer;
+export { SerbianStemmer };
+window['SerbianStemmer'] = SerbianStemmer

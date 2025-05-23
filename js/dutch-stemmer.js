@@ -1197,4 +1197,5 @@ const DutchStemmer = function() {
     };
 };
 
-window['DutchStemmer'] = DutchStemmer;
+export { DutchStemmer };
+window['DutchStemmer'] = DutchStemmer

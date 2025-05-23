@@ -731,4 +731,5 @@ const EnglishStemmer = function() {
     };
 };
 
-window['EnglishStemmer'] = EnglishStemmer;
+export { EnglishStemmer };
+window['EnglishStemmer'] = EnglishStemmer

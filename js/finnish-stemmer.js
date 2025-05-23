@@ -522,4 +522,5 @@ const FinnishStemmer = function() {
     };
 };
 
-window['FinnishStemmer'] = FinnishStemmer;
+export { FinnishStemmer };
+window['FinnishStemmer'] = FinnishStemmer

@@ -228,4 +228,5 @@ const NorwegianStemmer = function() {
     };
 };
 
-window['NorwegianStemmer'] = NorwegianStemmer;
+export { NorwegianStemmer };
+window['NorwegianStemmer'] = NorwegianStemmer

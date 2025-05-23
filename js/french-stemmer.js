@@ -937,4 +937,5 @@ const FrenchStemmer = function() {
     };
 };
 
-window['FrenchStemmer'] = FrenchStemmer;
+export { FrenchStemmer };
+window['FrenchStemmer'] = FrenchStemmer
