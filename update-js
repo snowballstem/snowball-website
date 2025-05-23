@@ -13,8 +13,8 @@ while (readdir($jsdir)) {
     my $out = $js_path_prefix . $_;
     open IN, '<', $in or die $!;
     open OUT, '>', $out or die $!;
+    print OUT "/** \@fileoverview x\n * \@externs\n */\n\n";
     while (<IN>) {
-	s/^export \{ (.*) \};/globalThis['$1'] = $1;/;
 	print OUT;
     }
     close IN;

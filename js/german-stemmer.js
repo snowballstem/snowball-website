@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from german.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -436,4 +440,4 @@ const GermanStemmer = function() {
     };
 };
 
-globalThis['GermanStemmer'] = GermanStemmer;
+export { GermanStemmer };

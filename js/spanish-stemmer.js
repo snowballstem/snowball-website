@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from spanish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -675,4 +679,4 @@ const SpanishStemmer = function() {
     };
 };
 
-globalThis['SpanishStemmer'] = SpanishStemmer;
+export { SpanishStemmer };

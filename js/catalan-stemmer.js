@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from catalan.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -775,4 +779,4 @@ const CatalanStemmer = function() {
     };
 };
 
-globalThis['CatalanStemmer'] = CatalanStemmer;
+export { CatalanStemmer };

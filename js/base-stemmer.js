@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // @ts-check
 
 /**@constructor*/
@@ -446,4 +450,4 @@ const BaseStemmer = function() {
     };
 };
 
-globalThis['BaseStemmer'] = BaseStemmer;
+export { BaseStemmer };

@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from danish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -222,4 +226,4 @@ const DanishStemmer = function() {
     };
 };
 
-globalThis['DanishStemmer'] = DanishStemmer;
+export { DanishStemmer };

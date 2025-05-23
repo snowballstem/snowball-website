@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from serbian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -3406,4 +3410,4 @@ const SerbianStemmer = function() {
     };
 };
 
-globalThis['SerbianStemmer'] = SerbianStemmer;
+export { SerbianStemmer };

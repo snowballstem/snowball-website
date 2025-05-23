@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from yiddish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -789,4 +793,4 @@ const YiddishStemmer = function() {
     };
 };
 
-globalThis['YiddishStemmer'] = YiddishStemmer;
+export { YiddishStemmer };

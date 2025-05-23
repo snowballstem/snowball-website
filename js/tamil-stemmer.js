@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from tamil.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -894,4 +898,4 @@ const TamilStemmer = function() {
     };
 };
 
-globalThis['TamilStemmer'] = TamilStemmer;
+export { TamilStemmer };

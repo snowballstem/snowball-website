@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from greek.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -2130,4 +2134,4 @@ const GreekStemmer = function() {
     };
 };
 
-globalThis['GreekStemmer'] = GreekStemmer;
+export { GreekStemmer };

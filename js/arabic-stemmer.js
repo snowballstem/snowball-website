@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from arabic.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -1036,4 +1040,4 @@ const ArabicStemmer = function() {
     };
 };
 
-globalThis['ArabicStemmer'] = ArabicStemmer;
+export { ArabicStemmer };

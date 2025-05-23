@@ -1,3 +1,7 @@
+/** @fileoverview x
+ * @externs
+ */
+
 // Generated from lithuanian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
@@ -465,4 +469,4 @@ const LithuanianStemmer = function() {
     };
 };
 
-globalThis['LithuanianStemmer'] = LithuanianStemmer;
+export { LithuanianStemmer };
