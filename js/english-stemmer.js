@@ -732,4 +732,3 @@ const EnglishStemmer = function() {
 };
 
 export { EnglishStemmer };
-window['EnglishStemmer'] = EnglishStemmer

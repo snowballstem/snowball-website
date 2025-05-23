@@ -1198,4 +1198,3 @@ const DutchStemmer = function() {
 };
 
 export { DutchStemmer };
-window['DutchStemmer'] = DutchStemmer

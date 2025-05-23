@@ -437,4 +437,3 @@ const GermanStemmer = function() {
 };
 
 export { GermanStemmer };
-window['GermanStemmer'] = GermanStemmer

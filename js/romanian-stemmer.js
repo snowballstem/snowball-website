@@ -654,4 +654,3 @@ const RomanianStemmer = function() {
 };
 
 export { RomanianStemmer };
-window['RomanianStemmer'] = RomanianStemmer

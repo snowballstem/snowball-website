@@ -235,4 +235,3 @@ const NepaliStemmer = function() {
 };
 
 export { NepaliStemmer };
-window['NepaliStemmer'] = NepaliStemmer

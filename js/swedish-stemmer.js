@@ -262,4 +262,3 @@ const SwedishStemmer = function() {
 };
 
 export { SwedishStemmer };
-window['SwedishStemmer'] = SwedishStemmer

@@ -492,4 +492,3 @@ const HungarianStemmer = function() {
 };
 
 export { HungarianStemmer };
-window['HungarianStemmer'] = HungarianStemmer

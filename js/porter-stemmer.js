@@ -469,4 +469,3 @@ const PorterStemmer = function() {
 };
 
 export { PorterStemmer };
-window['PorterStemmer'] = PorterStemmer

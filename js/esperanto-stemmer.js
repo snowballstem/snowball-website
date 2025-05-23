@@ -552,4 +552,3 @@ const EsperantoStemmer = function() {
 };
 
 export { EsperantoStemmer };
-window['EsperantoStemmer'] = EsperantoStemmer

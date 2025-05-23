@@ -171,4 +171,3 @@ const HindiStemmer = function() {
 };
 
 export { HindiStemmer };
-window['HindiStemmer'] = HindiStemmer

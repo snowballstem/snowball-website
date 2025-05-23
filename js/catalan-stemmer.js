@@ -776,4 +776,3 @@ const CatalanStemmer = function() {
 };
 
 export { CatalanStemmer };
-window['CatalanStemmer'] = CatalanStemmer

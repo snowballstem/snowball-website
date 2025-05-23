@@ -447,4 +447,3 @@ const BaseStemmer = function() {
 };
 
 export { BaseStemmer };
-window['BaseStemmer'] = BaseStemmer

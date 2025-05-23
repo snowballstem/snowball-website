@@ -229,4 +229,3 @@ const NorwegianStemmer = function() {
 };
 
 export { NorwegianStemmer };
-window['NorwegianStemmer'] = NorwegianStemmer

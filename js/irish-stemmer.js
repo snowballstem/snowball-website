@@ -281,4 +281,3 @@ const IrishStemmer = function() {
 };
 
 export { IrishStemmer };
-window['IrishStemmer'] = IrishStemmer

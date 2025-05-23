@@ -895,4 +895,3 @@ const TamilStemmer = function() {
 };
 
 export { TamilStemmer };
-window['TamilStemmer'] = TamilStemmer

@@ -861,4 +861,3 @@ const EstonianStemmer = function() {
 };
 
 export { EstonianStemmer };
-window['EstonianStemmer'] = EstonianStemmer

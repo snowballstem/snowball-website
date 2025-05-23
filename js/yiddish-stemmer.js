@@ -790,4 +790,3 @@ const YiddishStemmer = function() {
 };
 
 export { YiddishStemmer };
-window['YiddishStemmer'] = YiddishStemmer

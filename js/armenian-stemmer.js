@@ -310,4 +310,3 @@ const ArmenianStemmer = function() {
 };
 
 export { ArmenianStemmer };
-window['ArmenianStemmer'] = ArmenianStemmer

@@ -292,4 +292,3 @@ const IndonesianStemmer = function() {
 };
 
 export { IndonesianStemmer };
-window['IndonesianStemmer'] = IndonesianStemmer

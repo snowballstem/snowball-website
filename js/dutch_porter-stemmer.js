@@ -419,4 +419,3 @@ const DutchPorterStemmer = function() {
 };
 
 export { DutchPorterStemmer };
-window['DutchPorterStemmer'] = DutchPorterStemmer

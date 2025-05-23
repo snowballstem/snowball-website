@@ -15,7 +15,7 @@ while (readdir($jsdir)) {
     open OUT, '>', $out or die $!;
     while (<IN>) {
 	print OUT;
-	/^export \{ (\w+) \}/ and print OUT "window['$1'] = $1\n";
+#	/^export \{ (\w+) \}/ and print OUT "window['$1'] = $1\n";
     }
     close IN;
     close OUT;

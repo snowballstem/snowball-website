@@ -3407,4 +3407,3 @@ const SerbianStemmer = function() {
 };
 
 export { SerbianStemmer };
-window['SerbianStemmer'] = SerbianStemmer

@@ -1037,4 +1037,3 @@ const ArabicStemmer = function() {
 };
 
 export { ArabicStemmer };
-window['ArabicStemmer'] = ArabicStemmer

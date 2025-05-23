@@ -1506,4 +1506,3 @@ const TurkishStemmer = function() {
 };
 
 export { TurkishStemmer };
-window['TurkishStemmer'] = TurkishStemmer

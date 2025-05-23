@@ -523,4 +523,3 @@ const FinnishStemmer = function() {
 };
 
 export { FinnishStemmer };
-window['FinnishStemmer'] = FinnishStemmer

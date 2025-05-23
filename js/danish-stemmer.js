@@ -223,4 +223,3 @@ const DanishStemmer = function() {
 };
 
 export { DanishStemmer };
-window['DanishStemmer'] = DanishStemmer

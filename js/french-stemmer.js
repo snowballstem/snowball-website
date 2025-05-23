@@ -938,4 +938,3 @@ const FrenchStemmer = function() {
 };
 
 export { FrenchStemmer };
-window['FrenchStemmer'] = FrenchStemmer

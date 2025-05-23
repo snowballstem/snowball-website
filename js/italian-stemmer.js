@@ -684,4 +684,3 @@ const ItalianStemmer = function() {
 };
 
 export { ItalianStemmer };
-window['ItalianStemmer'] = ItalianStemmer

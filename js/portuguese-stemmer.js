@@ -613,4 +613,3 @@ const PortugueseStemmer = function() {
 };
 
 export { PortugueseStemmer };
-window['PortugueseStemmer'] = PortugueseStemmer
