@@ -36,6 +36,7 @@ jobs:
           npm i -g google-closure-compiler
           perl -pi -e '/--accept_const_keyword/ and $_="";s/closure-compiler/google-closure-compiler/;s/ADVANCED_OPTIMIZATIONS/ADVANCED/' generate
           npm install uglify-js -g
+          npm install terser -g
 
       - name: Build snowball
         run: |

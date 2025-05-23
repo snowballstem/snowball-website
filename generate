@@ -292,6 +292,8 @@ run ['closure-compiler',
      \undef, '>', $outpath."/js/stemmers.js", '2>', \*STDERR;
 run ['npx', 'uglifyjs', @stemmer_js_files, '--compress', '--mangle',
     '-o', $outpath."/js/uglified.js"];
+run ['npx', 'terser', @stemmer_js_files, '--compress', '--mangle',
+    '-o', $outpath."/js/tersered.js"];
 
 $stemmer_select .= "</select>";
 $$vars{stemmer_js_files} = ['js/stemmers.js']; #\@stemmer_js_files;
