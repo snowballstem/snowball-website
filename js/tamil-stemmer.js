@@ -894,4 +894,4 @@ const TamilStemmer = function() {
     };
 };
 
-window['TamilStemmer'] = TamilStemmer';
+window['TamilStemmer'] = TamilStemmer;

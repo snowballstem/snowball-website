@@ -775,4 +775,4 @@ const CatalanStemmer = function() {
     };
 };
 
-window['CatalanStemmer'] = CatalanStemmer';
+window['CatalanStemmer'] = CatalanStemmer;

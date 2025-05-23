@@ -683,4 +683,4 @@ const ItalianStemmer = function() {
     };
 };
 
-window['ItalianStemmer'] = ItalianStemmer';
+window['ItalianStemmer'] = ItalianStemmer;

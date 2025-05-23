@@ -280,4 +280,4 @@ const IrishStemmer = function() {
     };
 };
 
-window['IrishStemmer'] = IrishStemmer';
+window['IrishStemmer'] = IrishStemmer;

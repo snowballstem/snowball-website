@@ -1036,4 +1036,4 @@ const ArabicStemmer = function() {
     };
 };
 
-window['ArabicStemmer'] = ArabicStemmer';
+window['ArabicStemmer'] = ArabicStemmer;

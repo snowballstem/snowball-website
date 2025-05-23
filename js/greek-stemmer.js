@@ -2130,4 +2130,4 @@ const GreekStemmer = function() {
     };
 };
 
-window['GreekStemmer'] = GreekStemmer';
+window['GreekStemmer'] = GreekStemmer;

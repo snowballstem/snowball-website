@@ -551,4 +551,4 @@ const EsperantoStemmer = function() {
     };
 };
 
-window['EsperantoStemmer'] = EsperantoStemmer';
+window['EsperantoStemmer'] = EsperantoStemmer;

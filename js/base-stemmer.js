@@ -446,4 +446,4 @@ const BaseStemmer = function() {
     };
 };
 
-window['BaseStemmer'] = BaseStemmer';
+window['BaseStemmer'] = BaseStemmer;

@@ -170,4 +170,4 @@ const HindiStemmer = function() {
     };
 };
 
-window['HindiStemmer'] = HindiStemmer';
+window['HindiStemmer'] = HindiStemmer;

@@ -228,4 +228,4 @@ const NorwegianStemmer = function() {
     };
 };
 
-window['NorwegianStemmer'] = NorwegianStemmer';
+window['NorwegianStemmer'] = NorwegianStemmer;

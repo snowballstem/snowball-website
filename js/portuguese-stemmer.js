@@ -612,4 +612,4 @@ const PortugueseStemmer = function() {
     };
 };
 
-window['PortugueseStemmer'] = PortugueseStemmer';
+window['PortugueseStemmer'] = PortugueseStemmer;

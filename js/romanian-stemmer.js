@@ -653,4 +653,4 @@ const RomanianStemmer = function() {
     };
 };
 
-window['RomanianStemmer'] = RomanianStemmer';
+window['RomanianStemmer'] = RomanianStemmer;

@@ -522,4 +522,4 @@ const FinnishStemmer = function() {
     };
 };
 
-window['FinnishStemmer'] = FinnishStemmer';
+window['FinnishStemmer'] = FinnishStemmer;

@@ -860,4 +860,4 @@ const EstonianStemmer = function() {
     };
 };
 
-window['EstonianStemmer'] = EstonianStemmer';
+window['EstonianStemmer'] = EstonianStemmer;

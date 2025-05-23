@@ -418,4 +418,4 @@ const DutchPorterStemmer = function() {
     };
 };
 
-window['DutchPorterStemmer'] = DutchPorterStemmer';
+window['DutchPorterStemmer'] = DutchPorterStemmer;

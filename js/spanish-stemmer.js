@@ -675,4 +675,4 @@ const SpanishStemmer = function() {
     };
 };
 
-window['SpanishStemmer'] = SpanishStemmer';
+window['SpanishStemmer'] = SpanishStemmer;

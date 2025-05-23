@@ -1505,4 +1505,4 @@ const TurkishStemmer = function() {
     };
 };
 
-window['TurkishStemmer'] = TurkishStemmer';
+window['TurkishStemmer'] = TurkishStemmer;

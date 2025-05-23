@@ -789,4 +789,4 @@ const YiddishStemmer = function() {
     };
 };
 
-window['YiddishStemmer'] = YiddishStemmer';
+window['YiddishStemmer'] = YiddishStemmer;

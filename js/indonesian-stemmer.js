@@ -291,4 +291,4 @@ const IndonesianStemmer = function() {
     };
 };
 
-window['IndonesianStemmer'] = IndonesianStemmer';
+window['IndonesianStemmer'] = IndonesianStemmer;
