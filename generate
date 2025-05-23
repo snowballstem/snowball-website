@@ -243,7 +243,7 @@ __END__
 # The footer of the page.
 # There should be no output after this.
 $$vars{footer} = <<'__END__';
-        </div><!-- /.col-md-10 -->
+        </div><!-- /.col-lg-10 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
 
@@ -255,7 +255,7 @@ $$vars{footer} = <<'__END__';
       </footer>
     </div> <!-- /container -->
     <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   </body>
 </html>
 __END__
@@ -391,7 +391,7 @@ __END__
   <body>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top bg-light">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -400,7 +400,7 @@ __END__
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
+          <a href="/" class="float-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
           <a class="navbar-brand" href="/">Snowball</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
@@ -415,10 +415,10 @@ __END__
 
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2">
           $menu
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10">
           <h1>$heading</h1>
 
 __END__

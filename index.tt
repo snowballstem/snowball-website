@@ -1,7 +1,7 @@
 [% header %]
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-lg-8">
 
 <p>
 <strong>Snowball</strong> is a small string processing language for creating
@@ -237,7 +237,7 @@ speedily, and in any case they reserve the right to post their answers on snowba
 </ul>
 
   </div>
-  <div class="col-md-4">
+  <div class="col-lg-4">
 
     <h2>Links to resources</h2>
 
