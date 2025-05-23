@@ -7,7 +7,7 @@
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-const LithuanianStemmer = function() {
+var LithuanianStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [

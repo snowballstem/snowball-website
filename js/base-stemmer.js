@@ -5,7 +5,7 @@
 // @ts-check
 
 /**@constructor*/
-const BaseStemmer = function() {
+var BaseStemmer = function() {
     this.current = '';
     this.cursor = 0;
     this.limit = 0;
