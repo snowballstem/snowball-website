@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from indonesian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var IndonesianStemmer = function() {
+const IndonesianStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -295,4 +291,4 @@ var IndonesianStemmer = function() {
     };
 };
 
-export { IndonesianStemmer };
+window['IndonesianStemmer'] = IndonesianStemmer';

@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from basque.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var BasqueStemmer = function() {
+const BasqueStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -634,4 +630,4 @@ var BasqueStemmer = function() {
     };
 };
 
-export { BasqueStemmer };
+window['BasqueStemmer'] = BasqueStemmer';

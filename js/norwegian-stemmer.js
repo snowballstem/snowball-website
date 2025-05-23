@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from norwegian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var NorwegianStemmer = function() {
+const NorwegianStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -232,4 +228,4 @@ var NorwegianStemmer = function() {
     };
 };
 
-export { NorwegianStemmer };
+window['NorwegianStemmer'] = NorwegianStemmer';

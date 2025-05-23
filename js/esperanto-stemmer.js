@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from esperanto.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var EsperantoStemmer = function() {
+const EsperantoStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -555,4 +551,4 @@ var EsperantoStemmer = function() {
     };
 };
 
-export { EsperantoStemmer };
+window['EsperantoStemmer'] = EsperantoStemmer';

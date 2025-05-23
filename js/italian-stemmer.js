@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from italian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var ItalianStemmer = function() {
+const ItalianStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -687,4 +683,4 @@ var ItalianStemmer = function() {
     };
 };
 
-export { ItalianStemmer };
+window['ItalianStemmer'] = ItalianStemmer';

@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from romanian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var RomanianStemmer = function() {
+const RomanianStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -657,4 +653,4 @@ var RomanianStemmer = function() {
     };
 };
 
-export { RomanianStemmer };
+window['RomanianStemmer'] = RomanianStemmer';

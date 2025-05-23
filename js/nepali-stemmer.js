@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from nepali.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var NepaliStemmer = function() {
+const NepaliStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -238,4 +234,4 @@ var NepaliStemmer = function() {
     };
 };
 
-export { NepaliStemmer };
+window['NepaliStemmer'] = NepaliStemmer';

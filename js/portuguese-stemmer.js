@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from portuguese.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var PortugueseStemmer = function() {
+const PortugueseStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -616,4 +612,4 @@ var PortugueseStemmer = function() {
     };
 };
 
-export { PortugueseStemmer };
+window['PortugueseStemmer'] = PortugueseStemmer';

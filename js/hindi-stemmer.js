@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from hindi.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var HindiStemmer = function() {
+const HindiStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -174,4 +170,4 @@ var HindiStemmer = function() {
     };
 };
 
-export { HindiStemmer };
+window['HindiStemmer'] = HindiStemmer';

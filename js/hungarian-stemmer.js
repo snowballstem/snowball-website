@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from hungarian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var HungarianStemmer = function() {
+const HungarianStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -495,4 +491,4 @@ var HungarianStemmer = function() {
     };
 };
 
-export { HungarianStemmer };
+window['HungarianStemmer'] = HungarianStemmer';

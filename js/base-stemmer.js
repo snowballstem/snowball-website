@@ -1,11 +1,7 @@
-/** @fileoverview x
- * @externs
- */
-
 // @ts-check
 
 /**@constructor*/
-var BaseStemmer = function() {
+const BaseStemmer = function() {
     this.current = '';
     this.cursor = 0;
     this.limit = 0;
@@ -450,4 +446,4 @@ var BaseStemmer = function() {
     };
 };
 
-export { BaseStemmer };
+window['BaseStemmer'] = BaseStemmer';

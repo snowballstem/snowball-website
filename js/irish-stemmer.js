@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from irish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var IrishStemmer = function() {
+const IrishStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -284,4 +280,4 @@ var IrishStemmer = function() {
     };
 };
 
-export { IrishStemmer };
+window['IrishStemmer'] = IrishStemmer';

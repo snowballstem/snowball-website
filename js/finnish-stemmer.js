@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from finnish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var FinnishStemmer = function() {
+const FinnishStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -526,4 +522,4 @@ var FinnishStemmer = function() {
     };
 };
 
-export { FinnishStemmer };
+window['FinnishStemmer'] = FinnishStemmer';

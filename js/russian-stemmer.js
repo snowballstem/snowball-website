@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from russian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var RussianStemmer = function() {
+const RussianStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -449,4 +445,4 @@ var RussianStemmer = function() {
     };
 };
 
-export { RussianStemmer };
+window['RussianStemmer'] = RussianStemmer';

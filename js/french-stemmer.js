@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from french.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var FrenchStemmer = function() {
+const FrenchStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -941,4 +937,4 @@ var FrenchStemmer = function() {
     };
 };
 
-export { FrenchStemmer };
+window['FrenchStemmer'] = FrenchStemmer';

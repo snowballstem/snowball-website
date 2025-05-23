@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from dutch.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var DutchStemmer = function() {
+const DutchStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -1201,4 +1197,4 @@ var DutchStemmer = function() {
     };
 };
 
-export { DutchStemmer };
+window['DutchStemmer'] = DutchStemmer';

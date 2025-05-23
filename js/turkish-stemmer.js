@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from turkish.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var TurkishStemmer = function() {
+const TurkishStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -1509,4 +1505,4 @@ var TurkishStemmer = function() {
     };
 };
 
-export { TurkishStemmer };
+window['TurkishStemmer'] = TurkishStemmer';

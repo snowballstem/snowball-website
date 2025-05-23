@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from dutch_porter.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var DutchPorterStemmer = function() {
+const DutchPorterStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -422,4 +418,4 @@ var DutchPorterStemmer = function() {
     };
 };
 
-export { DutchPorterStemmer };
+window['DutchPorterStemmer'] = DutchPorterStemmer';

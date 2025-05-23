@@ -1,13 +1,9 @@
-/** @fileoverview x
- * @externs
- */
-
 // Generated from armenian.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
 import { BaseStemmer } from './base-stemmer.js'
 
 /** @constructor */
-var ArmenianStemmer = function() {
+const ArmenianStemmer = function() {
     const base = new BaseStemmer();
 
     const a_0 = [
@@ -313,4 +309,4 @@ var ArmenianStemmer = function() {
     };
 };
 
-export { ArmenianStemmer };
+window['ArmenianStemmer'] = ArmenianStemmer';
