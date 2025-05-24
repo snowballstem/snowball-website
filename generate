@@ -307,11 +307,11 @@ for my $in (<*.tt */*.tt */*/*.tt>) {
     }
     $id = $lang_name = undef;
 
-    my $menu = "<nav class=\"nav-flex-column\">";
+    my $menu = "<nav class=\"list-group\">";
     my $found_entry = 0;
     for (@menu) {
 	my ($link, $desc) = @{$_};
-	my $class = 'nav-link';
+	my $class = 'list-group-item';
 	if ($link eq $page || "$link/index" eq $page) {
 	    $class .= ' active';
 	    ++$found_entry;
@@ -387,9 +387,11 @@ __END__
 
     <!-- Static navbar -->
     <nav class="navbar navbar-light bg-light navbar-static-top">
-      <div class="navbar-header">
-        <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
-        <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
+          <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div>
       </div>
     </nav>
 
