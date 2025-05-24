@@ -307,11 +307,11 @@ for my $in (<*.tt */*.tt */*/*.tt>) {
     }
     $id = $lang_name = undef;
 
-    my $menu = "<div class='list-group'>";
+    my $menu = "<nav class=\"nav-flex-column\">";
     my $found_entry = 0;
     for (@menu) {
 	my ($link, $desc) = @{$_};
-	my $class = 'list-group-item';
+	my $class = 'nav-link';
 	if ($link eq $page || "$link/index" eq $page) {
 	    $class .= ' active';
 	    ++$found_entry;
@@ -326,7 +326,7 @@ for my $in (<*.tt */*.tt */*/*.tt>) {
 	$menu .= '<a class="'.$class.'" href="'.$link.'">'.$desc.'</a>';
     }
     $menu .= <<'__END__';
-</div>
+</nav>
 
 <!--
 <form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
@@ -386,13 +386,10 @@ __END__
   <body>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-light navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="/" class="float-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
-          <a class="navbar-brand" href="/">Snowball</a>
-	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
-        </div>
+    <nav class="navbar navbar-light bg-light navbar-static-top">
+      <div class="navbar-header">
+        <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
+        <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
       </div>
     </nav>
 
