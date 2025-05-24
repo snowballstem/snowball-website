@@ -326,7 +326,6 @@ for my $in (<*.tt */*.tt */*/*.tt>) {
 	$menu .= '<a class="'.$class.'" href="'.$link.'">'.$desc.'</a>';
     }
     $menu .= <<'__END__';
-<a class="list-group-item" href="https://github.com/snowballstem">Source on github</a><br>
 </div>
 
 <!--
