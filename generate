@@ -292,6 +292,8 @@ run ['closure-compiler',
      \undef, '>', $outpath."/js/stemmers.js", '2>', \*STDERR;
 run ['npx', 'uglifyjs', @stemmer_js_files, '--compress', '--mangle',
     '-o', $outpath."/js/uglified.js"];
+run ['npx', 'uglifyjs', @stemmer_js_files, '--compress', '--mangle', '--mangle-props',
+    '-o', $outpath."/js/uglifiedprops.js"];
 run ['npx', 'terser', (grep {!/base-stemmer/} @stemmer_js_files), '--compress', '--mangle',
     '-o', $outpath."/js/tersered.js"];
 
