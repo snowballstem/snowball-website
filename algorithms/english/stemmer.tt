@@ -408,6 +408,7 @@ shape:
 
             /* special changes: */
 
+            'skis'      (<-'ski')
             'skies'     (<-'sky')
 
             /* special -LY cases */
@@ -556,9 +557,9 @@ want to do it&#8217;), and were derived piecemeal.
 <p>
 <I>a</I>)
 The new stemmer improves on the Porter stemmer in handling short words ending <B><I>e</I></B> and
-<B><I>y</I></B>. This results in an unwanted conflation - <I>sky</I>/<I>skies</I> and <I>ski</I>/<I>skis</I>
-would all get stemmed to <i>ski</i>, but this is easily corrected by adding special cases to instead
-stem <i>sky</i> and <i>skies</i> to <i>sky</i>.
+<B><I>y</I></B>. There is however a mishandling of the four forms <I>sky</I>, <I>skies</I>, <I>ski</I>,
+<I>skis</I>, which is easily corrected by treating three of these words as
+special cases.
 </p>
 
 <p>
@@ -627,6 +628,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
     </p>
 
 <DL><DD><TABLE CELLPADDING=0>
+<TR><TD> <I>skis</I>      <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>ski</I>
 <TR><TD> <I>skies</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>sky</I>
 
 <TR><TD> <I>idly <BR> gently <BR> ugly <BR> early <BR> only <BR> singly</I>
