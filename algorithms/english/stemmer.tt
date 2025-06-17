@@ -85,6 +85,7 @@ apostrophe.
 <li>Snowball 3.0.0 Avoid conflating <b><i>lateral</i></b>/<b><i>laterally</i></b> with <b><i>later</i></b>.
 <li>Snowball 3.0.0 Replace <b><i>-ogist</i></b> with <b><i>-og</i></b> to conflate <b><i>geologist</i></b> with <b><i>geology</i></b>, etc.
 <li>Snowball 3.0.0 Handle <b><i>-eed</i></b> and <b><i>-ing</i></b> exceptions in respective rules.
+<li>Snowball 3.1.0 Restored exception for <b><i>skis</i></b> which <b>b</b> is needed.
 </ol>
 
 <h2>Design Notes</h2>
