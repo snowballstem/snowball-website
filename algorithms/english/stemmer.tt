@@ -59,7 +59,7 @@ Extra rule in Step 2: <b><i>logi</i></b> -> <b><i>log</i></b>
 <li>[In C Porter stemmer but not in paper]
 Step 2 rule: <b><i>abli</i></b> -> <b><i>able</i></b> replace by <b><i>bli</i></b> -> <b><i>ble</i></b>
 <li>[In C Porter stemmer but not in paper]
-The algorithm leaves along strings of length 2 (so
+The algorithm leaves alone strings of length 2 (so
 <b><i>as</i></b> and <b><i>is</i></b> not longer lose <b><i>s</i></b>.
 <li>Terminating <B><I>y</I></B> is changed to <B><I>i</I></B> rather less often
 <li>Suffix <B><I>us</I></B> does not lose its <B><I>s</I></B>
@@ -528,7 +528,7 @@ alone (rather than stemming to <i>her</i>):
                     // dying->die, lying->die, tying->tie, vying->vie
                     'y'
                         (test(non-v atlimit) ] <-'ie')
-                    // Leave inning, outing, etc along.
+                    // Leave inning, outing, etc alone.
                     'inn' 'out' 'cann' 'herr' 'earr' 'even'
                         (atlimit)
                 )
