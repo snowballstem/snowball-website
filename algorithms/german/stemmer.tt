@@ -54,15 +54,15 @@ reliable indicator.
 
 <p>
 In German, <b><i>ä</i></b>, <b><i>ö</i></b>, <b><i>ü</i></b> and
-<b><i>ß</i><b> are sometimes transliterated as <b><i>ae</i></b>,
+<b><i>ß</i></b> are sometimes transliterated as <b><i>ae</i></b>,
 <b><i>oe</i></b>, <b><i>ue</i></b> and <b><i>ss</i></b> respectively.
 There is now a capital version of <b><i>ss</i></b>, but it's a fairly
 recent invention (added to Unicode in 2008) and prior to this in
 capitalised text such as on street signs <b><i>SS</i></b> was used
 instead.  Swiss German always uses <b><i>ss</i></b> instead of
-<b><i>ß</i><b>, and also uses the transliterated forms for capital letters
+<b><i>ß</i></b>, and also uses the transliterated forms for capital letters
 with umlauts.  The German spelling reform of 1996 also reduced use of
-<b><i>ß</i><b>, replacing it with <b><i>ss</i></b> in some words.
+<b><i>ß</i></b>, replacing it with <b><i>ss</i></b> in some words.
 Finally (but much less relevant nowadays) these transliterations are
 used when writing in character sets which lack these characters, or
 with a keyboard lacking an easy way to type them.  The stemmer will
