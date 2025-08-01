@@ -176,9 +176,9 @@ upper case, and then do the following mappings,
 </p>
     <DL><DD>
         (<I>a</I>) replace <B><I>ß</I></B> with <B><I>ss</I></B>,<BR>
-        (<I>a</I>) replace <B><I>ae</I></B> with <B><I>ä</I></B>,<BR>
-        (<I>a</I>) replace <B><I>oe</I></B> with <B><I>ö</I></B>,<BR>
-        (<I>a</I>) replace <B><I>ue</I></B> with <B><I>ü</I></B> unless preceded by <B><I>q</I></B>.
+        (<I>b</I>) replace <B><I>ae</I></B> with <B><I>ä</I></B>,<BR>
+        (<I>c</I>) replace <B><I>oe</I></B> with <B><I>ö</I></B>,<BR>
+        (<I>d</I>) replace <B><I>ue</I></B> with <B><I>ü</I></B> unless preceded by <B><I>q</I></B>.
     </DL>
 
 <p>
