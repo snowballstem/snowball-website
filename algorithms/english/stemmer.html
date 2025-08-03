@@ -975,7 +975,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 <span class="w">                    </span><span class="c1">// dying-&gt;die, lying-&gt;die, tying-&gt;tie, vying-&gt;vie</span>
 <span class="w">                    </span><span class="s1">&#39;y&#39;</span>
 <span class="w">                        </span><span class="p">(</span><span class="ow">test</span><span class="p">(</span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;ie&#39;</span><span class="p">)</span>
-<span class="w">                    </span><span class="c1">// Leave inning, outing, etc along.</span>
+<span class="w">                    </span><span class="c1">// Leave inning, outing, etc alone.</span>
 <span class="w">                    </span><span class="s1">&#39;inn&#39;</span><span class="w"> </span><span class="s1">&#39;out&#39;</span><span class="w"> </span><span class="s1">&#39;cann&#39;</span><span class="w"> </span><span class="s1">&#39;herr&#39;</span><span class="w"> </span><span class="s1">&#39;earr&#39;</span><span class="w"> </span><span class="s1">&#39;even&#39;</span>
 <span class="w">                        </span><span class="p">(</span><span class="ow">atlimit</span><span class="p">)</span>
 <span class="w">                </span><span class="p">)</span>
@@ -1034,8 +1034,8 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 <span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">Step_3</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">            </span><span class="s1">&#39;tional&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;tion&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="s1">&#39;ational&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;ate&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;tional&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;tion&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ational&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ate&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;alize&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;al&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;icate&#39;</span><span class="w"> </span><span class="s1">&#39;iciti&#39;</span><span class="w"> </span><span class="s1">&#39;ical&#39;</span>
 <span class="w">                      </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ic&#39;</span><span class="p">)</span>
@@ -1069,6 +1069,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 <span class="w">        </span><span class="cm">/* special changes: */</span>
 
+<span class="w">        </span><span class="s1">&#39;skis&#39;</span><span class="w">      </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ski&#39;</span><span class="p">)</span>
 <span class="w">        </span><span class="s1">&#39;skies&#39;</span><span class="w">     </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;sky&#39;</span><span class="p">)</span>
 
 <span class="w">        </span><span class="cm">/* special -LY cases */</span>
