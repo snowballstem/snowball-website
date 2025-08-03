@@ -284,7 +284,7 @@ Extra rule in Step 2: <b><i>logi</i></b> -> <b><i>log</i></b>
 <li>[In C Porter stemmer but not in paper]
 Step 2 rule: <b><i>abli</i></b> -> <b><i>able</i></b> replace by <b><i>bli</i></b> -> <b><i>ble</i></b>
 <li>[In C Porter stemmer but not in paper]
-The algorithm leaves along strings of length 2 (so
+The algorithm leaves alone strings of length 2 (so
 <b><i>as</i></b> and <b><i>is</i></b> not longer lose <b><i>s</i></b>.
 <li>Terminating <B><I>y</I></B> is changed to <B><I>i</I></B> rather less often
 <li>Suffix <B><I>us</I></B> does not lose its <B><I>s</I></B>
@@ -752,7 +752,7 @@ alone (rather than stemming to <i>her</i>):
 <span class="w">                    </span><span class="c1">// dying-&gt;die, lying-&gt;die, tying-&gt;tie, vying-&gt;vie</span>
 <span class="w">                    </span><span class="s1">&#39;y&#39;</span>
 <span class="w">                        </span><span class="p">(</span><span class="ow">test</span><span class="p">(</span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;ie&#39;</span><span class="p">)</span>
-<span class="w">                    </span><span class="c1">// Leave inning, outing, etc along.</span>
+<span class="w">                    </span><span class="c1">// Leave inning, outing, etc alone.</span>
 <span class="w">                    </span><span class="s1">&#39;inn&#39;</span><span class="w"> </span><span class="s1">&#39;out&#39;</span><span class="w"> </span><span class="s1">&#39;cann&#39;</span><span class="w"> </span><span class="s1">&#39;herr&#39;</span><span class="w"> </span><span class="s1">&#39;earr&#39;</span><span class="w"> </span><span class="s1">&#39;even&#39;</span>
 <span class="w">                        </span><span class="p">(</span><span class="ow">atlimit</span><span class="p">)</span>
 <span class="w">                </span><span class="p">)</span>
