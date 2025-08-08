@@ -1,109 +1,109 @@
-[% header('Norwegian stemming algorithm') %]
+[% header('Persian stemming algorithm') %]
 
-<h2>Links to resources</h2>
+<h2>Introduction</h2>
 
+<p>
+This stemmer implements an <strong>HPS-like</strong> (Hierarchical Persian Stemmer) approach for Persian.
+It removes common inflectional and derivational affixes across <em>noun</em>, <em>adjective</em>, and <em>verb</em> paradigms,
+while aggressively normalizing Unicode to ensure stable matching. The design is
+<strong>POS-tagger free</strong>, lightweight, and suitable for real-time use.
+</p>
+
+<h2>Normalization</h2>
+
+<p>
+All tokens are first normalized so downstream rules see a canonical form:
+</p>
 <ul>
-<li> <A HREF="/algorithms/scandinavian.html"> Scandinavian language stemmers</A>
-[% algorithm_lis('norwegian', 'Norwegian') %]
+  <li>Arabic variants are unified to Persian letters:
+    <ul>
+      <li>Arabic Kaf → Persian Kaf</li>
+      <li>Arabic Yeh / Yeh-with-hamza → Persian Yeh</li>
+      <li>Arabic Heh / Heh-marbuta → Persian Heh</li>
+      <li>Arabic Alef-with-hamza (above/below) → Persian Alef</li>
+      <li>Arabic Vav-with-hamza → Persian Vav</li>
+    </ul>
+  </li>
+  <li>All separators are <em>deleted</em> (not replaced):
+    <ul>
+      <li>Zero-width non-joiner (ZWNJ / half-space)</li>
+      <li>Zero-width joiner (ZWJ)</li>
+      <li>ASCII space</li>
+    </ul>
+    The result is a single solid token for suffix/prefix matching.
+  </li>
 </ul>
 
-[% algorithm_vocab([40, 'havnedistrikt', 'opning']) %]
+<h2>Pipeline</h2>
 
-<h2>The stemming algorithm</h2>
+<p>After normalization, the algorithm proceeds in fixed HPS-like stages:</p>
 
-<p>
-The Norwegian alphabet includes the following additional letters,
-</p>
+<ol>
+  <li><strong>Strip start-anchored prefixes (forward)</strong> — At most one per pass, anchored at the token start.
+      Recognizes <code>نمیـ</code>, <code>میـ</code>, <code>نا</code>, <code>بی</code>. When <code>میـ/نمیـ</code> is removed,
+      a pass-local flag <code>saw_present_prefix</code> is set to allow verb person-ending rules.</li>
 
-<DL><DD>
-    <B><I>æ  &nbsp;  å  &nbsp;  ø</I></B>
-</DL>
+  <li><strong>Probe lexical <code>-ان</code></strong> — A backward probe sets <code>protect_lex_an</code> for
+      stems where final <code>-ان</code> is lexical (e.g., <em>ایران، تهران، انسان، …ستان</em>), so plural stripping
+      of <code>-ان</code> is suppressed in the current pass.</li>
 
-<p>
-The following letters are vowels:
-</p>
-
-<DL><DD>
-    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  y  &nbsp;  æ  &nbsp;  å  &nbsp;  ø</I></B>
-</DL>
-
-<p>
-<I>R</I>2 is not used: <I>R</I>1 is defined in the same way as in the
-<A HREF="../german/stemmer.html">German stemmer</A>.
-(See the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
-</p>
-
-<p>
-Define a valid <B><I>s</I></B>-ending as one of
-</p>
-
-<DL><DD>
-<B><I>b</I></B>  &nbsp;  <B><I>c</I></B>  &nbsp;  <B><I>d</I></B>  &nbsp;  <B><I>f</I></B>  &nbsp;  <B><I>g</I></B>  &nbsp;  <B><I>h</I></B>  &nbsp;  <B><I>j</I></B>  &nbsp;
-<B><I>l</I></B>  &nbsp;  <B><I>m</I></B>  &nbsp;  <B><I>n</I></B>  &nbsp;  <B><I>o</I></B>  &nbsp;  <B><I>p</I></B>  &nbsp;  <B><I>r</I></B>  &nbsp;  <B><I>t</I></B>  &nbsp;  <B><I>v</I></B>  &nbsp;
-<B><I>y</I></B>  &nbsp;  <B><I>z</I></B>,
-<BR> or <B><I>k</I></B> not preceded by a vowel.
-</DL>
+  <li><strong>Peel exactly one suffix layer per pass (backward)</strong> — Apply tiers in this order:
+    <ul>
+      <li><strong>Noun</strong>: irregular rewrites, derivational endings (e.g. <code>-گاه، -دان</code>),
+          plural markers (<code>-ها، -های، -ان، -ین</code>), and possessive clitics
+          (<code>-م، -ت، -ش، -مان، -تان، -شان</code>). Any noun success sets <code>freeze_pass</code>,
+          which short-circuits adjective/verb rules in the same pass.</li>
+      <li><strong>Adjective</strong>: comparative/superlative (<code>-تر، -ترین</code>), common derivational endings
+          (<code>-انه، -مند، -ناک، -وار/-گار</code>), and relative/final-<code>ی</code> cleanup.</li>
+      <li><strong>Verb</strong>:
+        <ul>
+          <li><em>Participle + clitic tails</em> (e.g., <code>خورده‌ایم</code>, <code>نوشته‌است</code>) are removed in one step.</li>
+          <li>Irregular rewrites (compact verb hash).</li>
+          <li>Person/number endings (e.g., <code>-م، -ی، -د، -یم، -ید، -ند</code>), gated by either a present-prefix
+              in this pass or an infinitive/participle cue.</li>
+          <li>Tense/mood markers: infinitive <code>-ن/-ان</code>, participle <code>-ه</code> (sets <code>saw_inf_or_part</code>).</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
 
 <p>
-Do each of steps 1, 2 and 3.
+The suffix layer step repeats until no rule fires, ensuring deeper reductions
+occur gradually without skipping morphological layers.
 </p>
 
-<p>
-Step 1:
-</p>
+<h2>Key Flags & Control Flow</h2>
 
-<DL><DD>
-    Search for the longest among the following suffixes in <I>R</I>1, and
-    perform the action indicated.
-    <DL>
-        <DT>(<I>a</I>)
-            <B><I>a  &nbsp;  e  &nbsp;  ede  &nbsp;  ande  &nbsp;  ende  &nbsp;  ane  &nbsp;  ene  &nbsp;  hetene  &nbsp;  en
-             &nbsp;  heten  &nbsp;  ar  &nbsp;  er  &nbsp;  heter  &nbsp;  as  &nbsp;  es  &nbsp;  edes  &nbsp;  endes  &nbsp;
-            enes  &nbsp;  hetenes  &nbsp;  ens  &nbsp;  hetens  &nbsp;  ers  &nbsp;  ets  &nbsp;  et  &nbsp;  het  &nbsp;
-            ast</I></B>
-                <DD>delete
-        <DT>(<I>b</I>)
-            <B><I>s</I></B>
-                <DD>delete if preceded by a valid <B><I>s</I></B>-ending
-        <DT>(<I>c</I>)
-            <B><I>erte  &nbsp;  ert</I></B>
-                <DD>replace with <B><I>er</I></B>
-    </DL>
-<p>
-    (Of course the letter of the valid <B><I>s</I></B>-ending is
-    not necessarily in <I>R</I>1)
-</p>
-</DL>
+<ul>
+  <li><code>changed</code> — Set when a rule modifies the token in the current pass.</li>
+  <li><code>protect_lex_an</code> — Guards lexical <code>-ان</code> from plural stripping in the current pass.</li>
+  <li><code>freeze_pass</code> — Set by a noun success to skip adjective/verb tiers for this pass.</li>
+  <li><code>saw_present_prefix</code> — Set when <code>میـ/نمیـ</code> is stripped; enables verb person endings.</li>
+  <li><code>saw_inf_or_part</code> — Set when infinitive <code>-ن/-ان</code> or participle <code>-ه</code> is stripped; also enables person endings.</li>
+</ul>
 
-<p>
-Step 2:
-</p>
+<h2>Differences from Original HPS</h2>
 
-<DL><DD>
-    <p>
-    If the word ends <B><I>dt</I></B> or <B><I>vt</I></B> in <I>R</I>1, delete the <B><I>t</I></B>.
-    </p>
+<ul>
+  <li><strong>No POS-tagger dependency</strong>: fixed order (Noun → Adjective → Verb) for portability.</li>
+  <li><strong>Lexical <code>-ان</code> protection</strong>: probe + curated hash (e.g., <em>ایران، تهران، انسان، …ستان</em>)
+      to prevent over-stemming of place names/lexical stems.</li>
+  <li><strong>Aggressive Unicode cleanup</strong>: ZWNJ, ZWJ, and ASCII spaces are deleted (not replaced).</li>
+  <li><strong>Participle + clitic handling</strong>: dedicated stage removes tails like <code>خورده‌ایم</code>, <code>نوشته‌اید</code> in one go.</li>
+  <li><strong>One-affix-per-pass</strong>: safer loop behavior and more interpretable reductions.</li>
+  <li><strong>Conservative affix sets + length guards</strong>: reduce false positives in real-world text.</li>
+</ul>
 
-    <p>
-    (For example, <I>meldt</I> &#x2192; <I>meld</I>, <I>operativt</I> &#x2192; <I>operativ</I>)
-    </p>
-</DL>
+<h2>Limitations & Future Work</h2>
 
-<p>
-Step 3:
-</p>
+<ul>
+  <li>Heuristic by design; a morph analyzer or POS tagger could further reduce edge-case errors.</li>
+  <li>Domain-specific affixes and irregulars can be added as needed.</li>
+</ul>
 
-<DL><DD>
-    Search for the longest among the following suffixes in <I>R</I>1, and if found,
-    delete.
-<DL><DD>
-    <B><I>leg  &nbsp;  eleg  &nbsp;  ig  &nbsp;  eig  &nbsp;  lig  &nbsp;  elig  &nbsp;  els
-     &nbsp;  lov  &nbsp;  elov  &nbsp;  slov  &nbsp;   hetslov</I></B>
-</DL>
-</DL>
+<h2>The full algorithm in Snowball</h2>
 
-<h2>The same algorithm in Snowball</h2>
-
-[% highlight_file('norwegian') %]
+[% highlight_file('persian') %]
 
 [% footer %]
