@@ -127,6 +127,15 @@ that sometimes we want to remove the whole three letters (e.g. <i>orwellian</i>,
 <i>indian</i>, <i>bolivian</i>, <i>californian</i>).
 </p>
 
+<p>
+The suffix <i>-ize</i> (as used in American English) is removed, but in
+British English suffix <i>-ise(/i> is usually used instead.  There are many
+words ending <i>-ise</i> where it's not a suffix and removal would be
+problematic (e.g. <i>compromise</i>, <i>disenfranchise</i>, <i>imprecise</i>
+<i>otherwise</i>, <i>paradise</i>) so the stemmer does not try to remove
+suffix <i>-ise</i>.
+</p>
+
 <h2>Definition of the English stemmer</h2>
 
 <p>
