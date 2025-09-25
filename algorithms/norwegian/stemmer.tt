@@ -65,7 +65,9 @@ Step 1:
                 <DD>delete
         <DT>(<I>b</I>)
             <B><I>ers</I></B>
-                <DD>check the suffix preceding <b><i>ers</i></b> and perform the action indicated for the first match found:
+                <DD>check the suffix preceding <b><i>ers</i></b> and perform
+                the action indicated for the first match found (note that the
+                suffixes in (i) serve as exceptions to some suffixes in (ii)):
                 <DL>
                     <DT>(<i>i</i>)
                         <b><i>giv &nbsp; hav &nbsp; skap</i></b>
