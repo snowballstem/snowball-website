@@ -537,7 +537,9 @@ Here is a list of the commands that can be used to operate on strings.
 <DT><code>= S</code>
     <DD>where &nbsp;<code>S</code>&nbsp; is the name of a string or a literal string. <B><I>c:l</I></B> is set equal
     to &nbsp;<code>S</code>, and <B><I>l</I></B> is adjusted to point to the end of the copied string. The
-    signal is <B><I>t</I></B>. For example,
+    signal is <B><I>t</I></B>. The slice should be considered unset afterwards,
+    because this operation can change part of the string which overlaps the
+    current slice. For example,
 
 [% highlight('
         $x ' _ " = 'animadversion'    /* literal string */" _ '
@@ -734,8 +736,9 @@ For example
 
 <p>
 For any string, the slice ends should be assumed to be unset until they are
-set with the two commands &nbsp;<code>[</code>, &nbsp;<code>]</code>. Thereafter the slice ends will retain
-the same values until altered.
+set with the two commands &nbsp;<code>[</code> and &nbsp;<code>]</code>.
+Thereafter the slice ends will continue to mark the same substring until
+altered.
 </p>
 
 <DL>
