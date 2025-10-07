@@ -83,7 +83,7 @@ derivational suffix.</li>
 
 <li><strong>Noun endings.</strong> Remove common noun endings, including
 one-letter ones like <i>a</i> and <i>o</i> or longer ones like <i>owi</i>
-and <i>ach</i>, but excluding endings that were already handed above.
+and <i>ach</i>, but excluding endings that were already handled above.
 This is done only if the ending is entirely in the <i>R</i>1 region.</li>
 </ol>
 
