@@ -130,6 +130,7 @@ __END__
 	$out = << "__END__";
 <li> <a href="$wikipedia_url">$lang_name language</a> on Wikipedia</li>
 __END__
+    }
     return $out;
 };
 
