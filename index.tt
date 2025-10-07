@@ -87,7 +87,7 @@ Add new backends to the Snowball compiler...
 
  The language has a full
 
-    <A HREF="../compiler/snowman.html"> manual</A>,
+    <A HREF="../compiler/snowman.html">manual</A>,
 
 and the various stemming scripts act as example programs.
 
@@ -95,12 +95,12 @@ and the various stemming scripts act as example programs.
 
 - You can get deeply interested in stemming. If you do, read the
 
-    <A HREF="../texts/introduction.html"> introductory paper</A>
+    <A HREF="../texts/introduction.html">introductory paper</A>
 
 about Snowball. It is a bit heavyweight, but provides essential background.
 And look at the
 
-    <A HREF="../texts/howtohelp.html"> notes</A>
+    <A HREF="../texts/howtohelp.html">notes</A>
 
 on how you can help.
 -->

@@ -168,7 +168,7 @@ words &#x2014; see below.)
 <p>
 <I>R</I>2 is the region after the first non-vowel following a vowel in <I>R</I>1, or the
 end of the word if there is no such non-vowel.
-(See <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
+(See <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2.)
 </p>
 
 <p>
@@ -197,7 +197,7 @@ not short words.
 
 <p>
 An apostrophe (<B><I>'</I></B>) may be regarded as a letter.
-(See <A HREF="../../texts/apostrophe.html"> note</A> on apostrophes in English.)
+(See <A HREF="../../texts/apostrophe.html">note</A> on apostrophes in English.)
 </p>
 
 <p>
@@ -215,7 +215,7 @@ Remove initial <B><I>'</I></B>, if present. <code><FONT COLOR=BLUE>+</FONT></cod
 <p>
 Set initial <B><I>y</I></B>, or <B><I>y</I></B> after a vowel, to <B><I>Y</I></B>, and then establish the regions
 <I>R</I>1 and <I>R</I>2.
-(See <A HREF="../../texts/vowelmarking.html"> note</A> on vowel marking.)
+(See <A HREF="../../texts/vowelmarking.html">note</A> on vowel marking.)
 </p>
 
 <p>

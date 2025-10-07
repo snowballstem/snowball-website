@@ -4,7 +4,7 @@
 
 <ul>
 [% algorithm_lis('turkish', 'Turkish') %]
-<li> <a href="accompanying_paper.doc">  Accompanying description</a> (this is a &nbsp;<code>.doc</code>&nbsp; file)
+<li> <a href="accompanying_paper.doc">Accompanying description</a> (this is a &nbsp;<code>.doc</code>&nbsp; file)
 </ul>
 
 <p>
