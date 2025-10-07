@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('polish', 'Polish') %]
+[% algorithm_lis('polish', 'Polish', 'https://en.wikipedia.org/wiki/Polish_language') %]
 <li><a href="https://github.com/Tutanchamon/pl_stemmer">Another Polish stemmer, written in Python</a></li>
 </ul>
 
