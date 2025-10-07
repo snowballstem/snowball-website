@@ -3,8 +3,8 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="/algorithms/germanic.html"> Germanic language stemmers</A></li>
-[% algorithm_lis('yiddish', 'Yiddish') %]
+<li> <A HREF="/algorithms/germanic.html">Germanic language stemmers</A></li>
+[% algorithm_lis('yiddish', 'Yiddish', 'https://en.wikipedia.org/wiki/Yiddish') %]
 </ul>
 
 [% algorithm_vocab([

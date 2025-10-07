@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('english', 'English') %]
+[% algorithm_lis('english', 'English', 'https://en.wikipedia.org/wiki/English_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'consign', 'knack']) %]
@@ -59,7 +59,7 @@ Extra rule in Step 2: <b><i>logi</i></b> -> <b><i>log</i></b>
 <li>[In C Porter stemmer but not in paper]
 Step 2 rule: <b><i>abli</i></b> -> <b><i>able</i></b> replace by <b><i>bli</i></b> -> <b><i>ble</i></b>
 <li>[In C Porter stemmer but not in paper]
-The algorithm leaves along strings of length 2 (so
+The algorithm leaves alone strings of length 2 (so
 <b><i>as</i></b> and <b><i>is</i></b> not longer lose <b><i>s</i></b>.
 <li>Terminating <B><I>y</I></B> is changed to <B><I>i</I></B> rather less often
 <li>Suffix <B><I>us</I></B> does not lose its <B><I>s</I></B>
@@ -127,6 +127,15 @@ that sometimes we want to remove the whole three letters (e.g. <i>orwellian</i>,
 <i>indian</i>, <i>bolivian</i>, <i>californian</i>).
 </p>
 
+<p>
+The suffix <i>-ize</i> (as used in American English) is removed, but in
+British English suffix <i>-ise(/i> is usually used instead.  There are many
+words ending <i>-ise</i> where it's not a suffix and removal would be
+problematic (e.g. <i>compromise</i>, <i>disenfranchise</i>, <i>imprecise</i>
+<i>otherwise</i>, <i>paradise</i>) so the stemmer does not try to remove
+suffix <i>-ise</i>.
+</p>
+
 <h2>Definition of the English stemmer</h2>
 
 <p>
@@ -159,7 +168,7 @@ words &#x2014; see below.)
 <p>
 <I>R</I>2 is the region after the first non-vowel following a vowel in <I>R</I>1, or the
 end of the word if there is no such non-vowel.
-(See <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
+(See <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2.)
 </p>
 
 <p>
@@ -188,7 +197,7 @@ not short words.
 
 <p>
 An apostrophe (<B><I>'</I></B>) may be regarded as a letter.
-(See <A HREF="../../texts/apostrophe.html"> note</A> on apostrophes in English.)
+(See <A HREF="../../texts/apostrophe.html">note</A> on apostrophes in English.)
 </p>
 
 <p>
@@ -206,7 +215,7 @@ Remove initial <B><I>'</I></B>, if present. <code><FONT COLOR=BLUE>+</FONT></cod
 <p>
 Set initial <B><I>y</I></B>, or <B><I>y</I></B> after a vowel, to <B><I>Y</I></B>, and then establish the regions
 <I>R</I>1 and <I>R</I>2.
-(See <A HREF="../../texts/vowelmarking.html"> note</A> on vowel marking.)
+(See <A HREF="../../texts/vowelmarking.html">note</A> on vowel marking.)
 </p>
 
 <p>
@@ -528,7 +537,7 @@ alone (rather than stemming to <i>her</i>):
                     // dying->die, lying->die, tying->tie, vying->vie
                     'y'
                         (test(non-v atlimit) ] <-'ie')
-                    // Leave inning, outing, etc along.
+                    // Leave inning, outing, etc alone.
                     'inn' 'out' 'cann' 'herr' 'earr' 'even'
                         (atlimit)
                 )

@@ -3,8 +3,8 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="/algorithms/scandinavian.html"> Scandinavian language stemmers</A>
-[% algorithm_lis('norwegian', 'Norwegian') %]
+<li> <A HREF="/algorithms/scandinavian.html">Scandinavian language stemmers</A>
+[% algorithm_lis('norwegian', 'Norwegian', 'https://en.wikipedia.org/wiki/Norwegian_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'havnedistrikt', 'opning']) %]
@@ -30,7 +30,7 @@ The following letters are vowels:
 <p>
 <I>R</I>2 is not used: <I>R</I>1 is defined in the same way as in the
 <A HREF="../german/stemmer.html">German stemmer</A>.
-(See the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
+(See the <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2.)
 </p>
 
 <p>
@@ -65,13 +65,18 @@ Step 1:
                 <DD>delete
         <DT>(<I>b</I>)
             <B><I>ers</I></B>
-                <DD>find the longest suffix preceding <b><i>ers</i></b>, and perform the action indicated.
+                <DD>check the suffix preceding <b><i>ers</i></b> and perform
+                the action indicated for the first match found (note that the
+                suffixes in (i) serve as exceptions to some suffixes in (ii)):
                 <DL>
-                    <DT>(<i>i</i>>
+                    <DT>(<i>i</i>)
+                        <b><i>giv &nbsp; hav &nbsp; skap</i></b>
+                        <DD>delete <b><i>ers</i></b> suffix
+                    <DT>(<i>ii</i>)
                         <b><i>amm &nbsp; ast &nbsp; ind &nbsp; kap &nbsp; kk &nbsp; lt &nbsp; nk &nbsp; omm &nbsp; pp &nbsp; v &nbsp; øst</i></b>
                         <DD>do nothing
-                    <DT>(<i>ii</i>>
-                        <b><i>giv &nbsp; hav &nbsp; skap</i></b>
+                    <DT>(<i>iii</i>)
+                        if none of these suffixes are present
                         <DD>delete <b><i>ers</i></b> suffix
                 </DL>
         <DT>(<I>c</I>)

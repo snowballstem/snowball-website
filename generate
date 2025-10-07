@@ -112,7 +112,7 @@ $$vars{highlight_file} = sub {
 
 # <li> tags for a stemming algorithm.
 $$vars{algorithm_lis} = sub {
-    my ($new_id, $new_lang_name) = @_;
+    my ($new_id, $new_lang_name, $wikipedia_url) = @_;
     $id = $new_id;
     $lang_name = $new_lang_name;
     my $out = << "__END__";
@@ -126,6 +126,10 @@ __END__
 <li> <a href="stop.txt">$lang_name stop word list (UTF-8 encoding)</a>
 __END__
     }
+    if (defined $wikipedia_url) {
+	$out = << "__END__";
+<li> <a href="$wikipedia_url">$lang_name language</a> on Wikipedia</li>
+__END__
     return $out;
 };
 

@@ -3,8 +3,8 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('turkish', 'Turkish') %]
-<li> <a href="accompanying_paper.doc">  Accompanying description</a> (this is a &nbsp;<code>.doc</code>&nbsp; file)
+[% algorithm_lis('turkish', 'Turkish', 'https://en.wikipedia.org/wiki/Turkish_language') %]
+<li> <a href="accompanying_paper.doc">Accompanying description</a> (this is a &nbsp;<code>.doc</code>&nbsp; file)
 </ul>
 
 <p>

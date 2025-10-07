@@ -3,8 +3,8 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="/algorithms/germanic.html"> Germanic language stemmers</A>
-[% algorithm_lis('german', 'German') %]
+<li> <A HREF="/algorithms/germanic.html">Germanic language stemmers</A>
+[% algorithm_lis('german', 'German', 'https://en.wikipedia.org/wiki/German_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'aufeinander', 'kategorie']) %]
@@ -54,15 +54,15 @@ reliable indicator.
 
 <p>
 In German, <b><i>ä</i></b>, <b><i>ö</i></b>, <b><i>ü</i></b> and
-<b><i>ß</i><b> are sometimes transliterated as <b><i>ae</i></b>,
+<b><i>ß</i></b> are sometimes transliterated as <b><i>ae</i></b>,
 <b><i>oe</i></b>, <b><i>ue</i></b> and <b><i>ss</i></b> respectively.
 There is now a capital version of <b><i>ss</i></b>, but it's a fairly
 recent invention (added to Unicode in 2008) and prior to this in
 capitalised text such as on street signs <b><i>SS</i></b> was used
 instead.  Swiss German always uses <b><i>ss</i></b> instead of
-<b><i>ß</i><b>, and also uses the transliterated forms for capital letters
+<b><i>ß</i></b>, and also uses the transliterated forms for capital letters
 with umlauts.  The German spelling reform of 1996 also reduced use of
-<b><i>ß</i><b>, replacing it with <b><i>ss</i></b> in some words.
+<b><i>ß</i></b>, replacing it with <b><i>ss</i></b> in some words.
 Finally (but much less relevant nowadays) these transliterations are
 used when writing in character sets which lack these characters, or
 with a keyboard lacking an easy way to type them.  The stemmer will
@@ -176,9 +176,9 @@ upper case, and then do the following mappings,
 </p>
     <DL><DD>
         (<I>a</I>) replace <B><I>ß</I></B> with <B><I>ss</I></B>,<BR>
-        (<I>a</I>) replace <B><I>ae</I></B> with <B><I>ä</I></B>,<BR>
-        (<I>a</I>) replace <B><I>oe</I></B> with <B><I>ö</I></B>,<BR>
-        (<I>a</I>) replace <B><I>ue</I></B> with <B><I>ü</I></B> unless preceded by <B><I>q</I></B>.
+        (<I>b</I>) replace <B><I>ae</I></B> with <B><I>ä</I></B>,<BR>
+        (<I>c</I>) replace <B><I>oe</I></B> with <B><I>ö</I></B>,<BR>
+        (<I>d</I>) replace <B><I>ue</I></B> with <B><I>ü</I></B> unless preceded by <B><I>q</I></B>.
     </DL>
 
 <p>
@@ -193,7 +193,7 @@ found.)
 
 <p>
 <I>R</I>1 and <I>R</I>2 are first set up in the standard way
-(see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2),
+(see the <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2),
 but then <I>R</I>1 is adjusted so that the region before it contains at least 3 letters.
 </p>
 
@@ -250,7 +250,7 @@ Step 2:
     </p>
         <DL><DD>
         (<I>a</I>) <B><I>en  &nbsp;  er  &nbsp;  est</I></B><BR>
-        (<I>b</I>) <B><I>st</I></B> (preceded by a valid <B><I>st</I></B>-ending, itself preceded by at least 3
+        (<I>b</I>) <B><I>st</I></B> (preceded by a valid <B><I>st</I></B>-ending, itself preceded by at least 3 letters.<BR>
         (<I>c</I>) <B><I>et</I></B> (preceded by a valid <B><I>et</I></B>-ending,
         itself not preceded any of
             <b><i>geordn</i></b>,

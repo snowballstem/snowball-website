@@ -3,15 +3,15 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="/algorithms/romance.html"> Romance language stemmers</A>
-[% algorithm_lis('portuguese', 'Portuguese') %]
+<li> <A HREF="/algorithms/romance.html">Romance language stemmers</A>
+[% algorithm_lis('portuguese', 'Portuguese', 'https://en.wikipedia.org/wiki/Portuguese_language') %]
 </ul>
 
 <h2>Design Notes</h2>
 
 <p>
 This stemming algorithm aims to work with both European Portuguese and
-Brazillian Portuguese.  It does not specifically attempt to normalise
+Brazilian Portuguese.  It does not specifically attempt to normalise
 differences between the two, though removing suffixes will naturally
 tend to do this to some extent.
 </p>
@@ -53,7 +53,7 @@ separate character to be treated as a consonant. And then &#x2014;
 
 <p>
 <I>R</I>2
-(see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2)
+(see the <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2)
 and <I>RV</I> have the same definition as in the
  <A HREF="../spanish/stemmer.html">Spanish stemmer</A>.
 </p>

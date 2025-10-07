@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('estonian', 'Estonian') %]
+[% algorithm_lis('estonian', 'Estonian', 'https://en.wikipedia.org/wiki/Estonian_language') %]
 </ul>
 
 [% algorithm_vocab([

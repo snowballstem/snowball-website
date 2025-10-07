@@ -10,55 +10,61 @@ in parentheses:
 </p>
 
 <ul>
-    <li><a href="/algorithms/english.html">English stemmers:</a>
-    <ul>
-	<li>(The early <a href="/algorithms/lovins/stemmer.html">Lovins' English stemmer from 1968</a>)
-	<li><a href="/algorithms/porter/stemmer.html">(The original English Porter stemmer from 1980)</a>
-	<li><a href="/algorithms/english/stemmer.html">English stemmer (a significantly improved version, aka "porter2")</a>
-	<li><a href="../texts/earlyenglish.html">A note on early English</a></li>
-    </ul>
-    <li><a href="/algorithms/romance.html">Romance stemmers:</a>
-    <ul>
-        <li><a href="/algorithms/catalan/stemmer.html">Catalan</a>
-        <li><a href="/algorithms/french/stemmer.html">French</a>
-        <li><a href="/algorithms/italian/stemmer.html">Italian</a>
-        <li><a href="/algorithms/portuguese/stemmer.html">Portuguese</a>
-        <li><a href="/algorithms/romanian/stemmer.html">Romanian</a></li>
-	<li><a href="/otherapps/romanian/">(Two other stemmers for Romanian)</a></li>
-        <li><a href="/algorithms/spanish/stemmer.html">Spanish</a>
-    </ul>
-    <li><a href="/algorithms/germanic.html">Germanic stemmers</a>
-    <ul>
-        <li><a href="/algorithms/kraaij_pohlmann/stemmer.html">Dutch (Kraaij/Pohlmann)</a>
-	<li><a href="/algorithms/dutch/stemmer.html">(Alternative Dutch stemmer)</a>
-        <li><a href="/algorithms/german/stemmer.html">German</a>
-        <li><a href="/algorithms/german2/stemmer.html">(German variant)</a></li>
-	<li><a href="/algorithms/yiddish/stemmer.html">Yiddish</a></li>
-    </ul>
-    <li><a href="/algorithms/scandinavian.html">Scandinavian stemmers</a>
-    <ul>
-        <li><a href="/algorithms/danish/stemmer.html">Danish</a>
-        <li><a href="/algorithms/norwegian/stemmer.html">Norwegian (Bokm&aring;l and Nynorsk)</a>
-        <li><a href="/algorithms/swedish/stemmer.html">Swedish</a>
-    </ul>
-    <li><a href="/algorithms/arabic/stemmer.html">Arabic</a></li>
-    <li><a href="/algorithms/armenian/stemmer.html">Armenian</a></li>
-    <li><a href="/algorithms/basque/stemmer.html">Basque (Euskara)</a>
-    <li><a href="/algorithms/esperanto/stemmer.html">Esperanto</a></li>
+  <li><a href="/algorithms/english.html">English stemmers:</a></li>
+  <ul>
+    <li>(The early <a href="/algorithms/lovins/stemmer.html">Lovins' English stemmer from 1968</a>)
+    <li><a href="/algorithms/porter/stemmer.html">(The original English Porter stemmer from 1980)</a></li>
+    <li><a href="/algorithms/english/stemmer.html">English stemmer (a significantly improved version, aka "porter2")</a></li>
+    <li><a href="../texts/earlyenglish.html">A note on early English</a></li>
+  </ul>
+  <li>Finnic stemmers:</li>
+  <ul>
     <li><a href="/algorithms/estonian/stemmer.html">Estonian</a></li>
-    <li><a href="/algorithms/finnish/stemmer.html">Finnish</a>
-    <li><a href="/algorithms/greek/stemmer.html">Greek</a></li>
-    <li><a href="/algorithms/hindi/stemmer.html">Hindi</a></li>
-    <li><a href="/algorithms/hungarian/stemmer.html">Hungarian</a></li>
-    <li><a href="/algorithms/indonesian/stemmer.html">Indonesian</a></li>
-    <li><a href="/algorithms/irish/stemmer.html">Irish Gaelic</a></li>
-    <li><a href="/algorithms/lithuanian/stemmer.html">Lithuanian</a></li>
-    <li><a href="/algorithms/nepali/stemmer.html">Nepali</a>
+    <li><a href="/algorithms/finnish/stemmer.html">Finnish</a></li>
+  </ul>
+  <li><a href="/algorithms/germanic.html">Germanic stemmers:</a></li>
+  <ul>
+    <li><a href="/algorithms/kraaij_pohlmann/stemmer.html">Dutch (Kraaij/Pohlmann)</a></li>
+    <li><a href="/algorithms/dutch/stemmer.html">(Alternative Dutch stemmer)</a></li>
+    <li><a href="/algorithms/german/stemmer.html">German</a></li>
+    <li><a href="/algorithms/german2/stemmer.html">(German variant)</a></li>
+    <li><a href="/algorithms/yiddish/stemmer.html">Yiddish</a></li>
+  </ul>
+  <li><a href="/algorithms/romance.html">Romance stemmers:</a></li>
+  <ul>
+    <li><a href="/algorithms/catalan/stemmer.html">Catalan</a></li>
+    <li><a href="/algorithms/french/stemmer.html">French</a></li>
+    <li><a href="/algorithms/italian/stemmer.html">Italian</a></li>
+    <li><a href="/algorithms/portuguese/stemmer.html">Portuguese</a></li>
+    <li><a href="/algorithms/romanian/stemmer.html">Romanian</a></li>
+    <li><a href="/otherapps/romanian/">(Two other stemmers for Romanian)</a></li>
+    <li><a href="/algorithms/spanish/stemmer.html">Spanish</a></li>
+  </ul>
+  <li><a href="/algorithms/scandinavian.html">Scandinavian stemmers:</a></li>
+  <ul>
+    <li><a href="/algorithms/danish/stemmer.html">Danish</a></li>
+    <li><a href="/algorithms/norwegian/stemmer.html">Norwegian (Bokm&aring;l and Nynorsk)</a></li>
+    <li><a href="/algorithms/swedish/stemmer.html">Swedish</a></li>
+  </ul>
+  <li>Slavic stemmers:</li>
+  <ul>
     <li><a href="/algorithms/polish/stemmer.html">Polish</a></li>
-    <li><a href="/algorithms/russian/stemmer.html">Russian</a>
+    <li><a href="/algorithms/russian/stemmer.html">Russian</a></li>
     <li><a href="/algorithms/serbian/stemmer.html">Serbian</a></li>
-    <li><a href="/algorithms/tamil/stemmer.html">Tamil</a>
-    <li><a href="/algorithms/turkish/stemmer.html">Turkish</a></li>
+  </ul>
+  <li><a href="/algorithms/arabic/stemmer.html">Arabic</a></li>
+  <li><a href="/algorithms/armenian/stemmer.html">Armenian</a></li>
+  <li><a href="/algorithms/basque/stemmer.html">Basque (Euskara)</a></li>
+  <li><a href="/algorithms/esperanto/stemmer.html">Esperanto</a></li>
+  <li><a href="/algorithms/greek/stemmer.html">Greek</a></li>
+  <li><a href="/algorithms/hindi/stemmer.html">Hindi</a></li>
+  <li><a href="/algorithms/hungarian/stemmer.html">Hungarian</a></li>
+  <li><a href="/algorithms/indonesian/stemmer.html">Indonesian</a></li>
+  <li><a href="/algorithms/irish/stemmer.html">Irish Gaelic</a></li>
+  <li><a href="/algorithms/lithuanian/stemmer.html">Lithuanian</a></li>
+  <li><a href="/algorithms/nepali/stemmer.html">Nepali</a></li>
+  <li><a href="/algorithms/tamil/stemmer.html">Tamil</a></li>
+  <li><a href="/algorithms/turkish/stemmer.html">Turkish</a></li>
 </ul>
 
 <p>
@@ -87,7 +93,7 @@ We also provide Snowball implementations of some algorithms developed by other p
 </p>
 
 <ul>
-  <li>the <a href="/otherapps/schinke/">Schinke/Willett Latin algorithm</a>
+  <li>the <a href="/otherapps/schinke/">Schinke/Willett Latin algorithm</a></li>
   <li><a href="/algorithms/czech/stemmer.html">Czech</a></li>
 </ul>
 

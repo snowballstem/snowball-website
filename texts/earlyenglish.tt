@@ -3,8 +3,8 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="../algorithms/english/stemmer.html">    The English (Porter2) stemmer in Snowball</A>
-<li> <A HREF="../algorithms/porter/stemmer.html">     The Porter stemmer in Snowball</A>
+<li> <A HREF="../algorithms/english/stemmer.html">The English (Porter2) stemmer in Snowball</A>
+<li> <A HREF="../algorithms/porter/stemmer.html">The Porter stemmer in Snowball</A>
 <li> <A HREF="https://tartarus.org/~martin/PorterStemmer/">
 The &#8216;official&#8217; home page of the Porter stemming algorithm</A>
 <li> <A HREF="https://tartarus.org/~martin/bible/">

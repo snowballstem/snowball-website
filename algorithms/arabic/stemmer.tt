@@ -3,8 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('arabic', 'Arabic') %]
-<li> <a href="https://en.wikipedia.org/wiki/Arabic">Arabic language</a> on Wikipedia
+[% algorithm_lis('arabic', 'Arabic', 'https://en.wikipedia.org/wiki/Arabic') %]
 </ul>
 
 <!-- FIXME: Need to pick a couple of good spots in our word list to show stemming -->

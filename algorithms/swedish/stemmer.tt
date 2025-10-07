@@ -3,8 +3,8 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="/algorithms/scandinavian.html"> Scandinavian language stemmers</A>
-[% algorithm_lis('swedish', 'Swedish') %]
+<li> <A HREF="/algorithms/scandinavian.html">Scandinavian language stemmers</A>
+[% algorithm_lis('swedish', 'Swedish', 'https://en.wikipedia.org/wiki/Swedish_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'jakt', 'klo']) %]
@@ -30,7 +30,7 @@ The following letters are vowels:
 <p>
 <I>R</I>2 is not used: <I>R</I>1 is defined in the same way as in the
 <A HREF="../german/stemmer.html">German stemmer</A>.
-(See the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
+(See the <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2.)
 </p>
 
 <p>
