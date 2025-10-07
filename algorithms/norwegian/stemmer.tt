@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/scandinavian.html">Scandinavian language stemmers</A>
-[% algorithm_lis('norwegian', 'Norwegian') %]
+[% algorithm_lis('norwegian', 'Norwegian', 'https://en.wikipedia.org/wiki/Norwegian_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'havnedistrikt', 'opning']) %]

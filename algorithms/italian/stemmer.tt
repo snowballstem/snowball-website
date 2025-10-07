@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/romance.html">Romance language stemmers</A>
-[% algorithm_lis('italian', 'Italian') %]
+[% algorithm_lis('italian', 'Italian', 'https://en.wikipedia.org/wiki/Italian_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'abbandonata', 'pronto']) %]

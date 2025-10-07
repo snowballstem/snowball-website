@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('greek', 'Greek') %]
+[% algorithm_lis('greek', 'Greek', 'https://en.wikipedia.org/wiki/Greek_language') %]
 <li> <a href="https://sais.se/mthprize/2007/ntais2007.pdf">Ntais, Georgios. Development of a Stemmer for the Greek Language</a>
 <li> <a href="https://trepo.tuni.fi/bitstream/handle/10024/80480/gradu03463.pdf">Saroukos, Spyridon. Enhancing a Greek language stemmer</a>
 </ul>

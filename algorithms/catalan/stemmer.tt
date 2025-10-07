@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/romance.html">Romance language stemmers</A>
-[% algorithm_lis('catalan', 'Catalan') %]
+[% algorithm_lis('catalan', 'Catalan', 'https://en.wikipedia.org/wiki/Catalan_language') %]
 <li> <a href="https://ca.wikipedia.org/wiki/Gram%C3%A0tica_del_catal%C3%A0">Catalan Grammar</a> on Catalan Wikipedia (<a href="https://en.wikipedia.org/wiki/Catalan_grammar">English version</a>)
 <li> <a href="https://ca.wikipedia.org/wiki/Llista_de_sufixos">Catalan Suffix List</a> on Catalan Wikipedia
 <li> <a href="https://ca.wikipedia.org/wiki/Flexi%C3%B3_verbal_del_catal%C3%A0">Catalan conjugation</a> on Catalan Wikipedia (<a href="https://en.wikipedia.org/wiki/Catalan_conjugation">English version</a>)

@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('finnish', 'Finnish') %]
+[% algorithm_lis('finnish', 'Finnish', 'https://en.wikipedia.org/wiki/Finnish_language') %]
 </ul>
 
 <h2>Design Notes</h2>

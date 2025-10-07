@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/germanic.html">Germanic language stemmers</A>
-[% algorithm_lis('german', 'German') %]
+[% algorithm_lis('german', 'German', 'https://en.wikipedia.org/wiki/German_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'aufeinander', 'kategorie']) %]

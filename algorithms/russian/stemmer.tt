@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('russian', 'Russian') %]
+[% algorithm_lis('russian', 'Russian', 'https://en.wikipedia.org/wiki/Russian_language') %]
 </ul>
 
 <p>

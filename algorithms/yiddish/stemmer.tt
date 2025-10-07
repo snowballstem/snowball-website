@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/germanic.html">Germanic language stemmers</A></li>
-[% algorithm_lis('yiddish', 'Yiddish') %]
+[% algorithm_lis('yiddish', 'Yiddish', 'https://en.wikipedia.org/wiki/Yiddish') %]
 </ul>
 
 [% algorithm_vocab([

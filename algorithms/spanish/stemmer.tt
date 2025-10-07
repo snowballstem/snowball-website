@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/romance.html">Romance language stemmers</A>
-[% algorithm_lis('spanish', 'Spanish') %]
+[% algorithm_lis('spanish', 'Spanish', 'https://en.wikipedia.org/wiki/Spanish_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'che', 'torá']) %]

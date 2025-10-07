@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/germanic.html">Germanic language stemmers</A>
-[% algorithm_lis('dutch_porter', 'Dutch') %]
+[% algorithm_lis('dutch_porter', 'Dutch', 'https://en.wikipedia.org/wiki/Dutch_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'lichaamsziek', 'opgingen']) %]

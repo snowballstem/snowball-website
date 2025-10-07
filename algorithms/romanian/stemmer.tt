@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/romance.html">Romance language stemmers</A>
-[% algorithm_lis('romanian', 'Romanian') %]
+[% algorithm_lis('romanian', 'Romanian', 'https://en.wikipedia.org/wiki/Romanian_language') %]
 <li> <A HREF="http://seelrc.org:8080/grammar/mainframe.jsp?nLanguageID=5">
 Dana Cojocaru&#8217;s Romanian Grammar</A>
 </ul>

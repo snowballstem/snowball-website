@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('dutch', '') %]
+[% algorithm_lis('dutch', '', 'https://en.wikipedia.org/wiki/Dutch_language') %]
 <li> <a href="https://liacs.leidenuniv.nl/~kraaijw/papers/kraaij94porters.pdf">Wessel Kraaij and Renée Pohlmann. Porter's Stemming Algorithm for Dutch</a>
 <li> <a href="https://liacs.leidenuniv.nl/~kraaijw/papers/kraaij95evaluation.pdf">Wessel Kraaij and Renée Pohlmann. Evaluation of a Dutch Stemming Algorithm</a>
 <li> <a href="kraij-pohlmann-uplift-dutch-stemmer.zip">The source of the original stemmer</a> (provided for reference only - beware that the C code invokes undefined behaviour)

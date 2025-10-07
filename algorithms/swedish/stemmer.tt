@@ -4,7 +4,7 @@
 
 <ul>
 <li> <A HREF="/algorithms/scandinavian.html">Scandinavian language stemmers</A>
-[% algorithm_lis('swedish', 'Swedish') %]
+[% algorithm_lis('swedish', 'Swedish', 'https://en.wikipedia.org/wiki/Swedish_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'jakt', 'klo']) %]

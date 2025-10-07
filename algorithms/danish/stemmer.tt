@@ -3,7 +3,7 @@
 
 <ul>
 <li> <a HREF="/algorithms/scandinavian.html">Scandinavian language stemmers</a>
-[% algorithm_lis('danish', 'Danish') %]
+[% algorithm_lis('danish', 'Danish', 'https://en.wikipedia.org/wiki/Danish_language') %]
 </ul>
 
 [% algorithm_vocab([40, 'indtage', 'underste']) %]
