@@ -22,19 +22,30 @@ The Polish alphabet includes the following additional letters:
 </p>
 
 <p>
-The algorithm consists of the following steps.
+Like most of the other Slavic languages, Polish is a heavily inflected and
+conjugated language, and has multiple patterns for both nouns and verbs, which
+means there are many possible <I>i</I>-suffixes. In this situation, for words
+that have both an <I>i</I>-suffix and a <I>d</I>-suffix, trying to remove both
+would result in many combinations of suffixes and inevitably there will be many
+false positive removals (part of the root may be removed). Because of that,
+this stemmer focuses on removing <I>i</I>-suffixes and leaves <I>d</I>-suffixes
+untouched.
 <p>
+
+<p>
+Polish also has an inflectional prefix, <i>naj-</i>, that forms superlative
+forms of adjectives. Removing it is currently not implemented.
+</p>
+
+<p>
+The algorithm consists of the following steps.
+</p>
 
 <h3>Step 1. Mark regions</h3>
 
 <p>
-In any word, <i>RV</i> is the region after the first vowel, or the end of the
-word if it contains no vowel.
-</p>
-
-<p>
-<i>R</i>1 is the region after the first non-vowel following a vowel, or the end
-of the word if there is no such non-vowel.
+In any word, <i>R</i>1 is the region after the first non-vowel following a
+vowel, or the end of the word if there is no such non-vowel.
 </p>
 
 <p>
@@ -43,7 +54,6 @@ For example:
 
 <pre>
 k s i ę g a r n i a
-     |&lt;-   RV    -&gt;|
          |&lt;-  R1 -&gt;|
 </pre>
 
