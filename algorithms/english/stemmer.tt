@@ -83,9 +83,12 @@ apostrophe.
 <li>Snowball 3.0.0 Avoid conflating <b><i>past</i></b> with <b><i>paste</i></b>/<b><i>pastes</i></b>/<b><i>pasted</i></b>/<b><i>pasting</i></b>.
 <li>Snowball 3.0.0 Avoid conflating <b><i>universe</i></b>/<b><i>universes</i></b> with <b><i>universal</i></b>/<b><i>universally</i></b> and <b><i>university</i></b>/<b><i>universities</i></b>.
 <li>Snowball 3.0.0 Avoid conflating <b><i>lateral</i></b>/<b><i>laterally</i></b> with <b><i>later</i></b>.
+<li>Snowball 3.0.0 Avoid conflating <b><i>emerge</i></b> with <b><i>emergency</i></b>.
+<li>Snowball 3.0.0 Avoid conflating <b><i>organ</i></b>, <b><i>organic</i></b>, <b><i>organize</i></b>.
 <li>Snowball 3.0.0 Replace <b><i>-ogist</i></b> with <b><i>-og</i></b> to conflate <b><i>geologist</i></b> with <b><i>geology</i></b>, etc.
 <li>Snowball 3.0.0 Handle <b><i>-eed</i></b> and <b><i>-ing</i></b> exceptions in respective rules.
-<li>Snowball 3.1.0 Restored exception for <b><i>skis</i></b> which <b>b</b> is needed.
+<li>Snowball 3.1.0 Restored exception for <b><i>skis</i></b> which is needed.
+<li>Snowball 3.1.0 R1 exception added for words starting <b><i>inter</i></b>.
 </ol>
 
 <h2>Design Notes</h2>
@@ -630,6 +633,9 @@ The definition of the English stemmer above is therefore supplemented by the fol
     <b><i>past</i></b> or
     <b><i>univers</i></b>,
     <b><i>later</i></b>,
+    <b><i>emerg</i></b>,
+    <b><i>organ</i></b>,
+    <b><i>inter</i></b>,
     set <I>R</I>1 to be the remainder of the word.
     </p>
 
