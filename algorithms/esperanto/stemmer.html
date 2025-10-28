@@ -220,7 +220,6 @@ adverbs, and prepositions. These are listed explicitly in the
 <span class="w">    </span><span class="n">initial_apostrophe</span>
 <span class="w">    </span><span class="n">long_word</span>
 <span class="w">    </span><span class="n">merged_numeral</span>
-<span class="w">    </span><span class="n">not_after_letter</span>
 <span class="w">    </span><span class="n">pronoun</span>
 <span class="w">    </span><span class="n">standard_suffix</span>
 <span class="w">    </span><span class="n">ujn_suffix</span>
@@ -337,19 +336,19 @@ adverbs, and prepositions. These are listed explicitly in the
 <span class="w">        </span><span class="ow">loop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">gopast</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="ow">gopast</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="w"> </span><span class="ow">next</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">gopast</span><span class="w"> </span><span class="n">digit</span>
 <span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">not_after_letter</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">digit</span><span class="p">)</span>
-
 <span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">standard_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="o">]</span>
+<span class="w">        </span><span class="o">[</span>
 <span class="w">        </span><span class="kr">among</span><span class="p">(</span>
 <span class="w">            </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;aj&#39;</span><span class="w"> </span><span class="s1">&#39;ajn&#39;</span><span class="w"> </span><span class="s1">&#39;an&#39;</span>
 <span class="w">            </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="s1">&#39;en&#39;</span>
 <span class="w">            </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="s1">&#39;as&#39;</span><span class="w"> </span><span class="s1">&#39;is&#39;</span><span class="w"> </span><span class="s1">&#39;os&#39;</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="s1">&#39;us&#39;</span>
 <span class="w">            </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="s1">&#39;oj&#39;</span><span class="w"> </span><span class="s1">&#39;ojn&#39;</span><span class="w"> </span><span class="s1">&#39;on&#39;</span>
-<span class="w">            </span><span class="s1">&#39;j&#39;</span><span class="w"> </span><span class="n">not_after_letter</span>
-<span class="w">            </span><span class="s1">&#39;jn&#39;</span><span class="w"> </span><span class="n">not_after_letter</span>
-<span class="w">            </span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="n">not_after_letter</span>
+<span class="w">                </span><span class="p">()</span>
+<span class="w">            </span><span class="s1">&#39;j&#39;</span><span class="w"> </span><span class="s1">&#39;jn&#39;</span><span class="w"> </span><span class="s1">&#39;n&#39;</span>
+<span class="w">                </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">digit</span><span class="p">))</span>
 <span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="ow">try</span><span class="w"> </span><span class="s1">&#39;-&#39;</span>
+<span class="w">        </span><span class="o">]</span>
 <span class="w">        </span><span class="ow">delete</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="p">)</span>

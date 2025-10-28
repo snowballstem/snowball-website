@@ -317,11 +317,6 @@ This change only affects a very small number of words (11 out of
 <span class="w">    </span><span class="n">remove_first_order_prefix</span>
 <span class="w">    </span><span class="n">remove_second_order_prefix</span>
 <span class="w">    </span><span class="n">remove_suffix</span>
-<span class="w">    </span><span class="n">KER</span>
-<span class="w">    </span><span class="n">SUFFIX_KAN_OK</span>
-<span class="w">    </span><span class="n">SUFFIX_AN_OK</span>
-<span class="w">    </span><span class="n">SUFFIX_I_OK</span>
-<span class="w">    </span><span class="n">VOWEL</span>
 <span class="p">)</span>
 
 <span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
@@ -342,101 +337,112 @@ This change only affects a very small number of words (11 out of
 <span class="w">        </span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="c1">// prefix not in {ke, peng, per}</span>
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">SUFFIX_KAN_OK</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="c1">// On page 29, the example &quot;kompas Q.31&quot; says &quot;Both Nazief and Porter</span>
-<span class="w">        </span><span class="c1">// stemmer converted the word peledakan (blast, explotion [sic]) to</span>
-<span class="w">        </span><span class="c1">// ledak (to blast, to explode)&quot;.  However, the algorithm as described</span>
-<span class="w">        </span><span class="c1">// doesn&#39;t behave in this way - grammatically the prefix pe- occurs as a</span>
-<span class="w">        </span><span class="c1">// variation of both the first-order derivational prefix peng- and the</span>
-<span class="w">        </span><span class="c1">// second-order derivational prefix per-, but table 2.5 doesn&#39;t include</span>
-<span class="w">        </span><span class="c1">// &quot;pe&quot;, only table 2.6 does, so &quot;peledakan&quot; is handled (incorrectly)</span>
-<span class="w">        </span><span class="c1">// as having prefix &quot;per&quot; not &quot;peng&quot;, and so we remove derivational</span>
-<span class="w">        </span><span class="c1">// suffix &quot;kan&quot; rather than &quot;an&quot; to give stem leda.  (Porter-style</span>
-<span class="w">        </span><span class="c1">// stemmers remove the longest suffix they can amongst those available,</span>
-<span class="w">        </span><span class="c1">// which this paper notes in the last paragraph on page 15).</span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="c1">// We resolve this by amending the condition on suffix &quot;kan&quot; to</span>
-<span class="w">        </span><span class="c1">// &quot;prefix ∉ {ke, peng, per}&quot;, which seems to make the stemmer&#39;s</span>
-<span class="w">        </span><span class="c1">// behaviour match all the examples in the paper except for one:</span>
-<span class="w">        </span><span class="c1">// &quot;perbaikan&quot; is shown in table 3.4 as stemming to &quot;bai&quot;, but with</span>
-<span class="w">        </span><span class="c1">// this change it now stems to &quot;baik&quot;.  The table notes that &quot;baik&quot; is</span>
-<span class="w">        </span><span class="c1">// the actual root so this deviation is an improvement.  In a sample</span>
-<span class="w">        </span><span class="c1">// vocabulary derived from the most common words in id.wikipedia.org,</span>
-<span class="w">        </span><span class="c1">// this change only affects 0.12% of words (76 out of 64,587, including</span>
-<span class="w">        </span><span class="c1">// &quot;peledakan&quot; and &quot;perbaikan&quot;).</span>
-<span class="w">        </span><span class="o">$</span><span class="n">prefix</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span>
-<span class="w">    </span><span class="p">)</span>
-
-<span class="w">    </span><span class="c1">// prefix not in {di, meng, ter}</span>
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">SUFFIX_AN_OK</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span>
-
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">SUFFIX_I_OK</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="c1">// prefix not in {ke, peng, ber}</span>
-<span class="w">        </span><span class="o">$</span><span class="n">prefix</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span>
-
-<span class="w">        </span><span class="c1">// The rest of the condition from the paper is:</span>
-<span class="w">        </span><span class="c1">//   V|K...c₁c₁, c₁ ≠ s, c₂ ≠ i</span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="c1">// The meaning of this is unclear in several ways, and none of the</span>
-<span class="w">        </span><span class="c1">// examples given of the stemmer&#39;s behaviour in the paper help to</span>
-<span class="w">        </span><span class="c1">// resolve these issues.</span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="c1">// Notice that c₂ isn&#39;t actually used - the most obvious explanation</span>
-<span class="w">        </span><span class="c1">// seems to be that &quot;c₁c₁&quot; should read &quot;c₁c₂&quot;, or maybe &quot;c₂c₁&quot;.</span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="c1">// Elsewhere the paper defines V... as meaning &quot;the stem starts with</span>
-<span class="w">        </span><span class="c1">// a vowel&quot; and K... as meaning &quot;the stem starts with a consonant&quot;.</span>
-<span class="w">        </span><span class="c1">// The meaning of | isn&#39;t actually defined, but clearly means</span>
-<span class="w">        </span><span class="c1">// alternation.</span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="c1">// However nowhere is the precedence of | vs ... defined, and there</span>
-<span class="w">        </span><span class="c1">// isn&#39;t a standard precedence we could reasonably assume.  In other</span>
-<span class="w">        </span><span class="c1">// places where the paper says X|Y... it seems the | binds more</span>
-<span class="w">        </span><span class="c1">// tightly, so it&#39;s (V|K)...cᵢcⱼ not V|(K...cᵢcⱼ).  That seems a bit</span>
-<span class="w">        </span><span class="c1">// odd as the first letter must be either a vowel or a consonant, so</span>
-<span class="w">        </span><span class="c1">// that really just means &quot;ends cᵢcⱼ&quot; (and has at least one letter</span>
-<span class="w">        </span><span class="c1">// before cᵢ but we only call SUFFIX_I_OK if $measure &gt; 2 which</span>
-<span class="w">        </span><span class="c1">// ensures that part).  However, nowhere in the paper uses or defines</span>
-<span class="w">        </span><span class="c1">// a notation such as ...X, which may explain this seemingly redundant</span>
-<span class="w">        </span><span class="c1">// way of specifying this.</span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="c1">// The conditions elsewhere on prefix removal (e.g. V...) are clearly</span>
-<span class="w">        </span><span class="c1">// on the stem left after the prefix is removed.  None of the other</span>
-<span class="w">        </span><span class="c1">// rules for suffix removal have conditions on the stem, but for</span>
-<span class="w">        </span><span class="c1">// consistency with the prefix rules we might expect that the cᵢcⱼ</span>
-<span class="w">        </span><span class="c1">// test is on what&#39;s left *after* removing the &quot;i&quot; suffix.</span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="c1">// Studying Indonesian wordlists and discussion with a native</span>
-<span class="w">        </span><span class="c1">// speaker leads us to conclude that the purpose of this check is to</span>
-<span class="w">        </span><span class="c1">// protect words of foreign origin (e.g. &quot;televisi&quot;, &quot;organisasi&quot;,</span>
-<span class="w">        </span><span class="c1">// &quot;komunikasi&quot;) from stemming, and the common feature of these is</span>
-<span class="w">        </span><span class="c1">// that the word ends &quot;-si&quot;, so we conclude that the condition here</span>
-<span class="w">        </span><span class="c1">// should be read as &quot;word does not end -si&quot;, and this is what we</span>
-<span class="w">        </span><span class="c1">// have implemented.</span>
-<span class="w">        </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;s&#39;</span>
-<span class="w">    </span><span class="p">)</span>
-
 <span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">remove_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">            </span><span class="s1">&#39;kan&#39;</span><span class="w"> </span><span class="n">SUFFIX_KAN_OK</span><span class="w"> </span><span class="s1">&#39;an&#39;</span><span class="w"> </span><span class="n">SUFFIX_AN_OK</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="n">SUFFIX_I_OK</span>
-<span class="w">                </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;an&#39;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                </span><span class="p">(</span>
+<span class="w">                    </span><span class="c1">// prefix not in {ke, peng, per}. [See SUFFIX_KAN_NOTE]</span>
+<span class="w">                    </span><span class="p">(</span><span class="o">$</span><span class="n">prefix</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">                    </span><span class="c1">// Remove suffix &#39;kan&#39;</span>
+<span class="w">                    </span><span class="s1">&#39;k&#39;</span><span class="o">]</span>
+<span class="w">                </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                    </span><span class="c1">// prefix not in {di, meng, ter}</span>
+<span class="w">                    </span><span class="o">$</span><span class="n">prefix</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                </span><span class="c1">// prefix not in {ke, peng, ber}</span>
+<span class="w">                </span><span class="o">$</span><span class="n">prefix</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">                </span><span class="c1">// word does not end &#39;-si&#39;.  [See SUFFIX_I_NOTE]</span>
+<span class="w">                </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;s&#39;</span>
+<span class="w">            </span><span class="p">)</span>
 <span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span>
 <span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// SUFFIX_KAN_NOTE:</span>
+<span class="w">    </span><span class="c1">// On page 29, the example &quot;kompas Q.31&quot; says &quot;Both Nazief and Porter</span>
+<span class="w">    </span><span class="c1">// stemmer converted the word peledakan (blast, explotion [sic]) to</span>
+<span class="w">    </span><span class="c1">// ledak (to blast, to explode)&quot;.  However, the algorithm as described</span>
+<span class="w">    </span><span class="c1">// doesn&#39;t behave in this way - grammatically the prefix pe- occurs as a</span>
+<span class="w">    </span><span class="c1">// variation of both the first-order derivational prefix peng- and the</span>
+<span class="w">    </span><span class="c1">// second-order derivational prefix per-, but table 2.5 doesn&#39;t include</span>
+<span class="w">    </span><span class="c1">// &quot;pe&quot;, only table 2.6 does, so &quot;peledakan&quot; is handled (incorrectly)</span>
+<span class="w">    </span><span class="c1">// as having prefix &quot;per&quot; not &quot;peng&quot;, and so we remove derivational</span>
+<span class="w">    </span><span class="c1">// suffix &quot;kan&quot; rather than &quot;an&quot; to give stem leda.  (Porter-style</span>
+<span class="w">    </span><span class="c1">// stemmers remove the longest suffix they can amongst those available,</span>
+<span class="w">    </span><span class="c1">// which this paper notes in the last paragraph on page 15).</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// We resolve this by amending the condition on suffix &quot;kan&quot; to</span>
+<span class="w">    </span><span class="c1">// &quot;prefix ∉ {ke, peng, per}&quot;, which seems to make the stemmer&#39;s</span>
+<span class="w">    </span><span class="c1">// behaviour match all the examples in the paper except for one:</span>
+<span class="w">    </span><span class="c1">// &quot;perbaikan&quot; is shown in table 3.4 as stemming to &quot;bai&quot;, but with</span>
+<span class="w">    </span><span class="c1">// this change it now stems to &quot;baik&quot;.  The table notes that &quot;baik&quot; is</span>
+<span class="w">    </span><span class="c1">// the actual root so this deviation is an improvement.  In a sample</span>
+<span class="w">    </span><span class="c1">// vocabulary derived from the most common words in id.wikipedia.org,</span>
+<span class="w">    </span><span class="c1">// this change only affects 0.12% of words (76 out of 64,587, including</span>
+<span class="w">    </span><span class="c1">// &quot;peledakan&quot; and &quot;perbaikan&quot;).</span>
+
+<span class="w">    </span><span class="c1">// SUFFIX_I_NOTE:</span>
+<span class="w">    </span><span class="c1">// The rest of the condition from the paper is:</span>
+<span class="w">    </span><span class="c1">//   V|K...c₁c₁, c₁ ≠ s, c₂ ≠ i</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// The meaning of this is unclear in several ways, and none of the</span>
+<span class="w">    </span><span class="c1">// examples given of the stemmer&#39;s behaviour in the paper help to</span>
+<span class="w">    </span><span class="c1">// resolve these issues.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Notice that c₂ isn&#39;t actually used - the most obvious explanation</span>
+<span class="w">    </span><span class="c1">// seems to be that &quot;c₁c₁&quot; should read &quot;c₁c₂&quot;, or maybe &quot;c₂c₁&quot;.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Elsewhere the paper defines V... as meaning &quot;the stem starts with</span>
+<span class="w">    </span><span class="c1">// a vowel&quot; and K... as meaning &quot;the stem starts with a consonant&quot;.</span>
+<span class="w">    </span><span class="c1">// The meaning of | isn&#39;t actually defined, but clearly means</span>
+<span class="w">    </span><span class="c1">// alternation.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// However nowhere is the precedence of | vs ... defined, and there</span>
+<span class="w">    </span><span class="c1">// isn&#39;t a standard precedence we could reasonably assume.  In other</span>
+<span class="w">    </span><span class="c1">// places where the paper says X|Y... it seems the | binds more</span>
+<span class="w">    </span><span class="c1">// tightly, so it&#39;s (V|K)...cᵢcⱼ not V|(K...cᵢcⱼ).  That seems a bit</span>
+<span class="w">    </span><span class="c1">// odd as the first letter must be either a vowel or a consonant, so</span>
+<span class="w">    </span><span class="c1">// that really just means &quot;ends cᵢcⱼ&quot; (and has at least one letter</span>
+<span class="w">    </span><span class="c1">// before cᵢ but we only call remove_suffix if $measure &gt; 2 which</span>
+<span class="w">    </span><span class="c1">// ensures that part).  However, nowhere in the paper uses or defines</span>
+<span class="w">    </span><span class="c1">// a notation such as ...X, which may explain this seemingly redundant</span>
+<span class="w">    </span><span class="c1">// way of specifying this.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// The conditions elsewhere on prefix removal (e.g. V...) are clearly</span>
+<span class="w">    </span><span class="c1">// on the stem left after the prefix is removed.  None of the other</span>
+<span class="w">    </span><span class="c1">// rules for suffix removal have conditions on the stem, but for</span>
+<span class="w">    </span><span class="c1">// consistency with the prefix rules we might expect that the cᵢcⱼ</span>
+<span class="w">    </span><span class="c1">// test is on what&#39;s left *after* removing the &quot;i&quot; suffix.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Studying Indonesian wordlists and discussion with a native</span>
+<span class="w">    </span><span class="c1">// speaker leads us to conclude that the purpose of this check is to</span>
+<span class="w">    </span><span class="c1">// protect words of foreign origin (e.g. &quot;televisi&quot;, &quot;organisasi&quot;,</span>
+<span class="w">    </span><span class="c1">// &quot;komunikasi&quot;) from stemming, and the common feature of these is</span>
+<span class="w">    </span><span class="c1">// that the word ends &quot;-si&quot;, so we conclude that the condition here</span>
+<span class="w">    </span><span class="c1">// should be read as &quot;word does not end -si&quot;, and this is what we</span>
+<span class="w">    </span><span class="c1">// have implemented.</span>
 <span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="s1">&#39;aeiou&#39;</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">VOWEL</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="p">)</span>
-
-<span class="kr">define</span><span class="w"> </span><span class="n">KER</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">vowel</span><span class="w"> </span><span class="s1">&#39;er&#39;</span><span class="w"> </span><span class="p">)</span>
-
 <span class="kr">define</span><span class="w"> </span><span class="n">remove_first_order_prefix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;di&#39;</span><span class="w"> </span><span class="s1">&#39;meng&#39;</span><span class="w"> </span><span class="s1">&#39;men&#39;</span><span class="w"> </span><span class="s1">&#39;me&#39;</span><span class="w"> </span><span class="s1">&#39;ter&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="s1">&#39;ke&#39;</span><span class="w"> </span><span class="s1">&#39;peng&#39;</span><span class="w"> </span><span class="s1">&#39;pen&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">3</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="s1">&#39;meny&#39;</span><span class="w"> </span><span class="n">VOWEL</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="s1">&#39;peny&#39;</span><span class="w"> </span><span class="n">VOWEL</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">3</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;di&#39;</span><span class="w"> </span><span class="s1">&#39;meng&#39;</span><span class="w"> </span><span class="s1">&#39;me&#39;</span><span class="w"> </span><span class="s1">&#39;ter&#39;</span>
+<span class="w">            </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;men&#39;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="ow">or</span>
+<span class="w">            </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;ke&#39;</span><span class="w"> </span><span class="s1">&#39;peng&#39;</span>
+<span class="w">            </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">3</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;pen&#39;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">3</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="ow">or</span>
+<span class="w">            </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">3</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
 <span class="w">        </span><span class="s1">&#39;mem&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;p&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
 <span class="w">        </span><span class="s1">&#39;pem&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">3</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="w"> </span><span class="n">vowel</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;p&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
@@ -448,13 +454,26 @@ This change only affects a very small number of words (11 out of
 <span class="w">    </span><span class="c1">// is intended so that e.g. &quot;pelajaran&quot; stems to &quot;ajar&quot; not &quot;lajar&quot;.</span>
 <span class="w">    </span><span class="c1">// This change only affects a very small number of words (11 out of</span>
 <span class="w">    </span><span class="c1">// 64,587) and only for the better.</span>
-<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;per&#39;</span><span class="w"> </span><span class="s1">&#39;pe&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="s1">&#39;pelajar&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ajar&#39;</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="s1">&#39;ber&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">4</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="s1">&#39;belajar&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ajar&#39;</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">4</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="s1">&#39;be&#39;</span><span class="w"> </span><span class="n">KER</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">4</span><span class="w"> </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="o">[</span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;pe&#39;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span><span class="p">)</span>
+<span class="w">            </span><span class="ow">or</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="o">]</span><span class="w"> </span><span class="s1">&#39;ajar&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">            </span><span class="ow">or</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;be&#39;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="o">]</span><span class="w"> </span><span class="p">)</span>
+<span class="w">            </span><span class="ow">or</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="o">]</span><span class="w"> </span><span class="s1">&#39;ajar&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="ow">or</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">vowel</span><span class="w"> </span><span class="s1">&#39;er&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">            </span><span class="o">$</span><span class="n">prefix</span><span class="o">=</span><span class="mi">4</span>
+<span class="w">        </span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// All prefixes we remove here contain exactly one vowel.</span>
+<span class="w">    </span><span class="o">$</span><span class="n">measure</span><span class="o">-=</span><span class="mi">1</span>
+<span class="w">    </span><span class="ow">delete</span>
 <span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>

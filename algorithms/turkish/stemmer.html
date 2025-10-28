@@ -227,7 +227,7 @@ should too).
 <span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_suffix_with_optional_n_consonant</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
 <span class="w">    </span><span class="ow">or</span>
-<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">))</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
 <span class="w">  </span><span class="p">)</span>
 
 <span class="w">  </span><span class="c1">// if the last consonant before suffix is vowel and s then advance and delete</span>
@@ -237,7 +237,7 @@ should too).
 <span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_suffix_with_optional_s_consonant</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
 <span class="w">    </span><span class="ow">or</span>
-<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="p">))</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
 <span class="w">  </span><span class="p">)</span>
 
 <span class="w">  </span><span class="c1">// if the last consonant before suffix is vowel and y then advance and delete</span>
@@ -247,13 +247,13 @@ should too).
 <span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_suffix_with_optional_y_consonant</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
 <span class="w">    </span><span class="ow">or</span>
-<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="p">))</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="n">vowel</span><span class="p">))</span>
 <span class="w">  </span><span class="p">)</span>
 
 <span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_suffix_with_optional_U_vowel</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="p">(</span><span class="n">U</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">vowel</span><span class="p">))</span>
 <span class="w">    </span><span class="ow">or</span>
-<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="n">U</span><span class="p">))</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">vowel</span><span class="p">))</span>
+<span class="w">    </span><span class="p">((</span><span class="ow">not</span><span class="w"> </span><span class="n">U</span><span class="p">)</span><span class="w"> </span><span class="ow">test</span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">vowel</span><span class="p">))</span>
 <span class="w">  </span><span class="p">)</span>
 
 <span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">mark_possessives</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
