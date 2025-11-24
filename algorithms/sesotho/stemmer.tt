@@ -1,0 +1,34 @@
+[% header('Sesotho stemming algorithm') %]
+<h2>Links to resources</h2>
+<ul>
+[% algorithm_lis('sesotho', 'Sesotho', 'https://en.wikipedia.org/wiki/Sotho_language') %]
+</ul>
+
+<h2>Introduction</h2>
+<p>
+The Sesotho (Southern Sotho) stemming algorithm was developed by Kamohelo Lebjane.
+Sesotho (ISO 639-1: st) is a Southern Bantu language spoken by approximately 5.6 million
+people in South Africa and Lesotho.
+</p>
+<p>
+Like other Bantu languages, Sesotho is agglutinative - words are formed by attaching
+prefixes and suffixes to root morphemes. A single root can appear with many different
+affixes, making stemming important for information retrieval.
+</p>
+
+<h2>Stemming Approach</h2>
+<p>
+The algorithm removes noun class prefixes and verb/nominal suffixes to extract root forms.
+Sesotho uses a noun class system where prefixes indicate grammatical categories
+(e.g., mo-/ba- for people, le-/ma- for certain objects, se-/li- for things).
+Verb suffixes encode tense, aspect, and voice (e.g., -ile for perfect tense,
+-isa for causative, -wa for passive).
+</p>
+<p>
+The stemmer processes suffixes before prefixes and ensures a minimum stem length
+is preserved to avoid over-stemming.
+</p>
+
+<h2>The algorithm in Snowball</h2>
+[% highlight_file('sesotho') %]
+[% footer %]
