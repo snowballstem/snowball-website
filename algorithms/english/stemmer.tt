@@ -279,7 +279,7 @@ Step 1<I>b</I>:
 
 Step 1<I>c</I>: <code><FONT COLOR=BLUE>*</FONT></code>
 <DL><DD>
-    replace suffix <B><I>y</I></B> or <B><I>Y</I></B> by <B><I>i</I></B> if preceded by a non-vowel which is not the
+    For strings of length 3 or more, replace suffix <B><I>y</I></B> or <B><I>Y</I></B> by <B><I>i</I></B> if preceded by a non-vowel which is not the
     first letter of the word (so <I>cry</I> &#x2192; <I>cri</I>, <I>by</I> &#x2192; <I>by</I>, <I>say</I> &#x2192; <I>say</I>)
 </DL>
 
