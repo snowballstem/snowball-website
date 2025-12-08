@@ -353,7 +353,7 @@ that sometimes we want to remove the whole three letters (e.g. <i>orwellian</i>,
 
 <p>
 The suffix <i>-ize</i> (as used in American English) is removed, but in
-British English suffix <i>-ise(/i> is usually used instead.  There are many
+British English suffix <i>-ise</i> is usually used instead.  There are many
 words ending <i>-ise</i> where it's not a suffix and removal would be
 problematic (e.g. <i>compromise</i>, <i>disenfranchise</i>, <i>imprecise</i>
 <i>otherwise</i>, <i>paradise</i>) so the stemmer does not try to remove
@@ -501,7 +501,8 @@ Step 1<I>b</I>:
 Step 1<I>c</I>: <code><FONT COLOR=BLUE>*</FONT></code>
 <DL><DD>
     replace suffix <B><I>y</I></B> or <B><I>Y</I></B> by <B><I>i</I></B> if preceded by a non-vowel which is not the
-    first letter of the word (so <I>cry</I> &#x2192; <I>cri</I>, <I>by</I> &#x2192; <I>by</I>, <I>say</I> &#x2192; <I>say</I>)
+    first letter of the word (a consequence of this condition is that this step only affects strings of length 3 or more).
+    For example, <I>cry</I> &#x2192; <I>cri</I>, <I>by</I> &#x2192; <I>by</I>, <I>say</I> &#x2192; <I>say</I>)
 </DL>
 
 Step 2:
