@@ -181,12 +181,14 @@ would give rise to the header file,
 </pre></div>
 
 <p>
-If &nbsp;<code>-vprefix</code>&nbsp; is used, all Snowball strings, integers and booleans give
-rise to a &nbsp;<code>#define</code>&nbsp; line in the header file. For example
+If &nbsp;<code>-vprefix</code>&nbsp; is used, then functions are generated to
+provide access to Snowball strings, integers and booleans. (In Snowball 3.1.x
+and earlier, Snowball variables were stored in a different way in the generated
+C code and macros were generated if <code>-vprefix</code> was used).
+For example
 </p>
-
 <PRE>
-    -eprefix Khotanese_ -vprefix Khotanese_variable
+    -eprefix Khotanese_ -vprefix Khotanese_variable_
 </PRE>
 
 <p>
@@ -196,12 +198,21 @@ would give rise the header file,
 <div class="highlight"><pre><span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Khotanese_create_env</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 <span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Khotanese_close_env</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
 
-<span class="w">    </span><span class="cp">#define Khotanese_variable_ch (S[0])</span>
-<span class="w">    </span><span class="cp">#define Khotanese_variable_Y_found (B[0])</span>
-<span class="w">    </span><span class="cp">#define Khotanese_variable_p2 (I[1])</span>
-<span class="w">    </span><span class="cp">#define Khotanese_variable_p1 (I[0])</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">symbol</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">Khotanese_variable_ch</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_variable_Y_found</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_variable_p2</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_variable_p1</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
 <span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_stem</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
 </pre></div>
+
+<p>
+The Snowball compiler will attempt to "localise" integer and boolean variables
+used only in one routine, in which case they become local variables in the C
+code and <code>-vprefix</code> won't generate code for them.  Let us know if
+this is a problem for you (the Snowball language may need to gain a way to mark
+variables as external which could suppress this optimisation and generate an
+access function.
+</p>
 
 <p>
 The <code>-utf8</code> and <code>-widechars</code>&nbsp; options affects how

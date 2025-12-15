@@ -370,6 +370,8 @@ of departure, and by <code><FONT COLOR=BLUE>+</FONT></code> additional features.
 Porter and Porter2 stem slightly over 5% of words to different forms.
 </p>
 
+<h3>Definitions</h3>
+
 <p>
 Define a <I>vowel</I> as one of
 <DL><DD>
@@ -424,8 +426,10 @@ An apostrophe (<B><I>'</I></B>) may be regarded as a letter.
 (See <A HREF="../../texts/apostrophe.html">note</A> on apostrophes in English.)
 </p>
 
+<h3>The Stemming Process</h3>
+
 <p>
-If the word has two letters or less, leave it as it is.
+If the word has two letters or less, stop processing and leave it as is.
 </p>
 
 <p>
@@ -502,7 +506,7 @@ Step 1<I>c</I>: <code><FONT COLOR=BLUE>*</FONT></code>
 <DL><DD>
     replace suffix <B><I>y</I></B> or <B><I>Y</I></B> by <B><I>i</I></B> if preceded by a non-vowel which is not the
     first letter of the word (a consequence of this condition is that this step only affects strings of length 3 or more).
-    For example, <I>cry</I> &#x2192; <I>cri</I>, <I>by</I> &#x2192; <I>by</I>, <I>say</I> &#x2192; <I>say</I>)
+    For example, <i>cry</i> &#x2192; <i>cri</i>, but <i>by</i> and <i>say</i> are unchanged.
 </DL>
 
 Step 2:
