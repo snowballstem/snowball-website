@@ -1,4 +1,5 @@
 // Generated from ukrainian.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Format: ES module export, consistent with all other js/*-stemmer.js files
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
