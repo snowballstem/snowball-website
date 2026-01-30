@@ -90,9 +90,9 @@ These compound patterns are only removed in R2 to prevent over-stemming.
 
 <p>
 The Ukrainian apostrophe separates consonants from softened vowels
-(e.g. <i>солов'ятко</i> &mdash; little nightingale).  After suffix removal,
-a trailing apostrophe is cleaned up in the tidy-up step.  Both ASCII apostrophe
-(U+0027) and the Unicode modifier letter apostrophe (U+02BC) are handled.
+(e.g. <i>солов'ятко</i> &mdash; little nightingale).  The stemmer treats
+apostrophes as ordinary characters and does not remove them; tokenization
+or normalization before stemming should handle apostrophe variants if needed.
 </p>
 
 <h3>Superlative prefix</h3>
