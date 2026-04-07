@@ -1,35 +1,160 @@
 [% header('Persian stemming algorithm') %]
 
-<h2>Introduction</h2>
+<h2>Links to resources</h2>
 
-<p>This is a stemming algorithm for the Persian language. It strip common Persian inflectional suffixes and prefixes while normalizing characters.</p>
+<ul>
+[% algorithm_lis('persian', 'Persian') %]
+</ul>
+
+<p>
+This is a rule-based stemming algorithm for the Persian language, based on the
+<strong>Hierarchical Persian Stemmer (HPS)</strong> described in:
+</p>
+
+<blockquote>
+    Ayshe Rashidi and Mina Zolfy Lighvan (2014). HPS: A Hierarchical Persian Stemming Method.
+</blockquote>
 
 <h2>Normalization</h2>
 
-<p>The algorithm begins by removing diacritics, half-spaces (zero-width non-joiners), and then performs normalization to unify various Arabic script variants to their Persian equivalents.</p>
+<p>
+Before prefix stripping, tokens are normalized to a canonical Persian script:
+</p>
 
-<h2>Stemming Process</h2>
+<ul>
+<li>Arabic letter variants are mapped to their Persian equivalents:
+    <em>ك</em> → <em>ک</em>,
+    <em>ي / ئ</em> → <em>ی</em>,
+    <em>ة / ۀ</em> → <em>ه</em>,
+    <em>أ / إ</em> → <em>ا</em>,
+    <em>ؤ</em> → <em>و</em>.
+</li>
+<li>Zero-width joiners (U+200D) and ASCII spaces are deleted.</li>
+<li>Zero-width non-joiners (U+200C, known in Persian as <em>nim-faseleh</em> or
+    half-space) are <strong>preserved</strong> at this stage and used as
+    prefix&#8209;stem separators in the next phase, then deleted afterwards.</li>
+</ul>
 
-<p>After normalization, the algorithm attempts stemming in the following order:</p>
+<h2>Prefix stripping</h2>
 
-<ol>
-  <li>Remove common <strong>noun suffixes</strong></li>
-  <li>Remove <strong>noun prefixes</strong></li>
-  <li>Remove <strong>verb prefixes</strong></li>
-  <li>Remove <strong>verb suffixes</strong></li>
-  <li>Remove <strong>adjective suffixes</strong></li>
-</ol>
+<p>
+The algorithm strips one anchored prefix per pass. To avoid false matches on
+words that happen to begin with the same syllables but are not prefixed forms
+(e.g. <em>بیرون</em> "outside", <em>بیشتر</em> "more", <em>میلادی</em> "AD/CE",
+<em>میان</em> "among"), a zero-width non-joiner must be present between the
+prefix and the stem. In formal Persian orthography these prefixes are written
+with a half-space before the stem, so this requirement is natural.
+</p>
 
-<p>It also includes a list of exceptions (e.g., high-frequency or irregular forms) which are left unchanged.</p>
+<p>The recognised prefixes are:</p>
 
-<h2>Possible Improvements</h2>
+<ul>
+<li><em>نمی‌</em> — negated present-tense marker</li>
+<li><em>می‌</em> — present-tense marker</li>
+<li><em>نا‌</em> — negative/privative prefix</li>
+<li><em>بی‌</em> — privative prefix</li>
+</ul>
 
-<p>Currently, the stemmer relies on heuristic prefix and suffix patterns to distinguish between nouns, verbs, and adjectives. This method, while efficient and language-agnostic, can introduce conflicts.</p>
-<p>To avoid incorrect reductions, some prefixes and suffixes have been deliberately excluded where they caused frequent conflicts with valid words. While this method isn't perfect and may still miss or over-stem in rare cases, it provides a practical and lightweight solution that works well in many real-world scenarios. More accurate results could be achieved in the future by combining this approach with part-of-speech tagging or deeper morphological analysis.</p>
+<p>
+After all prefixes have been stripped, any remaining zero-width non-joiners
+(e.g. those inside compound words) are deleted.
+</p>
+
+<h2>Suffix stripping</h2>
+
+<p>
+Suffix stripping proceeds in repeated backward passes. In each pass exactly
+one suffix is removed, attempting the three tiers in order: noun, then
+adjective, then verb. The pass ends as soon as one tier makes a change;
+the loop exits when no tier can make further changes.
+</p>
+
+<h3>Noun tier</h3>
+
+<p>
+Handles irregular rewrites, derivational endings, plurals, and possessive
+clitics. The principal rules are:
+</p>
+
+<ul>
+<li>Irregular rewrites (<em>اخبار</em> → <em>خبر</em>, <em>اساتید</em> → <em>استاد</em>).</li>
+<li>Derivational endings: <em>‑گاه</em>, <em>‑بان</em>, <em>‑گی</em>, <em>‑یت</em>, <em>‑یی</em>.</li>
+<li>Plural suffixes: <em>‑یان</em>, <em>‑گان</em>, <em>‑های</em>, <em>‑انی</em>, <em>‑ها</em>, <em>‑ین</em>, <em>‑ات</em>,
+    and <em>‑ان</em> (guarded against lexical stems — see below).</li>
+<li>Possessive clitics: <em>‑ام</em>, <em>‑ات</em>, <em>‑اش</em>,
+    <em>‑مان</em>, <em>‑تان</em>, <em>‑شان</em> (guarded against lexical stems).</li>
+</ul>
+
+<h3>Adjective tier</h3>
+
+<ul>
+<li>Comparative and superlative: <em>‑ترین</em>, <em>‑تر</em>.</li>
+<li>Derivational: <em>‑انه</em>, <em>‑مند</em>, <em>‑وار</em>, <em>‑ناک</em>, <em>‑گار</em>, <em>‑ین</em>.</li>
+<li>Relative: <em>‑یی</em>.</li>
+</ul>
+
+<h3>Verb tier</h3>
+
+<ul>
+<li>Participle and auxiliary clitics: <em>‑اید</em>, <em>‑ایم</em>, <em>‑اند</em>, <em>‑است</em>, <em>‑اس</em>, <em>‑ای</em>, <em>‑ید</em>, <em>‑یم</em>.</li>
+<li>Person/number endings, gated on a seen present-prefix or infinitive/participle cue:
+    <em>‑اند</em>, <em>‑ید</em>, <em>‑یم</em>, <em>‑ام</em>, <em>‑د</em>, <em>‑م</em>; plus specific past-3sg rewrites for
+    <em>رفت‑</em> forms.</li>
+<li>Tense/mood markers:
+    <ul>
+    <li>Agent-noun suffix <em>‑نده</em> stripped to present root (e.g. <em>نویسنده</em> → <em>نویس</em>).</li>
+    <li>Past-participle <em>‑ه</em> stripped only when preceded by <em>د</em> or <em>ت</em>
+        (e.g. <em>کرده</em> → <em>کرد</em>, <em>گرفته</em> → <em>گرفت</em>), to avoid
+        stripping from nouns and adjectives that end in <em>ه</em>.</li>
+    <li>Infinitive/plural <em>‑ان</em> (guarded against lexical stems).</li>
+    </ul>
+</li>
+</ul>
+
+<h2>Lexical ‑ان guard</h2>
+
+<p>
+The suffix <em>‑ان</em> is productive as a plural marker but also occurs in many
+lexical stems (place names, common nouns, proper names) that should not be
+stripped. A probe routine runs at the start of each pass and sets a flag when
+it detects a lexical ending, blocking all rules that strip <em>‑ان</em>
+or its extensions (<em>‑مان</em>, <em>‑شان</em>, <em>‑تان</em>, <em>‑یان</em>, <em>‑گان</em>).
+</p>
+
+<p>Protection is applied to:</p>
+
+<ul>
+<li>Pattern-based suffixes: words ending in <em>‑ستان</em>, <em>‑سان</em>, <em>‑ران</em>, <em>‑وان</em>.</li>
+<li>A curated word list including common place names and lexical nouns:
+    <em>ایران</em>, <em>تهران</em>, <em>آلمان</em>, <em>آسمان</em>, <em>سازمان</em>, <em>پایان</em>,
+    <em>جریان</em>, <em>میزان</em>, <em>امکان</em>, <em>زندان</em>, <em>قهرمان</em>, <em>دوران</em>,
+    <em>اصفهان</em>, <em>همدان</em>, <em>یونان</em>, <em>لبنان</em>, <em>کهکشان</em>, and others.
+    These are checked as exact whole-word matches using <code>atlimit</code>.
+</li>
+</ul>
+
+<h2>Differences from original HPS</h2>
+
+<ul>
+<li><strong>No POS tagger</strong> — The original HPS routes tokens to noun, adjective,
+    or verb rules via a POS tagger. This implementation uses a fixed heuristic
+    order (noun → adjective → verb) for portability and simplicity.</li>
+<li><strong>ZWNJ-gated prefix stripping</strong> — Prefixes are only stripped when a
+    zero-width non-joiner separates them from the stem, preventing false matches
+    on words that begin with the same syllables.</li>
+<li><strong>Conservative <em>‑ه</em> stripping</strong> — The past-participle marker
+    <em>‑ه</em> is only removed when the preceding character is <em>د</em> or <em>ت</em>,
+    preserving the large number of Persian and Arabic-origin words that
+    legitimately end in <em>ه</em>.</li>
+<li><strong>Lexical <em>‑ان</em> guard</strong> — An explicit protection mechanism prevents
+    stripping of <em>‑ان</em> and related suffixes from place names, proper nouns,
+    and common lexical stems.</li>
+<li><strong>Length guards</strong> — Minimum stem-length checks on most rules to
+    prevent damage to short words.</li>
+</ul>
 
 <h2>The full algorithm in Snowball</h2>
 
 [% highlight_file('persian') %]
 
 [% footer %]
-
