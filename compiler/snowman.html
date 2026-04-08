@@ -67,18 +67,26 @@ supported).
 
 <p>
 A name in Snowball starts with an ASCII letter, followed by zero or more ASCII
-letters, digits and underscores. A name can be of type <I>string</I>,
-<I>integer</I>, <I>boolean</I>, <I>routine</I>, <I>external</I> or
-<I>grouping</I>. All names must be declared. A declaration has the form
+letters, digits and underscores.  Names are case-sensitive (so
+<span class="highlight"><code><span class="n">a</span>
+</code></span>
+
+ and <span class="highlight"><code><span class="n">A</span>
+</code></span>
+
+ are different names).
 </p>
 
-<PRE>
-    Ts ( ... )
-</PRE>
-
 <p>
-where symbol &nbsp;<code>T</code>&nbsp; is one of &nbsp;<code>string</code>, &nbsp;<code>integer</code>&nbsp; etc, and the region in
-brackets contains a list of names separated by whitespace. For example,
+All names must be declared before being used.  A name can be of type
+<I>string</I>, <I>integer</I>, <I>boolean</I>, <I>routine</I>, <I>external</I>
+or <I>grouping</I>.  A declaration is introduced by the pluralised type name
+(so <span class="highlight"><code><span class="kr">integers</span>
+</code></span>
+
+ to declare <i>integer</i> names(s))
+followed by a list of zero or more names in parentheses, separated by
+whitespace.  For example,
 </p>
 
 <div class="highlight"><pre><span class="w">    </span><span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="p">)</span>
@@ -92,42 +100,90 @@ brackets contains a list of names separated by whitespace. For example,
 
 <span class="w">    </span><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">v_WXY</span><span class="w"> </span><span class="n">v_LSZ</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v_WXY</span><span class="w"> </span><span class="n">v_LSZ</span><span class="w"> </span><span class="p">)</span>
 </pre></div>
 
 
 <p>
-<code>p1</code>&nbsp; and &nbsp;<code>p2</code>&nbsp; are integers, &nbsp;<code>Y_found</code>&nbsp; is boolean, and so on. Snowball is quite
-strict about the declarations, so all the names go in the same name space,
-no name may be declared twice, all used names must be declared, no two
-routine definitions can have the same name, etc. Names declared and
-subsequently not used are merely reported in a warning message.</p>
-
-<p>
-A name may not be one of the reserved words of Snowball.  Additionally, names
-for externals must be valid function/method names in the language being
-generated in most cases, which generally means they can't be reserved words
-in that language (e.g. <span class="highlight"><code><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="n">null</span><span class="p">)</span>
-</code></span>
-
- will generate
-invalid Java code containing a method <code>public boolean null()</code>.)
-For internal symbols we add a prefix to avoid this issue, but an external
-has to provide an external interface.  When generating C code, the
-<code>-eprefix</code> option provides a potential solution to this problem.
+<code>p1</code>&nbsp; and &nbsp;<code>p2</code>&nbsp; are integers,
+&nbsp;<code>Y_found</code>&nbsp; is boolean, and so on.  You can have more than
+one set of declarations for a given type (like for <i>groupings</i> above).
 </p>
 
 <p>
-Names in Snowball are case-sensitive, but external names which differ only in
-case will cause a problem for languages with case-insensitive identifiers (such
-as Pascal).  This issue is avoided for internal symbols in such languages by
-encoding case difference via an added prefix.
+Snowball is quite
+strict about the declarations, so all the names go in the same name space,
+no name may be declared twice, all used names must be declared, no two
+routine definitions can have the same name, etc. Names declared and
+subsequently not used give a warning, as routines which are defined but
+never called, and variables which are set but never read.
+</p>
+
+<p>
+A name may not be one of the reserved words of Snowball (except for tokens
+added to the language since its debut - e.g. <span class="highlight"><code><span class="nb">len</span>
+</code></span>
+
+and <span class="highlight"><code><span class="ow">lenof</span>
+</code></span>
+
+ stop being recognised as tokens in a
+Snowball program which declares them as names).
+</p>
+
+<p>
+Additionally, names for externals must be valid function/method names in the
+target language being generated, which generally means they can't be reserved
+words in that language (e.g. <span class="highlight"><code><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="n">null</span><span class="p">)</span>
+</code></span>
+
+ will
+generate invalid Java code containing a method <code>public boolean
+null()</code>; C reserves external identifiers defined in the
+standard library, e.g. <span class="highlight"><code><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="n">printf</span><span class="p">)</span>
+</code></span>
+
+ will
+generate C code with undefined behaviour).
+</p>
+
+<p>
+Also some languages impose additional restrictions on identifiers (either
+generally or on external identifiers) - for example, Ada identifiers can't end
+in an underscore (e.g. <span class="highlight"><code><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="n">a_</span><span class="p">)</span>
+</code></span>
+
+ will generate
+invalid Ada code); C++ reserves identifiers containing a double underscore
+(e.g. <span class="highlight"><code><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="n">a__b</span><span class="p">)</span>
+</code></span>
+
+ will generate ill-formed C++
+code).  Also some languages (e.g. Ada and Pascal) have case-insensitive
+identifiers so external names should not only differ by case (e.g. <span class="highlight"><code><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">A</span><span class="p">)</span>
+</code></span>
+
+ will generate code with a name collision
+in Ada and Pascal).
+</p>
+
+<p>
+We "mangle" the names of internal symbols to avoid such problems (the details
+vary by target language, but typically we add a prefix to avoid collisions with
+reserved words and potentially make other adjustments to avoid particular
+restrictions of the target language).  However an external has to provide
+an external interface so mangling external names would be problematic.  When
+generating C or C++ code, the <code>-eprefix</code> option provides a potential
+solution to this problem.
 </p>
 
 <p>
 So for portability a little care is needed when choosing names for externals.
 The convention when using Snowball to implement stemming algorithms is to have
-a single external named <code>stem</code>, which should be safe.
+a single external named <code>stem</code>, which should be safe.  If you're
+using Snowball for other purposes you need to be mindful of the limitations
+noted above when choosing external names.
 </p>
 
 <h2>3 Literals</h2>
@@ -979,7 +1035,7 @@ right. But the process can be reversed.
 
     <DD><B><I>c</I></B> and <B><I>l</I></B> are swapped over, and <B><I>c</I></B> moves left towards <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; is obeyed, the
     signal given by &nbsp;<code>C</code>&nbsp; becomes the signal of &nbsp;<code>backwards C</code>, and <B><I>c</I></B> and <B><I>l</I></B> are
-    swapped back to their old values (except that <B><I>l</I></B> may have been adjusted
+    restored to their old values (except that <B><I>l</I></B> may have been adjusted
     because of deletions and insertions). &nbsp;<code>C</code>&nbsp; cannot contain another
     <span class="highlight"><code><span class="ow">backwards</span>
 </code></span>
@@ -989,8 +1045,11 @@ right. But the process can be reversed.
 <DT><span class="highlight"><code><span class="ow">reverse</span><span class="w"> </span><span class="n">C</span>
 </code></span>
 
-    <DD>A similar idea, but here <B><I>c</I></B> simply moves left instead of moving right,
-    with the beginning of the string as the limit, <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; can contain other
+    <DD>A similar idea, but here <B><I>c</I></B> simply moves in the opposite
+    direction - if used in a forwards context the cursor moves left instead of
+    right, with the beginning of the string as the limit, <B><I>l</I></B>; if
+    used in a backwards context, the cursor now moves right with the end of
+    the string as the limit.  &nbsp;<code>C</code>&nbsp; can contain other
     <span class="highlight"><code><span class="ow">reverse</span>
 </code></span>
 
