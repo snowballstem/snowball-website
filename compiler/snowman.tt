@@ -884,13 +884,16 @@ right. But the process can be reversed.
 <DT>[% highlight_inline("backwards C") %]
     <DD><B><I>c</I></B> and <B><I>l</I></B> are swapped over, and <B><I>c</I></B> moves left towards <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; is obeyed, the
     signal given by &nbsp;<code>C</code>&nbsp; becomes the signal of &nbsp;<code>backwards C</code>, and <B><I>c</I></B> and <B><I>l</I></B> are
-    swapped back to their old values (except that <B><I>l</I></B> may have been adjusted
+    restored to their old values (except that <B><I>l</I></B> may have been adjusted
     because of deletions and insertions). &nbsp;<code>C</code>&nbsp; cannot contain another
     [% highlight_inline("backwards") %] command.
 
 <DT>[% highlight_inline("reverse C") %]
-    <DD>A similar idea, but here <B><I>c</I></B> simply moves left instead of moving right,
-    with the beginning of the string as the limit, <B><I>l</I></B>. &nbsp;<code>C</code>&nbsp; can contain other
+    <DD>A similar idea, but here <B><I>c</I></B> simply moves in the opposite
+    direction - if used in a forwards context the cursor moves left instead of
+    right, with the beginning of the string as the limit, <B><I>l</I></B>; if
+    used in a backwards context, the cursor now moves right with the end of
+    the string as the limit.  &nbsp;<code>C</code>&nbsp; can contain other
     [% highlight_inline("reverse") %] commands, but it cannot contain commands to do deletions or
     insertions &#x2014; it must be used for testing only. (Without this
     restriction Snowball's semantics would become very untidy.)
