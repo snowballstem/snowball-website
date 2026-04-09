@@ -112,9 +112,11 @@ We "mangle" the names of internal symbols to avoid such problems (the details
 vary by target language, but typically we add a prefix to avoid collisions with
 reserved words and potentially make other adjustments to avoid particular
 restrictions of the target language).  However an external has to provide
-an external interface so mangling external names would be problematic.  When
-generating C or C++ code, the <code>-eprefix</code> option provides a potential
-solution to this problem.
+an external interface so mangling external names would be problematic.  The
+<code>-eprefix</code> option provides a solution to cases which can be solved
+by adding a prefix to external names, which helps for collisions with reserved
+words, but not for Ada's restriction that identifiers not end in an underscore.
+(Note: Snowball &lt; 3.1.0 only supported <code>-eprefix</code> for C.)
 </p>
 
 <p>
