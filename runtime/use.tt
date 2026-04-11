@@ -190,10 +190,14 @@ appropriate directory structure.
 <h4>Other options</h4>
 
 <p>
-If &nbsp;<code>-syntax</code>&nbsp; is used the other options are ignored, and the syntax tree
-of the Snowball program is directed to &nbsp;<code>stdout</code>. This can be a handy way
+If <code>-syntax</code> is used the other options are ignored, and the syntax
+tree of the Snowball program is written to &nbsp;<code>stdout</code>. This can be a handy way
 of checking that you have got the bracketing right in the program you have
-written.
+written.  The Snowball compiler performs some optimisations on the program as
+it builds the syntax tree (for example, constant sub-expressions are evaluated,
+no-op commands are warned about and replaced with `true`, etc - the
+<code>-syntax</code> option will show the syntax tree after such
+transformations.
 </p>
 
 <p>
