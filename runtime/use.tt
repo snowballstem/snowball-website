@@ -340,8 +340,9 @@ In the rare event that your Snowball script does not run perfectly the first tim
 <p>
 Remember that the option &nbsp;<code>-syntax</code>&nbsp; prints out the syntax tree. A question
 mark can be included in Snowball as a command, and it will generate a call
-<code>debug(...)</code>. The defined &nbsp;<code>debug</code>&nbsp; in &nbsp;<code>runtime/utilities.c</code>&nbsp; (usually
-commented out) can then be used. It causes the
+<code>debug(...)</code> and define a macro so that the <code>debug()</code>
+function is defined in the runtime header.
+It causes the
 current string to sent to &nbsp;<code>stdout</code>, with square brackets marking the
 slice and vertical bar the position of <B><I>c</I></B>. Curly brackets mark the
 end-limits of the string, which may be less than the whole string because
