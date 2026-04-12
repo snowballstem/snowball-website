@@ -1,0 +1,110 @@
+[% header('Ukrainian stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('ukrainian', 'Ukrainian', 'https://en.wikipedia.org/wiki/Ukrainian_language') %]
+</ul>
+
+<h2>Design Notes</h2>
+
+<p>
+The Ukrainian stemmer follows the general approach of the
+<a href="/algorithms/russian/stemmer.html">Russian stemmer</a>, adapted for
+Ukrainian morphology.  Ukrainian shares the Cyrillic alphabet with Russian but
+has additional letters (ґ, є, і, ї) and lacks some Russian letters (ё, ъ, ы, э).
+The apostrophe (&#x27;) plays an important orthographic role in Ukrainian,
+separating certain consonants from following soft vowels.
+</p>
+
+<h3>Regions</h3>
+
+<p>
+<b>pV</b> is defined as the region after the first vowel.  All suffix removal
+requires the suffix to be in pV, ensuring a minimum stem of at least one vowel.
+</p>
+
+<p>
+<b>R2</b> is the standard Snowball R2 region (the region after the second
+vowel-consonant sequence).  It is used to guard aggressive derivational suffix
+removal, preventing over-stemming of short words.  For example,
+<i>інформація</i> (information) stems to <i>інформ</i> because <i>-ація</i>
+falls in R2, but <i>акація</i> (acacia) only stems to <i>акаці</i> because
+<i>-ація</i> does not fall in R2 for this shorter word.
+</p>
+
+<h3>Suffix removal order</h3>
+
+<p>
+Suffixes are removed in this order:
+</p>
+
+<ol>
+<li>Perfective gerund (<i>-вши</i>, <i>-вшись</i>)</li>
+<li>Reflexive (<i>-ся</i>, <i>-сь</i>)</li>
+<li>Verbal noun (<i>-ання</i>, <i>-іння</i>, <i>-ення</i>)</li>
+<li>Professional (<i>-ельник</i>, <i>-ник</i>, <i>-ар</i>, etc.) or
+    Diminutive (<i>-очок</i>, <i>-ечок</i>, <i>-ик</i>, etc.)</li>
+<li>Adjective, verb, or noun endings</li>
+<li>Diminutive stem cleanup</li>
+<li>Professional suffixes (second pass)</li>
+<li>Derivational suffixes in R2</li>
+<li>Tidy-up (soft sign removal, superlative <i>-іш</i>, double <i>н</i>)</li>
+</ol>
+
+<h3>Professional before diminutive</h3>
+
+<p>
+Professional suffixes like <i>-ельник</i> are tried before diminutive suffixes
+like <i>-ик</i>.  Without this ordering, <i>будівельник</i> (builder) would
+match diminutive <i>-ик</i> first, giving stem <i>будівельн</i>.  With
+professional tried first, <i>-ельник</i> matches and gives <i>будів</i>,
+correctly grouping it with <i>будівництво</i> (construction) and
+<i>будівля</i> (building).
+</p>
+
+<h3>Compound derivational+inflectional suffixes</h3>
+
+<p>
+Rather than removing derivational and inflectional suffixes in separate passes
+(which can fail when an intermediate form matches another suffix group), we
+remove common compound patterns in a single step.  For example,
+<i>інформаційний</i> has compound suffix <i>-аційний</i> (derivational
+<i>-ацій</i> + inflectional <i>-ний</i>) which is removed as one unit to give
+stem <i>інформ</i>.  The compound patterns handled are:
+</p>
+
+<ul>
+<li><i>-аційн-</i> (інформаційний &rarr; інформ)</li>
+<li><i>-ічн-</i> / <i>-ичн-</i> (лінгвістичний &rarr; лінгвіст)</li>
+<li><i>-ійн-</i> (комерційний &rarr; комерц, традиційний &rarr; традиц)</li>
+<li><i>-уальн-</i> (інтелектуальний &rarr; інтелект)</li>
+<li><i>-онн-</i> (електронний &rarr; електр)</li>
+</ul>
+
+<p>
+These compound patterns are only removed in R2 to prevent over-stemming.
+</p>
+
+<h3>Apostrophe handling</h3>
+
+<p>
+The Ukrainian apostrophe separates consonants from softened vowels
+(e.g. <i>солов'ятко</i> &mdash; little nightingale).  The stemmer treats
+apostrophes as ordinary characters and does not remove them; tokenization
+or normalization before stemming should handle apostrophe variants if needed.
+</p>
+
+<h3>Superlative prefix</h3>
+
+<p>
+The superlative prefix <i>най-</i> is removed before suffix processing,
+so <i>найновіший</i> (newest) stems to <i>нов</i> via prefix removal +
+comparative <i>-іш</i> removal + adjective <i>-ий</i> removal.
+</p>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('ukrainian') %]
+
+[% footer %]
