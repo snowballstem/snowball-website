@@ -24,11 +24,11 @@ Before prefix stripping, tokens are normalized to a canonical Persian script:
 
 <ul>
 <li>Arabic letter variants are mapped to their Persian equivalents:
-    <em>ك</em> → <em>ک</em>,
-    <em>ي / ئ</em> → <em>ی</em>,
-    <em>ة / ۀ</em> → <em>ه</em>,
-    <em>أ / إ</em> → <em>ا</em>,
-    <em>ؤ</em> → <em>و</em>.
+    Arabic <em>kaf</em> (U+0643) &rarr; Persian <em>kaf</em> (U+06A9),
+    Arabic <em>ye</em> (U+064A) / <em>ye with hamza</em> (U+0626) &rarr; Persian <em>ye</em> (U+06CC),
+    Arabic <em>te marbuta</em> (U+0629) / <em>heh with hamza</em> (U+06C1) &rarr; Persian <em>heh</em> (U+0647),
+    Arabic <em>alef with hamza above</em> (U+0623) / <em>alef with hamza below</em> (U+0625) &rarr; Persian <em>alef</em> (U+0627),
+    Arabic <em>vav with hamza</em> (U+0624) &rarr; Persian <em>vav</em> (U+0648).
 </li>
 <li>Zero-width joiners (U+200D) and ASCII spaces are deleted.</li>
 <li>Zero-width non-joiners (U+200C, known in Persian as <em>nim-faseleh</em> or
@@ -41,8 +41,8 @@ Before prefix stripping, tokens are normalized to a canonical Persian script:
 <p>
 The algorithm strips one anchored prefix per pass. To avoid false matches on
 words that happen to begin with the same syllables but are not prefixed forms
-(e.g. <em>بیرون</em> "outside", <em>بیشتر</em> "more", <em>میلادی</em> "AD/CE",
-<em>میان</em> "among"), a zero-width non-joiner must be present between the
+(e.g. <em>birun</em> "outside", <em>bishtar</em> "more", <em>miladi</em> "AD/CE",
+<em>miyan</em> "among"), a zero-width non-joiner must be present between the
 prefix and the stem. In formal Persian orthography these prefixes are written
 with a half-space before the stem, so this requirement is natural.
 </p>
@@ -50,8 +50,8 @@ with a half-space before the stem, so this requirement is natural.
 <p>The recognised prefixes are:</p>
 
 <ul>
-<li><em>می‌</em> — present-tense marker</li>
-<li><em>بی‌</em> — privative prefix</li>
+<li><em>nemi-</em> &mdash; negated present-tense marker</li>
+<li><em>mi-</em> &mdash; present-tense marker</li>
 </ul>
 
 <p>
@@ -76,58 +76,58 @@ clitics. The principal rules are:
 </p>
 
 <ul>
-<li>Irregular rewrites (<em>اخبار</em> → <em>خبر</em>, <em>اساتید</em> → <em>استاد</em>).</li>
-<li>Derivational endings: <em>‑گاه</em>, <em>‑بان</em>, <em>‑گی</em>, <em>‑یت</em>, <em>‑یی</em>.</li>
-<li>Plural suffixes: <em>‑یان</em>, <em>‑گان</em>, <em>‑های</em>, <em>‑انی</em>, <em>‑ها</em>, <em>‑ین</em>, <em>‑ات</em>,
-    and <em>‑ان</em> (guarded against lexical stems — see below).</li>
-<li>Possessive clitics: <em>‑ام</em>, <em>‑ات</em>, <em>‑اش</em>,
-    <em>‑مان</em>, <em>‑تان</em>, <em>‑شان</em> (guarded against lexical stems).</li>
+<li>Irregular rewrites (<em>akhbar</em> &rarr; <em>khabar</em>, <em>asatid</em> &rarr; <em>ostad</em>).</li>
+<li>Derivational endings: <em>-gah</em>, <em>-ban</em>, <em>-gi</em>, <em>-yat</em>, <em>-yi</em>.</li>
+<li>Plural suffixes: <em>-yan</em>, <em>-gan</em>, <em>-hay</em>, <em>-ani</em>, <em>-ha</em>, <em>-in</em>, <em>-at</em>,
+    and <em>-an</em> (guarded against lexical stems &mdash; see below).</li>
+<li>Possessive clitics: <em>-am</em>, <em>-at</em>, <em>-ash</em>,
+    <em>-man</em>, <em>-tan</em>, <em>-shan</em> (guarded against lexical stems).</li>
 </ul>
 
 <h3>Adjective tier</h3>
 
 <ul>
-<li>Comparative and superlative: <em>‑ترین</em>, <em>‑تر</em>.</li>
-<li>Derivational: <em>‑انه</em>, <em>‑مند</em>, <em>‑وار</em>, <em>‑ناک</em>, <em>‑گار</em>, <em>‑ین</em>.</li>
-<li>Relative: <em>‑یی</em>.</li>
+<li>Comparative and superlative: <em>-tarin</em>, <em>-tar</em>.</li>
+<li>Derivational: <em>-ane</em>, <em>-mand</em>, <em>-var</em>, <em>-nak</em>, <em>-gar</em>, <em>-in</em>.</li>
+<li>Relative: <em>-yi</em>.</li>
 </ul>
 
 <h3>Verb tier</h3>
 
 <ul>
-<li>Participle and auxiliary clitics: <em>‑اید</em>, <em>‑ایم</em>, <em>‑اند</em>, <em>‑است</em>, <em>‑اس</em>, <em>‑ای</em>, <em>‑ید</em>, <em>‑یم</em>.</li>
+<li>Participle and auxiliary clitics: <em>-aid</em>, <em>-aim</em>, <em>-and</em>, <em>-ast</em>, <em>-as</em>, <em>-ai</em>, <em>-id</em>, <em>-im</em>.</li>
 <li>Person/number endings, gated on a seen present-prefix or infinitive/participle cue:
-    <em>‑اند</em>, <em>‑ید</em>, <em>‑یم</em>, <em>‑ام</em>, <em>‑د</em>, <em>‑م</em>; plus specific past-3sg rewrites for
-    <em>رفت‑</em> forms.</li>
+    <em>-and</em>, <em>-id</em>, <em>-im</em>, <em>-am</em>, <em>-d</em>, <em>-m</em>; plus specific past-3sg rewrites for
+    <em>raft-</em> forms.</li>
 <li>Tense/mood markers:
     <ul>
-    <li>Agent-noun suffix <em>‑نده</em> stripped to present root (e.g. <em>نویسنده</em> → <em>نویس</em>).</li>
-    <li>Past-participle <em>‑ه</em> stripped only when preceded by <em>د</em> or <em>ت</em>
-        (e.g. <em>کرده</em> → <em>کرد</em>, <em>گرفته</em> → <em>گرفت</em>), to avoid
-        stripping from nouns and adjectives that end in <em>ه</em>.</li>
-    <li>Infinitive/plural <em>‑ان</em> (guarded against lexical stems).</li>
+    <li>Agent-noun suffix <em>-ndeh</em> stripped to present root (e.g. <em>nevisandeh</em> &rarr; <em>nevis</em>).</li>
+    <li>Past-participle <em>-eh</em> stripped only when preceded by <em>d</em> or <em>t</em>
+        (e.g. <em>kardeh</em> &rarr; <em>kard</em>, <em>gerefteh</em> &rarr; <em>gereft</em>), to avoid
+        stripping from nouns and adjectives that end in <em>heh</em>.</li>
+    <li>Infinitive/plural <em>-an</em> (guarded against lexical stems).</li>
     </ul>
 </li>
 </ul>
 
-<h2>Lexical ‑ان guard</h2>
+<h2>Lexical -an guard</h2>
 
 <p>
-The suffix <em>‑ان</em> is productive as a plural marker but also occurs in many
+The suffix <em>-an</em> is productive as a plural marker but also occurs in many
 lexical stems (place names, common nouns, proper names) that should not be
 stripped. A probe routine runs at the start of each pass and sets a flag when
-it detects a lexical ending, blocking all rules that strip <em>‑ان</em>
-or its extensions (<em>‑مان</em>, <em>‑شان</em>, <em>‑تان</em>, <em>‑یان</em>, <em>‑گان</em>).
+it detects a lexical ending, blocking all rules that strip <em>-an</em>
+or its extensions (<em>-man</em>, <em>-shan</em>, <em>-tan</em>, <em>-yan</em>, <em>-gan</em>).
 </p>
 
 <p>Protection is applied to:</p>
 
 <ul>
-<li>Pattern-based suffixes: words ending in <em>‑ستان</em>, <em>‑سان</em>, <em>‑ران</em>, <em>‑وان</em>.</li>
+<li>Pattern-based suffixes: words ending in <em>-stan</em>, <em>-san</em>, <em>-ran</em>, <em>-van</em>.</li>
 <li>A curated word list including common place names and lexical nouns:
-    <em>ایران</em>, <em>تهران</em>, <em>آلمان</em>, <em>آسمان</em>, <em>سازمان</em>, <em>پایان</em>,
-    <em>جریان</em>, <em>میزان</em>, <em>امکان</em>, <em>زندان</em>, <em>قهرمان</em>, <em>دوران</em>,
-    <em>اصفهان</em>, <em>همدان</em>, <em>یونان</em>, <em>لبنان</em>, <em>کهکشان</em>, and others.
+    <em>iran</em>, <em>tehran</em>, <em>alman</em>, <em>asman</em>, <em>sazman</em>, <em>payan</em>,
+    <em>jaryan</em>, <em>mizan</em>, <em>emkan</em>, <em>zendan</em>, <em>ghahraman</em>, <em>doran</em>,
+    <em>esfahan</em>, <em>hamedan</em>, <em>yunan</em>, <em>lobnan</em>, <em>kahkeshan</em>, and others.
     These are checked as exact whole-word matches using <code>atlimit</code>.
 </li>
 </ul>
@@ -135,20 +135,20 @@ or its extensions (<em>‑مان</em>, <em>‑شان</em>, <em>‑تان</em>, <
 <h2>Differences from original HPS</h2>
 
 <ul>
-<li><strong>No POS tagger</strong> — The original HPS routes tokens to noun, adjective,
+<li><strong>No POS tagger</strong> &mdash; The original HPS routes tokens to noun, adjective,
     or verb rules via a POS tagger. This implementation uses a fixed heuristic
-    order (noun → adjective → verb) for portability and simplicity.</li>
-<li><strong>ZWNJ-gated prefix stripping</strong> — Prefixes are only stripped when a
+    order (noun &rarr; adjective &rarr; verb) for portability and simplicity.</li>
+<li><strong>ZWNJ-gated prefix stripping</strong> &mdash; Prefixes are only stripped when a
     zero-width non-joiner separates them from the stem, preventing false matches
     on words that begin with the same syllables.</li>
-<li><strong>Conservative <em>‑ه</em> stripping</strong> — The past-participle marker
-    <em>‑ه</em> is only removed when the preceding character is <em>د</em> or <em>ت</em>,
+<li><strong>Conservative <em>-eh</em> stripping</strong> &mdash; The past-participle marker
+    <em>-eh</em> is only removed when the preceding character is <em>d</em> or <em>t</em>,
     preserving the large number of Persian and Arabic-origin words that
-    legitimately end in <em>ه</em>.</li>
-<li><strong>Lexical <em>‑ان</em> guard</strong> — An explicit protection mechanism prevents
-    stripping of <em>‑ان</em> and related suffixes from place names, proper nouns,
+    legitimately end in <em>heh</em>.</li>
+<li><strong>Lexical <em>-an</em> guard</strong> &mdash; An explicit protection mechanism prevents
+    stripping of <em>-an</em> and related suffixes from place names, proper nouns,
     and common lexical stems.</li>
-<li><strong>Length guards</strong> — Minimum stem-length checks on most rules to
+<li><strong>Length guards</strong> &mdash; Minimum stem-length checks on most rules to
     prevent damage to short words.</li>
 </ul>
 
