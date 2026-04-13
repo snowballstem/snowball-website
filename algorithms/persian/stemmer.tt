@@ -24,17 +24,22 @@ Before prefix stripping, tokens are normalized to a canonical Persian script:
 
 <ul>
 <li>Arabic letter variants are mapped to their Persian equivalents:
-    Arabic <em>kaf</em> (U+0643) &rarr; Persian <em>kaf</em> (U+06A9),
-    Arabic <em>ye</em> (U+064A) / <em>ye with hamza</em> (U+0626) &rarr; Persian <em>ye</em> (U+06CC),
-    Arabic <em>te marbuta</em> (U+0629) / <em>heh with hamza</em> (U+06C1) &rarr; Persian <em>heh</em> (U+0647),
-    Arabic <em>alef with hamza above</em> (U+0623) / <em>alef with hamza below</em> (U+0625) &rarr; Persian <em>alef</em> (U+0627),
-    Arabic <em>vav with hamza</em> (U+0624) &rarr; Persian <em>vav</em> (U+0648).
+  <ul>
+  <li>Arabic <em>kaf</em> (U+0643) &rarr; Persian <em>kaf</em> (U+06A9),</li>
+  <li>Arabic <em>ye</em> (U+064A) / <em>ye with hamza</em> (U+0626) &rarr; Persian <em>ye</em> (U+06CC),</li>
+  <li>Arabic <em>te marbuta</em> (U+0629) / <em>heh with hamza</em> (U+06C1) &rarr; Persian <em>heh</em> (U+0647),</li>
+  <li>Arabic <em>alef with hamza above</em> (U+0623) / <em>alef with hamza below</em> (U+0625) &rarr; Persian <em>alef</em> (U+0627),</li>
+  <li>Arabic <em>vav with hamza</em> (U+0624) &rarr; Persian <em>vav</em> (U+0648).</li>
+  </ul>
 </li>
 <li>Zero-width joiners (U+200D) and ASCII spaces are deleted.</li>
-<li>Zero-width non-joiners (U+200C, known in Persian as <em>nim-faseleh</em> or
-    half-space) are <strong>preserved</strong> at this stage and used as
-    prefix&#8209;stem separators in the next phase, then deleted afterwards.</li>
 </ul>
+
+<p>
+Note: Zero-width non-joiners (U+200C, known in Persian as <em>nim-faseleh</em>
+or half-space) are <strong>preserved</strong> at this stage and used as
+prefix&#8209;stem separators in the next phase, then deleted afterwards.
+</p>
 
 <h2>Prefix stripping</h2>
 
