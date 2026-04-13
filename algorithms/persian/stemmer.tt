@@ -141,18 +141,16 @@ The suffix <em>-an</em> is productive as a plural marker but also occurs in many
 lexical stems (place names, common nouns, proper names) that should not be
 stripped. A probe routine runs at the start of each pass and sets a flag when
 it detects a lexical ending, blocking all rules that strip <em>-an</em>
-or its extensions (<em>-man</em>, <em>-shan</em>, <em>-tan</em>, <em>-yan</em>, <em>-gan</em>).
+or its extensions (<em>-yan</em>, <em>-gan</em>, <em>-ban</em>).
 </p>
 
 <p>Protection is applied to:</p>
 
 <ul>
 <li>Pattern-based suffixes: words ending in <em>-stan</em>, <em>-san</em>, <em>-ran</em>, <em>-van</em>.</li>
-<li>A curated word list including common place names and lexical nouns:
-    <em>iran</em>, <em>tehran</em>, <em>alman</em>, <em>asman</em>, <em>sazman</em>, <em>payan</em>,
-    <em>jaryan</em>, <em>mizan</em>, <em>emkan</em>, <em>zendan</em>, <em>ghahraman</em>, <em>doran</em>,
-    <em>esfahan</em>, <em>hamedan</em>, <em>yunan</em>, <em>lobnan</em>, <em>kahkeshan</em>, and others.
-    These are checked as exact whole-word matches using <code>atlimit</code>.
+<li>A curated word list including common place names and lexical nouns: see
+    the <code>AN_Exception</code> routine for the full list.  These are checked
+    as exact whole-word matches using <code>atlimit</code>.
 </li>
 </ul>
 
