@@ -32,7 +32,9 @@ Before prefix stripping, tokens are normalized to a canonical Persian script:
   <li>Arabic <em>vav with hamza</em> (U+0624) &rarr; Persian <em>vav</em> (U+0648).</li>
   </ul>
 </li>
-<li>Zero-width joiners (U+200D) and ASCII spaces are deleted.</li>
+<li>Zero-width joiners (U+200D) and ASCII spaces are deleted (typically text
+will be split into words at ASCII space so it won't appear in input to the
+stemmer, but it is cheap to handle).</li>
 </ul>
 
 <p>
