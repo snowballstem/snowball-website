@@ -3,7 +3,8 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('persian', 'Persian') %]
+[% algorithm_lis('persian', 'Persian', 'https://en.wikipedia.org/wiki/Persian_language') %]
+<li> <a href="https://airccse.org/journal/ijnlc/papers/3114ijnlc02.pdf">"HPS: A Hierarchical Persian Stemming Method", Ayshe Rashidi and Mina Zolfy Lighvan</a>
 </ul>
 
 <p>
