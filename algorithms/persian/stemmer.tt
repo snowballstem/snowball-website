@@ -84,12 +84,23 @@ clitics. The principal noun rules are:
 
 <ul>
 <li>Irregular rewrites (<em>akhbar</em> &rarr; <em>khabar</em>, <em>asatid</em> &rarr; <em>ostad</em>).</li>
+<li>Possessive clitics: <em>-am</em>, <em>-at</em>, <em>-ash</em> (guarded against lexical stems).</li>
+<li>Plural suffixes: <em>-yan</em>, <em>-gan</em>, <em>-hay</em>, <em>-ani</em>, <em>-ha</em>, <em>-at</em>, <em>-an</em>, <em>-in</em> (guarded against lexical stems &mdash; see below).</li>
 <li>Derivational endings: <em>-gah</em>, <em>-ban</em>, <em>-gi</em>, <em>-yat</em>, <em>-yi</em>.</li>
-<li>Plural suffixes: <em>-yan</em>, <em>-gan</em>, <em>-hay</em>, <em>-ani</em>, <em>-ha</em>, <em>-in</em>, <em>-at</em>,
-    and <em>-an</em> (guarded against lexical stems &mdash; see below).</li>
-<li>Possessive clitics: <em>-am</em>, <em>-at</em>, <em>-ash</em>,
-    <em>-man</em>, <em>-tan</em>, <em>-shan</em> (guarded against lexical stems).</li>
 </ul>
+
+<p>
+Note: <em>-at</em> can be a possessive suffix or a plural suffix - in both
+cases we want to delete it so we don't need to resolve which it is.
+</p>
+
+<p>
+Note: Possessive clitics <em>-man</em>, <em>-tan</em>, <em>-shan</em> are not
+handled - these three-character suffixes are ambiguous with plurals of nouns
+whose root ends in the same letter.  Without a lexicon we cannot distinguish
+the two cases. The <em>-an</em> rule handles both at the cost of missing
+possessive stripping.
+</p>
 
 <p>The adjective rules are:</p>
 
@@ -100,7 +111,9 @@ clitics. The principal noun rules are:
 </ul>
 
 <p>
-Note: The suffix <em>-in</em> is both a Noun and an Adjective suffix.
+Note: The suffixes <em>-in</em> and <em>-yi</em> can both be a noun or an
+adjective suffix.  We want to delete these suffixes so we don't need to resolve
+which they are.
 </p>
 
 <h3>Verb tier</h3>
@@ -110,13 +123,13 @@ Note: The suffix <em>-in</em> is both a Noun and an Adjective suffix.
 <li>Person/number endings, gated on a seen present-prefix or infinitive/participle cue:
     <em>-and</em>, <em>-id</em>, <em>-im</em>, <em>-am</em>, <em>-d</em>, <em>-m</em>; plus specific past-3sg rewrites for
     <em>raft-</em> forms.</li>
-<li>Tense/mood markers:
+<li>Mood/tense markers:
     <ul>
     <li>Agent-noun suffix <em>-ndeh</em> stripped to present root (e.g. <em>nevisandeh</em> &rarr; <em>nevis</em>).</li>
+    <li>Infinitive/plural <em>-an</em> (guarded against lexical stems).</li>
     <li>Past-participle <em>-eh</em> stripped only when preceded by <em>d</em> or <em>t</em>
         (e.g. <em>kardeh</em> &rarr; <em>kard</em>, <em>gerefteh</em> &rarr; <em>gereft</em>), to avoid
         stripping from nouns and adjectives that end in <em>heh</em>.</li>
-    <li>Infinitive/plural <em>-an</em> (guarded against lexical stems).</li>
     </ul>
 </li>
 </ul>
