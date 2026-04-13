@@ -68,16 +68,16 @@ After all prefixes have been stripped, any remaining zero-width non-joiners
 
 <p>
 Suffix stripping proceeds in repeated backward passes. In each pass exactly
-one suffix is removed, attempting the three tiers in order: noun, then
-adjective, then verb. The pass ends as soon as one tier makes a change;
-the loop exits when no tier can make further changes.
+one suffix is removed, first trying noun and adjective suffixes, then verb
+suffixes.  Each pass ends as soon as a suffix is removed, and the loop exits
+when no further suffixes can be removed.
 </p>
 
-<h3>Noun tier</h3>
+<h3>Noun and adjective tier</h3>
 
 <p>
 Handles irregular rewrites, derivational endings, plurals, and possessive
-clitics. The principal rules are:
+clitics. The principal noun rules are:
 </p>
 
 <ul>
@@ -89,13 +89,17 @@ clitics. The principal rules are:
     <em>-man</em>, <em>-tan</em>, <em>-shan</em> (guarded against lexical stems).</li>
 </ul>
 
-<h3>Adjective tier</h3>
+<p>The adjective rules are:</p>
 
 <ul>
 <li>Comparative and superlative: <em>-tarin</em>, <em>-tar</em>.</li>
 <li>Derivational: <em>-ane</em>, <em>-mand</em>, <em>-var</em>, <em>-nak</em>, <em>-gar</em>, <em>-in</em>.</li>
 <li>Relative: <em>-yi</em>.</li>
 </ul>
+
+<p>
+Note: The suffix <em>-in</em> is both a Noun and an Adjective suffix.
+</p>
 
 <h3>Verb tier</h3>
 
@@ -142,7 +146,7 @@ or its extensions (<em>-man</em>, <em>-shan</em>, <em>-tan</em>, <em>-yan</em>, 
 <ul>
 <li><strong>No POS tagger</strong> &mdash; The original HPS routes tokens to noun, adjective,
     or verb rules via a POS tagger. This implementation uses a fixed heuristic
-    order (noun &rarr; adjective &rarr; verb) for portability and simplicity.</li>
+    order (noun/adjective, then verb) for portability and simplicity.</li>
 <li><strong>ZWNJ-gated prefix stripping</strong> &mdash; Prefixes are only stripped when a
     zero-width non-joiner separates them from the stem, preventing false matches
     on words that begin with the same syllables.</li>
