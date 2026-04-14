@@ -104,7 +104,7 @@ clitics. The principal noun rules are:
 <li>Irregular rewrites (<em>akhbar</em> &rarr; <em>khabar</em>, <em>asatid</em> &rarr; <em>ostad</em>).</li>
 <li>Possessive clitics: <em>-am</em>, <em>-at</em>, <em>-ash</em> (guarded against lexical stems).</li>
 <li>Plural suffixes: <em>-yan</em>, <em>-gan</em>, <em>-hay</em>, <em>-ani</em>, <em>-ha</em>, <em>-at</em>, <em>-an</em>, <em>-in</em> (guarded against lexical stems &mdash; see below).</li>
-<li>Derivational endings: <em>-gah</em>, <em>-ban</em>, <em>-gi</em>, <em>-yat</em>, <em>-yi</em>.</li>
+<li>Derivational endings: <em>-gah</em>, <em>-ban</em>, <em>-gi</em>, <em>-yat</em>, <em>-yy</em>.</li>
 </ul>
 
 <p>
@@ -125,11 +125,11 @@ possessive stripping.
 <ul>
 <li>Comparative and superlative: <em>-tarin</em>, <em>-tar</em>.</li>
 <li>Derivational: <em>-ane</em>, <em>-mand</em>, <em>-var</em>, <em>-nak</em>, <em>-gar</em>, <em>-in</em>.</li>
-<li>Relative: <em>-yi</em>.</li>
+<li>Relative: <em>-yy</em>.</li>
 </ul>
 
 <p>
-Note: The suffixes <em>-in</em> and <em>-yi</em> can both be a noun or an
+Note: The suffixes <em>-in</em> and <em>-yy</em> can both be a noun or an
 adjective suffix.  We want to delete these suffixes so we don't need to resolve
 which they are.
 </p>
