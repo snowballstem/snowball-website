@@ -253,17 +253,6 @@ appropriate directory structure.
 <h4>Other options</h4>
 
 <p>
-If <code>-syntax</code> is used the other options are ignored, and the syntax
-tree of the Snowball program is written to &nbsp;<code>stdout</code>. This can be a handy way
-of checking that you have got the bracketing right in the program you have
-written.  The Snowball compiler performs some optimisations on the program as
-it builds the syntax tree (for example, constant sub-expressions are evaluated,
-no-op commands are warned about and replaced with `true`, etc - the
-<code>-syntax</code> option will show the syntax tree after such
-transformations.
-</p>
-
-<p>
 Any number of &nbsp;<code>-include</code>&nbsp; options may be present, for example,
 </p>
 
@@ -393,30 +382,152 @@ script (usually the language the script is for).
 <h2>Debugging snowball scripts</h2>
 
 <p>
-In the rare event that your Snowball script does not run perfectly the first time:
+The Snowball compiler provides some options to support developing and debugging
+Snowball programs.
+</p>
+
+<h3>Compiler warnings</h3>
+
+<p>
+We aim to have the Snowball compiler issue a warning for code that's likely to be
+wrong.  For example, it will warn about many cases where code can't be reached
+or a command has no effect.  If you encounter a situation where the compiler
+could have usefully warned but didn't, please report it.
+</p>
+
+<h3>Debug command</h3>
+
+<p>
+Snowball has a debug command, which is a question mark (<code>?</code>).
+This generates a calll to a <code>debug(...)</code> helper function in the
+target language.  Currently this is implemented for C/C++ and (since Snowball
+3.1.0) for Ada.  It writes the current string to <code>stdout</code>, annotated
+to show the positions of the cursor, limits, and slice ends (<code>|</code>
+marks the cursor <B><I>c</I></B>, curly brackets (<code>{</code> and
+<code>}</code>) mark the limits, and square brackets (<code>[</code> and
+<code>]</code>) mark the slice ends.  The limits may be less than the whole
+string because of the action of <code>setlimit</code>.
 </p>
 
 <p>
-Remember that the option &nbsp;<code>-syntax</code>&nbsp; prints out the syntax tree. A question
-mark can be included in Snowball as a command, and it will generate a call
-<code>debug(...)</code> and define a macro so that the <code>debug()</code>
-function is defined in the runtime header.
-It causes the
-current string to sent to &nbsp;<code>stdout</code>, with square brackets marking the
-slice and vertical bar the position of <B><I>c</I></B>. Curly brackets mark the
-end-limits of the string, which may be less than the whole string because
-of the action of &nbsp;<code>setlimit</code>.
+At present there is no way of reporting the value of integer, boolean or string
+variables.  If desperate, you can put debugging lines into the generated code.
+Passing <code>-comments</code> makes it easier to find where to add such debugging
+code (see the next section).
+</p>
+
+<h3>Comments</h3>
+
+<p>
+You can pass <code>-comments</code> to the Snowball compiler to get it to
+generate comments showing the correspondence with the Snowball source.  This
+is mainly useful when developing or debugging code generators.
 </p>
 
 <p>
-At present there is no way of reporting the value of an integer or boolean.
+The comments report commands as they exist in the syntax tree after some
+optimisations.  Reported line numbers should be correct, but sometimes the
+command reported can be different to that in the source code (for example,
+<code>atleast 0 C</code> is rewritten as <code>repeat C</code>, while
+<code>$x /= -1</code> is rewritten as <code>$x *= -1</code> - the generated
+comments for these cases will say "repeat" and "*=" respectively).
+</p>
+
+<h3>Syntax tree</h3>
+
+<p>
+If command-line option <code>-syntax</code> is used then instead of generating
+code the compiler writes out the syntax tree to <code>stdout</code>.  This can
+be a handy way of checking that you have got the bracketing right in the
+program you have written.
 </p>
 
 <p>
-If desperate, you can put debugging lines into the generated C program.
-You can pass <code>-comments</code> to the snowball compiler to get it to
-generate comments showing the correspondence with the Snowball source which
-makes it easier to find where to add such debugging code.
+The Snowball compiler performs some optimisations on the program as
+it builds the syntax tree (for example, constant sub-expressions are evaluated,
+no-op commands are warned about and replaced with <code>true</code>, etc - the
+syntax tree is shown after such transformations.
+</p>
+
+<h3>Coverage</h3>
+
+<p>
+Snowball 3.1.0 added a simple code coverage feature (currently only supported
+for C/C++).  This allow generating extra code to allow the runtime to report
+which <code>among</code> cases and which <code>grouping</code> characters are
+actually exercised.  This can help find situations where a case is impossible
+to trigger because the words it's mean to handle get dealt with by an earlier
+step.  It can also find gaps in the test vocabulary - often adding a handful
+of words can complete the <code>among</code> coverage.
+</p>
+
+<p>
+To use this feature, you need to enable it when generating the code and
+when building it:
+</p>
+
+<div class="highlight"><pre>make<span class="w"> </span>-s<span class="w"> </span><span class="nv">SNOWBALL_FLAGS</span><span class="o">=</span>-coverage<span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-DSNOWBALL_COVERAGE
+</pre></div>
+
+<p>
+Then stemming a word will log coverage data to <code>stderr</code>, and you
+can turn that into a coverage report using <code>sort</code> and
+<code>uniq</code> (some of these options may be specific to GNU sort):
+</p>
+
+<div class="highlight"><pre>check_utf8_swedish<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>coverage.log
+sort<span class="w"> </span>-k2,2<span class="w"> </span>-k3,3n<span class="w"> </span>-k3,3<span class="w"> </span>-k5,5g<span class="w"> </span>coverage.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span>&gt;<span class="w"> </span>coverage.report
+</pre></div>
+
+<p>
+The file <code>coverage.report</code> looks like this for an among:
+</p>
+
+<pre>
+  24402 algorithms/danish.sbl:59: among 1 no match
+     32 algorithms/danish.sbl:60: among 1 : 0 of 4 string 'gd'
+    316 algorithms/danish.sbl:61: among 1 : 1 of 4 string 'dt'
+    536 algorithms/danish.sbl:61: among 1 : 2 of 4 string 'gt'
+     48 algorithms/danish.sbl:61: among 1 : 3 of 4 string 'kt'
+</pre>
+
+<p>
+The columns are:
+</p>
+
+<ol>
+<li> the number of times this case/character triggered
+<li> the filename and line number
+<li> <em>among</em> or <em>grouping</em>
+<li> 0-base count of which among this is or name of this grouping
+<li>
+  <ul>
+    <li> "no match" for how many times none of the cases/characters matched, or
+    <li> ": M of N string 'S'" for an among case, or
+    <li> "index M of N 'C'" for a grouping character
+  </ul>
+</ol>
+
+<p>
+Note that the indices are 0-based, so in the example above are "0 of 4" to "3
+of 4" (there's no "4 of 4").
+</p>
+
+<p>
+Cases/characters which never match are not in the report - check for gaps in
+the numbering to find them.  Among strings are reported in the same order as
+they appear in the source code, so you can use the strings either side of a
+gap to locate the untriggered string in the source code.
+</p>
+
+<p>
+The coverage feature could definitely be slicker to use, but it's already at
+a state where it seemed useful to include in releases.
+</p>
+
+<p>
+It would also be useful to report coverage for every command, not just among
+cases and grouping characters.
 </p>
 
 <h2>Compiler bugs</h2>
