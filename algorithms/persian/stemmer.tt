@@ -16,6 +16,24 @@ This is a rule-based stemming algorithm for the Persian language, based on the
     Ayshe Rashidi and Mina Zolfy Lighvan (2014). HPS: A Hierarchical Persian Stemming Method.
 </blockquote>
 
+<h2>Minimum stem length</h2>
+
+<p>
+To reduce overstemming, prefixes and suffixes are only removed if the remaining
+stem is at least a minimum length.  For prefix removal this is two characters,
+while for suffix removal it's usually three characters.
+</p>
+
+<p>
+We investigated a syllable-based R1 measure (like most of the other Snowball
+stemmers use) but concluded this was hard to implement for Persian.  The core
+issue is that written Persian routinely omits short vowels (a, e, o), so a
+large portion of common stems contain no visible vowel letters at all.  For
+these we'd have to fall back to a character count anyway.  On top of that, the
+letters <i>vav</i> and <i>ye</i> are ambiguous — they can be consonants (/v/
+and /y/) depending on position.
+</p>
+
 <h2>Normalization</h2>
 
 <p>
