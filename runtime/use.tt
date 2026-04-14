@@ -412,7 +412,7 @@ when building it:
 </p>
 
 [% highlight('
-make -s SNOWBALL_FLAGS=-coverage CPPFLAGS=-DSNOWBALL_COVERAGE
+make SNOWBALL_FLAGS=-coverage CPPFLAGS=-DSNOWBALL_COVERAGE
 ', 'sh') %]
 
 <p>
@@ -422,7 +422,7 @@ can turn that into a coverage report using <code>sort</code> and
 </p>
 
 [% highlight('
-check_utf8_swedish 2> coverage.log
+make -s check_utf8_swedish 2> coverage.log
 sort -k2,2 -k3,3n -k3,3 -k5,5g coverage.log | uniq -c > coverage.report
 ', 'sh') %]
 
@@ -451,6 +451,8 @@ The columns are:
   <ul>
     <li> "no match" for how many times none of the cases/characters matched, or
     <li> ": M of N string 'S'" for an among case, or
+    <li> ": M of N func-f 'S'" for among function signalling <em>f</em>, or
+    <li> ": M of N func-t 'S'" for among function signalling <em>t</em>, or
     <li> "index M of N 'C'" for a grouping character
   </ul>
 </ol>
