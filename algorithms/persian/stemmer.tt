@@ -61,27 +61,30 @@ or half-space) are <strong>preserved</strong> at this stage and used as
 prefix&#8209;stem separators in the next phase, then deleted afterwards.
 </p>
 
-<h2>Prefix stripping</h2>
+<h2>Prefix handling</h2>
 
 <p>
-The algorithm strips one anchored prefix per pass. To avoid false matches on
-words that happen to begin with the same syllables but are not prefixed forms
-(e.g. <em>birun</em> "outside", <em>bishtar</em> "more", <em>miladi</em> "AD/CE",
+The algorithm handles the present-tense marker prefixes <em>mi-</em> and
+<em>nemi-</em>.  To avoid false matches on words that happen to begin with the
+same syllables but are not prefixed forms (e.g. <em>miladi</em> "AD/CE",
 <em>miyan</em> "among"), a zero-width non-joiner must be present between the
 prefix and the stem. In formal Persian orthography these prefixes are written
 with a half-space before the stem, so this requirement is natural.
 </p>
 
-<p>The recognised prefixes are:</p>
-
-<ul>
-<li><em>nemi-</em> &mdash; negated present-tense marker</li>
-<li><em>mi-</em> &mdash; present-tense marker</li>
-</ul>
+<p>
+If either prefix is present, a flag is set which enables some additional verb
+suffix rules in a later step.
+</p>
 
 <p>
-After all prefixes have been stripped, any remaining zero-width non-joiners
-(e.g. those inside compound words) are deleted.
+The prefix <em>mi-</em> is removed, but the prefix <em>nemi-</em> negates the
+sense which changes the meaning, so we leave this in place.
+</p>
+
+<p>
+After handling prefixes, any remaining zero-width non-joiners (e.g. those
+inside compound words) are deleted.
 </p>
 
 <h2>Suffix stripping</h2>
