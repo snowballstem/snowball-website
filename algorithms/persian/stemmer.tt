@@ -83,6 +83,13 @@ sense which changes the meaning, so we leave this in place.
 </p>
 
 <p>
+(Note: negating derivational prefixes <em>na-</em> and <em>bi-</em> are
+intentionally not stripped as they create words with opposite meanings (e.g.
+<em>na</em>+<em>dorost</em> = "incorrect", <em>bi</em>+<em>khatr</em> = "safe")
+and conflating them with their base forms would harm search precision.)
+</p>
+
+<p>
 After handling prefixes, any remaining zero-width non-joiners (e.g. those
 inside compound words) are deleted.
 </p>
