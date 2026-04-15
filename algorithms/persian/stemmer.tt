@@ -83,6 +83,12 @@ sense which changes the meaning, so we leave this in place.
 </p>
 
 <p>
+(We also investigated setting the flag, but not removing the prefix, if
+<em>mi-</em> or <em>nemi-</em> is present but not followed by a ZWNJ but this
+introduced too many false conflations.)
+</p>
+
+<p>
 (Note: negating derivational prefixes <em>na-</em> and <em>bi-</em> are
 intentionally not stripped as they create words with opposite meanings (e.g.
 <em>na</em>+<em>dorost</em> = "incorrect", <em>bi</em>+<em>khatr</em> = "safe")
