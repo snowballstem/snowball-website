@@ -82,6 +82,7 @@ Supported options:
   -o, -output OUTPUT_BASE
   -s, -syntax                      show syntax tree and stop
   -comments                        generate comments
+  -coverage                        generate coverage report
   -ada                             generate Ada
   -c++                             generate C++
   -cs, -csharp                     generate C#
@@ -466,7 +467,7 @@ To use this feature, you need to enable it when generating the code and
 when building it:
 </p>
 
-<div class="highlight"><pre>make<span class="w"> </span>-s<span class="w"> </span><span class="nv">SNOWBALL_FLAGS</span><span class="o">=</span>-coverage<span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-DSNOWBALL_COVERAGE
+<div class="highlight"><pre>make<span class="w"> </span><span class="nv">SNOWBALL_FLAGS</span><span class="o">=</span>-coverage<span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-DSNOWBALL_COVERAGE
 </pre></div>
 
 <p>
@@ -475,7 +476,7 @@ can turn that into a coverage report using <code>sort</code> and
 <code>uniq</code> (some of these options may be specific to GNU sort):
 </p>
 
-<div class="highlight"><pre>check_utf8_swedish<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>coverage.log
+<div class="highlight"><pre>make<span class="w"> </span>-s<span class="w"> </span>check_utf8_swedish<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>coverage.log
 sort<span class="w"> </span>-k2,2<span class="w"> </span>-k3,3n<span class="w"> </span>-k3,3<span class="w"> </span>-k5,5g<span class="w"> </span>coverage.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span>&gt;<span class="w"> </span>coverage.report
 </pre></div>
 
@@ -504,6 +505,8 @@ The columns are:
   <ul>
     <li> "no match" for how many times none of the cases/characters matched, or
     <li> ": M of N string 'S'" for an among case, or
+    <li> ": M of N func-f 'S'" for among function signalling <em>f</em>, or
+    <li> ": M of N func-t 'S'" for among function signalling <em>t</em>, or
     <li> "index M of N 'C'" for a grouping character
   </ul>
 </ol>
