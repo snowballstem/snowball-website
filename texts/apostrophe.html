@@ -85,8 +85,10 @@ contemporary English, and their use is increasing as they displace the full
 forms that were at one time used in formal documents. Although they can be
 reduced to word pairs, it is more convenient to treat them as single items
 (usually stopwords) in IR work. And then preserving the apostrophe is
-important, so that <I>he&#8217;ll</I>, <I>she&#8217;ll</I>, <I>we&#8217;ll</I> are not equated with
-<I>hell</I>, <I>shell</I>, <I>well</I> etc.
+important, so that <i>he&#8217;ll</i>, <i>she&#8217;ll</i>, <i>we&#8217;ll</i>,
+<i>we'd</i>
+are not equated with
+<i>hell</i>, <i>shell</i>, <i>well</i>, <i>wed</i> etc.
 </p>
 
 <li><p>It is used to form the &#8216;English genitive&#8217;, <I>John's book</I>, <I>the horses&#8217;
@@ -107,10 +109,19 @@ or been an apostrophe following <B><I>s</I></B>. The form <B><I>&#8217;s</I></B>
 </p>
 
 <p>
-The Kraaij Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
+The Kraaij-Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
 treats apostrophe as part of the alphabet (so <B><I>&#8217;s</I></B>, <B><I>&#8217;tje</I></B> and <B><I>&#8217;je</I></B> are three
-of their endings). The Dutch stemmer presented here assumes hyphen and
-apostrophe have already been removed from the word to be stemmed.
+of their endings).  Kraaij-Pohlmann is the default Dutch stemmer since Snowball
+3.0.0 (the previous default Dutch stemmer was Martin Porter's which assumes
+hyphen and apostrophe have already been removed from the word to be stemmed).
+</p>
+
+<p>
+In modern Turkish orthography, an apostrophe is used to separate proper names
+from any suffixes - for example <b><i>Türkiye'dir</i></b> (<i>"it is
+Turkey"</i>).  Since Snowball 3.0.0, our Turkish stemmer removes such suffixes.
+</p>
+
         </div><!-- /.col-lg-10 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
