@@ -29,6 +29,25 @@ house style of certain publishers, for surnames like <I>M&#8217;Coy</I> and so o
 </p>
 </ol>
 
+<h2>Dutch</h2>
+
+<p>
+The Kraaij-Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
+treats apostrophe as part of the alphabet (so <B><I>&#8217;s</I></B>, <B><I>&#8217;tje</I></B> and <B><I>&#8217;je</I></B> are three
+of their endings).  Kraaij-Pohlmann is the default Dutch stemmer since Snowball
+3.0.0.
+</p>
+
+<p>
+The previous default Dutch stemmer was Martin Porter's which assumes
+hyphen and apostrophe have already been removed from the word to be stemmed.
+We still provide this for compatibility with users who have data processed
+using it - given its aim is compatibility with existing data, we've not
+updated its handling of apostrophes.
+</p>
+
+<h2>English</h2>
+
 <p>
 In the English stemming algorithm, it is assumed that apostrophe is
 represented by U+0027. This makes it ASCII compatible. Clearly other codes
@@ -75,13 +94,7 @@ quote, from the end of the word, where it might have stood for a closing quote,
 or been an apostrophe following <B><I>s</I></B>. The form <B><I>&#8217;s</I></B> is also treated as an ending.
 </p>
 
-<p>
-The Kraaij-Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
-treats apostrophe as part of the alphabet (so <B><I>&#8217;s</I></B>, <B><I>&#8217;tje</I></B> and <B><I>&#8217;je</I></B> are three
-of their endings).  Kraaij-Pohlmann is the default Dutch stemmer since Snowball
-3.0.0 (the previous default Dutch stemmer was Martin Porter's which assumes
-hyphen and apostrophe have already been removed from the word to be stemmed).
-</p>
+<h2>Turkish</h2>
 
 <p>
 In modern Turkish orthography, an apostrophe is used to separate proper names
