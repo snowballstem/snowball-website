@@ -62,15 +62,14 @@ Here is a sample of Polish vocabulary, with the stemmed forms that will be gener
 
 <TR><TD>
 aktualizacja<BR>
-aktualizacją<BR>
 aktualizacje<BR>
-aktualizację<BR>
 aktualizacji<BR>
+aktualizacją<BR>
+aktualizację<BR>
 aktualizowane<BR>
 aktualizowanie<BR>
 aktualizuj<BR>
 aktualna<BR>
-aktualną<BR>
 aktualne<BR>
 aktualnego<BR>
 aktualnej<BR>
@@ -79,6 +78,7 @@ aktualny<BR>
 aktualnych<BR>
 aktualnym<BR>
 aktualnymi<BR>
+aktualną<BR>
 akty<BR>
 aktywa<BR>
 </TD>
@@ -110,7 +110,6 @@ aktyw<BR>
 kwiecień<BR>
 kwiecińskiego<BR>
 kwietna<BR>
-kwietną<BR>
 kwietne<BR>
 kwietnej<BR>
 kwietnia<BR>
@@ -119,14 +118,15 @@ kwietniowego<BR>
 kwietniowych<BR>
 kwietniu<BR>
 kwietnych<BR>
+kwietną<BR>
 kwintesencję<BR>
 kwitkiem<BR>
-kwitła<BR>
-kwitną<BR>
-kwitnąć<BR>
-kwitnącą<BR>
-kwitnące<BR>
 kwitnie<BR>
+kwitnienia<BR>
+kwitnienie<BR>
+kwitną<BR>
+kwitnące<BR>
+kwitnącą<BR>
 </TD>
 <TD></TD><TD> <b>&#x21d2;</b> </TD>
 <TD></TD><TD>
@@ -136,17 +136,17 @@ kwietn<BR>
 kwietn<BR>
 kwietn<BR>
 kwietn<BR>
-kwietn<BR>
 kwietnik<BR>
 kwietniow<BR>
 kwietniow<BR>
 kwietn<BR>
 kwietn<BR>
+kwietn<BR>
 kwintesencj<BR>
 kwitk<BR>
-kwitł<BR>
 kwitn<BR>
-kwitn<BR>
+kwitnien<BR>
+kwitnien<BR>
 kwitn<BR>
 kwitn<BR>
 kwitn<BR>
@@ -154,6 +154,13 @@ kwitn<BR>
 </TR>
 </TABLE>
 </div>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 3.1.0: After removing a noun/adjective/verb suffix, we remove
+an apostrophe if the stem now ends with one.
+</ul>
 
 <h2>The stemming algorithm</h2>
 
@@ -238,6 +245,14 @@ one-letter ones like <i>a</i> and <i>o</i> or longer ones like <i>owi</i>
 and <i>ach</i>, but excluding endings that were already handled above.
 This is done only if the ending is entirely in the <i>R</i>1 region.</li>
 </ol>
+
+<p>
+If an ending is removed by this step and the stem now ends with an apostrophe
+(<i>'</i>) then this is also removed.  (Polish uses an apostrophe to separate
+loanwords from native suffixes; the correct use is to mark the elision of the
+final sound of a loanword before a Polish inflectional endings, but it's also
+often used with any loanword.)
+</p>
 
 <h3>Step 3. Normalize ending consonant</h3>
 
@@ -405,6 +420,7 @@ suffixes.
 <span class="w">      </span><span class="s1">&#39;ach&#39;</span><span class="w"> </span><span class="n">R1</span><span class="w">  </span><span class="s1">&#39;iach&#39;</span><span class="w"> </span><span class="n">R1</span><span class="w">                       </span><span class="c1">// plural locative (książkach, słoniach)</span>
 <span class="w">        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
 <span class="w">  </span><span class="p">)</span>
 
 <span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">normalize_consonant</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>

@@ -62,6 +62,35 @@ house style of certain publishers, for surnames like <I>M&#8217;Coy</I> and so o
 </p>
 </ol>
 
+<h2>Catalan</h2>
+
+<p>
+Some Catalan pronouns can attach before or after a verb which starts/ends in
+a vowel.  The pronoun drops its vowel and an apostrophe is added between the
+pronoun and verb.  These are handled by our Catalan stemmer.
+</p>
+
+<h2>Dutch</h2>
+
+<p>
+The Kraaij-Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
+treats apostrophe as part of the alphabet (so <B><I>&#8217;s</I></B>, <B><I>&#8217;tje</I></B> and <B><I>&#8217;je</I></B> are three
+of their endings).  Kraaij-Pohlmann is the default Dutch stemmer since Snowball
+3.0.0.
+</p>
+
+<h3>Dutch porter</h3>
+
+<p>
+The previous default Dutch stemmer was Martin Porter's which assumes
+hyphen and apostrophe have already been removed from the word to be stemmed.
+We still provide this for compatibility with users who have data processed
+using it - given its aim is compatibility with existing data, we've not
+updated its handling of apostrophes.
+</p>
+
+<h2>English</h2>
+
 <p>
 In the English stemming algorithm, it is assumed that apostrophe is
 represented by U+0027. This makes it ASCII compatible. Clearly other codes
@@ -108,13 +137,65 @@ quote, from the end of the word, where it might have stood for a closing quote,
 or been an apostrophe following <B><I>s</I></B>. The form <B><I>&#8217;s</I></B> is also treated as an ending.
 </p>
 
+<h3>Porter</h3>
+
 <p>
-The Kraaij-Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
-treats apostrophe as part of the alphabet (so <B><I>&#8217;s</I></B>, <B><I>&#8217;tje</I></B> and <B><I>&#8217;je</I></B> are three
-of their endings).  Kraaij-Pohlmann is the default Dutch stemmer since Snowball
-3.0.0 (the previous default Dutch stemmer was Martin Porter's which assumes
-hyphen and apostrophe have already been removed from the word to be stemmed).
+We provide a reference implementation of the original Porter stemmer as
+described by Martin Porter's 1980 paper.  The paper does not include any
+special handling of apostrophes, so since this is intended as a reference
+implementation, our implementation does not either.
 </p>
+
+<h3>Lovins</h3>
+
+<p>
+We provide a implementation of Beth Lovins' very early stemming algorithm.
+This handles <i>-'s</i> and <i>-s'</i> suffixes.
+</p>
+
+<h2>Esperanto</h2>
+
+<p>
+Inflections of <i>'sti</i> are expanded into forms of <i>esti</i>. The words
+<i>l'</i> and "un'</i> become <i>la</i> and <i>unu</i>.  A final apostrophe
+becomes <i>aŭ</i> after certain known stems, or else <i>o</i>.
+</p>
+
+<h2>French</h2>
+
+<p>
+French elisions (e.g. <i>d'-</i>, <i>l'-</i>, <i>m'-</i>, <i>qu'-</i>) are
+removed since Snowball 3.0.0.
+</p>
+
+<h2>Irish</h2>
+
+<p>
+Irish has some contractions which appear as prefixes.  Our Irish stemmer
+handles <i>d'-</i>, <i>m'-</i> and <i>b'-</i>.
+</p>
+
+<h2>Polish</h2>
+
+<p>
+Polish uses an apostrophe to separate loanwords from native suffixes,
+for example: <i>olly'ego</i>, <i>george'a</i>.  The correct use is to mark the
+elision of the final sound of a loanword before a Polish inflectional ending,
+but apparently it's also often used with any loanword.
+</p>
+
+<p>
+Since Snowball 3.1.0, the Polish stemmer removes an apostrophe if the stem
+ends with one after it has removed a noun, adjective or verb suffix.
+</p>
+
+<h2>Russian</h2>
+
+<p>
+Our Russian stemmer handles suffixes which include an apostrophe.
+</p>
+
+<h2>Turkish</h2>
 
 <p>
 In modern Turkish orthography, an apostrophe is used to separate proper names
