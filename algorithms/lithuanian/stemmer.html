@@ -71,7 +71,7 @@ downsides.
 <span class="kr">stringescapes</span><span class="w"> </span><span class="se">{</span><span class="w"> </span><span class="se">}</span>
 
 <span class="cm">/* Special characters in Unicode Latin Extended-A */</span>
-<span class="c1">// &#39; nosine</span>
+<span class="c1">// k nosine</span>
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">ak</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0105}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ą a + ogonek</span>
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">ek</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0119}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ę e + ogonek</span>
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">ik</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+012F}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// į i + ogonek</span>
@@ -178,21 +178,20 @@ downsides.
 
 
 <span class="w">      </span><span class="c1">// V linksniuote (declension V)</span>
-<span class="w">      </span><span class="s1">&#39;ies&#39;</span><span class="w"> </span><span class="s1">&#39;ens&#39;</span><span class="w"> </span><span class="s1">&#39;enio&#39;</span><span class="w"> </span><span class="s1">&#39;ers&#39;</span><span class="w">    </span><span class="c1">// avies, vandens, sesers</span>
-<span class="w">      </span><span class="s1">&#39;eniui&#39;</span><span class="w"> </span><span class="s1">&#39;eriai&#39;</span><span class="w">             </span><span class="c1">// vandeniui, eriai</span>
-<span class="w">      </span><span class="s1">&#39;en</span><span class="se">{ik}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;er</span><span class="se">{ik}</span><span class="s1">&#39;</span><span class="w">           </span><span class="c1">// vandenį, seserį</span>
-<span class="w">      </span><span class="s1">&#39;imi&#39;</span><span class="w"> </span><span class="s1">&#39;eniu&#39;</span><span class="w"> </span><span class="s1">&#39;erimi&#39;</span><span class="w"> </span><span class="s1">&#39;eria&#39;</span><span class="w"> </span><span class="c1">// avimi, vandeniu, seserimi, seseria</span>
-<span class="w">      </span><span class="s1">&#39;enyje&#39;</span><span class="w"> </span><span class="s1">&#39;eryje&#39;</span><span class="w">             </span><span class="c1">// vandenyje, seseryje</span>
-<span class="w">      </span><span class="s1">&#39;ie&#39;</span><span class="w"> </span><span class="s1">&#39;enie&#39;</span><span class="w"> </span><span class="s1">&#39;erie&#39;</span><span class="w">          </span><span class="c1">// avie, vandenie, seserie</span>
+<span class="w">      </span><span class="s1">&#39;ies&#39;</span><span class="w"> </span><span class="s1">&#39;ens&#39;</span><span class="w"> </span><span class="s1">&#39;enio&#39;</span><span class="w">          </span><span class="c1">// avies, vandens, sesers</span>
+<span class="w">      </span><span class="s1">&#39;eniui&#39;</span><span class="w">                     </span><span class="c1">// vandeniui</span>
+<span class="w">      </span><span class="s1">&#39;en</span><span class="se">{ik}</span><span class="s1">&#39;</span><span class="w">                    </span><span class="c1">// vandenį</span>
+<span class="w">      </span><span class="s1">&#39;imi&#39;</span><span class="w"> </span><span class="s1">&#39;eniu&#39;</span><span class="w">                </span><span class="c1">// avimi, vandeniu</span>
+<span class="w">      </span><span class="s1">&#39;enyje&#39;</span><span class="w">                     </span><span class="c1">// vandenyje</span>
+<span class="w">      </span><span class="s1">&#39;ie&#39;</span><span class="w"> </span><span class="s1">&#39;enie&#39;</span><span class="w">                 </span><span class="c1">// avie, vandenide</span>
 
-<span class="w">      </span><span class="s1">&#39;enys&#39;</span><span class="w"> </span><span class="s1">&#39;erys&#39;</span><span class="w">               </span><span class="c1">// vandenys, seserys</span>
+<span class="w">      </span><span class="s1">&#39;enys&#39;</span><span class="w">                      </span><span class="c1">// vandenys</span>
 <span class="w">      </span><span class="c1">// &#39;en{uk}&#39; konfliktas su &#39;žandenų&#39; &#39;antenų&#39;</span>
-<span class="w">      </span><span class="s1">&#39;er</span><span class="se">{uk}</span><span class="s1">&#39;</span><span class="w">                    </span><span class="c1">// seserų</span>
-<span class="w">      </span><span class="s1">&#39;ims&#39;</span><span class="w"> </span><span class="s1">&#39;enims&#39;</span><span class="w"> </span><span class="s1">&#39;erims&#39;</span><span class="w">       </span><span class="c1">// avims, vandemins, seserims</span>
+<span class="w">      </span><span class="s1">&#39;ims&#39;</span><span class="w"> </span><span class="s1">&#39;enims&#39;</span><span class="w">               </span><span class="c1">// avims, vandemins</span>
 <span class="w">      </span><span class="s1">&#39;enis&#39;</span><span class="w">                      </span><span class="c1">// vandenis</span>
 <span class="w">      </span><span class="s1">&#39;imis&#39;</span><span class="w">                      </span><span class="c1">// žebenkštimis</span>
 <span class="w">      </span><span class="s1">&#39;enimis&#39;</span><span class="w">                    </span><span class="c1">// vandenimis</span>
-<span class="w">      </span><span class="s1">&#39;yse&#39;</span><span class="w"> </span><span class="s1">&#39;enyse&#39;</span><span class="w"> </span><span class="s1">&#39;eryse&#39;</span><span class="w">       </span><span class="c1">// avyse, vandenyse, seseryse</span>
+<span class="w">      </span><span class="s1">&#39;yse&#39;</span><span class="w"> </span><span class="s1">&#39;enyse&#39;</span><span class="w">               </span><span class="c1">// avyse, vandenyse</span>
 
 
 <span class="w">      </span><span class="c1">// Būdvardžiai (Adjectives)</span>
