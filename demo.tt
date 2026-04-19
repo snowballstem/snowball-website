@@ -62,7 +62,7 @@ function lang_changed(elt) {
     var lang = elt.value;
     var words_elt = document.getElementById('words');
     var results_elt = document.getElementById('results');
-    if (lang === 'Arabic' || lang === 'Yiddish') {
+    if (lang === 'Arabic' || lang === 'Persian' || lang === 'Yiddish') {
         words_elt.dir = results_elt.dir = 'rtl';
     } else {
         words_elt.dir = results_elt.dir = 'ltr';
