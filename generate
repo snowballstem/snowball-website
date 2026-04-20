@@ -292,9 +292,9 @@ my $terser_cache = "/tmp/terser-cache.json";
 unlink $terser_cache;
 for my $js (@stemmer_js_files) {
     run ['npx', 'terser', $js, '--compress', '--mangle',
-	'--mangle-props', 'regex=/^(current|cursor|limit|limit_backward|bra|ket|af)$/',
+	'--mangle-props', 'regex=/^(current|c|limit|limit_backward|bra|ket|af)$/',
 	'--name-cache', $terser_cache,
-	'--toplevel',
+	#	'--toplevel',
 	'-o', "$outpath/$js"] or die $!;
 }
 unlink $terser_cache;
