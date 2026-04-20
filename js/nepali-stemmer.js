@@ -122,9 +122,9 @@ const a_2 = [
     ["\u0939\u094B\u0938\u094D", -1, 1]
 ];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class NepaliStemmer extends B {
+class NepaliStemmer extends BaseStemmer {
 
 
     /** @return {boolean} */

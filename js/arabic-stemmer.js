@@ -270,9 +270,9 @@ const a_15 = [
     ["\u062A\u0645\u0648", 0, 2]
 ];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class ArabicStemmer extends B {
+class ArabicStemmer extends BaseStemmer {
 
     #B_is_defined/** boolean */ = false;
     #B_is_verb/** boolean */ = false;

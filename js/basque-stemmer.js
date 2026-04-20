@@ -436,9 +436,9 @@ const a_2 = [
 
 const /** Array<number> */ g_v = [17, 65, 16];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class BasqueStemmer extends B {
+class BasqueStemmer extends BaseStemmer {
 
     #I_p2/** number */ = 0;
     #I_p1/** number */ = 0;

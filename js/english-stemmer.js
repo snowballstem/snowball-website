@@ -163,9 +163,9 @@ const /** Array<number> */ g_v_WXY = [1, 17, 65, 208, 1];
 
 const /** Array<number> */ g_valid_LI = [55, 141, 2];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class EnglishStemmer extends B {
+class EnglishStemmer extends BaseStemmer {
 
     #B_Y_found/** boolean */ = false;
     #I_p2/** number */ = 0;

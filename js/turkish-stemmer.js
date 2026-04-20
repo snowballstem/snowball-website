@@ -210,9 +210,9 @@ const /** Array<number> */ g_vowel5 = [65];
 
 const /** Array<number> */ g_vowel6 = [65];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class TurkishStemmer extends B {
+class TurkishStemmer extends BaseStemmer {
 
     #B_continue_stemming_noun_suffixes/** boolean */ = false;
 

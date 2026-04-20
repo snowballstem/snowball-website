@@ -123,9 +123,9 @@ const a_7 = [
     ["\u0631\u0641\u062A\u06CC", -1, 2]
 ];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class PersianStemmer extends B {
+class PersianStemmer extends BaseStemmer {
 
     #I_p1/** number */ = 0;
     #B_remove_verb_person_endings/** boolean */ = false;

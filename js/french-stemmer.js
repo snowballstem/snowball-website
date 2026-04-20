@@ -194,9 +194,9 @@ const /** Array<number> */ g_elision_char = [131, 14, 3];
 
 const /** Array<number> */ g_keep_with_s = [1, 65, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class FrenchStemmer extends B {
+class FrenchStemmer extends BaseStemmer {
 
     #I_p2/** number */ = 0;
     #I_p1/** number */ = 0;

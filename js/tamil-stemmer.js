@@ -344,9 +344,9 @@ const a_26 = [
     ["\u0BBE\u0BA8\u0BBF\u0BA9\u0BCD\u0BB1\u0BCD", -1, -1]
 ];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class TamilStemmer extends B {
+class TamilStemmer extends BaseStemmer {
 
     #B_found_vetrumai_urupu/** boolean */ = false;
 

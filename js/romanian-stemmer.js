@@ -253,9 +253,9 @@ const a_6 = [
 
 const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 32, 0, 0, 4];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class RomanianStemmer extends B {
+class RomanianStemmer extends BaseStemmer {
 
     #B_standard_suffix_removed/** boolean */ = false;
     #I_p2/** number */ = 0;

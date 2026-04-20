@@ -139,9 +139,9 @@ const a_0 = [
 
 const /** Array<number> */ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248, 7];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class HindiStemmer extends B {
+class HindiStemmer extends BaseStemmer {
 
 
     /** @return {boolean} */

@@ -91,9 +91,9 @@ const /** Array<number> */ g_s_ending = [119, 127, 149];
 
 const /** Array<number> */ g_ost_ending = [173, 58];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class SwedishStemmer extends B {
+class SwedishStemmer extends BaseStemmer {
 
     #I_p1/** number */ = 0;
 

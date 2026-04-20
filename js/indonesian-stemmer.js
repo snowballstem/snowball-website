@@ -39,9 +39,9 @@ const a_4 = [
 
 const /** Array<number> */ g_vowel = [17, 65, 16];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class IndonesianStemmer extends B {
+class IndonesianStemmer extends BaseStemmer {
 
     #I_prefix/** number */ = 0;
     #I_measure/** number */ = 0;

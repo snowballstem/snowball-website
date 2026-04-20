@@ -201,9 +201,9 @@ const /** Array<number> */ g_vowel = [33, 2, 4, 0, 6];
 
 const /** Array<number> */ g_consonant = [239, 254, 253, 131];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class YiddishStemmer extends B {
+class YiddishStemmer extends BaseStemmer {
 
     #I_p1/** number */ = 0;
 

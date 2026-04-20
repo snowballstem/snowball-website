@@ -207,9 +207,9 @@ const a_3 = [
 
 const /** Array<number> */ g_v = [209, 4, 128, 0, 18];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class ArmenianStemmer extends B {
+class ArmenianStemmer extends BaseStemmer {
 
     #I_p2/** number */ = 0;
     #I_pV/** number */ = 0;

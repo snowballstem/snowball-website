@@ -130,9 +130,9 @@ const /** Array<number> */ g_V2 = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 
 const /** Array<number> */ g_particle_end = [17, 97, 24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class FinnishStemmer extends B {
+class FinnishStemmer extends BaseStemmer {
 
     #B_ending_removed/** boolean */ = false;
     #I_p2/** number */ = 0;

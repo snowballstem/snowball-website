@@ -158,9 +158,9 @@ const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 const /** Array<number> */ g_v_WX = [17, 65, 208, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 139, 127, 46, 15];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class DutchStemmer extends B {
+class DutchStemmer extends BaseStemmer {
 
     #B_GE_removed/** boolean */ = false;
     #I_p2/** number */ = 0;

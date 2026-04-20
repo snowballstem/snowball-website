@@ -155,9 +155,9 @@ const /** Array<number> */ g_aou = [1, 64, 16];
 
 const /** Array<number> */ g_digit = [255, 3];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class EsperantoStemmer extends B {
+class EsperantoStemmer extends BaseStemmer {
 
 
     /** @return {boolean} */

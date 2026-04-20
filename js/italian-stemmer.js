@@ -229,9 +229,9 @@ const /** Array<number> */ g_AEIO = [17, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
 const /** Array<number> */ g_CG = [17];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class ItalianStemmer extends B {
+class ItalianStemmer extends BaseStemmer {
 
     #I_p2/** number */ = 0;
     #I_p1/** number */ = 0;

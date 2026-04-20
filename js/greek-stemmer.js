@@ -1110,9 +1110,9 @@ const /** Array<number> */ g_v = [81, 65, 16, 1];
 
 const /** Array<number> */ g_v2 = [81, 65, 0, 1];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class GreekStemmer extends B {
+class GreekStemmer extends BaseStemmer {
 
     #B_test1/** boolean */ = false;
 

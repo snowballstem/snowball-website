@@ -284,9 +284,9 @@ const a_3 = [
 
 const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 64, 1, 0, 64, 0, 0, 0, 0, 0, 0, 0, 4, 4];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class LithuanianStemmer extends B {
+class LithuanianStemmer extends BaseStemmer {
 
     #I_p1/** number */ = 0;
 
