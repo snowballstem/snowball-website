@@ -8,64 +8,59 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
     <title>Lithuanian stemming algorithm - Snowball</title>
-    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="/styles.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-light bg-light navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
-          <a class="navbar-brand" href="/">Snowball</a>
+          <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
+          <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/credits.html">Credits</a></li>
-          </ul>
-	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
-        </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2">
           
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10">
           <h1>Lithuanian stemming algorithm</h1>
 
 
 <h2>Links to resources</h2>
 
 <ul>
-<li> <a href="/demo.html#Lithuanian">Javascript demo</a></li>
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/lithuanian.sbl">The stemmer in Snowball</a></li>
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/lithuanian/voc.txt">Sample Lithuanian vocabulary</a></li>
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/lithuanian/output.txt">Its stemmed equivalent</a></li>
+<li> <a href="https://en.wikipedia.org/wiki/Lithuanian_language">Lithuanian language</a> on Wikipedia</li>
 </ul>
 
 <p>
 This algorithm was contributed by Dainius Jocas in May 2018.
 </p>
 
+<h2>Design Notes</h2>
+
 <p>
 Its intended domain of use is information retrieval, and so handling of nouns
 is considered more important than that of verbs, adjectives, etc.
+</p>
+
+<p>
+The algorithm as originally contributed removed a number of suffixes starting
+<i>-er-</i>, which weren't real grammatical suffixes themselves.  Their inclusion
+appears to have been mainly to try to conflate ancient forms of the Lithuanian
+word for "sister" (e.g. "sesers") with modern forms (e.g. "sesė").  However they
+didn't do a complete job as "seserimis" and "seseris" were not handled.
+We've now dropped the rules to remove these suffixes from the stemmer.  This
+means we no longer try to conflate the ancient and modern forms here, but at
+least all the forms of the old word get grouped, as do all forms of the new
+word.  The stemming for ~150 other words is also improved, without obvious
+downsides.
 </p>
 
 <h2>The full algorithm in Snowball</h2>
@@ -76,7 +71,7 @@ is considered more important than that of verbs, adjectives, etc.
 <span class="kr">stringescapes</span><span class="w"> </span><span class="se">{</span><span class="w"> </span><span class="se">}</span>
 
 <span class="cm">/* Special characters in Unicode Latin Extended-A */</span>
-<span class="c1">// &#39; nosine</span>
+<span class="c1">// k nosine</span>
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">ak</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0105}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ą a + ogonek</span>
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">ek</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0119}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ę e + ogonek</span>
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">ik</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+012F}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// į i + ogonek</span>
@@ -183,21 +178,20 @@ is considered more important than that of verbs, adjectives, etc.
 
 
 <span class="w">      </span><span class="c1">// V linksniuote (declension V)</span>
-<span class="w">      </span><span class="s1">&#39;ies&#39;</span><span class="w"> </span><span class="s1">&#39;ens&#39;</span><span class="w"> </span><span class="s1">&#39;enio&#39;</span><span class="w"> </span><span class="s1">&#39;ers&#39;</span><span class="w">    </span><span class="c1">// avies, vandens, sesers</span>
-<span class="w">      </span><span class="s1">&#39;eniui&#39;</span><span class="w"> </span><span class="s1">&#39;eriai&#39;</span><span class="w">             </span><span class="c1">// vandeniui, eriai</span>
-<span class="w">      </span><span class="s1">&#39;en</span><span class="se">{ik}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;er</span><span class="se">{ik}</span><span class="s1">&#39;</span><span class="w">           </span><span class="c1">// vandenį, seserį</span>
-<span class="w">      </span><span class="s1">&#39;imi&#39;</span><span class="w"> </span><span class="s1">&#39;eniu&#39;</span><span class="w"> </span><span class="s1">&#39;erimi&#39;</span><span class="w"> </span><span class="s1">&#39;eria&#39;</span><span class="w"> </span><span class="c1">// avimi, vandeniu, seserimi, seseria</span>
-<span class="w">      </span><span class="s1">&#39;enyje&#39;</span><span class="w"> </span><span class="s1">&#39;eryje&#39;</span><span class="w">             </span><span class="c1">// vandenyje, seseryje</span>
-<span class="w">      </span><span class="s1">&#39;ie&#39;</span><span class="w"> </span><span class="s1">&#39;enie&#39;</span><span class="w"> </span><span class="s1">&#39;erie&#39;</span><span class="w">          </span><span class="c1">// avie, vandenie, seserie</span>
+<span class="w">      </span><span class="s1">&#39;ies&#39;</span><span class="w"> </span><span class="s1">&#39;ens&#39;</span><span class="w"> </span><span class="s1">&#39;enio&#39;</span><span class="w">          </span><span class="c1">// avies, vandens, sesers</span>
+<span class="w">      </span><span class="s1">&#39;eniui&#39;</span><span class="w">                     </span><span class="c1">// vandeniui</span>
+<span class="w">      </span><span class="s1">&#39;en</span><span class="se">{ik}</span><span class="s1">&#39;</span><span class="w">                    </span><span class="c1">// vandenį</span>
+<span class="w">      </span><span class="s1">&#39;imi&#39;</span><span class="w"> </span><span class="s1">&#39;eniu&#39;</span><span class="w">                </span><span class="c1">// avimi, vandeniu</span>
+<span class="w">      </span><span class="s1">&#39;enyje&#39;</span><span class="w">                     </span><span class="c1">// vandenyje</span>
+<span class="w">      </span><span class="s1">&#39;ie&#39;</span><span class="w"> </span><span class="s1">&#39;enie&#39;</span><span class="w">                 </span><span class="c1">// avie, vandenide</span>
 
-<span class="w">      </span><span class="s1">&#39;enys&#39;</span><span class="w"> </span><span class="s1">&#39;erys&#39;</span><span class="w">               </span><span class="c1">// vandenys, seserys</span>
+<span class="w">      </span><span class="s1">&#39;enys&#39;</span><span class="w">                      </span><span class="c1">// vandenys</span>
 <span class="w">      </span><span class="c1">// &#39;en{uk}&#39; konfliktas su &#39;žandenų&#39; &#39;antenų&#39;</span>
-<span class="w">      </span><span class="s1">&#39;er</span><span class="se">{uk}</span><span class="s1">&#39;</span><span class="w">                    </span><span class="c1">// seserų</span>
-<span class="w">      </span><span class="s1">&#39;ims&#39;</span><span class="w"> </span><span class="s1">&#39;enims&#39;</span><span class="w"> </span><span class="s1">&#39;erims&#39;</span><span class="w">       </span><span class="c1">// avims, vandemins, seserims</span>
+<span class="w">      </span><span class="s1">&#39;ims&#39;</span><span class="w"> </span><span class="s1">&#39;enims&#39;</span><span class="w">               </span><span class="c1">// avims, vandemins</span>
 <span class="w">      </span><span class="s1">&#39;enis&#39;</span><span class="w">                      </span><span class="c1">// vandenis</span>
 <span class="w">      </span><span class="s1">&#39;imis&#39;</span><span class="w">                      </span><span class="c1">// žebenkštimis</span>
 <span class="w">      </span><span class="s1">&#39;enimis&#39;</span><span class="w">                    </span><span class="c1">// vandenimis</span>
-<span class="w">      </span><span class="s1">&#39;yse&#39;</span><span class="w"> </span><span class="s1">&#39;enyse&#39;</span><span class="w"> </span><span class="s1">&#39;eryse&#39;</span><span class="w">       </span><span class="c1">// avyse, vandenyse, seseryse</span>
+<span class="w">      </span><span class="s1">&#39;yse&#39;</span><span class="w"> </span><span class="s1">&#39;enyse&#39;</span><span class="w">               </span><span class="c1">// avyse, vandenyse</span>
 
 
 <span class="w">      </span><span class="c1">// Būdvardžiai (Adjectives)</span>
@@ -427,7 +421,7 @@ is considered more important than that of verbs, adjectives, etc.
 
 <span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="c1">// priešdėlis &#39;a&#39; ilgeniuose nei 6 raidės žodžiuose, pvz. &#39;a-liejus&#39;.</span>
-<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="ow">test</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="o">$</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="o">$</span><span class="p">(</span><span class="nb">len</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">6</span><span class="p">))</span>
 
 <span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
 <span class="w">  </span><span class="p">)</span>
@@ -445,7 +439,7 @@ is considered more important than that of verbs, adjectives, etc.
 </pre></div>
 
 
-        </div><!-- /.col-md-10 -->
+        </div><!-- /.col-lg-10 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
 
@@ -456,7 +450,7 @@ is considered more important than that of verbs, adjectives, etc.
         </p>
       </footer>
     </div> <!-- /container -->
-    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>

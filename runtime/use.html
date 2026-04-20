@@ -8,52 +8,35 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
     <title>Using Snowball - Snowball</title>
-    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="/styles.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-light bg-light navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
-          <a class="navbar-brand" href="/">Snowball</a>
+          <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
+          <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/credits.html">Credits</a></li>
-          </ul>
-	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
-        </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2">
           
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10">
           <h1>Using Snowball</h1>
 
 
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="../compiler/snowman.html">     Snowball manual</A>
+<li> <A HREF="../compiler/snowman.html">Snowball manual</A>
 </ul>
 
 <h2>Compiling Snowball</h2>
@@ -99,15 +82,19 @@ Supported options:
   -o, -output OUTPUT_BASE
   -s, -syntax                      show syntax tree and stop
   -comments                        generate comments
-  -j, -java                        generate Java
-  -cs, -csharp                     generate C#
-  -c++                             generate C++
-  -pascal                          generate Pascal
-  -py, -python                     generate Python
-  -js                              generate Javascript
-  -rust                            generate Rust
-  -go                              generate Go
+  -coverage                        generate coverage report
   -ada                             generate Ada
+  -c++                             generate C++
+  -cs, -csharp                     generate C#
+  -dart                            generate Dart
+  -go                              generate Go
+  -j, -java                        generate Java
+  -js                              generate Javascript
+  -pascal                          generate Pascal
+  -php                             generate PHP
+  -py, -python                     generate Python
+  -rust                            generate Rust
+  -zig                             generate Zig
   -w, -widechars
   -u, -utf8
   -n, -name CLASS_NAME
@@ -115,11 +102,12 @@ Supported options:
   -vp, -vprefix VARIABLE_PREFIX
   -i, -include DIRECTORY
   -r, -runtime DIRECTORY
+  -cheader                         header name to include from C/C++ file
+  -hheader                         header name to include from C/C++ header
   -p, -parentclassname CLASS_NAME  fully qualified parent class name
   -P, -Package PACKAGE_NAME        package name for stemmers
   -S, -Stringclass STRING_CLASS    StringBuffer-compatible class
   -a, -amongclass AMONG_CLASS      fully qualified name of the Among class
-  -gop, -gopackage PACKAGE_NAME    Go package name for stemmers
   -gor, -goruntime PACKAGE_NAME    Go snowball runtime package
   --help                           display this help and exit
   --version                        output version information and exit
@@ -195,12 +183,14 @@ would give rise to the header file,
 </pre></div>
 
 <p>
-If &nbsp;<code>-vprefix</code>&nbsp; is used, all Snowball strings, integers and booleans give
-rise to a &nbsp;<code>#define</code>&nbsp; line in the header file. For example
+If &nbsp;<code>-vprefix</code>&nbsp; is used, then functions are generated to
+provide access to Snowball strings, integers and booleans. (In Snowball 3.1.x
+and earlier, Snowball variables were stored in a different way in the generated
+C code and macros were generated if <code>-vprefix</code> was used).
+For example
 </p>
-
 <PRE>
-    -eprefix Khotanese_ -vprefix Khotanese_variable
+    -eprefix Khotanese_ -vprefix Khotanese_variable_
 </PRE>
 
 <p>
@@ -210,12 +200,21 @@ would give rise the header file,
 <div class="highlight"><pre><span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Khotanese_create_env</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 <span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Khotanese_close_env</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
 
-<span class="w">    </span><span class="cp">#define Khotanese_variable_ch (S[0])</span>
-<span class="w">    </span><span class="cp">#define Khotanese_variable_Y_found (B[0])</span>
-<span class="w">    </span><span class="cp">#define Khotanese_variable_p2 (I[1])</span>
-<span class="w">    </span><span class="cp">#define Khotanese_variable_p1 (I[0])</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">symbol</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">Khotanese_variable_ch</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_variable_Y_found</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_variable_p2</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_variable_p1</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
 <span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Khotanese_stem</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">SN_env</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
 </pre></div>
+
+<p>
+The Snowball compiler will attempt to "localise" integer and boolean variables
+used only in one routine, in which case they become local variables in the C
+code and <code>-vprefix</code> won't generate code for them.  Let us know if
+this is a problem for you (the Snowball language may need to gain a way to mark
+variables as external which could suppress this optimisation and generate an
+access function.
+</p>
 
 <p>
 The <code>-utf8</code> and <code>-widechars</code>&nbsp; options affects how
@@ -253,13 +252,6 @@ appropriate directory structure.
 -->
 
 <h4>Other options</h4>
-
-<p>
-If &nbsp;<code>-syntax</code>&nbsp; is used the other options are ignored, and the syntax tree
-of the Snowball program is directed to &nbsp;<code>stdout</code>. This can be a handy way
-of checking that you have got the bracketing right in the program you have
-written.
-</p>
 
 <p>
 Any number of &nbsp;<code>-include</code>&nbsp; options may be present, for example,
@@ -391,29 +383,154 @@ script (usually the language the script is for).
 <h2>Debugging snowball scripts</h2>
 
 <p>
-In the rare event that your Snowball script does not run perfectly the first time:
+The Snowball compiler provides some options to support developing and debugging
+Snowball programs.
+</p>
+
+<h3>Compiler warnings</h3>
+
+<p>
+We aim to have the Snowball compiler issue a warning for code that's likely to be
+wrong.  For example, it will warn about many cases where code can't be reached
+or a command has no effect.  If you encounter a situation where the compiler
+could have usefully warned but didn't, please report it.
+</p>
+
+<h3>Debug command</h3>
+
+<p>
+Snowball has a debug command, which is a question mark (<code>?</code>).
+This generates a calll to a <code>debug(...)</code> helper function in the
+target language.  Currently this is implemented for C/C++ and (since Snowball
+3.1.0) for Ada.  It writes the current string to <code>stdout</code>, annotated
+to show the positions of the cursor, limits, and slice ends (<code>|</code>
+marks the cursor <B><I>c</I></B>, curly brackets (<code>{</code> and
+<code>}</code>) mark the limits, and square brackets (<code>[</code> and
+<code>]</code>) mark the slice ends.  The limits may be less than the whole
+string because of the action of <code>setlimit</code>.
 </p>
 
 <p>
-Remember that the option &nbsp;<code>-syntax</code>&nbsp; prints out the syntax tree. A question
-mark can be included in Snowball as a command, and it will generate a call
-<code>debug(...)</code>. The defined &nbsp;<code>debug</code>&nbsp; in &nbsp;<code>runtime/utilities.c</code>&nbsp; (usually
-commented out) can then be used. It causes the
-current string to sent to &nbsp;<code>stdout</code>, with square brackets marking the
-slice and vertical bar the position of <B><I>c</I></B>. Curly brackets mark the
-end-limits of the string, which may be less than the whole string because
-of the action of &nbsp;<code>setlimit</code>.
+At present there is no way of reporting the value of integer, boolean or string
+variables.  If desperate, you can put debugging lines into the generated code.
+Passing <code>-comments</code> makes it easier to find where to add such debugging
+code (see the next section).
+</p>
+
+<h3>Comments</h3>
+
+<p>
+You can pass <code>-comments</code> to the Snowball compiler to get it to
+generate comments showing the correspondence with the Snowball source.  This
+is mainly useful when developing or debugging code generators.
 </p>
 
 <p>
-At present there is no way of reporting the value of an integer or boolean.
+The comments report commands as they exist in the syntax tree after some
+optimisations.  Reported line numbers should be correct, but sometimes the
+command reported can be different to that in the source code (for example,
+<code>atleast 0 C</code> is rewritten as <code>repeat C</code>, while
+<code>$x /= -1</code> is rewritten as <code>$x *= -1</code> - the generated
+comments for these cases will say "repeat" and "*=" respectively).
+</p>
+
+<h3>Syntax tree</h3>
+
+<p>
+If command-line option <code>-syntax</code> is used then instead of generating
+code the compiler writes out the syntax tree to <code>stdout</code>.  This can
+be a handy way of checking that you have got the bracketing right in the
+program you have written.
 </p>
 
 <p>
-If desperate, you can put debugging lines into the generated C program.
-You can pass <code>-comments</code> to the snowball compiler to get it to
-generate comments showing the correspondence with the Snowball source which
-makes it easier to find where to add such debugging code.
+The Snowball compiler performs some optimisations on the program as
+it builds the syntax tree (for example, constant sub-expressions are evaluated,
+no-op commands are warned about and replaced with <code>true</code>, etc - the
+syntax tree is shown after such transformations.
+</p>
+
+<h3>Coverage</h3>
+
+<p>
+Snowball 3.1.0 added a simple code coverage feature (currently only supported
+for C/C++).  This allow generating extra code to allow the runtime to report
+which <code>among</code> cases and which <code>grouping</code> characters are
+actually exercised.  This can help find situations where a case is impossible
+to trigger because the words it's mean to handle get dealt with by an earlier
+step.  It can also find gaps in the test vocabulary - often adding a handful
+of words can complete the <code>among</code> coverage.
+</p>
+
+<p>
+To use this feature, you need to enable it when generating the code and
+when building it:
+</p>
+
+<div class="highlight"><pre>make<span class="w"> </span><span class="nv">SNOWBALL_FLAGS</span><span class="o">=</span>-coverage<span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-DSNOWBALL_COVERAGE
+</pre></div>
+
+<p>
+Then stemming a word will log coverage data to <code>stderr</code>, and you
+can turn that into a coverage report using <code>sort</code> and
+<code>uniq</code> (some of these options may be specific to GNU sort):
+</p>
+
+<div class="highlight"><pre>make<span class="w"> </span>-s<span class="w"> </span>check_utf8_swedish<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>coverage.log
+sort<span class="w"> </span>-k2,2<span class="w"> </span>-k3,3n<span class="w"> </span>-k3,3<span class="w"> </span>-k5,5g<span class="w"> </span>coverage.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span>&gt;<span class="w"> </span>coverage.report
+</pre></div>
+
+<p>
+The file <code>coverage.report</code> looks like this for an among:
+</p>
+
+<pre>
+  24402 algorithms/danish.sbl:59: among 1 no match
+     32 algorithms/danish.sbl:60: among 1 : 0 of 4 string 'gd'
+    316 algorithms/danish.sbl:61: among 1 : 1 of 4 string 'dt'
+    536 algorithms/danish.sbl:61: among 1 : 2 of 4 string 'gt'
+     48 algorithms/danish.sbl:61: among 1 : 3 of 4 string 'kt'
+</pre>
+
+<p>
+The columns are:
+</p>
+
+<ol>
+<li> the number of times this case/character triggered
+<li> the filename and line number
+<li> <em>among</em> or <em>grouping</em>
+<li> 0-base count of which among this is or name of this grouping
+<li>
+  <ul>
+    <li> "no match" for how many times none of the cases/characters matched, or
+    <li> ": M of N string 'S'" for an among case, or
+    <li> ": M of N func-f 'S'" for among function signalling <em>f</em>, or
+    <li> ": M of N func-t 'S'" for among function signalling <em>t</em>, or
+    <li> "index M of N 'C'" for a grouping character
+  </ul>
+</ol>
+
+<p>
+Note that the indices are 0-based, so in the example above are "0 of 4" to "3
+of 4" (there's no "4 of 4").
+</p>
+
+<p>
+Cases/characters which never match are not in the report - check for gaps in
+the numbering to find them.  Among strings are reported in the same order as
+they appear in the source code, so you can use the strings either side of a
+gap to locate the untriggered string in the source code.
+</p>
+
+<p>
+The coverage feature could definitely be slicker to use, but it's already at
+a state where it seemed useful to include in releases.
+</p>
+
+<p>
+It would also be useful to report coverage for every command, not just among
+cases and grouping characters.
 </p>
 
 <h2>Compiler bugs</h2>
@@ -446,7 +563,7 @@ do. (<code>C3</code>&nbsp; should not be an alternative to something which has d
 occasional side-effect.) It may be addressed in the future.
 </p>
 
-        </div><!-- /.col-md-10 -->
+        </div><!-- /.col-lg-10 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
 
@@ -457,7 +574,7 @@ occasional side-effect.) It may be addressed in the future.
         </p>
       </footer>
     </div> <!-- /container -->
-    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Persian stemming algorithm - Snowball</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="/styles.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-light bg-light navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
+          <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2">
+          
+        </div>
+        <div class="col-lg-10">
+          <h1>Persian stemming algorithm</h1>
+
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <a href="https://en.wikipedia.org/wiki/Persian_language">Persian language</a> on Wikipedia</li>
+<li> <a href="https://airccse.org/journal/ijnlc/papers/3114ijnlc02.pdf">"HPS: A Hierarchical Persian Stemming Method", Ayshe Rashidi and Mina Zolfy Lighvan</a>
+</ul>
+
+<p>
+This is a rule-based stemming algorithm for the Persian language, based on the
+<strong>Hierarchical Persian Stemmer (HPS)</strong> described in:
+</p>
+
+<blockquote>
+    Ayshe Rashidi and Mina Zolfy Lighvan (2014). HPS: A Hierarchical Persian Stemming Method.
+</blockquote>
+
+<h2>Minimum stem length</h2>
+
+<p>
+To reduce overstemming, prefixes and suffixes are only removed if the remaining
+stem is at least a minimum length.  For prefix removal this is two characters,
+while for suffix removal it's usually three characters.
+</p>
+
+<p>
+We investigated a syllable-based R1 measure (like most of the other Snowball
+stemmers use) but concluded this was hard to implement for Persian.  The core
+issue is that written Persian routinely omits short vowels (a, e, o), so a
+large portion of common stems contain no visible vowel letters at all.  For
+these we'd have to fall back to a character count anyway.  On top of that, the
+letters <i>vav</i> and <i>ye</i> are ambiguous — they can be consonants (/v/
+and /y/) depending on position.
+</p>
+
+<h2>Normalization</h2>
+
+<p>
+Before prefix stripping, tokens are normalized to a canonical Persian script:
+</p>
+
+<ul>
+<li>Arabic letter variants are mapped to their Persian equivalents:
+  <ul>
+  <li>Arabic <em>kaf</em> (U+0643) &rarr; Persian <em>kaf</em> (U+06A9),</li>
+  <li>Arabic <em>ye</em> (U+064A) / <em>ye with hamza</em> (U+0626) &rarr; Persian <em>ye</em> (U+06CC),</li>
+  <li>Arabic <em>te marbuta</em> (U+0629) / <em>heh with hamza</em> (U+06C1) &rarr; Persian <em>heh</em> (U+0647),</li>
+  <li>Arabic <em>alef with hamza above</em> (U+0623) / <em>alef with hamza below</em> (U+0625) &rarr; Persian <em>alef</em> (U+0627),</li>
+  <li>Arabic <em>vav with hamza</em> (U+0624) &rarr; Persian <em>vav</em> (U+0648).</li>
+  </ul>
+</li>
+<li>Zero-width joiners (U+200D) and ASCII spaces are deleted (typically text
+will be split into words at ASCII space so it won't appear in input to the
+stemmer, but it is cheap to handle).</li>
+</ul>
+
+<p>
+Note: Zero-width non-joiners (U+200C, known in Persian as <em>nim-faseleh</em>
+or half-space) are <strong>preserved</strong> at this stage and used as
+prefix&#8209;stem separators in the next phase, then deleted afterwards.
+</p>
+
+<h2>Prefix handling</h2>
+
+<p>
+The algorithm handles the present-tense marker prefixes <em>mi-</em> and
+<em>nemi-</em>.  To avoid false matches on words that happen to begin with the
+same syllables but are not prefixed forms (e.g. <em>miladi</em> "AD/CE",
+<em>miyan</em> "among"), a zero-width non-joiner must be present between the
+prefix and the stem. In formal Persian orthography these prefixes are written
+with a half-space before the stem, so this requirement is natural.
+</p>
+
+<p>
+If either prefix is present, a flag is set which enables some additional verb
+suffix rules in a later step.
+</p>
+
+<p>
+The prefix <em>mi-</em> is removed, but the prefix <em>nemi-</em> negates the
+sense which changes the meaning, so we leave this in place.
+</p>
+
+<p>
+(We also investigated setting the flag, but not removing the prefix, if
+<em>mi-</em> or <em>nemi-</em> is present but not followed by a ZWNJ but this
+introduced too many false conflations.)
+</p>
+
+<p>
+(Note: negating derivational prefixes <em>na-</em> and <em>bi-</em> are
+intentionally not stripped as they create words with opposite meanings (e.g.
+<em>na</em>+<em>dorost</em> = "incorrect", <em>bi</em>+<em>khatr</em> = "safe")
+and conflating them with their base forms would harm search precision.)
+</p>
+
+<p>
+After handling prefixes, any remaining zero-width non-joiners (e.g. those
+inside compound words) are deleted.
+</p>
+
+<h2>Suffix stripping</h2>
+
+<p>
+Suffix stripping proceeds in repeated backward passes. In each pass exactly
+one suffix is removed, first trying noun and adjective suffixes, then verb
+suffixes.  Each pass ends as soon as a suffix is removed, and the loop exits
+when no further suffixes can be removed.
+</p>
+
+<h3>Noun and adjective tier</h3>
+
+<p>
+Handles irregular rewrites, derivational endings, plurals, and possessive
+clitics. The principal noun rules are:
+</p>
+
+<ul>
+<li>Irregular rewrites (<em>akhbar</em> &rarr; <em>khabar</em>, <em>asatid</em> &rarr; <em>ostad</em>).</li>
+<li>Possessive clitics: <em>-am</em>, <em>-at</em>, <em>-ash</em> (guarded against lexical stems).</li>
+<li>Plural suffixes: <em>-yan</em>, <em>-gan</em>, <em>-hay</em>, <em>-ani</em>, <em>-ha</em>, <em>-at</em>, <em>-an</em>, <em>-in</em> (guarded against lexical stems &mdash; see below).</li>
+<li>Derivational endings: <em>-gah</em>, <em>-ban</em>, <em>-gi</em>, <em>-yat</em>, <em>-yy</em>.</li>
+</ul>
+
+<p>
+Note: <em>-at</em> can be a possessive suffix or a plural suffix - in both
+cases we want to delete it so we don't need to resolve which it is.
+</p>
+
+<p>
+Note: Possessive clitics <em>-man</em>, <em>-tan</em>, <em>-shan</em> are not
+handled - these three-character suffixes are ambiguous with plurals of nouns
+whose root ends in the same letter.  Without a lexicon we cannot distinguish
+the two cases. The <em>-an</em> rule handles both at the cost of missing
+possessive stripping.
+</p>
+
+<p>The adjective rules are:</p>
+
+<ul>
+<li>Comparative and superlative: <em>-tarin</em>, <em>-tar</em>.</li>
+<li>Derivational: <em>-ane</em>, <em>-mand</em>, <em>-var</em>, <em>-nak</em>, <em>-gar</em>, <em>-in</em>.</li>
+<li>Relative: <em>-yy</em>.</li>
+</ul>
+
+<p>
+Note: The suffixes <em>-in</em> and <em>-yy</em> can both be a noun or an
+adjective suffix.  We want to delete these suffixes so we don't need to resolve
+which they are.
+</p>
+
+<h3>Verb tier</h3>
+
+<ul>
+<li>Participle and auxiliary clitics: <em>-aid</em>, <em>-aim</em>, <em>-and</em>, <em>-ast</em>, <em>-as</em>, <em>-ai</em>, <em>-id</em>, <em>-im</em>.</li>
+<li>Person/number endings, gated on a seen present-prefix or infinitive/participle cue:
+    <em>-and</em>, <em>-id</em>, <em>-im</em>, <em>-am</em>, <em>-d</em>, <em>-m</em>; plus specific past-3sg rewrites for
+    <em>raft-</em> forms.</li>
+<li>Mood/tense markers:
+    <ul>
+    <li>Agent-noun suffix <em>-ndeh</em> stripped to present root (e.g. <em>nevisandeh</em> &rarr; <em>nevis</em>).</li>
+    <li>Infinitive/plural <em>-an</em> (guarded against lexical stems).</li>
+    <li>Past-participle <em>-eh</em> stripped only when preceded by <em>d</em> or <em>t</em>
+        (e.g. <em>kardeh</em> &rarr; <em>kard</em>, <em>gerefteh</em> &rarr; <em>gereft</em>), to avoid
+        stripping from nouns and adjectives that end in <em>heh</em>.</li>
+    </ul>
+</li>
+</ul>
+
+<h2>Lexical -an guard</h2>
+
+<p>
+The suffix <em>-an</em> is productive as a plural marker but also occurs in many
+lexical stems (place names, common nouns, proper names) that should not be
+stripped. A probe routine runs at the start of each pass and sets a flag when
+it detects a lexical ending, blocking all rules that strip <em>-an</em>
+or its extensions (<em>-yan</em>, <em>-gan</em>, <em>-ban</em>).
+</p>
+
+<p>Protection is applied to:</p>
+
+<ul>
+<li>Pattern-based suffixes: words ending in <em>-stan</em>, <em>-san</em>, <em>-ran</em>, <em>-van</em>.</li>
+<li>A curated word list including common place names and lexical nouns: see
+    the <code>AN_Exception</code> routine for the full list.  These are checked
+    as exact whole-word matches using <code>atlimit</code>.
+</li>
+</ul>
+
+<h2>Differences from original HPS</h2>
+
+<ul>
+<li><strong>No POS tagger</strong> &mdash; The original HPS routes tokens to noun, adjective,
+    or verb rules via a POS tagger. This implementation uses a fixed heuristic
+    order (noun/adjective, then verb) for portability and simplicity.</li>
+<li><strong>ZWNJ-gated prefix stripping</strong> &mdash; Prefixes are only stripped when a
+    zero-width non-joiner separates them from the stem, preventing false matches
+    on words that begin with the same syllables.</li>
+<li><strong>Conservative <em>-eh</em> stripping</strong> &mdash; The past-participle marker
+    <em>-eh</em> is only removed when the preceding character is <em>d</em> or <em>t</em>,
+    preserving the large number of Persian and Arabic-origin words that
+    legitimately end in <em>heh</em>.</li>
+<li><strong>Lexical <em>-an</em> guard</strong> &mdash; An explicit protection mechanism prevents
+    stripping of <em>-an</em> and related suffixes from place names, proper nouns,
+    and common lexical stems.</li>
+<li><strong>Length guards</strong> &mdash; Minimum stem-length checks on most rules to
+    prevent damage to short words.</li>
+</ul>
+
+<h2>The full algorithm in Snowball</h2>
+
+<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm"> * -----------------------------------------------------------------------------</span>
+<span class="cm"> * Persian Stemmer (HPS-like)</span>
+<span class="cm"> * -----------------------------------------------------------------------------</span>
+<span class="cm"> * Based on the paper:</span>
+<span class="cm"> *   &quot;HPS: A Hierarchical Persian Stemming Method&quot;</span>
+<span class="cm"> *   Ayshe Rashidi, Mina Zolfy Lighvan (2014)</span>
+<span class="cm"> * -----------------------------------------------------------------------------</span>
+<span class="cm"> * Differences from original HPS:</span>
+<span class="cm"> * 1) No POS-tagger stage:</span>
+<span class="cm"> *      - HPS uses a POS tagger to route tokens to Noun, Adjective, or Verb</span>
+<span class="cm"> *        suffix rules directly.</span>
+<span class="cm"> *      - Here we fall back to the fixed order: Noun or Adjective, then Verb</span>
+<span class="cm"> *        when POS is unknown.</span>
+<span class="cm"> *      Reason: Implementation is tagger-agnostic and lightweight.</span>
+<span class="cm"> * 2) Lexical &quot;-AN&quot; guard:</span>
+<span class="cm"> *      - Added `Protect_Lexical_AN` to avoid stripping true lexical endings</span>
+<span class="cm"> *        like &quot;...stan&quot;, &quot;...ran&quot;, and known stems (Iran, Tehran, Ensan).</span>
+<span class="cm"> *      Reason: reduces over-stemming where HPS relied on explicit hash lists.</span>
+<span class="cm"> * -----------------------------------------------------------------------------</span>
+<span class="cm"> * Implemented by: https://saeiddrv.com</span>
+<span class="cm"> * -----------------------------------------------------------------------------</span>
+<span class="cm"> */</span>
+
+<span class="kr">stringescapes</span><span class="w"> </span><span class="se">{</span><span class="w"> </span><span class="se">}</span>
+
+<span class="c1">// ============================================================================</span>
+<span class="c1">//  Alphabet &amp; special symbols</span>
+<span class="c1">// ============================================================================</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">alef</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0627}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">aa</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+0622}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">be</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+0628}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">pe</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+067E}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">te</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+062A}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">se</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+062B}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">jim</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+062C}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">che</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0686}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">heh_jimi</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+062D}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">khe</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+062E}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dal</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+062F}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">zal</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0630}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">re</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+0631}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ze</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+0632}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">zhe</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0698}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">sin</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0633}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">shin</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0634}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">sad</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0635}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">zad</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0636}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ta</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+0637}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">za</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+0638}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ain</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0639}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ghain</span><span class="w">      </span><span class="s1">&#39;</span><span class="se">{U+063A}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">fe</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+0641}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ghaf</span><span class="w">       </span><span class="s1">&#39;</span><span class="se">{U+0642}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">kaf</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+06A9}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">gaf</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+06AF}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">lam</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0644}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">mim</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0645}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">nun</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0646}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">vav</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0648}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">heh</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+0647}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ye</span><span class="w">         </span><span class="s1">&#39;</span><span class="se">{U+06CC}</span><span class="s1">&#39;</span>
+
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">space</span><span class="w">             </span><span class="s1">&#39;</span><span class="se">{U+0020}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">zero_width_joiner</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+200D}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">half_space</span><span class="w">        </span><span class="s1">&#39;</span><span class="se">{U+200C}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// zero-width non-joiner (ZWNJ)</span>
+<span class="c1">// Note: U+200C (ZERO WIDTH NON-JOINER) is commonly referred to as &quot;nim-faseleh&quot; (&quot;half-space&quot;) in Persian.</span>
+<span class="c1">// Although this name is not standard in English Unicode terminology, it reflects its widespread use</span>
+<span class="c1">// in Persian as a morpheme separator within words. This character is here to normalize</span>
+
+<span class="c1">// Arabic variants to normalize to Persian forms</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ar_kaf</span><span class="w">                   </span><span class="s1">&#39;</span><span class="se">{U+0643}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ar_ye</span><span class="w">                    </span><span class="s1">&#39;</span><span class="se">{U+064A}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ar_ye_with_hamza_above</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+0626}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ar_heh</span><span class="w">                   </span><span class="s1">&#39;</span><span class="se">{U+06C1}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ar_teh_marbuta</span><span class="w">           </span><span class="s1">&#39;</span><span class="se">{U+0629}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ar_alef_with_hamza_above</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0623}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ar_alef_with_hamza_below</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0625}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ar_vav_with_hamza_above</span><span class="w">  </span><span class="s1">&#39;</span><span class="se">{U+0624}</span><span class="s1">&#39;</span>
+
+<span class="c1">// ============================================================================</span>
+<span class="c1">//  Declarations (routines, flags, and marks)</span>
+<span class="c1">// ============================================================================</span>
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">Normalize_Characters</span><span class="w">  </span><span class="c1">// Forward: Unicode/script normalization</span>
+<span class="w">  </span><span class="n">Prefixes</span><span class="w">              </span><span class="c1">// Forward: handles prefixes</span>
+<span class="w">  </span><span class="n">Delete_ZWNJ</span><span class="w">           </span><span class="c1">// Forward: delete remaining ZWNJs after prefix handling</span>
+<span class="w">  </span><span class="n">Protect_Lexical_AN</span><span class="w">    </span><span class="c1">// Probe: flag lexical -AN endings (per pass)</span>
+
+<span class="w">  </span><span class="n">R1</span><span class="w"> </span><span class="c1">// Test if cursor is in R1</span>
+
+<span class="w">  </span><span class="c1">// Noun tier (HPS categories)</span>
+<span class="w">  </span><span class="n">AN_Exception</span>
+<span class="w">  </span><span class="n">Irregular_Noun</span>
+<span class="w">  </span><span class="n">Stem_Noun_or_Adjective</span>
+<span class="w">  </span><span class="n">Stem_Verb</span>
+<span class="p">)</span>
+
+<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
+
+<span class="c1">// Guard flags:</span>
+<span class="c1">//  - &#39;saw_present_prefix&#39;:</span>
+<span class="c1">//    true when a present-tense prefix (mi-/nemi-) is stripped; used as the</span>
+<span class="c1">//    default for `remove_verb_person_endings` for all suffix removal passes.</span>
+<span class="c1">//  - &#39;remove_verb_person_endings&#39;:</span>
+<span class="c1">//    true if a verb cue has been seen; used to enable verb person-ending rules</span>
+<span class="c1">//    in this pass.</span>
+<span class="kr">booleans</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">saw_present_prefix</span><span class="w"> </span><span class="n">remove_verb_person_endings</span><span class="w"> </span><span class="p">)</span>
+
+<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="p">)</span>
+
+<span class="c1">// ============================================================================</span>
+<span class="c1">//  PHASE 1 — NORMALIZATION (forward)</span>
+<span class="c1">//  - Unify Arabic forms to Persian letters for stable downstream matching.</span>
+<span class="c1">//  - Delete ZWJ (U+200D) and ASCII spaces so the token is solid.</span>
+<span class="c1">//  - ZWNJ (U+200C) is preserved here; used as prefix-stem separator in Phase 2,</span>
+<span class="c1">//    then deleted by Delete_ZWNJ after prefix stripping is complete.</span>
+<span class="c1">// ============================================================================</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">Normalize_Characters</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ar_kaf}</span><span class="s1">&#39;</span><span class="w">                                                 </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{kaf}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ar_ye}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ar_ye_with_hamza_above}</span><span class="s1">&#39;</span><span class="w">                       </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ye}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ar_teh_marbuta}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ar_heh}</span><span class="s1">&#39;</span><span class="w">                              </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{heh}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ar_alef_with_hamza_above}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ar_alef_with_hamza_below}</span><span class="s1">&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{alef}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ar_vav_with_hamza_above}</span><span class="s1">&#39;</span><span class="w">                                </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{vav}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{zero_width_joiner}</span><span class="s1">&#39;</span><span class="w">                                      </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{space}</span><span class="s1">&#39;</span><span class="w">                                                  </span><span class="p">(</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;&#39;</span><span class="w">                                                         </span><span class="p">(</span><span class="w"> </span><span class="ow">next</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// ============================================================================</span>
+<span class="c1">//  PHASE 2 — PREFIX HANDLING (forward, anchored)</span>
+<span class="c1">//  - HPS: handle known prefixes before suffix processing.</span>
+<span class="c1">//  - Requires ZWNJ (U+200C) between prefix and stem to avoid mishandling</span>
+<span class="c1">//    words that begin with the same syllables but are not prefixed forms.</span>
+<span class="c1">//  - At least two characters are required after the prefix.</span>
+<span class="c1">//  - Sets `saw_present_prefix` when matching {mi}/{nemi} to enable person endings later.</span>
+<span class="c1">//  - Note: negating derivational prefixes na- and bi- are intentionally not</span>
+<span class="c1">//    stripped as they create words with opposite meanings (e.g. na+dorost =</span>
+<span class="c1">//    incorrect, bi+khatr = safe) and conflating them with their base forms</span>
+<span class="c1">//    would harm search precision.</span>
+<span class="c1">//  - Similarly, nemi- negates the meaning so we don&#39;t remove it but do still</span>
+<span class="c1">//    set `saw_present_prefix` when it is present.</span>
+<span class="c1">// ============================================================================</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">Prefixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{nun}{mim}{ye}{half_space}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// NEMI‌ + ZWNJ: detect but keep</span>
+<span class="w">        </span><span class="p">(</span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="ow">set</span><span class="w"> </span><span class="n">saw_present_prefix</span><span class="p">)</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">{mim}{ye}{half_space}</span><span class="s1">&#39;</span><span class="w">       </span><span class="c1">// MI‌ + ZWNJ</span>
+<span class="w">        </span><span class="p">(</span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="ow">delete</span><span class="w">  </span><span class="ow">set</span><span class="w"> </span><span class="n">saw_present_prefix</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// ============================================================================</span>
+<span class="c1">//  PHASE 2b — DELETE REMAINING ZWNJs (forward)</span>
+<span class="c1">//  - After prefix detection, any remaining ZWNJs (e.g. in compound words)</span>
+<span class="c1">//    are no longer needed and are removed here.</span>
+<span class="c1">// ============================================================================</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">Delete_ZWNJ</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">goto</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{half_space}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">cursor</span>
+
+<span class="c1">// ============================================================================</span>
+<span class="c1">//  PROBE — PROTECT LEXICAL &quot;-AN&quot; (not plural)</span>
+<span class="c1">//  - HPS strips -AN as a plural; however, many stems end in orthographic &quot;AN&quot;:</span>
+<span class="c1">//      ...stan / ...san / ...ran (place names/lexical stems), and frequent</span>
+<span class="c1">//      stems such as Iran/Tehran/Ensan/Ostan.</span>
+<span class="c1">//  - We signal f if a trailing pattern indicates lexical AN.</span>
+<span class="c1">//  - This is a probe only: it NEVER edits the buffer; it only signals.</span>
+<span class="c1">// ============================================================================</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">Protect_Lexical_AN</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">not</span><span class="w"> </span><span class="n">AN_Exception</span>
+<span class="w">    </span><span class="ow">not</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{sin}{te}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// ...stan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{sin}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">      </span><span class="c1">// ...san</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{re}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">       </span><span class="c1">// ...ran</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{vav}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">      </span><span class="c1">// ...van: onvaan, divaan, javaan, ravaan</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="c1">// ============================================================================</span>
+<span class="c1">//  PHASE 3 — SUFFIX STRIPPING (backward)</span>
+<span class="c1">//  - All routines in backward mode start matching from the end of the token.</span>
+<span class="c1">//  - IMPORTANT: no successful &quot;no-op&quot; arms; every success must modify the text.</span>
+<span class="c1">//    This ensures &#39;repeat&#39; loops terminate.</span>
+<span class="c1">//  - Most suffixes are only removed/replaced if they are entirely in R1 to</span>
+<span class="c1">//    avoid over-stemming short words.</span>
+<span class="c1">// ============================================================================</span>
+
+<span class="w">  </span><span class="c1">// --- Lexical &quot;-AN&quot; suffix list.</span>
+<span class="w">  </span><span class="c1">//     Small curated set of stems ending in orthographic -AN that are not plural.</span>
+<span class="w">  </span><span class="c1">//     Used by `Protect_Lexical_AN` to prevent stripping on place names / lexical nouns.</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">AN_Exception</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{aa}{lam}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// alman</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{aa}{sin}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// asman</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{alef}{ye}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                    </span><span class="c1">// eiman</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{alef}{ye}{shin}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                   </span><span class="c1">// ishan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{alef}{mim}{kaf}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                   </span><span class="c1">// emkan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{alef}{sad}{fe}{heh}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">               </span><span class="c1">// esfahan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{aa}{zal}{re}{be}{alef}{ye}{jim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">   </span><span class="c1">// azerbaijan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{be}{ye}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                           </span><span class="c1">// bayan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{pe}{alef}{ye}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// payan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{pe}{ye}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                      </span><span class="c1">// payman</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{jim}{re}{ye}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                      </span><span class="c1">// jaryan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dal}{re}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// darman</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{re}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                          </span><span class="c1">// roman</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ze}{nun}{dal}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// zendan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{sin}{alef}{ze}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">               </span><span class="c1">// sazman</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{sin}{lam}{ta}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// soltan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{gaf}{ye}{lam}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// Gilan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ghaf}{heh}{re}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">               </span><span class="c1">// ghahramaan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{kaf}{re}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// Kerman</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{khe}{alef}{nun}{dal}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">              </span><span class="c1">// khandan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{lam}{be}{nun}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// lobnan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{mim}{ye}{ze}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                      </span><span class="c1">// mizan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{mim}{sin}{lam}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">               </span><span class="c1">// mosalman</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{nun}{shin}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                        </span><span class="c1">// neshan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{heh}{mim}{dal}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                    </span><span class="c1">// hamedan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ye}{vav}{nun}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                     </span><span class="c1">// yunan</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{kaf}{heh}{kaf}{shin}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">              </span><span class="c1">// kahkeshan (galaxy)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{aa}{te}{shin}{fe}{shin}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">           </span><span class="c1">// atashfeshan (volcano)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{pe}{re}{ye}{shin}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                 </span><span class="c1">// perishan (confused)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{dal}{re}{khe}{shin}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">               </span><span class="c1">// darakhshan (shining)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{heh}{mim}{ze}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                </span><span class="c1">// hamzaman (simultaneous)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{sin}{alef}{khe}{te}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">          </span><span class="c1">// sakhteman (building)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{sin}{lam}{ye}{mim}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">                </span><span class="c1">// soleyman (Solomon)</span>
+<span class="w">          </span><span class="p">(</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// --- Noun irregular rewrites.</span>
+<span class="w">  </span><span class="c1">//     Only include entries that actually change the buffer.</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">Irregular_Noun</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{alef}{khe}{be}{alef}{re}</span><span class="s1">&#39;</span><span class="w">      </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{khe}{be}{re}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{alef}{sin}{alef}{te}{ye}{dal}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{alef}{sin}{te}{alef}{dal}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// --- Noun/Adjective step.</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">Stem_Noun_or_Adjective</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">Irregular_Noun</span><span class="w"> </span><span class="ow">or</span>
+<span class="w">    </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="c1">// Noun possessive suffixes</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{mim}</span><span class="s1">&#39;</span><span class="w">       </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -AM</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{shin}</span><span class="s1">&#39;</span><span class="w">      </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -ASH</span>
+
+<span class="w">        </span><span class="c1">// -MAN/-TAN/-SHAN are intentionally disabled: these 3-char suffixes</span>
+<span class="w">        </span><span class="c1">// are ambiguous with plurals of nouns whose root ends in the same letter:</span>
+<span class="w">        </span><span class="c1">//   ketab+maan (our book)   -&gt; strip -maan -&gt; ketab  (correct)</span>
+<span class="w">        </span><span class="c1">//   mardom+an  (people pl.) -&gt; strip -an   -&gt; mardom (correct, NOT mardom-&gt;mard)</span>
+<span class="w">        </span><span class="c1">//   naqqash+an (painters)   -&gt; strip -an   -&gt; naqqash (correct, NOT -&gt;naqqaa)</span>
+<span class="w">        </span><span class="c1">//   derakht+an (trees)      -&gt; strip -an   -&gt; derakht (correct, NOT -&gt;derakh)</span>
+<span class="w">        </span><span class="c1">// Without a lexicon we cannot distinguish the two cases. The -AN</span>
+<span class="w">        </span><span class="c1">// rule below handles both at the cost of missing possessive stripping.</span>
+<span class="w">        </span><span class="c1">//        &#39;{mim}{alef}{nun}&#39;  (delete) // -MAN</span>
+<span class="w">        </span><span class="c1">//        &#39;{te}{alef}{nun}&#39;   (delete) // -TAN</span>
+<span class="w">        </span><span class="c1">//        &#39;{shin}{alef}{nun}&#39; (delete) // -SHAN</span>
+
+<span class="w">        </span><span class="c1">// Noun plurals.</span>
+<span class="w">        </span><span class="c1">// -YAN and -GAN are productive.</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ye}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -YAN</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{gaf}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">  </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -GAN</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{heh}{alef}{ye}</span><span class="s1">&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -HAY</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{nun}{ye}</span><span class="s1">&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -ANI</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{heh}{alef}</span><span class="s1">&#39;</span><span class="w">       </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -HA</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{te}</span><span class="s1">&#39;</span><span class="w">        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -AT (Arabic sound plural; can also be possessive &quot;your&quot;)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{nun}</span><span class="s1">&#39;</span><span class="w">       </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -AN (only if not lexical)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ye}{nun}</span><span class="s1">&#39;</span><span class="w">         </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -IN (also adjective derivation ending)</span>
+
+<span class="w">        </span><span class="c1">// Other derivational noun endings (conservative set).</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{gaf}{alef}{heh}</span><span class="s1">&#39;</span><span class="w">  </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -GAH</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{be}{alef}{nun}</span><span class="s1">&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -BAN</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{gaf}{ye}</span><span class="s1">&#39;</span><span class="w">         </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -GI (abstract noun)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ye}{te}</span><span class="s1">&#39;</span><span class="w">          </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -YAT</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ye}{ye}</span><span class="s1">&#39;</span><span class="w">          </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -YY (double Y; also adj. relative -Y)</span>
+
+<span class="w">        </span><span class="c1">// Adjective: comparative/superlative (HPS).</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{te}{re}{ye}{nun}</span><span class="s1">&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -TARIN</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{te}{re}</span><span class="s1">&#39;</span><span class="w">          </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -TAR</span>
+
+<span class="w">        </span><span class="c1">// Adjective derivational endings (HPS list + common variants).</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{nun}{heh}</span><span class="s1">&#39;</span><span class="w">  </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -ANE</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{mim}{nun}{dal}</span><span class="s1">&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -MAND</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{vav}{alef}{re}</span><span class="s1">&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -VAR</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nun}{alef}{kaf}</span><span class="s1">&#39;</span><span class="w">  </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -NAK</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{gaf}{alef}{re}</span><span class="s1">&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// -GAR</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// --- Verb step.</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">Stem_Verb</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// Participle + person/aux clitic tails</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{ye}{dal}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{ye}{mim}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{nun}{dal}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{sin}{te}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{sin}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{ye}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ye}{dal}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ye}{mim}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="p">(</span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="c1">// Generic person and singular/plural endings — only when a verb cue is active</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{nun}{dal}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// -AND</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ye}{dal}</span><span class="s1">&#39;</span><span class="w">         </span><span class="c1">// -ID</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{ye}{mim}</span><span class="s1">&#39;</span><span class="w">         </span><span class="c1">// -IM</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{mim}</span><span class="s1">&#39;</span><span class="w">       </span><span class="c1">// -AM</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{dal}</span><span class="s1">&#39;</span><span class="w">             </span><span class="c1">// -D</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{mim}</span><span class="s1">&#39;</span><span class="w">             </span><span class="c1">// -M</span>
+<span class="w">            </span><span class="p">(</span><span class="w"> </span><span class="n">remove_verb_person_endings</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Specific past-3sg stem fixes</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{re}{fe}{te}{mim}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{re}{fe}{te}{ye}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{re}{fe}{te}{ye}{mim}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{re}{fe}{te}{ye}{dal}</span><span class="s1">&#39;</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{re}{fe}{te}{alef}{nun}{dal}</span><span class="s1">&#39;</span>
+<span class="w">            </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{re}{fe}{te}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Mood/tense markers (HPS).</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{nun}{dal}{heh}</span><span class="s1">&#39;</span><span class="w">   </span><span class="c1">// agent noun -NDEH → present root</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{alef}{nun}</span><span class="s1">&#39;</span><span class="w">       </span><span class="c1">// infinitive -N / -AN</span>
+<span class="w">            </span><span class="p">(</span><span class="n">R1</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="ow">set</span><span class="w"> </span><span class="n">remove_verb_person_endings</span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{dal}{heh}</span><span class="s1">&#39;</span><span class="w">        </span><span class="c1">// past part. -deh</span>
+<span class="w">            </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;</span><span class="se">{dal}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">set</span><span class="w"> </span><span class="n">remove_verb_person_endings</span><span class="p">)</span>
+<span class="w">        </span><span class="s1">&#39;</span><span class="se">{te}{heh}</span><span class="s1">&#39;</span><span class="w">         </span><span class="c1">// past part. -teh</span>
+<span class="w">            </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;</span><span class="se">{te}</span><span class="s1">&#39;</span><span class="w">  </span><span class="ow">set</span><span class="w"> </span><span class="n">remove_verb_person_endings</span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// ============================================================================</span>
+<span class="c1">//  MAIN (HPS pipeline)</span>
+<span class="c1">// ============================================================================</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="ow">unset</span><span class="w"> </span><span class="n">saw_present_prefix</span>
+
+<span class="w">  </span><span class="c1">// 1) Normalize script/spacing (ZWNJ preserved for prefix detection)</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">Normalize_Characters</span>
+
+<span class="w">  </span><span class="c1">// 2) Handle leading prefixes (requires ZWNJ separator)</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">Prefixes</span>
+
+<span class="w">  </span><span class="c1">// 2b) Delete remaining ZWNJs now that prefix detection is done</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">Delete_ZWNJ</span>
+
+<span class="w">  </span><span class="c1">// Set p1 to be 3 characters into the string.</span>
+<span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// 3) Remove suffixes.  Each pass removes one suffix, trying noun and</span>
+<span class="w">  </span><span class="c1">// adjective endings first, then verb endings.  So if we remove a noun</span>
+<span class="w">  </span><span class="c1">// or adjective ending, we next check for another noun or adjective</span>
+<span class="w">  </span><span class="c1">// ending.</span>
+<span class="w">  </span><span class="c1">//</span>
+<span class="w">  </span><span class="c1">// Note: The loop exits if no suffix is removed and the buffer gets</span>
+<span class="w">  </span><span class="c1">// shorter when a suffix is removed so we can&#39;t loop forever.</span>
+<span class="w">  </span><span class="ow">backwards</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="c1">// Set remove_verb_person_endings = saw_present_prefix.</span>
+<span class="w">    </span><span class="ow">unset</span><span class="w"> </span><span class="n">remove_verb_person_endings</span>
+<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">saw_present_prefix</span><span class="w"> </span><span class="ow">set</span><span class="w"> </span><span class="n">remove_verb_person_endings</span><span class="w"> </span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">Protect_Lexical_AN</span>
+<span class="w">    </span><span class="c1">// HPS as described in the paper uses a POS tagger.  We don&#39;t have that</span>
+<span class="w">    </span><span class="c1">// information so we use a heuristic and try noun/adjective endings first,</span>
+<span class="w">    </span><span class="c1">// then verb endings.</span>
+<span class="w">    </span><span class="n">Stem_Noun_or_Adjective</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">Stem_Verb</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+
+        </div><!-- /.col-lg-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

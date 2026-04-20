@@ -8,44 +8,26 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
     <title>Snowball</title>
-    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="/styles.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-light bg-light navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
-          <a class="navbar-brand" href="/">Snowball</a>
+          <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
+          <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/credits.html">Credits</a></li>
-          </ul>
-	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
-        </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
-          <div class='list-group'><a class="list-group-item active" href="/">Introduction</a><a class="list-group-item" href="/demo.html">Demo</a><a class="list-group-item" href="/algorithms/">Algorithms</a><a class="list-group-item" href="/download.html">Download</a><a class="list-group-item" href="/lists.html">Mailing Lists</a><a class="list-group-item" href="/license.html">License</a><a class="list-group-item" href="/credits.html">Credits</a><a class="list-group-item" href="/projects.html">Projects</a><a class="list-group-item" href="https://github.com/snowballstem">Source on github</a><br>
-</div>
+        <div class="col-lg-2">
+          <nav class="list-group"><a class="list-group-item active" href="/">Introduction</a><a class="list-group-item" href="/demo.html">Demo</a><a class="list-group-item" href="/algorithms/">Algorithms</a><a class="list-group-item" href="/download.html">Download</a><a class="list-group-item" href="/lists.html">Mailing Lists</a><a class="list-group-item" href="/license.html">License</a><a class="list-group-item" href="/credits.html">Credits</a><a class="list-group-item" href="/projects.html">Projects</a></nav>
 
 <!--
 <form NAME=P METHOD=GET ACTION="omega.cgi" TARGET="_top">
@@ -60,12 +42,12 @@
 
 
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10">
           <h1>Snowball</h1>
 
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-lg-8">
 
 <p>
 <strong>Snowball</strong> is a small string processing language for creating
@@ -85,8 +67,8 @@ metaphor for how the project grows by gathering contributions over time.
 
 <p>
 The Snowball compiler translates a Snowball program into source code in another
-language - currently Ada, ISO C, C#, Go, Java, Javascript, Object Pascal,
-Python and Rust are supported.
+language - currently Ada, ISO C, C#, Dart, Go, Java, Javascript, Object Pascal,
+PHP, Python, Rust and Zig are supported.
 <p>
 
 <h2>What is Stemming?</h2>
@@ -151,7 +133,7 @@ Add new backends to the Snowball compiler...
 
  The language has a full
 
-    <A HREF="../compiler/snowman.html"> manual</A>,
+    <A HREF="../compiler/snowman.html">manual</A>,
 
 and the various stemming scripts act as example programs.
 
@@ -159,12 +141,12 @@ and the various stemming scripts act as example programs.
 
 - You can get deeply interested in stemming. If you do, read the
 
-    <A HREF="../texts/introduction.html"> introductory paper</A>
+    <A HREF="../texts/introduction.html">introductory paper</A>
 
 about Snowball. It is a bit heavyweight, but provides essential background.
 And look at the
 
-    <A HREF="../texts/howtohelp.html"> notes</A>
+    <A HREF="../texts/howtohelp.html">notes</A>
 
 on how you can help.
 -->
@@ -182,6 +164,21 @@ speedily, and in any case they reserve the right to post their answers on snowba
 
 
 <ul>
+  <li>
+    <strong>Apr 2026</strong> - Persian stemming algorithm contributed by Saeid Darvish.
+  </li>
+  <li>
+    <strong>Apr 2026</strong> - Zig backend contributed by AJ Roetker.
+  </li>
+  <li>
+    <strong>Oct 2025</strong> - Polish stemming algorithm contributed by Dmitry Shachnev.
+  </li>
+  <li>
+    <strong>Oct 2025</strong> - Dart backend contributed by Ryan Heise.
+  </li>
+  <li>
+    <strong>Oct 2025</strong> - PHP backend contributed by Tim Whitlock and Olly Betts.
+  </li>
   <li>
     <strong>May 2025</strong> - <a href="download.html">Snowball 3.0.1 released.</a>
   </li>
@@ -301,7 +298,7 @@ speedily, and in any case they reserve the right to post their answers on snowba
 </ul>
 
   </div>
-  <div class="col-md-4">
+  <div class="col-lg-4">
 
     <h2>Links to resources</h2>
 
@@ -321,7 +318,7 @@ speedily, and in any case they reserve the right to post their answers on snowba
   </div>
 </div>
 
-        </div><!-- /.col-md-10 -->
+        </div><!-- /.col-lg-10 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
 
@@ -332,7 +329,7 @@ speedily, and in any case they reserve the right to post their answers on snowba
         </p>
       </footer>
     </div> <!-- /container -->
-    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>

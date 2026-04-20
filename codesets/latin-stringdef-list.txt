@@ -69,19 +69,25 @@ stringdef a+   '{U+0103}' // a breve
 stringdef ak   '{U+0105}' // a ogonek
 stringdef c'   '{U+0107}' // c acute
 stringdef cv   '{U+010D}' // c caron
+stringdef dv   '{U+010F}' // d caron
 stringdef d/   '{U+0111}' // d stroke
 stringdef e.   '{U+0117}' // LATIN SMALL LETTER E WITH DOT ABOVE
 stringdef ek   '{U+0119}' // e ogonek
+stringdef ev   '{U+011B}' // e caron
 stringdef g~   '{U+011F}' // LATIN SMALL LETTER G WITH BREVE
 stringdef ik   '{U+012F}' // i ogonek
 stringdef i    '{U+0131}' // LATIN SMALL LETTER I WITHOUT DOT
 stringdef l/   '{U+0142}' // l stroke
+stringdef nv   '{U+0148}' // n caron
 stringdef oq   '{U+0151}' // o-double acute
+stringdef rv   '{U+0159}' // r caron
 stringdef s'   '{U+015B}' // s acute
 stringdef sc   '{U+015F}' // s cedilla
 stringdef sv   '{U+0161}' // s caron
 stringdef tc   '{U+0163}' // t cedilla
+stringdef tv   '{U+0165}' // t caron
 stringdef u-   '{U+016B}' // LATIN SMALL LETTER U WITH MACRON
+stringdef uo   '{U+016F}' // u ring
 stringdef uq   '{U+0171}' // u-double acute
 stringdef uk   '{U+0173}' // u ogonek
 stringdef zv   '{U+017E}' // z caron

@@ -8,56 +8,35 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
     <title>The English (Porter2) stemming algorithm - Snowball</title>
-    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="/styles.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-light bg-light navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
-          <a class="navbar-brand" href="/">Snowball</a>
+          <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
+          <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/credits.html">Credits</a></li>
-          </ul>
-	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
-        </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2">
           
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10">
           <h1>The English (Porter2) stemming algorithm</h1>
 
 
 <h2>Links to resources</h2>
 
 <ul>
-<li> <a href="/demo.html#English">Javascript demo</a></li>
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/english.sbl">The stemmer in Snowball</a></li>
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/english/voc.txt">Sample English vocabulary</a></li>
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/english/output.txt">Its stemmed equivalent</a></li>
-<li> <a href="stop.txt">English stop word list (UTF-8 encoding)</a>
+<li> <a href="https://en.wikipedia.org/wiki/English_language">English language</a> on Wikipedia</li>
 </ul>
 
 <p>
@@ -301,7 +280,7 @@ Extra rule in Step 2: <b><i>logi</i></b> -> <b><i>log</i></b>
 <li>[In C Porter stemmer but not in paper]
 Step 2 rule: <b><i>abli</i></b> -> <b><i>able</i></b> replace by <b><i>bli</i></b> -> <b><i>ble</i></b>
 <li>[In C Porter stemmer but not in paper]
-The algorithm leaves along strings of length 2 (so
+The algorithm leaves alone strings of length 2 (so
 <b><i>as</i></b> and <b><i>is</i></b> not longer lose <b><i>s</i></b>.
 <li>Terminating <B><I>y</I></B> is changed to <B><I>i</I></B> rather less often
 <li>Suffix <B><I>us</I></B> does not lose its <B><I>s</I></B>
@@ -325,8 +304,12 @@ apostrophe.
 <li>Snowball 3.0.0 Avoid conflating <b><i>past</i></b> with <b><i>paste</i></b>/<b><i>pastes</i></b>/<b><i>pasted</i></b>/<b><i>pasting</i></b>.
 <li>Snowball 3.0.0 Avoid conflating <b><i>universe</i></b>/<b><i>universes</i></b> with <b><i>universal</i></b>/<b><i>universally</i></b> and <b><i>university</i></b>/<b><i>universities</i></b>.
 <li>Snowball 3.0.0 Avoid conflating <b><i>lateral</i></b>/<b><i>laterally</i></b> with <b><i>later</i></b>.
+<li>Snowball 3.0.0 Avoid conflating <b><i>emerge</i></b> with <b><i>emergency</i></b>.
+<li>Snowball 3.0.0 Avoid conflating <b><i>organ</i></b>, <b><i>organic</i></b>, <b><i>organize</i></b>.
 <li>Snowball 3.0.0 Replace <b><i>-ogist</i></b> with <b><i>-og</i></b> to conflate <b><i>geologist</i></b> with <b><i>geology</i></b>, etc.
 <li>Snowball 3.0.0 Handle <b><i>-eed</i></b> and <b><i>-ing</i></b> exceptions in respective rules.
+<li>Snowball 3.1.0 Restored exception for <b><i>skis</i></b> which is needed.
+<li>Snowball 3.1.0 R1 exception added for words starting <b><i>inter</i></b>.
 </ol>
 
 <h2>Design Notes</h2>
@@ -340,11 +323,11 @@ comparatives are handled (e.g. <i>cleverer</i>, <i>yellower</i>) but most
 longer adjectives form the comparative with <i>more</i> e.g. <i>more
 attractive</i> rather than <i>attractiver</i>).  Extending this rule
 to check <i>R</i>1 as well would affect too many words where removal would
-be problematic - for example <i>charter</i>, <i>master</i>, <i>meter</i>,
-<i>number</i>, <i>mother</i>, <i>offer</i>, <i>proper</i>, <i>sober</i>,
-<i>solder</i>, <i>temper</i>, <i>wither</i>.  The problem is worse in US
-English where many words which end <b><i>-re</i></b> in British
-English are instead spelled <b><i>-er</i></b> - e.g. <i>center</i>,
+be problematic - for example <i>cower</i>, <i>charter</i>, <i>master</i>,
+<i>meter</i>, <i>number</i>, <i>mother</i>, <i>offer</i>, <i>proper</i>,
+<i>sober</i>, <i>solder</i>, <i>temper</i>, <i>tower</i>, <i>wither</i>.
+The problem is worse in US English where many words which end <b><i>-re</i></b>
+in British English are instead spelled <b><i>-er</i></b> - e.g. <i>center</i>,
 <i>fiber</i>, <i>liter</i>, <i>luster</i>.
 </p>
 
@@ -368,6 +351,15 @@ that sometimes we want to remove the whole three letters (e.g. <i>orwellian</i>,
 <i>indian</i>, <i>bolivian</i>, <i>californian</i>).
 </p>
 
+<p>
+The suffix <i>-ize</i> (as used in American English) is removed, but in
+British English suffix <i>-ise</i> is usually used instead.  There are many
+words ending <i>-ise</i> where it's not a suffix and removal would be
+problematic (e.g. <i>compromise</i>, <i>disenfranchise</i>, <i>imprecise</i>
+<i>otherwise</i>, <i>paradise</i>) so the stemmer does not try to remove
+suffix <i>-ise</i>.
+</p>
+
 <h2>Definition of the English stemmer</h2>
 
 <p>
@@ -377,6 +369,8 @@ be done quite carefully if done at all. Here we indicate by <code><FONT COLOR=BL
 of departure, and by <code><FONT COLOR=BLUE>+</FONT></code> additional features. In the sample vocabulary,
 Porter and Porter2 stem slightly over 5% of words to different forms.
 </p>
+
+<h3>Definitions</h3>
 
 <p>
 Define a <I>vowel</I> as one of
@@ -400,7 +394,7 @@ words &#x2014; see below.)
 <p>
 <I>R</I>2 is the region after the first non-vowel following a vowel in <I>R</I>1, or the
 end of the word if there is no such non-vowel.
-(See <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2.)
+(See <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2.)
 </p>
 
 <p>
@@ -429,11 +423,13 @@ not short words.
 
 <p>
 An apostrophe (<B><I>'</I></B>) may be regarded as a letter.
-(See <A HREF="../../texts/apostrophe.html"> note</A> on apostrophes in English.)
+(See <A HREF="../../texts/apostrophe.html">note</A> on apostrophes in English.)
 </p>
 
+<h3>The Stemming Process</h3>
+
 <p>
-If the word has two letters or less, leave it as it is.
+If the word has two letters or less, stop processing and leave it as is.
 </p>
 
 <p>
@@ -447,7 +443,7 @@ Remove initial <B><I>'</I></B>, if present. <code><FONT COLOR=BLUE>+</FONT></cod
 <p>
 Set initial <B><I>y</I></B>, or <B><I>y</I></B> after a vowel, to <B><I>Y</I></B>, and then establish the regions
 <I>R</I>1 and <I>R</I>2.
-(See <A HREF="../../texts/vowelmarking.html"> note</A> on vowel marking.)
+(See <A HREF="../../texts/vowelmarking.html">note</A> on vowel marking.)
 </p>
 
 <p>
@@ -509,7 +505,8 @@ Step 1<I>b</I>:
 Step 1<I>c</I>: <code><FONT COLOR=BLUE>*</FONT></code>
 <DL><DD>
     replace suffix <B><I>y</I></B> or <B><I>Y</I></B> by <B><I>i</I></B> if preceded by a non-vowel which is not the
-    first letter of the word (so <I>cry</I> &#x2192; <I>cri</I>, <I>by</I> &#x2192; <I>by</I>, <I>say</I> &#x2192; <I>say</I>)
+    first letter of the word (a consequence of this condition is that this step only affects strings of length 3 or more).
+    For example, <i>cry</i> &#x2192; <i>cri</i>, but <i>by</i> and <i>say</i> are unchanged.
 </DL>
 
 Step 2:
@@ -649,6 +646,7 @@ shape:
 
 <span class="w">            </span><span class="cm">/* special changes: */</span>
 
+<span class="w">            </span><span class="s1">&#39;skis&#39;</span><span class="w">      </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ski&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;skies&#39;</span><span class="w">     </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;sky&#39;</span><span class="p">)</span>
 
 <span class="w">            </span><span class="cm">/* special -LY cases */</span>
@@ -767,7 +765,7 @@ alone (rather than stemming to <i>her</i>):
 <span class="w">                    </span><span class="c1">// dying-&gt;die, lying-&gt;die, tying-&gt;tie, vying-&gt;vie</span>
 <span class="w">                    </span><span class="s1">&#39;y&#39;</span>
 <span class="w">                        </span><span class="p">(</span><span class="ow">test</span><span class="p">(</span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;ie&#39;</span><span class="p">)</span>
-<span class="w">                    </span><span class="c1">// Leave inning, outing, etc along.</span>
+<span class="w">                    </span><span class="c1">// Leave inning, outing, etc alone.</span>
 <span class="w">                    </span><span class="s1">&#39;inn&#39;</span><span class="w"> </span><span class="s1">&#39;out&#39;</span><span class="w"> </span><span class="s1">&#39;cann&#39;</span><span class="w"> </span><span class="s1">&#39;herr&#39;</span><span class="w"> </span><span class="s1">&#39;earr&#39;</span><span class="w"> </span><span class="s1">&#39;even&#39;</span>
 <span class="w">                        </span><span class="p">(</span><span class="ow">atlimit</span><span class="p">)</span>
 <span class="w">                </span><span class="p">)</span>
@@ -798,9 +796,9 @@ want to do it&#8217;), and were derived piecemeal.
 <p>
 <I>a</I>)
 The new stemmer improves on the Porter stemmer in handling short words ending <B><I>e</I></B> and
-<B><I>y</I></B>. This results in an unwanted conflation - <I>sky</I>/<I>skies</I> and <I>ski</I>/<I>skis</I>
-would all get stemmed to <i>ski</i>, but this is easily corrected by adding special cases to instead
-stem <i>sky</i> and <i>skies</i> to <i>sky</i>.
+<B><I>y</I></B>. There is however a mishandling of the four forms <I>sky</I>, <I>skies</I>, <I>ski</I>,
+<I>skis</I>, which is easily corrected by treating three of these words as
+special cases.
 </p>
 
 <p>
@@ -861,6 +859,9 @@ The definition of the English stemmer above is therefore supplemented by the fol
     <b><i>past</i></b> or
     <b><i>univers</i></b>,
     <b><i>later</i></b>,
+    <b><i>emerg</i></b>,
+    <b><i>organ</i></b>,
+    <b><i>inter</i></b>,
     set <I>R</I>1 to be the remainder of the word.
     </p>
 
@@ -869,6 +870,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
     </p>
 
 <DL><DD><TABLE CELLPADDING=0>
+<TR><TD> <I>skis</I>      <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>ski</I>
 <TR><TD> <I>skies</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>sky</I>
 
 <TR><TD> <I>idly <BR> gently <BR> ugly <BR> early <BR> only <BR> singly</I>
@@ -932,6 +934,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 <span class="w">            </span><span class="s1">&#39;later&#39;</span><span class="w">   </span><span class="c1">// lateral/later</span>
 <span class="w">            </span><span class="s1">&#39;emerg&#39;</span><span class="w">   </span><span class="c1">// emerge/emergency</span>
 <span class="w">            </span><span class="s1">&#39;organ&#39;</span><span class="w">   </span><span class="c1">// organ/organic/organize</span>
+<span class="w">            </span><span class="s1">&#39;inter&#39;</span><span class="w">   </span><span class="c1">// intern/internal/international/internment; interfere; interval</span>
 <span class="w">            </span><span class="c1">// ... extensions possible here ...</span>
 <span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="p">)</span>
 <span class="w">        </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
@@ -973,11 +976,12 @@ The definition of the English stemmer above is therefore supplemented by the fol
 <span class="w">            </span><span class="s1">&#39;eed&#39;</span><span class="w"> </span><span class="s1">&#39;eedly&#39;</span>
 <span class="w">                </span><span class="p">(</span>
 <span class="w">                </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                    </span><span class="n">R1</span>
 <span class="w">                    </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
 <span class="w">                        </span><span class="s1">&#39;proc&#39;</span><span class="w"> </span><span class="s1">&#39;exc&#39;</span><span class="w"> </span><span class="s1">&#39;succ&#39;</span>
 <span class="w">                            </span><span class="p">(</span><span class="ow">atlimit</span><span class="p">)</span>
 <span class="w">                    </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span>
-<span class="w">                        </span><span class="n">R1</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;ee&#39;</span>
+<span class="w">                        </span><span class="o">&lt;-</span><span class="s1">&#39;ee&#39;</span>
 <span class="w">                    </span><span class="p">)</span>
 <span class="w">                </span><span class="p">)</span>
 <span class="w">            </span><span class="p">)</span>
@@ -989,7 +993,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 <span class="w">                    </span><span class="c1">// dying-&gt;die, lying-&gt;die, tying-&gt;tie, vying-&gt;vie</span>
 <span class="w">                    </span><span class="s1">&#39;y&#39;</span>
 <span class="w">                        </span><span class="p">(</span><span class="ow">test</span><span class="p">(</span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;ie&#39;</span><span class="p">)</span>
-<span class="w">                    </span><span class="c1">// Leave inning, outing, etc along.</span>
+<span class="w">                    </span><span class="c1">// Leave inning, outing, etc alone.</span>
 <span class="w">                    </span><span class="s1">&#39;inn&#39;</span><span class="w"> </span><span class="s1">&#39;out&#39;</span><span class="w"> </span><span class="s1">&#39;cann&#39;</span><span class="w"> </span><span class="s1">&#39;herr&#39;</span><span class="w"> </span><span class="s1">&#39;earr&#39;</span><span class="w"> </span><span class="s1">&#39;even&#39;</span>
 <span class="w">                        </span><span class="p">(</span><span class="ow">atlimit</span><span class="p">)</span>
 <span class="w">                </span><span class="p">)</span>
@@ -1048,8 +1052,8 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 <span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">Step_3</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">            </span><span class="s1">&#39;tional&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;tion&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="s1">&#39;ational&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;ate&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;tional&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;tion&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="s1">&#39;ational&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ate&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;alize&#39;</span><span class="w">   </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;al&#39;</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;icate&#39;</span><span class="w"> </span><span class="s1">&#39;iciti&#39;</span><span class="w"> </span><span class="s1">&#39;ical&#39;</span>
 <span class="w">                      </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ic&#39;</span><span class="p">)</span>
@@ -1083,6 +1087,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 <span class="w">        </span><span class="cm">/* special changes: */</span>
 
+<span class="w">        </span><span class="s1">&#39;skis&#39;</span><span class="w">      </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;ski&#39;</span><span class="p">)</span>
 <span class="w">        </span><span class="s1">&#39;skies&#39;</span><span class="w">     </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;sky&#39;</span><span class="p">)</span>
 
 <span class="w">        </span><span class="cm">/* special -LY cases */</span>
@@ -1135,7 +1140,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
 </pre></div>
 
 
-        </div><!-- /.col-md-10 -->
+        </div><!-- /.col-lg-10 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
 
@@ -1146,7 +1151,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
         </p>
       </footer>
     </div> <!-- /container -->
-    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>

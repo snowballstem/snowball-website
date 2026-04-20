@@ -8,57 +8,36 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
     <title>German stemming algorithm - Snowball</title>
-    <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="/styles.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-light bg-light navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/" class="pull-left"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"></a>
-          <a class="navbar-brand" href="/">Snowball</a>
+          <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
+          <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/credits.html">Credits</a></li>
-          </ul>
-	  <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
-        </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2">
           
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10">
           <h1>German stemming algorithm</h1>
 
 
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="/algorithms/germanic.html"> Germanic language stemmers</A>
-<li> <a href="/demo.html#German">Javascript demo</a></li>
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball/master/algorithms/german.sbl">The stemmer in Snowball</a></li>
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/german/voc.txt">Sample German vocabulary</a></li>
-<li> <a href="https://raw.githubusercontent.com/snowballstem/snowball-data/master/german/output.txt">Its stemmed equivalent</a></li>
-<li> <a href="stop.txt">German stop word list (UTF-8 encoding)</a>
+<li> <A HREF="/algorithms/germanic.html">Germanic language stemmers</A>
+<li> <a href="https://en.wikipedia.org/wiki/German_language">German language</a> on Wikipedia</li>
 </ul>
 
 <p>
@@ -296,15 +275,15 @@ reliable indicator.
 
 <p>
 In German, <b><i>ä</i></b>, <b><i>ö</i></b>, <b><i>ü</i></b> and
-<b><i>ß</i><b> are sometimes transliterated as <b><i>ae</i></b>,
+<b><i>ß</i></b> are sometimes transliterated as <b><i>ae</i></b>,
 <b><i>oe</i></b>, <b><i>ue</i></b> and <b><i>ss</i></b> respectively.
 There is now a capital version of <b><i>ss</i></b>, but it's a fairly
 recent invention (added to Unicode in 2008) and prior to this in
 capitalised text such as on street signs <b><i>SS</i></b> was used
 instead.  Swiss German always uses <b><i>ss</i></b> instead of
-<b><i>ß</i><b>, and also uses the transliterated forms for capital letters
+<b><i>ß</i></b>, and also uses the transliterated forms for capital letters
 with umlauts.  The German spelling reform of 1996 also reduced use of
-<b><i>ß</i><b>, replacing it with <b><i>ss</i></b> in some words.
+<b><i>ß</i></b>, replacing it with <b><i>ss</i></b> in some words.
 Finally (but much less relevant nowadays) these transliterations are
 used when writing in character sets which lack these characters, or
 with a keyboard lacking an easy way to type them.  The stemmer will
@@ -418,9 +397,9 @@ upper case, and then do the following mappings,
 </p>
     <DL><DD>
         (<I>a</I>) replace <B><I>ß</I></B> with <B><I>ss</I></B>,<BR>
-        (<I>a</I>) replace <B><I>ae</I></B> with <B><I>ä</I></B>,<BR>
-        (<I>a</I>) replace <B><I>oe</I></B> with <B><I>ö</I></B>,<BR>
-        (<I>a</I>) replace <B><I>ue</I></B> with <B><I>ü</I></B> unless preceded by <B><I>q</I></B>.
+        (<I>b</I>) replace <B><I>ae</I></B> with <B><I>ä</I></B>,<BR>
+        (<I>c</I>) replace <B><I>oe</I></B> with <B><I>ö</I></B>,<BR>
+        (<I>d</I>) replace <B><I>ue</I></B> with <B><I>ü</I></B> unless preceded by <B><I>q</I></B>.
     </DL>
 
 <p>
@@ -435,7 +414,7 @@ found.)
 
 <p>
 <I>R</I>1 and <I>R</I>2 are first set up in the standard way
-(see the <A HREF="../../texts/r1r2.html"> note</A> on <I>R</I>1 and <I>R</I>2),
+(see the <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2),
 but then <I>R</I>1 is adjusted so that the region before it contains at least 3 letters.
 </p>
 
@@ -492,7 +471,7 @@ Step 2:
     </p>
         <DL><DD>
         (<I>a</I>) <B><I>en  &nbsp;  er  &nbsp;  est</I></B><BR>
-        (<I>b</I>) <B><I>st</I></B> (preceded by a valid <B><I>st</I></B>-ending, itself preceded by at least 3
+        (<I>b</I>) <B><I>st</I></B> (preceded by a valid <B><I>st</I></B>-ending, itself preceded by at least 3 letters.<BR>
         (<I>c</I>) <B><I>et</I></B> (preceded by a valid <B><I>et</I></B>-ending,
         itself not preceded any of
             <b><i>geordn</i></b>,
@@ -705,7 +684,7 @@ Finally,
 </pre></div>
 
 
-        </div><!-- /.col-md-10 -->
+        </div><!-- /.col-lg-10 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
 
@@ -716,7 +695,7 @@ Finally,
         </p>
       </footer>
     </div> <!-- /container -->
-    <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
