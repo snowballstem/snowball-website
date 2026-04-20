@@ -288,12 +288,8 @@ my @menu = (
 	}
     }
 
-run ['npx', 'uglifyjs', @stemmer_js_files, '--compress', '--mangle',
-    '-o', $outpath."/js/uglified.js"];
 run ['npx', 'uglifyjs', @stemmer_js_files, '--compress', '--mangle', '--mangle-props',
-    '-o', $outpath."/js/stemmers.js"];
-run ['npx', 'terser', (grep {!/base-stemmer/} @stemmer_js_files), '--compress', '--mangle',
-    '-o', $outpath."/js/tersered.js"];
+    '-o', $outpath."/js/stemmers.js"] or die $!;
 
 $stemmer_select .= "</select>";
 $$vars{stemmer_js_files} = ['js/stemmers.js']; #\@stemmer_js_files;
