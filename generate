@@ -289,10 +289,8 @@ my @menu = (
     }
 
 for my $js (@stemmer_js_files) {
-    run ['npx', 'uglifyjs', $js, '--compress', '--mangle', '--mangle-props',
-	 '-o', "$outpath/$js"] or die $!;
     run ['npx', 'terser', $js, '--compress', '--mangle', '--mangle-props',
-	'-o', "$outpath/$js-terser"];
+	'-o', "$outpath/$js"] or die $!;
 }
 
 $stemmer_select .= "</select>";

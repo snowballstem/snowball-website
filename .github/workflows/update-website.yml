@@ -33,7 +33,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install libipc-run-perl libtemplate-perl graphviz pngcrush python3-pygments
-          npm install uglify-js -g
           npm install terser -g
 
       - name: Build snowball
