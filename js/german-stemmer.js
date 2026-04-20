@@ -1,485 +1,437 @@
 // Generated from german.sbl by Snowball 3.0.0 - https://snowballstem.org/
 
-// deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
+/**@constructor*/
+var GermanStemmer = function() {
+    var base = new BaseStemmer();
 
-const a_0 = [
-    ["", -1, 5],
-    ["ae", 0, 2],
-    ["oe", 0, 3],
-    ["qu", 0, -1],
-    ["ue", 0, 4],
-    ["\u00DF", 0, 1]
-];
+    /** @const */ var a_0 = [
+        ["", -1, 5],
+        ["ae", 0, 2],
+        ["oe", 0, 3],
+        ["qu", 0, -1],
+        ["ue", 0, 4],
+        ["\u00DF", 0, 1]
+    ];
 
-const a_1 = [
-    ["", -1, 5],
-    ["U", 0, 2],
-    ["Y", 0, 1],
-    ["\u00E4", 0, 3],
-    ["\u00F6", 0, 4],
-    ["\u00FC", 0, 2]
-];
+    /** @const */ var a_1 = [
+        ["", -1, 5],
+        ["U", 0, 2],
+        ["Y", 0, 1],
+        ["\u00E4", 0, 3],
+        ["\u00F6", 0, 4],
+        ["\u00FC", 0, 2]
+    ];
 
-const a_2 = [
-    ["e", -1, 3],
-    ["em", -1, 1],
-    ["en", -1, 3],
-    ["erinnen", 2, 2],
-    ["erin", -1, 2],
-    ["ln", -1, 5],
-    ["ern", -1, 2],
-    ["er", -1, 2],
-    ["s", -1, 4],
-    ["es", 8, 3],
-    ["lns", 8, 5]
-];
+    /** @const */ var a_2 = [
+        ["e", -1, 3],
+        ["em", -1, 1],
+        ["en", -1, 3],
+        ["erinnen", 2, 2],
+        ["erin", -1, 2],
+        ["ln", -1, 5],
+        ["ern", -1, 2],
+        ["er", -1, 2],
+        ["s", -1, 4],
+        ["es", 8, 3],
+        ["lns", 8, 5]
+    ];
 
-const a_3 = [
-    ["tick", -1, -1],
-    ["plan", -1, -1],
-    ["geordn", -1, -1],
-    ["intern", -1, -1],
-    ["tr", -1, -1]
-];
+    /** @const */ var a_3 = [
+        ["tick", -1, -1],
+        ["plan", -1, -1],
+        ["geordn", -1, -1],
+        ["intern", -1, -1],
+        ["tr", -1, -1]
+    ];
 
-const a_4 = [
-    ["en", -1, 1],
-    ["er", -1, 1],
-    ["et", -1, 3],
-    ["st", -1, 2],
-    ["est", 3, 1]
-];
+    /** @const */ var a_4 = [
+        ["en", -1, 1],
+        ["er", -1, 1],
+        ["et", -1, 3],
+        ["st", -1, 2],
+        ["est", 3, 1]
+    ];
 
-const a_5 = [
-    ["ig", -1, 1],
-    ["lich", -1, 1]
-];
+    /** @const */ var a_5 = [
+        ["ig", -1, 1],
+        ["lich", -1, 1]
+    ];
 
-const a_6 = [
-    ["end", -1, 1],
-    ["ig", -1, 2],
-    ["ung", -1, 1],
-    ["lich", -1, 3],
-    ["isch", -1, 2],
-    ["ik", -1, 2],
-    ["heit", -1, 3],
-    ["keit", -1, 4]
-];
+    /** @const */ var a_6 = [
+        ["end", -1, 1],
+        ["ig", -1, 2],
+        ["ung", -1, 1],
+        ["lich", -1, 3],
+        ["isch", -1, 2],
+        ["ik", -1, 2],
+        ["heit", -1, 3],
+        ["keit", -1, 4]
+    ];
 
-const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32, 8];
+    /** @const */ var /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32, 8];
 
-const /** Array<number> */ g_et_ending = [1, 128, 198, 227, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
+    /** @const */ var /** Array<number> */ g_et_ending = [1, 128, 198, 227, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
 
-const /** Array<number> */ g_s_ending = [117, 30, 5];
+    /** @const */ var /** Array<number> */ g_s_ending = [117, 30, 5];
 
-const /** Array<number> */ g_st_ending = [117, 30, 4];
+    /** @const */ var /** Array<number> */ g_st_ending = [117, 30, 4];
 
-import { BaseStemmer } from './base-stemmer.js'
-
-class GermanStemmer extends BaseStemmer {
-
-    #I_p2/** number */ = 0;
-    #I_p1/** number */ = 0;
+    var /** number */ I_x = 0;
+    var /** number */ I_p2 = 0;
+    var /** number */ I_p1 = 0;
 
 
     /** @return {boolean} */
-    #r_prelude() {
-        let /** number */ a;
-        const /** number */ v_1 = this.cursor;
-        while (true) {
-            const /** number */ v_2 = this.cursor;
-            // deno-lint-ignore no-unused-labels
+    function r_prelude() {
+        var /** number */ among_var;
+        /** @const */ var /** number */ v_1 = base.cursor;
+        while(true) {
+            /** @const */ var /** number */ v_2 = base.cursor;
             lab0: {
-                // deno-lint-ignore no-unused-labels
-                golab1: while (true)
+                golab1: while(true)
                 {
-                    const /** number */ v_3 = this.cursor;
-                    // deno-lint-ignore no-unused-labels
+                    /** @const */ var /** number */ v_3 = base.cursor;
                     lab2: {
-                        if (!(this.in_grouping(g_v, 97, 252))) break lab2;
-                        this.bra = this.cursor;
-                        // deno-lint-ignore no-unused-labels
+                        if (!(base.in_grouping(g_v, 97, 252))) break lab2;
+                        base.bra = base.cursor;
                         lab3: {
-                            const /** number */ v_4 = this.cursor;
-                            // deno-lint-ignore no-unused-labels
+                            /** @const */ var /** number */ v_4 = base.cursor;
                             lab4: {
-                                if (!(this.eq_s("u"))) break lab4;
-                                this.ket = this.cursor;
-                                if (!(this.in_grouping(g_v, 97, 252))) break lab4;
-                                this.slice_from("U");
+                                if (!(base.eq_s("u"))) break lab4;
+                                base.ket = base.cursor;
+                                if (!(base.in_grouping(g_v, 97, 252))) break lab4;
+                                if (!base.slice_from("U")) return false;
                                 break lab3;
                             }
-                            this.cursor = v_4;
-                            if (!(this.eq_s("y"))) break lab2;
-                            this.ket = this.cursor;
-                            if (!(this.in_grouping(g_v, 97, 252))) break lab2;
-                            this.slice_from("Y");
+                            base.cursor = v_4;
+                            if (!(base.eq_s("y"))) break lab2;
+                            base.ket = base.cursor;
+                            if (!(base.in_grouping(g_v, 97, 252))) break lab2;
+                            if (!base.slice_from("Y")) return false;
                         }
-                        this.cursor = v_3;
+                        base.cursor = v_3;
                         break golab1;
                     }
-                    this.cursor = v_3;
-                    if (this.cursor >= this.limit) break lab0;
-                    this.cursor++;
+                    base.cursor = v_3;
+                    if (base.cursor >= base.limit) break lab0;
+                    base.cursor++;
                 }
                 continue;
             }
-            this.cursor = v_2;
+            base.cursor = v_2;
             break;
         }
-        this.cursor = v_1;
-        while (true) {
-            const /** number */ v_5 = this.cursor;
-            // deno-lint-ignore no-unused-labels
+        base.cursor = v_1;
+        while(true) {
+            /** @const */ var /** number */ v_5 = base.cursor;
             lab5: {
-                this.bra = this.cursor;
-                a = this.find_among(a_0);
-                this.ket = this.cursor;
-                switch (a) {
-                    case 1: {
-                        this.slice_from("ss");
+                base.bra = base.cursor;
+                among_var = base.find_among(a_0);
+                base.ket = base.cursor;
+                switch (among_var) {
+                    case 1:
+                        if (!base.slice_from("ss")) return false;
                         break;
-                    }
-                    case 2: {
-                        this.slice_from("\u00E4");
+                    case 2:
+                        if (!base.slice_from("\u00E4")) return false;
                         break;
-                    }
-                    case 3: {
-                        this.slice_from("\u00F6");
+                    case 3:
+                        if (!base.slice_from("\u00F6")) return false;
                         break;
-                    }
-                    case 4: {
-                        this.slice_from("\u00FC");
+                    case 4:
+                        if (!base.slice_from("\u00FC")) return false;
                         break;
-                    }
-                    case 5: {
-                        if (this.cursor >= this.limit) break lab5;
-                        this.cursor++;
+                    case 5:
+                        if (base.cursor >= base.limit) break lab5;
+                        base.cursor++;
                         break;
-                    }
                 }
                 continue;
             }
-            this.cursor = v_5;
+            base.cursor = v_5;
             break;
         }
         return true;
-    }
+    };
 
     /** @return {boolean} */
-    #r_mark_regions() {
-        let /** number */ I_x;
-        this.#I_p1 = this.limit;
-        this.#I_p2 = this.limit;
-        const /** number */ v_1 = this.cursor;
+    function r_mark_regions() {
+        I_p1 = base.limit;
+        I_p2 = base.limit;
+        /** @const */ var /** number */ v_1 = base.cursor;
         {
-            const /** number */ c = this.cursor + 3;
-            if (c > this.limit) return false;
-            this.cursor = c;
+            /** @const */ var /** number */ c1 = base.cursor + 3;
+            if (c1 > base.limit) return false;
+            base.cursor = c1;
         }
-        I_x = this.cursor;
-        this.cursor = v_1;
-        if (!this.go_out_grouping(g_v, 97, 252)) return false;
-        this.cursor++;
-        if (!this.go_in_grouping(g_v, 97, 252)) return false;
-        this.cursor++;
-        this.#I_p1 = this.cursor;
-        // deno-lint-ignore no-unused-labels
+        I_x = base.cursor;
+        base.cursor = v_1;
+        if (!base.go_out_grouping(g_v, 97, 252)) return false;
+        base.cursor++;
+        if (!base.go_in_grouping(g_v, 97, 252)) return false;
+        base.cursor++;
+        I_p1 = base.cursor;
         lab0: {
-            if (this.#I_p1 >= I_x) break lab0;
-            this.#I_p1 = I_x;
+            if (I_p1 >= I_x) break lab0;
+            I_p1 = I_x;
         }
-        if (!this.go_out_grouping(g_v, 97, 252)) return false;
-        this.cursor++;
-        if (!this.go_in_grouping(g_v, 97, 252)) return false;
-        this.cursor++;
-        this.#I_p2 = this.cursor;
+        if (!base.go_out_grouping(g_v, 97, 252)) return false;
+        base.cursor++;
+        if (!base.go_in_grouping(g_v, 97, 252)) return false;
+        base.cursor++;
+        I_p2 = base.cursor;
         return true;
-    }
+    };
 
     /** @return {boolean} */
-    #r_postlude() {
-        let /** number */ a;
-        while (true) {
-            const /** number */ v_1 = this.cursor;
-            // deno-lint-ignore no-unused-labels
+    function r_postlude() {
+        var /** number */ among_var;
+        while(true) {
+            /** @const */ var /** number */ v_1 = base.cursor;
             lab0: {
-                this.bra = this.cursor;
-                a = this.find_among(a_1);
-                this.ket = this.cursor;
-                switch (a) {
-                    case 1: {
-                        this.slice_from("y");
+                base.bra = base.cursor;
+                among_var = base.find_among(a_1);
+                base.ket = base.cursor;
+                switch (among_var) {
+                    case 1:
+                        if (!base.slice_from("y")) return false;
                         break;
-                    }
-                    case 2: {
-                        this.slice_from("u");
+                    case 2:
+                        if (!base.slice_from("u")) return false;
                         break;
-                    }
-                    case 3: {
-                        this.slice_from("a");
+                    case 3:
+                        if (!base.slice_from("a")) return false;
                         break;
-                    }
-                    case 4: {
-                        this.slice_from("o");
+                    case 4:
+                        if (!base.slice_from("o")) return false;
                         break;
-                    }
-                    case 5: {
-                        if (this.cursor >= this.limit) break lab0;
-                        this.cursor++;
+                    case 5:
+                        if (base.cursor >= base.limit) break lab0;
+                        base.cursor++;
                         break;
-                    }
                 }
                 continue;
             }
-            this.cursor = v_1;
+            base.cursor = v_1;
             break;
         }
         return true;
-    }
+    };
 
     /** @return {boolean} */
-    #r_R1() {
-        return this.#I_p1 <= this.cursor;
-    }
+    function r_R1() {
+        return I_p1 <= base.cursor;
+    };
 
     /** @return {boolean} */
-    #r_R2() {
-        return this.#I_p2 <= this.cursor;
-    }
+    function r_R2() {
+        return I_p2 <= base.cursor;
+    };
 
     /** @return {boolean} */
-    #r_standard_suffix() {
-        let /** number */ a;
-        const /** number */ v_1 = this.limit - this.cursor;
-        // deno-lint-ignore no-unused-labels
+    function r_standard_suffix() {
+        var /** number */ among_var;
+        /** @const */ var /** number */ v_1 = base.limit - base.cursor;
         lab0: {
-            this.ket = this.cursor;
-            a = this.find_among_b(a_2);
-            if (a === 0) break lab0;
-            this.bra = this.cursor;
-            if (!this.#r_R1()) break lab0;
-            switch (a) {
-                case 1: {
+            base.ket = base.cursor;
+            among_var = base.find_among_b(a_2);
+            if (among_var == 0) break lab0;
+            base.bra = base.cursor;
+            if (!r_R1()) break lab0;
+            switch (among_var) {
+                case 1:
                     {
-                        const /** number */ v_2 = this.limit - this.cursor;
-                        // deno-lint-ignore no-unused-labels
+                        /** @const */ var /** number */ v_2 = base.limit - base.cursor;
                         lab1: {
-                            if (!(this.eq_s_b("syst"))) break lab1;
+                            if (!(base.eq_s_b("syst"))) break lab1;
                             break lab0;
                         }
-                        this.cursor = this.limit - v_2;
+                        base.cursor = base.limit - v_2;
                     }
-                    this.slice_del();
+                    if (!base.slice_del()) return false;
                     break;
-                }
-                case 2: {
-                    this.slice_del();
+                case 2:
+                    if (!base.slice_del()) return false;
                     break;
-                }
-                case 3: {
-                    this.slice_del();
-                    const /** number */ v_3 = this.limit - this.cursor;
-                    // deno-lint-ignore no-unused-labels
+                case 3:
+                    if (!base.slice_del()) return false;
+                    /** @const */ var /** number */ v_3 = base.limit - base.cursor;
                     lab2: {
-                        this.ket = this.cursor;
-                        if (!(this.eq_s_b("s"))) {
-                            this.cursor = this.limit - v_3;
+                        base.ket = base.cursor;
+                        if (!(base.eq_s_b("s"))) {
+                            base.cursor = base.limit - v_3;
                             break lab2;
                         }
-                        this.bra = this.cursor;
-                        if (!(this.eq_s_b("nis"))) {
-                            this.cursor = this.limit - v_3;
+                        base.bra = base.cursor;
+                        if (!(base.eq_s_b("nis"))) {
+                            base.cursor = base.limit - v_3;
                             break lab2;
                         }
-                        this.slice_del();
+                        if (!base.slice_del()) return false;
                     }
                     break;
-                }
-                case 4: {
-                    if (!(this.in_grouping_b(g_s_ending, 98, 116))) break lab0;
-                    this.slice_del();
+                case 4:
+                    if (!(base.in_grouping_b(g_s_ending, 98, 116))) break lab0;
+                    if (!base.slice_del()) return false;
                     break;
-                }
-                case 5: {
-                    this.slice_from("l");
+                case 5:
+                    if (!base.slice_from("l")) return false;
                     break;
-                }
             }
         }
-        this.cursor = this.limit - v_1;
-        const /** number */ v_4 = this.limit - this.cursor;
-        // deno-lint-ignore no-unused-labels
+        base.cursor = base.limit - v_1;
+        /** @const */ var /** number */ v_4 = base.limit - base.cursor;
         lab3: {
-            this.ket = this.cursor;
-            a = this.find_among_b(a_4);
-            if (a === 0) break lab3;
-            this.bra = this.cursor;
-            if (!this.#r_R1()) break lab3;
-            switch (a) {
-                case 1: {
-                    this.slice_del();
+            base.ket = base.cursor;
+            among_var = base.find_among_b(a_4);
+            if (among_var == 0) break lab3;
+            base.bra = base.cursor;
+            if (!r_R1()) break lab3;
+            switch (among_var) {
+                case 1:
+                    if (!base.slice_del()) return false;
                     break;
-                }
-                case 2: {
-                    if (!(this.in_grouping_b(g_st_ending, 98, 116))) break lab3;
+                case 2:
+                    if (!(base.in_grouping_b(g_st_ending, 98, 116))) break lab3;
                     {
-                        const /** number */ c = this.cursor - 3;
-                        if (c < this.limit_backward) break lab3;
-                        this.cursor = c;
+                        /** @const */ var /** number */ c1 = base.cursor - 3;
+                        if (c1 < base.limit_backward) break lab3;
+                        base.cursor = c1;
                     }
-                    this.slice_del();
+                    if (!base.slice_del()) return false;
                     break;
-                }
-                case 3: {
-                    const /** number */ v_5 = this.limit - this.cursor;
-                    if (!(this.in_grouping_b(g_et_ending, 85, 228))) break lab3;
-                    this.cursor = this.limit - v_5;
+                case 3:
+                    /** @const */ var /** number */ v_5 = base.limit - base.cursor;
+                    if (!(base.in_grouping_b(g_et_ending, 85, 228))) break lab3;
+                    base.cursor = base.limit - v_5;
                     {
-                        const /** number */ v_6 = this.limit - this.cursor;
-                        // deno-lint-ignore no-unused-labels
+                        /** @const */ var /** number */ v_6 = base.limit - base.cursor;
                         lab4: {
-                            if (this.find_among_b(a_3) === 0) break lab4;
+                            if (base.find_among_b(a_3) == 0) break lab4;
                             break lab3;
                         }
-                        this.cursor = this.limit - v_6;
+                        base.cursor = base.limit - v_6;
                     }
-                    this.slice_del();
+                    if (!base.slice_del()) return false;
                     break;
-                }
             }
         }
-        this.cursor = this.limit - v_4;
-        const /** number */ v_7 = this.limit - this.cursor;
-        // deno-lint-ignore no-unused-labels
+        base.cursor = base.limit - v_4;
+        /** @const */ var /** number */ v_7 = base.limit - base.cursor;
         lab5: {
-            this.ket = this.cursor;
-            a = this.find_among_b(a_6);
-            if (a === 0) break lab5;
-            this.bra = this.cursor;
-            if (!this.#r_R2()) break lab5;
-            switch (a) {
-                case 1: {
-                    this.slice_del();
-                    const /** number */ v_8 = this.limit - this.cursor;
-                    // deno-lint-ignore no-unused-labels
+            base.ket = base.cursor;
+            among_var = base.find_among_b(a_6);
+            if (among_var == 0) break lab5;
+            base.bra = base.cursor;
+            if (!r_R2()) break lab5;
+            switch (among_var) {
+                case 1:
+                    if (!base.slice_del()) return false;
+                    /** @const */ var /** number */ v_8 = base.limit - base.cursor;
                     lab6: {
-                        this.ket = this.cursor;
-                        if (!(this.eq_s_b("ig"))) {
-                            this.cursor = this.limit - v_8;
+                        base.ket = base.cursor;
+                        if (!(base.eq_s_b("ig"))) {
+                            base.cursor = base.limit - v_8;
                             break lab6;
                         }
-                        this.bra = this.cursor;
+                        base.bra = base.cursor;
                         {
-                            const /** number */ v_9 = this.limit - this.cursor;
-                            // deno-lint-ignore no-unused-labels
+                            /** @const */ var /** number */ v_9 = base.limit - base.cursor;
                             lab7: {
-                                if (!(this.eq_s_b("e"))) break lab7;
-                                this.cursor = this.limit - v_8;
+                                if (!(base.eq_s_b("e"))) break lab7;
+                                base.cursor = base.limit - v_8;
                                 break lab6;
                             }
-                            this.cursor = this.limit - v_9;
+                            base.cursor = base.limit - v_9;
                         }
-                        if (!this.#r_R2()) {
-                            this.cursor = this.limit - v_8;
+                        if (!r_R2()) {
+                            base.cursor = base.limit - v_8;
                             break lab6;
                         }
-                        this.slice_del();
+                        if (!base.slice_del()) return false;
                     }
                     break;
-                }
-                case 2: {
+                case 2:
                     {
-                        const /** number */ v_10 = this.limit - this.cursor;
-                        // deno-lint-ignore no-unused-labels
+                        /** @const */ var /** number */ v_10 = base.limit - base.cursor;
                         lab8: {
-                            if (!(this.eq_s_b("e"))) break lab8;
+                            if (!(base.eq_s_b("e"))) break lab8;
                             break lab5;
                         }
-                        this.cursor = this.limit - v_10;
+                        base.cursor = base.limit - v_10;
                     }
-                    this.slice_del();
+                    if (!base.slice_del()) return false;
                     break;
-                }
-                case 3: {
-                    this.slice_del();
-                    const /** number */ v_11 = this.limit - this.cursor;
-                    // deno-lint-ignore no-unused-labels
+                case 3:
+                    if (!base.slice_del()) return false;
+                    /** @const */ var /** number */ v_11 = base.limit - base.cursor;
                     lab9: {
-                        this.ket = this.cursor;
-                        // deno-lint-ignore no-unused-labels
+                        base.ket = base.cursor;
                         lab10: {
-                            const /** number */ v_12 = this.limit - this.cursor;
-                            // deno-lint-ignore no-unused-labels
+                            /** @const */ var /** number */ v_12 = base.limit - base.cursor;
                             lab11: {
-                                if (!(this.eq_s_b("er"))) break lab11;
+                                if (!(base.eq_s_b("er"))) break lab11;
                                 break lab10;
                             }
-                            this.cursor = this.limit - v_12;
-                            if (!(this.eq_s_b("en"))) {
-                                this.cursor = this.limit - v_11;
+                            base.cursor = base.limit - v_12;
+                            if (!(base.eq_s_b("en"))) {
+                                base.cursor = base.limit - v_11;
                                 break lab9;
                             }
                         }
-                        this.bra = this.cursor;
-                        if (!this.#r_R1()) {
-                            this.cursor = this.limit - v_11;
+                        base.bra = base.cursor;
+                        if (!r_R1()) {
+                            base.cursor = base.limit - v_11;
                             break lab9;
                         }
-                        this.slice_del();
+                        if (!base.slice_del()) return false;
                     }
                     break;
-                }
-                case 4: {
-                    this.slice_del();
-                    const /** number */ v_13 = this.limit - this.cursor;
-                    // deno-lint-ignore no-unused-labels
+                case 4:
+                    if (!base.slice_del()) return false;
+                    /** @const */ var /** number */ v_13 = base.limit - base.cursor;
                     lab12: {
-                        this.ket = this.cursor;
-                        if (this.find_among_b(a_5) === 0) {
-                            this.cursor = this.limit - v_13;
+                        base.ket = base.cursor;
+                        if (base.find_among_b(a_5) == 0) {
+                            base.cursor = base.limit - v_13;
                             break lab12;
                         }
-                        this.bra = this.cursor;
-                        if (!this.#r_R2()) {
-                            this.cursor = this.limit - v_13;
+                        base.bra = base.cursor;
+                        if (!r_R2()) {
+                            base.cursor = base.limit - v_13;
                             break lab12;
                         }
-                        this.slice_del();
+                        if (!base.slice_del()) return false;
                     }
                     break;
-                }
             }
         }
-        this.cursor = this.limit - v_7;
+        base.cursor = base.limit - v_7;
         return true;
-    }
+    };
 
-    /** @return {boolean} */
-    #stem() {
-        const /** number */ v_1 = this.cursor;
-        this.#r_prelude();
-        this.cursor = v_1;
-        const /** number */ v_2 = this.cursor;
-        this.#r_mark_regions();
-        this.cursor = v_2;
-        this.limit_backward = this.cursor; this.cursor = this.limit;
-        this.#r_standard_suffix();
-        this.cursor = this.limit_backward;
-        const /** number */ v_3 = this.cursor;
-        this.#r_postlude();
-        this.cursor = v_3;
+    this.stem = /** @return {boolean} */ function() {
+        /** @const */ var /** number */ v_1 = base.cursor;
+        r_prelude();
+        base.cursor = v_1;
+        /** @const */ var /** number */ v_2 = base.cursor;
+        r_mark_regions();
+        base.cursor = v_2;
+        base.limit_backward = base.cursor; base.cursor = base.limit;
+        r_standard_suffix();
+        base.cursor = base.limit_backward;
+        /** @const */ var /** number */ v_3 = base.cursor;
+        r_postlude();
+        base.cursor = v_3;
         return true;
-    }
+    };
 
     /**@return{string}*/
-    stem(/**string*/input) {
-        this.setCurrent(input);
-        this.#stem();
-        return this.getCurrent();
-    }
+    this['stemWord'] = function(/**string*/word) {
+        base.setCurrent(word);
+        this.stem();
+        return base.getCurrent();
+    };
+};
 
-    stemWord = this.stem;
-}
-
-export { GermanStemmer };
+window['GermanStemmer'] = GermanStemmer;
