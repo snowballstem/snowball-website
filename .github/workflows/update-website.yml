@@ -33,8 +33,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install libipc-run-perl libtemplate-perl graphviz pngcrush python3-pygments
-          npm i -g google-closure-compiler
-          perl -pi -e '/--accept_const_keyword/ and $_="";s/closure-compiler/google-closure-compiler/;s/ADVANCED_OPTIMIZATIONS/ADVANCED/' generate
           npm install uglify-js -g
           npm install terser -g
 
@@ -48,7 +46,7 @@ jobs:
       - name: Generate
         run: |
           mkdir ../snowballstem.github.io
-          perl -pi -e 's/^const ([ag])/"const ".($ARGV =~ m!.*/([^.-]+)!)."_$1"/e' js/*.js
+          perl -pi -e 's,^const ([ag]),"const ".($ARGV =~ m!.*/([^.-]+)!)."_$1",e' js/*.js
           ./generate
           ls -l js
           mv dist ../snowballstem.github.io
