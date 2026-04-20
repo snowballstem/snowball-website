@@ -1353,4 +1353,4 @@ class DutchStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { DutchStemmer };
+export { DutchStemmer as default};

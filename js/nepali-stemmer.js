@@ -249,4 +249,4 @@ class NepaliStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { NepaliStemmer };
+export { NepaliStemmer as default};

@@ -725,4 +725,4 @@ class SpanishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { SpanishStemmer };
+export { SpanishStemmer as default};

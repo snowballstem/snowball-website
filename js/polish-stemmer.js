@@ -335,4 +335,4 @@ class PolishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { PolishStemmer };
+export { PolishStemmer as default};

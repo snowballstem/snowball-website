@@ -365,4 +365,4 @@ class IndonesianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { IndonesianStemmer };
+export { IndonesianStemmer as default};

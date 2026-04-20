@@ -172,4 +172,4 @@ class HindiStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { HindiStemmer };
+export { HindiStemmer as default};

@@ -704,4 +704,4 @@ class RomanianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { RomanianStemmer };
+export { RomanianStemmer as default};

@@ -914,4 +914,4 @@ class EstonianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { EstonianStemmer };
+export { EstonianStemmer as default};

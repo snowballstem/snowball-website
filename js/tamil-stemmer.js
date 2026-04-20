@@ -959,4 +959,4 @@ class TamilStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { TamilStemmer };
+export { TamilStemmer as default};

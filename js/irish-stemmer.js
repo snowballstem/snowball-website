@@ -304,4 +304,4 @@ class IrishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { IrishStemmer };
+export { IrishStemmer as default};

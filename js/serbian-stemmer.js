@@ -3720,4 +3720,4 @@ class SerbianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { SerbianStemmer };
+export { SerbianStemmer as default};

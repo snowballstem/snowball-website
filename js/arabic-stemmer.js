@@ -1161,4 +1161,4 @@ class ArabicStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { ArabicStemmer };
+export { ArabicStemmer as default};

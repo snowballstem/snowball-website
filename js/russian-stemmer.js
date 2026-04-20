@@ -477,4 +477,4 @@ class RussianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { RussianStemmer };
+export { RussianStemmer as default};

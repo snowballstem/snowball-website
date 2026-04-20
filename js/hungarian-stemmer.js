@@ -516,4 +516,4 @@ class HungarianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { HungarianStemmer };
+export { HungarianStemmer as default};

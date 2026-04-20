@@ -275,4 +275,4 @@ class SwedishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { SwedishStemmer };
+export { SwedishStemmer as default};

@@ -799,4 +799,4 @@ class CatalanStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { CatalanStemmer };
+export { CatalanStemmer as default};
