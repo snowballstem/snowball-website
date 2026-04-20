@@ -48,8 +48,9 @@ jobs:
       - name: Generate
         run: |
           mkdir ../snowballstem.github.io
-          perl -pi -e 's/#stem\b/_stem/;s/#//g;s/^const /let /' js/*.js
+          #perl -pi -e 's/#stem\b/_stem/;s/#//g;s/^const /let /' js/*.js
           ./generate
+          ls -l js
           mv dist ../snowballstem.github.io
           cd ../snowballstem.github.io
           find . -name '*.tt' -delete
