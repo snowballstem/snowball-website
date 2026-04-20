@@ -2,7 +2,7 @@ name: Update website
 on:
   push:
     branches:
-      - main
+      - terser-toplevel
   # Allow running manually from the Actions tab (useful if there are changes to
   # snowball and/or snowball-data that affect the website).
   workflow_dispatch:
@@ -55,3 +55,4 @@ jobs:
         with:
           folder: ../snowballstem.github.io
           git-config-email: "<>"
+          branch: gh-pages-modern-js
