@@ -80,7 +80,7 @@ function stem_demo(elt) {
   var lang = document.getElementById('lang').value;
   if (lang.search(/[^-A-Za-z0-9_]/) >= 0) return;
   // Lazily load only the selected stemmer.
-  import("./"+lang.toLowerCase()+"-stemmer.js").then((mod) => {
+  import("./js/"+lang.toLowerCase()+"-stemmer.js").then((mod) => {
     var s = new mod.default();
     var result = '';
     var i = 0;
