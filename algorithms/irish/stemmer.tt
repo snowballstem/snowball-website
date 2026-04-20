@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('irish', 'Irish') %]
+[% algorithm_lis('irish', 'Irish', 'https://en.wikipedia.org/wiki/Irish_language') %]
 <li> <a href="../../code/tolower_irish.sbl">lower case script</a>
 </ul>
 

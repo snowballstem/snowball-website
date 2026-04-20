@@ -42,6 +42,7 @@ define mark_regions as (
             'later'   // lateral/later
             'emerg'   // emerge/emergency
             'organ'   // organ/organic/organize
+            'inter'   // intern/internal/international/internment; interfere; interval
             // ... extensions possible here ...
         ) or (gopast v  gopast non-v)
         setmark p1
@@ -83,11 +84,12 @@ backwardmode (
             'eed' 'eedly'
                 (
                 do (
+                    R1
                     among (
                         'proc' 'exc' 'succ'
                             (atlimit)
                     ) or (
-                        R1 <-'ee'
+                        <-'ee'
                     )
                 )
             )
@@ -99,7 +101,7 @@ backwardmode (
                     // dying->die, lying->die, tying->tie, vying->vie
                     'y'
                         (test(non-v atlimit) ] <-'ie')
-                    // Leave inning, outing, etc along.
+                    // Leave inning, outing, etc alone.
                     'inn' 'out' 'cann' 'herr' 'earr' 'even'
                         (atlimit)
                 )
@@ -158,8 +160,8 @@ backwardmode (
 
     define Step_3 as (
         [substring] R1 among (
-            'tional'  (<- 'tion')
-            'ational' (<- 'ate')
+            'tional'  (<-'tion')
+            'ational' (<-'ate')
             'alize'   (<-'al')
             'icate' 'iciti' 'ical'
                       (<-'ic')
@@ -193,6 +195,7 @@ define exception1 as (
 
         /* special changes: */
 
+        'skis'      (<-'ski')
         'skies'     (<-'sky')
 
         /* special -LY cases */

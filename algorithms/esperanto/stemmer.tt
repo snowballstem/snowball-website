@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('esperanto', 'Esperanto') %]
+[% algorithm_lis('esperanto', 'Esperanto', 'https://en.wikipedia.org/wiki/Esperanto') %]
 </ul>
 
 [% algorithm_vocab([16, 'abajo', 'kvazaŭ']) %]

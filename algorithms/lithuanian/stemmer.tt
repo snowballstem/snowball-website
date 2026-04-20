@@ -3,16 +3,31 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('lithuanian', 'Lithuanian') %]
+[% algorithm_lis('lithuanian', 'Lithuanian', 'https://en.wikipedia.org/wiki/Lithuanian_language') %]
 </ul>
 
 <p>
 This algorithm was contributed by Dainius Jocas in May 2018.
 </p>
 
+<h2>Design Notes</h2>
+
 <p>
 Its intended domain of use is information retrieval, and so handling of nouns
 is considered more important than that of verbs, adjectives, etc.
+</p>
+
+<p>
+The algorithm as originally contributed removed a number of suffixes starting
+<i>-er-</i>, which weren't real grammatical suffixes themselves.  Their inclusion
+appears to have been mainly to try to conflate ancient forms of the Lithuanian
+word for "sister" (e.g. "sesers") with modern forms (e.g. "sesė").  However they
+didn't do a complete job as "seserimis" and "seseris" were not handled.
+We've now dropped the rules to remove these suffixes from the stemmer.  This
+means we no longer try to conflate the ancient and modern forms here, but at
+least all the forms of the old word get grouped, as do all forms of the new
+word.  The stemming for ~150 other words is also improved, without obvious
+downsides.
 </p>
 
 <h2>The full algorithm in Snowball</h2>

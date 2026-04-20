@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('serbian', 'Serbian') %]
+[% algorithm_lis('serbian', 'Serbian', 'https://en.wikipedia.org/wiki/Serbian_language') %]
 <li> Based on: <a href="http://nlp.ffzg.hr/resources/tools/stemmer-for-croatian/">Ljubesic, Nikola. Pandzic, Ivan. Stemmer for Croatian</a>
 </ul>
 

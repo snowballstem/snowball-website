@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('hindi', 'Hindi') %]
+[% algorithm_lis('hindi', 'Hindi', 'https://en.wikipedia.org/wiki/Hindi') %]
 <li> <a href="http://www.kbcs.in/downloads/papers/StmmerHindi.pdf">"A
 Lightweight Stemmer for Hindi", A. Ramanathan and D. Rao (2003)</a>
 </ul>

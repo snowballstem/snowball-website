@@ -1,7 +1,7 @@
 [% header %]
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-lg-8">
 
 <p>
 <strong>Snowball</strong> is a small string processing language for creating
@@ -21,8 +21,8 @@ metaphor for how the project grows by gathering contributions over time.
 
 <p>
 The Snowball compiler translates a Snowball program into source code in another
-language - currently Ada, ISO C, C#, Go, Java, Javascript, Object Pascal,
-Python and Rust are supported.
+language - currently Ada, ISO C, C#, Dart, Go, Java, Javascript, Object Pascal,
+PHP, Python, Rust and Zig are supported.
 <p>
 
 <h2>What is Stemming?</h2>
@@ -87,7 +87,7 @@ Add new backends to the Snowball compiler...
 
  The language has a full
 
-    <A HREF="../compiler/snowman.html"> manual</A>,
+    <A HREF="../compiler/snowman.html">manual</A>,
 
 and the various stemming scripts act as example programs.
 
@@ -95,12 +95,12 @@ and the various stemming scripts act as example programs.
 
 - You can get deeply interested in stemming. If you do, read the
 
-    <A HREF="../texts/introduction.html"> introductory paper</A>
+    <A HREF="../texts/introduction.html">introductory paper</A>
 
 about Snowball. It is a bit heavyweight, but provides essential background.
 And look at the
 
-    <A HREF="../texts/howtohelp.html"> notes</A>
+    <A HREF="../texts/howtohelp.html">notes</A>
 
 on how you can help.
 -->
@@ -118,6 +118,21 @@ speedily, and in any case they reserve the right to post their answers on snowba
 
 
 <ul>
+  <li>
+    <strong>Apr 2026</strong> - Persian stemming algorithm contributed by Saeid Darvish.
+  </li>
+  <li>
+    <strong>Apr 2026</strong> - Zig backend contributed by AJ Roetker.
+  </li>
+  <li>
+    <strong>Oct 2025</strong> - Polish stemming algorithm contributed by Dmitry Shachnev.
+  </li>
+  <li>
+    <strong>Oct 2025</strong> - Dart backend contributed by Ryan Heise.
+  </li>
+  <li>
+    <strong>Oct 2025</strong> - PHP backend contributed by Tim Whitlock and Olly Betts.
+  </li>
   <li>
     <strong>May 2025</strong> - <a href="download.html">Snowball 3.0.1 released.</a>
   </li>
@@ -237,7 +252,7 @@ speedily, and in any case they reserve the right to post their answers on snowba
 </ul>
 
   </div>
-  <div class="col-md-4">
+  <div class="col-lg-4">
 
     <h2>Links to resources</h2>
 

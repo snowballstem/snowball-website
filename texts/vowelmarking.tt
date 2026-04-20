@@ -2,7 +2,7 @@
 
 <p>
 Some of the algorithms begin with a step which puts letters which are
-normally classed as vowels into upper case to indicate that they are are to be
+normally classed as vowels into upper case to indicate that they are to be
 treated as consonants (the assumption being that the words are presented to
 the stemmers in lower case). Upper case therefore acts as a flag indicating a
 consonant.

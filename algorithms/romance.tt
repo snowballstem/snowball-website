@@ -3,11 +3,11 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="../algorithms/french/stemmer.html">     French stemmer</A>
-<li> <A HREF="../algorithms/spanish/stemmer.html">    Spanish stemmer</A>
-<li> <A HREF="../algorithms/catalan/stemmer.html">    Catalan stemmer</A>
-<li> <A HREF="../algorithms/portuguese/stemmer.html"> Portuguese stemmer</A>
-<li> <A HREF="../algorithms/italian/stemmer.html">    Italian stemmer</A>
+<li> <A HREF="../algorithms/french/stemmer.html">French stemmer</A>
+<li> <A HREF="../algorithms/spanish/stemmer.html">Spanish stemmer</A>
+<li> <A HREF="../algorithms/catalan/stemmer.html">Catalan stemmer</A>
+<li> <A HREF="../algorithms/portuguese/stemmer.html">Portuguese stemmer</A>
+<li> <A HREF="../algorithms/italian/stemmer.html">Italian stemmer</A>
 <li> <a href="../algorithms/romanian/stemmer.html">Romanian stemmer</a></li>
 </ul>
 

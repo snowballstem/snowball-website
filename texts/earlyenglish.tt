@@ -3,8 +3,8 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="../algorithms/english/stemmer.html">    The English (Porter2) stemmer in Snowball</A>
-<li> <A HREF="../algorithms/porter/stemmer.html">     The Porter stemmer in Snowball</A>
+<li> <A HREF="../algorithms/english/stemmer.html">The English (Porter2) stemmer in Snowball</A>
+<li> <A HREF="../algorithms/porter/stemmer.html">The Porter stemmer in Snowball</A>
 <li> <A HREF="https://tartarus.org/~martin/PorterStemmer/">
 The &#8216;official&#8217; home page of the Porter stemming algorithm</A>
 <li> <A HREF="https://tartarus.org/~martin/bible/">
@@ -120,7 +120,7 @@ of Step 1<I>b</I> should be extended to
 
 <p>
 As far as the Snowball scripts are concerned, the endings &nbsp;<code>'est' 'eth'</code>&nbsp; must
-be added against ending &nbsp;<code>'ing'</code>.
+be added alongside ending &nbsp;<code>'ed'</code>.
 </p>
 
 <p>

@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('czech', 'Czech') %]
+[% algorithm_lis('czech', 'Czech', 'https://en.wikipedia.org/wiki/Czech_language') %]
 </ul>
 
 <p>

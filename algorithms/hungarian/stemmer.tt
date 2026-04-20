@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('hungarian', 'Hungarian') %]
+[% algorithm_lis('hungarian', 'Hungarian', 'https://en.wikipedia.org/wiki/Hungarian_language') %]
 <li> <a href="https://staff.fnwi.uva.nl/m.derijke/Publications/Files/clef2005-proc-adhoc.pdf">
 A. Tordai and M. de Rijke.  Four Stemmers and a Funeral: Stemming in Hungarian at CLEF 2005</a>
 </ul>

@@ -3,7 +3,7 @@
 <h2>Links to resources</h2>
 
 <ul>
-[% algorithm_lis('armenian', 'Armenian') %]
+[% algorithm_lis('armenian', 'Armenian', 'https://en.wikipedia.org/wiki/Armenian_language') %]
 </ul>
 
 [% algorithm_vocab([11, 'աղոթում', 'բանաձևեր']) %]

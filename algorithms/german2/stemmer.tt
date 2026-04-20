@@ -3,12 +3,12 @@
 <h2>Links to resources</h2>
 
 <ul>
-<li> <A HREF="../german/stemmer.html"> The main German stemmer</A>
+<li> <A HREF="../german/stemmer.html">The main German stemmer</A>
 </ul>
 
 <p>
-We used to present a variant of the main German stemmer, termed "german2" which
-was the same as the German stemmer except with the first step adjusted to
+We used to present a variant of the main German stemmer here, termed "german2".
+It was the same as the German stemmer except with the first step adjusted to
 improve handling of input text where the German letters <B><I>ä</I></B>,
 <B><I>ö</I></B> and <B><I>ü</I></B>, were written as <B><I>ae</I></B>,
 <B><I>oe</I></B> and <B><I>ue</I></B> respectively.
