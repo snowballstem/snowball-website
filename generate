@@ -288,11 +288,12 @@ my @menu = (
 	}
     }
 
-run ['npx', 'uglifyjs', @stemmer_js_files, '--compress', '--mangle', '--mangle-props',
-    '-o', $outpath."/js/stemmers.js"] or die $!;
+for my $js (@stemmer_js_files) {
+    run ['npx', 'uglifyjs', $js, '--compress', '--mangle', '--mangle-props',
+	 '-o', "$outpath/js/$js"] or die $!;
+}
 
 $stemmer_select .= "</select>";
-$$vars{stemmer_js_files} = ['js/stemmers.js']; #\@stemmer_js_files;
 $$vars{stemmer_select} = $stemmer_select;
 
 # specify input filename, or file handle, text reference, etc.
