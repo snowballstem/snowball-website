@@ -48,8 +48,8 @@ jobs:
           ./generate
           mv dist ../snowballstem.github.io
           cd ../snowballstem.github.io
+          ls -lR
           find . -name '*.tt' -delete
-          rm js/*-stemmer.js
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
