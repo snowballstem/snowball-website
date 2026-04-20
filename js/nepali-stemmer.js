@@ -122,18 +122,18 @@ const a_2 = [
     ["\u0939\u094B\u0938\u094D", -1, 1]
 ];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-class NepaliStemmer extends BaseStemmer {
+class NepaliStemmer extends B {
 
 
     /** @return {boolean} */
     #r_remove_category_1() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_0);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         switch (a) {
             case 1: {
                 this.slice_del();
@@ -142,19 +142,19 @@ class NepaliStemmer extends BaseStemmer {
             case 2: {
                 // deno-lint-ignore no-unused-labels
                 lab0: {
-                    const /** number */ v_1 = this.limit - this.cursor;
+                    const /** number */ v_1 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab1: {
                         if (!(this.eq_s_b("\u090F"))) break lab1;
                         break lab0;
                     }
-                    this.cursor = this.limit - v_1;
+                    this.c = this.limit - v_1;
                     // deno-lint-ignore no-unused-labels
                     lab2: {
                         if (!(this.eq_s_b("\u0947"))) break lab2;
                         break lab0;
                     }
-                    this.cursor = this.limit - v_1;
+                    this.c = this.limit - v_1;
                     this.slice_del();
                 }
                 break;
@@ -166,33 +166,33 @@ class NepaliStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_remove_category_2() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_1);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         switch (a) {
             case 1: {
                 // deno-lint-ignore no-unused-labels
                 lab0: {
-                    const /** number */ v_1 = this.limit - this.cursor;
+                    const /** number */ v_1 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab1: {
                         if (!(this.eq_s_b("\u092F\u094C"))) break lab1;
                         break lab0;
                     }
-                    this.cursor = this.limit - v_1;
+                    this.c = this.limit - v_1;
                     // deno-lint-ignore no-unused-labels
                     lab2: {
                         if (!(this.eq_s_b("\u091B\u094C"))) break lab2;
                         break lab0;
                     }
-                    this.cursor = this.limit - v_1;
+                    this.c = this.limit - v_1;
                     // deno-lint-ignore no-unused-labels
                     lab3: {
                         if (!(this.eq_s_b("\u0928\u094C"))) break lab3;
                         break lab0;
                     }
-                    this.cursor = this.limit - v_1;
+                    this.c = this.limit - v_1;
                     if (!(this.eq_s_b("\u0925\u0947"))) return false;
                 }
                 this.slice_del();
@@ -209,33 +209,33 @@ class NepaliStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_remove_category_3() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (this.find_among_b(a_2) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #stem() {
-        this.limit_backward = this.cursor; this.cursor = this.limit;
-        const /** number */ v_1 = this.limit - this.cursor;
+        this.limit_backward = this.c; this.c = this.limit;
+        const /** number */ v_1 = this.limit - this.c;
         this.#r_remove_category_1();
-        this.cursor = this.limit - v_1;
+        this.c = this.limit - v_1;
         while (true) {
-            const /** number */ v_2 = this.limit - this.cursor;
+            const /** number */ v_2 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab0: {
-                const /** number */ v_3 = this.limit - this.cursor;
+                const /** number */ v_3 = this.limit - this.c;
                 this.#r_remove_category_2();
-                this.cursor = this.limit - v_3;
+                this.c = this.limit - v_3;
                 if (!this.#r_remove_category_3()) break lab0;
                 continue;
             }
-            this.cursor = this.limit - v_2;
+            this.c = this.limit - v_2;
             break;
         }
-        this.cursor = this.limit_backward;
+        this.c = this.limit_backward;
         return true;
     }
 
@@ -249,4 +249,4 @@ class NepaliStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { NepaliStemmer as default};
+export { NepaliStemmer };

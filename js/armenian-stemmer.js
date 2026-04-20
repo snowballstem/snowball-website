@@ -207,9 +207,9 @@ const a_3 = [
 
 const /** Array<number> */ g_v = [209, 4, 128, 0, 18];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-class ArmenianStemmer extends BaseStemmer {
+class ArmenianStemmer extends B {
 
     #I_p2/** number */ = 0;
     #I_pV/** number */ = 0;
@@ -219,61 +219,61 @@ class ArmenianStemmer extends BaseStemmer {
     #r_mark_regions() {
         this.#I_pV = this.limit;
         this.#I_p2 = this.limit;
-        const /** number */ v_1 = this.cursor;
+        const /** number */ v_1 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             if (!this.go_out_grouping(g_v, 1377, 1413)) break lab0;
-            this.cursor++;
-            this.#I_pV = this.cursor;
+            this.c++;
+            this.#I_pV = this.c;
             if (!this.go_in_grouping(g_v, 1377, 1413)) break lab0;
-            this.cursor++;
+            this.c++;
             if (!this.go_out_grouping(g_v, 1377, 1413)) break lab0;
-            this.cursor++;
+            this.c++;
             if (!this.go_in_grouping(g_v, 1377, 1413)) break lab0;
-            this.cursor++;
-            this.#I_p2 = this.cursor;
+            this.c++;
+            this.#I_p2 = this.c;
         }
-        this.cursor = v_1;
+        this.c = v_1;
         return true;
     }
 
     /** @return {boolean} */
     #r_R2() {
-        return this.#I_p2 <= this.cursor;
+        return this.#I_p2 <= this.c;
     }
 
     /** @return {boolean} */
     #r_adjective() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (this.find_among_b(a_0) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #r_verb() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (this.find_among_b(a_1) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #r_noun() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (this.find_among_b(a_2) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #r_ending() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (this.find_among_b(a_3) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R2()) return false;
         this.slice_del();
         return true;
@@ -282,24 +282,24 @@ class ArmenianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #stem() {
         this.#r_mark_regions();
-        this.limit_backward = this.cursor; this.cursor = this.limit;
-        if (this.cursor < this.#I_pV) return false;
+        this.limit_backward = this.c; this.c = this.limit;
+        if (this.c < this.#I_pV) return false;
         const /** number */ v_1 = this.limit_backward;
         this.limit_backward = this.#I_pV;
-        const /** number */ v_2 = this.limit - this.cursor;
+        const /** number */ v_2 = this.limit - this.c;
         this.#r_ending();
-        this.cursor = this.limit - v_2;
-        const /** number */ v_3 = this.limit - this.cursor;
+        this.c = this.limit - v_2;
+        const /** number */ v_3 = this.limit - this.c;
         this.#r_verb();
-        this.cursor = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.cursor;
+        this.c = this.limit - v_3;
+        const /** number */ v_4 = this.limit - this.c;
         this.#r_adjective();
-        this.cursor = this.limit - v_4;
-        const /** number */ v_5 = this.limit - this.cursor;
+        this.c = this.limit - v_4;
+        const /** number */ v_5 = this.limit - this.c;
         this.#r_noun();
-        this.cursor = this.limit - v_5;
+        this.c = this.limit - v_5;
         this.limit_backward = v_1;
-        this.cursor = this.limit_backward;
+        this.c = this.limit_backward;
         return true;
     }
 
@@ -313,4 +313,4 @@ class ArmenianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { ArmenianStemmer as default};
+export { ArmenianStemmer };
