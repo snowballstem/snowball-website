@@ -1110,9 +1110,9 @@ const /** Array<number> */ g_v = [81, 65, 16, 1];
 
 const /** Array<number> */ g_v2 = [81, 65, 0, 1];
 
-import B from './base-stemmer.js'
+import { BaseStemmer } from './base-stemmer.js'
 
-class GreekStemmer extends B {
+class GreekStemmer extends BaseStemmer {
 
     #B_test1/** boolean */ = false;
 
@@ -1126,12 +1126,12 @@ class GreekStemmer extends B {
     #r_tolower() {
         let /** number */ a;
         while (true) {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab0: {
-                this.ket = this.c;
+                this.ket = this.cursor;
                 a = this.find_among_b(a_0);
-                this.bra = this.c;
+                this.bra = this.cursor;
                 switch (a) {
                     case 1: {
                         this.slice_from("\u03B1");
@@ -1230,14 +1230,14 @@ class GreekStemmer extends B {
                         break;
                     }
                     case 25: {
-                        if (this.c <= this.limit_backward) break lab0;
-                        this.c--;
+                        if (this.cursor <= this.limit_backward) break lab0;
+                        this.cursor--;
                         break;
                     }
                 }
                 continue;
             }
-            this.c = this.limit - v_1;
+            this.cursor = this.limit - v_1;
             break;
         }
         return true;
@@ -1246,10 +1246,10 @@ class GreekStemmer extends B {
     /** @return {boolean} */
     #r_step_1() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         a = this.find_among_b(a_1);
         if (a === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 this.slice_from("\u03C6\u03B1");
@@ -1303,16 +1303,16 @@ class GreekStemmer extends B {
     /** @return {boolean} */
     #r_step_s1() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_3) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         a = this.find_among_b(a_2);
         if (a === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         switch (a) {
             case 1: {
                 this.slice_from("\u03B9");
@@ -1328,15 +1328,15 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_s2() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_5) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_4) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03C9\u03BD");
         return true;
     }
@@ -1346,28 +1346,28 @@ class GreekStemmer extends B {
         let /** number */ a;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.c;
+                this.ket = this.cursor;
                 if (!(this.eq_s_b("\u03B9\u03C3\u03B1"))) break lab1;
-                this.bra = this.c;
-                if (this.c > this.limit_backward) break lab1;
+                this.bra = this.cursor;
+                if (this.cursor > this.limit_backward) break lab1;
                 this.slice_from("\u03B9\u03C3");
                 break lab0;
             }
-            this.c = this.limit - v_1;
-            this.ket = this.c;
+            this.cursor = this.limit - v_1;
+            this.ket = this.cursor;
         }
         if (this.find_among_b(a_7) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         a = this.find_among_b(a_6);
         if (a === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         switch (a) {
             case 1: {
                 this.slice_from("\u03B9");
@@ -1383,15 +1383,15 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_s4() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_9) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_8) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B9");
         return true;
     }
@@ -1399,16 +1399,16 @@ class GreekStemmer extends B {
     /** @return {boolean} */
     #r_step_s5() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_11) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         a = this.find_among_b(a_10);
         if (a === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         switch (a) {
             case 1: {
                 this.slice_from("\u03B9");
@@ -1425,21 +1425,21 @@ class GreekStemmer extends B {
     /** @return {boolean} */
     #r_step_s6() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_14) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 a = this.find_among_b(a_12);
                 if (a === 0) break lab1;
-                if (this.c > this.limit_backward) break lab1;
+                if (this.cursor > this.limit_backward) break lab1;
                 switch (a) {
                     case 1: {
                         this.slice_from("\u03B9\u03C3\u03BC");
@@ -1452,11 +1452,11 @@ class GreekStemmer extends B {
                 }
                 break lab0;
             }
-            this.c = this.limit - v_1;
-            this.ket = this.c;
+            this.cursor = this.limit - v_1;
+            this.ket = this.cursor;
             a = this.find_among_b(a_13);
             if (a === 0) return false;
-            this.bra = this.c;
+            this.bra = this.cursor;
             switch (a) {
                 case 1: {
                     this.slice_from("\u03B1\u03B3\u03BD\u03C9\u03C3\u03C4");
@@ -1505,15 +1505,15 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_s7() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_16) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_15) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B1\u03C1\u03B1\u03BA");
         return true;
     }
@@ -1521,21 +1521,21 @@ class GreekStemmer extends B {
     /** @return {boolean} */
     #r_step_s8() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_18) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 a = this.find_among_b(a_17);
                 if (a === 0) break lab1;
-                if (this.c > this.limit_backward) break lab1;
+                if (this.cursor > this.limit_backward) break lab1;
                 switch (a) {
                     case 1: {
                         this.slice_from("\u03B1\u03BA");
@@ -1548,9 +1548,9 @@ class GreekStemmer extends B {
                 }
                 break lab0;
             }
-            this.c = this.limit - v_1;
-            this.ket = this.c;
-            this.bra = this.c;
+            this.cursor = this.limit - v_1;
+            this.ket = this.cursor;
+            this.bra = this.cursor;
             if (!(this.eq_s_b("\u03BA\u03BF\u03C1"))) return false;
             this.slice_from("\u03B9\u03C4\u03C3");
         }
@@ -1559,26 +1559,26 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_s9() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_21) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (this.find_among_b(a_19) === 0) break lab1;
-                if (this.c > this.limit_backward) break lab1;
+                if (this.cursor > this.limit_backward) break lab1;
                 this.slice_from("\u03B9\u03B4");
                 break lab0;
             }
-            this.c = this.limit - v_1;
-            this.ket = this.c;
-            this.bra = this.c;
+            this.cursor = this.limit - v_1;
+            this.ket = this.cursor;
+            this.bra = this.cursor;
             if (this.find_among_b(a_20) === 0) return false;
             this.slice_from("\u03B9\u03B4");
         }
@@ -1587,50 +1587,50 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_s10() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_23) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_22) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B9\u03C3\u03BA");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_2a() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_24) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab0: {
                 if (this.find_among_b(a_25) === 0) break lab0;
                 return false;
             }
-            this.c = this.limit - v_1;
+            this.cursor = this.limit - v_1;
         }
         {
-            const /** number */ c = this.c;
+            const /** number */ c = this.cursor;
             this.insert(c, c, "\u03B1\u03B4");
-            this.c = c;
+            this.cursor = c;
         }
         return true;
     }
 
     /** @return {boolean} */
     #r_step_2b() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_26) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_27) === 0) return false;
         this.slice_from("\u03B5\u03B4");
         return true;
@@ -1638,12 +1638,12 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_2c() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_28) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_29) === 0) return false;
         this.slice_from("\u03BF\u03C5\u03B4");
         return true;
@@ -1651,28 +1651,28 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_2d() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_30) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_31) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B5");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_3() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_32) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (!(this.in_grouping_b(g_v, 945, 969))) return false;
         this.slice_from("\u03B9");
         return true;
@@ -1680,179 +1680,179 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_4() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_33) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (!(this.in_grouping_b(g_v, 945, 969))) break lab1;
                 this.slice_from("\u03B9\u03BA");
                 break lab0;
             }
-            this.c = this.limit - v_1;
-            this.ket = this.c;
+            this.cursor = this.limit - v_1;
+            this.ket = this.cursor;
         }
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.find_among_b(a_34) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B9\u03BA");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_5a() {
-        const /** number */ v_1 = this.limit - this.c;
+        const /** number */ v_1 = this.limit - this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.ket = this.c;
+            this.ket = this.cursor;
             if (!(this.eq_s_b("\u03B1\u03B3\u03B1\u03BC\u03B5"))) break lab0;
-            this.bra = this.c;
-            if (this.c > this.limit_backward) break lab0;
+            this.bra = this.cursor;
+            if (this.cursor > this.limit_backward) break lab0;
             this.slice_from("\u03B1\u03B3\u03B1\u03BC");
         }
-        this.c = this.limit - v_1;
-        const /** number */ v_2 = this.limit - this.c;
+        this.cursor = this.limit - v_1;
+        const /** number */ v_2 = this.limit - this.cursor;
         // deno-lint-ignore no-unused-labels
         lab1: {
-            this.ket = this.c;
+            this.ket = this.cursor;
             if (this.find_among_b(a_35) === 0) break lab1;
-            this.bra = this.c;
+            this.bra = this.cursor;
             this.slice_del();
             this.#B_test1 = false;
         }
-        this.c = this.limit - v_2;
-        this.ket = this.c;
+        this.cursor = this.limit - v_2;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u03B1\u03BC\u03B5"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_36) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B1\u03BC");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_5b() {
-        const /** number */ v_1 = this.limit - this.c;
+        const /** number */ v_1 = this.limit - this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.ket = this.c;
+            this.ket = this.cursor;
             if (this.find_among_b(a_38) === 0) break lab0;
-            this.bra = this.c;
+            this.bra = this.cursor;
             this.slice_del();
             this.#B_test1 = false;
-            this.ket = this.c;
-            this.bra = this.c;
+            this.ket = this.cursor;
+            this.bra = this.cursor;
             if (this.find_among_b(a_37) === 0) break lab0;
-            if (this.c > this.limit_backward) break lab0;
+            if (this.cursor > this.limit_backward) break lab0;
             this.slice_from("\u03B1\u03B3\u03B1\u03BD");
         }
-        this.c = this.limit - v_1;
-        this.ket = this.c;
+        this.cursor = this.limit - v_1;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u03B1\u03BD\u03B5"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab1: {
-            const /** number */ v_2 = this.limit - this.c;
+            const /** number */ v_2 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab2: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (!(this.in_grouping_b(g_v2, 945, 969))) break lab2;
                 this.slice_from("\u03B1\u03BD");
                 break lab1;
             }
-            this.c = this.limit - v_2;
-            this.ket = this.c;
+            this.cursor = this.limit - v_2;
+            this.ket = this.cursor;
         }
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.find_among_b(a_39) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B1\u03BD");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_5c() {
-        const /** number */ v_1 = this.limit - this.c;
+        const /** number */ v_1 = this.limit - this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.ket = this.c;
+            this.ket = this.cursor;
             if (!(this.eq_s_b("\u03B7\u03C3\u03B5\u03C4\u03B5"))) break lab0;
-            this.bra = this.c;
+            this.bra = this.cursor;
             this.slice_del();
             this.#B_test1 = false;
         }
-        this.c = this.limit - v_1;
-        this.ket = this.c;
+        this.cursor = this.limit - v_1;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u03B5\u03C4\u03B5"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab1: {
-            const /** number */ v_2 = this.limit - this.c;
+            const /** number */ v_2 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab2: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (!(this.in_grouping_b(g_v2, 945, 969))) break lab2;
                 this.slice_from("\u03B5\u03C4");
                 break lab1;
             }
-            this.c = this.limit - v_2;
+            this.cursor = this.limit - v_2;
             // deno-lint-ignore no-unused-labels
             lab3: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (this.find_among_b(a_40) === 0) break lab3;
                 this.slice_from("\u03B5\u03C4");
                 break lab1;
             }
-            this.c = this.limit - v_2;
-            this.ket = this.c;
+            this.cursor = this.limit - v_2;
+            this.ket = this.cursor;
         }
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.find_among_b(a_41) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B5\u03C4");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_5d() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_42) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (!(this.eq_s_b("\u03B1\u03C1\u03C7"))) break lab1;
-                if (this.c > this.limit_backward) break lab1;
+                if (this.cursor > this.limit_backward) break lab1;
                 this.slice_from("\u03BF\u03BD\u03C4");
                 break lab0;
             }
-            this.c = this.limit - v_1;
-            this.ket = this.c;
-            this.bra = this.c;
+            this.cursor = this.limit - v_1;
+            this.ket = this.cursor;
+            this.bra = this.cursor;
             if (!(this.eq_s_b("\u03BA\u03C1\u03B5"))) return false;
             this.slice_from("\u03C9\u03BD\u03C4");
         }
@@ -1861,82 +1861,82 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_5e() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_43) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (!(this.eq_s_b("\u03BF\u03BD"))) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03BF\u03BC\u03B1\u03C3\u03C4");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_5f() {
-        const /** number */ v_1 = this.limit - this.c;
+        const /** number */ v_1 = this.limit - this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.ket = this.c;
+            this.ket = this.cursor;
             if (!(this.eq_s_b("\u03B9\u03B5\u03C3\u03C4\u03B5"))) break lab0;
-            this.bra = this.c;
+            this.bra = this.cursor;
             this.slice_del();
             this.#B_test1 = false;
-            this.ket = this.c;
-            this.bra = this.c;
+            this.ket = this.cursor;
+            this.bra = this.cursor;
             if (this.find_among_b(a_44) === 0) break lab0;
-            if (this.c > this.limit_backward) break lab0;
+            if (this.cursor > this.limit_backward) break lab0;
             this.slice_from("\u03B9\u03B5\u03C3\u03C4");
         }
-        this.c = this.limit - v_1;
-        this.ket = this.c;
+        this.cursor = this.limit - v_1;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u03B5\u03C3\u03C4\u03B5"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_45) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B9\u03B5\u03C3\u03C4");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_5g() {
-        const /** number */ v_1 = this.limit - this.c;
+        const /** number */ v_1 = this.limit - this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.ket = this.c;
+            this.ket = this.cursor;
             if (this.find_among_b(a_46) === 0) break lab0;
-            this.bra = this.c;
+            this.bra = this.cursor;
             this.slice_del();
             this.#B_test1 = false;
         }
-        this.c = this.limit - v_1;
-        this.ket = this.c;
+        this.cursor = this.limit - v_1;
+        this.ket = this.cursor;
         if (this.find_among_b(a_49) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab1: {
-            const /** number */ v_2 = this.limit - this.c;
+            const /** number */ v_2 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab2: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (this.find_among_b(a_47) === 0) break lab2;
                 this.slice_from("\u03B7\u03BA");
                 break lab1;
             }
-            this.c = this.limit - v_2;
-            this.ket = this.c;
-            this.bra = this.c;
+            this.cursor = this.limit - v_2;
+            this.ket = this.cursor;
+            this.bra = this.cursor;
             if (this.find_among_b(a_48) === 0) return false;
-            if (this.c > this.limit_backward) return false;
+            if (this.cursor > this.limit_backward) return false;
             this.slice_from("\u03B7\u03BA");
         }
         return true;
@@ -1944,27 +1944,27 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_5h() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_52) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (this.find_among_b(a_50) === 0) break lab1;
                 this.slice_from("\u03BF\u03C5\u03C3");
                 break lab0;
             }
-            this.c = this.limit - v_1;
-            this.ket = this.c;
-            this.bra = this.c;
+            this.cursor = this.limit - v_1;
+            this.ket = this.cursor;
+            this.bra = this.cursor;
             if (this.find_among_b(a_51) === 0) return false;
-            if (this.c > this.limit_backward) return false;
+            if (this.cursor > this.limit_backward) return false;
             this.slice_from("\u03BF\u03C5\u03C3");
         }
         return true;
@@ -1973,30 +1973,30 @@ class GreekStemmer extends B {
     /** @return {boolean} */
     #r_step_5i() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_55) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.c;
-                this.bra = this.c;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (!(this.eq_s_b("\u03BA\u03BF\u03BB\u03BB"))) break lab1;
                 this.slice_from("\u03B1\u03B3");
                 break lab0;
             }
-            this.c = this.limit - v_1;
+            this.cursor = this.limit - v_1;
             // deno-lint-ignore no-unused-labels
             lab2: {
-                const /** number */ v_2 = this.limit - this.c;
+                const /** number */ v_2 = this.limit - this.cursor;
                 // deno-lint-ignore no-unused-labels
                 lab3: {
-                    this.ket = this.c;
-                    this.bra = this.c;
+                    this.ket = this.cursor;
+                    this.bra = this.cursor;
                     a = this.find_among_b(a_53);
                     if (a === 0) break lab3;
                     switch (a) {
@@ -2007,11 +2007,11 @@ class GreekStemmer extends B {
                     }
                     break lab2;
                 }
-                this.c = this.limit - v_2;
-                this.ket = this.c;
-                this.bra = this.c;
+                this.cursor = this.limit - v_2;
+                this.ket = this.cursor;
+                this.bra = this.cursor;
                 if (this.find_among_b(a_54) === 0) return false;
-                if (this.c > this.limit_backward) return false;
+                if (this.cursor > this.limit_backward) return false;
                 this.slice_from("\u03B1\u03B3");
             }
         }
@@ -2020,197 +2020,197 @@ class GreekStemmer extends B {
 
     /** @return {boolean} */
     #r_step_5j() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_56) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_57) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B7\u03C3");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_5k() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u03B7\u03C3\u03C4\u03B5"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_58) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03B7\u03C3\u03C4");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_5l() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_59) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_60) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03BF\u03C5\u03BD");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_5m() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_61) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         this.#B_test1 = false;
-        this.ket = this.c;
-        this.bra = this.c;
+        this.ket = this.cursor;
+        this.bra = this.cursor;
         if (this.find_among_b(a_62) === 0) return false;
-        if (this.c > this.limit_backward) return false;
+        if (this.cursor > this.limit_backward) return false;
         this.slice_from("\u03BF\u03C5\u03BC");
         return true;
     }
 
     /** @return {boolean} */
     #r_step_6() {
-        const /** number */ v_1 = this.limit - this.c;
+        const /** number */ v_1 = this.limit - this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.ket = this.c;
+            this.ket = this.cursor;
             if (this.find_among_b(a_63) === 0) break lab0;
-            this.bra = this.c;
+            this.bra = this.cursor;
             this.slice_from("\u03BC\u03B1");
         }
-        this.c = this.limit - v_1;
+        this.cursor = this.limit - v_1;
         if (!this.#B_test1) return false;
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_64) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #r_step_7() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_65) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #stem() {
-        this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_1 = this.limit - this.c;
+        this.limit_backward = this.cursor; this.cursor = this.limit;
+        const /** number */ v_1 = this.limit - this.cursor;
         this.#r_tolower();
-        this.c = this.limit - v_1;
+        this.cursor = this.limit - v_1;
         if (!this.#r_has_min_length()) return false;
         this.#B_test1 = true;
-        const /** number */ v_2 = this.limit - this.c;
+        const /** number */ v_2 = this.limit - this.cursor;
         this.#r_step_1();
-        this.c = this.limit - v_2;
-        const /** number */ v_3 = this.limit - this.c;
+        this.cursor = this.limit - v_2;
+        const /** number */ v_3 = this.limit - this.cursor;
         this.#r_step_s1();
-        this.c = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.c;
+        this.cursor = this.limit - v_3;
+        const /** number */ v_4 = this.limit - this.cursor;
         this.#r_step_s2();
-        this.c = this.limit - v_4;
-        const /** number */ v_5 = this.limit - this.c;
+        this.cursor = this.limit - v_4;
+        const /** number */ v_5 = this.limit - this.cursor;
         this.#r_step_s3();
-        this.c = this.limit - v_5;
-        const /** number */ v_6 = this.limit - this.c;
+        this.cursor = this.limit - v_5;
+        const /** number */ v_6 = this.limit - this.cursor;
         this.#r_step_s4();
-        this.c = this.limit - v_6;
-        const /** number */ v_7 = this.limit - this.c;
+        this.cursor = this.limit - v_6;
+        const /** number */ v_7 = this.limit - this.cursor;
         this.#r_step_s5();
-        this.c = this.limit - v_7;
-        const /** number */ v_8 = this.limit - this.c;
+        this.cursor = this.limit - v_7;
+        const /** number */ v_8 = this.limit - this.cursor;
         this.#r_step_s6();
-        this.c = this.limit - v_8;
-        const /** number */ v_9 = this.limit - this.c;
+        this.cursor = this.limit - v_8;
+        const /** number */ v_9 = this.limit - this.cursor;
         this.#r_step_s7();
-        this.c = this.limit - v_9;
-        const /** number */ v_10 = this.limit - this.c;
+        this.cursor = this.limit - v_9;
+        const /** number */ v_10 = this.limit - this.cursor;
         this.#r_step_s8();
-        this.c = this.limit - v_10;
-        const /** number */ v_11 = this.limit - this.c;
+        this.cursor = this.limit - v_10;
+        const /** number */ v_11 = this.limit - this.cursor;
         this.#r_step_s9();
-        this.c = this.limit - v_11;
-        const /** number */ v_12 = this.limit - this.c;
+        this.cursor = this.limit - v_11;
+        const /** number */ v_12 = this.limit - this.cursor;
         this.#r_step_s10();
-        this.c = this.limit - v_12;
-        const /** number */ v_13 = this.limit - this.c;
+        this.cursor = this.limit - v_12;
+        const /** number */ v_13 = this.limit - this.cursor;
         this.#r_step_2a();
-        this.c = this.limit - v_13;
-        const /** number */ v_14 = this.limit - this.c;
+        this.cursor = this.limit - v_13;
+        const /** number */ v_14 = this.limit - this.cursor;
         this.#r_step_2b();
-        this.c = this.limit - v_14;
-        const /** number */ v_15 = this.limit - this.c;
+        this.cursor = this.limit - v_14;
+        const /** number */ v_15 = this.limit - this.cursor;
         this.#r_step_2c();
-        this.c = this.limit - v_15;
-        const /** number */ v_16 = this.limit - this.c;
+        this.cursor = this.limit - v_15;
+        const /** number */ v_16 = this.limit - this.cursor;
         this.#r_step_2d();
-        this.c = this.limit - v_16;
-        const /** number */ v_17 = this.limit - this.c;
+        this.cursor = this.limit - v_16;
+        const /** number */ v_17 = this.limit - this.cursor;
         this.#r_step_3();
-        this.c = this.limit - v_17;
-        const /** number */ v_18 = this.limit - this.c;
+        this.cursor = this.limit - v_17;
+        const /** number */ v_18 = this.limit - this.cursor;
         this.#r_step_4();
-        this.c = this.limit - v_18;
-        const /** number */ v_19 = this.limit - this.c;
+        this.cursor = this.limit - v_18;
+        const /** number */ v_19 = this.limit - this.cursor;
         this.#r_step_5a();
-        this.c = this.limit - v_19;
-        const /** number */ v_20 = this.limit - this.c;
+        this.cursor = this.limit - v_19;
+        const /** number */ v_20 = this.limit - this.cursor;
         this.#r_step_5b();
-        this.c = this.limit - v_20;
-        const /** number */ v_21 = this.limit - this.c;
+        this.cursor = this.limit - v_20;
+        const /** number */ v_21 = this.limit - this.cursor;
         this.#r_step_5c();
-        this.c = this.limit - v_21;
-        const /** number */ v_22 = this.limit - this.c;
+        this.cursor = this.limit - v_21;
+        const /** number */ v_22 = this.limit - this.cursor;
         this.#r_step_5d();
-        this.c = this.limit - v_22;
-        const /** number */ v_23 = this.limit - this.c;
+        this.cursor = this.limit - v_22;
+        const /** number */ v_23 = this.limit - this.cursor;
         this.#r_step_5e();
-        this.c = this.limit - v_23;
-        const /** number */ v_24 = this.limit - this.c;
+        this.cursor = this.limit - v_23;
+        const /** number */ v_24 = this.limit - this.cursor;
         this.#r_step_5f();
-        this.c = this.limit - v_24;
-        const /** number */ v_25 = this.limit - this.c;
+        this.cursor = this.limit - v_24;
+        const /** number */ v_25 = this.limit - this.cursor;
         this.#r_step_5g();
-        this.c = this.limit - v_25;
-        const /** number */ v_26 = this.limit - this.c;
+        this.cursor = this.limit - v_25;
+        const /** number */ v_26 = this.limit - this.cursor;
         this.#r_step_5h();
-        this.c = this.limit - v_26;
-        const /** number */ v_27 = this.limit - this.c;
+        this.cursor = this.limit - v_26;
+        const /** number */ v_27 = this.limit - this.cursor;
         this.#r_step_5j();
-        this.c = this.limit - v_27;
-        const /** number */ v_28 = this.limit - this.c;
+        this.cursor = this.limit - v_27;
+        const /** number */ v_28 = this.limit - this.cursor;
         this.#r_step_5i();
-        this.c = this.limit - v_28;
-        const /** number */ v_29 = this.limit - this.c;
+        this.cursor = this.limit - v_28;
+        const /** number */ v_29 = this.limit - this.cursor;
         this.#r_step_5k();
-        this.c = this.limit - v_29;
-        const /** number */ v_30 = this.limit - this.c;
+        this.cursor = this.limit - v_29;
+        const /** number */ v_30 = this.limit - this.cursor;
         this.#r_step_5l();
-        this.c = this.limit - v_30;
-        const /** number */ v_31 = this.limit - this.c;
+        this.cursor = this.limit - v_30;
+        const /** number */ v_31 = this.limit - this.cursor;
         this.#r_step_5m();
-        this.c = this.limit - v_31;
-        const /** number */ v_32 = this.limit - this.c;
+        this.cursor = this.limit - v_31;
+        const /** number */ v_32 = this.limit - this.cursor;
         this.#r_step_6();
-        this.c = this.limit - v_32;
-        const /** number */ v_33 = this.limit - this.c;
+        this.cursor = this.limit - v_32;
+        const /** number */ v_33 = this.limit - this.cursor;
         this.#r_step_7();
-        this.c = this.limit - v_33;
-        this.c = this.limit_backward;
+        this.cursor = this.limit - v_33;
+        this.cursor = this.limit_backward;
         return true;
     }
 
@@ -2224,4 +2224,4 @@ class GreekStemmer extends B {
     stemWord = this.stem;
 }
 
-export { GreekStemmer };
+export { GreekStemmer as default};
