@@ -107,32 +107,32 @@ class IrishStemmer extends BaseStemmer {
         this.#I_pV = this.limit;
         this.#I_p1 = this.limit;
         this.#I_p2 = this.limit;
-        const /** number */ v_1 = this.c;
+        const /** number */ v_1 = this.C;
         // deno-lint-ignore no-unused-labels
         lab0: {
             if (!this.go_out_grouping(g_v, 97, 250)) break lab0;
-            this.c++;
-            this.#I_pV = this.c;
+            this.C++;
+            this.#I_pV = this.C;
             if (!this.go_in_grouping(g_v, 97, 250)) break lab0;
-            this.c++;
-            this.#I_p1 = this.c;
+            this.C++;
+            this.#I_p1 = this.C;
             if (!this.go_out_grouping(g_v, 97, 250)) break lab0;
-            this.c++;
+            this.C++;
             if (!this.go_in_grouping(g_v, 97, 250)) break lab0;
-            this.c++;
-            this.#I_p2 = this.c;
+            this.C++;
+            this.#I_p2 = this.C;
         }
-        this.c = v_1;
+        this.C = v_1;
         return true;
     }
 
     /** @return {boolean} */
     #r_initial_morph() {
         let /** number */ a;
-        this.bra = this.c;
+        this.bra = this.C;
         a = this.find_among(a_0);
         if (a === 0) return false;
-        this.ket = this.c;
+        this.ket = this.C;
         switch (a) {
             case 1: {
                 this.slice_del();
@@ -180,26 +180,26 @@ class IrishStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_RV() {
-        return this.#I_pV <= this.c;
+        return this.#I_pV <= this.C;
     }
 
     /** @return {boolean} */
     #r_R1() {
-        return this.#I_p1 <= this.c;
+        return this.#I_p1 <= this.C;
     }
 
     /** @return {boolean} */
     #r_R2() {
-        return this.#I_p2 <= this.c;
+        return this.#I_p2 <= this.C;
     }
 
     /** @return {boolean} */
     #r_noun_sfx() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.C;
         a = this.find_among_b(a_1);
         if (a === 0) return false;
-        this.bra = this.c;
+        this.bra = this.C;
         switch (a) {
             case 1: {
                 if (!this.#r_R1()) return false;
@@ -218,10 +218,10 @@ class IrishStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_deriv() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.C;
         a = this.find_among_b(a_2);
         if (a === 0) return false;
-        this.bra = this.c;
+        this.bra = this.C;
         switch (a) {
             case 1: {
                 if (!this.#r_R2()) return false;
@@ -255,10 +255,10 @@ class IrishStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_verb_sfx() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.C;
         a = this.find_among_b(a_3);
         if (a === 0) return false;
-        this.bra = this.c;
+        this.bra = this.C;
         switch (a) {
             case 1: {
                 if (!this.#r_RV()) return false;
@@ -276,21 +276,21 @@ class IrishStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #stem() {
-        const /** number */ v_1 = this.c;
+        const /** number */ v_1 = this.C;
         this.#r_initial_morph();
-        this.c = v_1;
+        this.C = v_1;
         this.#r_mark_regions();
-        this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_2 = this.limit - this.c;
+        this.limit_backward = this.C; this.C = this.limit;
+        const /** number */ v_2 = this.limit - this.C;
         this.#r_noun_sfx();
-        this.c = this.limit - v_2;
-        const /** number */ v_3 = this.limit - this.c;
+        this.C = this.limit - v_2;
+        const /** number */ v_3 = this.limit - this.C;
         this.#r_deriv();
-        this.c = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.c;
+        this.C = this.limit - v_3;
+        const /** number */ v_4 = this.limit - this.C;
         this.#r_verb_sfx();
-        this.c = this.limit - v_4;
-        this.c = this.limit_backward;
+        this.C = this.limit - v_4;
+        this.C = this.limit_backward;
         return true;
     }
 
