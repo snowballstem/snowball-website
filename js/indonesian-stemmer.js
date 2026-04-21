@@ -49,9 +49,9 @@ class IndonesianStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_remove_particle() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_0) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         --this.#I_measure;
         return true;
@@ -59,9 +59,9 @@ class IndonesianStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_remove_possessive_pronoun() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_1) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_del();
         --this.#I_measure;
         return true;
@@ -70,24 +70,24 @@ class IndonesianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_remove_suffix() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         a = this.find_among_b(a_2);
         if (a === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 // deno-lint-ignore no-unused-labels
                 lab0: {
-                    const /** number */ v_1 = this.limit - this.c;
+                    const /** number */ v_1 = this.limit - this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab1: {
                         if (this.#I_prefix === 3) break lab1;
                         if (this.#I_prefix === 2) break lab1;
                         if (!(this.eq_s_b("k"))) break lab1;
-                        this.bra = this.c;
+                        this.bra = this.cursor;
                         break lab0;
                     }
-                    this.c = this.limit - v_1;
+                    this.cursor = this.limit - v_1;
                     if (this.#I_prefix === 1) return false;
                 }
                 break;
@@ -95,13 +95,13 @@ class IndonesianStemmer extends BaseStemmer {
             case 2: {
                 if (this.#I_prefix > 2) return false;
                 {
-                    const /** number */ v_2 = this.limit - this.c;
+                    const /** number */ v_2 = this.limit - this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab2: {
                         if (!(this.eq_s_b("s"))) break lab2;
                         return false;
                     }
-                    this.c = this.limit - v_2;
+                    this.cursor = this.limit - v_2;
                 }
                 break;
             }
@@ -114,10 +114,10 @@ class IndonesianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_remove_first_order_prefix() {
         let /** number */ a;
-        this.bra = this.c;
+        this.bra = this.cursor;
         a = this.find_among(a_3);
         if (a === 0) return false;
-        this.ket = this.c;
+        this.ket = this.cursor;
         switch (a) {
             case 1: {
                 this.slice_del();
@@ -128,20 +128,20 @@ class IndonesianStemmer extends BaseStemmer {
             case 2: {
                 // deno-lint-ignore no-unused-labels
                 lab0: {
-                    const /** number */ v_1 = this.c;
+                    const /** number */ v_1 = this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab1: {
                         if (!(this.eq_s("y"))) break lab1;
-                        const /** number */ v_2 = this.c;
+                        const /** number */ v_2 = this.cursor;
                         if (!(this.in_grouping(g_vowel, 97, 117))) break lab1;
-                        this.c = v_2;
-                        this.ket = this.c;
+                        this.cursor = v_2;
+                        this.ket = this.cursor;
                         this.slice_from("s");
                         this.#I_prefix = 1;
                         --this.#I_measure;
                         break lab0;
                     }
-                    this.c = v_1;
+                    this.cursor = v_1;
                     this.slice_del();
                     this.#I_prefix = 1;
                     --this.#I_measure;
@@ -157,20 +157,20 @@ class IndonesianStemmer extends BaseStemmer {
             case 4: {
                 // deno-lint-ignore no-unused-labels
                 lab2: {
-                    const /** number */ v_3 = this.c;
+                    const /** number */ v_3 = this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab3: {
                         if (!(this.eq_s("y"))) break lab3;
-                        const /** number */ v_4 = this.c;
+                        const /** number */ v_4 = this.cursor;
                         if (!(this.in_grouping(g_vowel, 97, 117))) break lab3;
-                        this.c = v_4;
-                        this.ket = this.c;
+                        this.cursor = v_4;
+                        this.ket = this.cursor;
                         this.slice_from("s");
                         this.#I_prefix = 3;
                         --this.#I_measure;
                         break lab2;
                     }
-                    this.c = v_3;
+                    this.cursor = v_3;
                     this.slice_del();
                     this.#I_prefix = 3;
                     --this.#I_measure;
@@ -182,16 +182,16 @@ class IndonesianStemmer extends BaseStemmer {
                 --this.#I_measure;
                 // deno-lint-ignore no-unused-labels
                 lab4: {
-                    const /** number */ v_5 = this.c;
+                    const /** number */ v_5 = this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab5: {
-                        const /** number */ v_6 = this.c;
+                        const /** number */ v_6 = this.cursor;
                         if (!(this.in_grouping(g_vowel, 97, 117))) break lab5;
-                        this.c = v_6;
+                        this.cursor = v_6;
                         this.slice_from("p");
                         break lab4;
                     }
-                    this.c = v_5;
+                    this.cursor = v_5;
                     this.slice_del();
                 }
                 break;
@@ -201,16 +201,16 @@ class IndonesianStemmer extends BaseStemmer {
                 --this.#I_measure;
                 // deno-lint-ignore no-unused-labels
                 lab6: {
-                    const /** number */ v_7 = this.c;
+                    const /** number */ v_7 = this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab7: {
-                        const /** number */ v_8 = this.c;
+                        const /** number */ v_8 = this.cursor;
                         if (!(this.in_grouping(g_vowel, 97, 117))) break lab7;
-                        this.c = v_8;
+                        this.cursor = v_8;
                         this.slice_from("p");
                         break lab6;
                     }
-                    this.c = v_7;
+                    this.cursor = v_7;
                     this.slice_del();
                 }
                 break;
@@ -222,31 +222,31 @@ class IndonesianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_remove_second_order_prefix() {
         let /** number */ a;
-        this.bra = this.c;
+        this.bra = this.cursor;
         a = this.find_among(a_4);
         if (a === 0) return false;
         switch (a) {
             case 1: {
                 // deno-lint-ignore no-unused-labels
                 lab0: {
-                    const /** number */ v_1 = this.c;
+                    const /** number */ v_1 = this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab1: {
                         if (!(this.eq_s("r"))) break lab1;
-                        this.ket = this.c;
+                        this.ket = this.cursor;
                         this.#I_prefix = 2;
                         break lab0;
                     }
-                    this.c = v_1;
+                    this.cursor = v_1;
                     // deno-lint-ignore no-unused-labels
                     lab2: {
                         if (!(this.eq_s("l"))) break lab2;
-                        this.ket = this.c;
+                        this.ket = this.cursor;
                         if (!(this.eq_s("ajar"))) break lab2;
                         break lab0;
                     }
-                    this.c = v_1;
-                    this.ket = this.c;
+                    this.cursor = v_1;
+                    this.ket = this.cursor;
                     this.#I_prefix = 2;
                 }
                 break;
@@ -254,23 +254,23 @@ class IndonesianStemmer extends BaseStemmer {
             case 2: {
                 // deno-lint-ignore no-unused-labels
                 lab3: {
-                    const /** number */ v_2 = this.c;
+                    const /** number */ v_2 = this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab4: {
                         if (!(this.eq_s("r"))) break lab4;
-                        this.ket = this.c;
+                        this.ket = this.cursor;
                         break lab3;
                     }
-                    this.c = v_2;
+                    this.cursor = v_2;
                     // deno-lint-ignore no-unused-labels
                     lab5: {
                         if (!(this.eq_s("l"))) break lab5;
-                        this.ket = this.c;
+                        this.ket = this.cursor;
                         if (!(this.eq_s("ajar"))) break lab5;
                         break lab3;
                     }
-                    this.c = v_2;
-                    this.ket = this.c;
+                    this.cursor = v_2;
+                    this.ket = this.cursor;
                     if (!(this.out_grouping(g_vowel, 97, 117))) return false;
                     if (!(this.eq_s("er"))) return false;
                 }
@@ -286,71 +286,71 @@ class IndonesianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #stem() {
         this.#I_measure = 0;
-        const /** number */ v_1 = this.c;
+        const /** number */ v_1 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
             while (true) {
-                const /** number */ v_2 = this.c;
+                const /** number */ v_2 = this.cursor;
                 // deno-lint-ignore no-unused-labels
                 lab1: {
                     if (!this.go_out_grouping(g_vowel, 97, 117)) break lab1;
-                    this.c++;
+                    this.cursor++;
                     ++this.#I_measure;
                     continue;
                 }
-                this.c = v_2;
+                this.cursor = v_2;
                 break;
             }
         }
-        this.c = v_1;
+        this.cursor = v_1;
         if (this.#I_measure <= 2) return false;
         this.#I_prefix = 0;
-        this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_3 = this.limit - this.c;
+        this.limit_backward = this.cursor; this.cursor = this.limit;
+        const /** number */ v_3 = this.limit - this.cursor;
         this.#r_remove_particle();
-        this.c = this.limit - v_3;
+        this.cursor = this.limit - v_3;
         if (this.#I_measure <= 2) return false;
-        const /** number */ v_4 = this.limit - this.c;
+        const /** number */ v_4 = this.limit - this.cursor;
         this.#r_remove_possessive_pronoun();
-        this.c = this.limit - v_4;
-        this.c = this.limit_backward;
+        this.cursor = this.limit - v_4;
+        this.cursor = this.limit_backward;
         if (this.#I_measure <= 2) return false;
         // deno-lint-ignore no-unused-labels
         lab2: {
-            const /** number */ v_5 = this.c;
+            const /** number */ v_5 = this.cursor;
             // deno-lint-ignore no-unused-labels
             lab3: {
-                const /** number */ v_6 = this.c;
+                const /** number */ v_6 = this.cursor;
                 if (!this.#r_remove_first_order_prefix()) break lab3;
-                const /** number */ v_7 = this.c;
+                const /** number */ v_7 = this.cursor;
                 // deno-lint-ignore no-unused-labels
                 lab4: {
-                    const /** number */ v_8 = this.c;
+                    const /** number */ v_8 = this.cursor;
                     if (this.#I_measure <= 2) break lab4;
-                    this.limit_backward = this.c; this.c = this.limit;
+                    this.limit_backward = this.cursor; this.cursor = this.limit;
                     if (!this.#r_remove_suffix()) break lab4;
-                    this.c = this.limit_backward;
-                    this.c = v_8;
+                    this.cursor = this.limit_backward;
+                    this.cursor = v_8;
                     if (this.#I_measure <= 2) break lab4;
                     if (!this.#r_remove_second_order_prefix()) break lab4;
                 }
-                this.c = v_7;
-                this.c = v_6;
+                this.cursor = v_7;
+                this.cursor = v_6;
                 break lab2;
             }
-            this.c = v_5;
-            const /** number */ v_9 = this.c;
+            this.cursor = v_5;
+            const /** number */ v_9 = this.cursor;
             this.#r_remove_second_order_prefix();
-            this.c = v_9;
-            const /** number */ v_10 = this.c;
+            this.cursor = v_9;
+            const /** number */ v_10 = this.cursor;
             // deno-lint-ignore no-unused-labels
             lab5: {
                 if (this.#I_measure <= 2) break lab5;
-                this.limit_backward = this.c; this.c = this.limit;
+                this.limit_backward = this.cursor; this.cursor = this.limit;
                 if (!this.#r_remove_suffix()) break lab5;
-                this.c = this.limit_backward;
+                this.cursor = this.limit_backward;
             }
-            this.c = v_10;
+            this.cursor = v_10;
         }
         return true;
     }

@@ -282,22 +282,22 @@ class ArabicStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Normalize_pre() {
         let /** number */ a;
-        const /** number */ v_1 = this.c;
+        const /** number */ v_1 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
             while (true) {
-                const /** number */ v_2 = this.c;
+                const /** number */ v_2 = this.cursor;
                 // deno-lint-ignore no-unused-labels
                 lab1: {
                     // deno-lint-ignore no-unused-labels
                     lab2: {
-                        const /** number */ v_3 = this.c;
+                        const /** number */ v_3 = this.cursor;
                         // deno-lint-ignore no-unused-labels
                         lab3: {
-                            this.bra = this.c;
+                            this.bra = this.cursor;
                             a = this.find_among(a_0);
                             if (a === 0) break lab3;
-                            this.ket = this.c;
+                            this.ket = this.cursor;
                             switch (a) {
                                 case 1: {
                                     this.slice_del();
@@ -506,50 +506,50 @@ class ArabicStemmer extends BaseStemmer {
                             }
                             break lab2;
                         }
-                        this.c = v_3;
-                        if (this.c >= this.limit) break lab1;
-                        this.c++;
+                        this.cursor = v_3;
+                        if (this.cursor >= this.limit) break lab1;
+                        this.cursor++;
                     }
                     continue;
                 }
-                this.c = v_2;
+                this.cursor = v_2;
                 break;
             }
         }
-        this.c = v_1;
+        this.cursor = v_1;
         return true;
     }
 
     /** @return {boolean} */
     #r_Normalize_post() {
         let /** number */ a;
-        const /** number */ v_1 = this.c;
+        const /** number */ v_1 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.limit_backward = this.c; this.c = this.limit;
-            this.ket = this.c;
+            this.limit_backward = this.cursor; this.cursor = this.limit;
+            this.ket = this.cursor;
             if (this.find_among_b(a_1) === 0) break lab0;
-            this.bra = this.c;
+            this.bra = this.cursor;
             this.slice_from("\u0621");
-            this.c = this.limit_backward;
+            this.cursor = this.limit_backward;
         }
-        this.c = v_1;
-        const /** number */ v_2 = this.c;
+        this.cursor = v_1;
+        const /** number */ v_2 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab1: {
             while (true) {
-                const /** number */ v_3 = this.c;
+                const /** number */ v_3 = this.cursor;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     // deno-lint-ignore no-unused-labels
                     lab3: {
-                        const /** number */ v_4 = this.c;
+                        const /** number */ v_4 = this.cursor;
                         // deno-lint-ignore no-unused-labels
                         lab4: {
-                            this.bra = this.c;
+                            this.bra = this.cursor;
                             a = this.find_among(a_2);
                             if (a === 0) break lab4;
-                            this.ket = this.c;
+                            this.ket = this.cursor;
                             switch (a) {
                                 case 1: {
                                     this.slice_from("\u0627");
@@ -566,27 +566,27 @@ class ArabicStemmer extends BaseStemmer {
                             }
                             break lab3;
                         }
-                        this.c = v_4;
-                        if (this.c >= this.limit) break lab2;
-                        this.c++;
+                        this.cursor = v_4;
+                        if (this.cursor >= this.limit) break lab2;
+                        this.cursor++;
                     }
                     continue;
                 }
-                this.c = v_3;
+                this.cursor = v_3;
                 break;
             }
         }
-        this.c = v_2;
+        this.cursor = v_2;
         return true;
     }
 
     /** @return {boolean} */
     #r_Checks1() {
         let /** number */ a;
-        this.bra = this.c;
+        this.bra = this.cursor;
         a = this.find_among(a_3);
         if (a === 0) return false;
-        this.ket = this.c;
+        this.ket = this.cursor;
         switch (a) {
             case 1: {
                 if (this.current.length <= 4) return false;
@@ -609,10 +609,10 @@ class ArabicStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Prefix_Step1() {
         let /** number */ a;
-        this.bra = this.c;
+        this.bra = this.cursor;
         a = this.find_among(a_4);
         if (a === 0) return false;
-        this.ket = this.c;
+        this.ket = this.cursor;
         switch (a) {
             case 1: {
                 if (this.current.length <= 3) return false;
@@ -640,18 +640,18 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Prefix_Step2() {
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.find_among(a_5) === 0) return false;
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.current.length <= 3) return false;
         {
-            const /** number */ v_1 = this.c;
+            const /** number */ v_1 = this.cursor;
             // deno-lint-ignore no-unused-labels
             lab0: {
                 if (!(this.eq_s("\u0627"))) break lab0;
                 return false;
             }
-            this.c = v_1;
+            this.cursor = v_1;
         }
         this.slice_del();
         return true;
@@ -660,10 +660,10 @@ class ArabicStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Prefix_Step3a_Noun() {
         let /** number */ a;
-        this.bra = this.c;
+        this.bra = this.cursor;
         a = this.find_among(a_6);
         if (a === 0) return false;
-        this.ket = this.c;
+        this.ket = this.cursor;
         switch (a) {
             case 1: {
                 if (this.current.length <= 5) return false;
@@ -682,10 +682,10 @@ class ArabicStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Prefix_Step3b_Noun() {
         let /** number */ a;
-        this.bra = this.c;
+        this.bra = this.cursor;
         a = this.find_among(a_7);
         if (a === 0) return false;
-        this.ket = this.c;
+        this.ket = this.cursor;
         switch (a) {
             case 1: {
                 if (this.current.length <= 3) return false;
@@ -709,10 +709,10 @@ class ArabicStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Prefix_Step3_Verb() {
         let /** number */ a;
-        this.bra = this.c;
+        this.bra = this.cursor;
         a = this.find_among(a_8);
         if (a === 0) return false;
-        this.ket = this.c;
+        this.ket = this.cursor;
         switch (a) {
             case 1: {
                 if (this.current.length <= 4) return false;
@@ -740,9 +740,9 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Prefix_Step4_Verb() {
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.find_among(a_9) === 0) return false;
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.current.length <= 4) return false;
         this.#B_is_verb = true;
         this.#B_is_noun = false;
@@ -753,10 +753,10 @@ class ArabicStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Suffix_Noun_Step1a() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         a = this.find_among_b(a_10);
         if (a === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 if (this.current.length < 4) return false;
@@ -779,9 +779,9 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Suffix_Noun_Step1b() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u0646"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.current.length <= 5) return false;
         this.slice_del();
         return true;
@@ -789,9 +789,9 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Suffix_Noun_Step2a() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_11) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.current.length <= 4) return false;
         this.slice_del();
         return true;
@@ -799,9 +799,9 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Suffix_Noun_Step2b() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u0627\u062A"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.current.length < 5) return false;
         this.slice_del();
         return true;
@@ -809,9 +809,9 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Suffix_Noun_Step2c1() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u062A"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.current.length < 4) return false;
         this.slice_del();
         return true;
@@ -819,9 +819,9 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Suffix_Noun_Step2c2() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u0629"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.current.length < 4) return false;
         this.slice_del();
         return true;
@@ -829,9 +829,9 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Suffix_Noun_Step3() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u064A"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.current.length < 3) return false;
         this.slice_del();
         return true;
@@ -840,10 +840,10 @@ class ArabicStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Suffix_Verb_Step1() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         a = this.find_among_b(a_12);
         if (a === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 if (this.current.length < 4) return false;
@@ -867,10 +867,10 @@ class ArabicStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Suffix_Verb_Step2a() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         a = this.find_among_b(a_13);
         if (a === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 if (this.current.length < 4) return false;
@@ -898,9 +898,9 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Suffix_Verb_Step2b() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (this.find_among_b(a_14) === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         if (this.current.length < 5) return false;
         this.slice_del();
         return true;
@@ -909,10 +909,10 @@ class ArabicStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Suffix_Verb_Step2c() {
         let /** number */ a;
-        this.ket = this.c;
+        this.ket = this.cursor;
         a = this.find_among_b(a_15);
         if (a === 0) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 if (this.current.length < 4) return false;
@@ -930,9 +930,9 @@ class ArabicStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_Suffix_All_alef_maqsura() {
-        this.ket = this.c;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("\u0649"))) return false;
-        this.bra = this.c;
+        this.bra = this.cursor;
         this.slice_from("\u064A");
         return true;
     }
@@ -942,150 +942,150 @@ class ArabicStemmer extends BaseStemmer {
         this.#B_is_noun = true;
         this.#B_is_verb = true;
         this.#B_is_defined = false;
-        const /** number */ v_1 = this.c;
+        const /** number */ v_1 = this.cursor;
         this.#r_Checks1();
-        this.c = v_1;
+        this.cursor = v_1;
         this.#r_Normalize_pre();
-        this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_2 = this.limit - this.c;
+        this.limit_backward = this.cursor; this.cursor = this.limit;
+        const /** number */ v_2 = this.limit - this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
             // deno-lint-ignore no-unused-labels
             lab1: {
-                const /** number */ v_3 = this.limit - this.c;
+                const /** number */ v_3 = this.limit - this.cursor;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     if (!this.#B_is_verb) break lab2;
                     // deno-lint-ignore no-unused-labels
                     lab3: {
-                        const /** number */ v_4 = this.limit - this.c;
+                        const /** number */ v_4 = this.limit - this.cursor;
                         // deno-lint-ignore no-unused-labels
                         lab4: {
                             {
                                 let v_5 = 1;
                                 while (true) {
-                                    const /** number */ v_6 = this.limit - this.c;
+                                    const /** number */ v_6 = this.limit - this.cursor;
                                     // deno-lint-ignore no-unused-labels
                                     lab5: {
                                         if (!this.#r_Suffix_Verb_Step1()) break lab5;
                                         v_5--;
                                         continue;
                                     }
-                                    this.c = this.limit - v_6;
+                                    this.cursor = this.limit - v_6;
                                     break;
                                 }
                                 if (v_5 > 0) break lab4;
                             }
                             // deno-lint-ignore no-unused-labels
                             lab6: {
-                                const /** number */ v_7 = this.limit - this.c;
+                                const /** number */ v_7 = this.limit - this.cursor;
                                 // deno-lint-ignore no-unused-labels
                                 lab7: {
                                     if (!this.#r_Suffix_Verb_Step2a()) break lab7;
                                     break lab6;
                                 }
-                                this.c = this.limit - v_7;
+                                this.cursor = this.limit - v_7;
                                 // deno-lint-ignore no-unused-labels
                                 lab8: {
                                     if (!this.#r_Suffix_Verb_Step2c()) break lab8;
                                     break lab6;
                                 }
-                                this.c = this.limit - v_7;
-                                if (this.c <= this.limit_backward) break lab4;
-                                this.c--;
+                                this.cursor = this.limit - v_7;
+                                if (this.cursor <= this.limit_backward) break lab4;
+                                this.cursor--;
                             }
                             break lab3;
                         }
-                        this.c = this.limit - v_4;
+                        this.cursor = this.limit - v_4;
                         // deno-lint-ignore no-unused-labels
                         lab9: {
                             if (!this.#r_Suffix_Verb_Step2b()) break lab9;
                             break lab3;
                         }
-                        this.c = this.limit - v_4;
+                        this.cursor = this.limit - v_4;
                         if (!this.#r_Suffix_Verb_Step2a()) break lab2;
                     }
                     break lab1;
                 }
-                this.c = this.limit - v_3;
+                this.cursor = this.limit - v_3;
                 // deno-lint-ignore no-unused-labels
                 lab10: {
                     if (!this.#B_is_noun) break lab10;
-                    const /** number */ v_8 = this.limit - this.c;
+                    const /** number */ v_8 = this.limit - this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab11: {
                         // deno-lint-ignore no-unused-labels
                         lab12: {
-                            const /** number */ v_9 = this.limit - this.c;
+                            const /** number */ v_9 = this.limit - this.cursor;
                             // deno-lint-ignore no-unused-labels
                             lab13: {
                                 if (!this.#r_Suffix_Noun_Step2c2()) break lab13;
                                 break lab12;
                             }
-                            this.c = this.limit - v_9;
+                            this.cursor = this.limit - v_9;
                             // deno-lint-ignore no-unused-labels
                             lab14: {
                                 if (this.#B_is_defined) break lab14;
                                 if (!this.#r_Suffix_Noun_Step1a()) break lab14;
                                 // deno-lint-ignore no-unused-labels
                                 lab15: {
-                                    const /** number */ v_10 = this.limit - this.c;
+                                    const /** number */ v_10 = this.limit - this.cursor;
                                     // deno-lint-ignore no-unused-labels
                                     lab16: {
                                         if (!this.#r_Suffix_Noun_Step2a()) break lab16;
                                         break lab15;
                                     }
-                                    this.c = this.limit - v_10;
+                                    this.cursor = this.limit - v_10;
                                     // deno-lint-ignore no-unused-labels
                                     lab17: {
                                         if (!this.#r_Suffix_Noun_Step2b()) break lab17;
                                         break lab15;
                                     }
-                                    this.c = this.limit - v_10;
+                                    this.cursor = this.limit - v_10;
                                     // deno-lint-ignore no-unused-labels
                                     lab18: {
                                         if (!this.#r_Suffix_Noun_Step2c1()) break lab18;
                                         break lab15;
                                     }
-                                    this.c = this.limit - v_10;
-                                    if (this.c <= this.limit_backward) break lab14;
-                                    this.c--;
+                                    this.cursor = this.limit - v_10;
+                                    if (this.cursor <= this.limit_backward) break lab14;
+                                    this.cursor--;
                                 }
                                 break lab12;
                             }
-                            this.c = this.limit - v_9;
+                            this.cursor = this.limit - v_9;
                             // deno-lint-ignore no-unused-labels
                             lab19: {
                                 if (!this.#r_Suffix_Noun_Step1b()) break lab19;
                                 // deno-lint-ignore no-unused-labels
                                 lab20: {
-                                    const /** number */ v_11 = this.limit - this.c;
+                                    const /** number */ v_11 = this.limit - this.cursor;
                                     // deno-lint-ignore no-unused-labels
                                     lab21: {
                                         if (!this.#r_Suffix_Noun_Step2a()) break lab21;
                                         break lab20;
                                     }
-                                    this.c = this.limit - v_11;
+                                    this.cursor = this.limit - v_11;
                                     // deno-lint-ignore no-unused-labels
                                     lab22: {
                                         if (!this.#r_Suffix_Noun_Step2b()) break lab22;
                                         break lab20;
                                     }
-                                    this.c = this.limit - v_11;
+                                    this.cursor = this.limit - v_11;
                                     if (!this.#r_Suffix_Noun_Step2c1()) break lab19;
                                 }
                                 break lab12;
                             }
-                            this.c = this.limit - v_9;
+                            this.cursor = this.limit - v_9;
                             // deno-lint-ignore no-unused-labels
                             lab23: {
                                 if (this.#B_is_defined) break lab23;
                                 if (!this.#r_Suffix_Noun_Step2a()) break lab23;
                                 break lab12;
                             }
-                            this.c = this.limit - v_9;
+                            this.cursor = this.limit - v_9;
                             if (!this.#r_Suffix_Noun_Step2b()) {
-                                this.c = this.limit - v_8;
+                                this.cursor = this.limit - v_8;
                                 break lab11;
                             }
                         }
@@ -1093,60 +1093,60 @@ class ArabicStemmer extends BaseStemmer {
                     if (!this.#r_Suffix_Noun_Step3()) break lab10;
                     break lab1;
                 }
-                this.c = this.limit - v_3;
+                this.cursor = this.limit - v_3;
                 if (!this.#r_Suffix_All_alef_maqsura()) break lab0;
             }
         }
-        this.c = this.limit - v_2;
-        this.c = this.limit_backward;
-        const /** number */ v_12 = this.c;
+        this.cursor = this.limit - v_2;
+        this.cursor = this.limit_backward;
+        const /** number */ v_12 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab24: {
-            const /** number */ v_13 = this.c;
+            const /** number */ v_13 = this.cursor;
             // deno-lint-ignore no-unused-labels
             lab25: {
                 if (!this.#r_Prefix_Step1()) {
-                    this.c = v_13;
+                    this.cursor = v_13;
                     break lab25;
                 }
             }
-            const /** number */ v_14 = this.c;
+            const /** number */ v_14 = this.cursor;
             // deno-lint-ignore no-unused-labels
             lab26: {
                 if (!this.#r_Prefix_Step2()) {
-                    this.c = v_14;
+                    this.cursor = v_14;
                     break lab26;
                 }
             }
             // deno-lint-ignore no-unused-labels
             lab27: {
-                const /** number */ v_15 = this.c;
+                const /** number */ v_15 = this.cursor;
                 // deno-lint-ignore no-unused-labels
                 lab28: {
                     if (!this.#r_Prefix_Step3a_Noun()) break lab28;
                     break lab27;
                 }
-                this.c = v_15;
+                this.cursor = v_15;
                 // deno-lint-ignore no-unused-labels
                 lab29: {
                     if (!this.#B_is_noun) break lab29;
                     if (!this.#r_Prefix_Step3b_Noun()) break lab29;
                     break lab27;
                 }
-                this.c = v_15;
+                this.cursor = v_15;
                 if (!this.#B_is_verb) break lab24;
-                const /** number */ v_16 = this.c;
+                const /** number */ v_16 = this.cursor;
                 // deno-lint-ignore no-unused-labels
                 lab30: {
                     if (!this.#r_Prefix_Step3_Verb()) {
-                        this.c = v_16;
+                        this.cursor = v_16;
                         break lab30;
                     }
                 }
                 if (!this.#r_Prefix_Step4_Verb()) break lab24;
             }
         }
-        this.c = v_12;
+        this.cursor = v_12;
         this.#r_Normalize_post();
         return true;
     }
