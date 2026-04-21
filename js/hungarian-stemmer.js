@@ -223,40 +223,40 @@ class HungarianStemmer extends BaseStemmer {
         this.#I_p1 = this.limit;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.cursor;
+            const /** number */ v_1 = this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!(this.in_grouping(g_v, 97, 369))) break lab1;
-                const /** number */ v_2 = this.cursor;
+                const /** number */ v_2 = this.c;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     if (!this.go_in_grouping(g_v, 97, 369)) break lab2;
-                    this.cursor++;
-                    this.#I_p1 = this.cursor;
+                    this.c++;
+                    this.#I_p1 = this.c;
                 }
-                this.cursor = v_2;
+                this.c = v_2;
                 break lab0;
             }
-            this.cursor = v_1;
+            this.c = v_1;
             if (!this.go_out_grouping(g_v, 97, 369)) return false;
-            this.cursor++;
-            this.#I_p1 = this.cursor;
+            this.c++;
+            this.#I_p1 = this.c;
         }
         return true;
     }
 
     /** @return {boolean} */
     #r_R1() {
-        return this.#I_p1 <= this.cursor;
+        return this.#I_p1 <= this.c;
     }
 
     /** @return {boolean} */
     #r_v_ending() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_0);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         switch (a) {
             case 1: {
@@ -273,29 +273,29 @@ class HungarianStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_double() {
-        const /** number */ v_1 = this.limit - this.cursor;
+        const /** number */ v_1 = this.limit - this.c;
         if (this.find_among_b(a_1) === 0) return false;
-        this.cursor = this.limit - v_1;
+        this.c = this.limit - v_1;
         return true;
     }
 
     /** @return {boolean} */
     #r_undouble() {
-        if (this.cursor <= this.limit_backward) return false;
-        this.cursor--;
-        this.ket = this.cursor;
-        if (this.cursor <= this.limit_backward) return false;
-        this.cursor--;
-        this.bra = this.cursor;
+        if (this.c <= this.limit_backward) return false;
+        this.c--;
+        this.ket = this.c;
+        if (this.c <= this.limit_backward) return false;
+        this.c--;
+        this.bra = this.c;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #r_instrum() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (this.find_among_b(a_2) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         if (!this.#r_double()) return false;
         this.slice_del();
@@ -304,9 +304,9 @@ class HungarianStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_case() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (this.find_among_b(a_3) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         this.slice_del();
         return this.#r_v_ending();
@@ -315,10 +315,10 @@ class HungarianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_case_special() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_4);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         switch (a) {
             case 1: {
@@ -336,10 +336,10 @@ class HungarianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_case_other() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_5);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         switch (a) {
             case 1: {
@@ -360,9 +360,9 @@ class HungarianStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_factive() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (this.find_among_b(a_6) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         if (!this.#r_double()) return false;
         this.slice_del();
@@ -372,10 +372,10 @@ class HungarianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_plural() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_7);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         switch (a) {
             case 1: {
@@ -397,10 +397,10 @@ class HungarianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_owned() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_8);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         switch (a) {
             case 1: {
@@ -422,10 +422,10 @@ class HungarianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_sing_owner() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_9);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         switch (a) {
             case 1: {
@@ -447,10 +447,10 @@ class HungarianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_plur_owner() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_10);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         switch (a) {
             case 1: {
@@ -471,38 +471,38 @@ class HungarianStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #stem() {
-        const /** number */ v_1 = this.cursor;
+        const /** number */ v_1 = this.c;
         this.#r_mark_regions();
-        this.cursor = v_1;
-        this.limit_backward = this.cursor; this.cursor = this.limit;
-        const /** number */ v_2 = this.limit - this.cursor;
+        this.c = v_1;
+        this.limit_backward = this.c; this.c = this.limit;
+        const /** number */ v_2 = this.limit - this.c;
         this.#r_instrum();
-        this.cursor = this.limit - v_2;
-        const /** number */ v_3 = this.limit - this.cursor;
+        this.c = this.limit - v_2;
+        const /** number */ v_3 = this.limit - this.c;
         this.#r_case();
-        this.cursor = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.cursor;
+        this.c = this.limit - v_3;
+        const /** number */ v_4 = this.limit - this.c;
         this.#r_case_special();
-        this.cursor = this.limit - v_4;
-        const /** number */ v_5 = this.limit - this.cursor;
+        this.c = this.limit - v_4;
+        const /** number */ v_5 = this.limit - this.c;
         this.#r_case_other();
-        this.cursor = this.limit - v_5;
-        const /** number */ v_6 = this.limit - this.cursor;
+        this.c = this.limit - v_5;
+        const /** number */ v_6 = this.limit - this.c;
         this.#r_factive();
-        this.cursor = this.limit - v_6;
-        const /** number */ v_7 = this.limit - this.cursor;
+        this.c = this.limit - v_6;
+        const /** number */ v_7 = this.limit - this.c;
         this.#r_owned();
-        this.cursor = this.limit - v_7;
-        const /** number */ v_8 = this.limit - this.cursor;
+        this.c = this.limit - v_7;
+        const /** number */ v_8 = this.limit - this.c;
         this.#r_sing_owner();
-        this.cursor = this.limit - v_8;
-        const /** number */ v_9 = this.limit - this.cursor;
+        this.c = this.limit - v_8;
+        const /** number */ v_9 = this.limit - this.c;
         this.#r_plur_owner();
-        this.cursor = this.limit - v_9;
-        const /** number */ v_10 = this.limit - this.cursor;
+        this.c = this.limit - v_9;
+        const /** number */ v_10 = this.limit - this.c;
         this.#r_plural();
-        this.cursor = this.limit - v_10;
-        this.cursor = this.limit_backward;
+        this.c = this.limit - v_10;
+        this.c = this.limit_backward;
         return true;
     }
 
@@ -516,4 +516,4 @@ class HungarianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { HungarianStemmer as default};
+export { HungarianStemmer };

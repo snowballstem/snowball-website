@@ -136,12 +136,12 @@ class PersianStemmer extends BaseStemmer {
     #r_Normalize_Characters() {
         let /** number */ a;
         while (true) {
-            const /** number */ v_1 = this.cursor;
+            const /** number */ v_1 = this.c;
             // deno-lint-ignore no-unused-labels
             lab0: {
-                this.bra = this.cursor;
+                this.bra = this.c;
                 a = this.find_among(a_0);
-                this.ket = this.cursor;
+                this.ket = this.c;
                 switch (a) {
                     case 1: {
                         this.slice_from("\u06A9");
@@ -168,14 +168,14 @@ class PersianStemmer extends BaseStemmer {
                         break;
                     }
                     case 7: {
-                        if (this.cursor >= this.limit) break lab0;
-                        this.cursor++;
+                        if (this.c >= this.limit) break lab0;
+                        this.c++;
                         break;
                     }
                 }
                 continue;
             }
-            this.cursor = v_1;
+            this.c = v_1;
             break;
         }
         return true;
@@ -184,25 +184,25 @@ class PersianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Prefixes() {
         let /** number */ a;
-        this.bra = this.cursor;
+        this.bra = this.c;
         a = this.find_among(a_1);
         if (a === 0) return false;
-        this.ket = this.cursor;
+        this.ket = this.c;
         switch (a) {
             case 1: {
                 {
-                    const /** number */ c = this.cursor + 2;
+                    const /** number */ c = this.c + 2;
                     if (c > this.limit) return false;
-                    this.cursor = c;
+                    this.c = c;
                 }
                 this.#B_saw_present_prefix = true;
                 break;
             }
             case 2: {
                 {
-                    const /** number */ c = this.cursor + 2;
+                    const /** number */ c = this.c + 2;
                     if (c > this.limit) return false;
-                    this.cursor = c;
+                    this.c = c;
                 }
                 this.slice_del();
                 this.#B_saw_present_prefix = true;
@@ -215,29 +215,29 @@ class PersianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_Delete_ZWNJ() {
         while (true) {
-            const /** number */ v_1 = this.cursor;
+            const /** number */ v_1 = this.c;
             // deno-lint-ignore no-unused-labels
             lab0: {
                 // deno-lint-ignore no-unused-labels
                 golab1: while (true)
                 {
-                    const /** number */ v_2 = this.cursor;
+                    const /** number */ v_2 = this.c;
                     // deno-lint-ignore no-unused-labels
                     lab2: {
-                        this.bra = this.cursor;
+                        this.bra = this.c;
                         if (!(this.eq_s("\u200C"))) break lab2;
-                        this.ket = this.cursor;
+                        this.ket = this.c;
                         this.slice_del();
-                        this.cursor = v_2;
+                        this.c = v_2;
                         break golab1;
                     }
-                    this.cursor = v_2;
-                    if (this.cursor >= this.limit) break lab0;
-                    this.cursor++;
+                    this.c = v_2;
+                    if (this.c >= this.limit) break lab0;
+                    this.c++;
                 }
                 continue;
             }
-            this.cursor = v_1;
+            this.c = v_1;
             break;
         }
         return true;
@@ -245,28 +245,28 @@ class PersianStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_R1() {
-        return this.#I_p1 <= this.cursor;
+        return this.#I_p1 <= this.c;
     }
 
     /** @return {boolean} */
     #r_Protect_Lexical_AN() {
         {
-            const /** number */ v_1 = this.limit - this.cursor;
+            const /** number */ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab0: {
                 if (!this.#r_AN_Exception()) break lab0;
                 return false;
             }
-            this.cursor = this.limit - v_1;
+            this.c = this.limit - v_1;
         }
         {
-            const /** number */ v_2 = this.limit - this.cursor;
+            const /** number */ v_2 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (this.find_among_b(a_2) === 0) break lab1;
                 return false;
             }
-            this.cursor = this.limit - v_2;
+            this.c = this.limit - v_2;
         }
         return true;
     }
@@ -274,17 +274,17 @@ class PersianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_AN_Exception() {
         if (this.find_among_b(a_3) === 0) return false;
-        if (this.cursor > this.limit_backward) return false;
+        if (this.c > this.limit_backward) return false;
         return true;
     }
 
     /** @return {boolean} */
     #r_Irregular_Noun() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_4);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         switch (a) {
             case 1: {
                 this.slice_from("\u062E\u0628\u0631");
@@ -303,23 +303,23 @@ class PersianStemmer extends BaseStemmer {
         let /** number */ a;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.cursor;
+            const /** number */ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!this.#r_Irregular_Noun()) break lab1;
                 break lab0;
             }
-            this.cursor = this.limit - v_1;
-            if (this.cursor < this.#I_p1) return false;
+            this.c = this.limit - v_1;
+            if (this.c < this.#I_p1) return false;
             const /** number */ v_2 = this.limit_backward;
             this.limit_backward = this.#I_p1;
-            this.ket = this.cursor;
+            this.ket = this.c;
             a = this.find_among_b(a_5);
             if (a === 0) {
                 this.limit_backward = v_2;
                 return false;
             }
-            this.bra = this.cursor;
+            this.bra = this.c;
             switch (a) {
                 case 1: {
                     this.slice_del();
@@ -328,7 +328,7 @@ class PersianStemmer extends BaseStemmer {
                 case 2: {
                     // deno-lint-ignore no-unused-labels
                     lab2: {
-                        if (this.cursor > this.limit_backward) break lab2;
+                        if (this.c > this.limit_backward) break lab2;
                         this.limit_backward = v_2;
                         return false;
                     }
@@ -346,21 +346,21 @@ class PersianStemmer extends BaseStemmer {
         let /** number */ a;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.cursor;
+            const /** number */ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.cursor;
+                this.ket = this.c;
                 if (this.find_among_b(a_6) === 0) break lab1;
-                this.bra = this.cursor;
+                this.bra = this.c;
                 if (!this.#r_R1()) break lab1;
                 this.slice_del();
                 break lab0;
             }
-            this.cursor = this.limit - v_1;
-            this.ket = this.cursor;
+            this.c = this.limit - v_1;
+            this.ket = this.c;
             a = this.find_among_b(a_7);
             if (a === 0) return false;
-            this.bra = this.cursor;
+            this.bra = this.c;
             switch (a) {
                 case 1: {
                     if (!this.#B_remove_verb_person_endings) return false;
@@ -381,7 +381,7 @@ class PersianStemmer extends BaseStemmer {
                 case 4: {
                     // deno-lint-ignore no-unused-labels
                     lab2: {
-                        if (this.cursor > this.limit_backward) break lab2;
+                        if (this.c > this.limit_backward) break lab2;
                         return false;
                     }
                     this.slice_from("\u062F");
@@ -391,7 +391,7 @@ class PersianStemmer extends BaseStemmer {
                 case 5: {
                     // deno-lint-ignore no-unused-labels
                     lab3: {
-                        if (this.cursor > this.limit_backward) break lab3;
+                        if (this.c > this.limit_backward) break lab3;
                         return false;
                     }
                     this.slice_from("\u062A");
@@ -406,33 +406,33 @@ class PersianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #stem() {
         this.#B_saw_present_prefix = false;
-        const /** number */ v_1 = this.cursor;
+        const /** number */ v_1 = this.c;
         this.#r_Normalize_Characters();
-        this.cursor = v_1;
-        const /** number */ v_2 = this.cursor;
+        this.c = v_1;
+        const /** number */ v_2 = this.c;
         this.#r_Prefixes();
-        this.cursor = v_2;
-        const /** number */ v_3 = this.cursor;
+        this.c = v_2;
+        const /** number */ v_3 = this.c;
         this.#r_Delete_ZWNJ();
-        this.cursor = v_3;
+        this.c = v_3;
         this.#I_p1 = this.limit;
-        const /** number */ v_4 = this.cursor;
+        const /** number */ v_4 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             {
-                const /** number */ c = this.cursor + 3;
+                const /** number */ c = this.c + 3;
                 if (c > this.limit) break lab0;
-                this.cursor = c;
+                this.c = c;
             }
-            this.#I_p1 = this.cursor;
+            this.#I_p1 = this.c;
         }
-        this.cursor = v_4;
-        this.limit_backward = this.cursor; this.cursor = this.limit;
+        this.c = v_4;
+        this.limit_backward = this.c; this.c = this.limit;
         while (true) {
-            const /** number */ v_5 = this.limit - this.cursor;
+            const /** number */ v_5 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                const /** number */ v_6 = this.limit - this.cursor;
+                const /** number */ v_6 = this.limit - this.c;
                 this.#B_remove_verb_person_endings = false;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
@@ -442,22 +442,22 @@ class PersianStemmer extends BaseStemmer {
                 if (!this.#r_Protect_Lexical_AN()) break lab1;
                 // deno-lint-ignore no-unused-labels
                 lab3: {
-                    const /** number */ v_7 = this.limit - this.cursor;
+                    const /** number */ v_7 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab4: {
                         if (!this.#r_Stem_Noun_or_Adjective()) break lab4;
                         break lab3;
                     }
-                    this.cursor = this.limit - v_7;
+                    this.c = this.limit - v_7;
                     if (!this.#r_Stem_Verb()) break lab1;
                 }
-                this.cursor = this.limit - v_6;
+                this.c = this.limit - v_6;
                 continue;
             }
-            this.cursor = this.limit - v_5;
+            this.c = this.limit - v_5;
             break;
         }
-        this.cursor = this.limit_backward;
+        this.c = this.limit_backward;
         return true;
     }
 
@@ -471,4 +471,4 @@ class PersianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { PersianStemmer as default};
+export { PersianStemmer };
