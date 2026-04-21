@@ -471,4 +471,4 @@ class PersianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { PersianStemmer };
+export { PersianStemmer as default};

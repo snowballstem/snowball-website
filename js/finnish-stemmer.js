@@ -564,4 +564,4 @@ class FinnishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { FinnishStemmer };
+export { FinnishStemmer as default};

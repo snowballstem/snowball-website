@@ -313,4 +313,4 @@ class ArmenianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { ArmenianStemmer };
+export { ArmenianStemmer as default};

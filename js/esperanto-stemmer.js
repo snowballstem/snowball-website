@@ -608,4 +608,4 @@ class EsperantoStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { EsperantoStemmer };
+export { EsperantoStemmer as default};

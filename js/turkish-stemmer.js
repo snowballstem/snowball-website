@@ -1654,4 +1654,4 @@ class TurkishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { TurkishStemmer };
+export { TurkishStemmer as default};

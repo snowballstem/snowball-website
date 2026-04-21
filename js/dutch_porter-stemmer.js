@@ -457,4 +457,4 @@ class DutchPorterStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { DutchPorterStemmer };
+export { DutchPorterStemmer as default};

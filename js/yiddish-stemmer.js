@@ -906,4 +906,4 @@ class YiddishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { YiddishStemmer };
+export { YiddishStemmer as default};

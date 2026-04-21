@@ -1035,4 +1035,4 @@ class FrenchStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { FrenchStemmer };
+export { FrenchStemmer as default};

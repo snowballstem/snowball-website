@@ -733,4 +733,4 @@ class ItalianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { ItalianStemmer };
+export { ItalianStemmer as default};

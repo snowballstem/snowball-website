@@ -653,4 +653,4 @@ class BasqueStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { BasqueStemmer };
+export { BasqueStemmer as default};

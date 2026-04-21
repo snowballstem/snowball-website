@@ -463,4 +463,4 @@ class LithuanianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { LithuanianStemmer };
+export { LithuanianStemmer as default};

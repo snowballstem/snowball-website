@@ -2224,4 +2224,4 @@ class GreekStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { GreekStemmer };
+export { GreekStemmer as default};
