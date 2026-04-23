@@ -123,9 +123,9 @@ const a_7 = [
     ["\u0631\u0641\u062A\u06CC", -1, 2]
 ];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
     #I_p1/** number */ = 0;
     #B_remove_verb_person_endings/** boolean */ = false;

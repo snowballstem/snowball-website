@@ -74,9 +74,9 @@ const /** Array<number> */ g_s_ending = [117, 30, 5];
 
 const /** Array<number> */ g_st_ending = [117, 30, 4];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
     #I_p2/** number */ = 0;
     #I_p1/** number */ = 0;

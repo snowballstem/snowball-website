@@ -211,9 +211,9 @@ const a_10 = [
 
 const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 36, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
     #I_p1/** number */ = 0;
 

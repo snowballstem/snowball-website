@@ -210,9 +210,9 @@ const /** Array<number> */ g_vowel5 = [65];
 
 const /** Array<number> */ g_vowel6 = [65];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
     #B_continue_stemming_noun_suffixes/** boolean */ = false;
 

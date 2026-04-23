@@ -127,9 +127,9 @@ const /** Array<number> */ g_ev_ending = [73, 20, 4];
 
 const /** Array<number> */ g_env_ending = [71, 66, 23, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0, 0, 0, 16];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
     #I_p1/** number */ = 0;
 

@@ -409,9 +409,9 @@ const /** Array<number> */ g_KI = [117, 66, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 
 const /** Array<number> */ g_GI = [21, 123, 243, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 48, 8];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
     #I_p1/** number */ = 0;
 

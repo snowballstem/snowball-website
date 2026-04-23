@@ -201,9 +201,9 @@ const /** Array<number> */ g_vowel = [33, 2, 4, 0, 6];
 
 const /** Array<number> */ g_consonant = [239, 254, 253, 131];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
     #I_p1/** number */ = 0;
 

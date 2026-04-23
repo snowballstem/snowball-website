@@ -122,9 +122,9 @@ const a_2 = [
     ["\u0939\u094B\u0938\u094D", -1, 1]
 ];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
 
     /** @return {boolean} */

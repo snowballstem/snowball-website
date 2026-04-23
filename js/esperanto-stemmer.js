@@ -155,9 +155,9 @@ const /** Array<number> */ g_aou = [1, 64, 16];
 
 const /** Array<number> */ g_digit = [255, 3];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
 
     /** @return {boolean} */

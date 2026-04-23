@@ -2243,9 +2243,9 @@ const /** Array<number> */ g_ca = [119, 95, 23, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
 const /** Array<number> */ g_rg = [1];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-export default class extends BaseStemmer {
+export default class extends B {
 
     #I_p1/** number */ = 0;
     #B_no_diacritics/** boolean */ = false;
