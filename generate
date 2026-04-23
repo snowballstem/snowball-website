@@ -294,6 +294,7 @@ for my $js (@stemmer_js_files) {
     run ['npx', 'terser', $js, '--compress', '--mangle',
 	'--mangle-props', 'regex=/^(current|c|limit|limit_backward|bra|ket|af)$/',
 	'--name-cache', $terser_cache,
+	'--toplevel',
 	'-o', "$outpath/$js"] or die $!;
 }
 unlink $terser_cache;
