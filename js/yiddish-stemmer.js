@@ -201,9 +201,9 @@ const /** Array<number> */ g_vowel = [33, 2, 4, 0, 6];
 
 const /** Array<number> */ g_consonant = [239, 254, 253, 131];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-class YiddishStemmer extends BaseStemmer {
+export default class extends B {
 
     #I_p1/** number */ = 0;
 
@@ -211,59 +211,59 @@ class YiddishStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_prelude() {
         let /** number */ a;
-        const /** number */ v_1 = this.cursor;
+        const /** number */ v_1 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             while (true) {
-                const /** number */ v_2 = this.cursor;
+                const /** number */ v_2 = this.c;
                 // deno-lint-ignore no-unused-labels
                 lab1: {
                     // deno-lint-ignore no-unused-labels
                     golab2: while (true)
                     {
-                        const /** number */ v_3 = this.cursor;
+                        const /** number */ v_3 = this.c;
                         // deno-lint-ignore no-unused-labels
                         lab3: {
-                            this.bra = this.cursor;
+                            this.bra = this.c;
                             a = this.find_among(a_0);
                             if (a === 0) break lab3;
-                            this.ket = this.cursor;
+                            this.ket = this.c;
                             switch (a) {
                                 case 1: {
                                     {
-                                        const /** number */ v_4 = this.cursor;
+                                        const /** number */ v_4 = this.c;
                                         // deno-lint-ignore no-unused-labels
                                         lab4: {
                                             if (!(this.eq_s("\u05BC"))) break lab4;
                                             break lab3;
                                         }
-                                        this.cursor = v_4;
+                                        this.c = v_4;
                                     }
                                     this.slice_from("\u05F0");
                                     break;
                                 }
                                 case 2: {
                                     {
-                                        const /** number */ v_5 = this.cursor;
+                                        const /** number */ v_5 = this.c;
                                         // deno-lint-ignore no-unused-labels
                                         lab5: {
                                             if (!(this.eq_s("\u05B4"))) break lab5;
                                             break lab3;
                                         }
-                                        this.cursor = v_5;
+                                        this.c = v_5;
                                     }
                                     this.slice_from("\u05F1");
                                     break;
                                 }
                                 case 3: {
                                     {
-                                        const /** number */ v_6 = this.cursor;
+                                        const /** number */ v_6 = this.c;
                                         // deno-lint-ignore no-unused-labels
                                         lab6: {
                                             if (!(this.eq_s("\u05B4"))) break lab6;
                                             break lab3;
                                         }
-                                        this.cursor = v_6;
+                                        this.c = v_6;
                                     }
                                     this.slice_from("\u05F2");
                                     break;
@@ -289,51 +289,51 @@ class YiddishStemmer extends BaseStemmer {
                                     break;
                                 }
                             }
-                            this.cursor = v_3;
+                            this.c = v_3;
                             break golab2;
                         }
-                        this.cursor = v_3;
-                        if (this.cursor >= this.limit) break lab1;
-                        this.cursor++;
+                        this.c = v_3;
+                        if (this.c >= this.limit) break lab1;
+                        this.c++;
                     }
                     continue;
                 }
-                this.cursor = v_2;
+                this.c = v_2;
                 break;
             }
         }
-        this.cursor = v_1;
-        const /** number */ v_7 = this.cursor;
+        this.c = v_1;
+        const /** number */ v_7 = this.c;
         // deno-lint-ignore no-unused-labels
         lab7: {
             while (true) {
-                const /** number */ v_8 = this.cursor;
+                const /** number */ v_8 = this.c;
                 // deno-lint-ignore no-unused-labels
                 lab8: {
                     // deno-lint-ignore no-unused-labels
                     golab9: while (true)
                     {
-                        const /** number */ v_9 = this.cursor;
+                        const /** number */ v_9 = this.c;
                         // deno-lint-ignore no-unused-labels
                         lab10: {
-                            this.bra = this.cursor;
+                            this.bra = this.c;
                             if (!(this.in_grouping(g_niked, 1456, 1474))) break lab10;
-                            this.ket = this.cursor;
+                            this.ket = this.c;
                             this.slice_del();
-                            this.cursor = v_9;
+                            this.c = v_9;
                             break golab9;
                         }
-                        this.cursor = v_9;
-                        if (this.cursor >= this.limit) break lab8;
-                        this.cursor++;
+                        this.c = v_9;
+                        if (this.c >= this.limit) break lab8;
+                        this.c++;
                     }
                     continue;
                 }
-                this.cursor = v_8;
+                this.c = v_8;
                 break;
             }
         }
-        this.cursor = v_7;
+        this.c = v_7;
         return true;
     }
 
@@ -341,136 +341,136 @@ class YiddishStemmer extends BaseStemmer {
     #r_mark_regions() {
         let /** number */ I_x;
         this.#I_p1 = this.limit;
-        const /** number */ v_1 = this.cursor;
+        const /** number */ v_1 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.bra = this.cursor;
+            this.bra = this.c;
             if (!(this.eq_s("\u05D2\u05E2"))) {
-                this.cursor = v_1;
+                this.c = v_1;
                 break lab0;
             }
-            this.ket = this.cursor;
+            this.ket = this.c;
             {
-                const /** number */ v_2 = this.cursor;
+                const /** number */ v_2 = this.c;
                 // deno-lint-ignore no-unused-labels
                 lab1: {
                     // deno-lint-ignore no-unused-labels
                     lab2: {
-                        const /** number */ v_3 = this.cursor;
+                        const /** number */ v_3 = this.c;
                         // deno-lint-ignore no-unused-labels
                         lab3: {
                             if (!(this.eq_s("\u05DC\u05D8"))) break lab3;
                             break lab2;
                         }
-                        this.cursor = v_3;
+                        this.c = v_3;
                         // deno-lint-ignore no-unused-labels
                         lab4: {
                             if (!(this.eq_s("\u05D1\u05E0"))) break lab4;
                             break lab2;
                         }
-                        this.cursor = v_3;
-                        if (this.cursor < this.limit) break lab1;
+                        this.c = v_3;
+                        if (this.c < this.limit) break lab1;
                     }
-                    this.cursor = v_1;
+                    this.c = v_1;
                     break lab0;
                 }
-                this.cursor = v_2;
+                this.c = v_2;
             }
             this.slice_from("GE");
         }
-        const /** number */ v_4 = this.cursor;
+        const /** number */ v_4 = this.c;
         // deno-lint-ignore no-unused-labels
         lab5: {
             if (this.find_among(a_1) === 0) {
-                this.cursor = v_4;
+                this.c = v_4;
                 break lab5;
             }
             // deno-lint-ignore no-unused-labels
             lab6: {
-                const /** number */ v_5 = this.cursor;
+                const /** number */ v_5 = this.c;
                 // deno-lint-ignore no-unused-labels
                 lab7: {
-                    const /** number */ v_6 = this.cursor;
+                    const /** number */ v_6 = this.c;
                     // deno-lint-ignore no-unused-labels
                     lab8: {
-                        const /** number */ v_7 = this.cursor;
+                        const /** number */ v_7 = this.c;
                         // deno-lint-ignore no-unused-labels
                         lab9: {
                             if (!(this.eq_s("\u05E6\u05D5\u05D2\u05E0"))) break lab9;
                             break lab8;
                         }
-                        this.cursor = v_7;
+                        this.c = v_7;
                         // deno-lint-ignore no-unused-labels
                         lab10: {
                             if (!(this.eq_s("\u05E6\u05D5\u05E7\u05D8"))) break lab10;
                             break lab8;
                         }
-                        this.cursor = v_7;
+                        this.c = v_7;
                         if (!(this.eq_s("\u05E6\u05D5\u05E7\u05E0"))) break lab7;
                     }
-                    if (this.cursor < this.limit) break lab7;
-                    this.cursor = v_6;
+                    if (this.c < this.limit) break lab7;
+                    this.c = v_6;
                     break lab6;
                 }
-                this.cursor = v_5;
+                this.c = v_5;
                 // deno-lint-ignore no-unused-labels
                 lab11: {
-                    const /** number */ v_8 = this.cursor;
+                    const /** number */ v_8 = this.c;
                     if (!(this.eq_s("\u05D2\u05E2\u05D1\u05E0"))) break lab11;
-                    this.cursor = v_8;
+                    this.c = v_8;
                     break lab6;
                 }
-                this.cursor = v_5;
+                this.c = v_5;
                 // deno-lint-ignore no-unused-labels
                 lab12: {
-                    this.bra = this.cursor;
+                    this.bra = this.c;
                     if (!(this.eq_s("\u05D2\u05E2"))) break lab12;
-                    this.ket = this.cursor;
+                    this.ket = this.c;
                     this.slice_from("GE");
                     break lab6;
                 }
-                this.cursor = v_5;
-                this.bra = this.cursor;
+                this.c = v_5;
+                this.bra = this.c;
                 if (!(this.eq_s("\u05E6\u05D5"))) {
-                    this.cursor = v_4;
+                    this.c = v_4;
                     break lab5;
                 }
-                this.ket = this.cursor;
+                this.ket = this.c;
                 this.slice_from("TSU");
             }
         }
-        const /** number */ v_9 = this.cursor;
+        const /** number */ v_9 = this.c;
         {
-            const /** number */ c = this.cursor + 3;
+            const /** number */ c = this.c + 3;
             if (c > this.limit) return false;
-            this.cursor = c;
+            this.c = c;
         }
-        I_x = this.cursor;
-        this.cursor = v_9;
-        const /** number */ v_10 = this.cursor;
+        I_x = this.c;
+        this.c = v_9;
+        const /** number */ v_10 = this.c;
         // deno-lint-ignore no-unused-labels
         lab13: {
             if (this.find_among(a_2) === 0) {
-                this.cursor = v_10;
+                this.c = v_10;
                 break lab13;
             }
         }
         {
-            const /** number */ v_11 = this.cursor;
+            const /** number */ v_11 = this.c;
             // deno-lint-ignore no-unused-labels
             lab14: {
                 if (!(this.in_grouping(g_consonant, 1489, 1520))) break lab14;
                 if (!(this.in_grouping(g_consonant, 1489, 1520))) break lab14;
                 if (!(this.in_grouping(g_consonant, 1489, 1520))) break lab14;
-                this.#I_p1 = this.cursor;
+                this.#I_p1 = this.c;
                 return false;
             }
-            this.cursor = v_11;
+            this.c = v_11;
         }
         if (!this.go_out_grouping(g_vowel, 1488, 1522)) return false;
-        this.cursor++;
+        this.c++;
         if (!this.go_in_grouping(g_vowel, 1488, 1522)) return false;
-        this.#I_p1 = this.cursor;
+        this.#I_p1 = this.c;
         // deno-lint-ignore no-unused-labels
         lab15: {
             if (this.#I_p1 >= I_x) break lab15;
@@ -481,24 +481,24 @@ class YiddishStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_R1() {
-        return this.#I_p1 <= this.cursor;
+        return this.#I_p1 <= this.c;
     }
 
     /** @return {boolean} */
     #r_R1plus3() {
-        return this.#I_p1 <= (this.cursor + 3);
+        return this.#I_p1 <= (this.c + 3);
     }
 
     /** @return {boolean} */
     #r_standard_suffix() {
         let /** number */ a;
-        const /** number */ v_1 = this.limit - this.cursor;
+        const /** number */ v_1 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.ket = this.cursor;
+            this.ket = this.c;
             a = this.find_among_b(a_4);
             if (a === 0) break lab0;
-            this.bra = this.cursor;
+            this.bra = this.c;
             switch (a) {
                 case 1: {
                     if (!this.#r_R1()) break lab0;
@@ -513,10 +513,10 @@ class YiddishStemmer extends BaseStemmer {
                 case 3: {
                     if (!this.#r_R1()) break lab0;
                     this.slice_del();
-                    this.ket = this.cursor;
+                    this.ket = this.c;
                     a = this.find_among_b(a_3);
                     if (a === 0) break lab0;
-                    this.bra = this.cursor;
+                    this.bra = this.c;
                     switch (a) {
                         case 1: {
                             this.slice_from("\u05D2\u05F2");
@@ -628,27 +628,27 @@ class YiddishStemmer extends BaseStemmer {
                 case 4: {
                     // deno-lint-ignore no-unused-labels
                     lab1: {
-                        const /** number */ v_2 = this.limit - this.cursor;
+                        const /** number */ v_2 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
                         lab2: {
                             if (!this.#r_R1()) break lab2;
                             this.slice_del();
                             break lab1;
                         }
-                        this.cursor = this.limit - v_2;
+                        this.c = this.limit - v_2;
                         this.slice_from("\u05D8");
                     }
-                    this.ket = this.cursor;
+                    this.ket = this.c;
                     if (!(this.eq_s_b("\u05D1\u05E8\u05D0\u05DB"))) break lab0;
-                    const /** number */ v_3 = this.limit - this.cursor;
+                    const /** number */ v_3 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab3: {
                         if (!(this.eq_s_b("\u05D2\u05E2"))) {
-                            this.cursor = this.limit - v_3;
+                            this.c = this.limit - v_3;
                             break lab3;
                         }
                     }
-                    this.bra = this.cursor;
+                    this.bra = this.c;
                     this.slice_from("\u05D1\u05E8\u05E2\u05E0\u05D2");
                     break;
                 }
@@ -768,32 +768,32 @@ class YiddishStemmer extends BaseStemmer {
                 case 33: {
                     // deno-lint-ignore no-unused-labels
                     lab4: {
-                        const /** number */ v_4 = this.limit - this.cursor;
+                        const /** number */ v_4 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
                         lab5: {
                             // deno-lint-ignore no-unused-labels
                             lab6: {
-                                const /** number */ v_5 = this.limit - this.cursor;
+                                const /** number */ v_5 = this.limit - this.c;
                                 // deno-lint-ignore no-unused-labels
                                 lab7: {
                                     if (!(this.eq_s_b("\u05D2"))) break lab7;
                                     break lab6;
                                 }
-                                this.cursor = this.limit - v_5;
+                                this.c = this.limit - v_5;
                                 if (!(this.eq_s_b("\u05E9"))) break lab5;
                             }
-                            const /** number */ v_6 = this.limit - this.cursor;
+                            const /** number */ v_6 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
                             lab8: {
                                 if (!this.#r_R1plus3()) {
-                                    this.cursor = this.limit - v_6;
+                                    this.c = this.limit - v_6;
                                     break lab8;
                                 }
                                 this.slice_from("\u05D9\u05E1");
                             }
                             break lab4;
                         }
-                        this.cursor = this.limit - v_4;
+                        this.c = this.limit - v_4;
                         if (!this.#r_R1()) break lab0;
                         this.slice_del();
                     }
@@ -801,14 +801,14 @@ class YiddishStemmer extends BaseStemmer {
                 }
             }
         }
-        this.cursor = this.limit - v_1;
-        const /** number */ v_7 = this.limit - this.cursor;
+        this.c = this.limit - v_1;
+        const /** number */ v_7 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab9: {
-            this.ket = this.cursor;
+            this.ket = this.c;
             a = this.find_among_b(a_5);
             if (a === 0) break lab9;
-            this.bra = this.cursor;
+            this.bra = this.c;
             switch (a) {
                 case 1: {
                     if (!this.#r_R1()) break lab9;
@@ -823,14 +823,14 @@ class YiddishStemmer extends BaseStemmer {
                 }
             }
         }
-        this.cursor = this.limit - v_7;
-        const /** number */ v_8 = this.limit - this.cursor;
+        this.c = this.limit - v_7;
+        const /** number */ v_8 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab10: {
-            this.ket = this.cursor;
+            this.ket = this.c;
             a = this.find_among_b(a_6);
             if (a === 0) break lab10;
-            this.bra = this.cursor;
+            this.bra = this.c;
             switch (a) {
                 case 1: {
                     if (!this.#r_R1()) break lab10;
@@ -839,60 +839,60 @@ class YiddishStemmer extends BaseStemmer {
                 }
             }
         }
-        this.cursor = this.limit - v_8;
-        const /** number */ v_9 = this.limit - this.cursor;
+        this.c = this.limit - v_8;
+        const /** number */ v_9 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab11: {
             while (true) {
-                const /** number */ v_10 = this.limit - this.cursor;
+                const /** number */ v_10 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab12: {
                     // deno-lint-ignore no-unused-labels
                     golab13: while (true)
                     {
-                        const /** number */ v_11 = this.limit - this.cursor;
+                        const /** number */ v_11 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
                         lab14: {
-                            this.ket = this.cursor;
+                            this.ket = this.c;
                             // deno-lint-ignore no-unused-labels
                             lab15: {
-                                const /** number */ v_12 = this.limit - this.cursor;
+                                const /** number */ v_12 = this.limit - this.c;
                                 // deno-lint-ignore no-unused-labels
                                 lab16: {
                                     if (!(this.eq_s_b("GE"))) break lab16;
                                     break lab15;
                                 }
-                                this.cursor = this.limit - v_12;
+                                this.c = this.limit - v_12;
                                 if (!(this.eq_s_b("TSU"))) break lab14;
                             }
-                            this.bra = this.cursor;
+                            this.bra = this.c;
                             this.slice_del();
-                            this.cursor = this.limit - v_11;
+                            this.c = this.limit - v_11;
                             break golab13;
                         }
-                        this.cursor = this.limit - v_11;
-                        if (this.cursor <= this.limit_backward) break lab12;
-                        this.cursor--;
+                        this.c = this.limit - v_11;
+                        if (this.c <= this.limit_backward) break lab12;
+                        this.c--;
                     }
                     continue;
                 }
-                this.cursor = this.limit - v_10;
+                this.c = this.limit - v_10;
                 break;
             }
         }
-        this.cursor = this.limit - v_9;
+        this.c = this.limit - v_9;
         return true;
     }
 
     /** @return {boolean} */
     #stem() {
         this.#r_prelude();
-        const /** number */ v_1 = this.cursor;
+        const /** number */ v_1 = this.c;
         this.#r_mark_regions();
-        this.cursor = v_1;
-        this.limit_backward = this.cursor; this.cursor = this.limit;
+        this.c = v_1;
+        this.limit_backward = this.c; this.c = this.limit;
         this.#r_standard_suffix();
-        this.cursor = this.limit_backward;
+        this.c = this.limit_backward;
         return true;
     }
 
@@ -906,4 +906,3 @@ class YiddishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { YiddishStemmer as default};

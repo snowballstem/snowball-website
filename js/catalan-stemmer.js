@@ -576,9 +576,9 @@ const a_4 = [
 
 const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 129, 81, 6, 10];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-class CatalanStemmer extends BaseStemmer {
+export default class extends B {
 
     #I_p2/** number */ = 0;
     #I_p1/** number */ = 0;
@@ -588,21 +588,21 @@ class CatalanStemmer extends BaseStemmer {
     #r_mark_regions() {
         this.#I_p1 = this.limit;
         this.#I_p2 = this.limit;
-        const /** number */ v_1 = this.cursor;
+        const /** number */ v_1 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             if (!this.go_out_grouping(g_v, 97, 252)) break lab0;
-            this.cursor++;
+            this.c++;
             if (!this.go_in_grouping(g_v, 97, 252)) break lab0;
-            this.cursor++;
-            this.#I_p1 = this.cursor;
+            this.c++;
+            this.#I_p1 = this.c;
             if (!this.go_out_grouping(g_v, 97, 252)) break lab0;
-            this.cursor++;
+            this.c++;
             if (!this.go_in_grouping(g_v, 97, 252)) break lab0;
-            this.cursor++;
-            this.#I_p2 = this.cursor;
+            this.c++;
+            this.#I_p2 = this.c;
         }
-        this.cursor = v_1;
+        this.c = v_1;
         return true;
     }
 
@@ -610,12 +610,12 @@ class CatalanStemmer extends BaseStemmer {
     #r_cleaning() {
         let /** number */ a;
         while (true) {
-            const /** number */ v_1 = this.cursor;
+            const /** number */ v_1 = this.c;
             // deno-lint-ignore no-unused-labels
             lab0: {
-                this.bra = this.cursor;
+                this.bra = this.c;
                 a = this.find_among(a_0);
-                this.ket = this.cursor;
+                this.ket = this.c;
                 switch (a) {
                     case 1: {
                         this.slice_from("a");
@@ -642,14 +642,14 @@ class CatalanStemmer extends BaseStemmer {
                         break;
                     }
                     case 7: {
-                        if (this.cursor >= this.limit) break lab0;
-                        this.cursor++;
+                        if (this.c >= this.limit) break lab0;
+                        this.c++;
                         break;
                     }
                 }
                 continue;
             }
-            this.cursor = v_1;
+            this.c = v_1;
             break;
         }
         return true;
@@ -657,19 +657,19 @@ class CatalanStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_R1() {
-        return this.#I_p1 <= this.cursor;
+        return this.#I_p1 <= this.c;
     }
 
     /** @return {boolean} */
     #r_R2() {
-        return this.#I_p2 <= this.cursor;
+        return this.#I_p2 <= this.c;
     }
 
     /** @return {boolean} */
     #r_attached_pronoun() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (this.find_among_b(a_1) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!this.#r_R1()) return false;
         this.slice_del();
         return true;
@@ -678,10 +678,10 @@ class CatalanStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_standard_suffix() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_2);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         switch (a) {
             case 1: {
                 if (!this.#r_R1()) return false;
@@ -715,10 +715,10 @@ class CatalanStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_verb_suffix() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_3);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         switch (a) {
             case 1: {
                 if (!this.#r_R1()) return false;
@@ -737,10 +737,10 @@ class CatalanStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_residual_suffix() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_4);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         switch (a) {
             case 1: {
                 if (!this.#r_R1()) return false;
@@ -759,33 +759,33 @@ class CatalanStemmer extends BaseStemmer {
     /** @return {boolean} */
     #stem() {
         this.#r_mark_regions();
-        this.limit_backward = this.cursor; this.cursor = this.limit;
-        const /** number */ v_1 = this.limit - this.cursor;
+        this.limit_backward = this.c; this.c = this.limit;
+        const /** number */ v_1 = this.limit - this.c;
         this.#r_attached_pronoun();
-        this.cursor = this.limit - v_1;
-        const /** number */ v_2 = this.limit - this.cursor;
+        this.c = this.limit - v_1;
+        const /** number */ v_2 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             // deno-lint-ignore no-unused-labels
             lab1: {
-                const /** number */ v_3 = this.limit - this.cursor;
+                const /** number */ v_3 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     if (!this.#r_standard_suffix()) break lab2;
                     break lab1;
                 }
-                this.cursor = this.limit - v_3;
+                this.c = this.limit - v_3;
                 if (!this.#r_verb_suffix()) break lab0;
             }
         }
-        this.cursor = this.limit - v_2;
-        const /** number */ v_4 = this.limit - this.cursor;
+        this.c = this.limit - v_2;
+        const /** number */ v_4 = this.limit - this.c;
         this.#r_residual_suffix();
-        this.cursor = this.limit - v_4;
-        this.cursor = this.limit_backward;
-        const /** number */ v_5 = this.cursor;
+        this.c = this.limit - v_4;
+        this.c = this.limit_backward;
+        const /** number */ v_5 = this.c;
         this.#r_cleaning();
-        this.cursor = v_5;
+        this.c = v_5;
         return true;
     }
 
@@ -799,4 +799,3 @@ class CatalanStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { CatalanStemmer as default};

@@ -139,9 +139,9 @@ const a_0 = [
 
 const /** Array<number> */ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248, 7];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-class HindiStemmer extends BaseStemmer {
+export default class extends B {
 
 
     /** @return {boolean} */
@@ -151,14 +151,14 @@ class HindiStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #stem() {
-        if (this.cursor >= this.limit) return false;
-        this.cursor++;
-        this.limit_backward = this.cursor; this.cursor = this.limit;
-        this.ket = this.cursor;
+        if (this.c >= this.limit) return false;
+        this.c++;
+        this.limit_backward = this.c; this.c = this.limit;
+        this.ket = this.c;
         if (this.find_among_b(a_0, this.#r_CONSONANT) === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         this.slice_del();
-        this.cursor = this.limit_backward;
+        this.c = this.limit_backward;
         return true;
     }
 
@@ -172,4 +172,3 @@ class HindiStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { HindiStemmer as default};

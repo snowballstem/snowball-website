@@ -155,9 +155,9 @@ const /** Array<number> */ g_aou = [1, 64, 16];
 
 const /** Array<number> */ g_digit = [255, 3];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-class EsperantoStemmer extends BaseStemmer {
+export default class extends B {
 
 
     /** @return {boolean} */
@@ -166,12 +166,12 @@ class EsperantoStemmer extends BaseStemmer {
         let /** boolean */ B_foreign;
         B_foreign = false;
         while (true) {
-            const /** number */ v_1 = this.cursor;
+            const /** number */ v_1 = this.c;
             // deno-lint-ignore no-unused-labels
             lab0: {
-                this.bra = this.cursor;
+                this.bra = this.c;
                 a = this.find_among(a_0);
-                this.ket = this.cursor;
+                this.ket = this.c;
                 switch (a) {
                     case 1: {
                         this.slice_from("\u0109");
@@ -231,14 +231,14 @@ class EsperantoStemmer extends BaseStemmer {
                         break;
                     }
                     case 14: {
-                        if (this.cursor >= this.limit) break lab0;
-                        this.cursor++;
+                        if (this.c >= this.limit) break lab0;
+                        this.c++;
                         break;
                     }
                 }
                 continue;
             }
-            this.cursor = v_1;
+            this.c = v_1;
             break;
         }
         return !B_foreign;
@@ -246,38 +246,38 @@ class EsperantoStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_initial_apostrophe() {
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (!(this.eq_s("'"))) return false;
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (!(this.eq_s("st"))) return false;
         if (this.find_among(a_1) === 0) return false;
-        if (this.cursor < this.limit) return false;
+        if (this.c < this.limit) return false;
         this.slice_from("e");
         return true;
     }
 
     /** @return {boolean} */
     #r_pronoun() {
-        this.ket = this.cursor;
-        const /** number */ v_1 = this.limit - this.cursor;
+        this.ket = this.c;
+        const /** number */ v_1 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             if (!(this.eq_s_b("n"))) {
-                this.cursor = this.limit - v_1;
+                this.c = this.limit - v_1;
                 break lab0;
             }
         }
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (this.find_among_b(a_2) === 0) return false;
         // deno-lint-ignore no-unused-labels
         lab1: {
-            const /** number */ v_2 = this.limit - this.cursor;
+            const /** number */ v_2 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab2: {
-                if (this.cursor > this.limit_backward) break lab2;
+                if (this.c > this.limit_backward) break lab2;
                 break lab1;
             }
-            this.cursor = this.limit - v_2;
+            this.c = this.limit - v_2;
             if (!(this.eq_s_b("-"))) return false;
         }
         this.slice_del();
@@ -286,46 +286,46 @@ class EsperantoStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_final_apostrophe() {
-        this.ket = this.cursor;
+        this.ket = this.c;
         if (!(this.eq_s_b("'"))) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.cursor;
+            const /** number */ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!(this.eq_s_b("l"))) break lab1;
-                if (this.cursor > this.limit_backward) break lab1;
+                if (this.c > this.limit_backward) break lab1;
                 this.slice_from("a");
                 break lab0;
             }
-            this.cursor = this.limit - v_1;
+            this.c = this.limit - v_1;
             // deno-lint-ignore no-unused-labels
             lab2: {
                 if (!(this.eq_s_b("un"))) break lab2;
-                if (this.cursor > this.limit_backward) break lab2;
+                if (this.c > this.limit_backward) break lab2;
                 this.slice_from("u");
                 break lab0;
             }
-            this.cursor = this.limit - v_1;
+            this.c = this.limit - v_1;
             // deno-lint-ignore no-unused-labels
             lab3: {
                 if (this.find_among_b(a_3) === 0) break lab3;
                 // deno-lint-ignore no-unused-labels
                 lab4: {
-                    const /** number */ v_2 = this.limit - this.cursor;
+                    const /** number */ v_2 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab5: {
-                        if (this.cursor > this.limit_backward) break lab5;
+                        if (this.c > this.limit_backward) break lab5;
                         break lab4;
                     }
-                    this.cursor = this.limit - v_2;
+                    this.c = this.limit - v_2;
                     if (!(this.eq_s_b("-"))) break lab3;
                 }
                 this.slice_from("a\u016D");
                 break lab0;
             }
-            this.cursor = this.limit - v_1;
+            this.c = this.limit - v_1;
             this.slice_from("o");
         }
         return true;
@@ -333,34 +333,34 @@ class EsperantoStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_ujn_suffix() {
-        this.ket = this.cursor;
-        const /** number */ v_1 = this.limit - this.cursor;
+        this.ket = this.c;
+        const /** number */ v_1 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             if (!(this.eq_s_b("n"))) {
-                this.cursor = this.limit - v_1;
+                this.c = this.limit - v_1;
                 break lab0;
             }
         }
-        const /** number */ v_2 = this.limit - this.cursor;
+        const /** number */ v_2 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab1: {
             if (!(this.eq_s_b("j"))) {
-                this.cursor = this.limit - v_2;
+                this.c = this.limit - v_2;
                 break lab1;
             }
         }
-        this.bra = this.cursor;
+        this.bra = this.c;
         if (this.find_among_b(a_4) === 0) return false;
         // deno-lint-ignore no-unused-labels
         lab2: {
-            const /** number */ v_3 = this.limit - this.cursor;
+            const /** number */ v_3 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab3: {
-                if (this.cursor > this.limit_backward) break lab3;
+                if (this.c > this.limit_backward) break lab3;
                 break lab2;
             }
-            this.cursor = this.limit - v_3;
+            this.c = this.limit - v_3;
             if (!(this.eq_s_b("-"))) return false;
         }
         this.slice_del();
@@ -372,13 +372,13 @@ class EsperantoStemmer extends BaseStemmer {
         if (this.find_among_b(a_5) === 0) return false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.cursor;
+            const /** number */ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                if (this.cursor > this.limit_backward) break lab1;
+                if (this.c > this.limit_backward) break lab1;
                 break lab0;
             }
-            this.cursor = this.limit - v_1;
+            this.c = this.limit - v_1;
             if (!(this.eq_s_b("-"))) return false;
         }
         return true;
@@ -392,67 +392,67 @@ class EsperantoStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_correlative() {
-        this.ket = this.cursor;
-        this.bra = this.cursor;
-        const /** number */ v_1 = this.limit - this.cursor;
+        this.ket = this.c;
+        this.bra = this.c;
+        const /** number */ v_1 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_2 = this.limit - this.cursor;
+            const /** number */ v_2 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                const /** number */ v_3 = this.limit - this.cursor;
+                const /** number */ v_3 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     if (!(this.eq_s_b("n"))) {
-                        this.cursor = this.limit - v_3;
+                        this.c = this.limit - v_3;
                         break lab2;
                     }
                 }
-                this.bra = this.cursor;
+                this.bra = this.c;
                 if (!(this.eq_s_b("e"))) break lab1;
                 break lab0;
             }
-            this.cursor = this.limit - v_2;
-            const /** number */ v_4 = this.limit - this.cursor;
+            this.c = this.limit - v_2;
+            const /** number */ v_4 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab3: {
                 if (!(this.eq_s_b("n"))) {
-                    this.cursor = this.limit - v_4;
+                    this.c = this.limit - v_4;
                     break lab3;
                 }
             }
-            const /** number */ v_5 = this.limit - this.cursor;
+            const /** number */ v_5 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab4: {
                 if (!(this.eq_s_b("j"))) {
-                    this.cursor = this.limit - v_5;
+                    this.c = this.limit - v_5;
                     break lab4;
                 }
             }
-            this.bra = this.cursor;
+            this.bra = this.c;
             if (!(this.in_grouping_b(g_aou, 97, 117))) return false;
         }
         if (!(this.eq_s_b("i"))) return false;
-        const /** number */ v_6 = this.limit - this.cursor;
+        const /** number */ v_6 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab5: {
             if (this.find_among_b(a_8) === 0) {
-                this.cursor = this.limit - v_6;
+                this.c = this.limit - v_6;
                 break lab5;
             }
         }
         // deno-lint-ignore no-unused-labels
         lab6: {
-            const /** number */ v_7 = this.limit - this.cursor;
+            const /** number */ v_7 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab7: {
-                if (this.cursor > this.limit_backward) break lab7;
+                if (this.c > this.limit_backward) break lab7;
                 break lab6;
             }
-            this.cursor = this.limit - v_7;
+            this.c = this.limit - v_7;
             if (!(this.eq_s_b("-"))) return false;
         }
-        this.cursor = this.limit - v_1;
+        this.c = this.limit - v_1;
         this.slice_del();
         return true;
     }
@@ -461,17 +461,17 @@ class EsperantoStemmer extends BaseStemmer {
     #r_long_word() {
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.cursor;
+            const /** number */ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 for (let /** number */ v_2 = 2; v_2 > 0; v_2--)
                 {
                     if (!this.go_out_grouping_b(g_vowel, 97, 117)) break lab1;
-                    this.cursor--;
+                    this.c--;
                 }
                 break lab0;
             }
-            this.cursor = this.limit - v_1;
+            this.c = this.limit - v_1;
             // deno-lint-ignore no-unused-labels
             lab2: {
                 // deno-lint-ignore no-unused-labels
@@ -482,16 +482,16 @@ class EsperantoStemmer extends BaseStemmer {
                         if (!(this.eq_s_b("-"))) break lab4;
                         break golab3;
                     }
-                    if (this.cursor <= this.limit_backward) break lab2;
-                    this.cursor--;
+                    if (this.c <= this.limit_backward) break lab2;
+                    this.c--;
                 }
-                if (this.cursor <= this.limit_backward) break lab2;
-                this.cursor--;
+                if (this.c <= this.limit_backward) break lab2;
+                this.c--;
                 break lab0;
             }
-            this.cursor = this.limit - v_1;
+            this.c = this.limit - v_1;
             if (!this.go_out_grouping_b(g_digit, 48, 57)) return false;
-            this.cursor--;
+            this.c--;
         }
         return true;
     }
@@ -499,102 +499,102 @@ class EsperantoStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_standard_suffix() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_9);
         if (a === 0) return false;
         switch (a) {
             case 1: {
-                const /** number */ v_1 = this.limit - this.cursor;
+                const /** number */ v_1 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab0: {
-                    const /** number */ v_2 = this.limit - this.cursor;
+                    const /** number */ v_2 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab1: {
                         if (!(this.eq_s_b("-"))) break lab1;
                         break lab0;
                     }
-                    this.cursor = this.limit - v_2;
+                    this.c = this.limit - v_2;
                     if (!(this.in_grouping_b(g_digit, 48, 57))) return false;
                 }
-                this.cursor = this.limit - v_1;
+                this.c = this.limit - v_1;
                 break;
             }
         }
-        const /** number */ v_3 = this.limit - this.cursor;
+        const /** number */ v_3 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab2: {
             if (!(this.eq_s_b("-"))) {
-                this.cursor = this.limit - v_3;
+                this.c = this.limit - v_3;
                 break lab2;
             }
         }
-        this.bra = this.cursor;
+        this.bra = this.c;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #stem() {
-        const /** number */ v_1 = this.cursor;
+        const /** number */ v_1 = this.c;
         if (!this.#r_canonical_form()) return false;
-        this.cursor = v_1;
-        const /** number */ v_2 = this.cursor;
+        this.c = v_1;
+        const /** number */ v_2 = this.c;
         this.#r_initial_apostrophe();
-        this.cursor = v_2;
-        this.limit_backward = this.cursor; this.cursor = this.limit;
+        this.c = v_2;
+        this.limit_backward = this.c; this.c = this.limit;
         {
-            const /** number */ v_3 = this.limit - this.cursor;
+            const /** number */ v_3 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab0: {
                 if (!this.#r_pronoun()) break lab0;
                 return false;
             }
-            this.cursor = this.limit - v_3;
+            this.c = this.limit - v_3;
         }
-        const /** number */ v_4 = this.limit - this.cursor;
+        const /** number */ v_4 = this.limit - this.c;
         this.#r_final_apostrophe();
-        this.cursor = this.limit - v_4;
+        this.c = this.limit - v_4;
         {
-            const /** number */ v_5 = this.limit - this.cursor;
+            const /** number */ v_5 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!this.#r_correlative()) break lab1;
                 return false;
             }
-            this.cursor = this.limit - v_5;
+            this.c = this.limit - v_5;
         }
         {
-            const /** number */ v_6 = this.limit - this.cursor;
+            const /** number */ v_6 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab2: {
                 if (!this.#r_uninflected()) break lab2;
                 return false;
             }
-            this.cursor = this.limit - v_6;
+            this.c = this.limit - v_6;
         }
         {
-            const /** number */ v_7 = this.limit - this.cursor;
+            const /** number */ v_7 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab3: {
                 if (!this.#r_merged_numeral()) break lab3;
                 return false;
             }
-            this.cursor = this.limit - v_7;
+            this.c = this.limit - v_7;
         }
         {
-            const /** number */ v_8 = this.limit - this.cursor;
+            const /** number */ v_8 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab4: {
                 if (!this.#r_ujn_suffix()) break lab4;
                 return false;
             }
-            this.cursor = this.limit - v_8;
+            this.c = this.limit - v_8;
         }
-        const /** number */ v_9 = this.limit - this.cursor;
+        const /** number */ v_9 = this.limit - this.c;
         if (!this.#r_long_word()) return false;
-        this.cursor = this.limit - v_9;
+        this.c = this.limit - v_9;
         if (!this.#r_standard_suffix()) return false;
-        this.cursor = this.limit_backward;
+        this.c = this.limit_backward;
         return true;
     }
 
@@ -608,4 +608,3 @@ class EsperantoStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { EsperantoStemmer as default};

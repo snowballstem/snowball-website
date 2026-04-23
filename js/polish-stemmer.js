@@ -148,9 +148,9 @@ const a_3 = [
 
 const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 16, 0, 0, 1];
 
-import { BaseStemmer } from './base-stemmer.js'
+import B from './base-stemmer.js'
 
-class PolishStemmer extends BaseStemmer {
+export default class extends B {
 
     #I_p1/** number */ = 0;
 
@@ -159,41 +159,41 @@ class PolishStemmer extends BaseStemmer {
     #r_mark_regions() {
         this.#I_p1 = this.limit;
         if (!this.go_out_grouping(g_v, 97, 281)) return false;
-        this.cursor++;
+        this.c++;
         if (!this.go_in_grouping(g_v, 97, 281)) return false;
-        this.cursor++;
-        this.#I_p1 = this.cursor;
+        this.c++;
+        this.#I_p1 = this.c;
         return true;
     }
 
     /** @return {boolean} */
     #r_R1() {
-        return this.#I_p1 <= this.cursor;
+        return this.#I_p1 <= this.c;
     }
 
     /** @return {boolean} */
     #r_remove_endings() {
         let /** number */ a;
-        const /** number */ v_1 = this.limit - this.cursor;
+        const /** number */ v_1 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            if (this.cursor < this.#I_p1) break lab0;
+            if (this.c < this.#I_p1) break lab0;
             const /** number */ v_2 = this.limit_backward;
             this.limit_backward = this.#I_p1;
-            this.ket = this.cursor;
+            this.ket = this.c;
             if (this.find_among_b(a_0) === 0) {
                 this.limit_backward = v_2;
                 break lab0;
             }
-            this.bra = this.cursor;
+            this.bra = this.c;
             this.limit_backward = v_2;
             this.slice_del();
         }
-        this.cursor = this.limit - v_1;
-        this.ket = this.cursor;
+        this.c = this.limit - v_1;
+        this.ket = this.c;
         a = this.find_among_b(a_2, this.#r_R1);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         switch (a) {
             case 1: {
                 this.slice_del();
@@ -206,16 +206,16 @@ class PolishStemmer extends BaseStemmer {
             case 3: {
                 // deno-lint-ignore no-unused-labels
                 lab1: {
-                    const /** number */ v_3 = this.limit - this.cursor;
+                    const /** number */ v_3 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab2: {
-                        const /** number */ v_4 = this.limit - this.cursor;
+                        const /** number */ v_4 = this.limit - this.c;
                         if (!this.#r_R1()) break lab2;
-                        this.cursor = this.limit - v_4;
+                        this.c = this.limit - v_4;
                         this.slice_del();
                         break lab1;
                     }
-                    this.cursor = this.limit - v_3;
+                    this.c = this.limit - v_3;
                     this.slice_from("s");
                 }
                 break;
@@ -226,16 +226,16 @@ class PolishStemmer extends BaseStemmer {
             }
             case 5: {
                 this.slice_del();
-                const /** number */ v_5 = this.limit - this.cursor;
+                const /** number */ v_5 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab3: {
-                    this.ket = this.cursor;
+                    this.ket = this.c;
                     a = this.find_among_b(a_1);
                     if (a === 0) {
-                        this.cursor = this.limit - v_5;
+                        this.c = this.limit - v_5;
                         break lab3;
                     }
-                    this.bra = this.cursor;
+                    this.bra = this.c;
                     switch (a) {
                         case 1: {
                             this.slice_del();
@@ -250,15 +250,15 @@ class PolishStemmer extends BaseStemmer {
                 break;
             }
         }
-        const /** number */ v_6 = this.limit - this.cursor;
+        const /** number */ v_6 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab4: {
-            this.ket = this.cursor;
+            this.ket = this.c;
             if (!(this.eq_s_b("'"))) {
-                this.cursor = this.limit - v_6;
+                this.c = this.limit - v_6;
                 break lab4;
             }
-            this.bra = this.cursor;
+            this.bra = this.c;
             this.slice_del();
         }
         return true;
@@ -267,13 +267,13 @@ class PolishStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_normalize_consonant() {
         let /** number */ a;
-        this.ket = this.cursor;
+        this.ket = this.c;
         a = this.find_among_b(a_3);
         if (a === 0) return false;
-        this.bra = this.cursor;
+        this.bra = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            if (this.cursor > this.limit_backward) break lab0;
+            if (this.c > this.limit_backward) break lab0;
             return false;
         }
         switch (a) {
@@ -299,28 +299,28 @@ class PolishStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #stem() {
-        const /** number */ v_1 = this.cursor;
+        const /** number */ v_1 = this.c;
         this.#r_mark_regions();
-        this.cursor = v_1;
+        this.c = v_1;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_2 = this.cursor;
+            const /** number */ v_2 = this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 {
-                    const /** number */ c = this.cursor + 2;
+                    const /** number */ c = this.c + 2;
                     if (c > this.limit) break lab1;
-                    this.cursor = c;
+                    this.c = c;
                 }
-                this.limit_backward = this.cursor; this.cursor = this.limit;
+                this.limit_backward = this.c; this.c = this.limit;
                 if (!this.#r_remove_endings()) break lab1;
-                this.cursor = this.limit_backward;
+                this.c = this.limit_backward;
                 break lab0;
             }
-            this.cursor = v_2;
-            this.limit_backward = this.cursor; this.cursor = this.limit;
+            this.c = v_2;
+            this.limit_backward = this.c; this.c = this.limit;
             if (!this.#r_normalize_consonant()) return false;
-            this.cursor = this.limit_backward;
+            this.c = this.limit_backward;
         }
         return true;
     }
@@ -335,4 +335,3 @@ class PolishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { PolishStemmer as default};
