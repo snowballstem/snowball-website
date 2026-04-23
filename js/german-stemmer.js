@@ -76,7 +76,7 @@ const /** Array<number> */ g_st_ending = [117, 30, 4];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class GermanStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
     #I_p2/** number */ = 0;
     #I_p1/** number */ = 0;
@@ -482,4 +482,3 @@ export class GermanStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default GermanStemmer;

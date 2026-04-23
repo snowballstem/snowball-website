@@ -157,7 +157,7 @@ const /** Array<number> */ g_digit = [255, 3];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class EsperantoStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
 
     /** @return {boolean} */
@@ -608,4 +608,3 @@ export class EsperantoStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default EsperantoStemmer;

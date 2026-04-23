@@ -92,7 +92,7 @@ const /** Array<number> */ g_v_WXY = [1, 17, 65, 208, 1];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class PorterStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
     #I_p2/** number */ = 0;
     #I_p1/** number */ = 0;
@@ -513,4 +513,3 @@ export class PorterStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default PorterStemmer;

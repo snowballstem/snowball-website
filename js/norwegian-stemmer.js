@@ -77,7 +77,7 @@ const /** Array<number> */ g_s_ending = [119, 125, 148, 1];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class NorwegianStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
     #I_p1/** number */ = 0;
 
@@ -241,4 +241,3 @@ export class NorwegianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default NorwegianStemmer;

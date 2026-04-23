@@ -203,7 +203,7 @@ const /** Array<number> */ g_consonant = [239, 254, 253, 131];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class YiddishStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
     #I_p1/** number */ = 0;
 
@@ -906,4 +906,3 @@ export class YiddishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default YiddishStemmer;

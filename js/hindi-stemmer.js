@@ -141,7 +141,7 @@ const /** Array<number> */ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248,
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class HindiStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
 
     /** @return {boolean} */
@@ -172,4 +172,3 @@ export class HindiStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default HindiStemmer;

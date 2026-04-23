@@ -231,7 +231,7 @@ const /** Array<number> */ g_CG = [17];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class ItalianStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
     #I_p2/** number */ = 0;
     #I_p1/** number */ = 0;
@@ -733,4 +733,3 @@ export class ItalianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default ItalianStemmer;

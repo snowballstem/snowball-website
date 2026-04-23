@@ -272,7 +272,7 @@ const a_15 = [
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class ArabicStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
     #B_is_defined/** boolean */ = false;
     #B_is_verb/** boolean */ = false;
@@ -1161,4 +1161,3 @@ export class ArabicStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default ArabicStemmer;

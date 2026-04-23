@@ -2245,7 +2245,7 @@ const /** Array<number> */ g_rg = [1];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class SerbianStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
     #I_p1/** number */ = 0;
     #B_no_diacritics/** boolean */ = false;
@@ -3720,4 +3720,3 @@ export class SerbianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default SerbianStemmer;

@@ -255,7 +255,7 @@ const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 import { BaseStemmer } from './base-stemmer.js'
 
-export class RomanianStemmer extends BaseStemmer {
+export default class extends BaseStemmer {
 
     #B_standard_suffix_removed/** boolean */ = false;
     #I_p2/** number */ = 0;
@@ -704,4 +704,3 @@ export class RomanianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export default RomanianStemmer;
