@@ -418,4 +418,4 @@ class CzechStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { CzechStemmer };
+export { CzechStemmer as default};
