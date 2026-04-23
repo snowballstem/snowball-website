@@ -165,7 +165,7 @@ const /** Array<number> */ g_valid_LI = [55, 141, 2];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class EnglishStemmer extends BaseStemmer {
+export class EnglishStemmer extends BaseStemmer {
 
     #B_Y_found/** boolean */ = false;
     #I_p2/** number */ = 0;
@@ -820,4 +820,4 @@ class EnglishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {EnglishStemmer as default,EnglishStemmer};
+export default EnglishStemmer;

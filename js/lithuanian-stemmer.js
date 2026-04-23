@@ -286,7 +286,7 @@ const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class LithuanianStemmer extends BaseStemmer {
+export class LithuanianStemmer extends BaseStemmer {
 
     #I_p1/** number */ = 0;
 
@@ -463,4 +463,4 @@ class LithuanianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {LithuanianStemmer as default,LithuanianStemmer};
+export default LithuanianStemmer;

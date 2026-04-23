@@ -125,7 +125,7 @@ const a_7 = [
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class PersianStemmer extends BaseStemmer {
+export class PersianStemmer extends BaseStemmer {
 
     #I_p1/** number */ = 0;
     #B_remove_verb_person_endings/** boolean */ = false;
@@ -471,4 +471,4 @@ class PersianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {PersianStemmer as default,PersianStemmer};
+export default PersianStemmer;

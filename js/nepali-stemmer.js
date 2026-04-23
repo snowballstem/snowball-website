@@ -124,7 +124,7 @@ const a_2 = [
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class NepaliStemmer extends BaseStemmer {
+export class NepaliStemmer extends BaseStemmer {
 
 
     /** @return {boolean} */
@@ -249,4 +249,4 @@ class NepaliStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {NepaliStemmer as default,NepaliStemmer};
+export default NepaliStemmer;

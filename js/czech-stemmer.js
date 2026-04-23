@@ -129,7 +129,7 @@ const /** Array<number> */ g_env_ending = [71, 66, 23, 1, 0, 0, 0, 0, 0, 0, 0, 0
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class CzechStemmer extends BaseStemmer {
+export class CzechStemmer extends BaseStemmer {
 
     #I_p1/** number */ = 0;
 
@@ -418,4 +418,4 @@ class CzechStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {CzechStemmer as default,CzechStemmer};
+export default CzechStemmer;

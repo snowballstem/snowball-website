@@ -1112,7 +1112,7 @@ const /** Array<number> */ g_v2 = [81, 65, 0, 1];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class GreekStemmer extends BaseStemmer {
+export class GreekStemmer extends BaseStemmer {
 
     #B_test1/** boolean */ = false;
 
@@ -2224,4 +2224,4 @@ class GreekStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {GreekStemmer as default,GreekStemmer};
+export default GreekStemmer;

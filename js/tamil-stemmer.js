@@ -346,7 +346,7 @@ const a_26 = [
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class TamilStemmer extends BaseStemmer {
+export class TamilStemmer extends BaseStemmer {
 
     #B_found_vetrumai_urupu/** boolean */ = false;
 
@@ -959,4 +959,4 @@ class TamilStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {TamilStemmer as default,TamilStemmer};
+export default TamilStemmer;

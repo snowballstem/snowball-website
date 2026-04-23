@@ -132,7 +132,7 @@ const /** Array<number> */ g_particle_end = [17, 97, 24, 1, 0, 0, 0, 0, 0, 0, 0,
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class FinnishStemmer extends BaseStemmer {
+export class FinnishStemmer extends BaseStemmer {
 
     #B_ending_removed/** boolean */ = false;
     #I_p2/** number */ = 0;
@@ -564,4 +564,4 @@ class FinnishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {FinnishStemmer as default,FinnishStemmer};
+export default FinnishStemmer;

@@ -212,7 +212,7 @@ const /** Array<number> */ g_vowel6 = [65];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class TurkishStemmer extends BaseStemmer {
+export class TurkishStemmer extends BaseStemmer {
 
     #B_continue_stemming_noun_suffixes/** boolean */ = false;
 
@@ -1654,4 +1654,4 @@ class TurkishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {TurkishStemmer as default,TurkishStemmer};
+export default TurkishStemmer;

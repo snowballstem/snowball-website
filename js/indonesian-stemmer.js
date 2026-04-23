@@ -41,7 +41,7 @@ const /** Array<number> */ g_vowel = [17, 65, 16];
 
 import { BaseStemmer } from './base-stemmer.js'
 
-class IndonesianStemmer extends BaseStemmer {
+export class IndonesianStemmer extends BaseStemmer {
 
     #I_prefix/** number */ = 0;
     #I_measure/** number */ = 0;
@@ -365,4 +365,4 @@ class IndonesianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export {IndonesianStemmer as default,IndonesianStemmer};
+export default IndonesianStemmer;
