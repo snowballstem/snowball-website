@@ -4,11 +4,113 @@
 
 <ul>
 [% algorithm_lis('czech', 'Czech', 'https://en.wikipedia.org/wiki/Czech_language') %]
+<li> <a href="https://libra.unine.ch/bitstreams/fda9d5f8-1f33-44ca-86bb-a36f7b060782/download">Indexing and stemming approaches for the Czech language.</a> Ljiljana Dolamic and Jacques Savoy. 2009.  Inf. Process. Manage. 45, 6 (November 2009), 714-720.
 </ul>
 
 <p>
-In March 2012 Jim O&#8217;Regan sent us an implementation of Ljiljana
-Dolamic's Czech stemmer.
+In March 2012, Jim O&#8217;Regan sent us an implementation of Ljiljana
+Dolamic's Czech stemmer.  This was only on the website for many years, but
+finally got merged in Snowball 3.1.0 in 2026.
+</p>
+
+<p>
+The merged version is based on Jim's, but resolves discrepancies between it,
+the original paper (linked above), and the light and aggressive Czech stemmers
+from <a href="http://members.unine.ch/jacques.savoy/clef/">UniNE</a>
+which are also by Ljiljana Dolamic.  We have made significant further
+improvements after evaluating our stemmer on a Czech vocabulary list.
+</p>
+
+<h2>Design Notes</h2>
+
+<h3>Scope</h3>
+
+<p>
+We've chosen the "light" versions of Dolamic's and O&#8217;Regan's stemmers
+as our starting point.  The other Snowball stemmers are generally light
+rather than aggressive, and Dolamic's aggressive variant is reportedly known
+to overstem.
+</p>
+
+<p>
+We've focussed on stemming noun forms by removing case suffixes and possessive
+suffixes.  There's significant overlap in Czech noun and adjectival suffixes,
+and some overlap with verbs, so many adjectives and some verbs are also
+handled.
+</p>
+
+<h3>R1 Definition</h3>
+
+<p>
+Like most of the other Snowball stemmers, the Czech stemmer defines an R1
+region to reduce overstemming.  The definition of R1 used for Czech is
+similar to that for other languages, but also takes into account syllabic
+consonants: in Czech, an <b>r</b> and <b>l</b> between two consonants, or after
+a consonant at the end of a word, can act as a syllable nuceleus in place of
+a vowel.
+</p>
+
+<p>
+For example, <i>vlna</i> (wool) has declension <i>vlna</i>, <i>vlny</i>,
+<i>vlne</i>, <i>vlnu</i>, <i>vlne</i>, <i>vlnou</i> and we want R1 to start
+right after <b>vln</b>.
+</p>
+
+<p>
+Some sources say <b>m</b> and/or <b>n</b> can also act in this way, but these
+seem to be extremely rarely used in practice, and including them actually
+causes a false conflations while almost never helping, so our stemmer only
+considers <b>r</b> and <b>l</b> as special for determining R1.
+</p>
+
+<p>
+R1 is also required to start at least 3 characters into the word which helped
+to reduce overstemming in our tests.
+</p>
+
+<p>
+(The stemmer in the paper and the UniNE versions both enforce a minimum stem
+length using a simple character count; Jim's Snowball version uses defines a
+region R1, but his definition doesn't take into account syllabic consonants.)
+</p>
+
+<h3>Palatalisation</h3>
+
+<p>
+A hard final consonant in the word stem is softened before certain suffixes,
+which is reflected in how written words are spelled.  For example <i>kluk</i>
++ <i>-i</i> → <i>kluci</i>.  Ideally we want to reverse this when removing
+such a suffix, but this is tricky because the word stem could end in <i>c</i>
+- for example, <i>vejce</i> + <i>-i</i> → <i>vejci</i>.  In some cases (such
+as <i>vejci</i>) we can safely make <<i>vejk</i> our stem - it's linguistically
+incorrect, but doesn't collide with the stem of an unrelated word.  In some
+other cases we don't palatalise a trailing consonant because our testing
+suggested it hindered more than it helped.
+</p>
+
+<p>
+(The stemmer in the paper, the UniNE versions, and Jim's Snowball version all
+palatalise in more cases.)
+</p>
+
+<h3>Addition of <i>-e-</i></h3>
+
+<p>
+For nouns in which the stem ends with a consonant group, a floating <i>-e-</i>
+is usually inserted between the last two consonants in cases with no ending.
+For example, <i>zámku</i> and <i>zámek</i>.  Our stemmer removes this in
+most cases, so both of these stem to <i>zámk</i>.  (This is not done by the
+other stemmer versions.)
+</p>
+
+<h3>Vowel alternation</h3>
+
+<p>
+Sometimes a vowel changes in the word stem when adding certain suffixes - for
+example, the genitive plural of <i>smlouva</i> is <i>smluv</i>.  This seems to
+be hard to reverse without affecting words where the vowel hasn't changed, so
+our stemmer does not currently try to do anything special for such words (nor
+do the other versions).
 </p>
 
 [% highlight_file('czech') %]

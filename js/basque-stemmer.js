@@ -450,93 +450,93 @@ class BasqueStemmer extends BaseStemmer {
         this.#I_pV = this.limit;
         this.#I_p1 = this.limit;
         this.#I_p2 = this.limit;
-        const /** number */ v_1 = this.C;
+        const /** number */ v_1 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
             // deno-lint-ignore no-unused-labels
             lab1: {
-                const /** number */ v_2 = this.C;
+                const /** number */ v_2 = this.cursor;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     if (!(this.in_grouping(g_v, 97, 117))) break lab2;
                     // deno-lint-ignore no-unused-labels
                     lab3: {
-                        const /** number */ v_3 = this.C;
+                        const /** number */ v_3 = this.cursor;
                         // deno-lint-ignore no-unused-labels
                         lab4: {
                             if (!(this.out_grouping(g_v, 97, 117))) break lab4;
                             if (!this.go_out_grouping(g_v, 97, 117)) break lab4;
-                            this.C++;
+                            this.cursor++;
                             break lab3;
                         }
-                        this.C = v_3;
+                        this.cursor = v_3;
                         if (!(this.in_grouping(g_v, 97, 117))) break lab2;
                         if (!this.go_in_grouping(g_v, 97, 117)) break lab2;
-                        this.C++;
+                        this.cursor++;
                     }
                     break lab1;
                 }
-                this.C = v_2;
+                this.cursor = v_2;
                 if (!(this.out_grouping(g_v, 97, 117))) break lab0;
                 // deno-lint-ignore no-unused-labels
                 lab5: {
-                    const /** number */ v_4 = this.C;
+                    const /** number */ v_4 = this.cursor;
                     // deno-lint-ignore no-unused-labels
                     lab6: {
                         if (!(this.out_grouping(g_v, 97, 117))) break lab6;
                         if (!this.go_out_grouping(g_v, 97, 117)) break lab6;
-                        this.C++;
+                        this.cursor++;
                         break lab5;
                     }
-                    this.C = v_4;
+                    this.cursor = v_4;
                     if (!(this.in_grouping(g_v, 97, 117))) break lab0;
-                    if (this.C >= this.limit) break lab0;
-                    this.C++;
+                    if (this.cursor >= this.limit) break lab0;
+                    this.cursor++;
                 }
             }
-            this.#I_pV = this.C;
+            this.#I_pV = this.cursor;
         }
-        this.C = v_1;
-        const /** number */ v_5 = this.C;
+        this.cursor = v_1;
+        const /** number */ v_5 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab7: {
             if (!this.go_out_grouping(g_v, 97, 117)) break lab7;
-            this.C++;
+            this.cursor++;
             if (!this.go_in_grouping(g_v, 97, 117)) break lab7;
-            this.C++;
-            this.#I_p1 = this.C;
+            this.cursor++;
+            this.#I_p1 = this.cursor;
             if (!this.go_out_grouping(g_v, 97, 117)) break lab7;
-            this.C++;
+            this.cursor++;
             if (!this.go_in_grouping(g_v, 97, 117)) break lab7;
-            this.C++;
-            this.#I_p2 = this.C;
+            this.cursor++;
+            this.#I_p2 = this.cursor;
         }
-        this.C = v_5;
+        this.cursor = v_5;
         return true;
     }
 
     /** @return {boolean} */
     #r_RV() {
-        return this.#I_pV <= this.C;
+        return this.#I_pV <= this.cursor;
     }
 
     /** @return {boolean} */
     #r_R2() {
-        return this.#I_p2 <= this.C;
+        return this.#I_p2 <= this.cursor;
     }
 
     /** @return {boolean} */
     #r_R1() {
-        return this.#I_p1 <= this.C;
+        return this.#I_p1 <= this.cursor;
     }
 
     /** @return {boolean} */
     #r_aditzak() {
         let /** number */ a;
-        this.ket = this.C;
+        this.ket = this.cursor;
         a = this.find_among_b(a_0);
         if (a === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 if (!this.#r_RV()) return false;
@@ -555,10 +555,10 @@ class BasqueStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_izenak() {
         let /** number */ a;
-        this.ket = this.C;
+        this.ket = this.cursor;
         a = this.find_among_b(a_1);
         if (a === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 if (!this.#r_RV()) return false;
@@ -594,10 +594,10 @@ class BasqueStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_adjetiboak() {
         let /** number */ a;
-        this.ket = this.C;
+        this.ket = this.cursor;
         a = this.find_among_b(a_2);
         if (a === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 if (!this.#r_RV()) return false;
@@ -615,31 +615,31 @@ class BasqueStemmer extends BaseStemmer {
     /** @return {boolean} */
     #stem() {
         this.#r_mark_regions();
-        this.limit_backward = this.C; this.C = this.limit;
+        this.limit_backward = this.cursor; this.cursor = this.limit;
         while (true) {
-            const /** number */ v_1 = this.limit - this.C;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab0: {
                 if (!this.#r_aditzak()) break lab0;
                 continue;
             }
-            this.C = this.limit - v_1;
+            this.cursor = this.limit - v_1;
             break;
         }
         while (true) {
-            const /** number */ v_2 = this.limit - this.C;
+            const /** number */ v_2 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!this.#r_izenak()) break lab1;
                 continue;
             }
-            this.C = this.limit - v_2;
+            this.cursor = this.limit - v_2;
             break;
         }
-        const /** number */ v_3 = this.limit - this.C;
+        const /** number */ v_3 = this.limit - this.cursor;
         this.#r_adjetiboak();
-        this.C = this.limit - v_3;
-        this.C = this.limit_backward;
+        this.cursor = this.limit - v_3;
+        this.cursor = this.limit_backward;
         return true;
     }
 
@@ -653,4 +653,4 @@ class BasqueStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { BasqueStemmer };
+export {BasqueStemmer as default,BasqueStemmer};

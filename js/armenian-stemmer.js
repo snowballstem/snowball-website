@@ -219,61 +219,61 @@ class ArmenianStemmer extends BaseStemmer {
     #r_mark_regions() {
         this.#I_pV = this.limit;
         this.#I_p2 = this.limit;
-        const /** number */ v_1 = this.C;
+        const /** number */ v_1 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
             if (!this.go_out_grouping(g_v, 1377, 1413)) break lab0;
-            this.C++;
-            this.#I_pV = this.C;
+            this.cursor++;
+            this.#I_pV = this.cursor;
             if (!this.go_in_grouping(g_v, 1377, 1413)) break lab0;
-            this.C++;
+            this.cursor++;
             if (!this.go_out_grouping(g_v, 1377, 1413)) break lab0;
-            this.C++;
+            this.cursor++;
             if (!this.go_in_grouping(g_v, 1377, 1413)) break lab0;
-            this.C++;
-            this.#I_p2 = this.C;
+            this.cursor++;
+            this.#I_p2 = this.cursor;
         }
-        this.C = v_1;
+        this.cursor = v_1;
         return true;
     }
 
     /** @return {boolean} */
     #r_R2() {
-        return this.#I_p2 <= this.C;
+        return this.#I_p2 <= this.cursor;
     }
 
     /** @return {boolean} */
     #r_adjective() {
-        this.ket = this.C;
+        this.ket = this.cursor;
         if (this.find_among_b(a_0) === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #r_verb() {
-        this.ket = this.C;
+        this.ket = this.cursor;
         if (this.find_among_b(a_1) === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #r_noun() {
-        this.ket = this.C;
+        this.ket = this.cursor;
         if (this.find_among_b(a_2) === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         this.slice_del();
         return true;
     }
 
     /** @return {boolean} */
     #r_ending() {
-        this.ket = this.C;
+        this.ket = this.cursor;
         if (this.find_among_b(a_3) === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         if (!this.#r_R2()) return false;
         this.slice_del();
         return true;
@@ -282,24 +282,24 @@ class ArmenianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #stem() {
         this.#r_mark_regions();
-        this.limit_backward = this.C; this.C = this.limit;
-        if (this.C < this.#I_pV) return false;
+        this.limit_backward = this.cursor; this.cursor = this.limit;
+        if (this.cursor < this.#I_pV) return false;
         const /** number */ v_1 = this.limit_backward;
         this.limit_backward = this.#I_pV;
-        const /** number */ v_2 = this.limit - this.C;
+        const /** number */ v_2 = this.limit - this.cursor;
         this.#r_ending();
-        this.C = this.limit - v_2;
-        const /** number */ v_3 = this.limit - this.C;
+        this.cursor = this.limit - v_2;
+        const /** number */ v_3 = this.limit - this.cursor;
         this.#r_verb();
-        this.C = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.C;
+        this.cursor = this.limit - v_3;
+        const /** number */ v_4 = this.limit - this.cursor;
         this.#r_adjective();
-        this.C = this.limit - v_4;
-        const /** number */ v_5 = this.limit - this.C;
+        this.cursor = this.limit - v_4;
+        const /** number */ v_5 = this.limit - this.cursor;
         this.#r_noun();
-        this.C = this.limit - v_5;
+        this.cursor = this.limit - v_5;
         this.limit_backward = v_1;
-        this.C = this.limit_backward;
+        this.cursor = this.limit_backward;
         return true;
     }
 
@@ -313,4 +313,4 @@ class ArmenianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { ArmenianStemmer };
+export {ArmenianStemmer as default,ArmenianStemmer};

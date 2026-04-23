@@ -151,14 +151,14 @@ class HindiStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #stem() {
-        if (this.C >= this.limit) return false;
-        this.C++;
-        this.limit_backward = this.C; this.C = this.limit;
-        this.ket = this.C;
+        if (this.cursor >= this.limit) return false;
+        this.cursor++;
+        this.limit_backward = this.cursor; this.cursor = this.limit;
+        this.ket = this.cursor;
         if (this.find_among_b(a_0, this.#r_CONSONANT) === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         this.slice_del();
-        this.C = this.limit_backward;
+        this.cursor = this.limit_backward;
         return true;
     }
 
@@ -172,4 +172,4 @@ class HindiStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { HindiStemmer };
+export {HindiStemmer as default,HindiStemmer};

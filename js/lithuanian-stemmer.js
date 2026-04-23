@@ -293,15 +293,15 @@ class LithuanianStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_step1() {
-        if (this.C < this.#I_p1) return false;
+        if (this.cursor < this.#I_p1) return false;
         const /** number */ v_1 = this.limit_backward;
         this.limit_backward = this.#I_p1;
-        this.ket = this.C;
+        this.ket = this.cursor;
         if (this.find_among_b(a_0) === 0) {
             this.limit_backward = v_1;
             return false;
         }
-        this.bra = this.C;
+        this.bra = this.cursor;
         this.limit_backward = v_1;
         this.slice_del();
         return true;
@@ -310,23 +310,23 @@ class LithuanianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_step2() {
         while (true) {
-            const /** number */ v_1 = this.limit - this.C;
+            const /** number */ v_1 = this.limit - this.cursor;
             // deno-lint-ignore no-unused-labels
             lab0: {
-                if (this.C < this.#I_p1) break lab0;
+                if (this.cursor < this.#I_p1) break lab0;
                 const /** number */ v_2 = this.limit_backward;
                 this.limit_backward = this.#I_p1;
-                this.ket = this.C;
+                this.ket = this.cursor;
                 if (this.find_among_b(a_1) === 0) {
                     this.limit_backward = v_2;
                     break lab0;
                 }
-                this.bra = this.C;
+                this.bra = this.cursor;
                 this.limit_backward = v_2;
                 this.slice_del();
                 continue;
             }
-            this.C = this.limit - v_1;
+            this.cursor = this.limit - v_1;
             break;
         }
         return true;
@@ -335,10 +335,10 @@ class LithuanianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_fix_conflicts() {
         let /** number */ a;
-        this.ket = this.C;
+        this.ket = this.cursor;
         a = this.find_among_b(a_2);
         if (a === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 this.slice_from("ait\u0117");
@@ -379,10 +379,10 @@ class LithuanianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_fix_chdz() {
         let /** number */ a;
-        this.ket = this.C;
+        this.ket = this.cursor;
         a = this.find_among_b(a_3);
         if (a === 0) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         switch (a) {
             case 1: {
                 this.slice_from("t");
@@ -398,9 +398,9 @@ class LithuanianStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_fix_gd() {
-        this.ket = this.C;
+        this.ket = this.cursor;
         if (!(this.eq_s_b("gd"))) return false;
-        this.bra = this.C;
+        this.bra = this.cursor;
         this.slice_from("g");
         return true;
     }
@@ -408,48 +408,48 @@ class LithuanianStemmer extends BaseStemmer {
     /** @return {boolean} */
     #stem() {
         this.#I_p1 = this.limit;
-        const /** number */ v_1 = this.C;
+        const /** number */ v_1 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_2 = this.C;
+            const /** number */ v_2 = this.cursor;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!(this.eq_s("a"))) {
-                    this.C = v_2;
+                    this.cursor = v_2;
                     break lab1;
                 }
                 if (this.current.length <= 6) {
-                    this.C = v_2;
+                    this.cursor = v_2;
                     break lab1;
                 }
             }
             if (!this.go_out_grouping(g_v, 97, 371)) break lab0;
-            this.C++;
+            this.cursor++;
             if (!this.go_in_grouping(g_v, 97, 371)) break lab0;
-            this.C++;
-            this.#I_p1 = this.C;
+            this.cursor++;
+            this.#I_p1 = this.cursor;
         }
-        this.C = v_1;
-        this.limit_backward = this.C; this.C = this.limit;
-        const /** number */ v_3 = this.limit - this.C;
+        this.cursor = v_1;
+        this.limit_backward = this.cursor; this.cursor = this.limit;
+        const /** number */ v_3 = this.limit - this.cursor;
         this.#r_fix_conflicts();
-        this.C = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.C;
+        this.cursor = this.limit - v_3;
+        const /** number */ v_4 = this.limit - this.cursor;
         this.#r_step1();
-        this.C = this.limit - v_4;
-        const /** number */ v_5 = this.limit - this.C;
+        this.cursor = this.limit - v_4;
+        const /** number */ v_5 = this.limit - this.cursor;
         this.#r_fix_chdz();
-        this.C = this.limit - v_5;
-        const /** number */ v_6 = this.limit - this.C;
+        this.cursor = this.limit - v_5;
+        const /** number */ v_6 = this.limit - this.cursor;
         this.#r_step2();
-        this.C = this.limit - v_6;
-        const /** number */ v_7 = this.limit - this.C;
+        this.cursor = this.limit - v_6;
+        const /** number */ v_7 = this.limit - this.cursor;
         this.#r_fix_chdz();
-        this.C = this.limit - v_7;
-        const /** number */ v_8 = this.limit - this.C;
+        this.cursor = this.limit - v_7;
+        const /** number */ v_8 = this.limit - this.cursor;
         this.#r_fix_gd();
-        this.C = this.limit - v_8;
-        this.C = this.limit_backward;
+        this.cursor = this.limit - v_8;
+        this.cursor = this.limit_backward;
         return true;
     }
 
@@ -463,4 +463,4 @@ class LithuanianStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { LithuanianStemmer };
+export {LithuanianStemmer as default,LithuanianStemmer};

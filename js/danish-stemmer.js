@@ -69,19 +69,19 @@ class DanishStemmer extends BaseStemmer {
     #r_mark_regions() {
         let /** number */ I_x;
         this.#I_p1 = this.limit;
-        const /** number */ v_1 = this.C;
+        const /** number */ v_1 = this.cursor;
         {
-            const /** number */ c = this.C + 3;
+            const /** number */ c = this.cursor + 3;
             if (c > this.limit) return false;
-            this.C = c;
+            this.cursor = c;
         }
-        I_x = this.C;
-        this.C = v_1;
+        I_x = this.cursor;
+        this.cursor = v_1;
         if (!this.go_out_grouping(g_v, 97, 248)) return false;
-        this.C++;
+        this.cursor++;
         if (!this.go_in_grouping(g_v, 97, 248)) return false;
-        this.C++;
-        this.#I_p1 = this.C;
+        this.cursor++;
+        this.#I_p1 = this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
             if (this.#I_p1 >= I_x) break lab0;
@@ -93,16 +93,16 @@ class DanishStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_main_suffix() {
         let /** number */ a;
-        if (this.C < this.#I_p1) return false;
+        if (this.cursor < this.#I_p1) return false;
         const /** number */ v_1 = this.limit_backward;
         this.limit_backward = this.#I_p1;
-        this.ket = this.C;
+        this.ket = this.cursor;
         a = this.find_among_b(a_0);
         if (a === 0) {
             this.limit_backward = v_1;
             return false;
         }
-        this.bra = this.C;
+        this.bra = this.cursor;
         this.limit_backward = v_1;
         switch (a) {
             case 1: {
@@ -120,21 +120,21 @@ class DanishStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #r_consonant_pair() {
-        const /** number */ v_1 = this.limit - this.C;
-        if (this.C < this.#I_p1) return false;
+        const /** number */ v_1 = this.limit - this.cursor;
+        if (this.cursor < this.#I_p1) return false;
         const /** number */ v_2 = this.limit_backward;
         this.limit_backward = this.#I_p1;
-        this.ket = this.C;
+        this.ket = this.cursor;
         if (this.find_among_b(a_1) === 0) {
             this.limit_backward = v_2;
             return false;
         }
-        this.bra = this.C;
+        this.bra = this.cursor;
         this.limit_backward = v_2;
-        this.C = this.limit - v_1;
-        if (this.C <= this.limit_backward) return false;
-        this.C--;
-        this.bra = this.C;
+        this.cursor = this.limit - v_1;
+        if (this.cursor <= this.limit_backward) return false;
+        this.cursor--;
+        this.bra = this.cursor;
         this.slice_del();
         return true;
     }
@@ -142,33 +142,33 @@ class DanishStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_other_suffix() {
         let /** number */ a;
-        const /** number */ v_1 = this.limit - this.C;
+        const /** number */ v_1 = this.limit - this.cursor;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            this.ket = this.C;
+            this.ket = this.cursor;
             if (!(this.eq_s_b("st"))) break lab0;
-            this.bra = this.C;
+            this.bra = this.cursor;
             if (!(this.eq_s_b("ig"))) break lab0;
             this.slice_del();
         }
-        this.C = this.limit - v_1;
-        if (this.C < this.#I_p1) return false;
+        this.cursor = this.limit - v_1;
+        if (this.cursor < this.#I_p1) return false;
         const /** number */ v_2 = this.limit_backward;
         this.limit_backward = this.#I_p1;
-        this.ket = this.C;
+        this.ket = this.cursor;
         a = this.find_among_b(a_2);
         if (a === 0) {
             this.limit_backward = v_2;
             return false;
         }
-        this.bra = this.C;
+        this.bra = this.cursor;
         this.limit_backward = v_2;
         switch (a) {
             case 1: {
                 this.slice_del();
-                const /** number */ v_3 = this.limit - this.C;
+                const /** number */ v_3 = this.limit - this.cursor;
                 this.#r_consonant_pair();
-                this.C = this.limit - v_3;
+                this.cursor = this.limit - v_3;
                 break;
             }
             case 2: {
@@ -182,15 +182,15 @@ class DanishStemmer extends BaseStemmer {
     /** @return {boolean} */
     #r_undouble() {
         let /** string */ S_ch;
-        if (this.C < this.#I_p1) return false;
+        if (this.cursor < this.#I_p1) return false;
         const /** number */ v_1 = this.limit_backward;
         this.limit_backward = this.#I_p1;
-        this.ket = this.C;
+        this.ket = this.cursor;
         if (!(this.in_grouping_b(g_c, 98, 122))) {
             this.limit_backward = v_1;
             return false;
         }
-        this.bra = this.C;
+        this.bra = this.cursor;
         S_ch = this.slice_to();
         this.limit_backward = v_1;
         if (!(this.eq_s_b(S_ch))) return false;
@@ -200,23 +200,23 @@ class DanishStemmer extends BaseStemmer {
 
     /** @return {boolean} */
     #stem() {
-        const /** number */ v_1 = this.C;
+        const /** number */ v_1 = this.cursor;
         this.#r_mark_regions();
-        this.C = v_1;
-        this.limit_backward = this.C; this.C = this.limit;
-        const /** number */ v_2 = this.limit - this.C;
+        this.cursor = v_1;
+        this.limit_backward = this.cursor; this.cursor = this.limit;
+        const /** number */ v_2 = this.limit - this.cursor;
         this.#r_main_suffix();
-        this.C = this.limit - v_2;
-        const /** number */ v_3 = this.limit - this.C;
+        this.cursor = this.limit - v_2;
+        const /** number */ v_3 = this.limit - this.cursor;
         this.#r_consonant_pair();
-        this.C = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.C;
+        this.cursor = this.limit - v_3;
+        const /** number */ v_4 = this.limit - this.cursor;
         this.#r_other_suffix();
-        this.C = this.limit - v_4;
-        const /** number */ v_5 = this.limit - this.C;
+        this.cursor = this.limit - v_4;
+        const /** number */ v_5 = this.limit - this.cursor;
         this.#r_undouble();
-        this.C = this.limit - v_5;
-        this.C = this.limit_backward;
+        this.cursor = this.limit - v_5;
+        this.cursor = this.limit_backward;
         return true;
     }
 
@@ -230,4 +230,4 @@ class DanishStemmer extends BaseStemmer {
     stemWord = this.stem;
 }
 
-export { DanishStemmer };
+export {DanishStemmer as default,DanishStemmer};
