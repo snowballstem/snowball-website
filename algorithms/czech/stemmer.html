@@ -37,261 +37,370 @@
 
 <ul>
 <li> <a href="https://en.wikipedia.org/wiki/Czech_language">Czech language</a> on Wikipedia</li>
+<li> <a href="https://libra.unine.ch/bitstreams/fda9d5f8-1f33-44ca-86bb-a36f7b060782/download">Indexing and stemming approaches for the Czech language.</a> Ljiljana Dolamic and Jacques Savoy. 2009.  Inf. Process. Manage. 45, 6 (November 2009), 714-720.
 </ul>
 
 <p>
-In March 2012 Jim O&#8217;Regan sent us an implementation of Ljiljana
-Dolamic's Czech stemmer.
+In March 2012, Jim O&#8217;Regan sent us an implementation of Ljiljana
+Dolamic's Czech stemmer.  This was only on the website for many years, but
+finally got merged in Snowball 3.1.0 in 2026.
+</p>
+
+<p>
+The merged version is based on Jim's, but resolves discrepancies between it,
+the original paper (linked above), and the light and aggressive Czech stemmers
+from <a href="http://members.unine.ch/jacques.savoy/clef/">UniNE</a>
+which are also by Ljiljana Dolamic.  We have made significant further
+improvements after evaluating our stemmer on a Czech vocabulary list.
+</p>
+
+<h2>Design Notes</h2>
+
+<h3>Scope</h3>
+
+<p>
+We've chosen the "light" versions of Dolamic's and O&#8217;Regan's stemmers
+as our starting point.  The other Snowball stemmers are generally light
+rather than aggressive, and Dolamic's aggressive variant is reportedly known
+to overstem.
+</p>
+
+<p>
+We've focussed on stemming noun forms by removing case suffixes and possessive
+suffixes.  There's significant overlap in Czech noun and adjectival suffixes,
+and some overlap with verbs, so many adjectives and some verbs are also
+handled.
+</p>
+
+<h3>R1 Definition</h3>
+
+<p>
+Like most of the other Snowball stemmers, the Czech stemmer defines an R1
+region to reduce overstemming.  The definition of R1 used for Czech is
+similar to that for other languages, but also takes into account syllabic
+consonants: in Czech, an <b>r</b> and <b>l</b> between two consonants, or after
+a consonant at the end of a word, can act as a syllable nuceleus in place of
+a vowel.
+</p>
+
+<p>
+For example, <i>vlna</i> (wool) has declension <i>vlna</i>, <i>vlny</i>,
+<i>vlne</i>, <i>vlnu</i>, <i>vlne</i>, <i>vlnou</i> and we want R1 to start
+right after <b>vln</b>.
+</p>
+
+<p>
+Some sources say <b>m</b> and/or <b>n</b> can also act in this way, but these
+seem to be extremely rarely used in practice, and including them actually
+causes a false conflations while almost never helping, so our stemmer only
+considers <b>r</b> and <b>l</b> as special for determining R1.
+</p>
+
+<p>
+R1 is also required to start at least 3 characters into the word which helped
+to reduce overstemming in our tests.
+</p>
+
+<p>
+(The stemmer in the paper and the UniNE versions both enforce a minimum stem
+length using a simple character count; Jim's Snowball version uses defines a
+region R1, but his definition doesn't take into account syllabic consonants.)
+</p>
+
+<h3>Palatalisation</h3>
+
+<p>
+A hard final consonant in the word stem is softened before certain suffixes,
+which is reflected in how written words are spelled.  For example <i>kluk</i>
++ <i>-i</i> → <i>kluci</i>.  Ideally we want to reverse this when removing
+such a suffix, but this is tricky because the word stem could end in <i>c</i>
+- for example, <i>vejce</i> + <i>-i</i> → <i>vejci</i>.  In some cases (such
+as <i>vejci</i>) we can safely make <<i>vejk</i> our stem - it's linguistically
+incorrect, but doesn't collide with the stem of an unrelated word.  In some
+other cases we don't palatalise a trailing consonant because our testing
+suggested it hindered more than it helped.
+</p>
+
+<p>
+(The stemmer in the paper, the UniNE versions, and Jim's Snowball version all
+palatalise in more cases.)
+</p>
+
+<h3>Addition of <i>-e-</i></h3>
+
+<p>
+For nouns in which the stem ends with a consonant group, a floating <i>-e-</i>
+is usually inserted between the last two consonants in cases with no ending.
+For example, <i>zámku</i> and <i>zámek</i>.  Our stemmer removes this in
+most cases, so both of these stem to <i>zámk</i>.  (This is not done by the
+other stemmer versions.)
+</p>
+
+<h3>Vowel alternation</h3>
+
+<p>
+Sometimes a vowel changes in the word stem when adding certain suffixes - for
+example, the genitive plural of <i>smlouva</i> is <i>smluv</i>.  This seems to
+be hard to reverse without affecting words where the vowel hasn't changed, so
+our stemmer does not currently try to do anything special for such words (nor
+do the other versions).
 </p>
 
 <div class="highlight"><pre><span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="n">RV</span><span class="w"> </span><span class="n">R1</span>
-<span class="w">  </span><span class="n">palatalise</span>
+<span class="w">  </span><span class="n">R1</span>
+<span class="w">  </span><span class="n">palatalise_e</span>
+<span class="w">  </span><span class="n">palatalise_i</span>
 <span class="w">  </span><span class="n">mark_regions</span>
-<span class="w">  </span><span class="n">do_possessive</span>
-<span class="w">  </span><span class="n">do_case</span>
-<span class="w">  </span><span class="n">do_comparative</span>
-<span class="w">  </span><span class="n">do_diminutive</span>
-<span class="w">  </span><span class="n">do_augmentative</span>
-<span class="w">  </span><span class="n">do_derivational</span>
-<span class="w">  </span><span class="n">do_deriv_single</span>
-<span class="w">  </span><span class="n">do_aggressive</span>
+<span class="w">  </span><span class="n">possessive_suffix</span>
+<span class="w">  </span><span class="n">case_suffix</span>
 <span class="p">)</span>
 
 <span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">pV</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="p">)</span>
+<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">)</span>
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">env_ending</span><span class="w"> </span><span class="n">ev_ending</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">v_or_syllabic_c</span><span class="w"> </span><span class="p">)</span>
 
 <span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span>
 
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">a&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00E1}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">c^</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+010D}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">d^</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+010F}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">e&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00E9}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">e^</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+011B}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">i&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00ED}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">n^</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0148}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">o&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00F3}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">r^</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0159}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">s^</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0161}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">t^</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0165}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">u&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00FA}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">u*</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+016F}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">y&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00FD}</span><span class="s1">&#39;</span>
-<span class="kr">stringdef</span><span class="w"> </span><span class="se">z^</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+017E}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">a&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00E1}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// á</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">cv</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+010D}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// č</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">dv</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+010F}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ď</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">e&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00E9}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// é</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">ev</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+011B}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ě</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">i&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00ED}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// í</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">nv</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0148}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ň</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">o&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00F3}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ó</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">rv</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0159}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ř</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">sv</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0161}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// š</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">tv</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+0165}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ť</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">u&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00FA}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ú</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">uo</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+016F}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ů</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">y&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+00FD}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ý</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">zv</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{U+017E}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// ž</span>
 
-<span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiouy</span><span class="se">{a&#39;}{e^}{e&#39;}{i&#39;}{o&#39;}{u&#39;}{u*}{y&#39;}</span><span class="s1">&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiouy</span><span class="se">{a&#39;}{ev}{e&#39;}{i&#39;}{o&#39;}{u&#39;}{uo}{y&#39;}</span><span class="s1">&#39;</span>
+
+<span class="c1">// Some consonants in Czech can be syllabic - if these occur between two other</span>
+<span class="c1">// consonants then they act in a vowel-like way and it is helpful to include</span>
+<span class="c1">// them in the definition of R1.</span>
+<span class="c1">//</span>
+<span class="c1">// Some sources also list &#39;m&#39; and &#39;n&#39; as syllabic consonants for Czech but they</span>
+<span class="c1">// seem to be much rarer and including them makes no difference to the results</span>
+<span class="c1">// of stemming any words in our sample vocabulary list.  Checking on a larger</span>
+<span class="c1">// vocabulary list (also from wikipedia but with a lower cut-off frequency)</span>
+<span class="c1">// all but one of the affected words don&#39;t seem to actually be Czech words.</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">v_or_syllabic_c</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;lr&#39;</span>
+
+<span class="c1">// Letters that can occur before -ev.  Actual known exceptions include</span>
+<span class="c1">// &#39;j&#39; (objev, projev, výjev) and &#39;ř&#39; (ohřev)</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">ev_ending</span><span class="w"> </span><span class="s1">&#39;hknrtz&#39;</span>
+
+<span class="c1">// Letters that can occur before -eň.  Actual known exceptions include</span>
+<span class="c1">// &#39;g&#39; (Irgeň), &#39;l&#39; (zeleň), &#39;m&#39; (kameň) and &#39;ř&#39; (třeň).</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">env_ending</span><span class="w"> </span><span class="s1">&#39;bc</span><span class="se">{cv}</span><span class="s1">dhkprs</span><span class="se">{sv}</span><span class="s1">tvz</span><span class="se">{zv}</span><span class="s1">&#39;</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">    </span><span class="o">$</span><span class="n">pV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
-<span class="w">    </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
+<span class="w">    </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="c1">// Signals f if the input &lt; 3 characters.</span>
 
+<span class="w">    </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
 <span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">pV</span>
-<span class="w">        </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
+<span class="w">        </span><span class="c1">// A syllabic consonant must occur between two consonants, or be</span>
+<span class="w">        </span><span class="c1">// preceded by a consonant and at the end of the word.</span>
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="c1">// Instead of literally testing that, we handle the first character</span>
+<span class="w">        </span><span class="c1">// specially by only checking if it&#39;s a vowel; for subsequent</span>
+<span class="w">        </span><span class="c1">// characters we know that the character before is a consonant because</span>
+<span class="w">        </span><span class="c1">// otherwise we&#39;d have stopped already.</span>
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="c1">// We also don&#39;t actually need to check the character after, since</span>
+<span class="w">        </span><span class="c1">// if it&#39;s a vowel then that vowel means we&#39;d end up at the same</span>
+<span class="w">        </span><span class="c1">// position after `gopast non-v` anyway, and if it&#39;s the end of the</span>
+<span class="w">        </span><span class="c1">// word then there&#39;s no non-v after it.</span>
+<span class="w">        </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v_or_syllabic_c</span><span class="p">))</span><span class="w"> </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span>
+<span class="w">        </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
+<span class="w">        </span><span class="ow">try</span><span class="p">(</span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">  </span><span class="c1">// at least 3</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">RV</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">$</span><span class="n">pV</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">cursor</span>
 <span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">cursor</span>
 
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">palatalise</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">RV</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;ci&#39;</span><span class="w"> </span><span class="s1">&#39;ce&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{c^}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{c^}</span><span class="s1">&#39;</span>
-<span class="w">      </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;zi&#39;</span><span class="w"> </span><span class="s1">&#39;ze&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{z^}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{z^}</span><span class="s1">e&#39;</span>
-<span class="w">      </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{c^}</span><span class="s1">t</span><span class="se">{e^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{c^}</span><span class="s1">ti&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{c^}</span><span class="s1">t</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span>
-<span class="w">      </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;ck&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{s^}</span><span class="s1">t</span><span class="se">{e^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{s^}</span><span class="s1">ti&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{s^}</span><span class="s1">t</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span>
-<span class="w">      </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;sk&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">palatalise_e</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// -c -&gt; -k</span>
+<span class="w">      </span><span class="s1">&#39;c&#39;</span>
+<span class="w">        </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;nc&#39;</span><span class="w"> </span><span class="c1">// e.g. finance</span>
+<span class="w">      </span><span class="s1">&#39;avc&#39;</span><span class="w"> </span><span class="c1">// e.g. dravce</span>
+<span class="w">      </span><span class="s1">&#39;ovc&#39;</span><span class="w"> </span><span class="c1">// e.g. jalovce</span>
+<span class="w">        </span><span class="p">()</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">nc&#39;</span><span class="w"> </span><span class="c1">// e.g. podmínce</span>
+<span class="w">        </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">nk&#39;</span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="w">  </span><span class="p">)</span>
 
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">do_possessive</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">RV</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;ov&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u*}</span><span class="s1">v&#39;</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">palatalise_i</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// -c -&gt; -k</span>
+<span class="w">      </span><span class="s1">&#39;c&#39;</span>
+<span class="w">        </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;nc&#39;</span><span class="w"> </span><span class="c1">// e.g. financí</span>
+<span class="w">      </span><span class="s1">&#39;avc&#39;</span><span class="w"> </span><span class="c1">// e.g. nástavci</span>
+<span class="w">      </span><span class="s1">&#39;ovc&#39;</span><span class="w"> </span><span class="c1">// e.g. pískovci</span>
+<span class="w">        </span><span class="p">()</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">nc&#39;</span><span class="w"> </span><span class="c1">// e.g. podmínce</span>
+<span class="w">        </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">nk&#39;</span><span class="p">)</span>
+
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{cv}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;ck&#39;</span><span class="p">)</span>
+
+<span class="w">      </span><span class="c1">// -št -&gt; -sk</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{sv}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="c1">// e.g. čeština</span>
+<span class="w">        </span><span class="p">(</span><span class="o">&lt;-</span><span class="s1">&#39;sk&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{a&#39;}{sv}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="c1">// e.g. plášti</span>
+<span class="w">      </span><span class="s1">&#39;de</span><span class="se">{sv}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="c1">// e.g. dešti</span>
+<span class="w">      </span><span class="s1">&#39;i</span><span class="se">{sv}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="c1">// e.g. bojišti</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{i&#39;}{sv}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="c1">// e.g. příští</span>
+<span class="w">      </span><span class="s1">&#39;le</span><span class="se">{sv}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="c1">// e.g. kleští</span>
+<span class="w">      </span><span class="s1">&#39;pou</span><span class="se">{sv}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="c1">// e.g. poušti, spouští</span>
+<span class="w">        </span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">possessive_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;ov&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{uo}</span><span class="s1">v&#39;</span>
 <span class="w">      </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
 <span class="w">      </span><span class="s1">&#39;in&#39;</span>
 <span class="w">      </span><span class="p">(</span>
 <span class="w">        </span><span class="ow">delete</span>
-<span class="w">        </span><span class="ow">try</span><span class="w"> </span><span class="n">palatalise</span>
+<span class="w">        </span><span class="ow">try</span><span class="w"> </span><span class="n">palatalise_i</span>
 <span class="w">      </span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="w">  </span><span class="p">)</span>
 
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">do_case</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">case_suffix</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
 <span class="w">      </span><span class="s1">&#39;atech&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e^}</span><span class="s1">tem&#39;</span><span class="w"> </span><span class="s1">&#39;at</span><span class="se">{u*}</span><span class="s1">m&#39;</span>
+<span class="w">      </span><span class="s1">&#39;at</span><span class="se">{uo}</span><span class="s1">m&#39;</span>
 <span class="w">      </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">ch&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{y&#39;}</span><span class="s1">ch&#39;</span><span class="w"> </span><span class="s1">&#39;ov</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{y&#39;}</span><span class="s1">mi&#39;</span>
 <span class="w">      </span><span class="s1">&#39;ata&#39;</span><span class="w"> </span><span class="s1">&#39;aty&#39;</span><span class="w"> </span><span class="s1">&#39;ama&#39;</span><span class="w"> </span><span class="s1">&#39;ami&#39;</span><span class="w"> </span><span class="s1">&#39;ovi&#39;</span>
-<span class="w">      </span><span class="s1">&#39;at&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;os&#39;</span><span class="w"> </span><span class="s1">&#39;us&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{y&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;mi&#39;</span><span class="w"> </span><span class="s1">&#39;ou&#39;</span>
-<span class="w">      </span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{u*}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{y&#39;}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;at&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;us&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{uo}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{y&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;mi&#39;</span><span class="w"> </span><span class="s1">&#39;ou&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">ho&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">mu&#39;</span>
+<span class="w">      </span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{uo}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{y&#39;}</span><span class="s1">&#39;</span>
 <span class="w">      </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;ech&#39;</span><span class="w"> </span><span class="s1">&#39;ich&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">ch&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">ho&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e^}</span><span class="s1">mi&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">mu&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e^}</span><span class="s1">te&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e^}</span><span class="s1">ti&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">ho&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">mi&#39;</span>
-<span class="w">      </span><span class="s1">&#39;emi&#39;</span><span class="w"> </span><span class="s1">&#39;iho&#39;</span><span class="w"> </span><span class="s1">&#39;imu&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;es&#39;</span>
-<span class="w">      </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e^}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ev}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ev}</span><span class="s1">tem&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ev}</span><span class="s1">mi&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ev}</span><span class="s1">te&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{ev}</span><span class="s1">ti&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ev}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="c1">// e.g. koněm</span>
 <span class="w">      </span><span class="p">(</span>
 <span class="w">        </span><span class="ow">delete</span>
-<span class="w">        </span><span class="ow">try</span><span class="w"> </span><span class="n">palatalise</span>
 <span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;em&#39;</span>
+<span class="w">      </span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="s1">&#39;ech&#39;</span><span class="w"> </span><span class="s1">&#39;em&#39;</span><span class="w"> </span><span class="s1">&#39;emi&#39;</span>
 <span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span>
-<span class="w">        </span><span class="ow">try</span><span class="w"> </span><span class="n">palatalise</span>
+<span class="w">        </span><span class="ow">delete</span>
+<span class="w">        </span><span class="ow">try</span><span class="w"> </span><span class="n">palatalise_e</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ete&#39;</span><span class="w"> </span><span class="s1">&#39;eti&#39;</span><span class="w"> </span><span class="s1">&#39;etem&#39;</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="c1">// t-stem neuter nouns</span>
+<span class="w">        </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="s1">&#39;</span><span class="se">{cv}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// e.g. dvojč-etem</span>
+<span class="w">          </span><span class="s1">&#39;l&#39;</span><span class="w">     </span><span class="c1">// e.g. batol-ete</span>
+<span class="w">          </span><span class="s1">&#39;</span><span class="se">{rv}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// e.g. zvíř-ete</span>
+<span class="w">          </span><span class="s1">&#39;s&#39;</span><span class="w">     </span><span class="c1">// e.g. pras-ete</span>
+<span class="w">          </span><span class="s1">&#39;</span><span class="se">{zv}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// e.g. páž-ete</span>
+<span class="w">              </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">          </span><span class="s1">&#39;e</span><span class="se">{cv}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// e.g. pečet-i</span>
+<span class="w">          </span><span class="s1">&#39;tl&#39;</span><span class="w">    </span><span class="c1">// e.g. atlet-i</span>
+<span class="w">          </span><span class="s1">&#39;es&#39;</span><span class="w">    </span><span class="c1">// e.g. deset-i</span>
+<span class="w">          </span><span class="s1">&#39;&#39;</span>
+<span class="w">              </span><span class="p">(</span>
+<span class="w">                </span><span class="c1">// Remove -e, -i, or -em; stem now ends -et so no palatalise</span>
+<span class="w">                </span><span class="c1">// step is needed.</span>
+<span class="w">                </span><span class="o">&lt;-</span><span class="s1">&#39;et&#39;</span>
+<span class="w">              </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;eb&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="c1">// Conflate e.g. skladeb with skladba, skladbě, skladby, etc.</span>
+<span class="w">        </span><span class="ow">test</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span>
+<span class="w">        </span><span class="ow">not</span><span class="w"> </span><span class="s1">&#39;t</span><span class="se">{rv}</span><span class="s1">&#39;</span><span class="w"> </span><span class="c1">// potřeb</span>
+<span class="w">        </span><span class="o">&lt;-</span><span class="s1">&#39;b&#39;</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ec&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="c1">// Conflate e.g. obec with obce, obcemi, obci, obcí, obcích.</span>
+<span class="w">        </span><span class="ow">test</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span>
+<span class="w">        </span><span class="ow">delete</span><span class="w"> </span><span class="ow">attach</span><span class="w"> </span><span class="s1">&#39;c&#39;</span>
+<span class="w">        </span><span class="ow">try</span><span class="w"> </span><span class="n">palatalise_e</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ek&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="c1">// Conflate e.g. článek with článkem, článku, článků, článkům, články.</span>
+<span class="w">        </span><span class="ow">test</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span>
+<span class="w">        </span><span class="ow">not</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="s1">&#39;dot&#39;</span><span class="w"> </span><span class="c1">// dotek</span>
+<span class="w">          </span><span class="s1">&#39;obl&#39;</span><span class="w"> </span><span class="c1">// oblek</span>
+<span class="w">          </span><span class="s1">&#39;sn&#39;</span><span class="w"> </span><span class="c1">// česnek</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="o">&lt;-</span><span class="s1">&#39;k&#39;</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{ev}</span><span class="s1">k&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="c1">// Conflate e.g. daněk with daňka, daňkem, daňki, daňkovi, daňků, etc.</span>
+<span class="w">        </span><span class="s1">&#39;n&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="s1">&#39;</span><span class="se">{nv}</span><span class="s1">k&#39;</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;e</span><span class="se">{nv}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="c1">// Conflate e.g. Plzeň with Plzně, Plzni, Plzní.</span>
+<span class="w">        </span><span class="ow">test</span><span class="w"> </span><span class="n">env_ending</span>
+<span class="w">        </span><span class="o">&lt;-</span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="c1">// -eň -&gt; -n not -ň</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="c1">// -eš can also lose the -e- but this seems very uncommon - the only</span>
+<span class="w">      </span><span class="c1">// example I&#39;ve seen is Aleš (a male given name or diminuitive name)</span>
+<span class="w">      </span><span class="c1">// but we require 3 characters before R1 so this won&#39;t be considered</span>
+<span class="w">      </span><span class="c1">// for stemming.</span>
+<span class="w">      </span><span class="c1">//</span>
+<span class="w">      </span><span class="c1">// Also this can decline as Alše or Aleše, etc, and these alternative</span>
+<span class="w">      </span><span class="c1">// declensions mean that just removing the -e- from Aleš would not</span>
+<span class="w">      </span><span class="c1">// really help (especially as the forms which keep the -e- seem</span>
+<span class="w">      </span><span class="c1">// more common, at least based on cs.wikipedia.org) so if we did this</span>
+<span class="w">      </span><span class="c1">// we would need to also remove -e- from Aleše, etc, which seems a lot</span>
+<span class="w">      </span><span class="c1">// of complication for a single word.</span>
+<span class="w">      </span><span class="s1">&#39;et&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="c1">// Conflate e.g. počet with počte, počtu, počty, etc.</span>
+<span class="w">        </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="s1">&#39;uc&#39;</span><span class="w"> </span><span class="c1">// e.g. tucet but not dvacet.</span>
+<span class="w">          </span><span class="s1">&#39;</span><span class="se">{cv}</span><span class="s1">&#39;</span>
+<span class="w">          </span><span class="s1">&#39;h&#39;</span>
+<span class="w">          </span><span class="s1">&#39;ok&#39;</span><span class="w"> </span><span class="c1">// e.g. loket but not paket.</span>
+<span class="w">          </span><span class="s1">&#39;kar&#39;</span><span class="w"> </span><span class="c1">// e.g. karet but not cigaret.</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="o">&lt;-</span><span class="s1">&#39;t&#39;</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;ev&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="c1">// Conflate e.g. církev with církve, církve, církvemu, církví, etc.</span>
+<span class="w">        </span><span class="n">ev_ending</span>
+<span class="w">        </span><span class="o">&lt;-</span><span class="s1">&#39;v&#39;</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{tv}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{tv}</span><span class="s1">mi&#39;</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="c1">// Conflate e.g. oběť and oběťmi with obětech; hradišť with hradišti.</span>
+<span class="w">        </span><span class="o">&lt;-</span><span class="s1">&#39;t&#39;</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="s1">&#39;i&#39;</span>
+<span class="w">      </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">ch&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">ho&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">m&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">mi&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">mu&#39;</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="ow">delete</span>
+<span class="w">        </span><span class="ow">try</span><span class="w"> </span><span class="n">palatalise_i</span>
 <span class="w">      </span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">)</span>
-
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">do_derivational</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;obinec&#39;</span>
-<span class="w">      </span><span class="s1">&#39;ovisk&#39;</span><span class="w"> </span><span class="s1">&#39;ovstv&#39;</span><span class="w"> </span><span class="s1">&#39;ovi</span><span class="se">{s^}</span><span class="s1">t&#39;</span><span class="w"> </span><span class="s1">&#39;ovn</span><span class="se">{i&#39;}</span><span class="s1">k&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">sek&#39;</span><span class="w"> </span><span class="s1">&#39;loun&#39;</span><span class="w"> </span><span class="s1">&#39;nost&#39;</span><span class="w"> </span><span class="s1">&#39;teln&#39;</span><span class="w"> </span><span class="s1">&#39;ovec&#39;</span><span class="w"> </span><span class="s1">&#39;ov</span><span class="se">{i&#39;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;ovtv&#39;</span><span class="w"> </span><span class="s1">&#39;ovin&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{s^}</span><span class="s1">tin&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">rn&#39;</span><span class="w"> </span><span class="s1">&#39;och&#39;</span><span class="w"> </span><span class="s1">&#39;ost&#39;</span><span class="w"> </span><span class="s1">&#39;ovn&#39;</span><span class="w"> </span><span class="s1">&#39;oun&#39;</span><span class="w"> </span><span class="s1">&#39;out&#39;</span><span class="w"> </span><span class="s1">&#39;ou</span><span class="se">{s^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;u</span><span class="se">{s^}</span><span class="s1">k&#39;</span>
-<span class="w">      </span><span class="s1">&#39;kyn&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{c^}</span><span class="s1">an&#39;</span><span class="w"> </span><span class="s1">&#39;k</span><span class="se">{a&#39;}{r^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;n</span><span class="se">{e&#39;}{r^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;n</span><span class="se">{i&#39;}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;ctv&#39;</span><span class="w"> </span><span class="s1">&#39;stv&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{a&#39;}{c^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;a</span><span class="se">{c^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="s1">&#39;an&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}{r^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;as&#39;</span>
-<span class="w">      </span><span class="s1">&#39;ob&#39;</span><span class="w"> </span><span class="s1">&#39;ot&#39;</span><span class="w"> </span><span class="s1">&#39;ov&#39;</span><span class="w"> </span><span class="s1">&#39;o</span><span class="se">{n^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;ul&#39;</span><span class="w"> </span><span class="s1">&#39;yn&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{c^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{c^}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="s1">&#39;dl&#39;</span><span class="w"> </span><span class="s1">&#39;nk&#39;</span><span class="w"> </span><span class="s1">&#39;tv&#39;</span><span class="w"> </span><span class="s1">&#39;tk&#39;</span><span class="w"> </span><span class="s1">&#39;vk&#39;</span>
-<span class="w">      </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;ion</span><span class="se">{a&#39;}{r^}</span><span class="s1">&#39;</span>
-<span class="w">      </span><span class="s1">&#39;inec&#39;</span><span class="w"> </span><span class="s1">&#39;itel&#39;</span>
-<span class="w">      </span><span class="s1">&#39;i</span><span class="se">{a&#39;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="s1">&#39;ist&#39;</span><span class="w"> </span><span class="s1">&#39;isk&#39;</span><span class="w"> </span><span class="s1">&#39;i</span><span class="se">{s^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;itb&#39;</span>
-<span class="w">      </span><span class="s1">&#39;ic&#39;</span><span class="w"> </span><span class="s1">&#39;in&#39;</span><span class="w"> </span><span class="s1">&#39;it&#39;</span><span class="w"> </span><span class="s1">&#39;iv&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;i&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;enic&#39;</span><span class="w"> </span><span class="s1">&#39;ec&#39;</span><span class="w"> </span><span class="s1">&#39;en&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e&#39;}{r^}</span><span class="s1">&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e^}</span><span class="s1">n&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e^}</span><span class="s1">&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">rn&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{i&#39;}{r^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">n&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">do_deriv_single</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;c&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{c^}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;k&#39;</span><span class="w"> </span><span class="s1">&#39;l&#39;</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="w"> </span><span class="s1">&#39;t&#39;</span>
-<span class="w">      </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">)</span>
-
-
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">do_augmentative</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;ajzn&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">k&#39;</span>
-<span class="w">      </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;izn&#39;</span><span class="w"> </span><span class="s1">&#39;isk&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;i&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">)</span>
-
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">do_diminutive</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;ou</span><span class="se">{s^}</span><span class="s1">ek&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}{c^}</span><span class="s1">ek&#39;</span><span class="w"> </span><span class="s1">&#39;a</span><span class="se">{c^}</span><span class="s1">ek&#39;</span><span class="w"> </span><span class="s1">&#39;o</span><span class="se">{c^}</span><span class="s1">ek&#39;</span><span class="w"> </span><span class="s1">&#39;u</span><span class="se">{c^}</span><span class="s1">ek&#39;</span>
-<span class="w">      </span><span class="s1">&#39;anek&#39;</span><span class="w"> </span><span class="s1">&#39;onek&#39;</span><span class="w"> </span><span class="s1">&#39;unek&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">nek&#39;</span>
-<span class="w">      </span><span class="s1">&#39;e</span><span class="se">{c^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}{c^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;i</span><span class="se">{c^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}{c^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;enk&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">nk&#39;</span><span class="w"> </span><span class="s1">&#39;ink&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">nk&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{a&#39;}{c^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;a</span><span class="se">{c^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;o</span><span class="se">{c^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;u</span><span class="se">{c^}</span><span class="s1">k&#39;</span><span class="w"> </span><span class="s1">&#39;ank&#39;</span><span class="w"> </span><span class="s1">&#39;onk&#39;</span><span class="w"> </span><span class="s1">&#39;unk&#39;</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">tk&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">nk&#39;</span><span class="w"> </span><span class="s1">&#39;u</span><span class="se">{s^}</span><span class="s1">k&#39;</span>
-<span class="w">      </span><span class="s1">&#39;k&#39;</span>
-<span class="w">      </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;e</span><span class="se">{c^}</span><span class="s1">ek&#39;</span><span class="w"> </span><span class="s1">&#39;enek&#39;</span><span class="w"> </span><span class="s1">&#39;ek&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e&#39;}{c^}</span><span class="s1">ek&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">k&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e&#39;}</span><span class="s1">&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;i</span><span class="se">{c^}</span><span class="s1">ek&#39;</span><span class="w"> </span><span class="s1">&#39;inek&#39;</span><span class="w"> </span><span class="s1">&#39;ik&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;i&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{i&#39;}{c^}</span><span class="s1">ek&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">k&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{i&#39;}</span><span class="s1">&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">k&#39;</span>
-<span class="w">       </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&#39;}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;ak&#39;</span>
-<span class="w">       </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;ok&#39;</span>
-<span class="w">       </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;uk&#39;</span>
-<span class="w">       </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">)</span>
-
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">do_comparative</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;</span><span class="se">{e^}</span><span class="s1">j</span><span class="se">{s^}</span><span class="s1">&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{e^}</span><span class="s1">&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">      </span><span class="s1">&#39;ej</span><span class="se">{s^}</span><span class="s1">&#39;</span>
-<span class="w">      </span><span class="p">(</span>
-<span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span>
-<span class="w">        </span><span class="n">palatalise</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">)</span>
-
-<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">do_aggressive</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">do_comparative</span>
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">do_diminutive</span>
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">do_augmentative</span>
-<span class="w">    </span><span class="n">do_derivational</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">do_deriv_single</span>
 <span class="w">  </span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">mark_regions</span>
+<span class="w">  </span><span class="n">mark_regions</span><span class="w"> </span><span class="c1">// Signals f if the input has &lt; 3 characters.</span>
 <span class="w">  </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">do_case</span>
-<span class="w">    </span><span class="n">do_possessive</span>
-<span class="w">    </span><span class="c1">// light and aggressive are the same to this point</span>
-<span class="w">    </span><span class="c1">// comment next line for light stemmer</span>
-<span class="w">    </span><span class="n">do_aggressive</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">case_suffix</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">possessive_suffix</span>
 <span class="w">  </span><span class="p">)</span>
 <span class="p">)</span>
-
-<span class="c1">// Ljiljana Dolamic and Jacques Savoy. 2009.</span>
-<span class="c1">// Indexing and stemming approaches for the Czech language.</span>
-<span class="c1">// Inf. Process. Manage. 45, 6 (November 2009), 714-720.</span>
-<span class="c1">// http://members.unine.ch/jacques.savoy/clef/CzechStemmerLight.txt</span>
-<span class="c1">// http://members.unine.ch/jacques.savoy/clef/CzechStemmerAgressive.txt</span>
 </pre></div>
 
 

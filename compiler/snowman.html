@@ -1700,19 +1700,19 @@ is equivalent to:
          )
 </PRE>
 
-<h3>13.3 => command</h3>
+<h3>13.3 =&gt; command</h3>
 
 <div class="highlight"><pre><span class="w">        </span><span class="o">$</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">y</span>
 </pre></div>
 
 
 <p>
-sets the value of &nbsp;<code>y</code>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<code>x</code>.
+was documented as setting the value of &nbsp;<code>y</code>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<code>x</code>.
 </p>
 
 <p>
 However this was not the implemented behaviour - instead the region copied begins at
-the <b>start</b> of &nbsp;<code>x</code> rather than the cursor.  This difference
+the <b>start</b> of &nbsp;<code>x</code> rather than beginning at the cursor.  This difference
 can be seen with code such as
 </p>
 
@@ -1753,8 +1753,8 @@ If you have a use which you can't see how to replace, please get in touch and we
 
 <p>
 Snowball supports &nbsp;<code>&lt;+</code>&nbsp; as a synonym for &nbsp;<code>insert</code>.
-We recommend always using <code>insert</code> instead as it's clearer and not
-unnecessarily verbose.
+We recommend always using <code>insert</code> instead.  It is slightly more
+verbose, but not excessively so, and the meaning is clearer.
 </p>
 
 <h2>Snowball syntax</h2>
