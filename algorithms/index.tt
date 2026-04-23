@@ -64,6 +64,7 @@ in parentheses:
   <li><a href="/algorithms/irish/stemmer.html">Irish Gaelic</a></li>
   <li><a href="/algorithms/lithuanian/stemmer.html">Lithuanian</a></li>
   <li><a href="/algorithms/nepali/stemmer.html">Nepali</a></li>
+  <li><a href="/algorithms/sesotho/stemmer.html>Sesotho</a></li><!-- Bantu language family -->
   <li><a href="/algorithms/tamil/stemmer.html">Tamil</a></li>
   <li><a href="/algorithms/turkish/stemmer.html">Turkish</a></li>
 </ul>
