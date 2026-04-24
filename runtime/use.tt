@@ -119,7 +119,7 @@ would give rise to the header file,
 
 <p>
 If &nbsp;<code>-vprefix</code>&nbsp; is used, then functions are generated to
-provide access to Snowball strings, integers and booleans. (In Snowball 3.1.x
+provide access to Snowball strings, integers and booleans. (In Snowball 3.0.x
 and earlier, Snowball variables were stored in a different way in the generated
 C code and macros were generated if <code>-vprefix</code> was used).
 For example
@@ -144,12 +144,12 @@ would give rise the header file,
 ", "c") %]
 
 <p>
-The Snowball compiler will attempt to "localise" integer and boolean variables
-used only in one routine, in which case they become local variables in the C
-code and <code>-vprefix</code> won't generate code for them.  Let us know if
-this is a problem for you (the Snowball language may need to gain a way to mark
-variables as external which could suppress this optimisation and generate an
-access function.
+The Snowball compiler will (since 3.1.0) attempt to "localise" integer and
+boolean variables used only in one routine, in which case they become local
+variables in the C code and <code>-vprefix</code> won't generate code for them.
+Let us know if this is a problem for you (the Snowball language may need to
+gain a way to mark variables as external which could suppress this optimisation
+and generate an access function).
 </p>
 
 <p>
