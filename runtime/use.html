@@ -477,7 +477,7 @@ can turn that into a coverage report using <code>sort</code> and
 </p>
 
 <div class="highlight"><pre>make<span class="w"> </span>-s<span class="w"> </span>check_utf8_swedish<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>coverage.log
-sort<span class="w"> </span>-k2,2<span class="w"> </span>-k3,3n<span class="w"> </span>-k3,3<span class="w"> </span>-k5,5g<span class="w"> </span>coverage.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span>&gt;<span class="w"> </span>coverage.report
+sort<span class="w"> </span>-k2,2<span class="w"> </span>-k3,3n<span class="w"> </span>-k3,3<span class="w"> </span>-k5,5g<span class="w"> </span>coverage.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span>awk<span class="w"> </span><span class="s1">&#39;{$1=sprintf(&quot;% 8d&quot;,\$1-1);print}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>coverage.report
 </pre></div>
 
 <p>
