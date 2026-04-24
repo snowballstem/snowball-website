@@ -421,10 +421,10 @@ can turn that into a coverage report using <code>sort</code> and
 <code>uniq</code> (some of these options may be specific to GNU sort):
 </p>
 
-[% highlight(q@
+[% highlight('
 make -s check_utf8_swedish 2> coverage.log
-sort -k2,2 -k3,3n -k3,3 -k5,5g coverage.log | uniq -c |awk '{$1=sprintf("% 8d",$1-1);print}' > coverage.report
-@, 'sh') %]
+sort -k2,2 -k3,3n -k3,3 -k5,5g coverage.log | uniq -c |awk ' _ "'" _ '{$1=sprintf("% 8d",\$1-1);print}' _ "'" _ ' > coverage.report
+', 'sh') %]
 
 <p>
 The file <code>coverage.report</code> looks like this for an among:
