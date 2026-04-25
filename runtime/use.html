@@ -364,18 +364,19 @@ The string is not zero-terminated, but you can zero terminate it yourself with
 </pre></div>
 
 <p>
-The values of the other variables can be accessed via the &nbsp;<code>#define</code>
-settings that result from the &nbsp;<code>-vprefix</code>&nbsp; option, although this should not
-usually be necessary:
+The values of the other variables can be accessed via the functions that are
+generated if the <code>-vprefix</code>&nbsp; option is used, although this
+should not usually be necessary:
 </p>
 
-<div class="highlight"><pre><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;p1 is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="o">-&gt;</span><span class="n">Khotanese_variable_p1</span><span class="p">);</span>
+<div class="highlight"><pre><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;p1 is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Khotanese_variable_p1</span><span class="p">(</span><span class="n">z</span><span class="p">));</span>
 </pre></div>
 
 <p>
 The stemming scripts on this Web site use Snowball very simply.
-<code>-vprefix</code>&nbsp; is left unset, and &nbsp;<code>-eprefix</code>&nbsp; is set to the name of the
-script (usually the language the script is for).
+<code>-vprefix</code>&nbsp; is left unset, and
+&nbsp;<code>-eprefix</code>&nbsp; is set to the name of the Snowball
+script (with is usually the name of language the script stems).
 </p>
 
 <!-- We should probably reinstate this section: <h2>Getting started</h2> -->
