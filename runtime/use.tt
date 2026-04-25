@@ -402,7 +402,7 @@ Snowball 3.1.0 added a simple code coverage feature (currently only supported
 for C/C++).  This allow generating extra code to allow the runtime to report
 which <code>among</code> cases and which <code>grouping</code> characters are
 actually exercised.  This can help find situations where a case is impossible
-to trigger because the words it's mean to handle get dealt with by an earlier
+to trigger because the words it's meant to handle get dealt with by an earlier
 step.  It can also find gaps in the test vocabulary - often adding a handful
 of words can complete the <code>among</code> coverage.
 </p>
