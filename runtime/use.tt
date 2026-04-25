@@ -307,19 +307,20 @@ The string is not zero-terminated, but you can zero terminate it yourself with
 ', "c") %]
 
 <p>
-The values of the other variables can be accessed via the &nbsp;<code>#define</code>
-settings that result from the &nbsp;<code>-vprefix</code>&nbsp; option, although this should not
-usually be necessary:
+The values of the other variables can be accessed via the functions that are
+generated if the <code>-vprefix</code>&nbsp; option is used, although this
+should not usually be necessary:
 </p>
 
 [% highlight('
-    printf("p1 is %d\n", z->Khotanese_variable_p1);
+    printf("p1 is %d\n", Khotanese_variable_p1(z));
 ', "c") %]
 
 <p>
 The stemming scripts on this Web site use Snowball very simply.
-<code>-vprefix</code>&nbsp; is left unset, and &nbsp;<code>-eprefix</code>&nbsp; is set to the name of the
-script (usually the language the script is for).
+<code>-vprefix</code>&nbsp; is left unset, and
+&nbsp;<code>-eprefix</code>&nbsp; is set to the name of the Snowball
+script (with is usually the name of language the script stems).
 </p>
 
 <!-- We should probably reinstate this section: <h2>Getting started</h2> -->
