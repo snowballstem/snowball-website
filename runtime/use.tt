@@ -375,8 +375,8 @@ The comments report commands as they exist in the syntax tree after some
 optimisations.  Reported line numbers should be correct, but sometimes the
 command reported can be different to that in the source code (for example,
 <code>atleast 0 C</code> is rewritten as <code>repeat C</code>, while
-<code>$x /= -1</code> is rewritten as <code>$x *= -1</code> - the generated
-comments for these cases will say "repeat" and "*=" respectively).
+<code>$x /= -1</code> is rewritten as <code>$x = -x</code> and the generated
+comments for these cases will show the rewritten versions.
 </p>
 
 <h3>Syntax tree</h3>
