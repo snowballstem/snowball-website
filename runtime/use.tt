@@ -423,7 +423,7 @@ can turn that into a coverage report using <code>sort</code> and
 
 [% highlight('
 make -s check_utf8_swedish 2> coverage.log
-sort -k2,2 -k3,3n -k3,3 -k5,5g coverage.log | uniq -c |awk ' _ "'" _ '{$1=sprintf("% 8d",\$1-1);print}' _ "'" _ ' > coverage.report
+sort -k2,2 -k3,3n -k3,3 -k5,5g coverage.log | uniq -c |awk ' _ "'" _ '{$1=sprintf("% 8d",$1-1);print}' _ "'" _ ' > coverage.report
 ', 'sh') %]
 
 <p>
