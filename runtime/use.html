@@ -518,10 +518,15 @@ of 4" (there's no "4 of 4").
 </p>
 
 <p>
-Cases/characters which never match are not in the report - check for gaps in
-the numbering to find them.  Among strings are reported in the same order as
-they appear in the source code, so you can use the strings either side of a
-gap to locate the untriggered string in the source code.
+Cases/characters which never match have 0 in the first column.  If an among
+contains the empty string then the "no match" case is impossible and will
+show a count of zero (plus a comment noting this).
+</p>
+
+<p>
+Note that among strings are reported in the same order as they appear in the
+source code, which can help to locate them in the source (especially if
+multiple strings are listed on the same line).
 </p>
 
 <p>
