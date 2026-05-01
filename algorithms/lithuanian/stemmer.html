@@ -40,13 +40,12 @@
 </ul>
 
 <p>
-This algorithm was contributed by Dainius Jocas in May 2018.
 </p>
 
 <h2>Design Notes</h2>
 
 <p>
-Its intended domain of use is information retrieval, and so handling of nouns
+The intended domain of use is information retrieval, and so handling of nouns
 is considered more important than that of verbs, adjectives, etc.
 </p>
 
@@ -62,6 +61,22 @@ least all the forms of the old word get grouped, as do all forms of the new
 word.  The stemming for ~150 other words is also improved, without obvious
 downsides.
 </p>
+
+<p>
+An apostrophe is sometimes used to separate a Lithuanian ending on an
+international word (for example, <i>george's</i>, <i>parking'as</i>).
+To handle this case, a trailing apostrophe is removed as a final step
+(since 3.1.0).
+</p>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>May 2018: Algorithm was contributed by Dainius Jocas.
+<li>Snowball 2.0.0: First release.
+<li>Snowball 3.1.0: Remove rules to remove suffixes starting <i>-er-</i>.
+<li>Snowball 3.1.0: Remove trailing apostrophe as final step.
+</ul>
 
 <h2>The full algorithm in Snowball</h2>
 
