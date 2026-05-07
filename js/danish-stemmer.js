@@ -3,53 +3,53 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
-    ["hed", -1, 1],
-    ["ethed", 0, 1],
-    ["ered", -1, 1],
-    ["e", -1, 1],
-    ["erede", 3, 1],
-    ["ende", 3, 1],
-    ["erende", 5, 1],
-    ["ene", 3, 1],
-    ["erne", 3, 1],
-    ["ere", 3, 1],
-    ["en", -1, 1],
-    ["heden", 10, 1],
-    ["eren", 10, 1],
-    ["er", -1, 1],
-    ["heder", 13, 1],
-    ["erer", 13, 1],
-    ["s", -1, 2],
-    ["heds", 16, 1],
-    ["es", 16, 1],
-    ["endes", 18, 1],
-    ["erendes", 19, 1],
-    ["enes", 18, 1],
-    ["ernes", 18, 1],
-    ["eres", 18, 1],
-    ["ens", 16, 1],
-    ["hedens", 24, 1],
-    ["erens", 24, 1],
-    ["ers", 16, 1],
-    ["ets", 16, 1],
-    ["erets", 28, 1],
-    ["et", -1, 1],
-    ["eret", 30, 1]
+    ["hed", 1],
+    ["ethed", 1, 1],
+    ["ered", 1],
+    ["e", 1],
+    ["erede", 1, 1],
+    ["ende", 1, 2],
+    ["erende", 1, 1],
+    ["ene", 1, 4],
+    ["erne", 1, 5],
+    ["ere", 1, 6],
+    ["en", 1],
+    ["heden", 1, 1],
+    ["eren", 1, 2],
+    ["er", 1],
+    ["heder", 1, 1],
+    ["erer", 1, 2],
+    ["s", 2],
+    ["heds", 1, 1],
+    ["es", 1, 2],
+    ["endes", 1, 1],
+    ["erendes", 1, 1],
+    ["enes", 1, 3],
+    ["ernes", 1, 4],
+    ["eres", 1, 5],
+    ["ens", 1, 8],
+    ["hedens", 1, 1],
+    ["erens", 1, 2],
+    ["ers", 1, 11],
+    ["ets", 1, 12],
+    ["erets", 1, 1],
+    ["et", 1],
+    ["eret", 1, 1]
 ];
 
 const a_1 = [
-    ["gd", -1, -1],
-    ["dt", -1, -1],
-    ["gt", -1, -1],
-    ["kt", -1, -1]
+    ["gd", -1],
+    ["dt", -1],
+    ["gt", -1],
+    ["kt", -1]
 ];
 
 const a_2 = [
-    ["ig", -1, 1],
-    ["lig", 0, 1],
+    ["ig", 1],
+    ["lig", 1, 1],
     ["elig", 1, 1],
-    ["els", -1, 1],
-    ["l\u00F8st", -1, 2]
+    ["els", 1],
+    ["l\u00F8st", 2]
 ];
 
 const /** Array<number> */ g_c = [119, 223, 119, 1];

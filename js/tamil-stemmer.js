@@ -3,345 +3,347 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
-    ["\u0BB5\u0BC1", -1, 3],
-    ["\u0BB5\u0BC2", -1, 4],
-    ["\u0BB5\u0BCA", -1, 2],
-    ["\u0BB5\u0BCB", -1, 1]
+    ["\u0BB5\u0BC1", 3],
+    ["\u0BB5\u0BC2", 4],
+    ["\u0BB5\u0BCA", 2],
+    ["\u0BB5\u0BCB", 1]
 ];
 
+const /** Array<string> */ as_0 = ["\u0B93", "\u0B92", "\u0B89", "\u0B8A"];
+
 const a_1 = [
-    ["\u0B95", -1, -1],
-    ["\u0B99", -1, -1],
-    ["\u0B9A", -1, -1],
-    ["\u0B9E", -1, -1],
-    ["\u0BA4", -1, -1],
-    ["\u0BA8", -1, -1],
-    ["\u0BAA", -1, -1],
-    ["\u0BAE", -1, -1],
-    ["\u0BAF", -1, -1],
-    ["\u0BB5", -1, -1]
+    ["\u0B95", -1],
+    ["\u0B99", -1],
+    ["\u0B9A", -1],
+    ["\u0B9E", -1],
+    ["\u0BA4", -1],
+    ["\u0BA8", -1],
+    ["\u0BAA", -1],
+    ["\u0BAE", -1],
+    ["\u0BAF", -1],
+    ["\u0BB5", -1]
 ];
 
 const a_2 = [
-    ["\u0BBF", -1, -1],
-    ["\u0BC0", -1, -1],
-    ["\u0BC8", -1, -1]
+    ["\u0BBF", -1],
+    ["\u0BC0", -1],
+    ["\u0BC8", -1]
 ];
 
 const a_3 = [
-    ["\u0BBE", -1, -1],
-    ["\u0BBF", -1, -1],
-    ["\u0BC0", -1, -1],
-    ["\u0BC1", -1, -1],
-    ["\u0BC2", -1, -1],
-    ["\u0BC6", -1, -1],
-    ["\u0BC7", -1, -1],
-    ["\u0BC8", -1, -1]
+    ["\u0BBE", -1],
+    ["\u0BBF", -1],
+    ["\u0BC0", -1],
+    ["\u0BC1", -1],
+    ["\u0BC2", -1],
+    ["\u0BC6", -1],
+    ["\u0BC7", -1],
+    ["\u0BC8", -1]
 ];
 
 const a_4 = [
-    ["", -1, 2],
-    ["\u0BC8", 0, 1],
-    ["\u0BCD", 0, 1]
+    ["", 2],
+    ["\u0BC8", 1, 1],
+    ["\u0BCD", 1, 2]
 ];
 
 const a_5 = [
-    ["\u0BA8\u0BCD\u0BA4", -1, 1],
-    ["\u0BAF", -1, 1],
-    ["\u0BB5", -1, 1],
-    ["\u0BA9\u0BC1", -1, 8],
-    ["\u0BC1\u0B95\u0BCD", -1, 7],
-    ["\u0BC1\u0B95\u0BCD\u0B95\u0BCD", -1, 7],
-    ["\u0B9F\u0BCD\u0B95\u0BCD", -1, 3],
-    ["\u0BB1\u0BCD\u0B95\u0BCD", -1, 4],
-    ["\u0B99\u0BCD", -1, 9],
-    ["\u0B9F\u0BCD\u0B9F\u0BCD", -1, 5],
-    ["\u0BA4\u0BCD\u0BA4\u0BCD", -1, 6],
-    ["\u0BA8\u0BCD\u0BA4\u0BCD", -1, 1],
-    ["\u0BA8\u0BCD", -1, 1],
-    ["\u0B9F\u0BCD\u0BAA\u0BCD", -1, 3],
-    ["\u0BAF\u0BCD", -1, 2],
-    ["\u0BA9\u0BCD\u0BB1\u0BCD", -1, 4],
-    ["\u0BB5\u0BCD", -1, 1]
+    ["\u0BA8\u0BCD\u0BA4", 1],
+    ["\u0BAF", 1],
+    ["\u0BB5", 1],
+    ["\u0BA9\u0BC1", 8],
+    ["\u0BC1\u0B95\u0BCD", 7],
+    ["\u0BC1\u0B95\u0BCD\u0B95\u0BCD", 7],
+    ["\u0B9F\u0BCD\u0B95\u0BCD", 3],
+    ["\u0BB1\u0BCD\u0B95\u0BCD", 4],
+    ["\u0B99\u0BCD", 9],
+    ["\u0B9F\u0BCD\u0B9F\u0BCD", 5],
+    ["\u0BA4\u0BCD\u0BA4\u0BCD", 6],
+    ["\u0BA8\u0BCD\u0BA4\u0BCD", 1],
+    ["\u0BA8\u0BCD", 1],
+    ["\u0B9F\u0BCD\u0BAA\u0BCD", 3],
+    ["\u0BAF\u0BCD", 2],
+    ["\u0BA9\u0BCD\u0BB1\u0BCD", 4],
+    ["\u0BB5\u0BCD", 1]
 ];
 
 const a_6 = [
-    ["\u0B95", -1, -1],
-    ["\u0B9A", -1, -1],
-    ["\u0B9F", -1, -1],
-    ["\u0BA4", -1, -1],
-    ["\u0BAA", -1, -1],
-    ["\u0BB1", -1, -1]
+    ["\u0B95", -1],
+    ["\u0B9A", -1],
+    ["\u0B9F", -1],
+    ["\u0BA4", -1],
+    ["\u0BAA", -1],
+    ["\u0BB1", -1]
 ];
 
 const a_7 = [
-    ["\u0B95", -1, -1],
-    ["\u0B9A", -1, -1],
-    ["\u0B9F", -1, -1],
-    ["\u0BA4", -1, -1],
-    ["\u0BAA", -1, -1],
-    ["\u0BB1", -1, -1]
+    ["\u0B95", -1],
+    ["\u0B9A", -1],
+    ["\u0B9F", -1],
+    ["\u0BA4", -1],
+    ["\u0BAA", -1],
+    ["\u0BB1", -1]
 ];
 
 const a_8 = [
-    ["\u0B9E", -1, -1],
-    ["\u0BA3", -1, -1],
-    ["\u0BA8", -1, -1],
-    ["\u0BA9", -1, -1],
-    ["\u0BAE", -1, -1],
-    ["\u0BAF", -1, -1],
-    ["\u0BB0", -1, -1],
-    ["\u0BB2", -1, -1],
-    ["\u0BB3", -1, -1],
-    ["\u0BB4", -1, -1],
-    ["\u0BB5", -1, -1]
+    ["\u0B9E", -1],
+    ["\u0BA3", -1],
+    ["\u0BA8", -1],
+    ["\u0BA9", -1],
+    ["\u0BAE", -1],
+    ["\u0BAF", -1],
+    ["\u0BB0", -1],
+    ["\u0BB2", -1],
+    ["\u0BB3", -1],
+    ["\u0BB4", -1],
+    ["\u0BB5", -1]
 ];
 
 const a_9 = [
-    ["\u0BBE", -1, -1],
-    ["\u0BBF", -1, -1],
-    ["\u0BC0", -1, -1],
-    ["\u0BC1", -1, -1],
-    ["\u0BC2", -1, -1],
-    ["\u0BC6", -1, -1],
-    ["\u0BC7", -1, -1],
-    ["\u0BC8", -1, -1],
-    ["\u0BCD", -1, -1]
+    ["\u0BBE", -1],
+    ["\u0BBF", -1],
+    ["\u0BC0", -1],
+    ["\u0BC1", -1],
+    ["\u0BC2", -1],
+    ["\u0BC6", -1],
+    ["\u0BC7", -1],
+    ["\u0BC8", -1],
+    ["\u0BCD", -1]
 ];
 
 const a_10 = [
-    ["\u0B85", -1, -1],
-    ["\u0B87", -1, -1],
-    ["\u0B89", -1, -1]
+    ["\u0B85", -1],
+    ["\u0B87", -1],
+    ["\u0B89", -1]
 ];
 
 const a_11 = [
-    ["\u0B95", -1, -1],
-    ["\u0B99", -1, -1],
-    ["\u0B9A", -1, -1],
-    ["\u0B9E", -1, -1],
-    ["\u0BA4", -1, -1],
-    ["\u0BA8", -1, -1],
-    ["\u0BAA", -1, -1],
-    ["\u0BAE", -1, -1],
-    ["\u0BAF", -1, -1],
-    ["\u0BB5", -1, -1]
+    ["\u0B95", -1],
+    ["\u0B99", -1],
+    ["\u0B9A", -1],
+    ["\u0B9E", -1],
+    ["\u0BA4", -1],
+    ["\u0BA8", -1],
+    ["\u0BAA", -1],
+    ["\u0BAE", -1],
+    ["\u0BAF", -1],
+    ["\u0BB5", -1]
 ];
 
 const a_12 = [
-    ["\u0B95", -1, -1],
-    ["\u0B9A", -1, -1],
-    ["\u0B9F", -1, -1],
-    ["\u0BA4", -1, -1],
-    ["\u0BAA", -1, -1],
-    ["\u0BB1", -1, -1]
+    ["\u0B95", -1],
+    ["\u0B9A", -1],
+    ["\u0B9F", -1],
+    ["\u0BA4", -1],
+    ["\u0BAA", -1],
+    ["\u0BB1", -1]
 ];
 
 const a_13 = [
-    ["\u0B95\u0BB3\u0BCD", -1, 4],
-    ["\u0BC1\u0B99\u0BCD\u0B95\u0BB3\u0BCD", 0, 1],
-    ["\u0B9F\u0BCD\u0B95\u0BB3\u0BCD", 0, 3],
-    ["\u0BB1\u0BCD\u0B95\u0BB3\u0BCD", 0, 2]
+    ["\u0B95\u0BB3\u0BCD", 4],
+    ["\u0BC1\u0B99\u0BCD\u0B95\u0BB3\u0BCD", 1, 1],
+    ["\u0B9F\u0BCD\u0B95\u0BB3\u0BCD", 3, 2],
+    ["\u0BB1\u0BCD\u0B95\u0BB3\u0BCD", 2, 3]
 ];
 
 const a_14 = [
-    ["\u0BBE", -1, -1],
-    ["\u0BC7", -1, -1],
-    ["\u0BCB", -1, -1]
+    ["\u0BBE", -1],
+    ["\u0BC7", -1],
+    ["\u0BCB", -1]
 ];
 
 const a_15 = [
-    ["\u0BAA\u0BBF", -1, -1],
-    ["\u0BB5\u0BBF", -1, -1]
+    ["\u0BAA\u0BBF", -1],
+    ["\u0BB5\u0BBF", -1]
 ];
 
 const a_16 = [
-    ["\u0BBE", -1, -1],
-    ["\u0BBF", -1, -1],
-    ["\u0BC0", -1, -1],
-    ["\u0BC1", -1, -1],
-    ["\u0BC2", -1, -1],
-    ["\u0BC6", -1, -1],
-    ["\u0BC7", -1, -1],
-    ["\u0BC8", -1, -1]
+    ["\u0BBE", -1],
+    ["\u0BBF", -1],
+    ["\u0BC0", -1],
+    ["\u0BC1", -1],
+    ["\u0BC2", -1],
+    ["\u0BC6", -1],
+    ["\u0BC7", -1],
+    ["\u0BC8", -1]
 ];
 
 const a_17 = [
-    ["\u0BAA\u0B9F\u0BCD\u0B9F", -1, 3],
-    ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BA3", -1, 3],
-    ["\u0BA4\u0BBE\u0BA9", -1, 3],
-    ["\u0BAA\u0B9F\u0BBF\u0BA4\u0BBE\u0BA9", 2, 3],
-    ["\u0BC6\u0BA9", -1, 1],
-    ["\u0BBE\u0B95\u0BBF\u0BAF", -1, 1],
-    ["\u0B95\u0BC1\u0BB0\u0BBF\u0BAF", -1, 3],
-    ["\u0BC1\u0B9F\u0BC8\u0BAF", -1, 1],
-    ["\u0BB2\u0BCD\u0BB2", -1, 2],
-    ["\u0BC1\u0BB3\u0BCD\u0BB3", -1, 1],
-    ["\u0BBE\u0B95\u0BBF", -1, 1],
-    ["\u0BAA\u0B9F\u0BBF", -1, 3],
-    ["\u0BBF\u0BA9\u0BCD\u0BB1\u0BBF", -1, 1],
-    ["\u0BAA\u0BB1\u0BCD\u0BB1\u0BBF", -1, 3],
-    ["\u0BAA\u0B9F\u0BC1", -1, 3],
-    ["\u0BB5\u0BBF\u0B9F\u0BC1", -1, 3],
-    ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BC1", -1, 3],
-    ["\u0BB5\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1", -1, 3],
-    ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1", -1, 3],
-    ["\u0BC6\u0BA9\u0BCD\u0BB1\u0BC1", -1, 1],
-    ["\u0BC1\u0B9F\u0BC8", -1, 1],
-    ["\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8", -1, 1],
-    ["\u0BC1\u0B9F\u0BA9\u0BCD", -1, 1],
-    ["\u0BBF\u0B9F\u0BAE\u0BCD", -1, 1],
-    ["\u0BC6\u0BB2\u0BCD\u0BB2\u0BBE\u0BAE\u0BCD", -1, 3],
-    ["\u0BC6\u0BA9\u0BC1\u0BAE\u0BCD", -1, 1]
+    ["\u0BAA\u0B9F\u0BCD\u0B9F", 3],
+    ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BA3", 3],
+    ["\u0BA4\u0BBE\u0BA9", 3],
+    ["\u0BAA\u0B9F\u0BBF\u0BA4\u0BBE\u0BA9", 3, 1],
+    ["\u0BC6\u0BA9", 1],
+    ["\u0BBE\u0B95\u0BBF\u0BAF", 1],
+    ["\u0B95\u0BC1\u0BB0\u0BBF\u0BAF", 3],
+    ["\u0BC1\u0B9F\u0BC8\u0BAF", 1],
+    ["\u0BB2\u0BCD\u0BB2", 2],
+    ["\u0BC1\u0BB3\u0BCD\u0BB3", 1],
+    ["\u0BBE\u0B95\u0BBF", 1],
+    ["\u0BAA\u0B9F\u0BBF", 3],
+    ["\u0BBF\u0BA9\u0BCD\u0BB1\u0BBF", 1],
+    ["\u0BAA\u0BB1\u0BCD\u0BB1\u0BBF", 3],
+    ["\u0BAA\u0B9F\u0BC1", 3],
+    ["\u0BB5\u0BBF\u0B9F\u0BC1", 3],
+    ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BC1", 3],
+    ["\u0BB5\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1", 3],
+    ["\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1", 3],
+    ["\u0BC6\u0BA9\u0BCD\u0BB1\u0BC1", 1],
+    ["\u0BC1\u0B9F\u0BC8", 1],
+    ["\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8", 1],
+    ["\u0BC1\u0B9F\u0BA9\u0BCD", 1],
+    ["\u0BBF\u0B9F\u0BAE\u0BCD", 1],
+    ["\u0BC6\u0BB2\u0BCD\u0BB2\u0BBE\u0BAE\u0BCD", 3],
+    ["\u0BC6\u0BA9\u0BC1\u0BAE\u0BCD", 1]
 ];
 
 const a_18 = [
-    ["\u0BBE", -1, -1],
-    ["\u0BBF", -1, -1],
-    ["\u0BC0", -1, -1],
-    ["\u0BC1", -1, -1],
-    ["\u0BC2", -1, -1],
-    ["\u0BC6", -1, -1],
-    ["\u0BC7", -1, -1],
-    ["\u0BC8", -1, -1]
+    ["\u0BBE", -1],
+    ["\u0BBF", -1],
+    ["\u0BC0", -1],
+    ["\u0BC1", -1],
+    ["\u0BC2", -1],
+    ["\u0BC6", -1],
+    ["\u0BC7", -1],
+    ["\u0BC8", -1]
 ];
 
 const a_19 = [
-    ["\u0BBE", -1, -1],
-    ["\u0BBF", -1, -1],
-    ["\u0BC0", -1, -1],
-    ["\u0BC1", -1, -1],
-    ["\u0BC2", -1, -1],
-    ["\u0BC6", -1, -1],
-    ["\u0BC7", -1, -1],
-    ["\u0BC8", -1, -1]
+    ["\u0BBE", -1],
+    ["\u0BBF", -1],
+    ["\u0BC0", -1],
+    ["\u0BC1", -1],
+    ["\u0BC2", -1],
+    ["\u0BC6", -1],
+    ["\u0BC7", -1],
+    ["\u0BC8", -1]
 ];
 
 const a_20 = [
-    ["\u0BB5\u0BBF\u0B9F", -1, 2],
-    ["\u0BC0", -1, 7],
-    ["\u0BCA\u0B9F\u0BC1", -1, 2],
-    ["\u0BCB\u0B9F\u0BC1", -1, 2],
-    ["\u0BA4\u0BC1", -1, 6],
-    ["\u0BBF\u0BB0\u0BC1\u0BA8\u0BCD\u0BA4\u0BC1", 4, 2],
-    ["\u0BBF\u0BA9\u0BCD\u0BB1\u0BC1", -1, 2],
-    ["\u0BC1\u0B9F\u0BC8", -1, 2],
-    ["\u0BA9\u0BC8", -1, 1],
-    ["\u0B95\u0BA3\u0BCD", -1, 1],
-    ["\u0BBF\u0BA9\u0BCD", -1, 3],
-    ["\u0BAE\u0BC1\u0BA9\u0BCD", -1, 1],
-    ["\u0BBF\u0B9F\u0BAE\u0BCD", -1, 4],
-    ["\u0BBF\u0BB1\u0BCD", -1, 2],
-    ["\u0BAE\u0BC7\u0BB1\u0BCD", -1, 1],
-    ["\u0BB2\u0BCD", -1, 5],
-    ["\u0BBE\u0BAE\u0BB2\u0BCD", 15, 2],
-    ["\u0BBE\u0BB2\u0BCD", 15, 2],
-    ["\u0BBF\u0BB2\u0BCD", 15, 2],
-    ["\u0BAE\u0BC7\u0BB2\u0BCD", 15, 1],
-    ["\u0BC1\u0BB3\u0BCD", -1, 2],
-    ["\u0B95\u0BC0\u0BB4\u0BCD", -1, 1]
+    ["\u0BB5\u0BBF\u0B9F", 2],
+    ["\u0BC0", 7],
+    ["\u0BCA\u0B9F\u0BC1", 2],
+    ["\u0BCB\u0B9F\u0BC1", 2],
+    ["\u0BA4\u0BC1", 6],
+    ["\u0BBF\u0BB0\u0BC1\u0BA8\u0BCD\u0BA4\u0BC1", 2, 1],
+    ["\u0BBF\u0BA9\u0BCD\u0BB1\u0BC1", 2],
+    ["\u0BC1\u0B9F\u0BC8", 2],
+    ["\u0BA9\u0BC8", 1],
+    ["\u0B95\u0BA3\u0BCD", 1],
+    ["\u0BBF\u0BA9\u0BCD", 3],
+    ["\u0BAE\u0BC1\u0BA9\u0BCD", 1],
+    ["\u0BBF\u0B9F\u0BAE\u0BCD", 4],
+    ["\u0BBF\u0BB1\u0BCD", 2],
+    ["\u0BAE\u0BC7\u0BB1\u0BCD", 1],
+    ["\u0BB2\u0BCD", 5],
+    ["\u0BBE\u0BAE\u0BB2\u0BCD", 2, 1],
+    ["\u0BBE\u0BB2\u0BCD", 2, 2],
+    ["\u0BBF\u0BB2\u0BCD", 2, 3],
+    ["\u0BAE\u0BC7\u0BB2\u0BCD", 1, 4],
+    ["\u0BC1\u0BB3\u0BCD", 2],
+    ["\u0B95\u0BC0\u0BB4\u0BCD", 1]
 ];
 
 const a_21 = [
-    ["\u0B95", -1, -1],
-    ["\u0B9A", -1, -1],
-    ["\u0B9F", -1, -1],
-    ["\u0BA4", -1, -1],
-    ["\u0BAA", -1, -1],
-    ["\u0BB1", -1, -1]
+    ["\u0B95", -1],
+    ["\u0B9A", -1],
+    ["\u0B9F", -1],
+    ["\u0BA4", -1],
+    ["\u0BAA", -1],
+    ["\u0BB1", -1]
 ];
 
 const a_22 = [
-    ["\u0B95", -1, -1],
-    ["\u0B9A", -1, -1],
-    ["\u0B9F", -1, -1],
-    ["\u0BA4", -1, -1],
-    ["\u0BAA", -1, -1],
-    ["\u0BB1", -1, -1]
+    ["\u0B95", -1],
+    ["\u0B9A", -1],
+    ["\u0B9F", -1],
+    ["\u0BA4", -1],
+    ["\u0BAA", -1],
+    ["\u0BB1", -1]
 ];
 
 const a_23 = [
-    ["\u0B85", -1, -1],
-    ["\u0B86", -1, -1],
-    ["\u0B87", -1, -1],
-    ["\u0B88", -1, -1],
-    ["\u0B89", -1, -1],
-    ["\u0B8A", -1, -1],
-    ["\u0B8E", -1, -1],
-    ["\u0B8F", -1, -1],
-    ["\u0B90", -1, -1],
-    ["\u0B92", -1, -1],
-    ["\u0B93", -1, -1],
-    ["\u0B94", -1, -1]
+    ["\u0B85", -1],
+    ["\u0B86", -1],
+    ["\u0B87", -1],
+    ["\u0B88", -1],
+    ["\u0B89", -1],
+    ["\u0B8A", -1],
+    ["\u0B8E", -1],
+    ["\u0B8F", -1],
+    ["\u0B90", -1],
+    ["\u0B92", -1],
+    ["\u0B93", -1],
+    ["\u0B94", -1]
 ];
 
 const a_24 = [
-    ["\u0BBE", -1, -1],
-    ["\u0BBF", -1, -1],
-    ["\u0BC0", -1, -1],
-    ["\u0BC1", -1, -1],
-    ["\u0BC2", -1, -1],
-    ["\u0BC6", -1, -1],
-    ["\u0BC7", -1, -1],
-    ["\u0BC8", -1, -1]
+    ["\u0BBE", -1],
+    ["\u0BBF", -1],
+    ["\u0BC0", -1],
+    ["\u0BC1", -1],
+    ["\u0BC2", -1],
+    ["\u0BC6", -1],
+    ["\u0BC7", -1],
+    ["\u0BC8", -1]
 ];
 
 const a_25 = [
-    ["\u0B95", -1, 1],
-    ["\u0BA4", -1, 1],
-    ["\u0BA9", -1, 1],
-    ["\u0BAA", -1, 1],
-    ["\u0BAF", -1, 1],
-    ["\u0BBE", -1, 5],
-    ["\u0B95\u0BC1", -1, 6],
-    ["\u0BAA\u0B9F\u0BC1", -1, 1],
-    ["\u0BA4\u0BC1", -1, 3],
-    ["\u0BBF\u0BB1\u0BCD\u0BB1\u0BC1", -1, 1],
-    ["\u0BA9\u0BC8", -1, 1],
-    ["\u0BB5\u0BC8", -1, 1],
-    ["\u0BA9\u0BA9\u0BCD", -1, 1],
-    ["\u0BAA\u0BA9\u0BCD", -1, 1],
-    ["\u0BB5\u0BA9\u0BCD", -1, 2],
-    ["\u0BBE\u0BA9\u0BCD", -1, 4],
-    ["\u0BA9\u0BBE\u0BA9\u0BCD", 15, 1],
-    ["\u0BAE\u0BBF\u0BA9\u0BCD", -1, 1],
-    ["\u0BA9\u0BC6\u0BA9\u0BCD", -1, 1],
-    ["\u0BC7\u0BA9\u0BCD", -1, 5],
-    ["\u0BA9\u0BAE\u0BCD", -1, 1],
-    ["\u0BAA\u0BAE\u0BCD", -1, 1],
-    ["\u0BBE\u0BAE\u0BCD", -1, 5],
-    ["\u0B95\u0BC1\u0BAE\u0BCD", -1, 1],
-    ["\u0B9F\u0BC1\u0BAE\u0BCD", -1, 5],
-    ["\u0BA4\u0BC1\u0BAE\u0BCD", -1, 1],
-    ["\u0BB1\u0BC1\u0BAE\u0BCD", -1, 1],
-    ["\u0BC6\u0BAE\u0BCD", -1, 5],
-    ["\u0BC7\u0BAE\u0BCD", -1, 5],
-    ["\u0BCB\u0BAE\u0BCD", -1, 5],
-    ["\u0BBE\u0BAF\u0BCD", -1, 5],
-    ["\u0BA9\u0BB0\u0BCD", -1, 1],
-    ["\u0BAA\u0BB0\u0BCD", -1, 1],
-    ["\u0BC0\u0BAF\u0BB0\u0BCD", -1, 5],
-    ["\u0BB5\u0BB0\u0BCD", -1, 1],
-    ["\u0BBE\u0BB0\u0BCD", -1, 5],
-    ["\u0BA9\u0BBE\u0BB0\u0BCD", 35, 1],
-    ["\u0BAE\u0BBE\u0BB0\u0BCD", 35, 1],
-    ["\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BCD", -1, 1],
-    ["\u0BA9\u0BBF\u0BB0\u0BCD", -1, 5],
-    ["\u0BC0\u0BB0\u0BCD", -1, 5],
-    ["\u0BA9\u0BB3\u0BCD", -1, 1],
-    ["\u0BAA\u0BB3\u0BCD", -1, 1],
-    ["\u0BB5\u0BB3\u0BCD", -1, 1],
-    ["\u0BBE\u0BB3\u0BCD", -1, 5],
-    ["\u0BA9\u0BBE\u0BB3\u0BCD", 44, 1]
+    ["\u0B95", 1],
+    ["\u0BA4", 1],
+    ["\u0BA9", 1],
+    ["\u0BAA", 1],
+    ["\u0BAF", 1],
+    ["\u0BBE", 5],
+    ["\u0B95\u0BC1", 6],
+    ["\u0BAA\u0B9F\u0BC1", 1],
+    ["\u0BA4\u0BC1", 3],
+    ["\u0BBF\u0BB1\u0BCD\u0BB1\u0BC1", 1],
+    ["\u0BA9\u0BC8", 1],
+    ["\u0BB5\u0BC8", 1],
+    ["\u0BA9\u0BA9\u0BCD", 1],
+    ["\u0BAA\u0BA9\u0BCD", 1],
+    ["\u0BB5\u0BA9\u0BCD", 2],
+    ["\u0BBE\u0BA9\u0BCD", 4],
+    ["\u0BA9\u0BBE\u0BA9\u0BCD", 1, 1],
+    ["\u0BAE\u0BBF\u0BA9\u0BCD", 1],
+    ["\u0BA9\u0BC6\u0BA9\u0BCD", 1],
+    ["\u0BC7\u0BA9\u0BCD", 5],
+    ["\u0BA9\u0BAE\u0BCD", 1],
+    ["\u0BAA\u0BAE\u0BCD", 1],
+    ["\u0BBE\u0BAE\u0BCD", 5],
+    ["\u0B95\u0BC1\u0BAE\u0BCD", 1],
+    ["\u0B9F\u0BC1\u0BAE\u0BCD", 5],
+    ["\u0BA4\u0BC1\u0BAE\u0BCD", 1],
+    ["\u0BB1\u0BC1\u0BAE\u0BCD", 1],
+    ["\u0BC6\u0BAE\u0BCD", 5],
+    ["\u0BC7\u0BAE\u0BCD", 5],
+    ["\u0BCB\u0BAE\u0BCD", 5],
+    ["\u0BBE\u0BAF\u0BCD", 5],
+    ["\u0BA9\u0BB0\u0BCD", 1],
+    ["\u0BAA\u0BB0\u0BCD", 1],
+    ["\u0BC0\u0BAF\u0BB0\u0BCD", 5],
+    ["\u0BB5\u0BB0\u0BCD", 1],
+    ["\u0BBE\u0BB0\u0BCD", 5],
+    ["\u0BA9\u0BBE\u0BB0\u0BCD", 1, 1],
+    ["\u0BAE\u0BBE\u0BB0\u0BCD", 1, 2],
+    ["\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BCD", 1],
+    ["\u0BA9\u0BBF\u0BB0\u0BCD", 5],
+    ["\u0BC0\u0BB0\u0BCD", 5],
+    ["\u0BA9\u0BB3\u0BCD", 1],
+    ["\u0BAA\u0BB3\u0BCD", 1],
+    ["\u0BB5\u0BB3\u0BCD", 1],
+    ["\u0BBE\u0BB3\u0BCD", 5],
+    ["\u0BA9\u0BBE\u0BB3\u0BCD", 1, 1]
 ];
 
 const a_26 = [
-    ["\u0B95\u0BBF\u0BB1", -1, -1],
-    ["\u0B95\u0BBF\u0BA9\u0BCD\u0BB1", -1, -1],
-    ["\u0BBE\u0BA8\u0BBF\u0BA9\u0BCD\u0BB1", -1, -1],
-    ["\u0B95\u0BBF\u0BB1\u0BCD", -1, -1],
-    ["\u0B95\u0BBF\u0BA9\u0BCD\u0BB1\u0BCD", -1, -1],
-    ["\u0BBE\u0BA8\u0BBF\u0BA9\u0BCD\u0BB1\u0BCD", -1, -1]
+    ["\u0B95\u0BBF\u0BB1", -1],
+    ["\u0B95\u0BBF\u0BA9\u0BCD\u0BB1", -1],
+    ["\u0BBE\u0BA8\u0BBF\u0BA9\u0BCD\u0BB1", -1],
+    ["\u0B95\u0BBF\u0BB1\u0BCD", -1],
+    ["\u0B95\u0BBF\u0BA9\u0BCD\u0BB1\u0BCD", -1],
+    ["\u0BBE\u0BA8\u0BBF\u0BA9\u0BCD\u0BB1\u0BCD", -1]
 ];
 
 import B from './base-stemmer.js'
@@ -363,24 +365,7 @@ export default class extends B {
         a = this.find_among(a_0);
         if (a === 0) return false;
         this.ket = this.c;
-        switch (a) {
-            case 1: {
-                this.slice_from("\u0B93");
-                break;
-            }
-            case 2: {
-                this.slice_from("\u0B92");
-                break;
-            }
-            case 3: {
-                this.slice_from("\u0B89");
-                break;
-            }
-            case 4: {
-                this.slice_from("\u0B8A");
-                break;
-            }
-        }
+        this.slice_from(as_0[a - 1]);
         return true;
     }
 
@@ -458,14 +443,10 @@ export default class extends B {
                     }
                     case 6: {
                         if (!this.#B_found_vetrumai_urupu) break lab1;
-                        {
-                            const /** number */ v_3 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab2: {
-                                if (!(this.eq_s_b("\u0BC8"))) break lab2;
-                                break lab1;
-                            }
-                            this.c = this.limit - v_3;
+                        // deno-lint-ignore no-unused-labels
+                        lab2: {
+                            if (!(this.eq_s_b("\u0BC8"))) break lab2;
+                            break lab1;
                         }
                         this.slice_from("\u0BAE\u0BCD");
                         break;
@@ -476,13 +457,13 @@ export default class extends B {
                     }
                     case 8: {
                         {
-                            const /** number */ v_4 = this.limit - this.c;
+                            const /** number */ v_3 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
                             lab3: {
                                 if (this.find_among_b(a_3) === 0) break lab3;
                                 break lab1;
                             }
-                            this.c = this.limit - v_4;
+                            this.c = this.limit - v_3;
                         }
                         this.slice_del();
                         break;
@@ -509,19 +490,19 @@ export default class extends B {
             if (!(this.eq_s_b("\u0BCD"))) return false;
             // deno-lint-ignore no-unused-labels
             lab4: {
-                const /** number */ v_5 = this.limit - this.c;
+                const /** number */ v_4 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab5: {
                     if (this.find_among_b(a_6) === 0) break lab5;
-                    const /** number */ v_6 = this.limit - this.c;
+                    const /** number */ v_5 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab6: {
                         if (!(this.eq_s_b("\u0BCD"))) {
-                            this.c = this.limit - v_6;
+                            this.c = this.limit - v_5;
                             break lab6;
                         }
                         if (this.find_among_b(a_7) === 0) {
-                            this.c = this.limit - v_6;
+                            this.c = this.limit - v_5;
                             break lab6;
                         }
                     }
@@ -529,7 +510,7 @@ export default class extends B {
                     this.slice_del();
                     break lab4;
                 }
-                this.c = this.limit - v_5;
+                this.c = this.limit - v_4;
                 // deno-lint-ignore no-unused-labels
                 lab7: {
                     if (this.find_among_b(a_8) === 0) break lab7;
@@ -538,10 +519,10 @@ export default class extends B {
                     this.slice_del();
                     break lab4;
                 }
-                this.c = this.limit - v_5;
-                const /** number */ v_7 = this.limit - this.c;
+                this.c = this.limit - v_4;
+                const /** number */ v_6 = this.limit - this.c;
                 if (this.find_among_b(a_9) === 0) return false;
-                this.c = this.limit - v_7;
+                this.c = this.limit - v_6;
                 this.bra = this.c;
                 this.slice_del();
             }
@@ -713,14 +694,10 @@ export default class extends B {
                         break;
                     }
                     case 3: {
-                        {
-                            const /** number */ v_3 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab2: {
-                                if (!(this.eq_s_b("\u0BAE"))) break lab2;
-                                break lab1;
-                            }
-                            this.c = this.limit - v_3;
+                        // deno-lint-ignore no-unused-labels
+                        lab2: {
+                            if (!(this.eq_s_b("\u0BAE"))) break lab2;
+                            break lab1;
                         }
                         this.slice_from("\u0BCD");
                         break;
@@ -732,26 +709,26 @@ export default class extends B {
                     }
                     case 5: {
                         {
-                            const /** number */ v_4 = this.limit - this.c;
+                            const /** number */ v_3 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
                             lab3: {
                                 if (this.find_among_b(a_18) === 0) break lab3;
                                 break lab1;
                             }
-                            this.c = this.limit - v_4;
+                            this.c = this.limit - v_3;
                         }
                         this.slice_from("\u0BCD");
                         break;
                     }
                     case 6: {
                         {
-                            const /** number */ v_5 = this.limit - this.c;
+                            const /** number */ v_4 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
                             lab4: {
                                 if (this.find_among_b(a_19) === 0) break lab4;
                                 break lab1;
                             }
-                            this.c = this.limit - v_5;
+                            this.c = this.limit - v_4;
                         }
                         this.slice_del();
                         break;
@@ -765,37 +742,37 @@ export default class extends B {
                 break lab0;
             }
             this.c = this.limit - v_1;
-            const /** number */ v_6 = this.limit - this.c;
+            const /** number */ v_5 = this.limit - this.c;
             this.ket = this.c;
             if (!(this.eq_s_b("\u0BC8"))) return false;
             // deno-lint-ignore no-unused-labels
             lab5: {
-                const /** number */ v_7 = this.limit - this.c;
+                const /** number */ v_6 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab6: {
                     {
-                        const /** number */ v_8 = this.limit - this.c;
+                        const /** number */ v_7 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
                         lab7: {
                             if (this.find_among_b(a_21) === 0) break lab7;
                             break lab6;
                         }
-                        this.c = this.limit - v_8;
+                        this.c = this.limit - v_7;
                     }
                     break lab5;
                 }
-                this.c = this.limit - v_7;
-                const /** number */ v_9 = this.limit - this.c;
+                this.c = this.limit - v_6;
+                const /** number */ v_8 = this.limit - this.c;
                 if (this.find_among_b(a_22) === 0) return false;
                 if (!(this.eq_s_b("\u0BCD"))) return false;
-                this.c = this.limit - v_9;
+                this.c = this.limit - v_8;
             }
             this.bra = this.c;
             this.slice_from("\u0BCD");
-            this.c = this.limit - v_6;
+            this.c = this.limit - v_5;
         }
         this.#B_found_vetrumai_urupu = true;
-        const /** number */ v_10 = this.limit - this.c;
+        const /** number */ v_9 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab8: {
             this.ket = this.c;
@@ -803,7 +780,7 @@ export default class extends B {
             this.bra = this.c;
             this.slice_from("\u0BCD");
         }
-        this.c = this.limit - v_10;
+        this.c = this.limit - v_9;
         this.c = this.limit_backward;
         this.#r_fix_endings();
         return true;
@@ -871,14 +848,10 @@ export default class extends B {
                     break;
                 }
                 case 4: {
-                    {
-                        const /** number */ v_5 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab3: {
-                            if (!(this.eq_s_b("\u0B9A"))) break lab3;
-                            break lab0;
-                        }
-                        this.c = this.limit - v_5;
+                    // deno-lint-ignore no-unused-labels
+                    lab3: {
+                        if (!(this.eq_s_b("\u0B9A"))) break lab3;
+                        break lab0;
                     }
                     this.slice_from("\u0BCD");
                     break;
@@ -888,9 +861,9 @@ export default class extends B {
                     break;
                 }
                 case 6: {
-                    const /** number */ v_6 = this.limit - this.c;
+                    const /** number */ v_5 = this.limit - this.c;
                     if (!(this.eq_s_b("\u0BCD"))) break lab0;
-                    this.c = this.limit - v_6;
+                    this.c = this.limit - v_5;
                     this.slice_del();
                     break;
                 }
@@ -899,7 +872,7 @@ export default class extends B {
             this.c = this.limit - v_2;
         }
         this.c = this.limit - v_1;
-        const /** number */ v_7 = this.limit - this.c;
+        const /** number */ v_6 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab4: {
             this.ket = this.c;
@@ -908,7 +881,7 @@ export default class extends B {
             this.slice_del();
             B_found_a_match = true;
         }
-        this.c = this.limit - v_7;
+        this.c = this.limit - v_6;
         this.c = this.limit_backward;
         this.#r_fix_endings();
         return B_found_a_match;

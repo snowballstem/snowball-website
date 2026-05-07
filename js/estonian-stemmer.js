@@ -3,403 +3,409 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
-    ["gi", -1, 1],
-    ["ki", -1, 2]
+    ["gi", 1],
+    ["ki", 2]
 ];
 
 const a_1 = [
-    ["da", -1, 3],
-    ["mata", -1, 1],
-    ["b", -1, 3],
-    ["ksid", -1, 1],
-    ["nuksid", 3, 1],
-    ["me", -1, 3],
-    ["sime", 5, 1],
-    ["ksime", 6, 1],
-    ["nuksime", 7, 1],
-    ["akse", -1, 2],
-    ["dakse", 9, 1],
-    ["takse", 9, 1],
-    ["site", -1, 1],
-    ["ksite", 12, 1],
-    ["nuksite", 13, 1],
-    ["n", -1, 3],
-    ["sin", 15, 1],
-    ["ksin", 16, 1],
-    ["nuksin", 17, 1],
-    ["daks", -1, 1],
-    ["taks", -1, 1]
+    ["da", 3],
+    ["mata", 1],
+    ["b", 3],
+    ["ksid", 1],
+    ["nuksid", 1, 1],
+    ["me", 3],
+    ["sime", 1, 1],
+    ["ksime", 1, 1],
+    ["nuksime", 1, 1],
+    ["akse", 2],
+    ["dakse", 1, 1],
+    ["takse", 1, 2],
+    ["site", 1],
+    ["ksite", 1, 1],
+    ["nuksite", 1, 1],
+    ["n", 3],
+    ["sin", 1, 1],
+    ["ksin", 1, 1],
+    ["nuksin", 1, 1],
+    ["daks", 1],
+    ["taks", 1]
 ];
 
 const a_2 = [
-    ["aa", -1, -1],
-    ["ee", -1, -1],
-    ["ii", -1, -1],
-    ["oo", -1, -1],
-    ["uu", -1, -1],
-    ["\u00E4\u00E4", -1, -1],
-    ["\u00F5\u00F5", -1, -1],
-    ["\u00F6\u00F6", -1, -1],
-    ["\u00FC\u00FC", -1, -1]
+    ["aa", -1],
+    ["ee", -1],
+    ["ii", -1],
+    ["oo", -1],
+    ["uu", -1],
+    ["\u00E4\u00E4", -1],
+    ["\u00F5\u00F5", -1],
+    ["\u00F6\u00F6", -1],
+    ["\u00FC\u00FC", -1]
 ];
 
 const a_3 = [
-    ["lane", -1, 1],
-    ["line", -1, 3],
-    ["mine", -1, 2],
-    ["lasse", -1, 1],
-    ["lisse", -1, 3],
-    ["misse", -1, 2],
-    ["lasi", -1, 1],
-    ["lisi", -1, 3],
-    ["misi", -1, 2],
-    ["last", -1, 1],
-    ["list", -1, 3],
-    ["mist", -1, 2]
+    ["lane", 1],
+    ["line", 3],
+    ["mine", 2],
+    ["lasse", 1],
+    ["lisse", 3],
+    ["misse", 2],
+    ["lasi", 1],
+    ["lisi", 3],
+    ["misi", 2],
+    ["last", 1],
+    ["list", 3],
+    ["mist", 2]
 ];
 
+const /** Array<string> */ as_3 = ["lase", "mise", "lise"];
+
 const a_4 = [
-    ["ga", -1, 1],
-    ["ta", -1, 1],
-    ["le", -1, 1],
-    ["sse", -1, 1],
-    ["l", -1, 1],
-    ["s", -1, 1],
-    ["ks", 5, 1],
-    ["t", -1, 2],
-    ["lt", 7, 1],
-    ["st", 7, 1]
+    ["ga", 1],
+    ["ta", 1],
+    ["le", 1],
+    ["sse", 1],
+    ["l", 1],
+    ["s", 1],
+    ["ks", 1, 1],
+    ["t", 2],
+    ["lt", 1, 1],
+    ["st", 1, 2]
 ];
 
 const a_5 = [
-    ["", -1, 2],
-    ["las", 0, 1],
-    ["lis", 0, 1],
-    ["mis", 0, 1],
-    ["t", 0, -1]
+    ["", 2],
+    ["las", 1, 1],
+    ["lis", 1, 2],
+    ["mis", 1, 3],
+    ["t", -1, 4]
 ];
 
 const a_6 = [
-    ["d", -1, 4],
-    ["sid", 0, 2],
-    ["de", -1, 4],
-    ["ikkude", 2, 1],
-    ["ike", -1, 1],
-    ["ikke", -1, 1],
-    ["te", -1, 3]
+    ["d", 4],
+    ["sid", 2, 1],
+    ["de", 4],
+    ["ikkude", 1, 1],
+    ["ike", 1],
+    ["ikke", 1],
+    ["te", 3]
 ];
 
 const a_7 = [
-    ["va", -1, -1],
-    ["du", -1, -1],
-    ["nu", -1, -1],
-    ["tu", -1, -1]
+    ["va", -1],
+    ["du", -1],
+    ["nu", -1],
+    ["tu", -1]
 ];
 
 const a_8 = [
-    ["kk", -1, 1],
-    ["pp", -1, 2],
-    ["tt", -1, 3]
+    ["kk", 1],
+    ["pp", 2],
+    ["tt", 3]
 ];
 
+const /** Array<string> */ as_8 = ["k", "p", "t"];
+
 const a_9 = [
-    ["ma", -1, 2],
-    ["mai", -1, 1],
-    ["m", -1, 1]
+    ["ma", 2],
+    ["mai", 1],
+    ["m", 1]
 ];
 
 const a_10 = [
-    ["joob", -1, 1],
-    ["jood", -1, 1],
+    ["joob", 1],
+    ["jood", 1],
     ["joodakse", 1, 1],
-    ["jooma", -1, 1],
-    ["joomata", 3, 1],
-    ["joome", -1, 1],
-    ["joon", -1, 1],
-    ["joote", -1, 1],
-    ["joovad", -1, 1],
-    ["juua", -1, 1],
-    ["juuakse", 9, 1],
-    ["j\u00E4i", -1, 12],
-    ["j\u00E4id", 11, 12],
-    ["j\u00E4ime", 11, 12],
-    ["j\u00E4in", 11, 12],
-    ["j\u00E4ite", 11, 12],
-    ["j\u00E4\u00E4b", -1, 12],
-    ["j\u00E4\u00E4d", -1, 12],
-    ["j\u00E4\u00E4da", 17, 12],
-    ["j\u00E4\u00E4dakse", 18, 12],
-    ["j\u00E4\u00E4di", 17, 12],
-    ["j\u00E4\u00E4ks", -1, 12],
-    ["j\u00E4\u00E4ksid", 21, 12],
-    ["j\u00E4\u00E4ksime", 21, 12],
-    ["j\u00E4\u00E4ksin", 21, 12],
-    ["j\u00E4\u00E4ksite", 21, 12],
-    ["j\u00E4\u00E4ma", -1, 12],
-    ["j\u00E4\u00E4mata", 26, 12],
-    ["j\u00E4\u00E4me", -1, 12],
-    ["j\u00E4\u00E4n", -1, 12],
-    ["j\u00E4\u00E4te", -1, 12],
-    ["j\u00E4\u00E4vad", -1, 12],
-    ["j\u00F5i", -1, 1],
-    ["j\u00F5id", 32, 1],
-    ["j\u00F5ime", 32, 1],
-    ["j\u00F5in", 32, 1],
-    ["j\u00F5ite", 32, 1],
-    ["keeb", -1, 4],
-    ["keed", -1, 4],
-    ["keedakse", 38, 4],
-    ["keeks", -1, 4],
-    ["keeksid", 40, 4],
-    ["keeksime", 40, 4],
-    ["keeksin", 40, 4],
-    ["keeksite", 40, 4],
-    ["keema", -1, 4],
-    ["keemata", 45, 4],
-    ["keeme", -1, 4],
-    ["keen", -1, 4],
-    ["kees", -1, 4],
-    ["keeta", -1, 4],
-    ["keete", -1, 4],
-    ["keevad", -1, 4],
-    ["k\u00E4ia", -1, 8],
-    ["k\u00E4iakse", 53, 8],
-    ["k\u00E4ib", -1, 8],
-    ["k\u00E4id", -1, 8],
-    ["k\u00E4idi", 56, 8],
-    ["k\u00E4iks", -1, 8],
-    ["k\u00E4iksid", 58, 8],
-    ["k\u00E4iksime", 58, 8],
-    ["k\u00E4iksin", 58, 8],
-    ["k\u00E4iksite", 58, 8],
-    ["k\u00E4ima", -1, 8],
-    ["k\u00E4imata", 63, 8],
-    ["k\u00E4ime", -1, 8],
-    ["k\u00E4in", -1, 8],
-    ["k\u00E4is", -1, 8],
-    ["k\u00E4ite", -1, 8],
-    ["k\u00E4ivad", -1, 8],
-    ["laob", -1, 16],
-    ["laod", -1, 16],
-    ["laoks", -1, 16],
-    ["laoksid", 72, 16],
-    ["laoksime", 72, 16],
-    ["laoksin", 72, 16],
-    ["laoksite", 72, 16],
-    ["laome", -1, 16],
-    ["laon", -1, 16],
-    ["laote", -1, 16],
-    ["laovad", -1, 16],
-    ["loeb", -1, 14],
-    ["loed", -1, 14],
-    ["loeks", -1, 14],
-    ["loeksid", 83, 14],
-    ["loeksime", 83, 14],
-    ["loeksin", 83, 14],
-    ["loeksite", 83, 14],
-    ["loeme", -1, 14],
-    ["loen", -1, 14],
-    ["loete", -1, 14],
-    ["loevad", -1, 14],
-    ["loob", -1, 7],
-    ["lood", -1, 7],
-    ["loodi", 93, 7],
-    ["looks", -1, 7],
-    ["looksid", 95, 7],
-    ["looksime", 95, 7],
-    ["looksin", 95, 7],
-    ["looksite", 95, 7],
-    ["looma", -1, 7],
-    ["loomata", 100, 7],
-    ["loome", -1, 7],
-    ["loon", -1, 7],
-    ["loote", -1, 7],
-    ["loovad", -1, 7],
-    ["luua", -1, 7],
-    ["luuakse", 106, 7],
-    ["l\u00F5i", -1, 6],
-    ["l\u00F5id", 108, 6],
-    ["l\u00F5ime", 108, 6],
-    ["l\u00F5in", 108, 6],
-    ["l\u00F5ite", 108, 6],
-    ["l\u00F6\u00F6b", -1, 5],
-    ["l\u00F6\u00F6d", -1, 5],
-    ["l\u00F6\u00F6dakse", 114, 5],
-    ["l\u00F6\u00F6di", 114, 5],
-    ["l\u00F6\u00F6ks", -1, 5],
-    ["l\u00F6\u00F6ksid", 117, 5],
-    ["l\u00F6\u00F6ksime", 117, 5],
-    ["l\u00F6\u00F6ksin", 117, 5],
-    ["l\u00F6\u00F6ksite", 117, 5],
-    ["l\u00F6\u00F6ma", -1, 5],
-    ["l\u00F6\u00F6mata", 122, 5],
-    ["l\u00F6\u00F6me", -1, 5],
-    ["l\u00F6\u00F6n", -1, 5],
-    ["l\u00F6\u00F6te", -1, 5],
-    ["l\u00F6\u00F6vad", -1, 5],
-    ["l\u00FC\u00FCa", -1, 5],
-    ["l\u00FC\u00FCakse", 128, 5],
-    ["m\u00FC\u00FCa", -1, 13],
-    ["m\u00FC\u00FCakse", 130, 13],
-    ["m\u00FC\u00FCb", -1, 13],
-    ["m\u00FC\u00FCd", -1, 13],
-    ["m\u00FC\u00FCdi", 133, 13],
-    ["m\u00FC\u00FCks", -1, 13],
-    ["m\u00FC\u00FCksid", 135, 13],
-    ["m\u00FC\u00FCksime", 135, 13],
-    ["m\u00FC\u00FCksin", 135, 13],
-    ["m\u00FC\u00FCksite", 135, 13],
-    ["m\u00FC\u00FCma", -1, 13],
-    ["m\u00FC\u00FCmata", 140, 13],
-    ["m\u00FC\u00FCme", -1, 13],
-    ["m\u00FC\u00FCn", -1, 13],
-    ["m\u00FC\u00FCs", -1, 13],
-    ["m\u00FC\u00FCte", -1, 13],
-    ["m\u00FC\u00FCvad", -1, 13],
-    ["n\u00E4eb", -1, 18],
-    ["n\u00E4ed", -1, 18],
-    ["n\u00E4eks", -1, 18],
-    ["n\u00E4eksid", 149, 18],
-    ["n\u00E4eksime", 149, 18],
-    ["n\u00E4eksin", 149, 18],
-    ["n\u00E4eksite", 149, 18],
-    ["n\u00E4eme", -1, 18],
-    ["n\u00E4en", -1, 18],
-    ["n\u00E4ete", -1, 18],
-    ["n\u00E4evad", -1, 18],
-    ["n\u00E4gema", -1, 18],
-    ["n\u00E4gemata", 158, 18],
-    ["n\u00E4ha", -1, 18],
-    ["n\u00E4hakse", 160, 18],
-    ["n\u00E4hti", -1, 18],
-    ["p\u00F5eb", -1, 15],
-    ["p\u00F5ed", -1, 15],
-    ["p\u00F5eks", -1, 15],
-    ["p\u00F5eksid", 165, 15],
-    ["p\u00F5eksime", 165, 15],
-    ["p\u00F5eksin", 165, 15],
-    ["p\u00F5eksite", 165, 15],
-    ["p\u00F5eme", -1, 15],
-    ["p\u00F5en", -1, 15],
-    ["p\u00F5ete", -1, 15],
-    ["p\u00F5evad", -1, 15],
-    ["saab", -1, 2],
-    ["saad", -1, 2],
-    ["saada", 175, 2],
-    ["saadakse", 176, 2],
-    ["saadi", 175, 2],
-    ["saaks", -1, 2],
-    ["saaksid", 179, 2],
-    ["saaksime", 179, 2],
-    ["saaksin", 179, 2],
-    ["saaksite", 179, 2],
-    ["saama", -1, 2],
-    ["saamata", 184, 2],
-    ["saame", -1, 2],
-    ["saan", -1, 2],
-    ["saate", -1, 2],
-    ["saavad", -1, 2],
-    ["sai", -1, 2],
-    ["said", 190, 2],
-    ["saime", 190, 2],
-    ["sain", 190, 2],
-    ["saite", 190, 2],
-    ["s\u00F5i", -1, 9],
-    ["s\u00F5id", 195, 9],
-    ["s\u00F5ime", 195, 9],
-    ["s\u00F5in", 195, 9],
-    ["s\u00F5ite", 195, 9],
-    ["s\u00F6\u00F6b", -1, 9],
-    ["s\u00F6\u00F6d", -1, 9],
-    ["s\u00F6\u00F6dakse", 201, 9],
-    ["s\u00F6\u00F6di", 201, 9],
-    ["s\u00F6\u00F6ks", -1, 9],
-    ["s\u00F6\u00F6ksid", 204, 9],
-    ["s\u00F6\u00F6ksime", 204, 9],
-    ["s\u00F6\u00F6ksin", 204, 9],
-    ["s\u00F6\u00F6ksite", 204, 9],
-    ["s\u00F6\u00F6ma", -1, 9],
-    ["s\u00F6\u00F6mata", 209, 9],
-    ["s\u00F6\u00F6me", -1, 9],
-    ["s\u00F6\u00F6n", -1, 9],
-    ["s\u00F6\u00F6te", -1, 9],
-    ["s\u00F6\u00F6vad", -1, 9],
-    ["s\u00FC\u00FCa", -1, 9],
-    ["s\u00FC\u00FCakse", 215, 9],
-    ["teeb", -1, 17],
-    ["teed", -1, 17],
-    ["teeks", -1, 17],
-    ["teeksid", 219, 17],
-    ["teeksime", 219, 17],
-    ["teeksin", 219, 17],
-    ["teeksite", 219, 17],
-    ["teeme", -1, 17],
-    ["teen", -1, 17],
-    ["teete", -1, 17],
-    ["teevad", -1, 17],
-    ["tegema", -1, 17],
-    ["tegemata", 228, 17],
-    ["teha", -1, 17],
-    ["tehakse", 230, 17],
-    ["tehti", -1, 17],
-    ["toob", -1, 10],
-    ["tood", -1, 10],
-    ["toodi", 234, 10],
-    ["tooks", -1, 10],
-    ["tooksid", 236, 10],
-    ["tooksime", 236, 10],
-    ["tooksin", 236, 10],
-    ["tooksite", 236, 10],
-    ["tooma", -1, 10],
-    ["toomata", 241, 10],
-    ["toome", -1, 10],
-    ["toon", -1, 10],
-    ["toote", -1, 10],
-    ["toovad", -1, 10],
-    ["tuua", -1, 10],
-    ["tuuakse", 247, 10],
-    ["t\u00F5i", -1, 10],
-    ["t\u00F5id", 249, 10],
-    ["t\u00F5ime", 249, 10],
-    ["t\u00F5in", 249, 10],
-    ["t\u00F5ite", 249, 10],
-    ["viia", -1, 3],
-    ["viiakse", 254, 3],
-    ["viib", -1, 3],
-    ["viid", -1, 3],
-    ["viidi", 257, 3],
-    ["viiks", -1, 3],
-    ["viiksid", 259, 3],
-    ["viiksime", 259, 3],
-    ["viiksin", 259, 3],
-    ["viiksite", 259, 3],
-    ["viima", -1, 3],
-    ["viimata", 264, 3],
-    ["viime", -1, 3],
-    ["viin", -1, 3],
-    ["viisime", -1, 3],
-    ["viisin", -1, 3],
-    ["viisite", -1, 3],
-    ["viite", -1, 3],
-    ["viivad", -1, 3],
-    ["v\u00F5ib", -1, 11],
-    ["v\u00F5id", -1, 11],
-    ["v\u00F5ida", 274, 11],
-    ["v\u00F5idakse", 275, 11],
-    ["v\u00F5idi", 274, 11],
-    ["v\u00F5iks", -1, 11],
-    ["v\u00F5iksid", 278, 11],
-    ["v\u00F5iksime", 278, 11],
-    ["v\u00F5iksin", 278, 11],
-    ["v\u00F5iksite", 278, 11],
-    ["v\u00F5ima", -1, 11],
-    ["v\u00F5imata", 283, 11],
-    ["v\u00F5ime", -1, 11],
-    ["v\u00F5in", -1, 11],
-    ["v\u00F5is", -1, 11],
-    ["v\u00F5ite", -1, 11],
-    ["v\u00F5ivad", -1, 11]
+    ["jooma", 1],
+    ["joomata", 1, 1],
+    ["joome", 1],
+    ["joon", 1],
+    ["joote", 1],
+    ["joovad", 1],
+    ["juua", 1],
+    ["juuakse", 1, 1],
+    ["j\u00E4i", 12],
+    ["j\u00E4id", 12, 1],
+    ["j\u00E4ime", 12, 2],
+    ["j\u00E4in", 12, 3],
+    ["j\u00E4ite", 12, 4],
+    ["j\u00E4\u00E4b", 12],
+    ["j\u00E4\u00E4d", 12],
+    ["j\u00E4\u00E4da", 12, 1],
+    ["j\u00E4\u00E4dakse", 12, 1],
+    ["j\u00E4\u00E4di", 12, 3],
+    ["j\u00E4\u00E4ks", 12],
+    ["j\u00E4\u00E4ksid", 12, 1],
+    ["j\u00E4\u00E4ksime", 12, 2],
+    ["j\u00E4\u00E4ksin", 12, 3],
+    ["j\u00E4\u00E4ksite", 12, 4],
+    ["j\u00E4\u00E4ma", 12],
+    ["j\u00E4\u00E4mata", 12, 1],
+    ["j\u00E4\u00E4me", 12],
+    ["j\u00E4\u00E4n", 12],
+    ["j\u00E4\u00E4te", 12],
+    ["j\u00E4\u00E4vad", 12],
+    ["j\u00F5i", 1],
+    ["j\u00F5id", 1, 1],
+    ["j\u00F5ime", 1, 2],
+    ["j\u00F5in", 1, 3],
+    ["j\u00F5ite", 1, 4],
+    ["keeb", 4],
+    ["keed", 4],
+    ["keedakse", 4, 1],
+    ["keeks", 4],
+    ["keeksid", 4, 1],
+    ["keeksime", 4, 2],
+    ["keeksin", 4, 3],
+    ["keeksite", 4, 4],
+    ["keema", 4],
+    ["keemata", 4, 1],
+    ["keeme", 4],
+    ["keen", 4],
+    ["kees", 4],
+    ["keeta", 4],
+    ["keete", 4],
+    ["keevad", 4],
+    ["k\u00E4ia", 8],
+    ["k\u00E4iakse", 8, 1],
+    ["k\u00E4ib", 8],
+    ["k\u00E4id", 8],
+    ["k\u00E4idi", 8, 1],
+    ["k\u00E4iks", 8],
+    ["k\u00E4iksid", 8, 1],
+    ["k\u00E4iksime", 8, 2],
+    ["k\u00E4iksin", 8, 3],
+    ["k\u00E4iksite", 8, 4],
+    ["k\u00E4ima", 8],
+    ["k\u00E4imata", 8, 1],
+    ["k\u00E4ime", 8],
+    ["k\u00E4in", 8],
+    ["k\u00E4is", 8],
+    ["k\u00E4ite", 8],
+    ["k\u00E4ivad", 8],
+    ["laob", 16],
+    ["laod", 16],
+    ["laoks", 16],
+    ["laoksid", 16, 1],
+    ["laoksime", 16, 2],
+    ["laoksin", 16, 3],
+    ["laoksite", 16, 4],
+    ["laome", 16],
+    ["laon", 16],
+    ["laote", 16],
+    ["laovad", 16],
+    ["loeb", 14],
+    ["loed", 14],
+    ["loeks", 14],
+    ["loeksid", 14, 1],
+    ["loeksime", 14, 2],
+    ["loeksin", 14, 3],
+    ["loeksite", 14, 4],
+    ["loeme", 14],
+    ["loen", 14],
+    ["loete", 14],
+    ["loevad", 14],
+    ["loob", 7],
+    ["lood", 7],
+    ["loodi", 7, 1],
+    ["looks", 7],
+    ["looksid", 7, 1],
+    ["looksime", 7, 2],
+    ["looksin", 7, 3],
+    ["looksite", 7, 4],
+    ["looma", 7],
+    ["loomata", 7, 1],
+    ["loome", 7],
+    ["loon", 7],
+    ["loote", 7],
+    ["loovad", 7],
+    ["luua", 7],
+    ["luuakse", 7, 1],
+    ["l\u00F5i", 6],
+    ["l\u00F5id", 6, 1],
+    ["l\u00F5ime", 6, 2],
+    ["l\u00F5in", 6, 3],
+    ["l\u00F5ite", 6, 4],
+    ["l\u00F6\u00F6b", 5],
+    ["l\u00F6\u00F6d", 5],
+    ["l\u00F6\u00F6dakse", 5, 1],
+    ["l\u00F6\u00F6di", 5, 2],
+    ["l\u00F6\u00F6ks", 5],
+    ["l\u00F6\u00F6ksid", 5, 1],
+    ["l\u00F6\u00F6ksime", 5, 2],
+    ["l\u00F6\u00F6ksin", 5, 3],
+    ["l\u00F6\u00F6ksite", 5, 4],
+    ["l\u00F6\u00F6ma", 5],
+    ["l\u00F6\u00F6mata", 5, 1],
+    ["l\u00F6\u00F6me", 5],
+    ["l\u00F6\u00F6n", 5],
+    ["l\u00F6\u00F6te", 5],
+    ["l\u00F6\u00F6vad", 5],
+    ["l\u00FC\u00FCa", 5],
+    ["l\u00FC\u00FCakse", 5, 1],
+    ["m\u00FC\u00FCa", 13],
+    ["m\u00FC\u00FCakse", 13, 1],
+    ["m\u00FC\u00FCb", 13],
+    ["m\u00FC\u00FCd", 13],
+    ["m\u00FC\u00FCdi", 13, 1],
+    ["m\u00FC\u00FCks", 13],
+    ["m\u00FC\u00FCksid", 13, 1],
+    ["m\u00FC\u00FCksime", 13, 2],
+    ["m\u00FC\u00FCksin", 13, 3],
+    ["m\u00FC\u00FCksite", 13, 4],
+    ["m\u00FC\u00FCma", 13],
+    ["m\u00FC\u00FCmata", 13, 1],
+    ["m\u00FC\u00FCme", 13],
+    ["m\u00FC\u00FCn", 13],
+    ["m\u00FC\u00FCs", 13],
+    ["m\u00FC\u00FCte", 13],
+    ["m\u00FC\u00FCvad", 13],
+    ["n\u00E4eb", 18],
+    ["n\u00E4ed", 18],
+    ["n\u00E4eks", 18],
+    ["n\u00E4eksid", 18, 1],
+    ["n\u00E4eksime", 18, 2],
+    ["n\u00E4eksin", 18, 3],
+    ["n\u00E4eksite", 18, 4],
+    ["n\u00E4eme", 18],
+    ["n\u00E4en", 18],
+    ["n\u00E4ete", 18],
+    ["n\u00E4evad", 18],
+    ["n\u00E4gema", 18],
+    ["n\u00E4gemata", 18, 1],
+    ["n\u00E4ha", 18],
+    ["n\u00E4hakse", 18, 1],
+    ["n\u00E4hti", 18],
+    ["p\u00F5eb", 15],
+    ["p\u00F5ed", 15],
+    ["p\u00F5eks", 15],
+    ["p\u00F5eksid", 15, 1],
+    ["p\u00F5eksime", 15, 2],
+    ["p\u00F5eksin", 15, 3],
+    ["p\u00F5eksite", 15, 4],
+    ["p\u00F5eme", 15],
+    ["p\u00F5en", 15],
+    ["p\u00F5ete", 15],
+    ["p\u00F5evad", 15],
+    ["saab", 2],
+    ["saad", 2],
+    ["saada", 2, 1],
+    ["saadakse", 2, 1],
+    ["saadi", 2, 3],
+    ["saaks", 2],
+    ["saaksid", 2, 1],
+    ["saaksime", 2, 2],
+    ["saaksin", 2, 3],
+    ["saaksite", 2, 4],
+    ["saama", 2],
+    ["saamata", 2, 1],
+    ["saame", 2],
+    ["saan", 2],
+    ["saate", 2],
+    ["saavad", 2],
+    ["sai", 2],
+    ["said", 2, 1],
+    ["saime", 2, 2],
+    ["sain", 2, 3],
+    ["saite", 2, 4],
+    ["s\u00F5i", 9],
+    ["s\u00F5id", 9, 1],
+    ["s\u00F5ime", 9, 2],
+    ["s\u00F5in", 9, 3],
+    ["s\u00F5ite", 9, 4],
+    ["s\u00F6\u00F6b", 9],
+    ["s\u00F6\u00F6d", 9],
+    ["s\u00F6\u00F6dakse", 9, 1],
+    ["s\u00F6\u00F6di", 9, 2],
+    ["s\u00F6\u00F6ks", 9],
+    ["s\u00F6\u00F6ksid", 9, 1],
+    ["s\u00F6\u00F6ksime", 9, 2],
+    ["s\u00F6\u00F6ksin", 9, 3],
+    ["s\u00F6\u00F6ksite", 9, 4],
+    ["s\u00F6\u00F6ma", 9],
+    ["s\u00F6\u00F6mata", 9, 1],
+    ["s\u00F6\u00F6me", 9],
+    ["s\u00F6\u00F6n", 9],
+    ["s\u00F6\u00F6te", 9],
+    ["s\u00F6\u00F6vad", 9],
+    ["s\u00FC\u00FCa", 9],
+    ["s\u00FC\u00FCakse", 9, 1],
+    ["teeb", 17],
+    ["teed", 17],
+    ["teeks", 17],
+    ["teeksid", 17, 1],
+    ["teeksime", 17, 2],
+    ["teeksin", 17, 3],
+    ["teeksite", 17, 4],
+    ["teeme", 17],
+    ["teen", 17],
+    ["teete", 17],
+    ["teevad", 17],
+    ["tegema", 17],
+    ["tegemata", 17, 1],
+    ["teha", 17],
+    ["tehakse", 17, 1],
+    ["tehti", 17],
+    ["toob", 10],
+    ["tood", 10],
+    ["toodi", 10, 1],
+    ["tooks", 10],
+    ["tooksid", 10, 1],
+    ["tooksime", 10, 2],
+    ["tooksin", 10, 3],
+    ["tooksite", 10, 4],
+    ["tooma", 10],
+    ["toomata", 10, 1],
+    ["toome", 10],
+    ["toon", 10],
+    ["toote", 10],
+    ["toovad", 10],
+    ["tuua", 10],
+    ["tuuakse", 10, 1],
+    ["t\u00F5i", 10],
+    ["t\u00F5id", 10, 1],
+    ["t\u00F5ime", 10, 2],
+    ["t\u00F5in", 10, 3],
+    ["t\u00F5ite", 10, 4],
+    ["viia", 3],
+    ["viiakse", 3, 1],
+    ["viib", 3],
+    ["viid", 3],
+    ["viidi", 3, 1],
+    ["viiks", 3],
+    ["viiksid", 3, 1],
+    ["viiksime", 3, 2],
+    ["viiksin", 3, 3],
+    ["viiksite", 3, 4],
+    ["viima", 3],
+    ["viimata", 3, 1],
+    ["viime", 3],
+    ["viin", 3],
+    ["viisime", 3],
+    ["viisin", 3],
+    ["viisite", 3],
+    ["viite", 3],
+    ["viivad", 3],
+    ["v\u00F5ib", 11],
+    ["v\u00F5id", 11],
+    ["v\u00F5ida", 11, 1],
+    ["v\u00F5idakse", 11, 1],
+    ["v\u00F5idi", 11, 3],
+    ["v\u00F5iks", 11],
+    ["v\u00F5iksid", 11, 1],
+    ["v\u00F5iksime", 11, 2],
+    ["v\u00F5iksin", 11, 3],
+    ["v\u00F5iksite", 11, 4],
+    ["v\u00F5ima", 11],
+    ["v\u00F5imata", 11, 1],
+    ["v\u00F5ime", 11],
+    ["v\u00F5in", 11],
+    ["v\u00F5is", 11],
+    ["v\u00F5ite", 11],
+    ["v\u00F5ivad", 11]
 ];
+
+const /** Array<string> */ as_10 = ["joo", "saa", "viima", "keesi", "l\u00F6\u00F6", "l\u00F5i", "loo", "k\u00E4isi", "s\u00F6\u00F6", "too", "v\u00F5isi", "j\u00E4\u00E4ma", "m\u00FC\u00FCsi", "luge", "p\u00F5de", "ladu", "tegi", "n\u00E4gi"];
 
 const /** Array<number> */ g_V1 = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 48, 8];
 
@@ -542,20 +548,7 @@ export default class extends B {
         }
         this.bra = this.c;
         this.limit_backward = v_1;
-        switch (a) {
-            case 1: {
-                this.slice_from("lase");
-                break;
-            }
-            case 2: {
-                this.slice_from("mise");
-                break;
-            }
-            case 3: {
-                this.slice_from("lise");
-                break;
-            }
-        }
+        this.slice_from(as_3[a - 1]);
         return true;
     }
 
@@ -577,25 +570,23 @@ export default class extends B {
             case 1: {
                 // deno-lint-ignore no-unused-labels
                 lab0: {
-                    const /** number */ v_2 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab1: {
                         if (!(this.in_grouping_b(g_RV, 97, 117))) break lab1;
                         break lab0;
                     }
-                    this.c = this.limit - v_2;
                     if (!this.#r_LONGV()) return false;
                 }
                 break;
             }
             case 2: {
-                const /** number */ v_3 = this.limit - this.c;
+                const /** number */ v_2 = this.limit - this.c;
                 {
                     const /** number */ c = this.c - 4;
                     if (c < this.limit_backward) return false;
                     this.c = c;
                 }
-                this.c = this.limit - v_3;
+                this.c = this.limit - v_2;
                 break;
             }
         }
@@ -669,13 +660,11 @@ export default class extends B {
             case 4: {
                 // deno-lint-ignore no-unused-labels
                 lab3: {
-                    const /** number */ v_5 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab4: {
                         if (!(this.in_grouping_b(g_RV, 97, 117))) break lab4;
                         break lab3;
                     }
-                    this.c = this.limit - v_5;
                     if (!this.#r_LONGV()) return false;
                 }
                 this.slice_del();
@@ -710,20 +699,7 @@ export default class extends B {
         a = this.find_among_b(a_8);
         if (a === 0) return false;
         this.bra = this.c;
-        switch (a) {
-            case 1: {
-                this.slice_from("k");
-                break;
-            }
-            case 2: {
-                this.slice_from("p");
-                break;
-            }
-            case 3: {
-                this.slice_from("t");
-                break;
-            }
-        }
+        this.slice_from(as_8[a - 1]);
         return true;
     }
 
@@ -786,80 +762,7 @@ export default class extends B {
         if (a === 0) return false;
         this.ket = this.c;
         if (this.c < this.limit) return false;
-        switch (a) {
-            case 1: {
-                this.slice_from("joo");
-                break;
-            }
-            case 2: {
-                this.slice_from("saa");
-                break;
-            }
-            case 3: {
-                this.slice_from("viima");
-                break;
-            }
-            case 4: {
-                this.slice_from("keesi");
-                break;
-            }
-            case 5: {
-                this.slice_from("l\u00F6\u00F6");
-                break;
-            }
-            case 6: {
-                this.slice_from("l\u00F5i");
-                break;
-            }
-            case 7: {
-                this.slice_from("loo");
-                break;
-            }
-            case 8: {
-                this.slice_from("k\u00E4isi");
-                break;
-            }
-            case 9: {
-                this.slice_from("s\u00F6\u00F6");
-                break;
-            }
-            case 10: {
-                this.slice_from("too");
-                break;
-            }
-            case 11: {
-                this.slice_from("v\u00F5isi");
-                break;
-            }
-            case 12: {
-                this.slice_from("j\u00E4\u00E4ma");
-                break;
-            }
-            case 13: {
-                this.slice_from("m\u00FC\u00FCsi");
-                break;
-            }
-            case 14: {
-                this.slice_from("luge");
-                break;
-            }
-            case 15: {
-                this.slice_from("p\u00F5de");
-                break;
-            }
-            case 16: {
-                this.slice_from("ladu");
-                break;
-            }
-            case 17: {
-                this.slice_from("tegi");
-                break;
-            }
-            case 18: {
-                this.slice_from("n\u00E4gi");
-                break;
-            }
-        }
+        this.slice_from(as_10[a - 1]);
         return true;
     }
 

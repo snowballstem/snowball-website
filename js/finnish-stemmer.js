@@ -3,121 +3,121 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
-    ["pa", -1, 1],
-    ["sti", -1, 2],
-    ["kaan", -1, 1],
-    ["han", -1, 1],
-    ["kin", -1, 1],
-    ["h\u00E4n", -1, 1],
-    ["k\u00E4\u00E4n", -1, 1],
-    ["ko", -1, 1],
-    ["p\u00E4", -1, 1],
-    ["k\u00F6", -1, 1]
+    ["pa", 1],
+    ["sti", 2],
+    ["kaan", 1],
+    ["han", 1],
+    ["kin", 1],
+    ["h\u00E4n", 1],
+    ["k\u00E4\u00E4n", 1],
+    ["ko", 1],
+    ["p\u00E4", 1],
+    ["k\u00F6", 1]
 ];
 
 const a_1 = [
-    ["lla", -1, -1],
-    ["na", -1, -1],
-    ["ssa", -1, -1],
-    ["ta", -1, -1],
-    ["lta", 3, -1],
-    ["sta", 3, -1]
+    ["lla", -1],
+    ["na", -1],
+    ["ssa", -1],
+    ["ta", -1],
+    ["lta", -1, 1],
+    ["sta", -1, 2]
 ];
 
 const a_2 = [
-    ["ll\u00E4", -1, -1],
-    ["n\u00E4", -1, -1],
-    ["ss\u00E4", -1, -1],
-    ["t\u00E4", -1, -1],
-    ["lt\u00E4", 3, -1],
-    ["st\u00E4", 3, -1]
+    ["ll\u00E4", -1],
+    ["n\u00E4", -1],
+    ["ss\u00E4", -1],
+    ["t\u00E4", -1],
+    ["lt\u00E4", -1, 1],
+    ["st\u00E4", -1, 2]
 ];
 
 const a_3 = [
-    ["lle", -1, -1],
-    ["ine", -1, -1]
+    ["lle", -1],
+    ["ine", -1]
 ];
 
 const a_4 = [
-    ["nsa", -1, 3],
-    ["mme", -1, 3],
-    ["nne", -1, 3],
-    ["ni", -1, 2],
-    ["si", -1, 1],
-    ["an", -1, 4],
-    ["en", -1, 6],
-    ["\u00E4n", -1, 5],
-    ["ns\u00E4", -1, 3]
+    ["nsa", 3],
+    ["mme", 3],
+    ["nne", 3],
+    ["ni", 2],
+    ["si", 1],
+    ["an", 4],
+    ["en", 6],
+    ["\u00E4n", 5],
+    ["ns\u00E4", 3]
 ];
 
 const a_5 = [
-    ["aa", -1, -1],
-    ["ee", -1, -1],
-    ["ii", -1, -1],
-    ["oo", -1, -1],
-    ["uu", -1, -1],
-    ["\u00E4\u00E4", -1, -1],
-    ["\u00F6\u00F6", -1, -1]
+    ["aa", -1],
+    ["ee", -1],
+    ["ii", -1],
+    ["oo", -1],
+    ["uu", -1],
+    ["\u00E4\u00E4", -1],
+    ["\u00F6\u00F6", -1]
 ];
 
 const a_6 = [
-    ["a", -1, 8],
-    ["lla", 0, -1],
-    ["na", 0, -1],
-    ["ssa", 0, -1],
-    ["ta", 0, -1],
-    ["lta", 4, -1],
-    ["sta", 4, -1],
-    ["tta", 4, 2],
-    ["lle", -1, -1],
-    ["ine", -1, -1],
-    ["ksi", -1, -1],
-    ["n", -1, 7],
-    ["han", 11, 1],
-    ["den", 11, -1, 1],
-    ["seen", 11, -1, 2],
-    ["hen", 11, 2],
-    ["tten", 11, -1, 1],
-    ["hin", 11, 3],
-    ["siin", 11, -1, 1],
-    ["hon", 11, 4],
-    ["h\u00E4n", 11, 5],
-    ["h\u00F6n", 11, 6],
-    ["\u00E4", -1, 8],
-    ["ll\u00E4", 22, -1],
-    ["n\u00E4", 22, -1],
-    ["ss\u00E4", 22, -1],
-    ["t\u00E4", 22, -1],
-    ["lt\u00E4", 26, -1],
-    ["st\u00E4", 26, -1],
-    ["tt\u00E4", 26, 2]
+    ["a", 8],
+    ["lla", -1, 1],
+    ["na", -1, 2],
+    ["ssa", -1, 3],
+    ["ta", -1, 4],
+    ["lta", -1, 1],
+    ["sta", -1, 2],
+    ["tta", 2, 3],
+    ["lle", -1],
+    ["ine", -1],
+    ["ksi", -1],
+    ["n", 7],
+    ["han", 1, 1],
+    ["den", -1, 2, 1],
+    ["seen", -1, 3, 2],
+    ["hen", 2, 4],
+    ["tten", -1, 5, 1],
+    ["hin", 3, 6],
+    ["siin", -1, 7, 1],
+    ["hon", 4, 8],
+    ["h\u00E4n", 5, 9],
+    ["h\u00F6n", 6, 10],
+    ["\u00E4", 8],
+    ["ll\u00E4", -1, 1],
+    ["n\u00E4", -1, 2],
+    ["ss\u00E4", -1, 3],
+    ["t\u00E4", -1, 4],
+    ["lt\u00E4", -1, 1],
+    ["st\u00E4", -1, 2],
+    ["tt\u00E4", 2, 3]
 ];
 
 const a_7 = [
-    ["eja", -1, -1],
-    ["mma", -1, 1],
-    ["imma", 1, -1],
-    ["mpa", -1, 1],
-    ["impa", 3, -1],
-    ["mmi", -1, 1],
-    ["immi", 5, -1],
-    ["mpi", -1, 1],
-    ["impi", 7, -1],
-    ["ej\u00E4", -1, -1],
-    ["mm\u00E4", -1, 1],
-    ["imm\u00E4", 10, -1],
-    ["mp\u00E4", -1, 1],
-    ["imp\u00E4", 12, -1]
+    ["eja", -1],
+    ["mma", 1],
+    ["imma", -1, 1],
+    ["mpa", 1],
+    ["impa", -1, 1],
+    ["mmi", 1],
+    ["immi", -1, 1],
+    ["mpi", 1],
+    ["impi", -1, 1],
+    ["ej\u00E4", -1],
+    ["mm\u00E4", 1],
+    ["imm\u00E4", -1, 1],
+    ["mp\u00E4", 1],
+    ["imp\u00E4", -1, 1]
 ];
 
 const a_8 = [
-    ["i", -1, -1],
-    ["j", -1, -1]
+    ["i", -1],
+    ["j", -1]
 ];
 
 const a_9 = [
-    ["mma", -1, 1],
-    ["imma", 0, -1]
+    ["mma", 1],
+    ["imma", -1, 1]
 ];
 
 const /** Array<number> */ g_AEI = [17, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8];
@@ -214,14 +214,10 @@ export default class extends B {
         this.limit_backward = v_1;
         switch (a) {
             case 1: {
-                {
-                    const /** number */ v_2 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab0: {
-                        if (!(this.eq_s_b("k"))) break lab0;
-                        return false;
-                    }
-                    this.c = this.limit - v_2;
+                // deno-lint-ignore no-unused-labels
+                lab0: {
+                    if (!(this.eq_s_b("k"))) break lab0;
+                    return false;
                 }
                 this.slice_del();
                 break;
@@ -363,14 +359,10 @@ export default class extends B {
         this.limit_backward = v_1;
         switch (a) {
             case 1: {
-                {
-                    const /** number */ v_2 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab0: {
-                        if (!(this.eq_s_b("po"))) break lab0;
-                        return false;
-                    }
-                    this.c = this.limit - v_2;
+                // deno-lint-ignore no-unused-labels
+                lab0: {
+                    if (!(this.eq_s_b("po"))) break lab0;
+                    return false;
                 }
                 break;
             }
@@ -428,14 +420,10 @@ export default class extends B {
         this.limit_backward = v_3;
         switch (a) {
             case 1: {
-                {
-                    const /** number */ v_4 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab0: {
-                        if (!(this.eq_s_b("po"))) break lab0;
-                        return false;
-                    }
-                    this.c = this.limit - v_4;
+                // deno-lint-ignore no-unused-labels
+                lab0: {
+                    if (!(this.eq_s_b("po"))) break lab0;
+                    return false;
                 }
                 break;
             }
@@ -481,19 +469,17 @@ export default class extends B {
             this.bra = this.c;
             // deno-lint-ignore no-unused-labels
             lab3: {
-                const /** number */ v_6 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab4: {
                     if (!(this.eq_s_b("o"))) break lab4;
                     break lab3;
                 }
-                this.c = this.limit - v_6;
                 if (!(this.eq_s_b("u"))) break lab2;
             }
             this.slice_del();
         }
         this.c = this.limit - v_5;
-        const /** number */ v_7 = this.limit - this.c;
+        const /** number */ v_6 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab5: {
             this.ket = this.c;
@@ -502,7 +488,7 @@ export default class extends B {
             if (!(this.eq_s_b("j"))) break lab5;
             this.slice_del();
         }
-        this.c = this.limit - v_7;
+        this.c = this.limit - v_6;
         this.limit_backward = v_1;
         if (!this.go_in_grouping_b(g_V1, 97, 246)) return false;
         this.ket = this.c;

@@ -3,67 +3,67 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
-    ["", -1, 5],
-    ["ae", 0, 2],
-    ["oe", 0, 3],
-    ["qu", 0, -1],
-    ["ue", 0, 4],
-    ["\u00DF", 0, 1]
+    ["", 5],
+    ["ae", 2, 1],
+    ["oe", 3, 2],
+    ["qu", -1, 3],
+    ["ue", 4, 4],
+    ["\u00DF", 1, 5]
 ];
 
 const a_1 = [
-    ["", -1, 5],
-    ["U", 0, 2],
-    ["Y", 0, 1],
-    ["\u00E4", 0, 3],
-    ["\u00F6", 0, 4],
-    ["\u00FC", 0, 2]
+    ["", 5],
+    ["U", 2, 1],
+    ["Y", 1, 2],
+    ["\u00E4", 3, 3],
+    ["\u00F6", 4, 4],
+    ["\u00FC", 2, 5]
 ];
 
 const a_2 = [
-    ["e", -1, 3],
-    ["em", -1, 1],
-    ["en", -1, 3],
-    ["erinnen", 2, 2],
-    ["erin", -1, 2],
-    ["ln", -1, 5],
-    ["ern", -1, 2],
-    ["er", -1, 2],
-    ["s", -1, 4],
-    ["es", 8, 3],
-    ["lns", 8, 5]
+    ["e", 3],
+    ["em", 1],
+    ["en", 3],
+    ["erinnen", 2, 1],
+    ["erin", 2],
+    ["ln", 5],
+    ["ern", 2],
+    ["er", 2],
+    ["s", 4],
+    ["es", 3, 1],
+    ["lns", 5, 2]
 ];
 
 const a_3 = [
-    ["tick", -1, -1],
-    ["plan", -1, -1],
-    ["geordn", -1, -1],
-    ["intern", -1, -1],
-    ["tr", -1, -1]
+    ["tick", -1],
+    ["plan", -1],
+    ["geordn", -1],
+    ["intern", -1],
+    ["tr", -1]
 ];
 
 const a_4 = [
-    ["en", -1, 1],
-    ["er", -1, 1],
-    ["et", -1, 3],
-    ["st", -1, 2],
-    ["est", 3, 1]
+    ["en", 1],
+    ["er", 1],
+    ["et", 3],
+    ["st", 2],
+    ["est", 1, 1]
 ];
 
 const a_5 = [
-    ["ig", -1, 1],
-    ["lich", -1, 1]
+    ["ig", 1],
+    ["lich", 1]
 ];
 
 const a_6 = [
-    ["end", -1, 1],
-    ["ig", -1, 2],
-    ["ung", -1, 1],
-    ["lich", -1, 3],
-    ["isch", -1, 2],
-    ["ik", -1, 2],
-    ["heit", -1, 3],
-    ["keit", -1, 4]
+    ["end", 1],
+    ["ig", 2],
+    ["ung", 1],
+    ["lich", 3],
+    ["isch", 2],
+    ["ik", 2],
+    ["heit", 3],
+    ["keit", 4]
 ];
 
 const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32, 8];
@@ -261,14 +261,10 @@ export default class extends B {
             if (!this.#r_R1()) break lab0;
             switch (a) {
                 case 1: {
-                    {
-                        const /** number */ v_2 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab1: {
-                            if (!(this.eq_s_b("syst"))) break lab1;
-                            break lab0;
-                        }
-                        this.c = this.limit - v_2;
+                    // deno-lint-ignore no-unused-labels
+                    lab1: {
+                        if (!(this.eq_s_b("syst"))) break lab1;
+                        break lab0;
                     }
                     this.slice_del();
                     break;
@@ -279,17 +275,17 @@ export default class extends B {
                 }
                 case 3: {
                     this.slice_del();
-                    const /** number */ v_3 = this.limit - this.c;
+                    const /** number */ v_2 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab2: {
                         this.ket = this.c;
                         if (!(this.eq_s_b("s"))) {
-                            this.c = this.limit - v_3;
+                            this.c = this.limit - v_2;
                             break lab2;
                         }
                         this.bra = this.c;
                         if (!(this.eq_s_b("nis"))) {
-                            this.c = this.limit - v_3;
+                            this.c = this.limit - v_2;
                             break lab2;
                         }
                         this.slice_del();
@@ -308,7 +304,7 @@ export default class extends B {
             }
         }
         this.c = this.limit - v_1;
-        const /** number */ v_4 = this.limit - this.c;
+        const /** number */ v_3 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab3: {
             this.ket = this.c;
@@ -332,25 +328,25 @@ export default class extends B {
                     break;
                 }
                 case 3: {
-                    const /** number */ v_5 = this.limit - this.c;
+                    const /** number */ v_4 = this.limit - this.c;
                     if (!(this.in_grouping_b(g_et_ending, 85, 228))) break lab3;
-                    this.c = this.limit - v_5;
+                    this.c = this.limit - v_4;
                     {
-                        const /** number */ v_6 = this.limit - this.c;
+                        const /** number */ v_5 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
                         lab4: {
                             if (this.find_among_b(a_3) === 0) break lab4;
                             break lab3;
                         }
-                        this.c = this.limit - v_6;
+                        this.c = this.limit - v_5;
                     }
                     this.slice_del();
                     break;
                 }
             }
         }
-        this.c = this.limit - v_4;
-        const /** number */ v_7 = this.limit - this.c;
+        this.c = this.limit - v_3;
+        const /** number */ v_6 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab5: {
             this.ket = this.c;
@@ -361,27 +357,23 @@ export default class extends B {
             switch (a) {
                 case 1: {
                     this.slice_del();
-                    const /** number */ v_8 = this.limit - this.c;
+                    const /** number */ v_7 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab6: {
                         this.ket = this.c;
                         if (!(this.eq_s_b("ig"))) {
-                            this.c = this.limit - v_8;
+                            this.c = this.limit - v_7;
                             break lab6;
                         }
                         this.bra = this.c;
-                        {
-                            const /** number */ v_9 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab7: {
-                                if (!(this.eq_s_b("e"))) break lab7;
-                                this.c = this.limit - v_8;
-                                break lab6;
-                            }
-                            this.c = this.limit - v_9;
+                        // deno-lint-ignore no-unused-labels
+                        lab7: {
+                            if (!(this.eq_s_b("e"))) break lab7;
+                            this.c = this.limit - v_7;
+                            break lab6;
                         }
                         if (!this.#r_R2()) {
-                            this.c = this.limit - v_8;
+                            this.c = this.limit - v_7;
                             break lab6;
                         }
                         this.slice_del();
@@ -389,41 +381,35 @@ export default class extends B {
                     break;
                 }
                 case 2: {
-                    {
-                        const /** number */ v_10 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab8: {
-                            if (!(this.eq_s_b("e"))) break lab8;
-                            break lab5;
-                        }
-                        this.c = this.limit - v_10;
+                    // deno-lint-ignore no-unused-labels
+                    lab8: {
+                        if (!(this.eq_s_b("e"))) break lab8;
+                        break lab5;
                     }
                     this.slice_del();
                     break;
                 }
                 case 3: {
                     this.slice_del();
-                    const /** number */ v_11 = this.limit - this.c;
+                    const /** number */ v_8 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab9: {
                         this.ket = this.c;
                         // deno-lint-ignore no-unused-labels
                         lab10: {
-                            const /** number */ v_12 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
                             lab11: {
                                 if (!(this.eq_s_b("er"))) break lab11;
                                 break lab10;
                             }
-                            this.c = this.limit - v_12;
                             if (!(this.eq_s_b("en"))) {
-                                this.c = this.limit - v_11;
+                                this.c = this.limit - v_8;
                                 break lab9;
                             }
                         }
                         this.bra = this.c;
                         if (!this.#r_R1()) {
-                            this.c = this.limit - v_11;
+                            this.c = this.limit - v_8;
                             break lab9;
                         }
                         this.slice_del();
@@ -432,17 +418,17 @@ export default class extends B {
                 }
                 case 4: {
                     this.slice_del();
-                    const /** number */ v_13 = this.limit - this.c;
+                    const /** number */ v_9 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab12: {
                         this.ket = this.c;
                         if (this.find_among_b(a_5) === 0) {
-                            this.c = this.limit - v_13;
+                            this.c = this.limit - v_9;
                             break lab12;
                         }
                         this.bra = this.c;
                         if (!this.#r_R2()) {
-                            this.c = this.limit - v_13;
+                            this.c = this.limit - v_9;
                             break lab12;
                         }
                         this.slice_del();
@@ -451,7 +437,7 @@ export default class extends B {
                 }
             }
         }
-        this.c = this.limit - v_7;
+        this.c = this.limit - v_6;
         return true;
     }
 

@@ -3,38 +3,38 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
-    ["kah", -1, 1],
-    ["lah", -1, 1],
-    ["pun", -1, 1]
+    ["kah", 1],
+    ["lah", 1],
+    ["pun", 1]
 ];
 
 const a_1 = [
-    ["nya", -1, 1],
-    ["ku", -1, 1],
-    ["mu", -1, 1]
+    ["nya", 1],
+    ["ku", 1],
+    ["mu", 1]
 ];
 
 const a_2 = [
-    ["i", -1, 2],
-    ["an", -1, 1]
+    ["i", 2],
+    ["an", 1]
 ];
 
 const a_3 = [
-    ["di", -1, 1],
-    ["ke", -1, 3],
-    ["me", -1, 1],
-    ["mem", 2, 5],
+    ["di", 1],
+    ["ke", 3],
+    ["me", 1],
+    ["mem", 5, 1],
     ["men", 2, 2],
-    ["meng", 4, 1],
-    ["pem", -1, 6],
-    ["pen", -1, 4],
-    ["peng", 7, 3],
-    ["ter", -1, 1]
+    ["meng", 1, 1],
+    ["pem", 6],
+    ["pen", 4],
+    ["peng", 3, 1],
+    ["ter", 1]
 ];
 
 const a_4 = [
-    ["be", -1, 2],
-    ["pe", -1, 1]
+    ["be", 2],
+    ["pe", 1]
 ];
 
 const /** Array<number> */ g_vowel = [17, 65, 16];
@@ -94,14 +94,10 @@ export default class extends B {
             }
             case 2: {
                 if (this.#I_prefix > 2) return false;
-                {
-                    const /** number */ v_2 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab2: {
-                        if (!(this.eq_s_b("s"))) break lab2;
-                        return false;
-                    }
-                    this.c = this.limit - v_2;
+                // deno-lint-ignore no-unused-labels
+                lab2: {
+                    if (!(this.eq_s_b("s"))) break lab2;
+                    return false;
                 }
                 break;
             }

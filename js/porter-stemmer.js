@@ -3,87 +3,89 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
-    ["s", -1, 3],
-    ["ies", 0, 2],
-    ["sses", 0, 1],
-    ["ss", 0, -1]
+    ["s", 3],
+    ["ies", 2, 1],
+    ["sses", 1, 2],
+    ["ss", -1, 3]
 ];
 
 const a_1 = [
-    ["", -1, 3],
-    ["bb", 0, 2],
-    ["dd", 0, 2],
-    ["ff", 0, 2],
-    ["gg", 0, 2],
-    ["bl", 0, 1],
-    ["mm", 0, 2],
-    ["nn", 0, 2],
-    ["pp", 0, 2],
-    ["rr", 0, 2],
-    ["at", 0, 1],
-    ["tt", 0, 2],
-    ["iz", 0, 1]
+    ["", 3],
+    ["bb", 2, 1],
+    ["dd", 2, 2],
+    ["ff", 2, 3],
+    ["gg", 2, 4],
+    ["bl", 1, 5],
+    ["mm", 2, 6],
+    ["nn", 2, 7],
+    ["pp", 2, 8],
+    ["rr", 2, 9],
+    ["at", 1, 10],
+    ["tt", 2, 11],
+    ["iz", 1, 12]
 ];
 
 const a_2 = [
-    ["ed", -1, 2],
-    ["eed", 0, 1],
-    ["ing", -1, 2]
+    ["ed", 2],
+    ["eed", 1, 1],
+    ["ing", 2]
 ];
 
 const a_3 = [
-    ["anci", -1, 3],
-    ["enci", -1, 2],
-    ["abli", -1, 4],
-    ["eli", -1, 6],
-    ["alli", -1, 9],
-    ["ousli", -1, 11],
-    ["entli", -1, 5],
-    ["aliti", -1, 9],
-    ["biliti", -1, 13],
-    ["iviti", -1, 12],
-    ["tional", -1, 1],
-    ["ational", 10, 8],
-    ["alism", -1, 9],
-    ["ation", -1, 8],
-    ["ization", 13, 7],
-    ["izer", -1, 7],
-    ["ator", -1, 8],
-    ["iveness", -1, 12],
-    ["fulness", -1, 10],
-    ["ousness", -1, 11]
+    ["anci", 3],
+    ["enci", 2],
+    ["abli", 4],
+    ["eli", 6],
+    ["alli", 9],
+    ["ousli", 11],
+    ["entli", 5],
+    ["aliti", 9],
+    ["biliti", 13],
+    ["iviti", 12],
+    ["tional", 1],
+    ["ational", 8, 1],
+    ["alism", 9],
+    ["ation", 8],
+    ["ization", 7, 1],
+    ["izer", 7],
+    ["ator", 8],
+    ["iveness", 12],
+    ["fulness", 10],
+    ["ousness", 11]
 ];
 
+const /** Array<string> */ as_3 = ["tion", "ence", "ance", "able", "ent", "e", "ize", "ate", "al", "ful", "ous", "ive", "ble"];
+
 const a_4 = [
-    ["icate", -1, 2],
-    ["ative", -1, 3],
-    ["alize", -1, 1],
-    ["iciti", -1, 2],
-    ["ical", -1, 2],
-    ["ful", -1, 3],
-    ["ness", -1, 3]
+    ["icate", 2],
+    ["ative", 3],
+    ["alize", 1],
+    ["iciti", 2],
+    ["ical", 2],
+    ["ful", 3],
+    ["ness", 3]
 ];
 
 const a_5 = [
-    ["ic", -1, 1],
-    ["ance", -1, 1],
-    ["ence", -1, 1],
-    ["able", -1, 1],
-    ["ible", -1, 1],
-    ["ate", -1, 1],
-    ["ive", -1, 1],
-    ["ize", -1, 1],
-    ["iti", -1, 1],
-    ["al", -1, 1],
-    ["ism", -1, 1],
-    ["ion", -1, 2],
-    ["er", -1, 1],
-    ["ous", -1, 1],
-    ["ant", -1, 1],
-    ["ent", -1, 1],
-    ["ment", 15, 1],
-    ["ement", 16, 1],
-    ["ou", -1, 1]
+    ["ic", 1],
+    ["ance", 1],
+    ["ence", 1],
+    ["able", 1],
+    ["ible", 1],
+    ["ate", 1],
+    ["ive", 1],
+    ["ize", 1],
+    ["iti", 1],
+    ["al", 1],
+    ["ism", 1],
+    ["ion", 2],
+    ["er", 1],
+    ["ous", 1],
+    ["ant", 1],
+    ["ent", 1],
+    ["ment", 1, 1],
+    ["ement", 1, 1],
+    ["ou", 1]
 ];
 
 const /** Array<number> */ g_v = [17, 65, 16, 1];
@@ -202,13 +204,11 @@ export default class extends B {
         this.ket = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!(this.eq_s_b("y"))) break lab1;
                 break lab0;
             }
-            this.c = this.limit - v_1;
             if (!(this.eq_s_b("Y"))) return false;
         }
         this.bra = this.c;
@@ -226,60 +226,7 @@ export default class extends B {
         if (a === 0) return false;
         this.bra = this.c;
         if (!this.#r_R1()) return false;
-        switch (a) {
-            case 1: {
-                this.slice_from("tion");
-                break;
-            }
-            case 2: {
-                this.slice_from("ence");
-                break;
-            }
-            case 3: {
-                this.slice_from("ance");
-                break;
-            }
-            case 4: {
-                this.slice_from("able");
-                break;
-            }
-            case 5: {
-                this.slice_from("ent");
-                break;
-            }
-            case 6: {
-                this.slice_from("e");
-                break;
-            }
-            case 7: {
-                this.slice_from("ize");
-                break;
-            }
-            case 8: {
-                this.slice_from("ate");
-                break;
-            }
-            case 9: {
-                this.slice_from("al");
-                break;
-            }
-            case 10: {
-                this.slice_from("ful");
-                break;
-            }
-            case 11: {
-                this.slice_from("ous");
-                break;
-            }
-            case 12: {
-                this.slice_from("ive");
-                break;
-            }
-            case 13: {
-                this.slice_from("ble");
-                break;
-            }
-        }
+        this.slice_from(as_3[a - 1]);
         return true;
     }
 
@@ -324,13 +271,11 @@ export default class extends B {
             case 2: {
                 // deno-lint-ignore no-unused-labels
                 lab0: {
-                    const /** number */ v_1 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab1: {
                         if (!(this.eq_s_b("s"))) break lab1;
                         break lab0;
                     }
-                    this.c = this.limit - v_1;
                     if (!(this.eq_s_b("t"))) return false;
                 }
                 this.slice_del();

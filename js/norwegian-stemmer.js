@@ -3,72 +3,72 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
-    ["", -1, 1],
-    ["ind", 0, -1],
-    ["kk", 0, -1],
-    ["nk", 0, -1],
-    ["amm", 0, -1],
-    ["omm", 0, -1],
-    ["kap", 0, -1],
-    ["skap", 6, 1],
-    ["pp", 0, -1],
-    ["lt", 0, -1],
-    ["ast", 0, -1],
-    ["\u00F8st", 0, -1],
-    ["v", 0, -1],
-    ["hav", 12, 1],
-    ["giv", 12, 1]
+    ["", 1],
+    ["ind", -1, 1],
+    ["kk", -1, 2],
+    ["nk", -1, 3],
+    ["amm", -1, 4],
+    ["omm", -1, 5],
+    ["kap", -1, 6],
+    ["skap", 1, 1],
+    ["pp", -1, 8],
+    ["lt", -1, 9],
+    ["ast", -1, 10],
+    ["\u00F8st", -1, 11],
+    ["v", -1, 12],
+    ["hav", 1, 1],
+    ["giv", 1, 2]
 ];
 
 const a_1 = [
-    ["a", -1, 1],
-    ["e", -1, 1],
+    ["a", 1],
+    ["e", 1],
     ["ede", 1, 1],
-    ["ande", 1, 1],
-    ["ende", 1, 1],
-    ["ane", 1, 1],
-    ["ene", 1, 1],
-    ["hetene", 6, 1],
-    ["erte", 1, 4],
-    ["en", -1, 1],
-    ["heten", 9, 1],
-    ["ar", -1, 1],
-    ["er", -1, 1],
-    ["heter", 12, 1],
-    ["s", -1, 3],
-    ["as", 14, 1],
-    ["es", 14, 1],
-    ["edes", 16, 1],
-    ["endes", 16, 1],
-    ["enes", 16, 1],
-    ["hetenes", 19, 1],
-    ["ens", 14, 1],
-    ["hetens", 21, 1],
-    ["ers", 14, 2],
-    ["ets", 14, 1],
-    ["et", -1, 1],
-    ["het", 25, 1],
-    ["ert", -1, 4],
-    ["ast", -1, 1]
+    ["ande", 1, 2],
+    ["ende", 1, 3],
+    ["ane", 1, 4],
+    ["ene", 1, 5],
+    ["hetene", 1, 1],
+    ["erte", 4, 7],
+    ["en", 1],
+    ["heten", 1, 1],
+    ["ar", 1],
+    ["er", 1],
+    ["heter", 1, 1],
+    ["s", 3],
+    ["as", 1, 1],
+    ["es", 1, 2],
+    ["edes", 1, 1],
+    ["endes", 1, 2],
+    ["enes", 1, 3],
+    ["hetenes", 1, 1],
+    ["ens", 1, 7],
+    ["hetens", 1, 1],
+    ["ers", 2, 9],
+    ["ets", 1, 10],
+    ["et", 1],
+    ["het", 1, 1],
+    ["ert", 4],
+    ["ast", 1]
 ];
 
 const a_2 = [
-    ["dt", -1, -1],
-    ["vt", -1, -1]
+    ["dt", -1],
+    ["vt", -1]
 ];
 
 const a_3 = [
-    ["leg", -1, 1],
-    ["eleg", 0, 1],
-    ["ig", -1, 1],
-    ["eig", 2, 1],
-    ["lig", 2, 1],
-    ["elig", 4, 1],
-    ["els", -1, 1],
-    ["lov", -1, 1],
-    ["elov", 7, 1],
-    ["slov", 7, 1],
-    ["hetslov", 9, 1]
+    ["leg", 1],
+    ["eleg", 1, 1],
+    ["ig", 1],
+    ["eig", 1, 1],
+    ["lig", 1, 2],
+    ["elig", 1, 1],
+    ["els", 1],
+    ["lov", 1],
+    ["elov", 1, 1],
+    ["slov", 1, 2],
+    ["hetslov", 1, 1]
 ];
 
 const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 2, 142];
@@ -149,14 +149,10 @@ export default class extends B {
                     // deno-lint-ignore no-unused-labels
                     lab2: {
                         if (!(this.eq_s_b("r"))) break lab2;
-                        {
-                            const /** number */ v_3 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab3: {
-                                if (!(this.eq_s_b("e"))) break lab3;
-                                break lab2;
-                            }
-                            this.c = this.limit - v_3;
+                        // deno-lint-ignore no-unused-labels
+                        lab3: {
+                            if (!(this.eq_s_b("e"))) break lab3;
+                            break lab2;
                         }
                         break lab0;
                     }

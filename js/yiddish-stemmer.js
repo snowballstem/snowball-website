@@ -3,196 +3,198 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
-    ["\u05D5\u05D5", -1, 1],
-    ["\u05D5\u05D9", -1, 2],
-    ["\u05D9\u05D9", -1, 3],
-    ["\u05DA", -1, 4],
-    ["\u05DD", -1, 5],
-    ["\u05DF", -1, 6],
-    ["\u05E3", -1, 7],
-    ["\u05E5", -1, 8]
+    ["\u05D5\u05D5", 1],
+    ["\u05D5\u05D9", 2],
+    ["\u05D9\u05D9", 3],
+    ["\u05DA", 4],
+    ["\u05DD", 5],
+    ["\u05DF", 6],
+    ["\u05E3", 7],
+    ["\u05E5", 8]
 ];
 
 const a_1 = [
-    ["\u05D0\u05D3\u05D5\u05E8\u05DB", -1, 1],
-    ["\u05D0\u05D4\u05D9\u05E0", -1, 1],
-    ["\u05D0\u05D4\u05E2\u05E8", -1, 1],
-    ["\u05D0\u05D4\u05F2\u05DE", -1, 1],
-    ["\u05D0\u05D5\u05DE", -1, 1],
-    ["\u05D0\u05D5\u05E0\u05D8\u05E2\u05E8", -1, 1],
-    ["\u05D0\u05D9\u05D1\u05E2\u05E8", -1, 1],
-    ["\u05D0\u05E0", -1, 1],
-    ["\u05D0\u05E0\u05D8", 7, 1],
-    ["\u05D0\u05E0\u05D8\u05E7\u05E2\u05D2\u05E0", 8, 1],
-    ["\u05D0\u05E0\u05D9\u05D3\u05E2\u05E8", 7, 1],
-    ["\u05D0\u05E4", -1, 1],
-    ["\u05D0\u05E4\u05D9\u05E8", 11, 1],
-    ["\u05D0\u05E7\u05E2\u05D2\u05E0", -1, 1],
-    ["\u05D0\u05E8\u05D0\u05E4", -1, 1],
-    ["\u05D0\u05E8\u05D5\u05DE", -1, 1],
-    ["\u05D0\u05E8\u05D5\u05E0\u05D8\u05E2\u05E8", -1, 1],
-    ["\u05D0\u05E8\u05D9\u05D1\u05E2\u05E8", -1, 1],
-    ["\u05D0\u05E8\u05F1\u05E1", -1, 1],
-    ["\u05D0\u05E8\u05F1\u05E4", -1, 1],
-    ["\u05D0\u05E8\u05F2\u05E0", -1, 1],
-    ["\u05D0\u05F0\u05E2\u05E7", -1, 1],
-    ["\u05D0\u05F1\u05E1", -1, 1],
-    ["\u05D0\u05F1\u05E4", -1, 1],
-    ["\u05D0\u05F2\u05E0", -1, 1],
-    ["\u05D1\u05D0", -1, 1],
-    ["\u05D1\u05F2", -1, 1],
-    ["\u05D3\u05D5\u05E8\u05DB", -1, 1],
-    ["\u05D3\u05E2\u05E8", -1, 1],
-    ["\u05DE\u05D9\u05D8", -1, 1],
-    ["\u05E0\u05D0\u05DB", -1, 1],
-    ["\u05E4\u05D0\u05E8", -1, 1],
-    ["\u05E4\u05D0\u05E8\u05D1\u05F2", 31, 1],
-    ["\u05E4\u05D0\u05E8\u05F1\u05E1", 31, 1],
-    ["\u05E4\u05D5\u05E0\u05D0\u05E0\u05D3\u05E2\u05E8", -1, 1],
-    ["\u05E6\u05D5", -1, 1],
-    ["\u05E6\u05D5\u05D6\u05D0\u05DE\u05E2\u05E0", 35, 1],
-    ["\u05E6\u05D5\u05E0\u05F1\u05E4", 35, 1],
-    ["\u05E6\u05D5\u05E8\u05D9\u05E7", 35, 1],
-    ["\u05E6\u05E2", -1, 1]
+    ["\u05D0\u05D3\u05D5\u05E8\u05DB", 1],
+    ["\u05D0\u05D4\u05D9\u05E0", 1],
+    ["\u05D0\u05D4\u05E2\u05E8", 1],
+    ["\u05D0\u05D4\u05F2\u05DE", 1],
+    ["\u05D0\u05D5\u05DE", 1],
+    ["\u05D0\u05D5\u05E0\u05D8\u05E2\u05E8", 1],
+    ["\u05D0\u05D9\u05D1\u05E2\u05E8", 1],
+    ["\u05D0\u05E0", 1],
+    ["\u05D0\u05E0\u05D8", 1, 1],
+    ["\u05D0\u05E0\u05D8\u05E7\u05E2\u05D2\u05E0", 1, 1],
+    ["\u05D0\u05E0\u05D9\u05D3\u05E2\u05E8", 1, 3],
+    ["\u05D0\u05E4", 1],
+    ["\u05D0\u05E4\u05D9\u05E8", 1, 1],
+    ["\u05D0\u05E7\u05E2\u05D2\u05E0", 1],
+    ["\u05D0\u05E8\u05D0\u05E4", 1],
+    ["\u05D0\u05E8\u05D5\u05DE", 1],
+    ["\u05D0\u05E8\u05D5\u05E0\u05D8\u05E2\u05E8", 1],
+    ["\u05D0\u05E8\u05D9\u05D1\u05E2\u05E8", 1],
+    ["\u05D0\u05E8\u05F1\u05E1", 1],
+    ["\u05D0\u05E8\u05F1\u05E4", 1],
+    ["\u05D0\u05E8\u05F2\u05E0", 1],
+    ["\u05D0\u05F0\u05E2\u05E7", 1],
+    ["\u05D0\u05F1\u05E1", 1],
+    ["\u05D0\u05F1\u05E4", 1],
+    ["\u05D0\u05F2\u05E0", 1],
+    ["\u05D1\u05D0", 1],
+    ["\u05D1\u05F2", 1],
+    ["\u05D3\u05D5\u05E8\u05DB", 1],
+    ["\u05D3\u05E2\u05E8", 1],
+    ["\u05DE\u05D9\u05D8", 1],
+    ["\u05E0\u05D0\u05DB", 1],
+    ["\u05E4\u05D0\u05E8", 1],
+    ["\u05E4\u05D0\u05E8\u05D1\u05F2", 1, 1],
+    ["\u05E4\u05D0\u05E8\u05F1\u05E1", 1, 2],
+    ["\u05E4\u05D5\u05E0\u05D0\u05E0\u05D3\u05E2\u05E8", 1],
+    ["\u05E6\u05D5", 1],
+    ["\u05E6\u05D5\u05D6\u05D0\u05DE\u05E2\u05E0", 1, 1],
+    ["\u05E6\u05D5\u05E0\u05F1\u05E4", 1, 2],
+    ["\u05E6\u05D5\u05E8\u05D9\u05E7", 1, 3],
+    ["\u05E6\u05E2", 1]
 ];
 
 const a_2 = [
-    ["\u05D3\u05D6\u05E9", -1, -1],
-    ["\u05E9\u05D8\u05E8", -1, -1],
-    ["\u05E9\u05D8\u05E9", -1, -1],
-    ["\u05E9\u05E4\u05E8", -1, -1]
+    ["\u05D3\u05D6\u05E9", -1],
+    ["\u05E9\u05D8\u05E8", -1],
+    ["\u05E9\u05D8\u05E9", -1],
+    ["\u05E9\u05E4\u05E8", -1]
 ];
 
 const a_3 = [
-    ["\u05E7\u05DC\u05D9\u05D1", -1, 9],
-    ["\u05E8\u05D9\u05D1", -1, 10],
-    ["\u05D8\u05E8\u05D9\u05D1", 1, 7],
-    ["\u05E9\u05E8\u05D9\u05D1", 1, 15],
-    ["\u05D4\u05F1\u05D1", -1, 23],
-    ["\u05E9\u05F0\u05D9\u05D2", -1, 12],
-    ["\u05D2\u05D0\u05E0\u05D2", -1, 1],
-    ["\u05D6\u05D5\u05E0\u05D2", -1, 18],
-    ["\u05E9\u05DC\u05D5\u05E0\u05D2", -1, 21],
-    ["\u05E6\u05F0\u05D5\u05E0\u05D2", -1, 20],
-    ["\u05D1\u05F1\u05D2", -1, 22],
-    ["\u05D1\u05D5\u05E0\u05D3", -1, 16],
-    ["\u05F0\u05D9\u05D6", -1, 6],
-    ["\u05D1\u05D9\u05D8", -1, 4],
-    ["\u05DC\u05D9\u05D8", -1, 8],
-    ["\u05DE\u05D9\u05D8", -1, 3],
-    ["\u05E9\u05E0\u05D9\u05D8", -1, 14],
-    ["\u05E0\u05D5\u05DE", -1, 2],
-    ["\u05E9\u05D8\u05D0\u05E0", -1, 25],
-    ["\u05D1\u05D9\u05E1", -1, 5],
-    ["\u05E9\u05DE\u05D9\u05E1", -1, 13],
-    ["\u05E8\u05D9\u05E1", -1, 11],
-    ["\u05D8\u05E8\u05D5\u05E0\u05E7", -1, 19],
-    ["\u05E4\u05D0\u05E8\u05DC\u05F1\u05E8", -1, 24],
-    ["\u05E9\u05F0\u05F1\u05E8", -1, 26],
-    ["\u05F0\u05D5\u05D8\u05E9", -1, 17]
+    ["\u05E7\u05DC\u05D9\u05D1", 9],
+    ["\u05E8\u05D9\u05D1", 10],
+    ["\u05D8\u05E8\u05D9\u05D1", 7, 1],
+    ["\u05E9\u05E8\u05D9\u05D1", 15, 2],
+    ["\u05D4\u05F1\u05D1", 23],
+    ["\u05E9\u05F0\u05D9\u05D2", 12],
+    ["\u05D2\u05D0\u05E0\u05D2", 1],
+    ["\u05D6\u05D5\u05E0\u05D2", 18],
+    ["\u05E9\u05DC\u05D5\u05E0\u05D2", 21],
+    ["\u05E6\u05F0\u05D5\u05E0\u05D2", 20],
+    ["\u05D1\u05F1\u05D2", 22],
+    ["\u05D1\u05D5\u05E0\u05D3", 16],
+    ["\u05F0\u05D9\u05D6", 6],
+    ["\u05D1\u05D9\u05D8", 4],
+    ["\u05DC\u05D9\u05D8", 8],
+    ["\u05DE\u05D9\u05D8", 3],
+    ["\u05E9\u05E0\u05D9\u05D8", 14],
+    ["\u05E0\u05D5\u05DE", 2],
+    ["\u05E9\u05D8\u05D0\u05E0", 25],
+    ["\u05D1\u05D9\u05E1", 5],
+    ["\u05E9\u05DE\u05D9\u05E1", 13],
+    ["\u05E8\u05D9\u05E1", 11],
+    ["\u05D8\u05E8\u05D5\u05E0\u05E7", 19],
+    ["\u05E4\u05D0\u05E8\u05DC\u05F1\u05E8", 24],
+    ["\u05E9\u05F0\u05F1\u05E8", 26],
+    ["\u05F0\u05D5\u05D8\u05E9", 17]
 ];
 
+const /** Array<string> */ as_3 = ["\u05D2\u05F2", "\u05E0\u05E2\u05DE", "\u05DE\u05F2\u05D3", "\u05D1\u05F2\u05D8", "\u05D1\u05F2\u05E1", "\u05F0\u05F2\u05D6", "\u05D8\u05E8\u05F2\u05D1", "\u05DC\u05F2\u05D8", "\u05E7\u05DC\u05F2\u05D1", "\u05E8\u05F2\u05D1", "\u05E8\u05F2\u05E1", "\u05E9\u05F0\u05F2\u05D2", "\u05E9\u05DE\u05F2\u05E1", "\u05E9\u05E0\u05F2\u05D3", "\u05E9\u05E8\u05F2\u05D1", "\u05D1\u05D9\u05E0\u05D3", "\u05F0\u05D9\u05D8\u05E9", "\u05D6\u05D9\u05E0\u05D2", "\u05D8\u05E8\u05D9\u05E0\u05E7", "\u05E6\u05F0\u05D9\u05E0\u05D2", "\u05E9\u05DC\u05D9\u05E0\u05D2", "\u05D1\u05F2\u05D2", "\u05D4\u05F2\u05D1", "\u05E4\u05D0\u05E8\u05DC\u05D9\u05E8", "\u05E9\u05D8\u05F2", "\u05E9\u05F0\u05E2\u05E8"];
+
 const a_4 = [
-    ["\u05D5\u05E0\u05D2", -1, 1],
-    ["\u05E1\u05D8\u05D5", -1, 1],
-    ["\u05D8", -1, 1],
-    ["\u05D1\u05E8\u05D0\u05DB\u05D8", 2, 31],
-    ["\u05E1\u05D8", 2, 1],
-    ["\u05D9\u05E1\u05D8", 4, 33],
-    ["\u05E2\u05D8", 2, 1],
-    ["\u05E9\u05D0\u05E4\u05D8", 2, 1],
-    ["\u05D4\u05F2\u05D8", 2, 1],
-    ["\u05E7\u05F2\u05D8", 2, 1],
-    ["\u05D9\u05E7\u05F2\u05D8", 9, 1],
-    ["\u05DC\u05E2\u05DB", -1, 1],
-    ["\u05E2\u05DC\u05E2\u05DB", 11, 1],
-    ["\u05D9\u05D6\u05DE", -1, 1],
-    ["\u05D9\u05DE", -1, 1],
-    ["\u05E2\u05DE", -1, 1],
-    ["\u05E2\u05E0\u05E2\u05DE", 15, 3],
-    ["\u05D8\u05E2\u05E0\u05E2\u05DE", 16, 4],
-    ["\u05E0", -1, 1],
-    ["\u05E7\u05DC\u05D9\u05D1\u05E0", 18, 14],
-    ["\u05E8\u05D9\u05D1\u05E0", 18, 15],
-    ["\u05D8\u05E8\u05D9\u05D1\u05E0", 20, 12],
-    ["\u05E9\u05E8\u05D9\u05D1\u05E0", 20, 7],
-    ["\u05D4\u05F1\u05D1\u05E0", 18, 27],
-    ["\u05E9\u05F0\u05D9\u05D2\u05E0", 18, 17],
-    ["\u05D6\u05D5\u05E0\u05D2\u05E0", 18, 22],
-    ["\u05E9\u05DC\u05D5\u05E0\u05D2\u05E0", 18, 25],
-    ["\u05E6\u05F0\u05D5\u05E0\u05D2\u05E0", 18, 24],
-    ["\u05D1\u05F1\u05D2\u05E0", 18, 26],
-    ["\u05D1\u05D5\u05E0\u05D3\u05E0", 18, 20],
-    ["\u05F0\u05D9\u05D6\u05E0", 18, 11],
-    ["\u05D8\u05E0", 18, 4],
-    ["GE\u05D1\u05D9\u05D8\u05E0", 31, 9],
-    ["GE\u05DC\u05D9\u05D8\u05E0", 31, 13],
-    ["GE\u05DE\u05D9\u05D8\u05E0", 31, 8],
-    ["\u05E9\u05E0\u05D9\u05D8\u05E0", 31, 19],
-    ["\u05E1\u05D8\u05E0", 31, 1],
-    ["\u05D9\u05E1\u05D8\u05E0", 36, 1],
-    ["\u05E2\u05D8\u05E0", 31, 1],
-    ["GE\u05D1\u05D9\u05E1\u05E0", 18, 10],
-    ["\u05E9\u05DE\u05D9\u05E1\u05E0", 18, 18],
-    ["GE\u05E8\u05D9\u05E1\u05E0", 18, 16],
-    ["\u05E2\u05E0", 18, 1],
-    ["\u05D2\u05D0\u05E0\u05D2\u05E2\u05E0", 42, 5],
-    ["\u05E2\u05DC\u05E2\u05E0", 42, 1],
-    ["\u05E0\u05D5\u05DE\u05E2\u05E0", 42, 6],
-    ["\u05D9\u05D6\u05DE\u05E2\u05E0", 42, 1],
-    ["\u05E9\u05D8\u05D0\u05E0\u05E2\u05E0", 42, 29],
-    ["\u05D8\u05E8\u05D5\u05E0\u05E7\u05E0", 18, 23],
-    ["\u05E4\u05D0\u05E8\u05DC\u05F1\u05E8\u05E0", 18, 28],
-    ["\u05E9\u05F0\u05F1\u05E8\u05E0", 18, 30],
-    ["\u05F0\u05D5\u05D8\u05E9\u05E0", 18, 21],
-    ["\u05D2\u05F2\u05E0", 18, 5],
-    ["\u05E1", -1, 1],
-    ["\u05D8\u05E1", 53, 4],
-    ["\u05E2\u05D8\u05E1", 54, 1],
-    ["\u05E0\u05E1", 53, 1],
-    ["\u05D8\u05E0\u05E1", 56, 4],
-    ["\u05E2\u05E0\u05E1", 56, 3],
-    ["\u05E2\u05E1", 53, 1],
-    ["\u05D9\u05E2\u05E1", 59, 2],
-    ["\u05E2\u05DC\u05E2\u05E1", 59, 1],
-    ["\u05E2\u05E8\u05E1", 53, 1],
-    ["\u05E2\u05E0\u05E2\u05E8\u05E1", 62, 1],
-    ["\u05E2", -1, 1],
-    ["\u05D8\u05E2", 64, 4],
-    ["\u05E1\u05D8\u05E2", 65, 1],
-    ["\u05E2\u05D8\u05E2", 65, 1],
-    ["\u05D9\u05E2", 64, -1],
-    ["\u05E2\u05DC\u05E2", 64, 1],
-    ["\u05E2\u05E0\u05E2", 64, 3],
-    ["\u05D8\u05E2\u05E0\u05E2", 70, 4],
-    ["\u05E2\u05E8", -1, 1],
-    ["\u05D8\u05E2\u05E8", 72, 4],
-    ["\u05E1\u05D8\u05E2\u05E8", 73, 1],
-    ["\u05E2\u05D8\u05E2\u05E8", 73, 1],
-    ["\u05E2\u05E0\u05E2\u05E8", 72, 3],
-    ["\u05D8\u05E2\u05E0\u05E2\u05E8", 76, 4],
-    ["\u05D5\u05EA", -1, 32]
+    ["\u05D5\u05E0\u05D2", 1],
+    ["\u05E1\u05D8\u05D5", 1],
+    ["\u05D8", 1],
+    ["\u05D1\u05E8\u05D0\u05DB\u05D8", 31, 1],
+    ["\u05E1\u05D8", 1, 2],
+    ["\u05D9\u05E1\u05D8", 33, 1],
+    ["\u05E2\u05D8", 1, 4],
+    ["\u05E9\u05D0\u05E4\u05D8", 1, 5],
+    ["\u05D4\u05F2\u05D8", 1, 6],
+    ["\u05E7\u05F2\u05D8", 1, 7],
+    ["\u05D9\u05E7\u05F2\u05D8", 1, 1],
+    ["\u05DC\u05E2\u05DB", 1],
+    ["\u05E2\u05DC\u05E2\u05DB", 1, 1],
+    ["\u05D9\u05D6\u05DE", 1],
+    ["\u05D9\u05DE", 1],
+    ["\u05E2\u05DE", 1],
+    ["\u05E2\u05E0\u05E2\u05DE", 3, 1],
+    ["\u05D8\u05E2\u05E0\u05E2\u05DE", 4, 1],
+    ["\u05E0", 1],
+    ["\u05E7\u05DC\u05D9\u05D1\u05E0", 14, 1],
+    ["\u05E8\u05D9\u05D1\u05E0", 15, 2],
+    ["\u05D8\u05E8\u05D9\u05D1\u05E0", 12, 1],
+    ["\u05E9\u05E8\u05D9\u05D1\u05E0", 7, 2],
+    ["\u05D4\u05F1\u05D1\u05E0", 27, 5],
+    ["\u05E9\u05F0\u05D9\u05D2\u05E0", 17, 6],
+    ["\u05D6\u05D5\u05E0\u05D2\u05E0", 22, 7],
+    ["\u05E9\u05DC\u05D5\u05E0\u05D2\u05E0", 25, 8],
+    ["\u05E6\u05F0\u05D5\u05E0\u05D2\u05E0", 24, 9],
+    ["\u05D1\u05F1\u05D2\u05E0", 26, 10],
+    ["\u05D1\u05D5\u05E0\u05D3\u05E0", 20, 11],
+    ["\u05F0\u05D9\u05D6\u05E0", 11, 12],
+    ["\u05D8\u05E0", 4, 13],
+    ["GE\u05D1\u05D9\u05D8\u05E0", 9, 1],
+    ["GE\u05DC\u05D9\u05D8\u05E0", 13, 2],
+    ["GE\u05DE\u05D9\u05D8\u05E0", 8, 3],
+    ["\u05E9\u05E0\u05D9\u05D8\u05E0", 19, 4],
+    ["\u05E1\u05D8\u05E0", 1, 5],
+    ["\u05D9\u05E1\u05D8\u05E0", 1, 1],
+    ["\u05E2\u05D8\u05E0", 1, 7],
+    ["GE\u05D1\u05D9\u05E1\u05E0", 10, 21],
+    ["\u05E9\u05DE\u05D9\u05E1\u05E0", 18, 22],
+    ["GE\u05E8\u05D9\u05E1\u05E0", 16, 23],
+    ["\u05E2\u05E0", 1, 24],
+    ["\u05D2\u05D0\u05E0\u05D2\u05E2\u05E0", 5, 1],
+    ["\u05E2\u05DC\u05E2\u05E0", 1, 2],
+    ["\u05E0\u05D5\u05DE\u05E2\u05E0", 6, 3],
+    ["\u05D9\u05D6\u05DE\u05E2\u05E0", 1, 4],
+    ["\u05E9\u05D8\u05D0\u05E0\u05E2\u05E0", 29, 5],
+    ["\u05D8\u05E8\u05D5\u05E0\u05E7\u05E0", 23, 30],
+    ["\u05E4\u05D0\u05E8\u05DC\u05F1\u05E8\u05E0", 28, 31],
+    ["\u05E9\u05F0\u05F1\u05E8\u05E0", 30, 32],
+    ["\u05F0\u05D5\u05D8\u05E9\u05E0", 21, 33],
+    ["\u05D2\u05F2\u05E0", 5, 34],
+    ["\u05E1", 1],
+    ["\u05D8\u05E1", 4, 1],
+    ["\u05E2\u05D8\u05E1", 1, 1],
+    ["\u05E0\u05E1", 1, 3],
+    ["\u05D8\u05E0\u05E1", 4, 1],
+    ["\u05E2\u05E0\u05E1", 3, 2],
+    ["\u05E2\u05E1", 1, 6],
+    ["\u05D9\u05E2\u05E1", 2, 1],
+    ["\u05E2\u05DC\u05E2\u05E1", 1, 2],
+    ["\u05E2\u05E8\u05E1", 1, 9],
+    ["\u05E2\u05E0\u05E2\u05E8\u05E1", 1, 1],
+    ["\u05E2", 1],
+    ["\u05D8\u05E2", 4, 1],
+    ["\u05E1\u05D8\u05E2", 1, 1],
+    ["\u05E2\u05D8\u05E2", 1, 2],
+    ["\u05D9\u05E2", -1, 4],
+    ["\u05E2\u05DC\u05E2", 1, 5],
+    ["\u05E2\u05E0\u05E2", 3, 6],
+    ["\u05D8\u05E2\u05E0\u05E2", 4, 1],
+    ["\u05E2\u05E8", 1],
+    ["\u05D8\u05E2\u05E8", 4, 1],
+    ["\u05E1\u05D8\u05E2\u05E8", 1, 1],
+    ["\u05E2\u05D8\u05E2\u05E8", 1, 2],
+    ["\u05E2\u05E0\u05E2\u05E8", 3, 4],
+    ["\u05D8\u05E2\u05E0\u05E2\u05E8", 4, 1],
+    ["\u05D5\u05EA", 32]
 ];
 
 const a_5 = [
-    ["\u05D5\u05E0\u05D2", -1, 1],
-    ["\u05E9\u05D0\u05E4\u05D8", -1, 1],
-    ["\u05D4\u05F2\u05D8", -1, 1],
-    ["\u05E7\u05F2\u05D8", -1, 1],
-    ["\u05D9\u05E7\u05F2\u05D8", 3, 1],
-    ["\u05DC", -1, 2]
+    ["\u05D5\u05E0\u05D2", 1],
+    ["\u05E9\u05D0\u05E4\u05D8", 1],
+    ["\u05D4\u05F2\u05D8", 1],
+    ["\u05E7\u05F2\u05D8", 1],
+    ["\u05D9\u05E7\u05F2\u05D8", 1, 1],
+    ["\u05DC", 2]
 ];
 
 const a_6 = [
-    ["\u05D9\u05D2", -1, 1],
-    ["\u05D9\u05E7", -1, 1],
+    ["\u05D9\u05D2", 1],
+    ["\u05D9\u05E7", 1],
     ["\u05D3\u05D9\u05E7", 1, 1],
-    ["\u05E0\u05D3\u05D9\u05E7", 2, 1],
-    ["\u05E2\u05E0\u05D3\u05D9\u05E7", 3, 1],
-    ["\u05D1\u05DC\u05D9\u05E7", 1, -1],
-    ["\u05D2\u05DC\u05D9\u05E7", 1, -1],
-    ["\u05E0\u05D9\u05E7", 1, 1],
-    ["\u05D9\u05E9", -1, 1]
+    ["\u05E0\u05D3\u05D9\u05E7", 1, 1],
+    ["\u05E2\u05E0\u05D3\u05D9\u05E7", 1, 1],
+    ["\u05D1\u05DC\u05D9\u05E7", -1, 4],
+    ["\u05D2\u05DC\u05D9\u05E7", -1, 5],
+    ["\u05E0\u05D9\u05E7", 1, 6],
+    ["\u05D9\u05E9", 1]
 ];
 
 const /** Array<number> */ g_niked = [255, 155, 6];
@@ -230,40 +232,28 @@ export default class extends B {
                             this.ket = this.c;
                             switch (a) {
                                 case 1: {
-                                    {
-                                        const /** number */ v_4 = this.c;
-                                        // deno-lint-ignore no-unused-labels
-                                        lab4: {
-                                            if (!(this.eq_s("\u05BC"))) break lab4;
-                                            break lab3;
-                                        }
-                                        this.c = v_4;
+                                    // deno-lint-ignore no-unused-labels
+                                    lab4: {
+                                        if (!(this.eq_s("\u05BC"))) break lab4;
+                                        break lab3;
                                     }
                                     this.slice_from("\u05F0");
                                     break;
                                 }
                                 case 2: {
-                                    {
-                                        const /** number */ v_5 = this.c;
-                                        // deno-lint-ignore no-unused-labels
-                                        lab5: {
-                                            if (!(this.eq_s("\u05B4"))) break lab5;
-                                            break lab3;
-                                        }
-                                        this.c = v_5;
+                                    // deno-lint-ignore no-unused-labels
+                                    lab5: {
+                                        if (!(this.eq_s("\u05B4"))) break lab5;
+                                        break lab3;
                                     }
                                     this.slice_from("\u05F1");
                                     break;
                                 }
                                 case 3: {
-                                    {
-                                        const /** number */ v_6 = this.c;
-                                        // deno-lint-ignore no-unused-labels
-                                        lab6: {
-                                            if (!(this.eq_s("\u05B4"))) break lab6;
-                                            break lab3;
-                                        }
-                                        this.c = v_6;
+                                    // deno-lint-ignore no-unused-labels
+                                    lab6: {
+                                        if (!(this.eq_s("\u05B4"))) break lab6;
+                                        break lab3;
                                     }
                                     this.slice_from("\u05F2");
                                     break;
@@ -303,37 +293,37 @@ export default class extends B {
             }
         }
         this.c = v_1;
-        const /** number */ v_7 = this.c;
+        const /** number */ v_4 = this.c;
         // deno-lint-ignore no-unused-labels
         lab7: {
             while (true) {
-                const /** number */ v_8 = this.c;
+                const /** number */ v_5 = this.c;
                 // deno-lint-ignore no-unused-labels
                 lab8: {
                     // deno-lint-ignore no-unused-labels
                     golab9: while (true)
                     {
-                        const /** number */ v_9 = this.c;
+                        const /** number */ v_6 = this.c;
                         // deno-lint-ignore no-unused-labels
                         lab10: {
                             this.bra = this.c;
                             if (!(this.in_grouping(g_niked, 1456, 1474))) break lab10;
                             this.ket = this.c;
                             this.slice_del();
-                            this.c = v_9;
+                            this.c = v_6;
                             break golab9;
                         }
-                        this.c = v_9;
+                        this.c = v_6;
                         if (this.c >= this.limit) break lab8;
                         this.c++;
                     }
                     continue;
                 }
-                this.c = v_8;
+                this.c = v_5;
                 break;
             }
         }
-        this.c = v_7;
+        this.c = v_4;
         return true;
     }
 
@@ -356,19 +346,16 @@ export default class extends B {
                 lab1: {
                     // deno-lint-ignore no-unused-labels
                     lab2: {
-                        const /** number */ v_3 = this.c;
                         // deno-lint-ignore no-unused-labels
                         lab3: {
                             if (!(this.eq_s("\u05DC\u05D8"))) break lab3;
                             break lab2;
                         }
-                        this.c = v_3;
                         // deno-lint-ignore no-unused-labels
                         lab4: {
                             if (!(this.eq_s("\u05D1\u05E0"))) break lab4;
                             break lab2;
                         }
-                        this.c = v_3;
                         if (this.c < this.limit) break lab1;
                     }
                     this.c = v_1;
@@ -378,49 +365,46 @@ export default class extends B {
             }
             this.slice_from("GE");
         }
-        const /** number */ v_4 = this.c;
+        const /** number */ v_3 = this.c;
         // deno-lint-ignore no-unused-labels
         lab5: {
             if (this.find_among(a_1) === 0) {
-                this.c = v_4;
+                this.c = v_3;
                 break lab5;
             }
             // deno-lint-ignore no-unused-labels
             lab6: {
-                const /** number */ v_5 = this.c;
+                const /** number */ v_4 = this.c;
                 // deno-lint-ignore no-unused-labels
                 lab7: {
-                    const /** number */ v_6 = this.c;
+                    const /** number */ v_5 = this.c;
                     // deno-lint-ignore no-unused-labels
                     lab8: {
-                        const /** number */ v_7 = this.c;
                         // deno-lint-ignore no-unused-labels
                         lab9: {
                             if (!(this.eq_s("\u05E6\u05D5\u05D2\u05E0"))) break lab9;
                             break lab8;
                         }
-                        this.c = v_7;
                         // deno-lint-ignore no-unused-labels
                         lab10: {
                             if (!(this.eq_s("\u05E6\u05D5\u05E7\u05D8"))) break lab10;
                             break lab8;
                         }
-                        this.c = v_7;
                         if (!(this.eq_s("\u05E6\u05D5\u05E7\u05E0"))) break lab7;
                     }
                     if (this.c < this.limit) break lab7;
+                    this.c = v_5;
+                    break lab6;
+                }
+                this.c = v_4;
+                // deno-lint-ignore no-unused-labels
+                lab11: {
+                    const /** number */ v_6 = this.c;
+                    if (!(this.eq_s("\u05D2\u05E2\u05D1\u05E0"))) break lab11;
                     this.c = v_6;
                     break lab6;
                 }
-                this.c = v_5;
-                // deno-lint-ignore no-unused-labels
-                lab11: {
-                    const /** number */ v_8 = this.c;
-                    if (!(this.eq_s("\u05D2\u05E2\u05D1\u05E0"))) break lab11;
-                    this.c = v_8;
-                    break lab6;
-                }
-                this.c = v_5;
+                this.c = v_4;
                 // deno-lint-ignore no-unused-labels
                 lab12: {
                     this.bra = this.c;
@@ -429,34 +413,34 @@ export default class extends B {
                     this.slice_from("GE");
                     break lab6;
                 }
-                this.c = v_5;
+                this.c = v_4;
                 this.bra = this.c;
                 if (!(this.eq_s("\u05E6\u05D5"))) {
-                    this.c = v_4;
+                    this.c = v_3;
                     break lab5;
                 }
                 this.ket = this.c;
                 this.slice_from("TSU");
             }
         }
-        const /** number */ v_9 = this.c;
+        const /** number */ v_7 = this.c;
         {
             const /** number */ c = this.c + 3;
             if (c > this.limit) return false;
             this.c = c;
         }
         I_x = this.c;
-        this.c = v_9;
-        const /** number */ v_10 = this.c;
+        this.c = v_7;
+        const /** number */ v_8 = this.c;
         // deno-lint-ignore no-unused-labels
         lab13: {
             if (this.find_among(a_2) === 0) {
-                this.c = v_10;
+                this.c = v_8;
                 break lab13;
             }
         }
         {
-            const /** number */ v_11 = this.c;
+            const /** number */ v_9 = this.c;
             // deno-lint-ignore no-unused-labels
             lab14: {
                 if (!(this.in_grouping(g_consonant, 1489, 1520))) break lab14;
@@ -465,7 +449,7 @@ export default class extends B {
                 this.#I_p1 = this.c;
                 return false;
             }
-            this.c = v_11;
+            this.c = v_9;
         }
         if (!this.go_out_grouping(g_vowel, 1488, 1522)) return false;
         this.c++;
@@ -517,112 +501,7 @@ export default class extends B {
                     a = this.find_among_b(a_3);
                     if (a === 0) break lab0;
                     this.bra = this.c;
-                    switch (a) {
-                        case 1: {
-                            this.slice_from("\u05D2\u05F2");
-                            break;
-                        }
-                        case 2: {
-                            this.slice_from("\u05E0\u05E2\u05DE");
-                            break;
-                        }
-                        case 3: {
-                            this.slice_from("\u05DE\u05F2\u05D3");
-                            break;
-                        }
-                        case 4: {
-                            this.slice_from("\u05D1\u05F2\u05D8");
-                            break;
-                        }
-                        case 5: {
-                            this.slice_from("\u05D1\u05F2\u05E1");
-                            break;
-                        }
-                        case 6: {
-                            this.slice_from("\u05F0\u05F2\u05D6");
-                            break;
-                        }
-                        case 7: {
-                            this.slice_from("\u05D8\u05E8\u05F2\u05D1");
-                            break;
-                        }
-                        case 8: {
-                            this.slice_from("\u05DC\u05F2\u05D8");
-                            break;
-                        }
-                        case 9: {
-                            this.slice_from("\u05E7\u05DC\u05F2\u05D1");
-                            break;
-                        }
-                        case 10: {
-                            this.slice_from("\u05E8\u05F2\u05D1");
-                            break;
-                        }
-                        case 11: {
-                            this.slice_from("\u05E8\u05F2\u05E1");
-                            break;
-                        }
-                        case 12: {
-                            this.slice_from("\u05E9\u05F0\u05F2\u05D2");
-                            break;
-                        }
-                        case 13: {
-                            this.slice_from("\u05E9\u05DE\u05F2\u05E1");
-                            break;
-                        }
-                        case 14: {
-                            this.slice_from("\u05E9\u05E0\u05F2\u05D3");
-                            break;
-                        }
-                        case 15: {
-                            this.slice_from("\u05E9\u05E8\u05F2\u05D1");
-                            break;
-                        }
-                        case 16: {
-                            this.slice_from("\u05D1\u05D9\u05E0\u05D3");
-                            break;
-                        }
-                        case 17: {
-                            this.slice_from("\u05F0\u05D9\u05D8\u05E9");
-                            break;
-                        }
-                        case 18: {
-                            this.slice_from("\u05D6\u05D9\u05E0\u05D2");
-                            break;
-                        }
-                        case 19: {
-                            this.slice_from("\u05D8\u05E8\u05D9\u05E0\u05E7");
-                            break;
-                        }
-                        case 20: {
-                            this.slice_from("\u05E6\u05F0\u05D9\u05E0\u05D2");
-                            break;
-                        }
-                        case 21: {
-                            this.slice_from("\u05E9\u05DC\u05D9\u05E0\u05D2");
-                            break;
-                        }
-                        case 22: {
-                            this.slice_from("\u05D1\u05F2\u05D2");
-                            break;
-                        }
-                        case 23: {
-                            this.slice_from("\u05D4\u05F2\u05D1");
-                            break;
-                        }
-                        case 24: {
-                            this.slice_from("\u05E4\u05D0\u05E8\u05DC\u05D9\u05E8");
-                            break;
-                        }
-                        case 25: {
-                            this.slice_from("\u05E9\u05D8\u05F2");
-                            break;
-                        }
-                        case 26: {
-                            this.slice_from("\u05E9\u05F0\u05E2\u05E8");
-                            break;
-                        }
-                    }
+                    this.slice_from(as_3[a - 1]);
                     break;
                 }
                 case 4: {
@@ -773,20 +652,18 @@ export default class extends B {
                         lab5: {
                             // deno-lint-ignore no-unused-labels
                             lab6: {
-                                const /** number */ v_5 = this.limit - this.c;
                                 // deno-lint-ignore no-unused-labels
                                 lab7: {
                                     if (!(this.eq_s_b("\u05D2"))) break lab7;
                                     break lab6;
                                 }
-                                this.c = this.limit - v_5;
                                 if (!(this.eq_s_b("\u05E9"))) break lab5;
                             }
-                            const /** number */ v_6 = this.limit - this.c;
+                            const /** number */ v_5 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
                             lab8: {
                                 if (!this.#r_R1plus3()) {
-                                    this.c = this.limit - v_6;
+                                    this.c = this.limit - v_5;
                                     break lab8;
                                 }
                                 this.slice_from("\u05D9\u05E1");
@@ -802,7 +679,7 @@ export default class extends B {
             }
         }
         this.c = this.limit - v_1;
-        const /** number */ v_7 = this.limit - this.c;
+        const /** number */ v_6 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab9: {
             this.ket = this.c;
@@ -823,8 +700,8 @@ export default class extends B {
                 }
             }
         }
-        this.c = this.limit - v_7;
-        const /** number */ v_8 = this.limit - this.c;
+        this.c = this.limit - v_6;
+        const /** number */ v_7 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab10: {
             this.ket = this.c;
@@ -839,48 +716,46 @@ export default class extends B {
                 }
             }
         }
-        this.c = this.limit - v_8;
-        const /** number */ v_9 = this.limit - this.c;
+        this.c = this.limit - v_7;
+        const /** number */ v_8 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab11: {
             while (true) {
-                const /** number */ v_10 = this.limit - this.c;
+                const /** number */ v_9 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab12: {
                     // deno-lint-ignore no-unused-labels
                     golab13: while (true)
                     {
-                        const /** number */ v_11 = this.limit - this.c;
+                        const /** number */ v_10 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
                         lab14: {
                             this.ket = this.c;
                             // deno-lint-ignore no-unused-labels
                             lab15: {
-                                const /** number */ v_12 = this.limit - this.c;
                                 // deno-lint-ignore no-unused-labels
                                 lab16: {
                                     if (!(this.eq_s_b("GE"))) break lab16;
                                     break lab15;
                                 }
-                                this.c = this.limit - v_12;
                                 if (!(this.eq_s_b("TSU"))) break lab14;
                             }
                             this.bra = this.c;
                             this.slice_del();
-                            this.c = this.limit - v_11;
+                            this.c = this.limit - v_10;
                             break golab13;
                         }
-                        this.c = this.limit - v_11;
+                        this.c = this.limit - v_10;
                         if (this.c <= this.limit_backward) break lab12;
                         this.c--;
                     }
                     continue;
                 }
-                this.c = this.limit - v_10;
+                this.c = this.limit - v_9;
                 break;
             }
         }
-        this.c = this.limit - v_9;
+        this.c = this.limit - v_8;
         return true;
     }
 
