@@ -119,7 +119,7 @@ would give rise to the header file,
 
 <p>
 If &nbsp;<code>-vprefix</code>&nbsp; is used, then functions are generated to
-provide access to Snowball strings, integers and booleans. (In Snowball 3.1.x
+provide access to Snowball strings, integers and booleans. (In Snowball 3.0.x
 and earlier, Snowball variables were stored in a different way in the generated
 C code and macros were generated if <code>-vprefix</code> was used).
 For example
@@ -144,12 +144,12 @@ would give rise the header file,
 ", "c") %]
 
 <p>
-The Snowball compiler will attempt to "localise" integer and boolean variables
-used only in one routine, in which case they become local variables in the C
-code and <code>-vprefix</code> won't generate code for them.  Let us know if
-this is a problem for you (the Snowball language may need to gain a way to mark
-variables as external which could suppress this optimisation and generate an
-access function.
+The Snowball compiler will (since 3.1.0) attempt to "localise" integer and
+boolean variables used only in one routine, in which case they become local
+variables in the C code and <code>-vprefix</code> won't generate code for them.
+Let us know if this is a problem for you (the Snowball language may need to
+gain a way to mark variables as external which could suppress this optimisation
+and generate an access function).
 </p>
 
 <p>
@@ -307,19 +307,20 @@ The string is not zero-terminated, but you can zero terminate it yourself with
 ', "c") %]
 
 <p>
-The values of the other variables can be accessed via the &nbsp;<code>#define</code>
-settings that result from the &nbsp;<code>-vprefix</code>&nbsp; option, although this should not
-usually be necessary:
+The values of the other variables can be accessed via the functions that are
+generated if the <code>-vprefix</code>&nbsp; option is used, although this
+should not usually be necessary:
 </p>
 
 [% highlight('
-    printf("p1 is %d\n", z->Khotanese_variable_p1);
+    printf("p1 is %d\n", Khotanese_variable_p1(z));
 ', "c") %]
 
 <p>
 The stemming scripts on this Web site use Snowball very simply.
-<code>-vprefix</code>&nbsp; is left unset, and &nbsp;<code>-eprefix</code>&nbsp; is set to the name of the
-script (usually the language the script is for).
+<code>-vprefix</code>&nbsp; is left unset, and
+&nbsp;<code>-eprefix</code>&nbsp; is set to the name of the Snowball
+script (with is usually the name of language the script stems).
 </p>
 
 <!-- We should probably reinstate this section: <h2>Getting started</h2> -->
@@ -374,8 +375,8 @@ The comments report commands as they exist in the syntax tree after some
 optimisations.  Reported line numbers should be correct, but sometimes the
 command reported can be different to that in the source code (for example,
 <code>atleast 0 C</code> is rewritten as <code>repeat C</code>, while
-<code>$x /= -1</code> is rewritten as <code>$x *= -1</code> - the generated
-comments for these cases will say "repeat" and "*=" respectively).
+<code>$x /= -1</code> is rewritten as <code>$x = -x</code> and the generated
+comments for these cases will show the rewritten versions.
 </p>
 
 <h3>Syntax tree</h3>
@@ -401,7 +402,7 @@ Snowball 3.1.0 added a simple code coverage feature (currently only supported
 for C/C++).  This allow generating extra code to allow the runtime to report
 which <code>among</code> cases and which <code>grouping</code> characters are
 actually exercised.  This can help find situations where a case is impossible
-to trigger because the words it's mean to handle get dealt with by an earlier
+to trigger because the words it's meant to handle get dealt with by an earlier
 step.  It can also find gaps in the test vocabulary - often adding a handful
 of words can complete the <code>among</code> coverage.
 </p>
@@ -423,7 +424,7 @@ can turn that into a coverage report using <code>sort</code> and
 
 [% highlight('
 make -s check_utf8_swedish 2> coverage.log
-sort -k2,2 -k3,3n -k3,3 -k5,5g coverage.log | uniq -c > coverage.report
+sort -k2,2 -k3,3n -k3,3 -k5,5g coverage.log | uniq -c |awk ' _ "'" _ '{$1=sprintf("% 8d",$1-1);print}' _ "'" _ ' > coverage.report
 ', 'sh') %]
 
 <p>
@@ -463,10 +464,15 @@ of 4" (there's no "4 of 4").
 </p>
 
 <p>
-Cases/characters which never match are not in the report - check for gaps in
-the numbering to find them.  Among strings are reported in the same order as
-they appear in the source code, so you can use the strings either side of a
-gap to locate the untriggered string in the source code.
+Cases/characters which never match have 0 in the first column.  If an among
+contains the empty string then the "no match" case is impossible and will
+show a count of zero (plus a comment noting this).
+</p>
+
+<p>
+Note that among strings are reported in the same order as they appear in the
+source code, which can help to locate them in the source (especially if
+multiple strings are listed on the same line).
 </p>
 
 <p>
