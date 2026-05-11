@@ -409,16 +409,24 @@ Applied only if Step 7 ran (i.e., any of Steps 1&#x2013;4 modified the word).
 <h3>Vowel lengthening</h3>
 
 <p>
-Several steps call a <i>lengthen_V</i> sub-routine after deletion. This re-lengthens
-a vowel that was shortened by the suffix removal. Working backwards from the new
-word end, if the final vowel is preceded by a non-vowel and not followed by
-another vowel, it is duplicated to restore the long vowel spelling. The rule
-applies to <I>a</I>, <I>o</I>, <I>u</I> and their accented variants
-unconditionally, and to <I>e</I> and its variants unless followed by another
-vowel from <I>AIOU</I>, or by a lone <I>e</I> or <I>&#xe9;</I> at the end of word,
-or preceded at distance two by a vowel from <I>AIOU</I> then a non-vowel.
-Additionally, <I>ee</I>&#x2192;<I>eee</I> is shortened to <I>ee</I> and <I>ie</I> ending
-is preserved as <I>iee</I>.
+Several steps call a <i>lengthen_V</i> sub-routine after deletion. It re-lengthens
+a vowel that was shortened by the suffix removal.
+</p>
+<p>
+Working backwards from the new word end, if the final vowel is preceded by a
+non-vowel and not followed by another vowel, it is duplicated to restore the long
+vowel spelling. The rule applies unconditionally to <I>a</I>, <I>o</I>, <I>u</I>
+and their accented variants.
+</p>
+<p>
+For <I>e</I> and its variants, lengthening is skipped if: the vowel is followed
+by another vowel from <I>AIOU</I>; or it is a lone <I>e</I> or <I>&#xe9;</I> at
+the end of the word; or it is preceded at distance two by a vowel from <I>AIOU</I>
+then a non-vowel.
+</p>
+<p>
+Two special endings are also handled: <I>ee</I> that would become <I>eee</I> is
+left as <I>ee</I>, and an <I>ie</I> ending is preserved as <I>iee</I>.
 </p>
 
 <h2>The full algorithm in Snowball</h2>
