@@ -451,6 +451,7 @@ Finally,
 <h2>The same algorithm in Snowball</h2>
 
 <div class="highlight"><pre><span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">           </span><span class="n">elisions</span>
 <span class="w">           </span><span class="n">prelude</span><span class="w"> </span><span class="n">postlude</span><span class="w"> </span><span class="n">mark_regions</span>
 <span class="w">           </span><span class="n">RV</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="n">R2</span>
 <span class="w">           </span><span class="n">attached_pronoun</span>
@@ -481,6 +482,29 @@ Finally,
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">u`</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+00F9}</span><span class="s1">&#39;</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiou</span><span class="se">{a`}{e`}{i`}{o`}{u`}</span><span class="s1">&#39;</span>
+
+<span class="kr">define</span><span class="w"> </span><span class="n">elisions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">[</span><span class="w"> </span><span class="ow">substring</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">atlimit</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">// &#39;c{&#39;}&#39; doesn&#39;t seem useful to remove here.</span>
+<span class="w">      </span><span class="s1">&#39;d</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">      </span><span class="c1">// e.g. d&#39;Italia (&quot;of Italy&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;l</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">      </span><span class="c1">// e.g. l&#39;anno (&quot;the year&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;m</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">      </span><span class="c1">// e.g. m&#39;ama (&quot;he loves me&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;s</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">      </span><span class="c1">// e.g. s&#39;innamora (&quot;he falls in love&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;t</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">      </span><span class="c1">// e.g. t&#39;amo (&quot;I love you&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;v</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">      </span><span class="c1">// e.g. v&#39;adoro (&quot;I adore you&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;all</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">    </span><span class="c1">// e.g. all&#39;università (&quot;at university&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;dall</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">   </span><span class="c1">// e.g. dall&#39;album (&quot;from the album&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;dell</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">   </span><span class="c1">// e.g. dell&#39;anno (&quot;of the year&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;gl</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">     </span><span class="c1">// e.g. gl&#39;inglesi (&quot;the English&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;nell</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">   </span><span class="c1">// e.g. nell&#39;estate (&quot;in the summer&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;quell</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// e.g. quell&#39;anno (&quot;that year&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;quest</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">  </span><span class="c1">// e.g. quest&#39;anno (&quot;this year&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;sull</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">   </span><span class="c1">// e.g. sull&#39;isola (&quot;on the island&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;tutt</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">   </span><span class="c1">// e.g. tutt&#39;Europa (&quot;all of Europe&quot;)</span>
+<span class="w">      </span><span class="s1">&#39;un</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="w">     </span><span class="c1">// e.g. un&#39;eccentricità (&quot;an eccentricity&quot;)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">delete</span>
+<span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">prelude</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="ow">test</span><span class="w"> </span><span class="ow">repeat</span><span class="w"> </span><span class="p">(</span>
@@ -547,7 +571,7 @@ Finally,
 <span class="w">            </span><span class="s1">&#39;cela&#39;</span><span class="w"> </span><span class="s1">&#39;cele&#39;</span><span class="w"> </span><span class="s1">&#39;celi&#39;</span><span class="w"> </span><span class="s1">&#39;celo&#39;</span><span class="w"> </span><span class="s1">&#39;cene&#39;</span>
 <span class="w">            </span><span class="s1">&#39;vela&#39;</span><span class="w"> </span><span class="s1">&#39;vele&#39;</span><span class="w"> </span><span class="s1">&#39;veli&#39;</span><span class="w"> </span><span class="s1">&#39;velo&#39;</span><span class="w"> </span><span class="s1">&#39;vene&#39;</span>
 <span class="w">        </span><span class="p">)</span>
-<span class="w">        </span><span class="kr">among</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">RV</span><span class="p">)</span>
+<span class="w">        </span><span class="ow">substring</span><span class="w"> </span><span class="n">RV</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
 <span class="w">            </span><span class="s1">&#39;ando&#39;</span><span class="w"> </span><span class="s1">&#39;endo&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
 <span class="w">            </span><span class="s1">&#39;ar&#39;</span><span class="w"> </span><span class="s1">&#39;er&#39;</span><span class="w"> </span><span class="s1">&#39;ir&#39;</span><span class="w">  </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
 <span class="w">        </span><span class="p">)</span>
@@ -632,6 +656,7 @@ Finally,
 <span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="ow">do</span><span class="w"> </span><span class="n">elisions</span>
 <span class="w">      </span><span class="ow">do</span><span class="w"> </span><span class="n">prelude</span>
 <span class="w">      </span><span class="ow">do</span><span class="w"> </span><span class="n">mark_regions</span>
 <span class="w">      </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>

@@ -63,6 +63,123 @@ is preserved to avoid over-stemming.
 </p>
 
 <h2>The algorithm in Snowball</h2>
+<div class="highlight"><pre><span class="cm">/* stringescapes UTF-8 */</span>
+
+<span class="cm">/*</span>
+<span class="cm">  Sesotho stemmer for the Snowball project</span>
+<span class="cm">  ----------------------------------------</span>
+<span class="cm">  Author: Kamohelo Lebjane</span>
+<span class="cm">  Purpose: To reduce Sesotho words to their morphological stems.</span>
+
+<span class="cm">  Language notes:</span>
+<span class="cm">  Sesotho (Southern Sotho) is an agglutinative Bantu language.</span>
+<span class="cm">  Words often contain prefixes for noun classes and suffixes</span>
+<span class="cm">  for tense, aspect, or derivation.</span>
+
+<span class="cm">  An agglutinative language is a type of language that primarily forms words </span>
+<span class="cm">  by stringing together morphemes (word parts)—each typically representing a single </span>
+<span class="cm">  grammatical meaning—without significant modification to their forms (agglutinations). </span>
+<span class="cm">  In such languages, affixes (prefixes, suffixes, infixes, or circumfixes) </span>
+<span class="cm">  are added to a root word in a linear and systematic way, creating complex </span>
+<span class="cm">  words that encode detailed grammatical information.</span>
+
+<span class="cm">  Examples:  </span>
+<span class="cm">    baruti      -&gt; rut (root) </span>
+<span class="cm">    moruti      -&gt; rut (root)</span>
+<span class="cm">    rutile      -&gt; rut (root)</span>
+
+<span class="cm">  The rules below remove common noun class prefixes</span>
+<span class="cm">  and common verb suffixes, keeping the main root form.</span>
+<span class="cm">*/</span>
+
+<span class="cm">/* --- Routine declarations --- */</span>
+<span class="kr">routines</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">mark_regions</span>
+<span class="w">  </span><span class="n">remove_noun_prefixes</span>
+<span class="w">  </span><span class="n">remove_verb_suffixes</span>
+<span class="w">  </span><span class="n">remove_nominal_suffixes</span>
+<span class="p">)</span>
+
+<span class="cm">/* --- External declarations --- */</span>
+<span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
+
+<span class="cm">/* --- Groupings --- */</span>
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">)</span>
+
+<span class="cm">/* --- Character sets --- */</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiou&#39;</span>
+
+<span class="cm">/* --- Integer for tracking position --- */</span>
+<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">pV</span><span class="w"> </span><span class="p">)</span>
+
+<span class="cm">/* --- Mark vowel region --- */</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="c1">// Set pV after the first vowel and at least 2 characters into the string.</span>
+<span class="w">  </span><span class="c1">// Signals f if the string doesn&#39;t contain a vowel or is shorter than 2</span>
+<span class="w">  </span><span class="c1">// characters.</span>
+<span class="w">  </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">pV</span><span class="p">)</span>
+<span class="w">  </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="p">(</span><span class="nb">cursor</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">pV</span><span class="p">)</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">pV</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="cm">/* --- Remove noun class prefixes --- */</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">remove_noun_prefixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;mo&#39;</span><span class="w">   </span><span class="s1">&#39;ba&#39;</span><span class="w">   </span><span class="s1">&#39;me&#39;</span><span class="w">   </span><span class="s1">&#39;le&#39;</span>
+<span class="w">    </span><span class="s1">&#39;ma&#39;</span><span class="w">   </span><span class="s1">&#39;se&#39;</span><span class="w">   </span><span class="s1">&#39;boi&#39;</span><span class="w">   </span><span class="s1">&#39;li&#39;</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="cm">/* Require at least two characters remain */</span>
+<span class="w">  </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="ow">next</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">)</span>
+<span class="w">  </span><span class="cm">/* Only delete if there&#39;s a vowel after the cursor position */</span>
+<span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">delete</span>
+<span class="p">)</span>
+
+<span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
+
+<span class="w">  </span><span class="cm">/* --- Remove verb suffixes (from end of word) --- */</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">remove_verb_suffixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">pV</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;ile&#39;</span><span class="w">   </span><span class="cm">/* perfect tense */</span>
+<span class="w">        </span><span class="s1">&#39;isa&#39;</span><span class="w">   </span><span class="cm">/* causative */</span>
+<span class="w">        </span><span class="s1">&#39;etse&#39;</span><span class="w">  </span><span class="cm">/* applicative */</span>
+<span class="w">        </span><span class="s1">&#39;ela&#39;</span><span class="w">   </span><span class="cm">/* applicative */</span>
+<span class="w">        </span><span class="s1">&#39;ang&#39;</span><span class="w">   </span><span class="cm">/* plural imperative */</span>
+<span class="w">        </span><span class="s1">&#39;ong&#39;</span><span class="w">    </span><span class="cm">/* continuous/derived form */</span>
+<span class="w">        </span><span class="s1">&#39;eng&#39;</span>
+<span class="w">        </span><span class="s1">&#39;wa&#39;</span><span class="w">    </span><span class="cm">/* passive */</span>
+<span class="w">        </span><span class="s1">&#39;a&#39;</span><span class="w">     </span><span class="cm">/* infinitive marker */</span>
+<span class="w">        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="w">  </span><span class="cm">/* --- Remove nominal suffixes --- */</span>
+<span class="w">  </span><span class="kr">define</span><span class="w"> </span><span class="n">remove_nominal_suffixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">pV</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;nyana&#39;</span><span class="w">   </span><span class="cm">/* diminutive form */</span>
+<span class="w">        </span><span class="s1">&#39;ana&#39;</span><span class="w">     </span><span class="cm">/* diminutive form */</span>
+<span class="w">        </span><span class="s1">&#39;ano&#39;</span>
+<span class="w">        </span><span class="s1">&#39;oa&#39;</span>
+<span class="w">        </span><span class="s1">&#39;i&#39;</span>
+<span class="w">        </span><span class="p">(</span><span class="ow">delete</span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="p">)</span>
+
+<span class="cm">/* --- MAIN STEMMER --- */</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">mark_regions</span><span class="w"> </span><span class="c1">// Signals f if the string is too short to stem.</span>
+<span class="w">  </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_nominal_suffixes</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_verb_suffixes</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="n">remove_noun_prefixes</span>
+<span class="p">)</span>
+</pre></div>
+
         </div><!-- /.col-lg-10 -->
       </div><!-- /.row -->
     </div><!-- /.container -->

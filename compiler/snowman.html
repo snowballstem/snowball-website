@@ -1622,6 +1622,13 @@ specified via <code>stringdef</code>.  The <code>U+</code> notation allows
 you to use a single Snowball source in this situation.
 </p>
 
+<p>
+Snowball 3.1.0 and later will warn if <code>hex</code> or <code>decimal</code>
+is used (except that <code>hex</code> does not warn for use in a
+<code>stringdef</code> for a name which starts <code>U+</code>, since that is
+how mappings for character sets such as ISO-8859-2 and KOI8-R are defined).
+</p>
+
 <h3>13.2 among starter command</h3>
 
 <p>
@@ -1667,7 +1674,8 @@ However, both are equivalent to:
 <p>
 This requires an explicit <code>substring</code> but seems clearer so
 we recommend using this in new code and have designated the use of a starter as
-a legacy feature.
+a legacy feature.  Snowball 3.1.0 and later will warn if an among starter is
+used.
 </p>
 
 <p>
@@ -1736,9 +1744,10 @@ where the code requires the implemented behaviour.
 </p>
 
 <p>
-You should avoid using &nbsp;<code>=></code>&nbsp; in new code.  We've replaced the uses in
-the Schinke stemmer and if there are other existing uses we recommend replacing
-them too.  For example, the first example above can be rewritten as
+You should avoid using &nbsp;<code>=&gt;</code>&nbsp; in new code.  We've
+replaced the uses in the Schinke stemmer and if there are other existing uses
+we recommend replacing them too.  For example, the first example above can be
+rewritten as
 </p>
 
 <div class="highlight"><pre><span class="w">        </span><span class="o">$</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
@@ -1749,12 +1758,20 @@ them too.  For example, the first example above can be rewritten as
 If you have a use which you can't see how to replace, please get in touch and we can advise.
 </p>
 
+<p>
+Snowball 3.1.0 and later will warn if <code>=&gt;</code> is used.
+</p>
+
 <h3>13.4 &lt;+ synonym for insert</h3>
 
 <p>
 Snowball supports &nbsp;<code>&lt;+</code>&nbsp; as a synonym for &nbsp;<code>insert</code>.
 We recommend always using <code>insert</code> instead.  It is slightly more
 verbose, but not excessively so, and the meaning is clearer.
+</p>
+
+<p>
+Snowball 3.1.0 and later will warn if <code>&lt;+</code> is used.
 </p>
 
 <h2>Snowball syntax</h2>
