@@ -3,6 +3,25 @@
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
 const a_0 = [
+    ["all'", -1],
+    ["d'", -1],
+    ["dall'", -1],
+    ["dell'", -1],
+    ["gl'", -1],
+    ["l'", -1],
+    ["m'", -1],
+    ["nell'", -1],
+    ["quell'", -1],
+    ["quest'", -1],
+    ["s'", -1],
+    ["sull'", -1],
+    ["t'", -1],
+    ["tutt'", -1],
+    ["un'", -1],
+    ["v'", -1]
+];
+
+const a_1 = [
     ["", 7],
     ["qu", 6, 1],
     ["\u00E1", 1, 2],
@@ -12,13 +31,13 @@ const a_0 = [
     ["\u00FA", 5, 6]
 ];
 
-const a_1 = [
+const a_2 = [
     ["", 3],
     ["I", 1, 1],
     ["U", 2, 2]
 ];
 
-const a_2 = [
+const a_3 = [
     ["la", -1],
     ["cela", -1, 1],
     ["gliela", -1, 2],
@@ -58,7 +77,7 @@ const a_2 = [
     ["velo", -1, 5]
 ];
 
-const a_3 = [
+const a_4 = [
     ["ando", 1],
     ["endo", 1],
     ["ar", 2],
@@ -66,20 +85,20 @@ const a_3 = [
     ["ir", 2]
 ];
 
-const a_4 = [
+const a_5 = [
     ["ic", -1],
     ["abil", -1],
     ["os", -1],
     ["iv", 1]
 ];
 
-const a_5 = [
+const a_6 = [
     ["ic", 1],
     ["abil", 1],
     ["iv", 1]
 ];
 
-const a_6 = [
+const a_7 = [
     ["ica", 1],
     ["logia", 3],
     ["osa", 1],
@@ -133,7 +152,7 @@ const a_6 = [
     ["ist\u00EC", 1]
 ];
 
-const a_7 = [
+const a_8 = [
     ["isca", 1],
     ["enda", 1],
     ["ata", 1],
@@ -239,6 +258,20 @@ export default class extends B {
 
 
     /** @return {boolean} */
+    #r_elisions() {
+        this.bra = this.c;
+        if (this.find_among(a_0) === 0) return false;
+        this.ket = this.c;
+        // deno-lint-ignore no-unused-labels
+        lab0: {
+            if (this.c < this.limit) break lab0;
+            return false;
+        }
+        this.slice_del();
+        return true;
+    }
+
+    /** @return {boolean} */
     #r_prelude() {
         let /** number */ a;
         const /** number */ v_1 = this.c;
@@ -247,7 +280,7 @@ export default class extends B {
             // deno-lint-ignore no-unused-labels
             lab0: {
                 this.bra = this.c;
-                a = this.find_among(a_0);
+                a = this.find_among(a_1);
                 this.ket = this.c;
                 switch (a) {
                     case 1: {
@@ -414,7 +447,7 @@ export default class extends B {
             // deno-lint-ignore no-unused-labels
             lab0: {
                 this.bra = this.c;
-                a = this.find_among(a_1);
+                a = this.find_among(a_2);
                 this.ket = this.c;
                 switch (a) {
                     case 1: {
@@ -458,9 +491,9 @@ export default class extends B {
     #r_attached_pronoun() {
         let /** number */ a;
         this.ket = this.c;
-        if (this.find_among_b(a_2) === 0) return false;
+        if (this.find_among_b(a_3) === 0) return false;
         this.bra = this.c;
-        a = this.find_among_b(a_3);
+        a = this.find_among_b(a_4);
         if (a === 0) return false;
         if (!this.#r_RV()) return false;
         switch (a) {
@@ -480,7 +513,7 @@ export default class extends B {
     #r_standard_suffix() {
         let /** number */ a;
         this.ket = this.c;
-        a = this.find_among_b(a_6);
+        a = this.find_among_b(a_7);
         if (a === 0) return false;
         this.bra = this.c;
         switch (a) {
@@ -536,7 +569,7 @@ export default class extends B {
                 // deno-lint-ignore no-unused-labels
                 lab1: {
                     this.ket = this.c;
-                    a = this.find_among_b(a_4);
+                    a = this.find_among_b(a_5);
                     if (a === 0) {
                         this.c = this.limit - v_2;
                         break lab1;
@@ -573,7 +606,7 @@ export default class extends B {
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     this.ket = this.c;
-                    if (this.find_among_b(a_5) === 0) {
+                    if (this.find_among_b(a_6) === 0) {
                         this.c = this.limit - v_3;
                         break lab2;
                     }
@@ -627,7 +660,7 @@ export default class extends B {
         const /** number */ v_1 = this.limit_backward;
         this.limit_backward = this.#I_pV;
         this.ket = this.c;
-        if (this.find_among_b(a_7) === 0) {
+        if (this.find_among_b(a_8) === 0) {
             this.limit_backward = v_1;
             return false;
         }
@@ -690,36 +723,39 @@ export default class extends B {
     /** @return {boolean} */
     #stem() {
         const /** number */ v_1 = this.c;
-        this.#r_prelude();
+        this.#r_elisions();
         this.c = v_1;
+        const /** number */ v_2 = this.c;
+        this.#r_prelude();
+        this.c = v_2;
         this.#r_mark_regions();
         this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_2 = this.limit - this.c;
-        this.#r_attached_pronoun();
-        this.c = this.limit - v_2;
         const /** number */ v_3 = this.limit - this.c;
+        this.#r_attached_pronoun();
+        this.c = this.limit - v_3;
+        const /** number */ v_4 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             // deno-lint-ignore no-unused-labels
             lab1: {
-                const /** number */ v_4 = this.limit - this.c;
+                const /** number */ v_5 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     if (!this.#r_standard_suffix()) break lab2;
                     break lab1;
                 }
-                this.c = this.limit - v_4;
+                this.c = this.limit - v_5;
                 if (!this.#r_verb_suffix()) break lab0;
             }
         }
-        this.c = this.limit - v_3;
-        const /** number */ v_5 = this.limit - this.c;
+        this.c = this.limit - v_4;
+        const /** number */ v_6 = this.limit - this.c;
         this.#r_vowel_suffix();
-        this.c = this.limit - v_5;
+        this.c = this.limit - v_6;
         this.c = this.limit_backward;
-        const /** number */ v_6 = this.c;
+        const /** number */ v_7 = this.c;
         this.#r_postlude();
-        this.c = v_6;
+        this.c = v_7;
         return true;
     }
 

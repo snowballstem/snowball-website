@@ -1486,8 +1486,7 @@ export default class extends B {
                 break lab0;
             }
         }
-        if (this.c > this.limit_backward) return false;
-        return true;
+        return this.c <= this.limit_backward;
     }
 
     /** @return {boolean} */
