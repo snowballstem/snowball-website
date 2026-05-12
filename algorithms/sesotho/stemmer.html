@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Sesotho stemming algorithm - Snowball</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="/styles.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-light bg-light navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand float-left" href="/"><img src="/snub-dodecahedron.gif" alt="Snowball Logo" style="margin: 4px; height: 42px;"> Snowball</a>
+          <span id="forkongithub"><a href="https://github.com/snowballstem/snowball">Fork me on GitHub</a></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2">
+          
+        </div>
+        <div class="col-lg-10">
+          <h1>Sesotho stemming algorithm</h1>
+
+<h2>Links to resources</h2>
+<ul>
+<li> <a href="https://en.wikipedia.org/wiki/Sotho_language">Sesotho language</a> on Wikipedia</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>
+The Sesotho (Southern Sotho) stemming algorithm was developed by Kamohelo Lebjane.
+Sesotho (ISO 639-1: st) is a Southern Bantu language spoken by approximately 5.6 million
+people in South Africa and Lesotho.
+</p>
+<p>
+Like other Bantu languages, Sesotho is agglutinative - words are formed by attaching
+prefixes and suffixes to root morphemes. A single root can appear with many different
+affixes, making stemming important for information retrieval.
+</p>
+
+<h2>Stemming Approach</h2>
+<p>
+The algorithm removes noun class prefixes and verb/nominal suffixes to extract root forms.
+Sesotho uses a noun class system where prefixes indicate grammatical categories
+(e.g., mo-/ba- for people, le-/ma- for certain objects, se-/li- for things).
+Verb suffixes encode tense, aspect, and voice (e.g., -ile for perfect tense,
+-isa for causative, -wa for passive).
+</p>
+<p>
+The stemmer processes suffixes before prefixes and ensures a minimum stem length
+is preserved to avoid over-stemming.
+</p>
+
+<h2>The algorithm in Snowball</h2>
+        </div><!-- /.col-lg-10 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <div class="container">
+      <footer class="footer">
+        <p>
+          <a href="/lists.html">Write to our mailing list</a> if you have comments or questions about the project.
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
