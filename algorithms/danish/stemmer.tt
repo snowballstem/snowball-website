@@ -27,13 +27,6 @@ The following letters are vowels:
 </DL>
 
 <p>
-A consonant is defined as a character from ASCII a-z which isn't a vowel
-(originally this was "A consonant is defined as a non-vowel" but since
-2018-11-15 we've changed this definition to avoid the stemmer altering
-alphanumeric codes which end with a repeated digit).
-</p>
-
-<p>
 <I>R</I>2 is not used: <I>R</I>1 is defined in the same way as in the
 <A HREF="../german/stemmer.html">German stemmer</A>.
 (See the <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2.)
@@ -114,8 +107,20 @@ Step 3:
 Step 4: undouble
 <DL><DD>
     <p>
-    If the word ends with double consonant in <I>R</I>1, remove one of the
-    consonants.
+    If the word ends with one of
+	<b><i>bb</i></b>
+	<b><i>dd</i></b>
+	<b><i>ff</i></b>
+	<b><i>gg</i></b>
+	<b><i>kk</i></b>
+	<b><i>ll</i></b>
+	<b><i>mm</i></b>
+	<b><i>nn</i></b>
+	<b><i>pp</i></b>
+	<b><i>rr</i></b>
+	<b><i>ss</i></b>
+	<b><i>tt</i></b>
+    in <I>R</I>1, then remove the last letter.
     </p>
 
     <p>
@@ -124,6 +129,17 @@ Step 4: undouble
     &#x2192; <I>bestem</I> in this step.)
     </p>
 </DL>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Snowball 2.0.0 (2018-11-15): Tightened definition of "consonant" to be "a
+character from ASCII a-z which isn't a vowel" (originally this was "A consonant
+is defined as a non-vowel" but that caused mangling of alphanumeric codes).
+<li>Snowball 3.1.0: Restrict undoubling to a subset of consonants which actually
+occur in this situation in Danish words (this change didn't affect the stemming
+of any words in our sample vocabulary).
+</ul>
 
 <h2>The same algorithm in Snowball</h2>
 
