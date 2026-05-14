@@ -137,6 +137,38 @@ as poor style.
 </p>
 </ol>
 
+<h3>Apostrophe</h3>
+
+<p>
+The rules about correct use of apostrophe in German have changed over time.
+The stemmer aims to also work with text conforming to older versions of the
+rules, and with common misuses of apostrophe.  Therefore the rules chosen
+for when to remove take into account usage that was formerly correct but no
+longer is, or which is incorrect but common.
+</p>
+
+<p>
+There are some uses of apostrophe in German which are relevant to stemming:
+</p>
+
+<ul>
+<li> With the possessive of proper nouns to avoid ambiguity - for example, <i>Andrea's
+     Blumenecke</i> to clarify it's <i>Andrea</i> rather than <i>Andreas</i>.
+<li> With adjectives derived from proper nouns, e.g. <i>Einstein'sche
+     Relativitätstheorie</i>.
+<li> The possessive of proper nouns ending with an "s"-sound (written <i>-s</i>,
+     <i>-ß</i>, <i>-z</i>, <i>-x</i>, <i>-ce</i>) is formed by appending just
+     an apostrophe (e.g. <i>Bordeaux’ Hafenanlagen</i>).
+</ul>
+
+<p>
+Derived forms of adjectives formed from nouns will have already been reduced to
+having suffix <i>-'sch</i> by earlier rules, so we can handle these cases with
+a step which removes <i>'s</i>, <i>'sch</i> or <i>'</i>, if that leaves at
+least two characters.  We perform this step after all other suffix removal
+steps because it leaves a proper noun which we don't want to try to stem.
+</p>
+
 <h2>History of functional changes to the algorithm</h2>
 
 <ul>
@@ -146,6 +178,7 @@ as poor style.
 <li>Snowball 3.0.0: Replace <b><i>-ln</i></b> and <b><i>-lns</i></b> with <b><i>l</i></b>.
 <li>Snowball 3.0.0: Remove <b><i>-erin</i></b> and <b><i>-erinnen</i></b>.
 <li>Snowball 3.0.0: Remove <b><i>-et</i></b> when safe to do so.
+<li>Snowball 3.1.0: New step to handle apostrophe.
 </ul>
 
 <h2>The stemming algorithm</h2>
@@ -212,7 +245,7 @@ Define a valid <B><I>et</I></B>-ending as one of
 </p>
 
 <p>
-Do each of steps 1, 2 and 3.
+Do each of steps 1, 2, 3 and 4.
 </p>
 
 <p>
@@ -287,6 +320,14 @@ Step 3: <I>d</I>-suffixes <A HREF="../../texts/glossary.html">(*)</A>
         <DD>delete if in <I>R</I>2
         <DD>if preceded by <B><I>lich</I></B> or <B><I>ig</I></B>, delete if in <I>R</I>2
 </DL>
+</DL>
+
+Step 4: Apostrophe
+<DL><DD>
+    <p>
+    Remove one of the following suffixes, if that leaves at least two characters:
+    <b><i>'s 'sch '</i></b>
+    </p>
 </DL>
 
 <p>
