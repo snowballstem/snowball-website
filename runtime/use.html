@@ -455,12 +455,13 @@ syntax tree is shown after such transformations.
 
 <p>
 Snowball 3.1.0 added a simple code coverage feature (currently only supported
-for C/C++).  This allow generating extra code to allow the runtime to report
-which <code>among</code> cases and which <code>grouping</code> characters are
-actually exercised.  This can help find situations where a case is impossible
-to trigger because the words it's meant to handle get dealt with by an earlier
-step.  It can also find gaps in the test vocabulary - often adding a handful
-of words can complete the <code>among</code> coverage.
+for C/C++).  This option enables the generation of extra code to allow the
+runtime to report which <code>among</code> cases and which
+<code>grouping</code> characters are actually exercised.  This can help find
+situations where a case is impossible to trigger because the words it's meant
+to handle get dealt with by an earlier step.  It can also find gaps in the test
+vocabulary - often adding a handful of words can complete the
+<code>among</code> coverage.
 </p>
 
 <p>
@@ -518,9 +519,9 @@ of 4" (there's no "4 of 4").
 </p>
 
 <p>
-Cases/characters which never match have 0 in the first column.  If an among
-contains the empty string then the "no match" case is impossible and will
-show a count of zero (plus a comment noting this).
+Cases/characters which never match have 0 in the first column.  (If an among
+contains the empty string without a gating function then the "no match" case is
+impossible and so will be omitted from the coverage report.)
 </p>
 
 <p>
@@ -536,7 +537,8 @@ a state where it seemed useful to include in releases.
 
 <p>
 It would also be useful to report coverage for every command, not just among
-cases and grouping characters.
+cases and grouping characters.  The counts could also potentially be fed
+back into code generation to allow profile-guided optimisation.
 </p>
 
 <h2>Compiler bugs</h2>
