@@ -258,7 +258,7 @@ The following letters are vowels (<I>V1</I>):
 </p>
 
 <DL><DD>
-    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  u  &nbsp;  o</I></B>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  u  &nbsp;  o  &nbsp;  '</I></B>
 </DL>
 
 <p>
@@ -278,7 +278,20 @@ The following letters are vowels (<I>V1</I>):
 </DL>
 
 <p>
-<I>R1</I> in this algorithm is defined as a region after the first consonant preceded by a vowel (laul[nud], mõt[teid], kar[tuleid], saab[as]). If there’s no such region, then <I>R1</I> is empty (laul[Ø], saun[Ø]). Limitations in steps (such as "if preceded by <I>RV</I>") are not restricted to the <I>R1</I> region.
+<I>R1</I> in this algorithm is set up by the following steps:
+</p>
+
+<ol>
+<li> If the word contains an apostrophe as the third or later character, then
+     <i>R1</i> is set to start after the first such apostrophe.
+<li> Otherwise, <i>R1</i> is set to start after the first consonant preceded by
+     a vowel (laul[nud], mõt[teid], kar[tuleid], saab[as]). If there’s no such
+     region, then <I>R1</I> is empty (laul[Ø], saun[Ø]).
+</ol>
+
+<p>
+Limitations in steps (such as "if preceded by <I>RV</I>") are not restricted to
+the <I>R1</I> region.
 </p>
 
 <p>
@@ -613,6 +626,27 @@ Step 9: undouble_kpt
     provided the vowel is in R1.
 </DL>
 
+<p>
+Step 10: apostrophe
+</p>
+
+<DL><DD>
+    <p>
+    If the word ends with an apostrophe (<b><i>'</i></b>) then remove it.
+    </p>
+</DL>
+
+<h2>Design Notes</h2>
+
+<p>
+Apostrophe is used in Estonian to separate Estonian suffixes from words of foreign
+origin if used in their original spelling.  To handle this, apostrophe is included
+in <i>RV</i>, and a trailing apostrophe is removed as a final step.  This suffixing
+is sometimes seen with acronyms/initialisms which may not contain vowels (e.g.
+<i>tcl'i</i>) so the definition of <i>R</i>1 includes a special case for
+apostrophe.
+</p>
+
 <h2>History of functional changes to the algorithm</h2>
 
 <ul>
@@ -620,6 +654,7 @@ Step 9: undouble_kpt
 <li>Snowball 3.0.0: Fix the Snowball implementation to match this description (affects <i>-t</i>, <i>-te</i>, and <code>verb_exceptions</code>)
 <li>Snowball 3.0.0: Add condition on <i>-t</i> case ending removal
 <li>Snowball 3.0.0: Add condition on undoubling (e.g. avoids modifying acronyms/initialisms such as <i>PPE</i>)
+<li>Snowball 3.1.0: Adjust to handle apostrophe
 </ul>
 
 <h2>The full algorithm in Snowball</h2>
