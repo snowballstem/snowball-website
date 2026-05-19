@@ -1,7 +1,9 @@
 [% header('The apostrophe character') %]
 
+<p2>Representation of Apostrophe</p2>
+
 <p>
-Representing apostrophe is problematical for various reasons,
+The representation of apostrophe in Unicode is frankly a bit of a mess.
 </p>
 
 <ol style="list-style-type: lower-alpha;">
@@ -19,17 +21,51 @@ Compare,
 quote is also represented by character U+2019.
 </p>
 
-<li> <p>Character U+0027 is used for apostrophe, single closing quote and
-single opening quote (U+2018).
+<li> <p>As well as being used for apostrophe, U+0027 is used to represented both
+single opening quote and single closing quote (in ASCII and ISO-8859-1 it is the
+only way to).  Unicode also has a shaped single opening quote (U+2018) to complement
+U+2019.
 </p>
 
 <li> <p>A fourth character, U+201B, like U+2018 but with the tail &#8216;rising&#8217;
 instead of &#8216;descending&#8217;, is also sometimes used as apostrophe (in the
 house style of certain publishers, for surnames like <I>M&#8217;Coy</I> and so on.)
 </p>
+
+<li> <p>Since U+0027 can be both opening and closing single quotes, you can't
+easily tell if U+0027 before or after a word is an apostrophe or a single
+quote.  Similarly, you can't easily tell is U+2019 after a word is an apostrophe
+or a single closing quote.
+</p>
 </ol>
 
-<h2>Catalan</h2>
+<p2>Uses of Apostrophes</h2>
+
+<p>
+There are some common features as to how apostrophe is used which apply to
+multiple languages.
+</p>
+
+<ul>
+
+<li><p>
+To mark omission of letters, such as contractions in English (<i>has not</i>
+becomes <i>hasn't</i>) and elisions in French (<i>le alphabet</i> becomes
+<i>l'alphabet</i>).
+</p></li>
+
+<li><p>
+To separate a suffix from the word it added to in some situations.  The most
+common is when suffixing a "foreign" word, for example <i>Bordeaux'ssa</i>
+in Finnish; Turkish uses an apostrophe when suffixing any proper noun, e.g.
+<i>Türkiye'dir</i>.
+</p></li>
+
+</ul>
+
+<h2>Language-specific notes</h2>
+
+<h3>Catalan</h3>
 
 <p>
 Some Catalan pronouns can attach before or after a verb which starts/ends in
@@ -37,7 +73,16 @@ a vowel.  The pronoun drops its vowel and an apostrophe is added between the
 pronoun and verb.  These are handled by our Catalan stemmer.
 </p>
 
-<h2>Dutch</h2>
+<h3>Danish</h3>
+
+<p>
+An apostrophe is sometimes used to join the enclitic definite article to words
+of foreign origin, or to other words that would otherwise look awkward.  For
+example, <i>IP'en</i> ("the IP address").  Since 3.1.0, our stemmer includes
+handling for this.
+</p>
+
+<h3>Dutch</h3>
 
 <p>
 The Kraaij-Pohlmann stemmer for Dutch (Kraaij, 1994, 1995) removes hyphen and
@@ -46,7 +91,7 @@ of their endings).  Kraaij-Pohlmann is the default Dutch stemmer since Snowball
 3.0.0.
 </p>
 
-<h3>Dutch porter</h3>
+<h4>Dutch porter</h4>
 
 <p>
 The previous default Dutch stemmer was Martin Porter's which assumes
@@ -56,7 +101,7 @@ using it - given its aim is compatibility with existing data, we've not
 updated its handling of apostrophes.
 </p>
 
-<h2>English</h2>
+<h3>English</h3>
 
 <p>
 In the English stemming algorithm, it is assumed that apostrophe is
@@ -104,7 +149,7 @@ quote, from the end of the word, where it might have stood for a closing quote,
 or been an apostrophe following <B><I>s</I></B>. The form <B><I>&#8217;s</I></B> is also treated as an ending.
 </p>
 
-<h3>Porter</h3>
+<h4>Porter</h4>
 
 <p>
 We provide a reference implementation of the original Porter stemmer as
@@ -113,14 +158,14 @@ special handling of apostrophes, so since this is intended as a reference
 implementation, our implementation does not either.
 </p>
 
-<h3>Lovins</h3>
+<h4>Lovins</h4>
 
 <p>
 We provide a implementation of Beth Lovins' very early stemming algorithm.
 This handles <i>-'s</i> and <i>-s'</i> suffixes.
 </p>
 
-<h2>Esperanto</h2>
+<h3>Esperanto</h3>
 
 <p>
 Inflections of <i>'sti</i> are expanded into forms of <i>esti</i>. The words
@@ -128,21 +173,70 @@ Inflections of <i>'sti</i> are expanded into forms of <i>esti</i>. The words
 becomes <i>aŭ</i> after certain known stems, or else <i>o</i>.
 </p>
 
-<h2>French</h2>
+<h3>Estonian</h3>
+
+<p>
+Apostrophe is used to separate Estonian suffixes added to foreign words.
+Since 3.1.0, our stemmer includes handling for this.
+</p>
+
+<h3>Finnish</h3>
+
+<p>
+Apostrophe is used to separate Finnish suffixes added to foreign words.
+Since 3.1.0, our stemmer includes handling for this.
+</p>
+
+<h3>French</h3>
 
 <p>
 French elisions (e.g. <i>d'-</i>, <i>l'-</i>, <i>m'-</i>, <i>qu'-</i>) are
 removed since Snowball 3.0.0.
 </p>
 
-<h2>Irish</h2>
+<h3>German</h3>
+
+<p>
+An apostrophe can be added before a possessive <i>s</i> suffix to prevent
+ambiguity (e.g. <i>Andrea's Blumenladen</i> where <i>Andreas</i> is a
+male forename).  It is also used with adjectives derived from proper nouns
+(e.g. <i>Einstein'sche Relativitätstheorie</i>).  Since 3.1.0, our stemmer
+includes handling for these.
+</p>
+
+<h3>Irish</h3>
 
 <p>
 Irish has some contractions which appear as prefixes.  Our Irish stemmer
 handles <i>d'-</i>, <i>m'-</i> and <i>b'-</i>.
 </p>
 
-<h2>Polish</h2>
+<h3>Italian</h3>
+
+<p>
+Italian elisions (e.g. <i>d'-</i>, <i>l'-</i>, <i>m'-</i>) are removed since
+Snowball 3.1.0.
+</p>
+
+<h3>Lithuanian</h3>
+
+<p>
+An apostrophe is sometimes used to separate a Lithuanian ending on an
+international word (for example, <i>george's</i>, <i>parking'as</i>).
+To handle this case, a trailing apostrophe is removed as a final step
+since Snowball 3.1.0.
+</p>
+
+<h3>Norwegian</h3>
+
+<p>
+Apostrophe is sometimes used in Norwegian to separate Norwegian suffixes from
+words of foreign origin.  This is actually incorrect usage - the correct
+alternative is to use a hyphen instead of an apostrophe - but it's widespread
+enough that we should handle it, and we do since Snowball 3.1.0.
+</p>
+
+<h3>Polish</h3>
 
 <p>
 Polish uses an apostrophe to separate loanwords from native suffixes,
@@ -156,13 +250,13 @@ Since Snowball 3.1.0, the Polish stemmer removes an apostrophe if the stem
 ends with one after it has removed a noun, adjective or verb suffix.
 </p>
 
-<h2>Russian</h2>
+<h3>Russian</h3>
 
 <p>
 Our Russian stemmer handles suffixes which include an apostrophe.
 </p>
 
-<h2>Turkish</h2>
+<h3>Turkish</h3>
 
 <p>
 In modern Turkish orthography, an apostrophe is used to separate proper names
