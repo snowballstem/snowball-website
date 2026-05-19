@@ -281,7 +281,9 @@ other than a <I>v</I>).
 <li>Snowball 3.1.0: Handle "if preceded by" conditions on illative suffixes
 <b><i>-han</i></b>, etc the same way as other such conditions in step 3.  The
 algorithm description here already said to, but the Snowball algorithm did
-not.
+not.  Reword to make clear the condition on <b><i>tta</b></i> and
+<b><i>ttä</b></i> is not treated in this way (the Snowball implementation
+never has, and changing it to do so makes the results worse overall).
 <li>Snowball 3.1.0: Allow <b><i>ø</i></b> to precede <b><i>-hön</i></b> suffix.
 <li>Snowball 3.1.0: New step 6(f) and tweaks to step 3 conditions to handle
 apostrophe before a suffix.
@@ -394,13 +396,16 @@ Step 3: cases
 </p>
 
 <DL>
-    <DT><B><I>h</I></B><I>X</I><B><I>n</I></B>  &nbsp;  preceded by <I>X</I>, where <I>X</I> is a <I>V</I> (<B><I>a/han</I></B>, <B><I>e/hen</I></B> etc).  As a special case, <b><i>hön</i></b> may be preceded by either <b><i>ö</i></b> or <b><i>ø</i></b>.
-    <DT><B><I>siin  &nbsp;  den  &nbsp;  tten</I></B>  &nbsp;  preceded by <I>V</I><B><I>i</I></B>
-    <DT><B><I>seen</I></B>  &nbsp;  preceded by <I>LV</I>
+    <DT><B><I>h</I></B><I>X</I><B><I>n</I></B>  &nbsp;  preceded by either <I>X</I> or an apostrophe (which must also be in <i>R</i>1),
+    where <I>X</I> is a <I>V</I> (<B><I>a/han</I></B>, <B><I>e/hen</I></B> etc).
+    As a special case, <b><i>hön</i></b> can be preceded by either <b><i>ö</i></b>, <b><i>ø</i></b> or an apostrophe.
+    <DT><B><I>siin  &nbsp;  den  &nbsp;  tten</I></B>  &nbsp;  preceded by either <I>V</I><B><I>i</I></B> or by an apostrophe (which must also be in <i>R</i>1)
+    <DT><B><I>seen</I></B>  &nbsp;  preceded by <I>LV</I> (which must also be in <i>R</i>1)
     <DT><B><I>a  &nbsp;  ä</I></B>  &nbsp;  preceded by <I>cv</I>
-    <DT><B><I>tta  &nbsp;  ttä</I></B>  &nbsp;  preceded by <B><I>e</I></B>
     <DT><B><I>ta  &nbsp;  tä  &nbsp;  ssa  &nbsp;  ssä  &nbsp;  sta  &nbsp;  stä  &nbsp;  lla  &nbsp;  llä  &nbsp;  lta  &nbsp;  ltä  &nbsp;  lle  &nbsp;  na  &nbsp;  nä  &nbsp;  ksi  &nbsp;  ine</I></B>
         <DD>delete
+    <DT><B><I>tta  &nbsp;  ttä</I></B>
+        <DD>delete if preceded by <B><I>e</I></B>
     <DT><B><I>n</I></B>
         <DD>delete, and if preceded by <I>LV</I> or <B><I>ie</I></B>, delete the last vowel
 </DL>
