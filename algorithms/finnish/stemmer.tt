@@ -237,18 +237,12 @@ letter<BR>
 </p>
 
 <p>
-Do step (<I>e</I>), which is not restricted to <I>R</I>1.
+Do in turn steps (<I>e</I>) and (<I>f</I>), which are not restricted to <I>R</I>1.
 </p>
 
 <p>
 <I>e</I>) If the word ends with a double consonant followed by zero or more vowels,
-remove the last consonant (so <I>eläkk</I> &#x2192; <I>eläk</I>, <I>aatonaatto</I> &#x2192;
-<I>aatonaato</I>)
-</p>
-
-<p>
-Do step (<I>f</I>), which is not restricted to <I>R</I>1.
-</p>
+remove the last consonant (so <I>eläkk</I> &#x2192; <I>eläk</I>, <I>aatonaatto</I> &#x2192; <I>aatonaato</I>)<br>
 <I>f</I>) If the word ends with an apostrophe, remove it.
 </p>
 </DL>
