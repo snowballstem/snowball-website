@@ -162,11 +162,11 @@ specified, one byte per codepoint using either ISO-8859-1 or another encoding.
 <p>
 For other programming languages, one of these three options is effectively
 implicitly hard-coded (except wide-characters may be wider) - e.g. C#, Java,
-Javascript and Python use wide characters; Ada, Go and Rust use UTF-8; Pascal
-uses ISO-8859-1.  Since Snowball 2.0 it's possible with a little care to write
-Snowball code that works regardless of how characters are represented.  See
-section 12 of the <a href="/compiler/snowman.html">Snowball manual</a> for
-more details.
+Javascript and Python use wide characters; Ada, Go, PHP, Rust and Zig use
+UTF-8; Pascal uses ISO-8859-1.  Since Snowball 2.0 it's possible with a little
+care to write Snowball code that works regardless of how characters are
+represented.  See section 12 of the <a href="/compiler/snowman.html">Snowball
+manual</a> for more details.
 </p>
 
 <p>
