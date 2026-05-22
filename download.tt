@@ -18,9 +18,27 @@ C# project of your own.  If you download this, you don't need to use the snowbal
 compiler, or worry about the internals of the stemmers in any way.
 </li>
 <li>
+<a href="dist/libstemmer_dart-[% version %].tar.gz">The Dart version of the libstemmer library.</a><br/>
+This contains all you need to include the snowball stemming algorithms into a
+Dart project of your own.  If you download this, you don't need to use the snowball
+compiler, or worry about the internals of the stemmers in any way.
+</li>
+<li>
 <a href="dist/libstemmer_java-[% version %].tar.gz">The Java version of the libstemmer library.</a><br/>
 This contains all you need to include the snowball stemming algorithms into a
 Java project of your own.  If you download this, you don't need to use the snowball
+compiler, or worry about the internals of the stemmers in any way.
+</li>
+<li>
+<a href="dist/jsstemmer-[% version %].tar.gz">The Javascript stemmers.</a><br/>
+This contains all you need to include the snowball stemming algorithms into a
+Javascript project of your own.  If you download this, you don't need to use the snowball
+compiler, or worry about the internals of the stemmers in any way.
+</li>
+<li>
+<a href="dist/libstemmer_php-[% version %].tar.gz">The PHP version of the libstemmer library.</a><br/>
+This contains all you need to include the snowball stemming algorithms into a
+PHP project of your own.  If you download this, you don't need to use the snowball
 compiler, or worry about the internals of the stemmers in any way.
 </li>
 <li>
