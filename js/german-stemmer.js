@@ -1,4 +1,4 @@
-// Generated from german.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from german.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -64,6 +64,12 @@ const a_6 = [
     ["ik", 2],
     ["heit", 3],
     ["keit", 4]
+];
+
+const a_7 = [
+    ["'", 1],
+    ["'sch", 1],
+    ["'s", 1]
 ];
 
 const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32, 8];
@@ -172,11 +178,8 @@ export default class extends B {
         this.#I_p1 = this.limit;
         this.#I_p2 = this.limit;
         const /** number */ v_1 = this.c;
-        {
-            const /** number */ c = this.c + 3;
-            if (c > this.limit) return false;
-            this.c = c;
-        }
+        if (this.c + 3 > this.limit) return false;
+        this.c += 3;
         I_x = this.c;
         this.c = v_1;
         if (!this.go_out_grouping(g_v, 97, 252)) return false;
@@ -319,11 +322,8 @@ export default class extends B {
                 }
                 case 2: {
                     if (!(this.in_grouping_b(g_st_ending, 98, 116))) break lab3;
-                    {
-                        const /** number */ c = this.c - 3;
-                        if (c < this.limit_backward) break lab3;
-                        this.c = c;
-                    }
+                    if (this.c - 3 < this.limit_backward) break lab3;
+                    this.c -= 3;
                     this.slice_del();
                     break;
                 }
@@ -438,6 +438,22 @@ export default class extends B {
             }
         }
         this.c = this.limit - v_6;
+        const /** number */ v_10 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab13: {
+            this.ket = this.c;
+            if (this.find_among_b(a_7) === 0) break lab13;
+            this.bra = this.c;
+            if (this.c <= this.limit_backward) break lab13;
+            this.c--;
+            // deno-lint-ignore no-unused-labels
+            lab14: {
+                if (this.c > this.limit_backward) break lab14;
+                break lab13;
+            }
+            this.slice_del();
+        }
+        this.c = this.limit - v_10;
         return true;
     }
 

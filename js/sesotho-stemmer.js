@@ -1,4 +1,4 @@
-// Generated from sesotho.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from sesotho.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -50,11 +50,8 @@ export default class extends B {
         this.#I_pV = this.c;
         this.c = v_1;
         const /** number */ v_2 = this.c;
-        {
-            const /** number */ c = this.c + 2;
-            if (c > this.limit) return false;
-            this.c = c;
-        }
+        if (this.c + 2 > this.limit) return false;
+        this.c += 2;
         // deno-lint-ignore no-unused-labels
         lab0: {
             if (this.c <= this.#I_pV) break lab0;

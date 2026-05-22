@@ -1,4 +1,4 @@
-// Generated from norwegian.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from norwegian.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -84,26 +84,46 @@ export default class extends B {
 
     /** @return {boolean} */
     #r_mark_regions() {
-        let /** number */ I_x;
         this.#I_p1 = this.limit;
         const /** number */ v_1 = this.c;
-        {
-            const /** number */ c = this.c + 3;
-            if (c > this.limit) return false;
-            this.c = c;
-        }
-        I_x = this.c;
-        this.c = v_1;
-        if (!this.go_out_grouping(g_v, 97, 248)) return false;
-        this.c++;
-        if (!this.go_in_grouping(g_v, 97, 248)) return false;
-        this.c++;
-        this.#I_p1 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            if (this.#I_p1 >= I_x) break lab0;
-            this.#I_p1 = I_x;
+            // deno-lint-ignore no-unused-labels
+            lab1: {
+                const /** number */ v_2 = this.c;
+                // deno-lint-ignore no-unused-labels
+                lab2: {
+                    // deno-lint-ignore no-unused-labels
+                    golab3: while (true)
+                    {
+                        // deno-lint-ignore no-unused-labels
+                        lab4: {
+                            if (!(this.eq_s("'"))) break lab4;
+                            break golab3;
+                        }
+                        if (this.c >= this.limit) break lab2;
+                        this.c++;
+                    }
+                    break lab1;
+                }
+                this.c = v_2;
+                if (!this.go_out_grouping(g_v, 97, 248)) break lab0;
+                this.c++;
+                if (!this.go_in_grouping(g_v, 97, 248)) break lab0;
+                this.c++;
+            }
+            this.#I_p1 = this.c;
         }
+        this.c = v_1;
+        const /** number */ v_3 = this.c;
+        if (this.c + 3 > this.limit) return false;
+        this.c += 3;
+        // deno-lint-ignore no-unused-labels
+        lab5: {
+            if (this.#I_p1 >= this.c) break lab5;
+            this.#I_p1 = this.c;
+        }
+        this.c = v_3;
         return true;
     }
 
@@ -210,19 +230,21 @@ export default class extends B {
 
     /** @return {boolean} */
     #stem() {
-        const /** number */ v_1 = this.c;
-        this.#r_mark_regions();
-        this.c = v_1;
+        if (!this.#r_mark_regions()) return false;
         this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_2 = this.limit - this.c;
+        const /** number */ v_1 = this.limit - this.c;
         this.#r_main_suffix();
+        this.c = this.limit - v_1;
+        const /** number */ v_2 = this.limit - this.c;
+        this.#r_consonant_pair();
         this.c = this.limit - v_2;
         const /** number */ v_3 = this.limit - this.c;
-        this.#r_consonant_pair();
-        this.c = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.c;
         this.#r_other_suffix();
-        this.c = this.limit - v_4;
+        this.c = this.limit - v_3;
+        this.ket = this.c;
+        if (!(this.eq_s_b("'"))) return false;
+        this.bra = this.c;
+        this.slice_del();
         this.c = this.limit_backward;
         return true;
     }

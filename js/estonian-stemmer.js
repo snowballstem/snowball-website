@@ -1,4 +1,4 @@
-// Generated from estonian.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from estonian.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -409,7 +409,7 @@ const /** Array<string> */ as_10 = ["joo", "saa", "viima", "keesi", "l\u00F6\u00
 
 const /** Array<number> */ g_V1 = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 48, 8];
 
-const /** Array<number> */ g_RV = [17, 65, 16];
+const /** Array<number> */ g_RV = [1, 0, 0, 0, 0, 0, 0, 68, 4, 65];
 
 const /** Array<number> */ g_KI = [117, 66, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0, 0, 0, 16];
 
@@ -425,10 +425,32 @@ export default class extends B {
     /** @return {boolean} */
     #r_mark_regions() {
         this.#I_p1 = this.limit;
-        if (!this.go_out_grouping(g_V1, 97, 252)) return false;
-        this.c++;
-        if (!this.go_in_grouping(g_V1, 97, 252)) return false;
-        this.c++;
+        // deno-lint-ignore no-unused-labels
+        lab0: {
+            const /** number */ v_1 = this.c;
+            // deno-lint-ignore no-unused-labels
+            lab1: {
+                if (this.c + 2 > this.limit) break lab1;
+                this.c += 2;
+                // deno-lint-ignore no-unused-labels
+                golab2: while (true)
+                {
+                    // deno-lint-ignore no-unused-labels
+                    lab3: {
+                        if (!(this.eq_s("'"))) break lab3;
+                        break golab2;
+                    }
+                    if (this.c >= this.limit) break lab1;
+                    this.c++;
+                }
+                break lab0;
+            }
+            this.c = v_1;
+            if (!this.go_out_grouping(g_V1, 97, 252)) return false;
+            this.c++;
+            if (!this.go_in_grouping(g_V1, 97, 252)) return false;
+            this.c++;
+        }
         this.#I_p1 = this.c;
         return true;
     }
@@ -448,11 +470,8 @@ export default class extends B {
         this.bra = this.c;
         this.limit_backward = v_1;
         const /** number */ v_2 = this.limit - this.c;
-        {
-            const /** number */ c = this.c - 4;
-            if (c < this.limit_backward) return false;
-            this.c = c;
-        }
+        if (this.c - 4 < this.limit_backward) return false;
+        this.c -= 4;
         this.c = this.limit - v_2;
         switch (a) {
             case 1: {
@@ -529,7 +548,7 @@ export default class extends B {
         }
         this.bra = this.c;
         this.limit_backward = v_1;
-        if (!(this.in_grouping_b(g_RV, 97, 117))) return false;
+        if (!(this.in_grouping_b(g_RV, 39, 117))) return false;
         this.slice_del();
         return true;
     }
@@ -572,7 +591,7 @@ export default class extends B {
                 lab0: {
                     // deno-lint-ignore no-unused-labels
                     lab1: {
-                        if (!(this.in_grouping_b(g_RV, 97, 117))) break lab1;
+                        if (!(this.in_grouping_b(g_RV, 39, 117))) break lab1;
                         break lab0;
                     }
                     if (!this.#r_LONGV()) return false;
@@ -581,11 +600,8 @@ export default class extends B {
             }
             case 2: {
                 const /** number */ v_2 = this.limit - this.c;
-                {
-                    const /** number */ c = this.c - 4;
-                    if (c < this.limit_backward) return false;
-                    this.c = c;
-                }
+                if (this.c - 4 < this.limit_backward) return false;
+                this.c -= 4;
                 this.c = this.limit - v_2;
                 break;
             }
@@ -633,11 +649,8 @@ export default class extends B {
                     // deno-lint-ignore no-unused-labels
                     lab2: {
                         const /** number */ v_4 = this.limit - this.c;
-                        {
-                            const /** number */ c = this.c - 4;
-                            if (c < this.limit_backward) break lab2;
-                            this.c = c;
-                        }
+                        if (this.c - 4 < this.limit_backward) break lab2;
+                        this.c -= 4;
                         this.c = this.limit - v_4;
                         a = this.find_among_b(a_5);
                         switch (a) {
@@ -662,7 +675,7 @@ export default class extends B {
                 lab3: {
                     // deno-lint-ignore no-unused-labels
                     lab4: {
-                        if (!(this.in_grouping_b(g_RV, 97, 117))) break lab4;
+                        if (!(this.in_grouping_b(g_RV, 39, 117))) break lab4;
                         break lab3;
                     }
                     if (!this.#r_LONGV()) return false;
@@ -719,7 +732,7 @@ export default class extends B {
         this.limit_backward = v_1;
         switch (a) {
             case 1: {
-                if (!(this.in_grouping_b(g_RV, 97, 117))) return false;
+                if (!(this.in_grouping_b(g_RV, 39, 117))) return false;
                 this.slice_del();
                 break;
             }
@@ -803,6 +816,10 @@ export default class extends B {
         const /** number */ v_6 = this.limit - this.c;
         this.#r_undouble_kpt();
         this.c = this.limit - v_6;
+        this.ket = this.c;
+        if (!(this.eq_s_b("'"))) return false;
+        this.bra = this.c;
+        this.slice_del();
         this.c = this.limit_backward;
         return true;
     }

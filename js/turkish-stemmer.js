@@ -1,4 +1,4 @@
-// Generated from turkish.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from turkish.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -1520,11 +1520,8 @@ export default class extends B {
         const /** number */ v_3 = this.c;
         // deno-lint-ignore no-unused-labels
         lab4: {
-            {
-                const /** number */ c = this.c + 2;
-                if (c > this.limit) break lab4;
-                this.c = c;
-            }
+            if (this.c + 2 > this.limit) break lab4;
+            this.c += 2;
             // deno-lint-ignore no-unused-labels
             golab5: while (true)
             {

@@ -1,4 +1,4 @@
-// Generated from serbian.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from serbian.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -3556,7 +3556,7 @@ export default class extends B {
         if (this.find_among_b(a_3) === 0) return false;
         this.bra = this.c;
         if (!this.#r_R1()) return false;
-        this.slice_from("");
+        this.slice_del();
         return true;
     }
 

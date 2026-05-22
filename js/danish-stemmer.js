@@ -1,4 +1,4 @@
-// Generated from danish.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from danish.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -52,11 +52,11 @@ const a_2 = [
     ["l\u00F8st", 2]
 ];
 
-const /** Array<number> */ g_c = [119, 223, 119, 1];
+const /** Array<number> */ g_undouble_c = [53, 94, 7];
 
 const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 128];
 
-const /** Array<number> */ g_s_ending = [239, 254, 42, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16];
+const /** Array<number> */ g_s_ending = [1, 0, 0, 0, 0, 0, 0, 188, 251, 171, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64];
 
 import B from './base-stemmer.js'
 
@@ -67,26 +67,46 @@ export default class extends B {
 
     /** @return {boolean} */
     #r_mark_regions() {
-        let /** number */ I_x;
         this.#I_p1 = this.limit;
         const /** number */ v_1 = this.c;
-        {
-            const /** number */ c = this.c + 3;
-            if (c > this.limit) return false;
-            this.c = c;
-        }
-        I_x = this.c;
-        this.c = v_1;
-        if (!this.go_out_grouping(g_v, 97, 248)) return false;
-        this.c++;
-        if (!this.go_in_grouping(g_v, 97, 248)) return false;
-        this.c++;
-        this.#I_p1 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            if (this.#I_p1 >= I_x) break lab0;
-            this.#I_p1 = I_x;
+            // deno-lint-ignore no-unused-labels
+            lab1: {
+                const /** number */ v_2 = this.c;
+                // deno-lint-ignore no-unused-labels
+                lab2: {
+                    // deno-lint-ignore no-unused-labels
+                    golab3: while (true)
+                    {
+                        // deno-lint-ignore no-unused-labels
+                        lab4: {
+                            if (!(this.eq_s("'"))) break lab4;
+                            break golab3;
+                        }
+                        if (this.c >= this.limit) break lab2;
+                        this.c++;
+                    }
+                    break lab1;
+                }
+                this.c = v_2;
+                if (!this.go_out_grouping(g_v, 97, 248)) break lab0;
+                this.c++;
+                if (!this.go_in_grouping(g_v, 97, 248)) break lab0;
+                this.c++;
+            }
+            this.#I_p1 = this.c;
         }
+        this.c = v_1;
+        const /** number */ v_3 = this.c;
+        if (this.c + 3 > this.limit) return false;
+        this.c += 3;
+        // deno-lint-ignore no-unused-labels
+        lab5: {
+            if (this.#I_p1 >= this.c) break lab5;
+            this.#I_p1 = this.c;
+        }
+        this.c = v_3;
         return true;
     }
 
@@ -110,7 +130,7 @@ export default class extends B {
                 break;
             }
             case 2: {
-                if (!(this.in_grouping_b(g_s_ending, 97, 229))) return false;
+                if (!(this.in_grouping_b(g_s_ending, 39, 229))) return false;
                 this.slice_del();
                 break;
             }
@@ -186,7 +206,7 @@ export default class extends B {
         const /** number */ v_1 = this.limit_backward;
         this.limit_backward = this.#I_p1;
         this.ket = this.c;
-        if (!(this.in_grouping_b(g_c, 98, 122))) {
+        if (!(this.in_grouping_b(g_undouble_c, 98, 116))) {
             this.limit_backward = v_1;
             return false;
         }
@@ -200,22 +220,24 @@ export default class extends B {
 
     /** @return {boolean} */
     #stem() {
-        const /** number */ v_1 = this.c;
-        this.#r_mark_regions();
-        this.c = v_1;
+        if (!this.#r_mark_regions()) return false;
         this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_2 = this.limit - this.c;
+        const /** number */ v_1 = this.limit - this.c;
         this.#r_main_suffix();
+        this.c = this.limit - v_1;
+        const /** number */ v_2 = this.limit - this.c;
+        this.#r_consonant_pair();
         this.c = this.limit - v_2;
         const /** number */ v_3 = this.limit - this.c;
-        this.#r_consonant_pair();
+        this.#r_other_suffix();
         this.c = this.limit - v_3;
         const /** number */ v_4 = this.limit - this.c;
-        this.#r_other_suffix();
-        this.c = this.limit - v_4;
-        const /** number */ v_5 = this.limit - this.c;
         this.#r_undouble();
-        this.c = this.limit - v_5;
+        this.c = this.limit - v_4;
+        this.ket = this.c;
+        if (!(this.eq_s_b("'"))) return false;
+        this.bra = this.c;
+        this.slice_del();
         this.c = this.limit_backward;
         return true;
     }

@@ -1,4 +1,4 @@
-// Generated from czech.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from czech.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -142,11 +142,8 @@ export default class extends B {
     #r_mark_regions() {
         let /** number */ I_x;
         const /** number */ v_1 = this.c;
-        {
-            const /** number */ c = this.c + 3;
-            if (c > this.limit) return false;
-            this.c = c;
-        }
+        if (this.c + 3 > this.limit) return false;
+        this.c += 3;
         I_x = this.c;
         this.c = v_1;
         this.#I_p1 = this.limit;

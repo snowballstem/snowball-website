@@ -1,4 +1,4 @@
-// Generated from english.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from english.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -329,11 +329,8 @@ export default class extends B {
                     const /** number */ v_2 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab2: {
-                        {
-                            const /** number */ c = this.c - 2;
-                            if (c < this.limit_backward) break lab2;
-                            this.c = c;
-                        }
+                        if (this.c - 2 < this.limit_backward) break lab2;
+                        this.c -= 2;
                         this.slice_from("i");
                         break lab1;
                     }
@@ -731,11 +728,8 @@ export default class extends B {
         lab2: {
             // deno-lint-ignore no-unused-labels
             lab3: {
-                {
-                    const /** number */ c = this.c + 3;
-                    if (c > this.limit) break lab3;
-                    this.c = c;
-                }
+                if (this.c + 3 > this.limit) break lab3;
+                this.c += 3;
                 break lab2;
             }
             break lab0;

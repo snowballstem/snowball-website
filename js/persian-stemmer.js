@@ -1,4 +1,4 @@
-// Generated from persian.sbl by Snowball 3.0.0 - https://snowballstem.org/
+// Generated from persian.sbl by Snowball 3.1.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -192,20 +192,14 @@ export default class extends B {
         this.ket = this.c;
         switch (a) {
             case 1: {
-                {
-                    const /** number */ c = this.c + 2;
-                    if (c > this.limit) return false;
-                    this.c = c;
-                }
+                if (this.c + 2 > this.limit) return false;
+                this.c += 2;
                 this.#B_saw_present_prefix = true;
                 break;
             }
             case 2: {
-                {
-                    const /** number */ c = this.c + 2;
-                    if (c > this.limit) return false;
-                    this.c = c;
-                }
+                if (this.c + 2 > this.limit) return false;
+                this.c += 2;
                 this.slice_del();
                 this.#B_saw_present_prefix = true;
                 break;
@@ -412,11 +406,8 @@ export default class extends B {
         const /** number */ v_4 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            {
-                const /** number */ c = this.c + 3;
-                if (c > this.limit) break lab0;
-                this.c = c;
-            }
+            if (this.c + 3 > this.limit) break lab0;
+            this.c += 3;
             this.#I_p1 = this.c;
         }
         this.c = v_4;
