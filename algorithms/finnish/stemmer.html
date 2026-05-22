@@ -463,18 +463,12 @@ letter<BR>
 </p>
 
 <p>
-Do step (<I>e</I>), which is not restricted to <I>R</I>1.
+Do in turn steps (<I>e</I>) and (<I>f</I>), which are not restricted to <I>R</I>1.
 </p>
 
 <p>
 <I>e</I>) If the word ends with a double consonant followed by zero or more vowels,
-remove the last consonant (so <I>eläkk</I> &#x2192; <I>eläk</I>, <I>aatonaatto</I> &#x2192;
-<I>aatonaato</I>)
-</p>
-
-<p>
-Do step (<I>f</I>), which is not restricted to <I>R</I>1.
-</p>
+remove the last consonant (so <I>eläkk</I> &#x2192; <I>eläk</I>, <I>aatonaatto</I> &#x2192; <I>aatonaato</I>)<br>
 <I>f</I>) If the word ends with an apostrophe, remove it.
 </p>
 </DL>
@@ -493,7 +487,7 @@ Do step (<I>f</I>), which is not restricted to <I>R</I>1.
 <span class="w">           </span><span class="n">mark_regions</span>
 <span class="w">           </span><span class="n">R2</span>
 <span class="w">           </span><span class="n">particle_etc</span><span class="w"> </span><span class="n">possessive</span>
-<span class="w">           </span><span class="n">LONG</span><span class="w"> </span><span class="n">VI</span>
+<span class="w">           </span><span class="n">LV</span><span class="w"> </span><span class="n">VI</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">O</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="n">A_</span><span class="w"> </span><span class="n">O_</span>
 <span class="w">           </span><span class="n">case_ending</span>
 <span class="w">           </span><span class="n">i_plural</span>
 <span class="w">           </span><span class="n">t_plural</span>
@@ -506,7 +500,7 @@ Do step (<I>f</I>), which is not restricted to <I>R</I>1.
 <span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="p">)</span>
 <span class="kr">strings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
 <span class="kr">booleans</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">ending_removed</span><span class="w"> </span><span class="p">)</span>
-<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">AEI</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">V1</span><span class="w"> </span><span class="n">V2</span><span class="w"> </span><span class="n">particle_end</span><span class="w"> </span><span class="p">)</span>
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">AEI</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">particle_end</span><span class="w"> </span><span class="p">)</span>
 
 <span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span>
 
@@ -514,20 +508,20 @@ Do step (<I>f</I>), which is not restricted to <I>R</I>1.
 
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">a&quot;</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+00E4}</span><span class="s1">&#39;</span>
 <span class="kr">stringdef</span><span class="w"> </span><span class="se">o&quot;</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+00F6}</span><span class="s1">&#39;</span>
+<span class="kr">stringdef</span><span class="w"> </span><span class="se">o/</span><span class="w">   </span><span class="s1">&#39;</span><span class="se">{U+00F8}</span><span class="s1">&#39;</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">AEI</span><span class="w"> </span><span class="s1">&#39;a</span><span class="se">{a&quot;}</span><span class="s1">ei&#39;</span>
 <span class="kr">define</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="s1">&#39;bcdfghjklmnpqrstvwxz&#39;</span>
-<span class="kr">define</span><span class="w"> </span><span class="n">V1</span><span class="w"> </span><span class="s1">&#39;aeiouy</span><span class="se">{a&quot;}{o&quot;}</span><span class="s1">&#39;</span>
-<span class="kr">define</span><span class="w"> </span><span class="n">V2</span><span class="w"> </span><span class="s1">&#39;aeiou</span><span class="se">{a&quot;}{o&quot;}</span><span class="s1">&#39;</span>
-<span class="kr">define</span><span class="w"> </span><span class="n">particle_end</span><span class="w"> </span><span class="n">V1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;nt&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="s1">&#39;aeiouy</span><span class="se">{a&quot;}{o&quot;}</span><span class="s1">&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">particle_end</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;nt&#39;</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
 <span class="w">    </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
 <span class="w">    </span><span class="o">$</span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
 
-<span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">V1</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">V1</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
-<span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">V1</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">V1</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p2</span>
+<span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
+<span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p2</span>
 <span class="p">)</span>
 
 <span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
@@ -570,28 +564,39 @@ Do step (<I>f</I>), which is not restricted to <I>R</I>1.
 <span class="w">        </span><span class="p">)</span>
 <span class="w">    </span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">LONG</span><span class="w"> </span><span class="kr">as</span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">LV</span><span class="w"> </span><span class="kr">as</span>
 <span class="w">        </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;aa&#39;</span><span class="w"> </span><span class="s1">&#39;ee&#39;</span><span class="w"> </span><span class="s1">&#39;ii&#39;</span><span class="w"> </span><span class="s1">&#39;oo&#39;</span><span class="w"> </span><span class="s1">&#39;uu&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&quot;}{a&quot;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}{o&quot;}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">VI</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="n">V2</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">VI</span><span class="w"> </span><span class="kr">as</span>
+<span class="w">        </span><span class="kr">among</span><span class="p">(</span><span class="s1">&#39;ai&#39;</span><span class="w"> </span><span class="s1">&#39;ei&#39;</span><span class="w"> </span><span class="s1">&#39;ii&#39;</span><span class="w"> </span><span class="s1">&#39;oi&#39;</span><span class="w"> </span><span class="s1">&#39;ui&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&quot;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">i&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">O</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">A_</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{a&quot;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// -ø-hön seen with Norwegian place names, e.g. Bodøhön</span>
+<span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">O_</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{o/}</span><span class="s1">&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">case_ending</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="p">)</span>
 <span class="w">        </span><span class="kr">among</span><span class="p">(</span>
-<span class="w">            </span><span class="s1">&#39;han&#39;</span><span class="w">    </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="w">          </span><span class="c1">//-.</span>
-<span class="w">            </span><span class="s1">&#39;hen&#39;</span><span class="w">    </span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w">          </span><span class="c1">// |</span>
-<span class="w">            </span><span class="s1">&#39;hin&#39;</span><span class="w">    </span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">)</span><span class="w">          </span><span class="c1">// |</span>
-<span class="w">            </span><span class="s1">&#39;hon&#39;</span><span class="w">    </span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">)</span><span class="w">          </span><span class="c1">// |</span>
-<span class="w">            </span><span class="s1">&#39;h</span><span class="se">{a&quot;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{a&quot;}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w">       </span><span class="c1">// Illative   [43]</span>
-<span class="w">            </span><span class="s1">&#39;h</span><span class="se">{o&quot;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;</span><span class="se">{o&quot;}</span><span class="s1">&#39;</span><span class="p">)</span><span class="w">       </span><span class="c1">// |</span>
+<span class="w">            </span><span class="s1">&#39;h</span><span class="se">{a&quot;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="n">A_</span><span class="w">             </span><span class="c1">//-.</span>
+<span class="w">            </span><span class="s1">&#39;h</span><span class="se">{o&quot;}</span><span class="s1">n&#39;</span><span class="w"> </span><span class="n">O_</span><span class="w">             </span><span class="c1">// |</span>
+<span class="w">            </span><span class="s1">&#39;han&#39;</span><span class="w">    </span><span class="n">A</span><span class="w">              </span><span class="c1">// |</span>
+<span class="w">            </span><span class="s1">&#39;hen&#39;</span><span class="w">    </span><span class="n">E</span><span class="w">              </span><span class="c1">// |</span>
+<span class="w">            </span><span class="s1">&#39;hin&#39;</span><span class="w">    </span><span class="n">I</span><span class="w">              </span><span class="c1">// Illative   [43]</span>
+<span class="w">            </span><span class="s1">&#39;hon&#39;</span><span class="w">    </span><span class="n">O</span><span class="w">              </span><span class="c1">// |</span>
+<span class="w">            </span><span class="s1">&#39;hun&#39;</span><span class="w">    </span><span class="n">U</span><span class="w">              </span><span class="c1">// |</span>
 <span class="w">            </span><span class="s1">&#39;siin&#39;</span><span class="w">   </span><span class="n">VI</span><span class="w">             </span><span class="c1">// |</span>
-<span class="w">            </span><span class="s1">&#39;seen&#39;</span><span class="w">   </span><span class="n">LONG</span><span class="w">           </span><span class="c1">//-&#39;</span>
+<span class="w">            </span><span class="s1">&#39;seen&#39;</span><span class="w">   </span><span class="n">LV</span><span class="w">             </span><span class="c1">//-&#39;</span>
 
 <span class="w">            </span><span class="s1">&#39;den&#39;</span><span class="w">    </span><span class="n">VI</span>
 <span class="w">            </span><span class="s1">&#39;tten&#39;</span><span class="w">   </span><span class="n">VI</span><span class="w">             </span><span class="c1">// Genitive plurals [34]</span>
 <span class="w">                     </span><span class="p">()</span>
 <span class="w">            </span><span class="s1">&#39;n&#39;</span><span class="w">                     </span><span class="c1">// Genitive or Illative</span>
-<span class="w">                </span><span class="p">(</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">LONG</span><span class="w"> </span><span class="c1">// Illative</span>
+<span class="w">                </span><span class="p">(</span><span class="w"> </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">LV</span><span class="w"> </span><span class="c1">// Illative</span>
 <span class="w">                        </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;ie&#39;</span><span class="w"> </span><span class="c1">// Genitive</span>
 <span class="w">                          </span><span class="ow">and</span><span class="w"> </span><span class="ow">next</span><span class="w"> </span><span class="o">]</span>
 <span class="w">                      </span><span class="p">)</span>
@@ -599,7 +604,7 @@ Do step (<I>f</I>), which is not restricted to <I>R</I>1.
 <span class="w">                </span><span class="p">)</span>
 
 <span class="w">            </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{a&quot;}</span><span class="s1">&#39;</span><span class="w">              </span><span class="c1">//-.</span>
-<span class="w">                     </span><span class="p">(</span><span class="n">V1</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w">         </span><span class="c1">// |</span>
+<span class="w">                     </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w">          </span><span class="c1">// |</span>
 <span class="w">            </span><span class="s1">&#39;tta&#39;</span><span class="w"> </span><span class="s1">&#39;tt</span><span class="se">{a&quot;}</span><span class="s1">&#39;</span><span class="w">          </span><span class="c1">// Partitive  [32]</span>
 <span class="w">                     </span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w">          </span><span class="c1">// |</span>
 <span class="w">            </span><span class="s1">&#39;ta&#39;</span><span class="w"> </span><span class="s1">&#39;t</span><span class="se">{a&quot;}</span><span class="s1">&#39;</span><span class="w">            </span><span class="c1">//-&#39;</span>
@@ -642,7 +647,7 @@ Do step (<I>f</I>), which is not restricted to <I>R</I>1.
 <span class="w">    </span><span class="p">)</span>
 <span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">t_plural</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span><span class="w">            </span><span class="c1">// [26]</span>
 <span class="w">        </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span>
-<span class="w">            </span><span class="o">[</span><span class="s1">&#39;t&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="n">V1</span>
+<span class="w">            </span><span class="o">[</span><span class="s1">&#39;t&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="n">v</span>
 <span class="w">            </span><span class="ow">delete</span>
 <span class="w">        </span><span class="p">)</span>
 <span class="w">        </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="p">)</span>
@@ -654,12 +659,13 @@ Do step (<I>f</I>), which is not restricted to <I>R</I>1.
 <span class="w">    </span><span class="p">)</span>
 <span class="w">    </span><span class="kr">define</span><span class="w"> </span><span class="n">tidy</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="ow">setlimit</span><span class="w"> </span><span class="ow">tomark</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="ow">for</span><span class="w"> </span><span class="p">(</span>
-<span class="w">            </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">LONG</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="ow">next</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">// undouble vowel</span>
+<span class="w">            </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">LV</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="ow">next</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">// undouble vowel</span>
 <span class="w">            </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="n">AEI</span><span class="o">]</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">// remove trailing a, a&quot;, e, i</span>
 <span class="w">            </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;j&#39;</span><span class="o">]</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;u&#39;</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 <span class="w">            </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;o&#39;</span><span class="o">]</span><span class="w"> </span><span class="s1">&#39;j&#39;</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="p">)</span>
 <span class="w">        </span><span class="p">)</span>
-<span class="w">        </span><span class="ow">goto</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">V1</span><span class="w"> </span><span class="o">[</span><span class="n">C</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="ow">delete</span><span class="w"> </span><span class="c1">// undouble consonant</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="ow">goto</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">[</span><span class="n">C</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="ow">delete</span><span class="p">)</span><span class="w"> </span><span class="c1">// undouble consonant</span>
+<span class="w">        </span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="p">)</span>
 

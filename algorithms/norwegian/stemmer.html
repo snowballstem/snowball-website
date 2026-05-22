@@ -413,7 +413,7 @@ case for apostrophe.
 
 <span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span>
 
-<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
+<span class="kr">integers</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="p">)</span>
 
 <span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">s_ending</span><span class="w"> </span><span class="p">)</span>
 
@@ -434,12 +434,21 @@ case for apostrophe.
 <span class="kr">define</span><span class="w"> </span><span class="n">s_ending</span><span class="w">  </span><span class="s1">&#39;bcdfghjlmnoptvyz&#39;</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">mark_regions</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
-
 <span class="w">    </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
 
-<span class="w">    </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">setmark</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
-<span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
-<span class="w">    </span><span class="ow">try</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span>
+<span class="w">        </span><span class="c1">// If there&#39;s an apostrophe, start R1 after it to handle</span>
+<span class="w">        </span><span class="c1">// acronym loanwords such as &quot;pc&#39;en&quot; and &quot;ep&#39;en&quot;.</span>
+<span class="w">        </span><span class="ow">gopast</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span>
+<span class="w">      </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">v</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Ensure at least 3 characters before R1.</span>
+<span class="w">    </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w">  </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nb">cursor</span><span class="w">  </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">cursor</span><span class="p">))</span>
 <span class="p">)</span>
 
 <span class="kr">backwardmode</span><span class="w"> </span><span class="p">(</span>
@@ -491,11 +500,13 @@ case for apostrophe.
 
 <span class="kr">define</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 
-<span class="w">    </span><span class="ow">do</span><span class="w"> </span><span class="n">mark_regions</span>
+<span class="w">    </span><span class="n">mark_regions</span>
 <span class="w">    </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">main_suffix</span>
 <span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">consonant_pair</span>
 <span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">other_suffix</span>
+<span class="w">        </span><span class="c1">// Remove trailing apostrophe.</span>
+<span class="w">        </span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>

@@ -695,7 +695,7 @@ apostrophe.
 <span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">V1</span><span class="w"> </span><span class="n">RV</span><span class="w"> </span><span class="n">KI</span><span class="w"> </span><span class="n">GI</span><span class="p">)</span>
 
 <span class="kr">define</span><span class="w"> </span><span class="n">V1</span><span class="w"> </span><span class="s1">&#39;aeiou</span><span class="se">{o~}{a&quot;}{o&quot;}{u&quot;}</span><span class="s1">&#39;</span>
-<span class="kr">define</span><span class="w"> </span><span class="n">RV</span><span class="w"> </span><span class="s1">&#39;aeiuo&#39;</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">RV</span><span class="w"> </span><span class="s1">&#39;aeiuo</span><span class="se">{&#39;}</span><span class="s1">&#39;</span>
 <span class="kr">define</span><span class="w"> </span><span class="n">KI</span><span class="w"> </span><span class="s1">&#39;kptgbdshf</span><span class="se">{sv}</span><span class="s1">z</span><span class="se">{zv}</span><span class="s1">&#39;</span>
 <span class="kr">define</span><span class="w"> </span><span class="n">GI</span><span class="w"> </span><span class="s1">&#39;cjlmnqrvwxaeiou</span><span class="se">{o~}{a&quot;}{o&quot;}{u&quot;}</span><span class="s1">&#39;</span>
 
@@ -703,7 +703,12 @@ apostrophe.
 
 <span class="w">    </span><span class="o">$</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">limit</span>
 
-<span class="w">    </span><span class="ow">gopast</span><span class="w"> </span><span class="n">V1</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">V1</span><span class="w">  </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
+<span class="w">    </span><span class="p">(</span>
+<span class="w">      </span><span class="ow">hop</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="ow">gopast</span><span class="w"> </span><span class="n">V1</span><span class="w">  </span><span class="ow">gopast</span><span class="w"> </span><span class="ow">non</span><span class="o">-</span><span class="n">V1</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="ow">setmark</span><span class="w"> </span><span class="n">p1</span>
 <span class="p">)</span>
 
 
@@ -925,7 +930,7 @@ apostrophe.
 <span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">emphasis</span>
 <span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">verb</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">substantive</span><span class="w"> </span><span class="p">)</span>
 <span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">undouble_kpt</span>
-
+<span class="w">        </span><span class="o">[</span><span class="s1">&#39;</span><span class="se">{&#39;}</span><span class="s1">&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">delete</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
