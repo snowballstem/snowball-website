@@ -97,7 +97,7 @@ m will be called the <I>measure</I> of any word or word part when represented in
 this form. The case m = 0 covers the null word. Here are some examples:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>   m=0 <TD></TD><TD>   TR, &nbsp;   EE, &nbsp;   TREE, &nbsp;   Y, &nbsp;   BY.
 <TR><TD>   m=1 <TD></TD><TD>   TROUBLE, &nbsp;   OATS, &nbsp;   TREES, &nbsp;   IVY.
 <TR><TD>   m=2 <TD></TD><TD>   TROUBLES, &nbsp;   PRIVATE, &nbsp;   OATEN, &nbsp;   ORRERY.
@@ -130,7 +130,7 @@ since REPLAC is a word part for which m = 2.
 The &#8216;condition&#8217; part may also contain the following:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>*S  <TD></TD><TD>-<TD></TD><TD> the stem ends with S (and similarly for the other letters).
 
 <TR><TD>*v* <TD></TD><TD>-<TD></TD><TD> the stem contains a vowel.
@@ -169,7 +169,7 @@ will be the one with the longest matching S1 for the given word. For
 example, with
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    SSES <TD></TD><TD> &#x2192; <TD></TD><TD> SS
 <TR><TD>    IES  <TD></TD><TD> &#x2192; <TD></TD><TD> I
 <TR><TD>    SS   <TD></TD><TD> &#x2192; <TD></TD><TD> SS
@@ -191,7 +191,7 @@ are given on the right in lower case. The algorithm now follows:
 Step 1a
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD> SSES <TD></TD><TD> &#x2192; <TD></TD><TD> SS <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  caresses  <TD></TD><TD> &#x2192; <TD></TD><TD>  caress
 <TR><TD> IES  <TD></TD><TD> &#x2192; <TD></TD><TD> I  <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  ponies    <TD></TD><TD> &#x2192; <TD></TD><TD>  poni
 <TR><TD>      <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  ties      <TD></TD><TD> &#x2192; <TD></TD><TD>  ti
@@ -203,7 +203,7 @@ Step 1a
 Step 1b
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD> (m&gt;0) EED <TD></TD><TD> &#x2192; <TD></TD><TD> EE <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> feed      <TD></TD><TD> &#x2192; <TD></TD><TD>  feed
 <TR><TD>           <TD></TD><TD>     <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> agreed    <TD></TD><TD> &#x2192; <TD></TD><TD>  agree
 <TR><TD> (*v*) ED  <TD></TD><TD> &#x2192; <TD></TD><TD>    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> plastered <TD></TD><TD> &#x2192; <TD></TD><TD>  plaster
@@ -217,7 +217,7 @@ If the second or third of the rules in Step 1b is successful, the following
 is done:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD> AT <TD></TD><TD> &#x2192; <TD></TD><TD> ATE           <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> conflat(ed)  <TD></TD><TD> &#x2192; <TD></TD><TD>  conflate
 <TR><TD> BL <TD></TD><TD> &#x2192; <TD></TD><TD> BLE           <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> troubl(ed)   <TD></TD><TD> &#x2192; <TD></TD><TD>  trouble
 <TR><TD> IZ <TD></TD><TD> &#x2192; <TD></TD><TD> IZE           <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> siz(ed)      <TD></TD><TD> &#x2192; <TD></TD><TD>  size
@@ -243,7 +243,7 @@ letter pair. The -E is put back on -AT, -BL and -IZ, so that the suffixes
 Step 1c
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    (*v*) Y <TD></TD><TD> &#x2192; <TD></TD><TD> I     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> happy        <TD></TD><TD> &#x2192; <TD></TD><TD>  happi
 <TR><TD>            <TD></TD><TD>     <TD></TD><TD>       <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> sky          <TD></TD><TD> &#x2192; <TD></TD><TD>  sky
 </TABLE></DL>
@@ -257,7 +257,7 @@ much more straightforward.
 Step 2
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    (m&gt;0) ATIONAL <TD></TD><TD> &#x2192; <TD></TD><TD>  ATE    <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> relational     <TD></TD><TD> &#x2192; <TD></TD><TD>  relate
 <TR><TD>    (m&gt;0) TIONAL  <TD></TD><TD> &#x2192; <TD></TD><TD>  TION   <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> conditional    <TD></TD><TD> &#x2192; <TD></TD><TD>  condition
 <TR><TD>                  <TD></TD><TD>     <TD></TD><TD>         <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> rational       <TD></TD><TD> &#x2192; <TD></TD><TD>  rational
@@ -294,7 +294,7 @@ steps.
 Step 3
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    (m&gt;0) ICATE <TD></TD><TD> &#x2192; <TD></TD><TD>  IC <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  triplicate     <TD></TD><TD> &#x2192; <TD></TD><TD>  triplic
 <TR><TD>    (m&gt;0) ATIVE <TD></TD><TD> &#x2192; <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  formative      <TD></TD><TD> &#x2192; <TD></TD><TD>  form
 <TR><TD>    (m&gt;0) ALIZE <TD></TD><TD> &#x2192; <TD></TD><TD>  AL <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  formalize      <TD></TD><TD> &#x2192; <TD></TD><TD>  formal
@@ -308,7 +308,7 @@ Step 3
 Step 4
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    (m&gt;1) AL    <TD></TD><TD> &#x2192; <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  revival        <TD></TD><TD> &#x2192; <TD></TD><TD>  reviv
 <TR><TD>    (m&gt;1) ANCE  <TD></TD><TD> &#x2192; <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  allowance      <TD></TD><TD> &#x2192; <TD></TD><TD>  allow
 <TR><TD>    (m&gt;1) ENCE  <TD></TD><TD> &#x2192; <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>  inference      <TD></TD><TD> &#x2192; <TD></TD><TD>  infer
@@ -339,7 +339,7 @@ The suffixes are now removed. All that remains is a little tidying up.
 Step 5a
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    (m&gt;1) E     <TD></TD><TD> &#x2192; <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>       probate   <TD></TD><TD> &#x2192; <TD></TD><TD>  probat
 <TR><TD>                <TD></TD><TD>     <TD></TD><TD>     <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD>       rate      <TD></TD><TD> &#x2192; <TD></TD><TD>  rate
 <TR><TD>    (m=1 and not *o) E
@@ -350,7 +350,7 @@ Step 5a
 Step 5b
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    (m &gt; 1 and *d and *L)
                   <TD></TD><TD> &#x2192; <TD></TD><TD> single letter <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> controll <TD></TD><TD> &#x2192; <TD></TD><TD>  control
 <TR><TD>                <TD></TD><TD>     <TD></TD><TD>               <TD></TD><TD>&nbsp;&nbsp;&nbsp;&nbsp;<TD></TD><TD> roll     <TD></TD><TD> &#x2192; <TD></TD><TD>  roll

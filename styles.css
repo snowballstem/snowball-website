@@ -15,6 +15,8 @@ body {
  word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
+td { margin-left: .5em; margin-right: .5em; }
+
 .footer {
   padding-top: 19px;
   color: #777;
