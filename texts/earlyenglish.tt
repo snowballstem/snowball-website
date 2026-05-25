@@ -82,7 +82,7 @@ the rules
 
 <DL><DD>
 Step 1b
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD> (m&gt;0) EED <TD></TD><TD> &#x2192; <TD></TD><TD> EE
 <TR><TD> (*v*) ED  <TD></TD><TD> &#x2192; <TD></TD><TD>
 <TR><TD> (*v*) ING <TD></TD><TD> &#x2192; <TD></TD><TD>
@@ -95,7 +95,7 @@ should be extended to
 
 <DL><DD>
 Step 1b
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD> (m&gt;0) EED <TD></TD><TD> &#x2192; <TD></TD><TD> EE
 <TR><TD> (*v*) ED  <TD></TD><TD> &#x2192; <TD></TD><TD>
 <TR><TD> (*v*) ING <TD></TD><TD> &#x2192; <TD></TD><TD>

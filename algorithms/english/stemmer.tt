@@ -468,7 +468,7 @@ at least twice in the literature is that words beginning <B><I>gener</I></B> are
 Porter stemmer:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
     <TR><TD> <I>generate<BR>
          generates<BR>
          generated<BR>
@@ -509,7 +509,7 @@ with
 after which the words beginning <B><I>gener</I></B> stem as follows:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
     <TR><TD> <I>generate<BR>
          generates<BR>
          generated<BR>
@@ -648,7 +648,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
     Stem certain special words as follows,
     </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD> <I>skis</I>      <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>ski</I>
 <TR><TD> <I>skies</I>     <TD></TD><TD>   &nbsp;  &#x2192;  &nbsp;  <TD></TD><TD> <I>sky</I>
 
@@ -662,7 +662,7 @@ The definition of the English stemmer above is therefore supplemented by the fol
     If one of the following is found, leave it invariant,
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>        <I>sky <BR> news <BR> howe</I>
 <TR><TD>        <I>atlas</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>cosmos</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>bias</I>  &nbsp; <TD></TD><TD> &nbsp;  <I>andes</I>
 </TABLE></DL>

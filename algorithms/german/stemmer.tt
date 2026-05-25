@@ -94,7 +94,7 @@ There are many English compounds one would see no advantage in
 splitting,
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    blackberry  <TD></TD><TD>  blackboard  <TD></TD><TD>  rainbow  <TD></TD><TD>  coastguard <TD></TD><TD> ....
 </TABLE></DL>
 
@@ -102,7 +102,7 @@ splitting,
 Many German compounds are like this,
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    Bleistift (pencil)      <TD></TD><TD> = <TD></TD><TD> Blei (lead) + Stift (stick)
 <TR><TD>    Eisenbahn (railway)     <TD></TD><TD> = <TD></TD><TD> Eisen (iron) + Bahn (road)
 <TR><TD>    Unterseeboot (submarine)<TD></TD><TD> = <TD></TD><TD> under + sea + boat
@@ -114,7 +114,7 @@ Other compounds correspond to what in English one would want to do by
 phrase searching, so they are ready made for that purpose,
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    Gesundheitspflege      <TD></TD><TD>  = <TD></TD><TD> &#8216;health care&#8217;
 <TR><TD>    Fachhochschule         <TD></TD><TD>  = <TD></TD><TD> &#8216;technical college&#8217;
 <TR><TD>    Kunstmuseum            <TD></TD><TD>  = <TD></TD><TD> &#8216;museum of fine art&#8217;

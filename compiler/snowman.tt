@@ -431,7 +431,7 @@ binding powers and semantics as C.  As well as integer names and literal
 numbers, the following may be used in AEs:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD><code>minint</code>&nbsp;   <TD></TD><TD>  &#x2014; the minimum negative number
 <TR><TD><code>maxint</code>&nbsp;   <TD></TD><TD>  &#x2014; the maximum positive number
 <TR><TD><code>cursor</code>&nbsp;   <TD></TD><TD>  &#x2014; the current value of the string <I>cursor</I>
@@ -645,14 +645,14 @@ Here is a list of the commands that can be used to operate on strings.
             /* - gives t */
 ") %]
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>        &nbsp;<code>try C</code>&nbsp;     <TD></TD><TD> is equivalent to <TD></TD><TD>    &nbsp;<code>C or true</code>
 </TABLE></DL>
 <DT><code>test C</code>
     <DD>This does command &nbsp;<code>C</code>&nbsp; but without advancing <B><I>c</I></B>. Its signal is the same as
     the signal of &nbsp;<code>C</code>, but following signal <B><I>t</I></B>, <B><I>c</I></B> is set back to its old
     value.
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>        &nbsp;<code>test C</code>&nbsp;       <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<code>not not C</code>
 <TR><TD>        &nbsp;<code>test C<SUB>1</SUB> C<SUB>2</SUB></code>&nbsp; <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<code>C<SUB>1</SUB> and C<SUB>2</SUB></code>
 </TABLE></DL>
@@ -664,7 +664,7 @@ Here is a list of the commands that can be used to operate on strings.
     <DD>This does &nbsp;<code>C</code>, puts <B><I>c</I></B> back to its old value and gives signal <B><I>t</I></B>. It is
     very useful as a way of suppressing the side effect of <B><I>f</I></B> signals and
     cursor movement.
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>        &nbsp;<code>do C</code>&nbsp;     <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<code>try test C</code>
 <TR><TD>                     <TD></TD><TD>  or                 <TD></TD><TD>  &nbsp;<code>test try C</code>
 </TABLE></DL>

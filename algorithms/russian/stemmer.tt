@@ -33,7 +33,7 @@ The 32 letters of the Russian alphabet are as follows, with the
 transliterated forms that we will use here shown in brackets:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD> а (<B><I>a</I></B>)
 <TD></TD><TD> б (<B><I>b</I></B>)
 <TD></TD><TD> в (<B><I>v</I></B>)
@@ -256,7 +256,7 @@ by a <FONT SIZE=-1>PARTICIPLE</FONT> ending.
 
 <DL><DD>
     For example, in
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>        бегавшая  <TD></TD><TD> = <TD></TD><TD> бега <TD></TD><TD> + <TD></TD><TD> вш <TD></TD><TD> + <TD></TD><TD> ая
 <TR><TD>        (<I>begavsha<U>ia</U></I>         <TD></TD><TD> = <TD></TD><TD> <I>bega</I>     <TD></TD><TD> + <TD></TD><TD> <B><I>vsh</I></B>   <TD></TD><TD> + <TD></TD><TD> <B><I>a<U>ia</U></I></B>)
 </TABLE></DL>
