@@ -313,9 +313,7 @@ export default class extends B {
                     break;
                 }
                 case 2: {
-                    // deno-lint-ignore no-unused-labels
-                    lab2: {
-                        if (this.c > this.limit_backward) break lab2;
+                    if (this.c <= this.limit_backward) {
                         this.limit_backward = v_2;
                         return false;
                     }
@@ -366,21 +364,13 @@ export default class extends B {
                     break;
                 }
                 case 4: {
-                    // deno-lint-ignore no-unused-labels
-                    lab2: {
-                        if (this.c > this.limit_backward) break lab2;
-                        return false;
-                    }
+                    if (this.c <= this.limit_backward) return false;
                     this.slice_from("\u062F");
                     this.#B_remove_verb_person_endings = true;
                     break;
                 }
                 case 5: {
-                    // deno-lint-ignore no-unused-labels
-                    lab3: {
-                        if (this.c > this.limit_backward) break lab3;
-                        return false;
-                    }
+                    if (this.c <= this.limit_backward) return false;
                     this.slice_from("\u062A");
                     this.#B_remove_verb_person_endings = true;
                     break;

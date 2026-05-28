@@ -471,11 +471,7 @@ export default class extends B {
         }
         this.bra = this.c;
         if (!(this.out_grouping_b(g_v, 97, 121))) return false;
-        // deno-lint-ignore no-unused-labels
-        lab2: {
-            if (this.c > this.limit_backward) break lab2;
-            return false;
-        }
+        if (this.c <= this.limit_backward) return false;
         this.slice_from("i");
         return true;
     }

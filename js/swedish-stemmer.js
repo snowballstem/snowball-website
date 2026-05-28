@@ -125,17 +125,13 @@ export default class extends B {
         const /** number */ v_1 = this.limit - this.c;
         if (!(this.out_grouping_b(g_v, 97, 246))) return false;
         if (!(this.in_grouping_b(g_v, 97, 246))) return false;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            if (this.c > this.limit_backward) break lab0;
-            return false;
-        }
+        if (this.c <= this.limit_backward) return false;
         this.c = this.limit - v_1;
         {
             const /** number */ v_2 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
-            lab1: {
-                if (this.find_among_b(a_0) === 0) break lab1;
+            lab0: {
+                if (this.find_among_b(a_0) === 0) break lab0;
                 return false;
             }
             this.c = this.limit - v_2;

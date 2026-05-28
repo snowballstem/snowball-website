@@ -446,11 +446,7 @@ export default class extends B {
             this.bra = this.c;
             if (this.c <= this.limit_backward) break lab13;
             this.c--;
-            // deno-lint-ignore no-unused-labels
-            lab14: {
-                if (this.c > this.limit_backward) break lab14;
-                break lab13;
-            }
+            if (this.c <= this.limit_backward) break lab13;
             this.slice_del();
         }
         this.c = this.limit - v_10;

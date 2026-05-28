@@ -176,11 +176,6 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_R1() {
-        return this.#I_p1 <= this.c;
-    }
-
-    /** @return {boolean} */
     #r_palatalise_e() {
         let /** number */ a;
         this.ket = this.c;
@@ -213,7 +208,7 @@ this.ket = this.c;
 a = this.find_among_b(a_2);
 if (a === 0) return false;
 this.bra = this.c;
-if (!this.#r_R1()) return false;
+if (this.#I_p1 > this.c) return false;
 switch (a) {
     case 1: {
         this.slice_del();

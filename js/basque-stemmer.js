@@ -526,11 +526,6 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_R1() {
-        return this.#I_p1 <= this.c;
-    }
-
-    /** @return {boolean} */
     #r_aditzak() {
         let /** number */ a;
         this.ket = this.c;
@@ -575,7 +570,7 @@ export default class extends B {
                 break;
             }
             case 4: {
-                if (!this.#r_R1()) return false;
+                if (this.#I_p1 > this.c) return false;
                 this.slice_del();
                 break;
             }

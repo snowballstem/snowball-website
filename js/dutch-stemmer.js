@@ -1002,11 +1002,7 @@ export default class extends B {
             this.c = v_4;
             break;
         }
-        // deno-lint-ignore no-unused-labels
-        lab7: {
-            if (this.c < this.limit) break lab7;
-            return false;
-        }
+        if (this.c >= this.limit) return false;
         this.c = v_2;
         a = this.find_among(a_9);
         switch (a) {
@@ -1018,10 +1014,10 @@ export default class extends B {
         this.slice_del();
         const /** number */ v_5 = this.c;
         // deno-lint-ignore no-unused-labels
-        lab8: {
+        lab7: {
             this.bra = this.c;
             a = this.find_among(a_10);
-            if (a === 0) break lab8;
+            if (a === 0) break lab7;
             this.ket = this.c;
             this.slice_from(as_10[a - 1]);
         }
@@ -1091,20 +1087,16 @@ export default class extends B {
             this.c = v_4;
             break;
         }
-        // deno-lint-ignore no-unused-labels
-        lab9: {
-            if (this.c < this.limit) break lab9;
-            return false;
-        }
+        if (this.c >= this.limit) return false;
         this.c = v_2;
         this.#B_GE_removed = true;
         this.slice_del();
         const /** number */ v_5 = this.c;
         // deno-lint-ignore no-unused-labels
-        lab10: {
+        lab9: {
             this.bra = this.c;
             a = this.find_among(a_11);
-            if (a === 0) break lab10;
+            if (a === 0) break lab9;
             this.ket = this.c;
             this.slice_from(as_11[a - 1]);
         }

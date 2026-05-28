@@ -192,11 +192,6 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_R2() {
-        return this.#I_p2 <= this.c;
-    }
-
-    /** @return {boolean} */
     #r_perfective_gerund() {
         let /** number */ a;
         this.ket = this.c;
@@ -326,7 +321,7 @@ export default class extends B {
         this.ket = this.c;
         if (this.find_among_b(a_6) === 0) return false;
         this.bra = this.c;
-        if (!this.#r_R2()) return false;
+        if (this.#I_p2 > this.c) return false;
         this.slice_del();
         return true;
     }

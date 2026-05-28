@@ -466,11 +466,6 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_R1plus3() {
-        return this.#I_p1 <= (this.c + 3);
-    }
-
-    /** @return {boolean} */
     #r_standard_suffix() {
         let /** number */ a;
         const /** number */ v_1 = this.limit - this.c;
@@ -659,7 +654,7 @@ export default class extends B {
                             const /** number */ v_5 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
                             lab8: {
-                                if (!this.#r_R1plus3()) {
+                                if (this.#I_p1 > (this.c + 3)) {
                                     this.c = this.limit - v_5;
                                     break lab8;
                                 }

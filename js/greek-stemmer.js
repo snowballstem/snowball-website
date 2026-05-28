@@ -1132,11 +1132,6 @@ export default class extends B {
 
 
     /** @return {boolean} */
-    #r_has_min_length() {
-        return this.current.length >= 3;
-    }
-
-    /** @return {boolean} */
     #r_tolower() {
         let /** number */ a;
         while (true) {
@@ -1995,7 +1990,7 @@ export default class extends B {
         const /** number */ v_1 = this.limit - this.c;
         this.#r_tolower();
         this.c = this.limit - v_1;
-        if (!this.#r_has_min_length()) return false;
+        if (this.current.length < 3) return false;
         this.#B_test1 = true;
         const /** number */ v_2 = this.limit - this.c;
         this.#r_step_1();

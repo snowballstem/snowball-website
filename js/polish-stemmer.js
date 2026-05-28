@@ -271,11 +271,7 @@ export default class extends B {
         a = this.find_among_b(a_3);
         if (a === 0) return false;
         this.bra = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            if (this.c > this.limit_backward) break lab0;
-            return false;
-        }
+        if (this.c <= this.limit_backward) return false;
         this.slice_from(as_3[a - 1]);
         return true;
     }

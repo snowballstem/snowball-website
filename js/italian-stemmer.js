@@ -262,11 +262,7 @@ export default class extends B {
         this.bra = this.c;
         if (this.find_among(a_0) === 0) return false;
         this.ket = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            if (this.c < this.limit) break lab0;
-            return false;
-        }
+        if (this.c >= this.limit) return false;
         this.slice_del();
         return true;
     }
@@ -478,11 +474,6 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_R1() {
-        return this.#I_p1 <= this.c;
-    }
-
-    /** @return {boolean} */
     #r_R2() {
         return this.#I_p2 <= this.c;
     }
@@ -563,7 +554,7 @@ export default class extends B {
                 break;
             }
             case 7: {
-                if (!this.#r_R1()) return false;
+                if (this.#I_p1 > this.c) return false;
                 this.slice_del();
                 const /** number */ v_2 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels

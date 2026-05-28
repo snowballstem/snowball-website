@@ -69,11 +69,7 @@ export default class extends B {
         const /** number */ v_1 = this.c;
         if (this.c >= this.limit) return false;
         this.c++;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            if (this.c < this.limit) break lab0;
-            return false;
-        }
+        if (this.c >= this.limit) return false;
         this.c = v_1;
         if (!this.go_out_grouping(g_v, 97, 117)) return false;
         this.c++;

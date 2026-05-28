@@ -183,11 +183,6 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_R2() {
-        return this.#I_p2 <= this.c;
-    }
-
-    /** @return {boolean} */
     #r_particle_etc() {
         let /** number */ a;
         if (this.c < this.#I_p1) return false;
@@ -207,7 +202,7 @@ export default class extends B {
                 break;
             }
             case 2: {
-                if (!this.#r_R2()) return false;
+                if (this.#I_p2 > this.c) return false;
                 break;
             }
         }

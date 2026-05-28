@@ -455,18 +455,8 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_RV() {
-        return this.#I_pV <= this.c;
-    }
-
-    /** @return {boolean} */
     #r_R1() {
         return this.#I_p1 <= this.c;
-    }
-
-    /** @return {boolean} */
-    #r_R2() {
-        return this.#I_p2 <= this.c;
     }
 
     /** @return {boolean} */
@@ -548,7 +538,7 @@ export default class extends B {
         a = this.find_among_b(a_4);
         if (a === 0) return false;
         this.bra = this.c;
-        if (!this.#r_R2()) return false;
+        if (this.#I_p2 > this.c) return false;
         switch (a) {
             case 1: {
                 this.slice_del();
@@ -613,7 +603,7 @@ export default class extends B {
         this.ket = this.c;
         if (this.find_among_b(a_6) === 0) return false;
         this.bra = this.c;
-        if (!this.#r_RV()) return false;
+        if (this.#I_pV > this.c) return false;
         this.slice_del();
         return true;
     }

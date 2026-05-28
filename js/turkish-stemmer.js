@@ -477,11 +477,6 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_mark_ki() {
-        return this.eq_s_b("ki");
-    }
-
-    /** @return {boolean} */
     #r_mark_ncA() {
         if (!this.#r_check_vowel_harmony()) return false;
         if (this.find_among_b(a_11) === 0) return false;
@@ -789,7 +784,7 @@ export default class extends B {
     /** @return {boolean} */
     #r_stem_suffix_chain_before_ki() {
         this.ket = this.c;
-        if (!this.#r_mark_ki()) return false;
+        if (!(this.eq_s_b("ki"))) return false;
         // deno-lint-ignore no-unused-labels
         lab0: {
             const /** number */ v_1 = this.limit - this.c;

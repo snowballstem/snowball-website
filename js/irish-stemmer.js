@@ -179,11 +179,6 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_RV() {
-        return this.#I_pV <= this.c;
-    }
-
-    /** @return {boolean} */
     #r_R1() {
         return this.#I_p1 <= this.c;
     }
@@ -261,7 +256,7 @@ export default class extends B {
         this.bra = this.c;
         switch (a) {
             case 1: {
-                if (!this.#r_RV()) return false;
+                if (this.#I_pV > this.c) return false;
                 this.slice_del();
                 break;
             }

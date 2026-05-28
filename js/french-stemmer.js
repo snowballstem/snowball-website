@@ -217,11 +217,7 @@ export default class extends B {
         }
         if (!(this.eq_s("'"))) return false;
         this.ket = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab2: {
-            if (this.c < this.limit) break lab2;
-            return false;
-        }
+        if (this.c >= this.limit) return false;
         this.slice_del();
         return true;
     }

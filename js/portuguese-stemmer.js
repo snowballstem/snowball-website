@@ -374,11 +374,6 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_R1() {
-        return this.#I_p1 <= this.c;
-    }
-
-    /** @return {boolean} */
     #r_R2() {
         return this.#I_p2 <= this.c;
     }
@@ -412,7 +407,7 @@ export default class extends B {
                 break;
             }
             case 5: {
-                if (!this.#r_R1()) return false;
+                if (this.#I_p1 > this.c) return false;
                 this.slice_del();
                 const /** number */ v_1 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
