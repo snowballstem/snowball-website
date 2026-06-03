@@ -1,4 +1,4 @@
-// Generated from czech.sbl by Snowball 3.1.0 - https://snowballstem.org/
+// Generated from czech.sbl by Snowball 3.1.1 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -47,6 +47,8 @@ const a_3 = [
     ["\u0159", 1, 7],
     ["\u017E", 1, 8]
 ];
+
+const /** Array<string> */ as_3 = ["", "et"];
 
 const a_4 = [
     ["obl", -1],
@@ -183,206 +185,197 @@ export default class extends B {
         if (a === 0) return false;
         this.bra = this.c;
         if (a > 0) {
-+        this.slice_from(as_0[a - 1]);
-    }
-    return true;
-}
-
-/** @return {boolean} */
-#r_palatalise_i() {
-    let /** number */ a;
-    this.ket = this.c;
-    a = this.find_among_b(a_1);
-    if (a === 0) return false;
-    this.bra = this.c;
-    if (a > 0) {
-+    this.slice_from(as_1[a - 1]);
-}
-return true;
-}
-
-/** @return {boolean} */
-#r_possessive_suffix() {
-let /** number */ a;
-this.ket = this.c;
-a = this.find_among_b(a_2);
-if (a === 0) return false;
-this.bra = this.c;
-if (this.#I_p1 > this.c) return false;
-switch (a) {
-    case 1: {
-        this.slice_del();
-        break;
-    }
-    case 2: {
-        this.slice_del();
-        const /** number */ v_1 = this.limit - this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            if (!this.#r_palatalise_i()) {
-                this.c = this.limit - v_1;
-                break lab0;
-            }
+            this.slice_from(as_0[a - 1]);
         }
-        break;
+        return true;
     }
-}
-return true;
-}
 
-/** @return {boolean} */
-#r_case_suffix() {
-let /** number */ a;
-if (this.c < this.#I_p1) return false;
-const /** number */ v_1 = this.limit_backward;
-this.limit_backward = this.#I_p1;
-this.ket = this.c;
-a = this.find_among_b(a_6);
-if (a === 0) {
-    this.limit_backward = v_1;
-    return false;
-}
-this.bra = this.c;
-this.limit_backward = v_1;
-switch (a) {
-    case 1: {
-        this.slice_del();
-        break;
-    }
-    case 2: {
-        this.slice_del();
-        const /** number */ v_2 = this.limit - this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            if (!this.#r_palatalise_e()) {
-                this.c = this.limit - v_2;
-                break lab0;
-            }
+    /** @return {boolean} */
+    #r_palatalise_i() {
+        let /** number */ a;
+        this.ket = this.c;
+        a = this.find_among_b(a_1);
+        if (a === 0) return false;
+        this.bra = this.c;
+        if (a > 0) {
+            this.slice_from(as_1[a - 1]);
         }
-        break;
+        return true;
     }
-    case 3: {
-        a = this.find_among_b(a_3);
+
+    /** @return {boolean} */
+    #r_possessive_suffix() {
+        let /** number */ a;
+        this.ket = this.c;
+        a = this.find_among_b(a_2);
+        if (a === 0) return false;
+        this.bra = this.c;
+        if (this.#I_p1 > this.c) return false;
         switch (a) {
             case 1: {
                 this.slice_del();
                 break;
             }
             case 2: {
-                this.slice_from("et");
+                this.slice_del();
+                const /** number */ v_1 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab0: {
+                    if (!this.#r_palatalise_i()) {
+                        this.c = this.limit - v_1;
+                        break lab0;
+                    }
+                }
                 break;
             }
         }
-        break;
+        return true;
     }
-    case 4: {
-        const /** number */ v_3 = this.limit - this.c;
-        if (!(this.out_grouping_b(g_v, 97, 367))) return false;
-        this.c = this.limit - v_3;
-        // deno-lint-ignore no-unused-labels
-        lab1: {
-            if (!(this.eq_s_b("t\u0159"))) break lab1;
+
+    /** @return {boolean} */
+    #r_case_suffix() {
+        let /** number */ a;
+        if (this.c < this.#I_p1) return false;
+        const /** number */ v_1 = this.limit_backward;
+        this.limit_backward = this.#I_p1;
+        this.ket = this.c;
+        a = this.find_among_b(a_6);
+        if (a === 0) {
+            this.limit_backward = v_1;
             return false;
         }
-        this.slice_from("b");
-        break;
-    }
-    case 5: {
-        const /** number */ v_4 = this.limit - this.c;
-        if (!(this.out_grouping_b(g_v, 97, 367))) return false;
-        this.c = this.limit - v_4;
-        this.slice_del();
-        this.insert(this.c, this.c, "c");
-        const /** number */ v_5 = this.limit - this.c;
-        // deno-lint-ignore no-unused-labels
-        lab2: {
-            if (!this.#r_palatalise_e()) {
-                this.c = this.limit - v_5;
-                break lab2;
-            }
-        }
-        break;
-    }
-    case 6: {
-        const /** number */ v_6 = this.limit - this.c;
-        if (!(this.out_grouping_b(g_v, 97, 367))) return false;
-        this.c = this.limit - v_6;
-        {
-            const /** number */ v_7 = this.limit - this.c;
-            // deno-lint-ignore no-unused-labels
-            lab3: {
-                if (this.find_among_b(a_4) === 0) break lab3;
-                return false;
-            }
-            this.c = this.limit - v_7;
-        }
-        this.slice_from("k");
-        break;
-    }
-    case 7: {
-        if (!(this.eq_s_b("n"))) return false;
         this.bra = this.c;
-        this.slice_from("\u0148k");
-        break;
-    }
-    case 8: {
-        const /** number */ v_8 = this.limit - this.c;
-        if (!(this.in_grouping_b(g_env_ending, 98, 382))) return false;
-        this.c = this.limit - v_8;
-        this.slice_from("n");
-        break;
-    }
-    case 9: {
-        if (this.find_among_b(a_5) === 0) return false;
-        this.slice_from("t");
-        break;
-    }
-    case 10: {
-        if (!(this.in_grouping_b(g_ev_ending, 104, 122))) return false;
-        this.slice_from("v");
-        break;
-    }
-    case 11: {
-        this.slice_from("t");
-        break;
-    }
-    case 12: {
-        this.slice_del();
-        const /** number */ v_9 = this.limit - this.c;
-        // deno-lint-ignore no-unused-labels
-        lab4: {
-            if (!this.#r_palatalise_i()) {
-                this.c = this.limit - v_9;
-                break lab4;
+        this.limit_backward = v_1;
+        switch (a) {
+            case 1: {
+                this.slice_del();
+                break;
+            }
+            case 2: {
+                this.slice_del();
+                const /** number */ v_2 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab0: {
+                    if (!this.#r_palatalise_e()) {
+                        this.c = this.limit - v_2;
+                        break lab0;
+                    }
+                }
+                break;
+            }
+            case 3: {
+                a = this.find_among_b(a_3);
+                this.slice_from(as_3[a - 1]);
+                break;
+            }
+            case 4: {
+                const /** number */ v_3 = this.limit - this.c;
+                if (!(this.out_grouping_b(g_v, 97, 367))) return false;
+                this.c = this.limit - v_3;
+                // deno-lint-ignore no-unused-labels
+                lab1: {
+                    if (!(this.eq_s_b("t\u0159"))) break lab1;
+                    return false;
+                }
+                this.slice_from("b");
+                break;
+            }
+            case 5: {
+                const /** number */ v_4 = this.limit - this.c;
+                if (!(this.out_grouping_b(g_v, 97, 367))) return false;
+                this.c = this.limit - v_4;
+                this.slice_del();
+                this.insert(this.c, this.c, "c");
+                const /** number */ v_5 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab2: {
+                    if (!this.#r_palatalise_e()) {
+                        this.c = this.limit - v_5;
+                        break lab2;
+                    }
+                }
+                break;
+            }
+            case 6: {
+                const /** number */ v_6 = this.limit - this.c;
+                if (!(this.out_grouping_b(g_v, 97, 367))) return false;
+                this.c = this.limit - v_6;
+                {
+                    const /** number */ v_7 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab3: {
+                        if (this.find_among_b(a_4) === 0) break lab3;
+                        return false;
+                    }
+                    this.c = this.limit - v_7;
+                }
+                this.slice_from("k");
+                break;
+            }
+            case 7: {
+                if (!(this.eq_s_b("n"))) return false;
+                this.bra = this.c;
+                this.slice_from("\u0148k");
+                break;
+            }
+            case 8: {
+                const /** number */ v_8 = this.limit - this.c;
+                if (!(this.in_grouping_b(g_env_ending, 98, 382))) return false;
+                this.c = this.limit - v_8;
+                this.slice_from("n");
+                break;
+            }
+            case 9: {
+                if (this.find_among_b(a_5) === 0) return false;
+                this.slice_from("t");
+                break;
+            }
+            case 10: {
+                if (!(this.in_grouping_b(g_ev_ending, 104, 122))) return false;
+                this.slice_from("v");
+                break;
+            }
+            case 11: {
+                this.slice_from("t");
+                break;
+            }
+            case 12: {
+                this.slice_del();
+                const /** number */ v_9 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab4: {
+                    if (!this.#r_palatalise_i()) {
+                        this.c = this.limit - v_9;
+                        break lab4;
+                    }
+                }
+                break;
             }
         }
-        break;
+        return true;
     }
-}
-return true;
-}
 
-/** @return {boolean} */
-#stem() {
-if (!this.#r_mark_regions()) return false;
-this.limit_backward = this.c; this.c = this.limit;
-const /** number */ v_1 = this.limit - this.c;
-this.#r_case_suffix();
-this.c = this.limit - v_1;
-const /** number */ v_2 = this.limit - this.c;
-this.#r_possessive_suffix();
-this.c = this.limit - v_2;
-this.c = this.limit_backward;
-return true;
-}
+    /** @return {boolean} */
+    #stem() {
+        if (!this.#r_mark_regions()) return false;
+        this.limit_backward = this.c; this.c = this.limit;
+        const /** number */ v_1 = this.limit - this.c;
+        this.#r_case_suffix();
+        this.c = this.limit - v_1;
+        const /** number */ v_2 = this.limit - this.c;
+        this.#r_possessive_suffix();
+        this.c = this.limit - v_2;
+        this.c = this.limit_backward;
+        return true;
+    }
 
-/**@return{string}*/
-stem(/**string*/input) {
-this.setCurrent(input);
-this.#stem();
-return this.getCurrent();
-}
+    /**@return{string}*/
+    stem(/**string*/input) {
+        this.setCurrent(input);
+        this.#stem();
+        return this.getCurrent();
+    }
 
-stemWord = this.stem;
+    stemWord = this.stem;
 }
 

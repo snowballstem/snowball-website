@@ -1,4 +1,4 @@
-// Generated from hungarian.sbl by Snowball 3.1.0 - https://snowballstem.org/
+// Generated from hungarian.sbl by Snowball 3.1.1 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -104,6 +104,8 @@ const a_5 = [
     ["\u00E9st\u00FCl", 3, 2]
 ];
 
+const /** Array<string> */ as_5 = ["", "a", "e"];
+
 const a_6 = [
     ["\u00E1", 1],
     ["\u00E9", 1]
@@ -119,6 +121,8 @@ const a_7 = [
     ["\u00F6k", 3, 6]
 ];
 
+const /** Array<string> */ as_7 = ["a", "e", ""];
+
 const a_8 = [
     ["\u00E9i", 1],
     ["\u00E1\u00E9i", 3, 1],
@@ -133,6 +137,8 @@ const a_8 = [
     ["\u00F6k\u00E9", 1, 6],
     ["\u00E9\u00E9", 2, 8]
 ];
+
+const /** Array<string> */ as_8 = ["", "e", "a"];
 
 const a_9 = [
     ["a", 1],
@@ -167,6 +173,8 @@ const a_9 = [
     ["\u00E1", 2],
     ["\u00E9", 3]
 ];
+
+const /** Array<string> */ as_9 = ["", "a", "e"];
 
 const a_10 = [
     ["id", 1],
@@ -212,6 +220,8 @@ const a_10 = [
     ["\u00E1im", 2, 5],
     ["\u00E9im", 3, 6]
 ];
+
+const /** Array<string> */ as_10 = ["", "a", "e"];
 
 const /** Array<number> */ g_v = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 36, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
 
@@ -327,20 +337,7 @@ export default class extends B {
         if (a === 0) return false;
         this.bra = this.c;
         if (!this.#r_R1()) return false;
-        switch (a) {
-            case 1: {
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                this.slice_from("a");
-                break;
-            }
-            case 3: {
-                this.slice_from("e");
-                break;
-            }
-        }
+        this.slice_from(as_5[a - 1]);
         return true;
     }
 
@@ -363,20 +360,7 @@ export default class extends B {
         if (a === 0) return false;
         this.bra = this.c;
         if (!this.#r_R1()) return false;
-        switch (a) {
-            case 1: {
-                this.slice_from("a");
-                break;
-            }
-            case 2: {
-                this.slice_from("e");
-                break;
-            }
-            case 3: {
-                this.slice_del();
-                break;
-            }
-        }
+        this.slice_from(as_7[a - 1]);
         return true;
     }
 
@@ -388,20 +372,7 @@ export default class extends B {
         if (a === 0) return false;
         this.bra = this.c;
         if (!this.#r_R1()) return false;
-        switch (a) {
-            case 1: {
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                this.slice_from("e");
-                break;
-            }
-            case 3: {
-                this.slice_from("a");
-                break;
-            }
-        }
+        this.slice_from(as_8[a - 1]);
         return true;
     }
 
@@ -413,20 +384,7 @@ export default class extends B {
         if (a === 0) return false;
         this.bra = this.c;
         if (!this.#r_R1()) return false;
-        switch (a) {
-            case 1: {
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                this.slice_from("a");
-                break;
-            }
-            case 3: {
-                this.slice_from("e");
-                break;
-            }
-        }
+        this.slice_from(as_9[a - 1]);
         return true;
     }
 
@@ -438,20 +396,7 @@ export default class extends B {
         if (a === 0) return false;
         this.bra = this.c;
         if (!this.#r_R1()) return false;
-        switch (a) {
-            case 1: {
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                this.slice_from("a");
-                break;
-            }
-            case 3: {
-                this.slice_from("e");
-                break;
-            }
-        }
+        this.slice_from(as_10[a - 1]);
         return true;
     }
 

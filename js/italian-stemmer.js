@@ -1,4 +1,4 @@
-// Generated from italian.sbl by Snowball 3.1.0 - https://snowballstem.org/
+// Generated from italian.sbl by Snowball 3.1.1 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -84,6 +84,8 @@ const a_4 = [
     ["er", 2],
     ["ir", 2]
 ];
+
+const /** Array<string> */ as_4 = ["", "e"];
 
 const a_5 = [
     ["ic", -1],
@@ -487,16 +489,7 @@ export default class extends B {
         a = this.find_among_b(a_4);
         if (a === 0) return false;
         if (!this.#r_RV()) return false;
-        switch (a) {
-            case 1: {
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                this.slice_from("e");
-                break;
-            }
-        }
+        this.slice_from(as_4[a - 1]);
         return true;
     }
 

@@ -1,4 +1,4 @@
-// Generated from english.sbl by Snowball 3.1.0 - https://snowballstem.org/
+// Generated from english.sbl by Snowball 3.1.1 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -672,104 +672,104 @@ export default class extends B {
         this.ket = this.c;
         if (this.c < this.limit) return false;
         if (a > 0) {
-+        this.slice_from(as_11[a - 1]);
+            this.slice_from(as_11[a - 1]);
+        }
+        return true;
     }
-    return true;
-}
 
-/** @return {boolean} */
-#r_postlude() {
-    if (!this.#B_Y_found) return false;
-    while (true) {
-        const /** number */ v_1 = this.c;
+    /** @return {boolean} */
+    #r_postlude() {
+        if (!this.#B_Y_found) return false;
+        while (true) {
+            const /** number */ v_1 = this.c;
+            // deno-lint-ignore no-unused-labels
+            lab0: {
+                // deno-lint-ignore no-unused-labels
+                golab1: while (true)
+                {
+                    const /** number */ v_2 = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab2: {
+                        this.bra = this.c;
+                        if (!(this.eq_s("Y"))) break lab2;
+                        this.ket = this.c;
+                        this.c = v_2;
+                        break golab1;
+                    }
+                    this.c = v_2;
+                    if (this.c >= this.limit) break lab0;
+                    this.c++;
+                }
+                this.slice_from("y");
+                continue;
+            }
+            this.c = v_1;
+            break;
+        }
+        return true;
+    }
+
+    /** @return {boolean} */
+    #stem() {
         // deno-lint-ignore no-unused-labels
         lab0: {
+            const /** number */ v_1 = this.c;
             // deno-lint-ignore no-unused-labels
-            golab1: while (true)
-            {
-                const /** number */ v_2 = this.c;
+            lab1: {
+                if (!this.#r_exception1()) break lab1;
+                break lab0;
+            }
+            this.c = v_1;
+            // deno-lint-ignore no-unused-labels
+            lab2: {
                 // deno-lint-ignore no-unused-labels
-                lab2: {
-                    this.bra = this.c;
-                    if (!(this.eq_s("Y"))) break lab2;
-                    this.ket = this.c;
-                    this.c = v_2;
-                    break golab1;
+                lab3: {
+                    if (this.c + 3 > this.limit) break lab3;
+                    this.c += 3;
+                    break lab2;
                 }
-                this.c = v_2;
-                if (this.c >= this.limit) break lab0;
-                this.c++;
+                break lab0;
             }
-            this.slice_from("y");
-            continue;
+            this.c = v_1;
+            this.#r_prelude();
+            this.#r_mark_regions();
+            this.limit_backward = this.c; this.c = this.limit;
+            const /** number */ v_2 = this.limit - this.c;
+            this.#r_Step_1a();
+            this.c = this.limit - v_2;
+            const /** number */ v_3 = this.limit - this.c;
+            this.#r_Step_1b();
+            this.c = this.limit - v_3;
+            const /** number */ v_4 = this.limit - this.c;
+            this.#r_Step_1c();
+            this.c = this.limit - v_4;
+            const /** number */ v_5 = this.limit - this.c;
+            this.#r_Step_2();
+            this.c = this.limit - v_5;
+            const /** number */ v_6 = this.limit - this.c;
+            this.#r_Step_3();
+            this.c = this.limit - v_6;
+            const /** number */ v_7 = this.limit - this.c;
+            this.#r_Step_4();
+            this.c = this.limit - v_7;
+            const /** number */ v_8 = this.limit - this.c;
+            this.#r_Step_5();
+            this.c = this.limit - v_8;
+            this.c = this.limit_backward;
+            const /** number */ v_9 = this.c;
+            this.#r_postlude();
+            this.c = v_9;
         }
-        this.c = v_1;
-        break;
+        return true;
     }
-    return true;
-}
 
-/** @return {boolean} */
-#stem() {
-    // deno-lint-ignore no-unused-labels
-    lab0: {
-        const /** number */ v_1 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab1: {
-            if (!this.#r_exception1()) break lab1;
-            break lab0;
-        }
-        this.c = v_1;
-        // deno-lint-ignore no-unused-labels
-        lab2: {
-            // deno-lint-ignore no-unused-labels
-            lab3: {
-                if (this.c + 3 > this.limit) break lab3;
-                this.c += 3;
-                break lab2;
-            }
-            break lab0;
-        }
-        this.c = v_1;
-        this.#r_prelude();
-        this.#r_mark_regions();
-        this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_2 = this.limit - this.c;
-        this.#r_Step_1a();
-        this.c = this.limit - v_2;
-        const /** number */ v_3 = this.limit - this.c;
-        this.#r_Step_1b();
-        this.c = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.c;
-        this.#r_Step_1c();
-        this.c = this.limit - v_4;
-        const /** number */ v_5 = this.limit - this.c;
-        this.#r_Step_2();
-        this.c = this.limit - v_5;
-        const /** number */ v_6 = this.limit - this.c;
-        this.#r_Step_3();
-        this.c = this.limit - v_6;
-        const /** number */ v_7 = this.limit - this.c;
-        this.#r_Step_4();
-        this.c = this.limit - v_7;
-        const /** number */ v_8 = this.limit - this.c;
-        this.#r_Step_5();
-        this.c = this.limit - v_8;
-        this.c = this.limit_backward;
-        const /** number */ v_9 = this.c;
-        this.#r_postlude();
-        this.c = v_9;
+    /**@return{string}*/
+    stem(/**string*/input) {
+        this.setCurrent(input);
+        this.#stem();
+        return this.getCurrent();
     }
-    return true;
-}
 
-/**@return{string}*/
-stem(/**string*/input) {
-    this.setCurrent(input);
-    this.#stem();
-    return this.getCurrent();
-}
-
-stemWord = this.stem;
+    stemWord = this.stem;
 }
 

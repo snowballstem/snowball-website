@@ -1,4 +1,4 @@
-// Generated from estonian.sbl by Snowball 3.1.0 - https://snowballstem.org/
+// Generated from estonian.sbl by Snowball 3.1.1 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -80,6 +80,8 @@ const a_5 = [
     ["mis", 1, 3],
     ["t", -1, 4]
 ];
+
+const /** Array<string> */ as_5 = ["e", ""];
 
 const a_6 = [
     ["d", 4],
@@ -653,15 +655,8 @@ export default class extends B {
                         this.c -= 4;
                         this.c = this.limit - v_4;
                         a = this.find_among_b(a_5);
-                        switch (a) {
-                            case 1: {
-                                this.slice_from("e");
-                                break;
-                            }
-                            case 2: {
-                                this.slice_del();
-                                break;
-                            }
+                        if (a > 0) {
+                            this.slice_from(as_5[a - 1]);
                         }
                         break lab1;
                     }

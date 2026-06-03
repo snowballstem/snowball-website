@@ -1,4 +1,4 @@
-// Generated from tamil.sbl by Snowball 3.1.0 - https://snowballstem.org/
+// Generated from tamil.sbl by Snowball 3.1.1 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -46,6 +46,8 @@ const a_4 = [
     ["\u0BC8", 1, 1],
     ["\u0BCD", 1, 2]
 ];
+
+const /** Array<string> */ as_4 = ["", "\u0BAE\u0BCD"];
 
 const a_5 = [
     ["\u0BA8\u0BCD\u0BA4", 1],
@@ -470,16 +472,7 @@ export default class extends B {
                     }
                     case 9: {
                         a = this.find_among_b(a_4);
-                        switch (a) {
-                            case 1: {
-                                this.slice_del();
-                                break;
-                            }
-                            case 2: {
-                                this.slice_from("\u0BAE\u0BCD");
-                                break;
-                            }
-                        }
+                        this.slice_from(as_4[a - 1]);
                         break;
                     }
                 }

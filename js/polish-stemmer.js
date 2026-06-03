@@ -1,4 +1,4 @@
-// Generated from polish.sbl by Snowball 3.1.0 - https://snowballstem.org/
+// Generated from polish.sbl by Snowball 3.1.1 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -17,6 +17,8 @@ const a_1 = [
     ["sz", 1],
     ["iejsz", 1, 1]
 ];
+
+const /** Array<string> */ as_1 = ["", "s"];
 
 const a_2 = [
     ["a", 1, 0, 1],
@@ -236,16 +238,7 @@ export default class extends B {
                         break lab3;
                     }
                     this.bra = this.c;
-                    switch (a) {
-                        case 1: {
-                            this.slice_del();
-                            break;
-                        }
-                        case 2: {
-                            this.slice_from("s");
-                            break;
-                        }
-                    }
+                    this.slice_from(as_1[a - 1]);
                 }
                 break;
             }

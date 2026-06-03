@@ -1,4 +1,4 @@
-// Generated from irish.sbl by Snowball 3.1.0 - https://snowballstem.org/
+// Generated from irish.sbl by Snowball 3.1.1 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -28,6 +28,8 @@ const a_0 = [
     ["th", 9],
     ["ts", 3]
 ];
+
+const /** Array<string> */ as_0 = ["", "f", "s", "b", "c", "d", "g", "p", "t", "m"];
 
 const a_1 = [
     ["\u00EDochta", 1],
@@ -133,48 +135,7 @@ export default class extends B {
         a = this.find_among(a_0);
         if (a === 0) return false;
         this.ket = this.c;
-        switch (a) {
-            case 1: {
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                this.slice_from("f");
-                break;
-            }
-            case 3: {
-                this.slice_from("s");
-                break;
-            }
-            case 4: {
-                this.slice_from("b");
-                break;
-            }
-            case 5: {
-                this.slice_from("c");
-                break;
-            }
-            case 6: {
-                this.slice_from("d");
-                break;
-            }
-            case 7: {
-                this.slice_from("g");
-                break;
-            }
-            case 8: {
-                this.slice_from("p");
-                break;
-            }
-            case 9: {
-                this.slice_from("t");
-                break;
-            }
-            case 10: {
-                this.slice_from("m");
-                break;
-            }
-        }
+        this.slice_from(as_0[a - 1]);
         return true;
     }
 

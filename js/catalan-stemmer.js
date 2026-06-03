@@ -1,4 +1,4 @@
-// Generated from catalan.sbl by Snowball 3.1.0 - https://snowballstem.org/
+// Generated from catalan.sbl by Snowball 3.1.1 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
