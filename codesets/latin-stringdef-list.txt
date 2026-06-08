@@ -80,6 +80,8 @@ stringdef i    '{U+0131}' // LATIN SMALL LETTER I WITHOUT DOT
 stringdef l/   '{U+0142}' // l stroke
 stringdef nv   '{U+0148}' // n caron
 stringdef oq   '{U+0151}' // o-double acute
+stringdef OE   '{U+0152}' // LATIN CAPITAL LIGATURE OE
+stringdef oe   '{U+0153}' // LATIN SMALL LIGATURE OE
 stringdef rv   '{U+0159}' // r caron
 stringdef s'   '{U+015B}' // s acute
 stringdef sc   '{U+015F}' // s cedilla
