@@ -30,7 +30,7 @@ We can divide the history of English into the following periods of development,
 </ol>
 
 <p>
-Late Modern English is best handled by the <a
+Late Modern English is best handled by <a
 href="../algorithms/english/stemmer.html">the English (Porter2) stemmer</a>.
 </p>
 
@@ -140,7 +140,7 @@ currently attempt to eliminate elisions within the stem.
 The printed letters <b><i>u</i></b> and <b><i>v</i></b> were somewhat
 interchangeable - often the latter was used as the start of a word
 (e.g. <i>vpon</i> for "upon") and the former otherwise (e.g. <i>euer</i>
-for "ever").  Similarly for <b><i>i</i><b> and <b><i>j</i></b>.  While the
+for "ever").  Similarly for <b><i>i</i></b> and <b><i>j</i></b>.  While the
 stemmer could conceptually rewrite these letters using a heuristic based on
 the letters before and after, it seems in practice this isn't a problem we
 need to solve since Electronic versions of Early Modern English texts
