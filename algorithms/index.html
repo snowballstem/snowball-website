@@ -51,17 +51,16 @@
 <p>
 We present stemming algorithms (with implementations in Snowball) for the
 following languages.  In some cases there are multiple algorithms for a
-language - we have marked our recommended option by enclosing the others
-in parentheses:
+language - we have marked our recommended option in bold:
 </p>
 
 <ul>
   <li><a href="/algorithms/english.html">English stemmers:</a></li>
   <ul>
-    <li>(The early <a href="/algorithms/lovins/stemmer.html">Lovins' English stemmer from 1968</a>)
-    <li><a href="/algorithms/porter/stemmer.html">(The original English Porter stemmer from 1980)</a></li>
-    <li><a href="/algorithms/english/stemmer.html">English stemmer (a significantly improved version, aka "porter2")</a></li>
+    <li><a href="/algorithms/english/stemmer.html"><b>English stemmer (Porter's significantly improved version, aka "porter2")</b></a></li>
     <li><a href="/algorithms/earlymodernenglish/stemmer.html">Early Modern English variant</a> (for Shakespeare, etc)</li>
+    <li>Reference implementation of <a href="/algorithms/porter/stemmer.html">the original English Porter stemmer</a> from 1980</li>
+    <li>The early <a href="/algorithms/lovins/stemmer.html">Lovins' English stemmer</a> from 1968</li>
   </ul>
   <li>Finnic stemmers:</li>
   <ul>
@@ -70,10 +69,12 @@ in parentheses:
   </ul>
   <li><a href="/algorithms/germanic.html">Germanic stemmers:</a></li>
   <ul>
-    <li><a href="/algorithms/kraaij_pohlmann/stemmer.html">Dutch (Kraaij/Pohlmann)</a></li>
-    <li><a href="/algorithms/dutch/stemmer.html">(Alternative Dutch stemmer)</a></li>
+    <li>Dutch stemmers:</li>
+    <ul>
+      <li><b><a href="/algorithms/kraaij_pohlmann/stemmer.html">Dutch (Kraaij/Pohlmann)</a></b></li>
+      <li><a href="/algorithms/dutch/stemmer.html">Alternative Dutch stemmer</a> (default in Snowball &lt; 3)</li>
+    </ul>
     <li><a href="/algorithms/german/stemmer.html">German</a></li>
-    <li><a href="/algorithms/german2/stemmer.html">(German variant)</a></li>
     <li><a href="/algorithms/yiddish/stemmer.html">Yiddish</a></li>
   </ul>
   <li><a href="/algorithms/romance.html">Romance stemmers:</a></li>
