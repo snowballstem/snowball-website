@@ -299,7 +299,7 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_Step_0() {
+    #r_prefixes() {
         let /** number */ a;
         this.bra = this.c;
         a = this.find_among(a_1);
@@ -845,7 +845,7 @@ export default class extends B {
             this.c = v_1;
             this.#r_prelude();
             const /** number */ v_2 = this.c;
-            this.#r_Step_0();
+            this.#r_prefixes();
             this.c = v_2;
             this.#r_mark_regions();
             this.limit_backward = this.c; this.c = this.limit;
