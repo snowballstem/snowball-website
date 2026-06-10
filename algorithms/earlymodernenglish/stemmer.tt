@@ -144,19 +144,19 @@ currently attempt to eliminate elisions within the stem.
 
 <li><p>
 The printed letters <b><i>u</i></b> and <b><i>v</i></b> were somewhat
-interchangeable - often the latter was used as the start of a word
-(e.g. <i>vpon</i> for "upon") and the former otherwise (e.g. <i>euer</i>
-for "ever").  Similarly for <b><i>i</i></b> and <b><i>j</i></b>.  While the
-stemmer could conceptually rewrite these letters using a heuristic based on
-the letters before and after, it seems in practice this isn't a problem we
-need to solve since Electronic versions of Early Modern English texts
-generally seem to have already been "corrected" for this.
+interchangeable - often <b><i>v</i><b> was used as the start of a word
+(e.g. <i>vpon</i> for "upon") and <b><i>u</i></b> otherwise (e.g. <i>euer</i>
+for "ever").  Similarly, <b><i>i</i></b> and <b><i>j</i></b> were somewhat
+interchangeable.  While the stemmer could conceptually rewrite these letters
+using a heuristic based on the letters before and after, it seems in practice
+this isn't a problem we need to solve since electronic versions of Early Modern
+English texts generally seem to have already been "corrected" for this.
 </p>
 
 <li><p>
-We don't handle <b><i>þ</i></b> (thorn) specially.  We're usually dealing
-with printed texts, and in Early Modern Englsh printing thorn was represented
-by the Latin <b><i>Y</i></b>.
+We don't handle <b><i>þ</i></b> (thorn) specially.  Indexing will usually be
+dealing with printed texts, and in Early Modern Englsh printing thorn was
+represented by the Latin <b><i>Y</i></b>.
 </p>
 
 <li><p>
