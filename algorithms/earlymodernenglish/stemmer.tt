@@ -192,11 +192,11 @@ The additions are marked in the Snowball source by comments such as:
 Before doing anything else, replace any instances of the following characters:
 
 <dl>
-<dt><i>æ<i>
+<dt><i>æ</i>
     <dd>replace with <i>ae</i>
-<dt><i>œ<i>
+<dt><i>œ</i>
     <dd>replace with <i>oe</i>
-<dt><i>ſ<i>
+<dt><i>ſ</i>
     <dd>replace with <i>s</i>
 </dl>
 
