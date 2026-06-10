@@ -248,22 +248,16 @@ We can divide the history of English into the following periods of development,
 </p>
 
 <ol>
-<li>ca. 1660-today: Late Modern English, the language of Dickens and the present day,
-<li>ca. 1485-ca. 1660: Early Modern English, the language of Shakespeare,
-<li>ca. 1066-ca. 1485: Middle English, the language of Chaucer,
 <li>ca. 450-ca. 1250: Old English (or Anglo-Saxon), the language of Beowulf.
+<li>ca. 1066-ca. 1485: Middle English, the language of Chaucer,
+<li>ca. 1485-ca. 1660: Early Modern English, the language of Shakespeare,
+<li>ca. 1660-today: Late Modern English, the language of Dickens and the present day,
 </ol>
 
 <p>
-Late Modern English is best handled by <a
-href="../algorithms/english/stemmer.html">the English (Porter2) stemmer</a>.
-</p>
-
-<p>
-Early Modern English has enough differences from Late Modern English that
-a seperate, specialised stemmer makes sense.  It's implemented by adding
-some rules to the English (porter2) stemmer, but some of the extra rules have
-side-effects which make it hard to produce a single stemmer targetting both.
+Old English is so different from Modern English that it may be regarded as a
+distinct language - for example, Beowulf opens <i>"Hƿæt ƿē Gārde/na ingēar
+dagum þēod cyninga / þrym ge frunon..."</i>.
 </p>
 
 <p>
@@ -288,9 +282,15 @@ to <i>sit</i>) but many of the challenges remain.
 </p>
 
 <p>
-Old English is so different from Modern English that it may be regarded as a
-distinct language - for example, Beowulf opens <i>"Hƿæt ƿē Gārde/na ingēar
-dagum þēod cyninga / þrym ge frunon..."</i>.
+Early Modern English has enough differences from Late Modern English that
+a seperate, specialised stemmer makes sense.  It's implemented by adding
+some rules to the English (porter2) stemmer, but some of the extra rules have
+side-effects which make it hard to produce a single stemmer targetting both.
+</p>
+
+<p>
+Late Modern English is best handled by <a
+href="../algorithms/english/stemmer.html">the English (Porter2) stemmer</a>.
 </p>
 
 <h2>Design Notes</h2>
@@ -342,6 +342,12 @@ them if there's still demand for iso-8859-1 support.
 </p>
 
 <p>
+A silent <i>e</i> was often appended to words, but in many cases the existing
+porter2 rule for removing <i>-e</i> takes care of this (e.g. <i>ſpeake</i> ->
+<i>speak</i>; <i>cowarde</i> -> <i>coward</i>).
+</p>
+
+<p>
 The following are not (currently) handled:
 </p>
 
@@ -379,12 +385,9 @@ by the Latin <b><i>Y</i></b>.
 </p>
 
 <li><p>
-We don't have special handling for the silent <i>e</i> often appended to
-words, but in many cases the existing rule for removing <i>-e</i> do
-the right thing (e.g. <i>ſpeake</i> -> <i>speak</i>; <i>cowarde</i> ->
-<i>coward</i>).  The last consonant was sometimes doubled when an <i>e</i>
-was appended (e.g. <i>manne</i> (for man) and <i>runne</i>).  These don't
-currently get undoubled.
+The last consonant was sometimes doubled when a silent <i>e</i> was appended
+(e.g. <i>manne</i> (for man) and <i>runne</i>).  These don't currently get
+undoubled.
 </p>
 
 <li><p>
@@ -417,11 +420,11 @@ The additions are marked in the Snowball source by comments such as:
 Before doing anything else, replace any instances of the following characters:
 
 <dl>
-<dt><i>æ<i>
+<dt><i>æ</i>
     <dd>replace with <i>ae</i>
-<dt><i>œ<i>
+<dt><i>œ</i>
     <dd>replace with <i>oe</i>
-<dt><i>ſ<i>
+<dt><i>ſ</i>
     <dd>replace with <i>s</i>
 </dl>
 
