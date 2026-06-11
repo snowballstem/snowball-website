@@ -369,19 +369,19 @@ currently attempt to eliminate elisions within the stem.
 
 <li><p>
 The printed letters <b><i>u</i></b> and <b><i>v</i></b> were somewhat
-interchangeable - often the latter was used as the start of a word
-(e.g. <i>vpon</i> for "upon") and the former otherwise (e.g. <i>euer</i>
-for "ever").  Similarly for <b><i>i</i></b> and <b><i>j</i></b>.  While the
-stemmer could conceptually rewrite these letters using a heuristic based on
-the letters before and after, it seems in practice this isn't a problem we
-need to solve since Electronic versions of Early Modern English texts
-generally seem to have already been "corrected" for this.
+interchangeable - often <b><i>v</i><b> was used as the start of a word
+(e.g. <i>vpon</i> for "upon") and <b><i>u</i></b> otherwise (e.g. <i>euer</i>
+for "ever").  Similarly, <b><i>i</i></b> and <b><i>j</i></b> were somewhat
+interchangeable.  While the stemmer could conceptually rewrite these letters
+using a heuristic based on the letters before and after, it seems in practice
+this isn't a problem we need to solve since electronic versions of Early Modern
+English texts generally seem to have already been "corrected" for this.
 </p>
 
 <li><p>
-We don't handle <b><i>þ</i></b> (thorn) specially.  We're usually dealing
-with printed texts, and in Early Modern Englsh printing thorn was represented
-by the Latin <b><i>Y</i></b>.
+We don't handle <b><i>þ</i></b> (thorn) specially.  Indexing will usually be
+dealing with printed texts, and in Early Modern Englsh printing thorn was
+represented by the Latin <b><i>Y</i></b>.
 </p>
 
 <li><p>
@@ -495,7 +495,7 @@ In step 5, these additional suffixes are added to this list:
 <span class="w">    </span><span class="n">mark_regions</span>
 <span class="w">    </span><span class="n">shortv</span>
 <span class="w">    </span><span class="n">R1</span><span class="w"> </span><span class="n">R2</span>
-<span class="w">    </span><span class="n">Step_0</span>
+<span class="w">    </span><span class="n">prefixes</span>
 <span class="w">    </span><span class="n">Step_1a</span><span class="w"> </span><span class="n">Step_1b</span><span class="w"> </span><span class="n">Step_1c</span><span class="w"> </span><span class="n">Step_2</span><span class="w"> </span><span class="n">Step_3</span><span class="w"> </span><span class="n">Step_4</span><span class="w"> </span><span class="n">Step_5</span>
 <span class="w">    </span><span class="n">exception1</span>
 <span class="p">)</span>
@@ -534,7 +534,7 @@ In step 5, these additional suffixes are added to this list:
 <span class="p">)</span>
 
 <span class="c1">// Additional step for Early Modern English.</span>
-<span class="kr">define</span><span class="w"> </span><span class="n">Step_0</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
+<span class="kr">define</span><span class="w"> </span><span class="n">prefixes</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="o">[</span><span class="ow">substring</span><span class="o">]</span><span class="w"> </span><span class="kr">among</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="s1">&#39;o</span><span class="se">{&#39;}</span><span class="s1">er&#39;</span><span class="w"> </span><span class="c1">// e.g. o&#39;erwhelm -&gt; overwhelm</span>
 <span class="w">            </span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;over&#39;</span><span class="p">)</span>
@@ -770,7 +770,7 @@ In step 5, these additional suffixes are added to this list:
 <span class="w">    </span><span class="n">exception1</span><span class="w"> </span><span class="ow">or</span>
 <span class="w">    </span><span class="ow">not</span><span class="w"> </span><span class="ow">hop</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">prelude</span>
-<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">Step_0</span>
+<span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">prefixes</span>
 <span class="w">        </span><span class="ow">do</span><span class="w"> </span><span class="n">mark_regions</span>
 <span class="w">        </span><span class="ow">backwards</span><span class="w"> </span><span class="p">(</span>
 
