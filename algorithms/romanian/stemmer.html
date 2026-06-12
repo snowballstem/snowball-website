@@ -237,8 +237,35 @@ octeț<BR>
 </div>
 
 <p>
-(For the background to this work, see the
-<A HREF="../../credits.html">credits</A> page. Following earlier misgivings on the wisdom
+In June and July 2006, two independently developed Snowball stemmers for Romanian
+were submitted for inclusion - the first (which is referred to as "romanian1"
+below) Glockner, Gliga, and Stegarescu in Heidelberg; the second ("romanian2")
+from Tirdea in Bucharest.
+</p>
+
+<p>
+We prefer to offer a single stemmer for each language unless there's
+a good reason to offer multiple.  Martin reviewed them, comparing the two
+stemmers:
+</p>
+
+<blockquote>
+My own feeling is that romanian1 does a more thorough job of ending removal,
+but unlike romanian2 has a habit of discarding too much from short words.
+aberant->ab, abatere->ab, aburi->ab are examples of this. In romanian1 the R2
+test is rarely used (it seems to me that 'R1 or R2' is equivalent to 'R1',
+since p2 is never to the left of p1.)
+</blockquote>
+
+<p>
+After further reflection, Martin produced his own Romanian stemmer which is
+what we distribute, what we recommend you use, and what is described here.
+</p>
+
+<h2>Design Notes</h2>
+
+<p>
+Following earlier misgivings on the wisdom
 of removing IST/ISM endings, in this stemmer they are now conflated to a single
 form. It can easily be modified it to bring it in line with the other Romance
 stemmers: see the internal comments marked &#8216;<code>IST</code>&#8217;.
