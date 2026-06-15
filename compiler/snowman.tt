@@ -436,8 +436,8 @@ numbers, the following may be used in AEs:
 <TR><TD><code>maxint</code>&nbsp;   <TD></TD><TD>  &#x2014; the maximum positive number
 <TR><TD><code>cursor</code>&nbsp;   <TD></TD><TD>  &#x2014; the current value of the string <I>cursor</I>
 <TR><TD><code>limit</code>&nbsp;    <TD></TD><TD>  &#x2014; the current value of the string <I>limit</I>
-<TR><TD><code>size</code>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in "slots"
-<TR><TD><code>sizeof s</code>&nbsp; <TD></TD><TD>  &#x2014; the number of "slots" in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string or (since Snowball 2.1) a literal string
+<TR><TD><code>size</code>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in code units
+<TR><TD><code>sizeof s</code>&nbsp; <TD></TD><TD>  &#x2014; the number of code units in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string or (since Snowball 2.1) a literal string
 <TR><TH colspan="2">New in Snowball 2.0:</TH></TR>
 <TR><TD><code>len</code>&nbsp;      <TD></TD><TD>  &#x2014; the length of the string, in Unicode characters
 <TR><TD><code>lenof s</code>&nbsp;  <TD></TD><TD>  &#x2014; the number of Unicode characters in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string or (since Snowball 2.1) a literal string
@@ -445,7 +445,7 @@ numbers, the following may be used in AEs:
 
 <p>
 [% highlight_inline('size') %] and [% highlight_inline('sizeof') %] count in
-"slots" - see the "Character representation" section below for details.
+code units - see the "Character representation" section below for details.
 </p>
 
 <p>
@@ -1331,31 +1331,54 @@ whitespace and terminated with whitespace, and &nbsp;<code>'S'</code>&nbsp; is a
 
 <p>
 In this description of Snowball, it is assumed that strings are composed of
-<I>characters</I>, and that characters can be defined numerically, but the numeric range
-of these characters is not defined. As implemented, three different schemes
-are supported. Characters can either be (<I>a</I>) bytes in the range 0 to 255,
-as in traditional C strings, or (<I>b</I>) byte pairs in the range 0 to 65535,
-as in Java strings, or (<I>c</I>) UTF-8 encoded bytes sequences in the range 0
-to 65535, so that a character may occupy 1, 2 or 3 bytes.
+<I>characters</I>, and that characters can be defined numerically, but the
+numeric range of these characters is not fixed.  As implemented, three
+different schemes are supported. Characters can be encoded as
+</p>
+
+<ol type="a">
+<li> single bytes in the range 0 to 255 (e.g. ISO-8859-1, KOI-8R),
+<li> 16-bit characters in the range 0 to 65535 (e.g. Java strings), or
+<li) UTF-8 encoded Unicode codepoints in the range 0 to 65535, so that a
+character may occupy 1, 2 or 3 bytes.
+</ol>
+
+<p>
+Here we need to make a distinction - each Unicode character
+has a numeric value (its <i>code point</i>), and the character encoding maps
+that onto numeric values stored in memory - the units of storage for which
+are termed <i>code units</i>.  For fixed-width encodings, each character is
+stored in exactly one code unit (one byte for e.g. ISO-8859-1; two bytes for
+e.g. Java strings).  UTF-8 is a variable-width encoding where each character
+may use one or more code units, with each code unit being one byte.
 </p>
 
 <p>
-For case (<I>c</I>), we need to make a slight separation of the concept of
-<I>characters</I> into <I>symbols</I>, the units of text being represented, and
-<I>slots</I>, the units of space into which they map. (So in case (<I>a</I>), all
-slots are one byte; in case (<I>b</I>) all slots are two bytes.)
+(If you already know Unicode you may now be thinking something like "hang on,
+Java strings are UTF-16 which uses two surrogate pairs for Unicode code points
+above U+FFFF so isn't really a fixed width encoding".  All the current stemmers
+work in scripts which use codepoints before U+FFFF, so characters which get
+represented as surrogate pairs are really relevant to the stemming, and by
+treating it as fixed width some operations are more efficient to perform.
+This does mean a stemmer can produce different output in some cases when the
+input includes a character U+10000 or higher.)
+</p>
+
+<p>
 <B><I>c</I></B> and <B><I>l</I></B> have numeric values that can be used in AEs (arithmetic
-expressions). These values count the number of slots. Similarly
-<code>setmark</code>, &nbsp;<code>tomark</code>&nbsp; and &nbsp;<code>atmark</code>&nbsp; are remembering and then using slot
-counts. &nbsp;<code>size</code>&nbsp; and &nbsp;<code>sizeof</code>&nbsp; measure string size
-in slots, not symbols. However, &nbsp;<code>hop N</code>&nbsp; moves <B><I>c</I></B> over &nbsp;<code>N</code>&nbsp; symbols,
-not &nbsp;<code>N</code>&nbsp; slots, and &nbsp;<code>next</code>&nbsp; is equivalent to &nbsp;<code>hop 1</code>.
+expressions). These values count the number of code units. Similarly
+<code>setmark</code>, &nbsp;<code>tomark</code>&nbsp; and
+&nbsp;<code>atmark</code>&nbsp; are remembering and then using code unit
+counts. &nbsp;<code>size</code>&nbsp; and &nbsp;<code>sizeof</code>&nbsp;
+measure code units, not code points. However, &nbsp;<code>hop N</code>&nbsp; moves <B><I>c</I></B> over &nbsp;<code>N</code>&nbsp; characters,
+not &nbsp;<code>N</code>&nbsp; code units, and &nbsp;<code>next</code>&nbsp; is equivalent to &nbsp;<code>hop 1</code>.
 </p>
 
 <p>
-Snowball 2.0 adds <code>len</code> and <code>lenof</code>, which measure string length in symbols
-(so they're the same as <code>size</code> and <code>sizeof</code> in cases (<i>a</i>) and (<i>b</i>), but
-different in case (<i>c</i>)).
+Snowball 2.0 adds <code>len</code> and <code>lenof</code>, which measure string
+length in characters (so they're the same as <code>size</code> and
+<code>sizeof</code> for fixed-width character encodings, but different for
+UTF-8).
 </p>
 
 <p>
