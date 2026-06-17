@@ -165,7 +165,9 @@ identifiers so external names should not only differ by case (e.g. <span class="
 </code></span>
 
  will generate code with a name collision
-in Ada and Pascal).
+in Ada and Pascal).  C90 only guarantees 6 significant initial characters on
+external identifers, though most modern implementations have a higher or no
+limit (and C99 guarantees 63 significant initial characters).
 </p>
 
 <p>
@@ -177,8 +179,8 @@ provide an external interface so mangling external names would be problematic.
 The <code>-eprefix</code> option provides a solution to cases which can be
 solved by adding a prefix to external names, which helps for collisions with
 reserved words, but not for Ada's restriction that identifiers not end in an
-underscore.  (Note: Snowball &lt; 3.1.0 only supported <code>-eprefix</code>
-for C.)
+underscore, nor for C90 only guaranteeing 6 significant initial characters.
+(Note: Snowball &lt; 3.1.0 only supported <code>-eprefix</code> for C.)
 </p>
 
 <p>
