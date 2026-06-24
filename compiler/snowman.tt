@@ -1289,7 +1289,11 @@ A name, reserved word or number is terminated by the first character that
 cannot form part of it. A symbol is recognised as the longest sequence of
 characters that forms a valid symbol. So &nbsp;<code>+=-</code>&nbsp; is two symbols, &nbsp;<code>+=</code>&nbsp; and
 <code>-</code>, because &nbsp;<code>+=</code>&nbsp; is a valid symbol in the language while &nbsp;<code>+=-</code>&nbsp; is not.
-Whitespace separates tokens but is otherwise ignored.
+As a special case, Snowball 3.2 and later will treat <code>&lt;-</code> in
+an arithmetic expression as the two symbols <code>&lt;</code> and
+<code>-</code>, so [% highlight_inline('$x<-1') %] parses the same as
+[% highlight_inline('$x < -1') %] instead of
+giving a syntax error.  Whitespace separates tokens but is otherwise ignored.
 </p>
 
 <p>
