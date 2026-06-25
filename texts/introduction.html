@@ -828,7 +828,18 @@ of <I>be</I>. It has about 40 different forms, including,
 </DL>
 
 <p>
-(and <I>suis</I> incidentally is a homonym, as part of the verb <I>suivre</I>.)
+Notice that several of these words have other meanings unrelated to "to be":
+<i>suis</i> is a form of the verb <i>suivre</i> ("to follow"), <i>sommes</i> is
+both a form of the verb <i>sommer</i> ("to sum up" or "to summon") and the
+plural of the noun <i>somme</i> ("sum"), <i>&eacute;t&eacute;</i> also means
+"summer".  These are called homonyms, or more strictly speaking "homographs" as
+we are only considering the written form and two words which are spelled
+the same but pronounced differently are also a concern here.  This is not
+unique to French - some stopword candidates have homographs in general, and
+is something that should be given consideration when deciding which words to treat as stopwords.
+</p>
+
+<p>
 Passing all forms through a rule-based stemmer creates something of a
 mess. An alternative approach is to recognise this group of words, and
 other groups, and take special action. The recognition could take place
