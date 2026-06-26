@@ -1346,7 +1346,7 @@ different schemes are supported. Characters can be encoded as
 <ol type="a">
 <li> single bytes in the range 0 to 255 (e.g. ISO-8859-1, KOI-8R),
 <li> 16-bit characters in the range 0 to 65535 (e.g. Java strings), or
-<li) UTF-8 encoded Unicode codepoints in the range 0 to 65535, so that a
+<li> UTF-8 encoded Unicode codepoints in the range 0 to 65535, so that a
 character may occupy 1, 2 or 3 bytes.
 </ol>
 
