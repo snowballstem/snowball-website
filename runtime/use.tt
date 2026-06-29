@@ -345,14 +345,15 @@ could have usefully warned but didn't, please report it.
 
 <p>
 Snowball has a debug command, which is a question mark (<code>?</code>).
-This generates a calll to a <code>debug(...)</code> helper function in the
-target language.  Currently this is implemented for C/C++ and (since Snowball
-3.1.0) for Ada.  It writes the current string to <code>stdout</code>, annotated
-to show the positions of the cursor, limits, and slice ends (<code>|</code>
-marks the cursor <B><I>c</I></B>, curly brackets (<code>{</code> and
-<code>}</code>) mark the limits, and square brackets (<code>[</code> and
-<code>]</code>) mark the slice ends.  The limits may be less than the whole
-string because of the action of <code>setlimit</code>.
+This is now implemented for all target languages (it's been supported for
+C/C++ for a long time, Ada since Snowball 3.1.0, other languages since 3.2.0).
+<code>?</code> generates a call to a helper function or method in the
+target language which writes the current string to <code>stdout</code>,
+annotated to show the positions of the cursor, limits, and slice ends
+(<code>|</code> marks the cursor <B><I>c</I></B>, curly brackets
+(<code>{</code> and <code>}</code>) mark the limits, and square brackets
+(<code>[</code> and <code>]</code>) mark the slice ends.  The limits may be
+less than the whole string because of the action of <code>setlimit</code>.
 </p>
 
 <p>
