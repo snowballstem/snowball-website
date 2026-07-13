@@ -144,7 +144,7 @@ currently attempt to eliminate elisions within the stem.
 
 <li><p>
 The printed letters <b><i>u</i></b> and <b><i>v</i></b> were somewhat
-interchangeable - often <b><i>v</i><b> was used as the start of a word
+interchangeable - often <b><i>v</i></b> was used as the start of a word
 (e.g. <i>vpon</i> for "upon") and <b><i>u</i></b> otherwise (e.g. <i>euer</i>
 for "ever").  Similarly, <b><i>i</i></b> and <b><i>j</i></b> were somewhat
 interchangeable.  While the stemmer could conceptually rewrite these letters
