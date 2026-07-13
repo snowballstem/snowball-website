@@ -2,7 +2,7 @@
 
 <p>
 This page used to describe how to modify the English stemmer (or the original
-Porter stemmer) to better support Early Modern English, by added the endings
+Porter stemmer) to better support Early Modern English by adding the endings
 <i>-eth</i> and <i>-est</i> to those removed.
 </p>
 
