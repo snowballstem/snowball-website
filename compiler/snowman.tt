@@ -97,9 +97,10 @@ generate C code with undefined behaviour).
 
 <p>
 Also some languages impose additional restrictions on identifiers (either
-generally or on external identifiers) - for example, Ada identifiers can't end
-in an underscore (e.g. [% highlight_inline("externals (a_)") %] will generate
-invalid Ada code); C++ reserves identifiers containing a double underscore
+generally or on external identifiers) - for example, Ada identifiers can't
+contain a double underscore nor end in an underscore (e.g.
+[% highlight_inline("externals (a_)") %] will generate invalid Ada code);
+C++ reserves identifiers containing a double underscore
 (e.g. [% highlight_inline("externals (a__b)") %] will generate ill-formed C++
 code).  Also some languages (e.g. Ada and Pascal) have case-insensitive
 identifiers so external names should not only differ by case (e.g. [%
