@@ -150,12 +150,13 @@ generate C code with undefined behaviour).
 
 <p>
 Also some languages impose additional restrictions on identifiers (either
-generally or on external identifiers) - for example, Ada identifiers can't end
-in an underscore (e.g. <span class="highlight"><code><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="n">a_</span><span class="p">)</span>
+generally or on external identifiers) - for example, Ada identifiers can't
+contain a double underscore nor end in an underscore (e.g.
+<span class="highlight"><code><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="n">a_</span><span class="p">)</span>
 </code></span>
 
- will generate
-invalid Ada code); C++ reserves identifiers containing a double underscore
+ will generate invalid Ada code);
+C++ reserves identifiers containing a double underscore
 (e.g. <span class="highlight"><code><span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="n">a__b</span><span class="p">)</span>
 </code></span>
 
