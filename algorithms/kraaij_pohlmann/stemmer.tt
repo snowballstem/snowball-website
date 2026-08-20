@@ -112,6 +112,325 @@ algorithm design).
 Here then is the Snowball equivalent of the Kraaij-Pohlmann algorithm.
 </p>
 
+<h2>Definition of the Kraaij-Pohlmann stemmer</h2>
+
+<h3>Character definitions</h3>
+
+<p>
+The following characters are vowels for the purposes of this algorithm (including
+accented variants):
+</p>
+
+<dl><dd>
+    a e i o u y (and their accented forms &#xe0;&#xe1;&#xe2;&#xe4;
+    &#xe8;&#xe9;&#xea;&#xeb; &#xec;&#xed;&#xee;&#xef;
+    &#xf2;&#xf3;&#xf4;&#xf6; &#xf9;&#xfa;&#xfb;&#xfc;)
+</dl>
+
+<p>
+<i>ij</i> is treated as a vowel digraph in several rules.
+</p>
+
+<h3>Regions</h3>
+
+<p>
+Regions <I>R</I>1 and <I>R</I>2 are computed as follows: scan forward from the
+start of the word, skipping any leading non-vowels, then skip at least one vowel
+sequence (<i>ij</i> counts as a vowel), then skip a non-vowel; that position is
+<I>p</I>1 (the start of <I>R</I>1). Repeat the same scan from <I>p</I>1 to find
+<I>p</I>2 (the start of <I>R</I>2).
+</p>
+
+<h3>The Stemming Process</h3>
+
+<p>
+Steps 1&#x2013;4 are applied in order. After that, prefix removal and
+Step&#xA0;1c handle the <i>ge-</i> prefix, first as a word-initial prefix and then as
+an infix. Finally Steps 7 and 6 clean up final consonant clusters.
+</p>
+
+<p>
+Step 1 (plural and inflectional endings):
+</p>
+<DL><DD>
+<p>
+Search for the longest among the following suffixes and perform the action
+indicated.
+</p>
+<DL>
+<DT><B><I>nde</I></B>
+    <DD>replace by <B><I>nd</I></B>
+<DT><B><I>&#x2019;s</I></B>
+    <DD>delete
+<DT><B><I>ies</I></B>
+    <DD>replace by <B><I>ie</I></B> if in <I>R</I>1
+<DT><B><I>&#xe9;s</I></B>
+    <DD>replace by <B><I>&#xe9;</I></B> if in <I>R</I>1
+<DT><B><I>aus</I></B>
+    <DD>replace by <B><I>au</I></B> if in <I>R</I>1 and preceded by a vowel
+<DT><B><I>es</I></B>
+    <DD>if in <I>R</I>1 and preceded by a non-vowel (other than <i>ij</i>):
+    <ul>
+    <li>if preceded by <I>ar</I> in <I>R</I>1: delete, then lengthen vowel</li>
+    <li>else if preceded by <I>er</I> in <I>R</I>1: delete</li>
+    <li>else: replace by <B><I>e</I></B></li>
+    </ul>
+<DT><B><I>s</I></B>
+    <DD>delete if in <I>R</I>1, not preceded by <i>t</i> in <I>R</I>1, and
+    preceded by a non-vowel (other than <i>ij</i>)
+<DT><B><I>en</I></B>
+    <DD>
+    <ul>
+    <li>if preceded by <I>hed</I>: replace <I>heden</I> by <B><I>heid</I></B></li>
+    <li>else if preceded by <I>nd</I>: delete <I>en</I></li>
+    <li>else if preceded by <I>d</I> in <I>R</I>1 and a non-vowel before that: delete <I>den</I></li>
+    <li>else if preceded by <I>i</I> or <I>j</I> followed by a vowel: delete <I>en</I></li>
+    <li>else if in <I>R</I>1 and preceded by a non-vowel (other than <i>ij</i>): delete, then lengthen vowel</li>
+    </ul>
+</DL>
+</DL>
+
+<p>
+Step 2 (diminutive and adjectival endings):
+</p>
+<DL><DD>
+<p>
+Search for the longest among the following suffixes and perform the action
+indicated.
+</p>
+<DL>
+<DT><B><I>je</I></B>
+    <DD>if in <I>R</I>1:
+    <ul>
+    <li>if preceded by <I>&#x2019;t</I>: delete both <I>&#x2019;t</I> and <I>je</I></li>
+    <li>else if preceded by <I>et</I> in <I>R</I>1 and a non-vowel before that: delete <I>etje</I></li>
+    <li>else if preceded by <I>rnt</I>: replace <I>rntje</I> by <B><I>rn</I></B></li>
+    <li>else if preceded by <I>t</I> in <I>R</I>1 and a vowel or <i>ij</i> before that: delete <I>tje</I></li>
+    <li>else if preceded by <I>ink</I>: replace <I>inkje</I> by <B><I>ing</I></B></li>
+    <li>else if preceded by <I>mp</I>: replace <I>mpje</I> by <B><I>m</I></B></li>
+    <li>else if preceded by <I>&#x2019;</I> in <I>R</I>1: delete both <I>&#x2019;</I> and <I>je</I></li>
+    <li>else if in <I>R</I>1 and preceded by a non-vowel (other than <i>ij</i>): delete</li>
+    </ul>
+<DT><B><I>ieve</I></B>
+    <DD>replace by <B><I>ief</I></B> if in <I>R</I>1 and preceded by a non-vowel (other than <i>ij</i>)
+<DT><B><I>lijke</I></B>
+    <DD>replace by <B><I>lijk</I></B> if in <I>R</I>1
+<DT><B><I>ische</I></B>
+    <DD>replace by <B><I>isch</I></B> if in <I>R</I>1
+<DT><B><I>ene</I></B>
+    <DD>delete <I>ene</I> if in <I>R</I>1 and preceded by a non-vowel, then re-attach <I>en</I> and lengthen vowel
+<DT><B><I>le</I></B>
+    <DD>delete <I>le</I> if in <I>R</I>1, then re-attach <I>l</I> and lengthen vowel
+<DT><B><I>ge</I></B>
+    <DD>replace by <B><I>g</I></B> if in <I>R</I>1
+<DT><B><I>de</I></B>
+    <DD>delete if in <I>R</I>1 and preceded by a non-vowel (other than <i>ij</i>)
+<DT><B><I>te</I></B>
+    <DD>replace by <B><I>t</I></B> if in <I>R</I>1
+<DT><B><I>se</I></B>
+    <DD>replace by <B><I>s</I></B> if in <I>R</I>1
+<DT><B><I>re</I></B>
+    <DD>replace by <B><I>r</I></B> if in <I>R</I>1
+</DL>
+</DL>
+
+<p>
+Step 3 (derivational suffixes):
+</p>
+<DL><DD>
+<p>
+Search for the longest among the following suffixes and perform the action
+indicated.
+</p>
+<DL>
+<DT><B><I>atie</I></B>
+    <DD>replace by <B><I>eer</I></B> if in <I>R</I>1
+<DT><B><I>iteit</I></B>
+    <DD>delete if in <I>R</I>1, then lengthen vowel
+<DT><B><I>heid  &nbsp;  sel  &nbsp;  ster</I></B>
+    <DD>delete if in <I>R</I>1
+<DT><B><I>rder</I></B>
+    <DD>replace by <B><I>r</I></B>
+<DT><B><I>ing  &nbsp;  isme</I></B>
+    <DD>delete if in <I>R</I>1
+<DT><B><I>erij</I></B>
+    <DD>if preceded by <I>ild</I>: replace by <B><I>er</I></B>;
+    else delete if in <I>R</I>1, then lengthen vowel
+    (avoids conflating <I>schilderij</I> and <I>schild</I>)
+<DT><B><I>arij</I></B>
+    <DD>replace by <B><I>aar</I></B> if in <I>R</I>1 and preceded by a non-vowel (other than <i>ij</i>)
+<DT><B><I>fie</I></B>
+    <DD>delete if in <I>R</I>2, then re-attach <I>f</I> and lengthen vowel
+<DT><B><I>gie</I></B>
+    <DD>delete if in <I>R</I>2, then re-attach <I>g</I> and lengthen vowel
+<DT><B><I>tst</I></B>
+    <DD>replace by <B><I>t</I></B> if in <I>R</I>1 and preceded by a non-vowel (other than <i>ij</i>)
+<DT><B><I>dst</I></B>
+    <DD>replace by <B><I>d</I></B> if in <I>R</I>1 and preceded by a non-vowel (other than <i>ij</i>)
+</DL>
+</DL>
+
+<p>
+Step 4 (adjectival and participial endings):
+</p>
+<DL><DD>
+<p>
+Search for the longest among the following suffixes and perform the action
+indicated.
+</p>
+<DL>
+<DT><B><I>ioneel</I></B>
+    <DD>replace by <B><I>ie</I></B> if in <I>R</I>1
+<DT><B><I>atief</I></B>
+    <DD>replace by <B><I>eer</I></B> if in <I>R</I>1
+<DT><B><I>baar</I></B>
+    <DD>delete if in <I>R</I>1
+<DT><B><I>naar  &nbsp;  laar  &nbsp;  raar</I></B>
+    <DD>replace by <B><I>n</I></B>, <B><I>l</I></B>, or <B><I>r</I></B> respectively if in <I>R</I>1 and preceded by a vowel
+<DT><B><I>tant</I></B>
+    <DD>replace by <B><I>teer</I></B> if in <I>R</I>1
+<DT><B><I>lijkst  &nbsp;  lijker</I></B>
+    <DD>replace by <B><I>lijk</I></B> if in <I>R</I>1
+<DT><B><I>achtigst  &nbsp;  achtiger  &nbsp;  achtig</I></B>
+    <DD>delete if in <I>R</I>1
+<DT><B><I>erigst  &nbsp;  eriger  &nbsp;  erig</I></B>
+    <DD>delete if in <I>R</I>1
+<DT><B><I>end</I></B>
+    <DD>delete if in <I>R</I>1 and preceded by a non-vowel (other than <i>ij</i>), then lengthen vowel
+<DT><B><I>igst  &nbsp;  iger  &nbsp;  ig</I></B>
+    <DD>delete if in <I>R</I>1, not preceded immediately by <I>inn</I> at the start of the word,
+    and preceded by a non-vowel (other than <i>ij</i>), then lengthen vowel
+    (avoids conflating <I>innig</I> and <I>in</I>)
+</DL>
+</DL>
+
+<p>
+Lose_prefix (<i>ge-</i> removal):
+</p>
+<DL><DD>
+<p>
+If the word starts with <I>ge</I> and the remainder (after <I>ge</I>) is at least
+3 characters long and contains at least one vowel or <i>ij</i> not at the very end,
+remove the <I>ge</I> prefix, except in the following cases:
+</p>
+<ul>
+<li>do not remove if followed by <I>eft</I> (avoids conflating <I>geeft</I> and <I>effen</I>)</li>
+<li>do not remove if followed by <I>val</I> unless followed by <I>vali</I> (avoids conflating <I>gevallen</I>/<I>geval</I> and <I>vallen</I>)</li>
+<li>do not remove if followed by <I>vaa</I> or <I>vare</I> (avoids conflating <I>gevaren</I>/<I>gevaar</I> and <I>varen</I>)</li>
+</ul>
+<p>
+After removal, any trailing umlaut on the first remaining vowel is dropped
+(&#xeb;&#x2192;e, &#xef;&#x2192;i). Regions are then recomputed.
+</p>
+</DL>
+
+<p>
+Step 1c (post-<i>ge-</i> removal of final <i>-d</i> and <i>-t</i>):
+</p>
+<DL><DD>
+<p>
+Performed only when a <i>ge-</i> prefix (initial or infixed) was just removed.
+Search for the longest match in <I>R</I>1, preceded by a non-vowel (other than <i>ij</i>):
+</p>
+<DL>
+<DT><B><I>d</I></B>
+    <DD>if not preceded by <I>n</I> in <I>R</I>1:
+    if preceded by <I>in</I> at the start of the word, replace by <B><I>n</I></B>;
+    else delete
+    (avoids conflating <I>gei&#x308;nd</I> and <I>in</I>)
+<DT><B><I>t</I></B>
+    <DD>delete if not preceded by <I>h</I> in <I>R</I>1 and not preceded by <I>en</I> at the start of the word
+    (avoids conflating <I>ge&#xeb;nt</I> and <I>en</I>)
+</DL>
+</DL>
+
+<p>
+Lose_infix (<i>ge-</i> as infix removal):
+</p>
+<DL><DD>
+<p>
+Same conditions as Lose_prefix, but skips the first character before searching
+for an internal <I>ge</I> sequence. After removal, the same umlaut cleanup and
+region recomputation are performed, and Step&#xA0;1c is applied.
+</p>
+</DL>
+
+<p>
+Step 7 (final consonant cluster simplification):
+</p>
+<DL><DD>
+<p>
+Applied only if any of Steps 1&#x2013;4 modified the word. Search for the longest
+match:
+</p>
+<DL>
+<DT><B><I>kt</I></B> &#x2192; <B><I>k</I></B>, &nbsp;
+    <B><I>ft</I></B> &#x2192; <B><I>f</I></B>, &nbsp;
+    <B><I>pt</I></B> &#x2192; <B><I>p</I></B>
+    <DD>replace
+</DL>
+</DL>
+
+<p>
+Step 6 (degemination and final obstruent devoicing):
+</p>
+<DL><DD>
+<p>
+Applied only if Step 7 ran (i.e., any of Steps 1&#x2013;4 modified the word).
+</p>
+<DL>
+<DT><B><I>bb</I></B> &#x2192; <B><I>b</I></B>, &nbsp;
+    <B><I>cc</I></B> &#x2192; <B><I>c</I></B>, &nbsp;
+    <B><I>dd</I></B> &#x2192; <B><I>d</I></B>, &nbsp;
+    <B><I>ff</I></B> &#x2192; <B><I>f</I></B>, &nbsp;
+    <B><I>gg</I></B> &#x2192; <B><I>g</I></B>, &nbsp;
+    <B><I>hh</I></B> &#x2192; <B><I>h</I></B>, &nbsp;
+    <B><I>jj</I></B> &#x2192; <B><I>j</I></B>, &nbsp;
+    <B><I>kk</I></B> &#x2192; <B><I>k</I></B>, &nbsp;
+    <B><I>ll</I></B> &#x2192; <B><I>l</I></B>, &nbsp;
+    <B><I>mm</I></B> &#x2192; <B><I>m</I></B>, &nbsp;
+    <B><I>nn</I></B> &#x2192; <B><I>n</I></B> (unless the word is exactly <I>inn</I>), &nbsp;
+    <B><I>pp</I></B> &#x2192; <B><I>p</I></B>, &nbsp;
+    <B><I>qq</I></B> &#x2192; <B><I>q</I></B>, &nbsp;
+    <B><I>rr</I></B> &#x2192; <B><I>r</I></B>, &nbsp;
+    <B><I>ss</I></B> &#x2192; <B><I>s</I></B>, &nbsp;
+    <B><I>tt</I></B> &#x2192; <B><I>t</I></B>, &nbsp;
+    <B><I>vv</I></B> &#x2192; <B><I>v</I></B>, &nbsp;
+    <B><I>ww</I></B> &#x2192; <B><I>w</I></B>, &nbsp;
+    <B><I>xx</I></B> &#x2192; <B><I>x</I></B>, &nbsp;
+    <B><I>zz</I></B> &#x2192; <B><I>z</I></B>
+    <DD>reduce doubled consonant
+<DT><B><I>v</I></B> &#x2192; <B><I>f</I></B>, &nbsp;
+    <B><I>z</I></B> &#x2192; <B><I>s</I></B>
+    <DD>devoice final obstruent
+</DL>
+</DL>
+
+<h3>Vowel lengthening</h3>
+
+<p>
+Several steps call a <i>lengthen_V</i> sub-routine after deletion. It re-lengthens
+a vowel that was shortened by the suffix removal.
+</p>
+<p>
+Working backwards from the new word end, if the final vowel is preceded by a
+non-vowel and not followed by another vowel, it is duplicated to restore the long
+vowel spelling. The rule applies unconditionally to <I>a</I>, <I>o</I>, <I>u</I>
+and their accented variants.
+</p>
+<p>
+For <I>e</I> and its variants, lengthening is skipped if: the vowel is followed
+by another vowel from <I>AIOU</I>; or it is a lone <I>e</I> or <I>&#xe9;</I> at
+the end of the word; or it is preceded at distance two by a vowel from <I>AIOU</I>
+then a non-vowel.
+</p>
+<p>
+Two special endings are also handled: <I>ee</I> that would become <I>eee</I> is
+left as <I>ee</I>, and an <I>ie</I> ending is preserved as <I>iee</I>.
+</p>
+
+<h2>The full algorithm in Snowball</h2>
+
 [% highlight_file('dutch') %]
 
 [% footer %]

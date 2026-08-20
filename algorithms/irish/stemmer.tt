@@ -45,6 +45,130 @@ end of the word if there is no such non-vowel.</li>
 <I>R</I>1, or the end of the word if there is no such non-vowel.</li>
 </ul>
 
+<h2>Definition of the Irish stemmer</h2>
+
+<h3>The Stemming Process</h3>
+
+<p>
+All steps are applied in order. Each step is attempted regardless of whether
+earlier steps modified the word.
+</p>
+
+<p>
+Step 1 (initial morphology):
+</p>
+<DL><DD>
+<p>
+Find the longest matching prefix and perform the action indicated. Only one
+prefix is removed per word.
+</p>
+<p>Prothetic prefixes:</p>
+<DL>
+<DT><B><I>h-</I></B>  &nbsp;  <B><I>n-</I></B>  &nbsp;  <B><I>t-</I></B>
+    <DD>delete
+</DL>
+<p>Verbal particles and contractions:</p>
+<DL>
+<DT><B><I>d'</I></B>
+    <DD>delete (the verbal particle <I>do/de</I> elided before a vowel, e.g. <I>d'ól</I>)
+<DT><B><I>d'fh</I></B>
+    <DD>replace by <B><I>f</I></B> (verbal particle before lenited <I>f</I>, which is silent, e.g. <I>d'fhág</I>)
+<DT><B><I>m'</I></B>  &nbsp;  <B><I>b'</I></B>
+    <DD>delete (elided possessive <I>mo</I> or copula <I>ba</I> before a vowel)
+<DT><B><I>sh</I></B>
+    <DD>replace by <B><I>s</I></B>
+</DL>
+<p>Eclipsis (a prefixed consonant masks the original initial consonant):</p>
+<DL>
+<DT><B><I>mb</I></B> &#x2192; <B><I>b</I></B>, &nbsp;
+    <B><I>gc</I></B> &#x2192; <B><I>c</I></B>, &nbsp;
+    <B><I>nd</I></B> &#x2192; <B><I>d</I></B>, &nbsp;
+    <B><I>bhf</I></B> &#x2192; <B><I>f</I></B>, &nbsp;
+    <B><I>ng</I></B> &#x2192; <B><I>g</I></B>, &nbsp;
+    <B><I>bp</I></B> &#x2192; <B><I>p</I></B>, &nbsp;
+    <B><I>ts</I></B> &#x2192; <B><I>s</I></B>, &nbsp;
+    <B><I>dt</I></B> &#x2192; <B><I>t</I></B>
+    <DD>replace prefix with the uneclipsed consonant
+</DL>
+<p>Lenition (initial consonant followed by <I>h</I>, softening its pronunciation):</p>
+<DL>
+<DT><B><I>bh</I></B> &#x2192; <B><I>b</I></B>, &nbsp;
+    <B><I>ch</I></B> &#x2192; <B><I>c</I></B>, &nbsp;
+    <B><I>dh</I></B> &#x2192; <B><I>d</I></B>, &nbsp;
+    <B><I>fh</I></B> &#x2192; <B><I>f</I></B>, &nbsp;
+    <B><I>gh</I></B> &#x2192; <B><I>g</I></B>, &nbsp;
+    <B><I>mh</I></B> &#x2192; <B><I>m</I></B>, &nbsp;
+    <B><I>ph</I></B> &#x2192; <B><I>p</I></B>, &nbsp;
+    <B><I>th</I></B> &#x2192; <B><I>t</I></B>
+    <DD>drop the <I>h</I> to recover the base consonant
+</DL>
+</DL>
+
+<p>
+After step 1, compute regions <I>RV</I>, <I>R</I>1 and <I>R</I>2 as defined above.
+</p>
+
+<p>
+Step 2 (noun suffixes):
+</p>
+<DL><DD>
+<p>
+Search for the longest among the following suffixes, and, if found, perform the
+action indicated.
+</p>
+<DL>
+<DT><B><I>amh  &nbsp;  eamh  &nbsp;  abh  &nbsp;  eabh  &nbsp;
+        aibh  &nbsp;  ibh  &nbsp;  aimh  &nbsp;  imh  &nbsp;
+        a&#xED;ocht  &nbsp;  &#xED;ocht  &nbsp;  a&#xED;ochta  &nbsp;  &#xED;ochta</I></B>
+    <DD>delete if in <I>R</I>1
+<DT><B><I>ire  &nbsp;  ir&#xED;  &nbsp;  aire  &nbsp;  air&#xED;</I></B>
+    <DD>delete if in <I>R</I>2
+</DL>
+</DL>
+
+<p>
+Step 3 (derivational suffixes):
+</p>
+<DL><DD>
+<p>
+Search for the longest among the following suffixes, and, if found, perform the
+action indicated.
+</p>
+<DL>
+<DT><B><I>acht  &nbsp;  eacht  &nbsp;  ach  &nbsp;  each  &nbsp;
+        acht&#xFA;il  &nbsp;  achta  &nbsp;  eacht&#xFA;il  &nbsp;  eachta</I></B>
+    <DD>delete if in <I>R</I>2 (e.g. <I>siopadóireacht</I> &#x2192; <I>siopadóir</I>,
+        but not <I>poblacht</I> since <I>acht</I> is not in <I>R</I>2)
+<DT><B><I>arcacht  &nbsp;  arcachta&#xED;  &nbsp;  arcachta</I></B>
+    <DD>replace by <B><I>arc</I></B> if in <I>R</I>2
+        (e.g. <I>monarcacht</I> &#x2192; <I>monarc</I>)
+<DT><B><I>gineach  &nbsp;  gineas  &nbsp;  ginis</I></B>
+    <DD>replace by <B><I>gin</I></B> if in <I>R</I>2
+<DT><B><I>grafa&#xED;och  &nbsp;  grafa&#xED;ocht  &nbsp;  grafa&#xED;ochta  &nbsp;  grafa&#xED;ochta&#xED;</I></B>
+    <DD>replace by <B><I>graf</I></B> if in <I>R</I>2
+<DT><B><I>paite  &nbsp;  patach  &nbsp;  pataigh  &nbsp;  patacha</I></B>
+    <DD>normalize to <B><I>paite</I></B> if in <I>R</I>2
+<DT><B><I>&#xF3;ideach  &nbsp;  &#xF3;ideacha  &nbsp;  &#xF3;idigh</I></B>
+    <DD>replace by <B><I>&#xF3;id</I></B> if in <I>R</I>2
+</DL>
+</DL>
+
+<p>
+Step 4 (verb suffixes):
+</p>
+<DL><DD>
+<p>
+Search for the longest among the following suffixes, and, if found, perform the
+action indicated.
+</p>
+<DL>
+<DT><B><I>imid  &nbsp;  aimid  &nbsp;  &#xED;mid  &nbsp;  a&#xED;mid  &nbsp;  faidh  &nbsp;  fidh</I></B>
+    <DD>delete if in <I>RV</I>
+<DT><B><I>ain  &nbsp;  eadh  &nbsp;  adh  &nbsp;  &#xE1;il  &nbsp;  tear  &nbsp;  tar</I></B>
+    <DD>delete if in <I>R</I>1
+</DL>
+</DL>
+
 <h2>The full algorithm in Snowball</h2>
 
 [% highlight_file('irish') %]
