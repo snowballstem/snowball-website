@@ -1366,7 +1366,7 @@ may use one or more code units, with each code unit being one byte.
 Java strings are UTF-16 which uses two surrogate pairs for Unicode code points
 above U+FFFF so isn't really a fixed width encoding".  All the current stemmers
 work in scripts which use codepoints before U+FFFF, so characters which get
-represented as surrogate pairs are really relevant to the stemming, and by
+represented as surrogate pairs are not really relevant to the stemming, and by
 treating it as fixed width some operations are more efficient to perform.
 This does mean a stemmer can produce different output in some cases when the
 input includes a character U+10000 or higher.)
