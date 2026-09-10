@@ -9,7 +9,7 @@ word. (In the stemming literature they sometimes get referred to as
 certain verb forms:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    mandargli    = <TD></TD><TD> mandare + <B><I>gli</I></B>      <TD></TD><TD> = <TD></TD><TD> to send + to him
 <TR><TD>    mandarglielo = <TD></TD><TD> mandare + <B><I>gli</I></B> + <B><I>lo</I></B> <TD></TD><TD> = <TD></TD><TD> to send + it + to him
 </TABLE></DL>
@@ -31,7 +31,7 @@ of a verb is formed by adding <B><I>ed</I></B>. Certain modifications may be req
 in the stem:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    fit + <B><I>ed</I></B>   <TD></TD><TD> &#x2192;  <TD></TD><TD> fitted (double <B><I>t</I></B>)
 <TR><TD>    love + <B><I>ed</I></B>  <TD></TD><TD> &#x2192;  <TD></TD><TD> loved (drop the final <B><I>e</I></B> of love)
 </TABLE></DL>
@@ -52,7 +52,7 @@ meaning, often in rather exotic ways. So in Italian <B><I>astro</I></B> means a 
 form of something else:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    medico + <B><I>astro</I></B> <TD></TD><TD> = <TD></TD><TD> medicastro    <TD></TD><TD> = <TD></TD><TD> quack doctor
 <TR><TD>    poeta + <B><I>astro</I></B>  <TD></TD><TD> = <TD></TD><TD> poetastro     <TD></TD><TD> = <TD></TD><TD> poetaster
 </TABLE></DL>

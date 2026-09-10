@@ -28,10 +28,17 @@ The following letters are vowels:
 </DL>
 
 <p>
-<I>R</I>2 is not used: <I>R</I>1 is defined in the same way as in the
-<A HREF="../german/stemmer.html">German stemmer</A>.
-(See the <A HREF="../../texts/r1r2.html">note</A> on <I>R</I>1 and <I>R</I>2.)
+<I>R</I>2 is not used.  <I>R</I>1 is set up by the following steps:
 </p>
+
+<ol>
+<li> If the word contains an apostrophe, <I>R</I>1 is set to start after the
+     first apostrophe.
+<li> Otherwise, <I>R</I>1 is set in the standard way (see
+     <A HREF="../../texts/r1r2.html">note</A>).
+<li> In either case, <I>R</I>1 is then adjusted so that the region before it
+     contains at least 3 characters.
+</ol>
 
 <p>
 Define a valid <B><I>s</I></B>-ending as one of
@@ -46,7 +53,7 @@ Define a valid <B><I>s</I></B>-ending as one of
 </DL>
 
 <p>
-Do each of steps 1, 2 and 3.
+Do each of steps 1, 2, 3 and 4.
 </p>
 
 <p>
@@ -119,6 +126,18 @@ Step 3:
 </DL>
 </DL>
 
+Step 4: apostrophe
+<DL><DD>
+    <p>
+    If the word ends with an apostrophe (<b><i>'</i></b>) then remove it.
+    </p>
+
+    <p>
+    (For example, <I>cd'en</I> &#x2192; <I>cd'</I> (step 1)
+    &#x2192; <I>cd</I> in this step.)
+    </p>
+</DL>
+
 <h2>Design Notes</h2>
 
 <p>
@@ -138,12 +157,23 @@ subtle.  Including it would make one difference - it would conflate forms of
 overall this conflation doesn't seem an improvement.
 </p>
 
+<p>
+Apostrophe is sometimes used in Norwegian to separate Norwegian suffixes from
+words of foreign origin.  This is actually incorrect usage - the correct
+alternative is to use a hyphen instead of an apostrophe - but it's widespread
+enough that we should handle it.  This is commonly seen with
+acronyms/initialisms, some of which are only two characters and don't contain
+vowels (e.g. <i>cd'en</i>) so the definition of <i>R</i>1 includes a special
+case for apostrophe.
+</p>
+
 <h2>History of functional changes to the algorithm</h2>
 
 <ul>
 <li>Snowball 2.0.0: <B><I>s</I></B>-ending definition adjusted to only include <b><i>k</i></b> when preceded by a non-vowel.
 <li>Snowball 3.0.0: Improve handling of words ending <b><i>ers</i></b>.
 <li>Snowball 3.0.0: Include <b><i>ê</i></b>, <b><i>ò</i></b>, <b><i>ó</i></b> and <b><i>ô</i></b> in the list of vowels.
+<li>Snowball 3.1.0: Add special handling for apostrophe.
 </ul>
 
 <h2>The same algorithm in Snowball</h2>

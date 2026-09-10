@@ -97,25 +97,29 @@ generate C code with undefined behaviour).
 
 <p>
 Also some languages impose additional restrictions on identifiers (either
-generally or on external identifiers) - for example, Ada identifiers can't end
-in an underscore (e.g. [% highlight_inline("externals (a_)") %] will generate
-invalid Ada code); C++ reserves identifiers containing a double underscore
+generally or on external identifiers) - for example, Ada identifiers can't
+contain a double underscore nor end in an underscore (e.g.
+[% highlight_inline("externals (a_)") %] will generate invalid Ada code);
+C++ reserves identifiers containing a double underscore
 (e.g. [% highlight_inline("externals (a__b)") %] will generate ill-formed C++
 code).  Also some languages (e.g. Ada and Pascal) have case-insensitive
 identifiers so external names should not only differ by case (e.g. [%
 highlight_inline("externals (a A)") %] will generate code with a name collision
-in Ada and Pascal).
+in Ada and Pascal).  C90 only guarantees 6 significant initial characters on
+external identifers, though most modern implementations have a higher or no
+limit (and C99 guarantees 63 significant initial characters).
 </p>
 
 <p>
-We "mangle" the names of internal symbols to avoid such problems (the details
-vary by target language, but typically we add a prefix to avoid collisions with
-reserved words and potentially make other adjustments to avoid particular
-restrictions of the target language).  However an external has to provide
-an external interface so mangling external names would be problematic.  The
-<code>-eprefix</code> option provides a solution to cases which can be solved
-by adding a prefix to external names, which helps for collisions with reserved
-words, but not for Ada's restriction that identifiers not end in an underscore.
+We "mangle" the names of internal identifiers to avoid such problems (the
+details vary by target language, but typically we add a prefix to avoid
+collisions with reserved words and potentially make other adjustments to avoid
+particular restrictions of the target language).  However an external has to
+provide an external interface so mangling external names would be problematic.
+The <code>-eprefix</code> option provides a solution to cases which can be
+solved by adding a prefix to external names, which helps for collisions with
+reserved words, but not for Ada's restriction that identifiers not end in an
+underscore, nor for C90 only guaranteeing 6 significant initial characters.
 (Note: Snowball &lt; 3.1.0 only supported <code>-eprefix</code> for C.)
 </p>
 
@@ -431,13 +435,13 @@ binding powers and semantics as C.  As well as integer names and literal
 numbers, the following may be used in AEs:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD><code>minint</code>&nbsp;   <TD></TD><TD>  &#x2014; the minimum negative number
 <TR><TD><code>maxint</code>&nbsp;   <TD></TD><TD>  &#x2014; the maximum positive number
 <TR><TD><code>cursor</code>&nbsp;   <TD></TD><TD>  &#x2014; the current value of the string <I>cursor</I>
 <TR><TD><code>limit</code>&nbsp;    <TD></TD><TD>  &#x2014; the current value of the string <I>limit</I>
-<TR><TD><code>size</code>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in "slots"
-<TR><TD><code>sizeof s</code>&nbsp; <TD></TD><TD>  &#x2014; the number of "slots" in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string or (since Snowball 2.1) a literal string
+<TR><TD><code>size</code>&nbsp;     <TD></TD><TD>  &#x2014; the size of the string, in code units
+<TR><TD><code>sizeof s</code>&nbsp; <TD></TD><TD>  &#x2014; the number of code units in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string or (since Snowball 2.1) a literal string
 <TR><TH colspan="2">New in Snowball 2.0:</TH></TR>
 <TR><TD><code>len</code>&nbsp;      <TD></TD><TD>  &#x2014; the length of the string, in Unicode characters
 <TR><TD><code>lenof s</code>&nbsp;  <TD></TD><TD>  &#x2014; the number of Unicode characters in &nbsp;<code>s</code>, where &nbsp;<code>s</code>&nbsp; is the name of a string or (since Snowball 2.1) a literal string
@@ -445,7 +449,7 @@ numbers, the following may be used in AEs:
 
 <p>
 [% highlight_inline('size') %] and [% highlight_inline('sizeof') %] count in
-"slots" - see the "Character representation" section below for details.
+code units - see the "Character representation" section below for details.
 </p>
 
 <p>
@@ -645,14 +649,14 @@ Here is a list of the commands that can be used to operate on strings.
             /* - gives t */
 ") %]
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>        &nbsp;<code>try C</code>&nbsp;     <TD></TD><TD> is equivalent to <TD></TD><TD>    &nbsp;<code>C or true</code>
 </TABLE></DL>
 <DT><code>test C</code>
     <DD>This does command &nbsp;<code>C</code>&nbsp; but without advancing <B><I>c</I></B>. Its signal is the same as
     the signal of &nbsp;<code>C</code>, but following signal <B><I>t</I></B>, <B><I>c</I></B> is set back to its old
     value.
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>        &nbsp;<code>test C</code>&nbsp;       <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<code>not not C</code>
 <TR><TD>        &nbsp;<code>test C<SUB>1</SUB> C<SUB>2</SUB></code>&nbsp; <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<code>C<SUB>1</SUB> and C<SUB>2</SUB></code>
 </TABLE></DL>
@@ -664,7 +668,7 @@ Here is a list of the commands that can be used to operate on strings.
     <DD>This does &nbsp;<code>C</code>, puts <B><I>c</I></B> back to its old value and gives signal <B><I>t</I></B>. It is
     very useful as a way of suppressing the side effect of <B><I>f</I></B> signals and
     cursor movement.
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>        &nbsp;<code>do C</code>&nbsp;     <TD></TD><TD>  is equivalent to   <TD></TD><TD>  &nbsp;<code>try test C</code>
 <TR><TD>                     <TD></TD><TD>  or                 <TD></TD><TD>  &nbsp;<code>test try C</code>
 </TABLE></DL>
@@ -1286,7 +1290,11 @@ A name, reserved word or number is terminated by the first character that
 cannot form part of it. A symbol is recognised as the longest sequence of
 characters that forms a valid symbol. So &nbsp;<code>+=-</code>&nbsp; is two symbols, &nbsp;<code>+=</code>&nbsp; and
 <code>-</code>, because &nbsp;<code>+=</code>&nbsp; is a valid symbol in the language while &nbsp;<code>+=-</code>&nbsp; is not.
-Whitespace separates tokens but is otherwise ignored.
+As a special case, Snowball 3.2 and later will treat <code>&lt;-</code> in
+an arithmetic expression as the two symbols <code>&lt;</code> and
+<code>-</code>, so [% highlight_inline('$x<-1') %] parses the same as
+[% highlight_inline('$x < -1') %] instead of
+giving a syntax error.  Whitespace separates tokens but is otherwise ignored.
 </p>
 
 <p>
@@ -1331,31 +1339,54 @@ whitespace and terminated with whitespace, and &nbsp;<code>'S'</code>&nbsp; is a
 
 <p>
 In this description of Snowball, it is assumed that strings are composed of
-<I>characters</I>, and that characters can be defined numerically, but the numeric range
-of these characters is not defined. As implemented, three different schemes
-are supported. Characters can either be (<I>a</I>) bytes in the range 0 to 255,
-as in traditional C strings, or (<I>b</I>) byte pairs in the range 0 to 65535,
-as in Java strings, or (<I>c</I>) UTF-8 encoded bytes sequences in the range 0
-to 65535, so that a character may occupy 1, 2 or 3 bytes.
+<I>characters</I>, and that characters can be defined numerically, but the
+numeric range of these characters is not fixed.  As implemented, three
+different schemes are supported. Characters can be encoded as
+</p>
+
+<ol type="a">
+<li> single bytes in the range 0 to 255 (e.g. ISO-8859-1, KOI-8R),
+<li> 16-bit characters in the range 0 to 65535 (e.g. Java strings), or
+<li> UTF-8 encoded Unicode codepoints in the range 0 to 65535, so that a
+character may occupy 1, 2 or 3 bytes.
+</ol>
+
+<p>
+Here we need to make a distinction - each Unicode character
+has a numeric value (its <i>code point</i>), and the character encoding maps
+that onto numeric values stored in memory - the units of storage for which
+are termed <i>code units</i>.  For fixed-width encodings, each character is
+stored in exactly one code unit (one byte for e.g. ISO-8859-1; two bytes for
+e.g. Java strings).  UTF-8 is a variable-width encoding where each character
+may use one or more code units, with each code unit being one byte.
 </p>
 
 <p>
-For case (<I>c</I>), we need to make a slight separation of the concept of
-<I>characters</I> into <I>symbols</I>, the units of text being represented, and
-<I>slots</I>, the units of space into which they map. (So in case (<I>a</I>), all
-slots are one byte; in case (<I>b</I>) all slots are two bytes.)
+(If you already know Unicode you may now be thinking something like "hang on,
+Java strings are UTF-16 which uses two surrogate pairs for Unicode code points
+above U+FFFF so isn't really a fixed width encoding".  All the current stemmers
+work in scripts which use codepoints before U+FFFF, so characters which get
+represented as surrogate pairs are not really relevant to the stemming, and by
+treating it as fixed width some operations are more efficient to perform.
+This does mean a stemmer can produce different output in some cases when the
+input includes a character U+10000 or higher.)
+</p>
+
+<p>
 <B><I>c</I></B> and <B><I>l</I></B> have numeric values that can be used in AEs (arithmetic
-expressions). These values count the number of slots. Similarly
-<code>setmark</code>, &nbsp;<code>tomark</code>&nbsp; and &nbsp;<code>atmark</code>&nbsp; are remembering and then using slot
-counts. &nbsp;<code>size</code>&nbsp; and &nbsp;<code>sizeof</code>&nbsp; measure string size
-in slots, not symbols. However, &nbsp;<code>hop N</code>&nbsp; moves <B><I>c</I></B> over &nbsp;<code>N</code>&nbsp; symbols,
-not &nbsp;<code>N</code>&nbsp; slots, and &nbsp;<code>next</code>&nbsp; is equivalent to &nbsp;<code>hop 1</code>.
+expressions). These values count the number of code units. Similarly
+<code>setmark</code>, &nbsp;<code>tomark</code>&nbsp; and
+&nbsp;<code>atmark</code>&nbsp; are remembering and then using code unit
+counts. &nbsp;<code>size</code>&nbsp; and &nbsp;<code>sizeof</code>&nbsp;
+measure code units, not code points. However, &nbsp;<code>hop N</code>&nbsp; moves <B><I>c</I></B> over &nbsp;<code>N</code>&nbsp; characters,
+not &nbsp;<code>N</code>&nbsp; code units, and &nbsp;<code>next</code>&nbsp; is equivalent to &nbsp;<code>hop 1</code>.
 </p>
 
 <p>
-Snowball 2.0 adds <code>len</code> and <code>lenof</code>, which measure string length in symbols
-(so they're the same as <code>size</code> and <code>sizeof</code> in cases (<i>a</i>) and (<i>b</i>), but
-different in case (<i>c</i>)).
+Snowball 2.0 adds <code>len</code> and <code>lenof</code>, which measure string
+length in characters (so they're the same as <code>size</code> and
+<code>sizeof</code> for fixed-width character encodings, but different for
+UTF-8).
 </p>
 
 <p>
@@ -1418,6 +1449,13 @@ specified via <code>stringdef</code>.  The <code>U+</code> notation allows
 you to use a single Snowball source in this situation.
 </p>
 
+<p>
+Snowball 3.1.0 and later will warn if <code>hex</code> or <code>decimal</code>
+is used (except that <code>hex</code> does not warn for use in a
+<code>stringdef</code> for a name which starts <code>U+</code>, since that is
+how mappings for character sets such as ISO-8859-2 and KOI8-R are defined).
+</p>
+
 <h3>13.2 among starter command</h3>
 
 <p>
@@ -1463,7 +1501,8 @@ However, both are equivalent to:
 <p>
 This requires an explicit <code>substring</code> but seems clearer so
 we recommend using this in new code and have designated the use of a starter as
-a legacy feature.
+a legacy feature.  Snowball 3.1.0 and later will warn if an among starter is
+used.
 </p>
 
 <p>
@@ -1496,19 +1535,19 @@ is equivalent to:
          )
 </PRE>
 
-<h3>13.3 => command</h3>
+<h3>13.3 =&gt; command</h3>
 
 [% highlight('
         $x => y
 ') %]
 
 <p>
-sets the value of &nbsp;<code>y</code>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<code>x</code>.
+was documented as setting the value of &nbsp;<code>y</code>&nbsp; to the <B><I>c:l</I></B> region of &nbsp;<code>x</code>.
 </p>
 
 <p>
 However this was not the implemented behaviour - instead the region copied begins at
-the <b>start</b> of &nbsp;<code>x</code> rather than the cursor.  This difference
+the <b>start</b> of &nbsp;<code>x</code> rather than beginning at the cursor.  This difference
 can be seen with code such as
 </p>
 
@@ -1532,9 +1571,10 @@ where the code requires the implemented behaviour.
 </p>
 
 <p>
-You should avoid using &nbsp;<code>=></code>&nbsp; in new code.  We've replaced the uses in
-the Schinke stemmer and if there are other existing uses we recommend replacing
-them too.  For example, the first example above can be rewritten as
+You should avoid using &nbsp;<code>=&gt;</code>&nbsp; in new code.  We've
+replaced the uses in the Schinke stemmer and if there are other existing uses
+we recommend replacing them too.  For example, the first example above can be
+rewritten as
 </p>
 
 [% highlight('
@@ -1545,12 +1585,20 @@ them too.  For example, the first example above can be rewritten as
 If you have a use which you can't see how to replace, please get in touch and we can advise.
 </p>
 
+<p>
+Snowball 3.1.0 and later will warn if <code>=&gt;</code> is used.
+</p>
+
 <h3>13.4 &lt;+ synonym for insert</h3>
 
 <p>
 Snowball supports &nbsp;<code>&lt;+</code>&nbsp; as a synonym for &nbsp;<code>insert</code>.
-We recommend always using <code>insert</code> instead as it's clearer and not
-unnecessarily verbose.
+We recommend always using <code>insert</code> instead.  It is slightly more
+verbose, but not excessively so, and the meaning is clearer.
+</p>
+
+<p>
+Snowball 3.1.0 and later will warn if <code>&lt;+</code> is used.
 </p>
 
 <h2>Snowball syntax</h2>

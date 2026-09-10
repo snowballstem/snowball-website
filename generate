@@ -5,7 +5,7 @@ use File::Compare;
 use Template;
 use IPC::Run qw(run);
 
-my $version = '3.0.1';
+my $version = '3.1.1';
 
 # some useful options (see below for full list)
 my $config = {
@@ -127,7 +127,7 @@ __END__
 __END__
     }
     if (defined $wikipedia_url) {
-	$out = << "__END__";
+	$out .= << "__END__";
 <li> <a href="$wikipedia_url">$lang_name language</a> on Wikipedia</li>
 __END__
     }
@@ -197,7 +197,7 @@ Here is a sample of $lang_name vocabulary, with the stemmed forms that will be g
 </p>
 
 <div style="background-color:lightpink">
-<TABLE CELLPADDING=0>
+<TABLE>
 <TR><TD>  <B>word</B> </TD>
  <TD></TD><TD> </TD>
  <TD></TD><TD> <B>stem</B> </TD>
@@ -288,16 +288,19 @@ my @menu = (
 	}
     }
 
-run ['closure-compiler',
-     '--accept_const_keyword',
-     '--charset', 'UTF-8',
-     qw(--compilation_level ADVANCED_OPTIMIZATIONS),
-     qw(--warning_level VERBOSE),
-     @stemmer_js_files],
-     \undef, '>', $outpath."/js/stemmers.js", '2>', \*STDERR;
+my $terser_cache = "/tmp/terser-cache.json";
+unlink $terser_cache;
+for my $js (@stemmer_js_files) {
+    run ['npx', 'terser', $js, '--compress', '--mangle',
+	'--mangle-props',
+	'regex=/^(current|c|limit|limit_backward|bra|ket|af|(find_among|(go_)?(in|out)_grouping|eq_s)(_b)?|slice_(del|from|to)|[gs]etCurrent|copy_from|insert|stem)$/',
+	'--name-cache', $terser_cache,
+	'--toplevel',
+	'-o', "$outpath/$js"] or die $!;
+}
+unlink $terser_cache;
 
 $stemmer_select .= "</select>";
-$$vars{stemmer_js_files} = ['js/stemmers.js']; #\@stemmer_js_files;
 $$vars{stemmer_select} = $stemmer_select;
 
 # specify input filename, or file handle, text reference, etc.

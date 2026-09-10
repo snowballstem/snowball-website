@@ -119,7 +119,7 @@ would give rise to the header file,
 
 <p>
 If &nbsp;<code>-vprefix</code>&nbsp; is used, then functions are generated to
-provide access to Snowball strings, integers and booleans. (In Snowball 3.1.x
+provide access to Snowball strings, integers and booleans. (In Snowball 3.0.x
 and earlier, Snowball variables were stored in a different way in the generated
 C code and macros were generated if <code>-vprefix</code> was used).
 For example
@@ -144,12 +144,12 @@ would give rise the header file,
 ", "c") %]
 
 <p>
-The Snowball compiler will attempt to "localise" integer and boolean variables
-used only in one routine, in which case they become local variables in the C
-code and <code>-vprefix</code> won't generate code for them.  Let us know if
-this is a problem for you (the Snowball language may need to gain a way to mark
-variables as external which could suppress this optimisation and generate an
-access function.
+The Snowball compiler will (since 3.1.0) attempt to "localise" integer and
+boolean variables used only in one routine, in which case they become local
+variables in the C code and <code>-vprefix</code> won't generate code for them.
+Let us know if this is a problem for you (the Snowball language may need to
+gain a way to mark variables as external which could suppress this optimisation
+and generate an access function).
 </p>
 
 <p>
@@ -162,11 +162,11 @@ specified, one byte per codepoint using either ISO-8859-1 or another encoding.
 <p>
 For other programming languages, one of these three options is effectively
 implicitly hard-coded (except wide-characters may be wider) - e.g. C#, Java,
-Javascript and Python use wide characters; Ada, Go and Rust use UTF-8; Pascal
-uses ISO-8859-1.  Since Snowball 2.0 it's possible with a little care to write
-Snowball code that works regardless of how characters are represented.  See
-section 12 of the <a href="/compiler/snowman.html">Snowball manual</a> for
-more details.
+Javascript and Python use wide characters; Ada, Go, PHP, Rust and Zig use
+UTF-8; Pascal uses ISO-8859-1.  Since Snowball 2.0 it's possible with a little
+care to write Snowball code that works regardless of how characters are
+represented.  See section 12 of the <a href="/compiler/snowman.html">Snowball
+manual</a> for more details.
 </p>
 
 <p>
@@ -188,17 +188,6 @@ appropriate directory structure.
 -->
 
 <h4>Other options</h4>
-
-<p>
-If <code>-syntax</code> is used the other options are ignored, and the syntax
-tree of the Snowball program is written to &nbsp;<code>stdout</code>. This can be a handy way
-of checking that you have got the bracketing right in the program you have
-written.  The Snowball compiler performs some optimisations on the program as
-it builds the syntax tree (for example, constant sub-expressions are evaluated,
-no-op commands are warned about and replaced with `true`, etc - the
-<code>-syntax</code> option will show the syntax tree after such
-transformations.
-</p>
 
 <p>
 Any number of &nbsp;<code>-include</code>&nbsp; options may be present, for example,
@@ -318,19 +307,20 @@ The string is not zero-terminated, but you can zero terminate it yourself with
 ', "c") %]
 
 <p>
-The values of the other variables can be accessed via the &nbsp;<code>#define</code>
-settings that result from the &nbsp;<code>-vprefix</code>&nbsp; option, although this should not
-usually be necessary:
+The values of the other variables can be accessed via the functions that are
+generated if the <code>-vprefix</code>&nbsp; option is used, although this
+should not usually be necessary:
 </p>
 
 [% highlight('
-    printf("p1 is %d\n", z->Khotanese_variable_p1);
+    printf("p1 is %d\n", Khotanese_variable_p1(z));
 ', "c") %]
 
 <p>
 The stemming scripts on this Web site use Snowball very simply.
-<code>-vprefix</code>&nbsp; is left unset, and &nbsp;<code>-eprefix</code>&nbsp; is set to the name of the
-script (usually the language the script is for).
+<code>-vprefix</code>&nbsp; is left unset, and
+&nbsp;<code>-eprefix</code>&nbsp; is set to the name of the Snowball
+script (with is usually the name of language the script stems).
 </p>
 
 <!-- We should probably reinstate this section: <h2>Getting started</h2> -->
@@ -338,30 +328,164 @@ script (usually the language the script is for).
 <h2>Debugging snowball scripts</h2>
 
 <p>
-In the rare event that your Snowball script does not run perfectly the first time:
+The Snowball compiler provides some options to support developing and debugging
+Snowball programs.
+</p>
+
+<h3>Compiler warnings</h3>
+
+<p>
+We aim to have the Snowball compiler issue a warning for code that's likely to be
+wrong.  For example, it will warn about many cases where code can't be reached
+or a command has no effect.  If you encounter a situation where the compiler
+could have usefully warned but didn't, please report it.
+</p>
+
+<h3>Debug command</h3>
+
+<p>
+Snowball has a debug command, which is a question mark (<code>?</code>).
+This is now implemented for all target languages (it's been supported for
+C/C++ for a long time, Ada since Snowball 3.1.0, other languages since 3.2.0).
+<code>?</code> generates a call to a helper function or method in the
+target language which writes the current string to <code>stdout</code>,
+annotated to show the positions of the cursor, limits, and slice ends
+(<code>|</code> marks the cursor <B><I>c</I></B>, curly brackets
+(<code>{</code> and <code>}</code>) mark the limits, and square brackets
+(<code>[</code> and <code>]</code>) mark the slice ends.  The limits may be
+less than the whole string because of the action of <code>setlimit</code>.
 </p>
 
 <p>
-Remember that the option &nbsp;<code>-syntax</code>&nbsp; prints out the syntax tree. A question
-mark can be included in Snowball as a command, and it will generate a call
-<code>debug(...)</code> and define a macro so that the <code>debug()</code>
-function is defined in the runtime header.
-It causes the
-current string to sent to &nbsp;<code>stdout</code>, with square brackets marking the
-slice and vertical bar the position of <B><I>c</I></B>. Curly brackets mark the
-end-limits of the string, which may be less than the whole string because
-of the action of &nbsp;<code>setlimit</code>.
+At present there is no way of reporting the value of integer, boolean or string
+variables.  If desperate, you can put debugging lines into the generated code.
+Passing <code>-comments</code> makes it easier to find where to add such debugging
+code (see the next section).
+</p>
+
+<h3>Comments</h3>
+
+<p>
+You can pass <code>-comments</code> to the Snowball compiler to get it to
+generate comments showing the correspondence with the Snowball source.  This
+is mainly useful when developing or debugging code generators.
 </p>
 
 <p>
-At present there is no way of reporting the value of an integer or boolean.
+The comments report commands as they exist in the syntax tree after some
+optimisations.  Reported line numbers should be correct, but sometimes the
+command reported can be different to that in the source code (for example,
+<code>atleast 0 C</code> is rewritten as <code>repeat C</code>, while
+<code>$x /= -1</code> is rewritten as <code>$x = -x</code> and the generated
+comments for these cases will show the rewritten versions.
+</p>
+
+<h3>Syntax tree</h3>
+
+<p>
+If command-line option <code>-syntax</code> is used then instead of generating
+code the compiler writes out the syntax tree to <code>stdout</code>.  This can
+be a handy way of checking that you have got the bracketing right in the
+program you have written.
 </p>
 
 <p>
-If desperate, you can put debugging lines into the generated C program.
-You can pass <code>-comments</code> to the snowball compiler to get it to
-generate comments showing the correspondence with the Snowball source which
-makes it easier to find where to add such debugging code.
+The Snowball compiler performs some optimisations on the program as
+it builds the syntax tree (for example, constant sub-expressions are evaluated,
+no-op commands are warned about and replaced with <code>true</code>, etc - the
+syntax tree is shown after such transformations.
+</p>
+
+<h3>Coverage</h3>
+
+<p>
+Snowball 3.1.0 added a simple code coverage feature (currently only supported
+for C/C++).  This option enables the generation of extra code to allow the
+runtime to report which <code>among</code> cases and which
+<code>grouping</code> characters are actually exercised.  This can help find
+situations where a case is impossible to trigger because the words it's meant
+to handle get dealt with by an earlier step.  It can also find gaps in the test
+vocabulary - often adding a handful of words can complete the
+<code>among</code> coverage.
+</p>
+
+<p>
+To use this feature, you need to enable it when generating the code and
+when building it:
+</p>
+
+[% highlight('
+make SNOWBALL_FLAGS=-coverage CPPFLAGS=-DSNOWBALL_COVERAGE
+', 'sh') %]
+
+<p>
+Then stemming a word will log coverage data to <code>stderr</code>, and you
+can turn that into a coverage report using <code>sort</code> and
+<code>uniq</code> (some of these options may be specific to GNU sort):
+</p>
+
+[% highlight('
+make -s check_utf8_swedish 2> coverage.log
+sort -k2,2 -k3,3n -k3,3 -k5,5g coverage.log | uniq -c |awk ' _ "'" _ '{$1=sprintf("% 8d",$1-1);print}' _ "'" _ ' > coverage.report
+', 'sh') %]
+
+<p>
+The file <code>coverage.report</code> looks like this for an among:
+</p>
+
+<pre>
+  24402 algorithms/danish.sbl:59: among 1 no match
+     32 algorithms/danish.sbl:60: among 1 : 0 of 4 string 'gd'
+    316 algorithms/danish.sbl:61: among 1 : 1 of 4 string 'dt'
+    536 algorithms/danish.sbl:61: among 1 : 2 of 4 string 'gt'
+     48 algorithms/danish.sbl:61: among 1 : 3 of 4 string 'kt'
+</pre>
+
+<p>
+The columns are:
+</p>
+
+<ol>
+<li> the number of times this case/character triggered
+<li> the filename and line number
+<li> <em>among</em> or <em>grouping</em>
+<li> 0-base count of which among this is or name of this grouping
+<li>
+  <ul>
+    <li> "no match" for how many times none of the cases/characters matched, or
+    <li> ": M of N string 'S'" for an among case, or
+    <li> ": M of N func-f 'S'" for among function signalling <em>f</em>, or
+    <li> ": M of N func-t 'S'" for among function signalling <em>t</em>, or
+    <li> "index M of N 'C'" for a grouping character
+  </ul>
+</ol>
+
+<p>
+Note that the indices are 0-based, so in the example above are "0 of 4" to "3
+of 4" (there's no "4 of 4").
+</p>
+
+<p>
+Cases/characters which never match have 0 in the first column.  (If an among
+contains the empty string without a gating function then the "no match" case is
+impossible and so will be omitted from the coverage report.)
+</p>
+
+<p>
+Note that among strings are reported in the same order as they appear in the
+source code, which can help to locate them in the source (especially if
+multiple strings are listed on the same line).
+</p>
+
+<p>
+The coverage feature could definitely be slicker to use, but it's already at
+a state where it seemed useful to include in releases.
+</p>
+
+<p>
+It would also be useful to report coverage for every command, not just among
+cases and grouping characters.  The counts could also potentially be fed
+back into code generation to allow profile-guided optimisation.
 </p>
 
 <h2>Compiler bugs</h2>

@@ -9,6 +9,17 @@
 
 [% algorithm_vocab([40, 'abbandonata', 'pronto']) %]
 
+<h2>Design Notes</h2>
+
+<p>
+The elisions handled by the stemmer are chosen with improving information
+retrieval in mind.  We therefore don't remove some elisions which are rare
+in practice, we don't remove elisions where both parts carry useful meaning
+(e.g. <i>sant'antonio</i> - "Saint Anthony"), and we don't remove elisions
+which are only used with words which don't carry much useful meaning in this
+context (e.g. <i>c'</i>).
+</p>
+
 <h2>The stemming algorithm</h2>
 
 <p>
@@ -57,6 +68,30 @@ following vowel, or if the first two letters are vowels, <I>RV</I> is the region
 after the next consonant, and otherwise (consonant-vowel case) <I>RV</I> is the
 region after the third letter. But <I>RV</I> is the end of the word if these
 positions cannot be found.
+</p>
+
+<p>
+Before the numbered steps, we remove elisions.  If the word starts with one of
+<b><i>d</i></b>
+<b><i>l</i></b>
+<b><i>m</i></b>
+<b><i>s</i></b>
+<b><i>t</i></b>
+<b><i>v</i></b>
+<b><i>all</i></b>
+<b><i>dall</i></b>
+<b><i>dell</i></b>
+<b><i>gl</i></b>
+<b><i>nell</i></b>
+<b><i>quell</i></b>
+<b><i>quest</i></b>
+<b><i>sull</i></b>
+<b><i>tutt</i></b>
+or
+<b><i>un</i></b>,
+followed by an apostrophe (<b><i>'</i></b>) which is not
+at the end of the word, then remove from the prefix of the word up to and
+including this apostrophe.
 </p>
 
 <p>
@@ -189,6 +224,7 @@ Finally,
 <ul>
 <li>2005-06-15: Remove suffixes <i>-ante</i> and <i>-anti</i>.</li>
 <li>Snowball 3.0.0: Add exception to <i>RV</i> definition to avoid overstemming <i>divano</i>.</li>
+<li>Snowball 3.1.0: Added a new first step which removes elisions.</li>
 </ul>
 
 <h2>The same algorithm in Snowball</h2>

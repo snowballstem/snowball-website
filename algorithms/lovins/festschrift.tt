@@ -301,7 +301,7 @@ constitute part B of the stemmer. Here they are (* stands for any letter):
 </p>
 
 <div align="center">
-<TABLE CELLPADDING=0>
+<TABLE>
 <TR><TD>A <TD></TD><TD>  No restrictions on stem
 <TR><TD>B <TD></TD><TD>  Minimum stem length = 3
 <TR><TD>C <TD></TD><TD>  Minimum stem length = 4
@@ -384,7 +384,7 @@ of the words),
 </p>
 
 <div align="center">
-<TABLE CELLPADDING=0>
+<TABLE>
 <TR><TD>    1)  <TD></TD><TD> bb   <TD></TD><TD>&#x2192;  &nbsp;  &nbsp;  <TD></TD><TD> b    <TD></TD><TD>rubb[ing] &#x2192; rub
 <TR><TD>        <TD></TD><TD> ll   <TD></TD><TD>&#x2192;<TD></TD><TD> l          <TD></TD><TD>controll[ed] &#x2192; control
 <TR><TD>        <TD></TD><TD> mm   <TD></TD><TD>&#x2192;<TD></TD><TD> m          <TD></TD><TD>trimm[ed] &#x2192; trim
@@ -792,7 +792,7 @@ The irregular verbs have a
 different past form, and sometimes a separate p.p. form.
 It is easy to think up more examples,
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD>    stem  <TD></TD><TD> past  <TD></TD><TD> p.p.
 <TR><TD>
 <TR><TD>    <I>ring</I>  <TD></TD><TD> <I>rang</I>  <TD></TD><TD> <I>rung</I>
@@ -1202,7 +1202,7 @@ Here are the removal conditions,
 </p>
 
 <div align="center">
-<TABLE CELLPADDING=0>
+<TABLE>
 <TR><TD>A  &nbsp; <TD></TD><TD> Minimum stem length = 1s
 <TR><TD>B <TD></TD><TD> Minimum stem length = 2s
 <TR><TD>C <TD></TD><TD> Minimum stem length = 2s and remove ending only after <B><I>s</I></B> or <B><I>t</I></B>
@@ -1226,7 +1226,7 @@ Here are the respelling rules, defined with the help of the removal
 conditions. In each case, the stem being tested does not include the string
 at the end which has been identified for respelling.
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD> 1) &nbsp;  <TD></TD><TD> Remove <B><I>e</I></B> if A, or if B and the stem does not end with a short vowel
 <TR><TD> 2) <TD></TD><TD> Remove <B><I>l</I></B> if B and the stem ends with <B><I>l</I></B>
 <TR><TD> 3) <TD></TD><TD> <B><I>enci/ency</I></B> &#x2192; <B><I>enc</I></B> if A, otherwise &#x2192; <B><I>enci</I></B>

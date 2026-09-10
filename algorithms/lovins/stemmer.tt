@@ -73,7 +73,7 @@ followed by its condition code.
 <div style="background-color:silver">
 <h4>Appendix A. The list of endings</h4>
 
-<DL><DD><DL><DD><TABLE CELLPADDING=0>
+<DL><DD><DL><DD><TABLE>
 <TR><TD></TR>
 <TR><TD><TD></TD><TD> .11. </TD></TR>
 <TR><TD><TD></TD><TD>    alistically B </TD><TD></TD><TD> arizability A </TD><TD></TD><TD> izationally B </TD></TR>
@@ -185,7 +185,7 @@ Here are the 29 conditions, called A to Z, AA, BB and CC (* stands for any lette
 certain endings</h4>
 
 <DL><DD>
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD><TD></TD><TD>A </TD><TD></TD><TD>  No restrictions on stem </TD></TR>
 <TR><TD><TD></TD><TD>B </TD><TD></TD><TD>  Minimum stem length = 3 </TD></TR>
 <TR><TD><TD></TD><TD>C </TD><TD></TD><TD>  Minimum stem length = 4 </TD></TR>
@@ -231,7 +231,7 @@ Finally, here are the 35 transformation rules.
 <h4>Appendix C. Transformation rules used in recoding stem terminations</h4>
 
 <DL><DD>
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD><TD></TD><TD> 1  &nbsp;  &nbsp;  &nbsp;  </TD><TD></TD><TD> remove one of double <I>b, d, g, l, m, n, p, r, s, t</I> </TD></TR>
 <TR><TD><TD></TD><TD> 2  </TD><TD></TD><TD>      iev   &nbsp;  &#x2192;  &nbsp;  ief </TD></TR>
 <TR><TD><TD></TD><TD> 3  </TD><TD></TD><TD>      uct   &nbsp;  &#x2192;  &nbsp;  uc </TD></TR>
@@ -280,7 +280,7 @@ The following examples show the intentions behind these rules.
 </p>
 
 <DL><DD>
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD><TD></TD><TD>   1  &nbsp;  &nbsp;  &nbsp;  </TD><TD></TD><TD> rubb[ing] &#x2192; rub, embedd[ed] &#x2192; embed etc </TD></TR>
 <TR><TD><TD></TD><TD>   2  </TD><TD></TD><TD> believ[e] &#x2192; belief </TD></TR>
 <TR><TD><TD></TD><TD>   3  </TD><TD></TD><TD> induct[ion] &#x2192; induc[e] </TD></TR>

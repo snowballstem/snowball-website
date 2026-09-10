@@ -57,7 +57,7 @@ If you wish to describe other Latin-alphabet based codesets for use in stemmers
 we recommend using the following conventions:
 </p>
 
-<DL><DD><TABLE CELLPADDING=0>
+<DL><DD><TABLE>
 <TR><TD> <I>accent</I> <TD></TD><TD> <I>ASCII form</I> <TD></TD><TD> <I>example</I>
 <TR><TD> acute  <TD></TD><TD> single quote (') <TD></TD><TD> [% highlight_inline("'{e'}'") %] for &eacute;
 <TR><TD> grave  <TD></TD><TD> back quote (`) <TD></TD><TD> [% highlight_inline("'{a`}'") %] for &agrave;
