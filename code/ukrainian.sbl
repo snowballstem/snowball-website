@@ -811,6 +811,14 @@ define stem as (
         '{v}{t}{e}{k}{t}{y}'                (<- '{v}{t}{e}{k}')            // втекти
         '{u}{t}{e}{k}{t}{y}'                (<- '{u}{t}{e}{k}')            // утекти
         '{p}{o}{m}{e}{r}{t}{y}'             (<- '{p}{o}{m}{e}{r}')         // померти
+        // The frequent past tenses in -рла/-рли/-рло, which the -ла guard
+        // otherwise reads as nouns (Карла, гирло)
+        '{p}{o}{m}{e}{r}{l}{a}'             (<- '{p}{o}{m}{e}{r}')         // померла
+        '{p}{o}{m}{e}{r}{l}{y}'             (<- '{p}{o}{m}{e}{r}')         // померли
+        '{p}{o}{m}{e}{r}{l}{o}'             (<- '{p}{o}{m}{e}{r}')         // померло
+        '{v}{y}{m}{e}{r}{l}{a}'             (<- '{v}{y}{m}{e}{r}')         // вимерла
+        '{v}{y}{m}{e}{r}{l}{y}'             (<- '{v}{y}{m}{e}{r}')         // вимерли
+        '{v}{d}{e}{r}{l}{y}{s}{ia}'         (<- '{v}{d}{e}{r}')            // вдерлися
         // новела keeps its -ла: -вела is otherwise a past tense (привела)
         '{n}{o}{v}{e}{l}{a}'                (<- '{n}{o}{v}{e}{l}')         // новела
         '{n}{o}{v}{e}{l}{y}'                (<- '{n}{o}{v}{e}{l}')         // новели
@@ -1138,13 +1146,16 @@ define stem as (
         // pV (школа → школ, число → числ, карти → карт, факти → факт).
         //
         // -ла/-ли/-ло is not a past tense after о (Микола, школа, апостоли,
-        // навколо: nouns far outnumber verbs like виборола), after л, т, д
-        // (Михайло, Абдулла, світло, сідло: no verb has these before the
-        // ending), or after е unless -вело (весело, ремесло are not verbs;
-        // призвело, привело are). -ороли/-орола are the one verb family
-        // behind о (бороли, виборола), so о only guards when not preceded
-        // by р; стала/стали/стало are the past of стати, so т does not
-        // guard the bare с.
+        // навколо: nouns far outnumber verbs like виборола), after л, т, д,
+        // в, й, б, п (Абдулла, світло, сідло, Павло, Михайло, срібло,
+        // тепло: the verbs with these before the ending are rare, пливла,
+        // ослабла), after р (Карла, гирло, горло: the frequent verbs
+        // померла, вимерли are listed as exceptions), or after е unless
+        // -вело (весело, ремесло are not verbs; призвело, привело are).
+        // -ороли/-орола are the one verb family behind о (бороли,
+        // виборола), so о only guards when not preceded by р;
+        // стала/стали/стало are the past of стати, so т does not guard
+        // the bare с.
         //
         // -ти is not an infinitive after н, е, о, іс, ис (документи,
         // портрети, роботи, спеціалісти, листи), nor after к, р, ш, ф, х,
@@ -1160,7 +1171,8 @@ define stem as (
                           '{v}{s}{ia}' '{v}{s}{'}' '{s}{ia}' '{s}{'}' ) )
             ( ( ( '{l}{a}' or '{l}{y}' or '{l}{o}' )
                 ( ( '{o}' not '{r}' ) or '{l}' or ( '{t}' not ( '{s}' atlimit ) )
-                  or '{d}' or ( '{e}' not '{v}' ) )
+                  or '{d}' or '{v}' or '{i`}' or '{b}' or '{p}' or '{r}'
+                  or ( '{e}' not '{v}' ) )
                 set found_la_noun )
               or
               ( '{t}{y}'
