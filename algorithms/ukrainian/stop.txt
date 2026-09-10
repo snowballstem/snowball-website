@@ -1,0 +1,477 @@
+
+ | A Ukrainian stop word list. Comments begin with vertical bar. Each stop
+ | word is at the start of a line.
+
+ | This is a ranked list (commonest to rarest) of stopwords derived from
+ | a dump of the Ukrainian Wikipedia (2025-01-02). Only function words are
+ | included: prepositions, conjunctions, particles, pronouns, the verb
+ | "to be" and a few modal and quantity words.
+
+ | The apostrophe (') is not used in any of these words.
+
+у              | in, at (also alternative form of в)
+в              | in, at
+на             | on, onto
+і              | and
+з              | with, from
+та             | and
+до             | to, up to
+за             | for, behind
+що             | what, that
+від            | from
+а              | and, but
+для            | for
+також          | also
+не             | not
+як             | how, as
+його           | his, him
+був            | he was
+він            | he
+про            | about
+є              | is, there is
+під            | under
+було           | it was
+після          | after
+й              | and (alternative form of і)
+із             | from, with (alternative form of з)
+або            | or
+по             | along, according to
+який            | which (masc.)
+які            | which (pl.)
+це             | this, it
+де             | where
+але            | but
+була           | she was
+були           | they were
+її             | her
+через          | through, because of
+при            | at, by
+яка            | which (fem.)
+тому           | therefore, to that
+вони           | they
+вона           | she
+того           | of that
+о              | about, at (time)
+має            | has
+між            | between
+зі             | with, from (alternative form of з)
+яких           | of which (pl.)
+їх             | them, their
+коли           | when
+так            | so, yes
+цього          | of this
+щоб            | in order to
+лише           | only
+серед          | among
+чи             | whether, or
+ще             | still, yet
+ж              | intensifier particle
+може           | may, maybe
+цей            | this (masc.)
+один           | one
+над            | above
+двох           | of two
+них            | them (after preposition)
+протягом       | during
+більше         | more
+б              | conditional particle
+якого          | of which (masc.)
+два            | two
+згідно         | according to
+зокрема        | in particular
+бути           | to be
+можна          | one can
+потім          | then, afterwards
+однак          | however
+цьому          | to this
+те             | that (neut.)
+вже            | already
+багато         | many, much
+одного         | of one
+той            | that (masc.)
+якщо           | if
+проте          | however
+мають          | they have
+три            | three
+таким          | such (instr.)
+всі            | all (pl.)
+без            | without
+тільки         | only
+свого          | of one's own
+можуть         | they can
+я              | I
+біля           | near
+згодом         | later
+кілька         | several
+наприклад      | for example
+ці             | these
+ніж            | than
+дуже           | very
+щодо           | concerning
+такі           | such (pl.)
+йому           | to him
+хоча           | although
+тоді           | then
+якому          | to which
+часто          | often
+більш          | more
+все            | all, everything
+крім           | except
+одним          | by one
+мав            | he had
+якої           | of which (fem.)
+тут            | here
+себе           | oneself
+усіх           | of all
+нього          | him (after preposition)
+яке            | which (neut.)
+таких          | of such
+перед          | before, in front of
+своїх          | of one's own (pl.)
+дві            | two (fem.)
+тим            | by that
+майже          | almost
+ця             | this (fem.)
+всіх           | of all
+цих            | of these
+саме           | exactly, namely
+свій           | one's own
+навіть         | even
+знову          | again
+цієї           | of this (fem.)
+будь           | any (with -який, -де etc.)
+свої           | one's own (pl.)
+завдяки        | thanks to
+якій           | to which (fem.)
+мали           | they had
+трьох          | of three
+чого           | of what
+одна           | one (fem.)
+одне           | one (neut.)
+мала           | she had
+усі            | all (pl.)
+там            | there
+багатьох       | of many
+буде           | will be
+своєї          | of one's own (fem.)
+мати           | to have
+внаслідок      | as a result of
+хто            | who
+ті             | those
+тобто          | that is
+ним            | by him
+поблизу        | near
+яким           | by which
+тепер          | now
+собою          | by oneself
+неї            | her (after preposition)
+же             | intensifier particle
+найбільш       | most
+загалом        | in general
+іноді          | sometimes
+всього         | of all, in total
+своїм          | by one's own
+цій            | to this (fem.)
+сам            | himself
+двома          | by two
+ми             | we
+своєму         | to one's own
+досить         | enough, rather
+своє           | one's own (neut.)
+їм             | to them
+навколо        | around
+тих            | of those
+однією         | by one (fem.)
+можливо        | possibly
+своїй          | to one's own (fem.)
+своєю          | by one's own (fem.)
+кількох        | of several
+їй             | to her
+замість        | instead of
+декілька       | several
+цим            | by this
+окрім          | except
+ними           | by them
+мало           | little, few
+одному         | to one
+зараз          | now
+собі           | to oneself
+менше          | less
+воно           | it
+завжди         | always
+ньому          | in him
+ні             | no, neither
+об             | about (alternative form of о)
+якою           | by which (fem.)
+менш           | less
+такий          | such (masc.)
+міг            | he could
+могли          | they could
+повинні        | they must
+слід           | one should
+однієї         | of one (fem.)
+бо             | because
+нею            | by her
+своїми         | by one's own (pl.)
+весь           | all, whole
+ніколи         | never
+попри          | despite
+такими         | by such
+самого         | of himself
+чому           | why
+повинен        | he must
+ти             | thou
+потрібно       | it is necessary
+усього         | of all, in total
+трохи          | a little
+поруч          | beside
+ній            | in her
+якими          | by which (pl.)
+будуть         | they will be
+такого         | of such
+одній          | to one (fem.)
+аж             | as far as, even
+така           | such (fem.)
+уже            | already (alternative form of вже)
+теж            | also
+вздовж         | along
+всьому         | to all
+дещо           | somewhat, something
+би             | conditional particle
+досі           | until now
+отже           | therefore
+коло           | near
+таке           | such (neut.)
+от             | here is
+сама           | herself
+всій           | to all (fem.)
+повинна        | she must
+самим          | by himself
+поза           | outside, beyond
+могла          | she could
+трьома         | by three
+нічого         | nothing
+чим            | by what, than
+куди           | where to
+цілком         | entirely
+зовсім         | completely
+колись         | once, some day
+самі           | themselves
+нас            | us
+мене           | me
+ви             | you
+будучи         | being
+цією           | by this (fem.)
+взагалі        | in general
+такої          | of such (fem.)
+наш            | our
+такому         | to such
+всієї          | of all (fem.)
+треба          | it is necessary
+вся            | all (fem.)
+звідки         | from where
+хоч            | although, at least
+котрий         | which
+котрі          | which (pl.)
+тож            | so
+уздовж         | along
+тієї           | of that (fem.)
+мені           | to me
+щось           | something
+усе            | all, everything
+ніхто          | nobody
+самому         | to himself
+котра          | which (fem.)
+цими           | by these
+такою          | by such (fem.)
+нам            | to us
+небудь         | any (with будь-, -небудь)
+самої          | of herself
+інколи         | sometimes
+нехай          | let
+таки           | after all
+туди           | there (direction)
+звідси         | from here
+моя            | my (fem.)
+наших          | of our
+задля          | for the sake of
+звичайно       | of course
+всім           | to all
+сюди           | here (direction)
+увесь          | all, whole
+ось            | here is
+тій            | to that (fem.)
+нашого         | of our
+усіма          | by all
+мабуть         | probably
+мій            | my
+могло          | it could
+інакше         | otherwise
+усієї          | of all (fem.)
+звідти         | from there
+самих          | of themselves
+якийсь         | some
+наші           | our (pl.)
+кого           | whom
+скільки        | how many
+наша           | our (fem.)
+справді        | indeed
+тебе           | thee
+всіма          | by all
+вас            | you (acc.)
+щойно          | just now
+усім           | to all
+одні           | some, ones
+хтось          | somebody
+самій          | to herself
+десь           | somewhere
+усьому         | to all
+повинно        | it must
+тими           | by those
+чиї            | whose (pl.)
+вам            | to you
+кому           | to whom
+уся            | all (fem.)
+моє            | my (neut.)
+тією           | by that (fem.)
+мої            | my (pl.)
+наше           | our (neut.)
+тобі           | to thee
+можемо         | we can
+всупереч       | contrary to
+такій          | to such (fem.)
+маємо          | we have
+довкола        | around
+ніяк           | in no way
+чия            | whose (fem.)
+хай            | let
+аніж           | than
+ким            | by whom
+двом           | to two
+одних          | of some
+мого           | of my
+посеред        | in the middle of
+чий            | whose
+ледве          | hardly
+бувши          | having been
+нами           | by us
+напевно        | probably
+нікому         | to nobody
+нічим          | by nothing
+якісь          | some (pl.)
+можу           | I can
+самою          | by herself
+нашій          | to our (fem.)
+нашому         | to our
+нікого         | nobody (acc.)
+ніде           | nowhere
+буду           | I will be
+зате           | on the other hand
+мною           | by me
+моєї           | of my (fem.)
+можете         | you can
+котре          | which (neut.)
+моїх           | of my (pl.)
+будемо         | we will be
+самими         | by themselves
+своя           | one's own (fem.)
+чиє            | whose (neut.)
+трьом          | to three
+усією          | by all (fem.)
+хіба           | really, unless
+ваш            | your
+ніщо           | nothing
+маю            | I have
+всією          | by all (fem.)
+якась          | some (fem.)
+усій           | to all (fem.)
+нашим          | by our
+тобою          | by thee
+твій           | thy
+якесь          | some (neut.)
+моєму          | to my
+ваша           | your (fem.)
+твоя           | thy (fem.)
+вами           | by you
+ваші           | your (pl.)
+твої           | thy (pl.)
+моїм           | by my
+нікуди         | nowhere (direction)
+моїй           | to my (fem.)
+твоє           | thy (neut.)
+вашого         | of your
+ваше           | your (neut.)
+нашими         | by our
+нашою          | by our (fem.)
+ваших          | of your
+вашої          | of your (fem.)
+будеш          | thou wilt be
+будете         | you will be
+ніким          | by nobody
+моєю           | by my (fem.)
+вашому         | to your
+маєш           | thou hast
+маєте          | you have
+вашим          | by your
+моїми          | by my (pl.)
+вашій          | to your (fem.)
+ніякий         | no, none
+вашою          | by your (fem.)
+вашими         | by your (pl.)
+
+
+  | b: some paradigms
+  |
+  | personal pronouns
+  |
+  | я  мене  мені  мною
+  | ти  тебе  тобі  тобою
+  | він  його  йому  ним  [нього, ньому]
+  | вона  її  їй  нею  [неї, ній]
+  | воно  його  йому  ним  [нього, ньому]
+  |
+  | ми  нас  нам  нами
+  | ви  вас  вам  вами
+  | вони  їх  їм  ними  [них]
+  |
+  |   себе  собі  собою
+  |
+  | demonstrative pronouns: цей (this), той (that)
+  |
+  | цей  ця  це  ці
+  | цього  цієї  цього  цих
+  | цьому  цій  цьому  цим
+  | цим  цією  цим  цими
+  | цьому  цій  цьому  цих
+  |
+  | той  та  те  ті
+  | того  тієї  того  тих
+  | тому  тій  тому  тим
+  | тим  тією  тим  тими
+  | тому  тій  тому  тих
+  |
+  | determinative pronouns
+  |
+  | (a) весь / увесь (all)
+  |
+  | весь  вся  все  всі
+  | всього  всієї  всього  всіх
+  | всьому  всій  всьому  всім
+  | всім  всією  всім  всіма
+  | всьому  всій  всьому  всіх
+  |
+  | (b) сам (himself etc)
+  |
+  | сам  сама  саме  самі
+  | самого  самої  самого  самих
+  | самому  самій  самому  самим
+  | самим  самою  самим  самими
+  | самому  самій  самому  самих
+  |
+  | stems of verbs `to be', `to have' and modal words
+  |
+  | бути  є  був  була  було  були  буде  будуть  буду  будеш  будемо  будете  будучи  бувши
+  | мати  має  мають  мав  мала  мали  маю  маєш  маємо  маєте
+  | могти  міг  могла  могло  могли  можу  можеш  може  можемо  можете  можуть  можна
+  | повинен  повинна  повинно  повинні
+  | треба  потрібно  слід
