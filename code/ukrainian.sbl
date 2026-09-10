@@ -104,6 +104,19 @@ backwardmode (
             '{y}{v}{sh}{y}'
             '{y}{v}{sh}{y}{s}{'}'
                 (delete)
+            // Present gerunds (дієприслівники недоконаного виду), removed
+            // with the thematic vowel so they meet the other verb forms:
+            // включаючи → включ (включати), виходячи → виход (виходити),
+            // розуміючи → розум (розуміти), кажучи → каж (кажуть)
+            '{a}{iu}{ch}{y}' '{ia}{iu}{ch}{y}' '{i}{iu}{ch}{y}'
+            '{u}{ch}{y}' '{ia}{ch}{y}' '{a}{ch}{y}'
+                (set found_verb delete)
+            // -уючи/-юючи → -ув/-юв, as the present tense of -увати verbs
+            // (використовуючи → використовув → використ)
+            '{u}{iu}{ch}{y}'
+                (set found_verb <- '{u}{v}')
+            '{iu}{iu}{ch}{y}'
+                (set found_verb <- '{iu}{v}')
         )
     )
 
@@ -801,6 +814,41 @@ define stem as (
         // новела keeps its -ла: -вела is otherwise a past tense (привела)
         '{n}{o}{v}{e}{l}{a}'                (<- '{n}{o}{v}{e}{l}')         // новела
         '{n}{o}{v}{e}{l}{y}'                (<- '{n}{o}{v}{e}{l}')         // новели
+        // Nouns and names whose nominative ends in -ом, -им, -ям, -ам or
+        // -ем (and their dative in -ому), which the case-ending rules cut
+        // as if they were endings (альбом → альб, режим → реж, Вільям →
+        // віл): the most frequent ones keep the stem of their other forms
+        '{a}{l}{'}{b}{o}{m}'                (<- '{a}{l}{'}{b}{o}{m}')      // альбом
+        '{a}{l}{'}{b}{o}{m}{u}'             (<- '{a}{l}{'}{b}{o}{m}')      // альбому
+        '{m}{i}{n}{i}{a}{l}{'}{b}{o}{m}'    (<- '{m}{i}{n}{i}{a}{l}{'}{b}{o}{m}') // мініальбом
+        '{m}{i}{n}{i}{a}{l}{'}{b}{o}{m}{u}' (<- '{m}{i}{n}{i}{a}{l}{'}{b}{o}{m}') // мініальбому
+        '{h}{e}{n}{o}{m}'                   (<- '{h}{e}{n}{o}{m}')         // геном
+        '{h}{e}{n}{o}{m}{u}'                (<- '{h}{e}{n}{o}{m}')         // геному
+        '{d}{y}{p}{l}{o}{m}'                (<- '{d}{y}{p}{l}{o}{m}')      // диплом
+        '{p}{r}{y}{i`}{o}{m}'               (<- '{p}{r}{y}{i`}{o}{m}')     // прийом
+        '{p}{r}{y}{i`}{o}{m}{u}'            (<- '{p}{r}{y}{i`}{o}{m}')     // прийому
+        '{p}{i}{d}{i`}{o}{m}'               (<- '{p}{i}{d}{i`}{o}{m}')     // підйом
+        '{p}{i}{d}{i`}{o}{m}{u}'            (<- '{p}{i}{d}{i`}{o}{m}')     // підйому
+        '{s}{y}{n}{d}{r}{o}{m}'             (<- '{s}{y}{n}{d}{r}{o}{m}')   // синдром
+        '{s}{y}{n}{d}{r}{o}{m}{u}'          (<- '{s}{y}{n}{d}{r}{o}{m}')   // синдрому
+        '{a}{e}{r}{o}{d}{r}{o}{m}'          (<- '{a}{e}{r}{o}{d}{r}{o}{m}') // аеродром
+        '{a}{e}{r}{o}{d}{r}{o}{m}{u}'       (<- '{a}{e}{r}{o}{d}{r}{o}{m}') // аеродрому
+        '{sh}{o}{l}{o}{m}'                  (<- '{sh}{o}{l}{o}{m}')        // шолом
+        '{a}{s}{t}{r}{o}{n}{o}{m}'          (<- '{a}{s}{t}{r}{o}{n}{o}{m}') // астроном
+        '{a}{h}{r}{o}{n}{o}{m}'             (<- '{a}{h}{r}{o}{n}{o}{m}')   // агроном
+        '{r}{e}{zh}{y}{m}'                  (<- '{r}{e}{zh}{y}{m}')        // режим
+        '{r}{e}{zh}{y}{m}{y}'               (<- '{r}{e}{zh}{y}{m}')        // режими
+        '{n}{a}{p}{r}{ia}{m}'               (<- '{n}{a}{p}{r}{ia}{m}')     // напрям
+        '{n}{a}{p}{r}{ia}{m}{y}'            (<- '{n}{a}{p}{r}{ia}{m}')     // напрями
+        '{i}{s}{l}{a}{m}'                   (<- '{i}{s}{l}{a}{m}')         // іслам
+        '{m}{a}{d}{a}{m}'                   (<- '{m}{a}{d}{a}{m}')         // мадам
+        '{v}{i}{l}{'}{ia}{m}'               (<- '{v}{i}{l}{'}{ia}{m}')     // Вільям
+        '{m}{a}{k}{s}{y}{m}'                (<- '{m}{a}{k}{s}{y}{m}')      // Максим
+        '{v}{a}{d}{y}{m}'                   (<- '{v}{a}{d}{y}{m}')         // Вадим
+        '{a}{r}{t}{e}{m}'                   (<- '{a}{r}{t}{e}{m}')         // Артем
+        '{ie}{r}{u}{s}{a}{l}{y}{m}'         (<- '{ie}{r}{u}{s}{a}{l}{y}{m}') // Єрусалим
+        '{v}{ap}{ie}{t}{n}{a}{m}'           (<- '{v}{ap}{ie}{t}{n}{a}{m}') // В'єтнам
+        '{a}{m}{s}{t}{e}{r}{d}{a}{m}'       (<- '{a}{m}{s}{t}{e}{r}{d}{a}{m}') // Амстердам
         // Genitive plurals in -ей whose stem differs from the other forms:
         // статей (стаття → статт) would meet стать; сімей (сім'я → сім')
         // would meet the numeral сім
