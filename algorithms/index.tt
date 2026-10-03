@@ -62,6 +62,7 @@ language - we have marked our recommended option in bold:
   <li><a href="/algorithms/hungarian/stemmer.html">Hungarian</a></li>
   <li><a href="/algorithms/indonesian/stemmer.html">Indonesian</a></li>
   <li><a href="/algorithms/irish/stemmer.html">Irish Gaelic</a></li>
+  <li><a href="/algorithms/korean/stemmer.html">Korean (experimental)</a></li>
   <li><a href="/algorithms/lithuanian/stemmer.html">Lithuanian</a></li>
   <li><a href="/algorithms/nepali/stemmer.html">Nepali</a></li>
   <li><a href="/algorithms/sesotho/stemmer.html">Sesotho</a></li><!-- Bantu language family -->
