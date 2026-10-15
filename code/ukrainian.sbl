@@ -176,7 +176,6 @@ backwardmode (
                 '{a}{ts}{i}{i`}{n}{i}{s}{t}{'}'       // -аційність
                 '{a}{ts}{i}{i`}{n}{o}{s}{t}{i}'       // -аційності
                 '{a}{ts}{i}{i`}{n}{i}{s}{t}{iu}'      // -аційністю
-                '{a}{ts}{i}{i`}{n}{o}{s}{t}{e}{i`}'   // -аційностей
 
                 // -ічн-/-ичн- (лінгвістичний, історичний, логічний)
                 '{i}{ch}{n}{y}{m}{y}'         // -ічними
@@ -196,7 +195,6 @@ backwardmode (
                 '{i}{ch}{n}{i}{s}{t}{'}'      // -ічність
                 '{i}{ch}{n}{o}{s}{t}{i}'      // -ічності
                 '{i}{ch}{n}{i}{s}{t}{iu}'     // -ічністю
-                '{i}{ch}{n}{o}{s}{t}{e}{i`}'  // -ічностей
                 '{y}{ch}{n}{y}{m}{y}'         // -ичними
                 '{y}{ch}{n}{o}{h}{o}'         // -ичного
                 '{y}{ch}{n}{o}{m}{u}'         // -ичному
@@ -234,7 +232,6 @@ backwardmode (
                 '{i}{i`}{n}{i}{s}{t}{'}'      // -ійність
                 '{i}{i`}{n}{o}{s}{t}{i}'      // -ійності
                 '{i}{i`}{n}{i}{s}{t}{iu}'     // -ійністю
-                '{i}{i`}{n}{o}{s}{t}{e}{i`}'  // -ійностей
 
                 // -уальн- (інтелектуальний, віртуальний, актуальний)
                 '{u}{a}{l}{'}{n}{y}{m}{y}'    // -уальними
@@ -344,11 +341,12 @@ backwardmode (
                 // mirrors the а series
                 '{ia}{v}' '{ia}{l}{a}' '{ia}{l}{y}' '{ia}{l}{o}'
                 '{ia}{ie}' '{ia}{iu}{t}{'}' '{ia}{ie}{m}{o}' '{ia}{ie}{t}{e}' '{ia}{ie}{sh}'
-                // Future (читатиме, робитимуть, стоятимемо)
-                '{a}{t}{y}{m}{e}' '{a}{t}{y}{m}{u}{t}{'}' '{a}{t}{y}{m}{e}{m}{o}' '{a}{t}{y}{m}{e}{t}{e}' '{a}{t}{y}{m}{e}{sh}' '{a}{t}{y}{m}{u}'
-                '{y}{t}{y}{m}{e}' '{y}{t}{y}{m}{u}{t}{'}' '{y}{t}{y}{m}{e}{m}{o}' '{y}{t}{y}{m}{e}{t}{e}' '{y}{t}{y}{m}{e}{sh}' '{y}{t}{y}{m}{u}'
-                '{i}{t}{y}{m}{e}' '{i}{t}{y}{m}{u}{t}{'}' '{i}{t}{y}{m}{e}{m}{o}' '{i}{t}{y}{m}{e}{t}{e}' '{i}{t}{y}{m}{e}{sh}' '{i}{t}{y}{m}{u}'
-                '{ia}{t}{y}{m}{e}' '{ia}{t}{y}{m}{u}{t}{'}' '{ia}{t}{y}{m}{e}{m}{o}' '{ia}{t}{y}{m}{e}{t}{e}' '{ia}{t}{y}{m}{e}{sh}' '{ia}{t}{y}{m}{u}'
+                // Future (читатиме, робитимуть, сприятимуть), the persons
+                // that occur in the corpus
+                '{a}{t}{y}{m}{e}' '{a}{t}{y}{m}{u}{t}{'}' '{a}{t}{y}{m}{e}{m}{o}' '{a}{t}{y}{m}{u}'
+                '{y}{t}{y}{m}{e}' '{y}{t}{y}{m}{u}{t}{'}' '{y}{t}{y}{m}{u}'
+                '{i}{t}{y}{m}{e}'
+                '{ia}{t}{y}{m}{e}' '{ia}{t}{y}{m}{u}{t}{'}'
                 '{a}{iu}'                       // Present 1st sg (читаю)
                 // Note: -ію ({i}{iu}) removed — it falsely captures noun accusative
                 // of -ія words (поліграфію, демократію). Verb -ію (я дію) handled
@@ -417,10 +415,11 @@ backwardmode (
                 // ending is removed as before there.
                 '{v}'
                     ( not '{o}' (atlimit or v) delete )
-                // Present 1st sg -у (fallback), but not after -ств: -ству is
-                // the dative of -ство nouns (товариству), left for noun.
+                // Present 1st sg -у (fallback), but not after -ств/-цтв: -ству
+                // and -цтву are the dative of -ство/-цтво nouns (товариству,
+                // мистецтву), left for noun.
                 '{u}'
-                    ( not '{s}{t}{v}' delete )
+                    ( not ('{s}{t}{v}' or '{ts}{t}{v}') delete )
                 // Past tense -ла/-ли/-ло, unless the letter before the
                 // ending marks a noun (found_la_noun, tested on the whole
                 // word in stem: школа, число, Павло, світло).
@@ -463,9 +462,9 @@ backwardmode (
         )
         or
         ( [substring] among (
-                // -істю: instrumental sg of -ість abstract nouns. Restore the
-                // nominative so derivational (-ність/-ість) and tidy_up treat
-                // it exactly like -ість (активністю → активність → актив).
+                // -істю too close to pV for the rule above: restore the
+                // nominative so it stems like the -ість form, which keeps
+                // its ending there (радістю → радість → радіст).
                 '{i}{s}{t}{iu}' (<- '{i}{s}{t}{'}')
 
                 // Fleeting vowel: -ець → -ц (nominative → oblique stem)
@@ -552,7 +551,8 @@ backwardmode (
             // дівчинка = дівчинку holds without it
             // Note: -усь omitted — reflexive(-сь)+verb(-у) handles these (дідусь→дід, братусь→брат)
             // -інь omitted: камінь, корінь, промінь, осінь are not diminutives
-            '{u}{n}{'}'  '{e}{n}{'}'
+            // -ень omitted: verbal_noun removes it first (gen pl рішень)
+            '{u}{n}{'}'
                 (delete)
             // -ок: the о is fleeting, so only it goes and the stem meets the
             // oblique forms (будинок → будинк = будинку, грибок = грибка).
@@ -610,21 +610,14 @@ backwardmode (
 
     define derivational as (
         setlimit tomark p2 for ([substring]) among (
-            // Quality/abstract. -ість keeps the adjectival н so the noun
-            // stems like its adjective and its -ості/-істю forms
-            // (активність → активн = активна, активності). After ь the
-            // whole -ьність goes, matching the -ьн rule below
-            // (національність → націонал = національний).
-            '{'}{n}{i}{s}{t}{'}'  // -ьність
-            '{o}{v}{i}{s}{t}{'}'  // -овість (промисловість → промисл = промисловий)
-            // -ованість: abstract nouns of -ований participles; the whole
-            // suffix goes so they meet the verb (організованість → організ =
-            // організований)
-            '{o}{v}{a}{n}{i}{s}{t}{'}'    // -ованість
-            '{i}{s}{t}{'}'        // -ість
+            // Abstract nouns reach this point without -ість (noun removes it
+            // in every case), so what is left is the adjective stem and the
+            // rules below treat it as such (національність → національн →
+            // націонал, промисловість → промислов → промисл).
 
-            // -ован left by noun -ості/-остей on -ованість
-            // (організованості → організован → організ, as організованість)
+            // -ован left by noun on -ованість: the whole suffix goes so it
+            // meets the verb (організованість → організован → організ =
+            // організований)
             '{o}{v}{a}{n}'        // -ован
 
             // Adjectival derivational
@@ -635,7 +628,6 @@ backwardmode (
             '{s}{'}{k}'           // -ськ (український → україн)
             '{z}{'}{k}'           // -зьк
             '{u}{v}{a}{t}'        // -уват
-            '{o}{v}{a}{t}'        // -оват
             '{i}{v}{n}'           // -івн (пасічниківна → пасічник)
             // -ув/-юв: the theme of -увати verbs, left by the infinitive,
             // past tense, -ування and -увальний; the root then meets the
@@ -668,13 +660,9 @@ backwardmode (
             // (лікув = лікувати, лікування). Elsewhere only ьн goes.
             '{a}{l}{'}{n}'
                 ( (('{u}{v}' or '{iu}{v}') delete) or (<- '{a}{l}') )
-            // -аність after -ув-/-юв-: abstract nouns of -уваний participles
-            // (засвоюваність → засвоюв = засвоювати). Elsewhere it is
-            // -ан + ість (вихованість → вихован = вихована).
-            '{a}{n}{i}{s}{t}{'}'
-                ( (('{u}{v}' or '{iu}{v}') delete) or (<- '{a}{n}') )
-            // -ан left by noun -ості/-остей on -уваність
-            // (відвідуваності → відвідуван → відвідув, as відвідуваність)
+            // -ан after -ув-/-юв-, left by noun on abstract nouns of -уваний
+            // participles (засвоюваність → засвоюван → засвоюв = засвоювати).
+            // Elsewhere it stays (вихованість → вихован = вихована).
             '{a}{n}'
                 ( ('{u}{v}' or '{iu}{v}') delete )
         )
@@ -751,7 +739,6 @@ define stem as (
         '{k}{y}{r}{y}{l}{a}'                (<- '{k}{y}{r}{y}{l}')         // Кирила
         '{k}{y}{r}{y}{l}{u}'                (<- '{k}{y}{r}{y}{l}')         // Кирилу
         '{k}{y}{r}{y}{l}{o}{m}'             (<- '{k}{y}{r}{y}{l}')         // Кирилом
-        '{k}{y}{r}{y}{l}{i}'                (<- '{k}{y}{r}{y}{l}')         // Кирилі
         '{d}{a}{n}{y}{l}{o}'                (<- '{d}{a}{n}{y}{l}')         // Данило
         '{d}{a}{n}{y}{l}{a}'                (<- '{d}{a}{n}{y}{l}')         // Данила
         '{d}{a}{n}{y}{l}{u}'                (<- '{d}{a}{n}{y}{l}')         // Данилу
@@ -1033,7 +1020,6 @@ define stem as (
         // відання (jurisdiction) would become the preposition від
         '{v}{i}{d}{a}{n}{n}{ia}'            (<- '{v}{i}{d}{a}{n}')         // відання
         '{v}{i}{d}{a}{n}{n}{i}'             (<- '{v}{i}{d}{a}{n}')         // віданні
-        '{v}{i}{d}{a}{n}{'}'                (<- '{v}{i}{d}{a}{n}')         // відань
         // Plurals of -нний adjectives that look like the locative of a -ння noun
         '{p}{r}{y}{t}{a}{m}{a}{n}{n}{i}'    (<- '{p}{r}{y}{t}{a}{m}{a}{n}') // притаманні
         '{n}{e}{ch}{y}{s}{l}{e}{n}{n}{i}'   (<- '{n}{e}{ch}{y}{s}{l}{e}{n}') // нечисленні

@@ -62,10 +62,7 @@ const a_3 = [
     ["\u0443\u0430\u043B\u044C\u043D\u0438\u043C\u0438", 1],
     ["\u0456\u044F\u043C\u0438", 1],
     ["\u0430\u0446\u0456\u044F\u043C\u0438", 1, 1],
-    ["\u0456\u0439\u043D\u043E\u0441\u0442\u0435\u0439", 1],
-    ["\u0430\u0446\u0456\u0439\u043D\u043E\u0441\u0442\u0435\u0439", 1, 1],
     ["\u0438\u0447\u043D\u043E\u0441\u0442\u0435\u0439", 1],
-    ["\u0456\u0447\u043D\u043E\u0441\u0442\u0435\u0439", 1],
     ["\u0443\u0430\u043B\u044C\u043D\u043E\u0441\u0442\u0435\u0439", 1],
     ["\u0456\u0439\u043D\u0438\u0439", 1],
     ["\u0430\u0446\u0456\u0439\u043D\u0438\u0439", 1, 1],
@@ -213,10 +210,6 @@ const a_5 = [
     ["\u044F\u0442\u0438\u043C\u0435", 1],
     ["\u0456\u0442\u0438\u043C\u0435", 1],
     ["\u0435\u0442\u0435", 1],
-    ["\u0430\u0442\u0438\u043C\u0435\u0442\u0435", 1, 1],
-    ["\u0438\u0442\u0438\u043C\u0435\u0442\u0435", 1, 2],
-    ["\u044F\u0442\u0438\u043C\u0435\u0442\u0435", 1, 3],
-    ["\u0456\u0442\u0438\u043C\u0435\u0442\u0435", 1, 4],
     ["\u0438\u0442\u0435", 1],
     ["\u0439\u0442\u0435", 1],
     ["\u0454\u0442\u0435", 1],
@@ -245,9 +238,6 @@ const a_5 = [
     ["\u0456\u043B\u043E", 1, 4],
     ["\u0435\u043C\u043E", 1],
     ["\u0430\u0442\u0438\u043C\u0435\u043C\u043E", 1, 1],
-    ["\u0438\u0442\u0438\u043C\u0435\u043C\u043E", 1, 2],
-    ["\u044F\u0442\u0438\u043C\u0435\u043C\u043E", 1, 3],
-    ["\u0456\u0442\u0438\u043C\u0435\u043C\u043E", 1, 4],
     ["\u0438\u043C\u043E", 1],
     ["\u0454\u043C\u043E", 1],
     ["\u0430\u0454\u043C\u043E", 1, 1],
@@ -258,13 +248,7 @@ const a_5 = [
     ["\u0443", 9],
     ["\u0430\u0442\u0438\u043C\u0443", 1, 1],
     ["\u0438\u0442\u0438\u043C\u0443", 1, 2],
-    ["\u044F\u0442\u0438\u043C\u0443", 1, 3],
-    ["\u0456\u0442\u0438\u043C\u0443", 1, 4],
     ["\u0435\u0448", 1],
-    ["\u0430\u0442\u0438\u043C\u0435\u0448", 1, 1],
-    ["\u0438\u0442\u0438\u043C\u0435\u0448", 1, 2],
-    ["\u044F\u0442\u0438\u043C\u0435\u0448", 1, 3],
-    ["\u0456\u0442\u0438\u043C\u0435\u0448", 1, 4],
     ["\u0438\u0448", 1],
     ["\u0454\u0448", 1],
     ["\u0430\u0454\u0448", 1, 1],
@@ -276,7 +260,6 @@ const a_5 = [
     ["\u0430\u0442\u0438\u043C\u0443\u0442\u044C", 1, 1],
     ["\u0438\u0442\u0438\u043C\u0443\u0442\u044C", 1, 2],
     ["\u044F\u0442\u0438\u043C\u0443\u0442\u044C", 1, 3],
-    ["\u0456\u0442\u0438\u043C\u0443\u0442\u044C", 1, 4],
     ["\u044E\u0442\u044C", 1],
     ["\u0430\u044E\u0442\u044C", 1, 1],
     ["\u0443\u044E\u0442\u044C", 6, 2],
@@ -392,7 +375,6 @@ const a_9 = [
     ["\u044E\u0441\u0456\u043D\u044C\u043A\u043E", 1, 1],
     ["\u0456\u0441\u0456\u043D\u044C\u043A\u043E", 1, 2],
     ["\u0435\u043D\u044C\u043A\u0443", 1],
-    ["\u0435\u043D\u044C", 1],
     ["\u0443\u043D\u044C", 1],
     ["\u0435\u0447\u043A\u0456", 1],
     ["\u043E\u0447\u0435\u0447\u043A\u0456", 1, 1],
@@ -459,7 +441,7 @@ const a_13 = [
     ["\u0437\u044C\u043A", 1],
     ["\u0441\u044C\u043A", 1],
     ["\u0456\u0437\u043C", 1],
-    ["\u0430\u043D", 5],
+    ["\u0430\u043D", 4],
     ["\u043E\u0432\u0430\u043D", 1, 1],
     ["\u0443\u0432\u0430\u043D", 1, 2],
     ["\u044E\u0432\u0430\u043D", 1, 3],
@@ -468,15 +450,9 @@ const a_13 = [
     ["\u0430\u043B\u044C\u043D", 3, 1],
     ["\u0435\u043B\u044C\u043D", 2, 2],
     ["\u044F\u043D", 1],
-    ["\u043E\u0432\u0430\u0442", 1],
     ["\u0443\u0432\u0430\u0442", 1],
     ["\u0456\u0441\u0442", 1],
-    ["\u0438\u0449", 1],
-    ["\u0456\u0441\u0442\u044C", 1],
-    ["\u043E\u0432\u0456\u0441\u0442\u044C", 1, 1],
-    ["\u0430\u043D\u0456\u0441\u0442\u044C", 4, 2],
-    ["\u043E\u0432\u0430\u043D\u0456\u0441\u0442\u044C", 1, 1],
-    ["\u044C\u043D\u0456\u0441\u0442\u044C", 1, 4]
+    ["\u0438\u0449", 1]
 ];
 
 const a_14 = [
@@ -538,7 +514,6 @@ const a_15 = [
     ["\u0432\u0442\u0440\u0430\u0442\u0438", 63],
     ["\u0432\u0456\u0434\u0430\u043D\u043D\u044F", 177],
     ["\u0432\u0456\u0434\u0430\u043D\u043D\u0456", 177],
-    ["\u0432\u0456\u0434\u0430\u043D\u044C", 177],
     ["\u0432\u0456\u0434\u0441\u0442\u0430\u043D\u043D\u044E", 163],
     ["\u0432\u0456\u0434\u0441\u0442\u0430\u043D\u044C", 163],
     ["\u0432\u0456\u0434\u0442\u043E\u0434\u0456", -1],
@@ -626,7 +601,6 @@ const a_15 = [
     ["\u043A\u0438\u0440\u0438\u043B\u043E", 8],
     ["\u043A\u0438\u0440\u0438\u043B\u043E\u043C", 8, 1],
     ["\u043A\u0438\u0440\u0438\u043B\u0443", 8],
-    ["\u043A\u0438\u0440\u0438\u043B\u0456", 8],
     ["\u043A\u0438\u0457\u0432", 4],
     ["\u043A\u043B\u0430\u0434\u0446\u0456", 218],
     ["\u043A\u043B\u0435\u0439", 117],
@@ -1628,10 +1602,22 @@ export default class extends B {
                                             break;
                                         }
                                         case 9: {
-                                            // deno-lint-ignore no-unused-labels
-                                            lab89: {
-                                                if (!(this.eq_s_b("\u0441\u0442\u0432"))) break lab89;
-                                                break lab68;
+                                            {
+                                                const /**@type {number}*/ v_26 = this.limit - this.c;
+                                                // deno-lint-ignore no-unused-labels
+                                                lab89: {
+                                                    // deno-lint-ignore no-unused-labels
+                                                    lab90: {
+                                                        // deno-lint-ignore no-unused-labels
+                                                        lab91: {
+                                                            if (!(this.eq_s_b("\u0441\u0442\u0432"))) break lab91;
+                                                            break lab90;
+                                                        }
+                                                        if (!(this.eq_s_b("\u0446\u0442\u0432"))) break lab89;
+                                                    }
+                                                    break lab68;
+                                                }
+                                                this.c = this.limit - v_26;
                                             }
                                             this.slice_del();
                                             break;
@@ -1643,8 +1629,8 @@ export default class extends B {
                                         }
                                         case 11: {
                                             // deno-lint-ignore no-unused-labels
-                                            lab90: {
-                                                if (!(this.eq_s_b("\u0456\u0441\u0442"))) break lab90;
+                                            lab92: {
+                                                if (!(this.eq_s_b("\u0456\u0441\u0442"))) break lab92;
                                                 break lab68;
                                             }
                                             this.slice_del();
@@ -1662,18 +1648,18 @@ export default class extends B {
                             }
                             this.c = this.limit - v_21;
                             // deno-lint-ignore no-unused-labels
-                            lab91: {
-                                const /**@type {number}*/ v_26 = this.limit - this.c;
+                            lab93: {
+                                const /**@type {number}*/ v_27 = this.limit - this.c;
                                 // deno-lint-ignore no-unused-labels
-                                lab92: {
+                                lab94: {
                                     this.ket = this.c;
-                                    if (this.find_among_b(a_6) === 0) break lab92;
+                                    if (this.find_among_b(a_6) === 0) break lab94;
                                     this.bra = this.c;
-                                    if (/**@type {boolean}*/(this.c <= this.limit_backward)) break lab92;
+                                    if (/**@type {boolean}*/(this.c <= this.limit_backward)) break lab94;
                                     this.slice_del();
-                                    break lab91;
+                                    break lab93;
                                 }
-                                this.c = this.limit - v_26;
+                                this.c = this.limit - v_27;
                                 this.ket = this.c;
                                 a = this.find_among_b(a_7);
                                 if (a === 0) break lab46;
@@ -1685,51 +1671,51 @@ export default class extends B {
                 }
             }
             this.c = this.limit - v_13;
-            const /**@type {number}*/ v_27 = this.limit - this.c;
+            const /**@type {number}*/ v_28 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
-            lab93: {
+            lab95: {
                 this.ket = this.c;
                 if (this.find_among_b(a_10) === 0) {
-                    this.c = this.limit - v_27;
-                    break lab93;
+                    this.c = this.limit - v_28;
+                    break lab95;
                 }
                 this.bra = this.c;
                 this.slice_del();
                 B_found_diminutive = true;
             }
-            const /**@type {number}*/ v_28 = this.limit - this.c;
-            // deno-lint-ignore no-unused-labels
-            lab94: {
-                if (B_found_diminutive) break lab94;
-                if (B_found_professional) break lab94;
-                if (B_found_ia) break lab94;
-                if (!this.#r_professional()) break lab94;
-            }
-            this.c = this.limit - v_28;
             const /**@type {number}*/ v_29 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
-            lab95: {
-                if (B_found_verb) break lab95;
-                this.ket = this.c;
-                if (!(this.eq_s_b("\u0456\u0448"))) break lab95;
-                this.bra = this.c;
-                this.slice_del();
+            lab96: {
+                if (B_found_diminutive) break lab96;
+                if (B_found_professional) break lab96;
+                if (B_found_ia) break lab96;
+                if (!this.#r_professional()) break lab96;
             }
             this.c = this.limit - v_29;
             const /**@type {number}*/ v_30 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
-            lab96: {
-                if (this.c < I_p2) break lab96;
-                const /**@type {number}*/ v_31 = this.limit_backward;
+            lab97: {
+                if (B_found_verb) break lab97;
+                this.ket = this.c;
+                if (!(this.eq_s_b("\u0456\u0448"))) break lab97;
+                this.bra = this.c;
+                this.slice_del();
+            }
+            this.c = this.limit - v_30;
+            const /**@type {number}*/ v_31 = this.limit - this.c;
+            // deno-lint-ignore no-unused-labels
+            lab98: {
+                if (this.c < I_p2) break lab98;
+                const /**@type {number}*/ v_32 = this.limit_backward;
                 this.limit_backward = I_p2;
                 this.ket = this.c;
                 a = this.find_among_b(a_13);
                 if (a === 0) {
-                    this.limit_backward = v_31;
-                    break lab96;
+                    this.limit_backward = v_32;
+                    break lab98;
                 }
                 this.bra = this.c;
-                this.limit_backward = v_31;
+                this.limit_backward = v_32;
                 switch (a) {
                     case 1: {
                         this.slice_del();
@@ -1737,124 +1723,101 @@ export default class extends B {
                     }
                     case 2: {
                         // deno-lint-ignore no-unused-labels
-                        lab97: {
-                            const /**@type {number}*/ v_32 = this.limit - this.c;
+                        lab99: {
+                            const /**@type {number}*/ v_33 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
-                            lab98: {
-                                if (!(this.eq_s_b("\u0432"))) break lab98;
+                            lab100: {
+                                if (!(this.eq_s_b("\u0432"))) break lab100;
                                 this.slice_del();
-                                break lab97;
+                                break lab99;
                             }
-                            this.c = this.limit - v_32;
+                            this.c = this.limit - v_33;
                             this.slice_from("\u0435\u043B");
                         }
                         break;
                     }
                     case 3: {
                         // deno-lint-ignore no-unused-labels
-                        lab99: {
-                            const /**@type {number}*/ v_33 = this.limit - this.c;
+                        lab101: {
+                            const /**@type {number}*/ v_34 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
-                            lab100: {
+                            lab102: {
                                 // deno-lint-ignore no-unused-labels
-                                lab101: {
+                                lab103: {
                                     // deno-lint-ignore no-unused-labels
-                                    lab102: {
-                                        if (!(this.eq_s_b("\u0443\u0432"))) break lab102;
-                                        break lab101;
+                                    lab104: {
+                                        if (!(this.eq_s_b("\u0443\u0432"))) break lab104;
+                                        break lab103;
                                     }
-                                    if (!(this.eq_s_b("\u044E\u0432"))) break lab100;
+                                    if (!(this.eq_s_b("\u044E\u0432"))) break lab102;
                                 }
                                 this.slice_del();
-                                break lab99;
+                                break lab101;
                             }
-                            this.c = this.limit - v_33;
+                            this.c = this.limit - v_34;
                             this.slice_from("\u0430\u043B");
                         }
                         break;
                     }
                     case 4: {
                         // deno-lint-ignore no-unused-labels
-                        lab103: {
-                            const /**@type {number}*/ v_34 = this.limit - this.c;
+                        lab105: {
                             // deno-lint-ignore no-unused-labels
-                            lab104: {
-                                // deno-lint-ignore no-unused-labels
-                                lab105: {
-                                    // deno-lint-ignore no-unused-labels
-                                    lab106: {
-                                        if (!(this.eq_s_b("\u0443\u0432"))) break lab106;
-                                        break lab105;
-                                    }
-                                    if (!(this.eq_s_b("\u044E\u0432"))) break lab104;
-                                }
-                                this.slice_del();
-                                break lab103;
+                            lab106: {
+                                if (!(this.eq_s_b("\u0443\u0432"))) break lab106;
+                                break lab105;
                             }
-                            this.c = this.limit - v_34;
-                            this.slice_from("\u0430\u043D");
-                        }
-                        break;
-                    }
-                    case 5: {
-                        // deno-lint-ignore no-unused-labels
-                        lab107: {
-                            // deno-lint-ignore no-unused-labels
-                            lab108: {
-                                if (!(this.eq_s_b("\u0443\u0432"))) break lab108;
-                                break lab107;
-                            }
-                            if (!(this.eq_s_b("\u044E\u0432"))) break lab96;
+                            if (!(this.eq_s_b("\u044E\u0432"))) break lab98;
                         }
                         this.slice_del();
                         break;
                     }
                 }
             }
-            this.c = this.limit - v_30;
+            this.c = this.limit - v_31;
             const /**@type {number}*/ v_35 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
-            lab109: {
+            lab107: {
                 this.ket = this.c;
                 a = this.find_among_b(a_14);
-                if (a === 0) break lab109;
+                if (a === 0) break lab107;
                 this.bra = this.c;
                 switch (a) {
                     case 1: {
-                        if (B_found_verb) break lab109;
+                        if (B_found_verb) break lab107;
                         this.slice_del();
                         this.ket = this.c;
-                        if (!(this.eq_s_b("\u043D"))) break lab109;
+                        if (!(this.eq_s_b("\u043D"))) break lab107;
                         this.bra = this.c;
-                        if (!(this.eq_s_b("\u043D"))) break lab109;
+                        if (!(this.eq_s_b("\u043D"))) break lab107;
                         this.slice_del();
                         break;
                     }
                     case 2: {
                         // deno-lint-ignore no-unused-labels
-                        lab110: {
+                        lab108: {
+                            // deno-lint-ignore no-unused-labels
+                            lab109: {
+                                if (!(this.eq_s_b("\u0431"))) break lab109;
+                                break lab108;
+                            }
+                            // deno-lint-ignore no-unused-labels
+                            lab110: {
+                                if (!(this.eq_s_b("\u043F"))) break lab110;
+                                break lab108;
+                            }
                             // deno-lint-ignore no-unused-labels
                             lab111: {
-                                if (!(this.eq_s_b("\u0431"))) break lab111;
-                                break lab110;
+                                if (!(this.eq_s_b("\u0432"))) break lab111;
+                                break lab108;
                             }
-                            // deno-lint-ignore no-unused-labels
-                            lab112: {
-                                if (!(this.eq_s_b("\u043F"))) break lab112;
-                                break lab110;
-                            }
-                            // deno-lint-ignore no-unused-labels
-                            lab113: {
-                                if (!(this.eq_s_b("\u0432"))) break lab113;
-                                break lab110;
-                            }
-                            if (!(this.eq_s_b("\u043C"))) break lab109;
+                            if (!(this.eq_s_b("\u043C"))) break lab107;
                         }
                         this.slice_del();
                         break;
                     }
                     case 3: {
-                        if (!(this.eq_s_b("\u043D"))) break lab109;
+                        if (!(this.eq_s_b("\u043D"))) break lab107;
                         this.slice_del();
                         break;
                     }
