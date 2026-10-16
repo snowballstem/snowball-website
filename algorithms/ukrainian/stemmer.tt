@@ -1,0 +1,191 @@
+[% header('Ukrainian stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('ukrainian', 'Ukrainian', 'https://en.wikipedia.org/wiki/Ukrainian_language') %]
+</ul>
+
+<h2>Design Notes</h2>
+
+<p>
+The Ukrainian stemmer follows the general approach of the
+<a href="/algorithms/russian/stemmer.html">Russian stemmer</a>, adapted for
+Ukrainian morphology.  Ukrainian shares the Cyrillic alphabet with Russian but
+has additional letters (ґ, є, і, ї) and lacks some Russian letters (ё, ъ, ы, э).
+The apostrophe (&#x27;) plays an orthographic role in Ukrainian, separating
+certain consonants from following soft vowels.
+</p>
+
+<p>
+The rules were developed against a frequency list of the Ukrainian
+Wikipedia: the conditions on suffix removal and the lists of exceptions below
+were chosen by looking at which frequent words each rule helped or hurt, so
+the algorithm favours the words a search is most likely to see.
+</p>
+
+<h3>Regions</h3>
+
+<p>
+<b>pV</b> is the region after the first vowel, but never starting before the
+fourth letter.  All suffix removal requires the suffix to be in pV, so a stem
+keeps at least one vowel and at least three letters.
+</p>
+
+<p>
+<b>R2</b> is the standard Snowball R2 region (the region after the second
+vowel-consonant sequence).  It guards the aggressive derivational suffix
+removal, preventing over-stemming of short words.  For example,
+<i>інформація</i> (information) stems to <i>інформ</i> because <i>-ація</i>
+falls in R2, but <i>акація</i> (acacia) only stems to <i>акац</i> because
+<i>-ація</i> does not fall in R2 for this shorter word.
+</p>
+
+<h3>Suffix removal order</h3>
+
+<p>
+After a few whole-word steps (see below) suffixes are removed in this
+order:
+</p>
+
+<ol>
+<li>Perfective gerund (<i>-вши</i>, <i>-вшись</i>)</li>
+<li>Present-tense reflexive endings (<i>-ається</i>, <i>-иться</i>,
+    <i>-ується</i>); the whole ending goes and what is left is the verb
+    root, so <i>залишається</i> (remains) stems to <i>залиш</i></li>
+<li>Other reflexive endings (<i>-ся</i>, <i>-сь</i>, <i>-тися</i>,
+    <i>-вся</i>, <i>-лась</i>)</li>
+<li>Verbal nouns in <i>-ння</i> with all their cases (<i>рішення</i>,
+    <i>рішень</i>, <i>рішенням</i> &rarr; <i>ріш</i>, meeting
+    <i>вирішити</i> &rarr; <i>виріш</i>)</li>
+<li>Professional suffixes (<i>-ельник</i>, <i>-ник</i>, <i>-ач</i>,
+    <i>-ар</i> after <i>к</i>) or diminutive suffixes (<i>-очок</i>,
+    <i>-еньк-</i>, <i>-атко</i>)</li>
+<li>Adjective, verb or noun endings</li>
+<li>Diminutive stem cleanup (<i>-еньк</i>, <i>-оньк</i>)</li>
+<li>Professional suffixes (second pass, after noun endings)</li>
+<li>Comparative <i>-іш</i> (unless a verb form was found)</li>
+<li>Derivational suffixes in R2</li>
+<li>Tidy-up (double <i>н</i>, <i>л</i> after labials, final soft sign)</li>
+</ol>
+
+<h3>Verb forms and the thematic vowel</h3>
+
+<p>
+Past-tense and present-tense endings are removed together with the thematic
+vowel of the verb, so every form meets the infinitive: <i>читала</i>,
+<i>читає</i>, <i>читати</i> all stem to <i>чит</i>; <i>робили</i>,
+<i>робить</i>, <i>робити</i> to <i>роб</i>.  The present tense of
+<i>-увати</i> verbs is mapped back to the <i>-ув</i> theme of the infinitive
+and past tense (<i>будує</i>, <i>будував</i>, <i>будувати</i> &rarr;
+<i>будув</i>); in R2 the theme itself is then removed as a derivational
+suffix, so the verb also meets its participle and its <i>-ація</i> noun
+(<i>адаптував</i>, <i>адаптований</i>, <i>адаптування</i>,
+<i>адаптація</i> &rarr; <i>адапт</i>).
+</p>
+
+<p>
+The bare endings <i>-ла</i>, <i>-ли</i>, <i>-ло</i> and <i>-ти</i> are
+also noun endings (<i>школа</i>, <i>апостоли</i>, <i>світло</i>,
+<i>документи</i>, <i>карти</i>).  They are only removed as verb endings when
+the letter before them allows a verb: no Ukrainian verb has <i>л</i>,
+<i>т</i> or <i>д</i> before <i>-ла</i>, and no infinitive ends in
+<i>-нти</i>, <i>-ети</i>, <i>-рти</i> or <i>-кти</i> apart from a few
+listed ones (<i>померти</i>, <i>втекти</i>).  These conditions are tested on
+the whole word before the region limits apply, so they also work for
+five-letter words such as <i>школа</i> and <i>факти</i>.
+</p>
+
+<h3>Abstract nouns in -ість</h3>
+
+<p>
+<i>-ість</i> and its oblique forms <i>-ості</i>, <i>-істю</i>,
+<i>-остей</i> are removed so that the noun stems like its adjective:
+<i>активність</i>, <i>активності</i>, <i>активна</i> &rarr; <i>активн</i>.
+After <i>ль</i> the whole <i>-ьність</i> goes, matching the <i>-ьн</i> rule
+for the adjective (<i>національність</i>, <i>національний</i> &rarr;
+<i>націонал</i>).
+</p>
+
+<h3>Compound derivational+inflectional suffixes</h3>
+
+<p>
+Rather than removing derivational and inflectional suffixes in separate passes
+(which can fail when an intermediate form matches another suffix group), the
+common compound patterns are removed in a single step, in R2 only.  For
+example, <i>інформаційний</i> has compound suffix <i>-аційний</i>
+(derivational <i>-ацій</i> + inflectional <i>-ний</i>) which is removed as one
+unit to give stem <i>інформ</i>.  The compound patterns handled are:
+</p>
+
+<ul>
+<li><i>-аційн-</i> (інформаційний &rarr; інформ)</li>
+<li><i>-ічн-</i> / <i>-ичн-</i> (лінгвістичний &rarr; лінгвіст)</li>
+<li><i>-ійн-</i> (комерційний &rarr; комерц, традиційний &rarr; традиц)</li>
+<li><i>-уальн-</i> (інтелектуальний &rarr; інтелект)</li>
+</ul>
+
+<p>
+Each pattern covers the adjective endings, the adverb in <i>-о</i> and the
+<i>-ість</i> family.  Nouns in <i>-ія</i> lose the <i>-і-</i> with their
+ending so that they meet their adjective (<i>академія</i>,
+<i>академічний</i> &rarr; <i>академ</i>).
+</p>
+
+<p>
+<i>-льн-</i> adjectives lose only <i>-ьн-</i> and keep the <i>л</i> of the
+base noun (<i>акварельний</i>, <i>акварель</i> &rarr; <i>акварел</i>),
+except after <i>-ув-</i>, where the deverbal <i>-увальн-</i> goes entirely
+(<i>лікувальний</i>, <i>лікування</i>, <i>лікувати</i> &rarr;
+<i>лікув</i>).
+</p>
+
+<h3>Vowel alternations and exceptions</h3>
+
+<p>
+Ukrainian alternates <i>і</i> in a closed final syllable with <i>о</i> or
+<i>е</i> elsewhere in the paradigm (<i>захід</i>/<i>заходу</i>,
+<i>ніч</i>/<i>ночі</i>, <i>Київ</i>/<i>Києва</i>), and several very frequent
+nouns have a fleeting vowel (<i>день</i>/<i>дня</i>,
+<i>березень</i>/<i>березня</i>) or a suppletive plural
+(<i>людина</i>/<i>люди</i>).  No suffix rule can reach these, so the most
+frequent cases are handled as whole words before suffix removal: the
+nominative is mapped to the stem of the oblique forms (<i>рік</i>,
+<i>року</i>, <i>році</i> &rarr; <i>рок</i>; <i>день</i>, <i>дня</i>
+&rarr; <i>дн</i>), and the locative in <i>-ці</i>/<i>-зі</i> of the most
+frequent <i>-ка</i>/<i>-га</i> nouns is mapped back to the <i>к</i>/<i>г</i>
+stem (<i>віці</i> &rarr; <i>вік</i>, <i>книзі</i> &rarr; <i>книг</i>).
+</p>
+
+<p>
+The same whole-word list protects frequent words whose ending would
+otherwise be misread: adverbs and pronouns that look like inflected forms
+(<i>тому</i>, <i>біля</i>, <i>коли</i>, <i>нічого</i>) are left unchanged,
+and nouns whose plural coincides with a verb form keep their stem
+(<i>генерали</i>, <i>канали</i>, <i>статей</i>).
+</p>
+
+<h3>Apostrophe handling</h3>
+
+<p>
+The Ukrainian apostrophe separates consonants from softened vowels
+(e.g. <i>солов&#x27;ятко</i> &mdash; little nightingale).  The stemmer treats
+apostrophes as ordinary characters and does not remove them; it also uses
+them in conditions (<i>п&#x27;яти</i>, <i>дев&#x27;яти</i> are numerals, not
+<i>-яти</i> infinitives).  Tokenisation or normalisation before stemming should
+handle apostrophe variants if needed.
+</p>
+
+<h3>Superlative prefix</h3>
+
+<p>
+The superlative prefix <i>най-</i> is removed before suffix processing,
+so <i>найновіший</i> (newest) stems to <i>нов</i> via prefix removal +
+comparative <i>-іш</i> removal + adjective <i>-ий</i> removal.
+</p>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('ukrainian') %]
+
+[% footer %]
