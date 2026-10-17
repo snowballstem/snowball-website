@@ -1,4 +1,4 @@
-// Generated from danish.sbl by Snowball 3.1.1 - https://snowballstem.org/
+// Generated from danish.sbl by Snowball 3.2.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -52,28 +52,51 @@ const a_2 = [
     ["l\u00F8st", 2]
 ];
 
-const /** Array<number> */ g_undouble_c = [53, 94, 7];
+const /**@type {Array<number>}*/ g_undouble_c = [53, 94, 7];
 
-const /** Array<number> */ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 128];
+const /**@type {Array<number>}*/ g_v = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 128];
 
-const /** Array<number> */ g_s_ending = [1, 0, 0, 0, 0, 0, 0, 188, 251, 171, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64];
+const /**@type {Array<number>}*/ g_s_ending = [1, 0, 0, 0, 0, 0, 0, 188, 251, 171, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64];
 
 import B from './base-stemmer.js'
 
 export default class extends B {
 
-    #I_p1/** number */ = 0;
+    #I_p1/**@type {number}*/ = 0;
 
 
     /** @return {boolean} */
-    #r_mark_regions() {
+    #r_consonant_pair() {
+        const /**@type {number}*/ v_1 = this.limit - this.c;
+        if (this.c < this.#I_p1) return false;
+        const /**@type {number}*/ v_2 = this.limit_backward;
+        this.limit_backward = this.#I_p1;
+        this.ket = this.c;
+        if (this.find_among_b(a_1) === 0) {
+            this.limit_backward = v_2;
+            return false;
+        }
+        this.bra = this.c;
+        this.limit_backward = v_2;
+        this.c = this.limit - v_1;
+        if (this.c <= this.limit_backward) return false;
+        this.c--;
+        this.bra = this.c;
+        this.slice_del();
+        return true;
+    }
+
+    /** @return {boolean} */
+    #stem() {
+        let /**@type {number}*/ a;
+        let /**@type {string}*/ S_ch;
         this.#I_p1 = this.limit;
-        const /** number */ v_1 = this.c;
+        const /**@type {number}*/ v_1 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             // deno-lint-ignore no-unused-labels
             lab1: {
-                const /** number */ v_2 = this.c;
+                const /**@type {number}*/ v_2 = this.c;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     // deno-lint-ignore no-unused-labels
@@ -98,142 +121,103 @@ export default class extends B {
             this.#I_p1 = this.c;
         }
         this.c = v_1;
-        const /** number */ v_3 = this.c;
+        const /**@type {number}*/ v_3 = this.c;
         if (this.c + 3 > this.limit) return false;
         this.c += 3;
         // deno-lint-ignore no-unused-labels
         lab5: {
-            if (this.#I_p1 >= this.c) break lab5;
+            if (/**@type {boolean}*/(this.#I_p1 >= this.c)) break lab5;
             this.#I_p1 = this.c;
         }
         this.c = v_3;
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_main_suffix() {
-        let /** number */ a;
-        if (this.c < this.#I_p1) return false;
-        const /** number */ v_1 = this.limit_backward;
-        this.limit_backward = this.#I_p1;
-        this.ket = this.c;
-        a = this.find_among_b(a_0);
-        if (a === 0) {
-            this.limit_backward = v_1;
-            return false;
-        }
-        this.bra = this.c;
-        this.limit_backward = v_1;
-        switch (a) {
-            case 1: {
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                if (!(this.in_grouping_b(g_s_ending, 39, 229))) return false;
-                this.slice_del();
-                break;
-            }
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_consonant_pair() {
-        const /** number */ v_1 = this.limit - this.c;
-        if (this.c < this.#I_p1) return false;
-        const /** number */ v_2 = this.limit_backward;
-        this.limit_backward = this.#I_p1;
-        this.ket = this.c;
-        if (this.find_among_b(a_1) === 0) {
-            this.limit_backward = v_2;
-            return false;
-        }
-        this.bra = this.c;
-        this.limit_backward = v_2;
-        this.c = this.limit - v_1;
-        if (this.c <= this.limit_backward) return false;
-        this.c--;
-        this.bra = this.c;
-        this.slice_del();
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_other_suffix() {
-        let /** number */ a;
-        const /** number */ v_1 = this.limit - this.c;
+        this.limit_backward = this.c; this.c = this.limit;
+        const /**@type {number}*/ v_4 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
-        lab0: {
+        lab6: {
+            if (this.c < this.#I_p1) break lab6;
+            const /**@type {number}*/ v_5 = this.limit_backward;
+            this.limit_backward = this.#I_p1;
             this.ket = this.c;
-            if (!(this.eq_s_b("st"))) break lab0;
+            a = this.find_among_b(a_0);
+            if (a === 0) {
+                this.limit_backward = v_5;
+                break lab6;
+            }
             this.bra = this.c;
-            if (!(this.eq_s_b("ig"))) break lab0;
+            this.limit_backward = v_5;
+            switch (a) {
+                case 1: {
+                    this.slice_del();
+                    break;
+                }
+                case 2: {
+                    if (!(this.in_grouping_b(g_s_ending, 39, 229))) break lab6;
+                    this.slice_del();
+                    break;
+                }
+            }
+        }
+        this.c = this.limit - v_4;
+        const /**@type {number}*/ v_6 = this.limit - this.c;
+        this.#r_consonant_pair();
+        this.c = this.limit - v_6;
+        const /**@type {number}*/ v_7 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab7: {
+            const /**@type {number}*/ v_8 = this.limit - this.c;
+            // deno-lint-ignore no-unused-labels
+            lab8: {
+                this.ket = this.c;
+                if (!(this.eq_s_b("st"))) break lab8;
+                this.bra = this.c;
+                if (!(this.eq_s_b("ig"))) break lab8;
+                this.slice_del();
+            }
+            this.c = this.limit - v_8;
+            if (this.c < this.#I_p1) break lab7;
+            const /**@type {number}*/ v_9 = this.limit_backward;
+            this.limit_backward = this.#I_p1;
+            this.ket = this.c;
+            a = this.find_among_b(a_2);
+            if (a === 0) {
+                this.limit_backward = v_9;
+                break lab7;
+            }
+            this.bra = this.c;
+            this.limit_backward = v_9;
+            switch (a) {
+                case 1: {
+                    this.slice_del();
+                    const /**@type {number}*/ v_10 = this.limit - this.c;
+                    this.#r_consonant_pair();
+                    this.c = this.limit - v_10;
+                    break;
+                }
+                case 2: {
+                    this.slice_from("l\u00F8s");
+                    break;
+                }
+            }
+        }
+        this.c = this.limit - v_7;
+        const /**@type {number}*/ v_11 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab9: {
+            if (this.c < this.#I_p1) break lab9;
+            const /**@type {number}*/ v_12 = this.limit_backward;
+            this.limit_backward = this.#I_p1;
+            this.ket = this.c;
+            if (!(this.in_grouping_b(g_undouble_c, 98, 116))) {
+                this.limit_backward = v_12;
+                break lab9;
+            }
+            this.bra = this.c;
+            S_ch = this.slice_to();
+            this.limit_backward = v_12;
+            if (!(this.eq_s_b(S_ch))) break lab9;
             this.slice_del();
         }
-        this.c = this.limit - v_1;
-        if (this.c < this.#I_p1) return false;
-        const /** number */ v_2 = this.limit_backward;
-        this.limit_backward = this.#I_p1;
-        this.ket = this.c;
-        a = this.find_among_b(a_2);
-        if (a === 0) {
-            this.limit_backward = v_2;
-            return false;
-        }
-        this.bra = this.c;
-        this.limit_backward = v_2;
-        switch (a) {
-            case 1: {
-                this.slice_del();
-                const /** number */ v_3 = this.limit - this.c;
-                this.#r_consonant_pair();
-                this.c = this.limit - v_3;
-                break;
-            }
-            case 2: {
-                this.slice_from("l\u00F8s");
-                break;
-            }
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_undouble() {
-        let /** string */ S_ch;
-        if (this.c < this.#I_p1) return false;
-        const /** number */ v_1 = this.limit_backward;
-        this.limit_backward = this.#I_p1;
-        this.ket = this.c;
-        if (!(this.in_grouping_b(g_undouble_c, 98, 116))) {
-            this.limit_backward = v_1;
-            return false;
-        }
-        this.bra = this.c;
-        S_ch = this.slice_to();
-        this.limit_backward = v_1;
-        if (!(this.eq_s_b(S_ch))) return false;
-        this.slice_del();
-        return true;
-    }
-
-    /** @return {boolean} */
-    #stem() {
-        if (!this.#r_mark_regions()) return false;
-        this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_1 = this.limit - this.c;
-        this.#r_main_suffix();
-        this.c = this.limit - v_1;
-        const /** number */ v_2 = this.limit - this.c;
-        this.#r_consonant_pair();
-        this.c = this.limit - v_2;
-        const /** number */ v_3 = this.limit - this.c;
-        this.#r_other_suffix();
-        this.c = this.limit - v_3;
-        const /** number */ v_4 = this.limit - this.c;
-        this.#r_undouble();
-        this.c = this.limit - v_4;
+        this.c = this.limit - v_11;
         this.ket = this.c;
         if (!(this.eq_s_b("'"))) return false;
         this.bra = this.c;
@@ -243,7 +227,7 @@ export default class extends B {
     }
 
     /**@return{string}*/
-    stem(/**string*/input) {
+    stem(/**@type {string}*/input) {
         this.setCurrent(input);
         this.#stem();
         return this.getCurrent();

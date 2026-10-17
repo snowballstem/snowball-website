@@ -1,4 +1,4 @@
-// Generated from russian.sbl by Snowball 3.1.1 - https://snowballstem.org/
+// Generated from russian.sbl by Snowball 3.2.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -159,216 +159,29 @@ const a_7 = [
     ["\u044C", 3]
 ];
 
-const /** Array<number> */ g_v = [33, 65, 8, 232];
+const /**@type {Array<number>}*/ g_v = [33, 65, 8, 232];
 
 import B from './base-stemmer.js'
 
 export default class extends B {
 
-    #I_p2/** number */ = 0;
-    #I_pV/** number */ = 0;
-
-
-    /** @return {boolean} */
-    #r_mark_regions() {
-        this.#I_pV = this.limit;
-        this.#I_p2 = this.limit;
-        const /** number */ v_1 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            if (!this.go_out_grouping(g_v, 1072, 1103)) break lab0;
-            this.c++;
-            this.#I_pV = this.c;
-            if (!this.go_in_grouping(g_v, 1072, 1103)) break lab0;
-            this.c++;
-            if (!this.go_out_grouping(g_v, 1072, 1103)) break lab0;
-            this.c++;
-            if (!this.go_in_grouping(g_v, 1072, 1103)) break lab0;
-            this.c++;
-            this.#I_p2 = this.c;
-        }
-        this.c = v_1;
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_perfective_gerund() {
-        let /** number */ a;
-        this.ket = this.c;
-        a = this.find_among_b(a_0);
-        if (a === 0) return false;
-        this.bra = this.c;
-        switch (a) {
-            case 1: {
-                // deno-lint-ignore no-unused-labels
-                lab0: {
-                    // deno-lint-ignore no-unused-labels
-                    lab1: {
-                        if (!(this.eq_s_b("\u0430"))) break lab1;
-                        break lab0;
-                    }
-                    if (!(this.eq_s_b("\u044F"))) return false;
-                }
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                this.slice_del();
-                break;
-            }
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_adjective() {
-        this.ket = this.c;
-        if (this.find_among_b(a_1) === 0) return false;
-        this.bra = this.c;
-        this.slice_del();
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_adjectival() {
-        let /** number */ a;
-        if (!this.#r_adjective()) return false;
-        const /** number */ v_1 = this.limit - this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            this.ket = this.c;
-            a = this.find_among_b(a_2);
-            if (a === 0) {
-                this.c = this.limit - v_1;
-                break lab0;
-            }
-            this.bra = this.c;
-            switch (a) {
-                case 1: {
-                    // deno-lint-ignore no-unused-labels
-                    lab1: {
-                        // deno-lint-ignore no-unused-labels
-                        lab2: {
-                            if (!(this.eq_s_b("\u0430"))) break lab2;
-                            break lab1;
-                        }
-                        if (!(this.eq_s_b("\u044F"))) {
-                            this.c = this.limit - v_1;
-                            break lab0;
-                        }
-                    }
-                    this.slice_del();
-                    break;
-                }
-                case 2: {
-                    this.slice_del();
-                    break;
-                }
-            }
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_reflexive() {
-        this.ket = this.c;
-        if (this.find_among_b(a_3) === 0) return false;
-        this.bra = this.c;
-        this.slice_del();
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_verb() {
-        let /** number */ a;
-        this.ket = this.c;
-        a = this.find_among_b(a_4);
-        if (a === 0) return false;
-        this.bra = this.c;
-        switch (a) {
-            case 1: {
-                // deno-lint-ignore no-unused-labels
-                lab0: {
-                    // deno-lint-ignore no-unused-labels
-                    lab1: {
-                        if (!(this.eq_s_b("\u0430"))) break lab1;
-                        break lab0;
-                    }
-                    if (!(this.eq_s_b("\u044F"))) return false;
-                }
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                this.slice_del();
-                break;
-            }
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_noun() {
-        this.ket = this.c;
-        if (this.find_among_b(a_5) === 0) return false;
-        this.bra = this.c;
-        this.slice_del();
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_derivational() {
-        this.ket = this.c;
-        if (this.find_among_b(a_6) === 0) return false;
-        this.bra = this.c;
-        if (this.#I_p2 > this.c) return false;
-        this.slice_del();
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_tidy_up() {
-        let /** number */ a;
-        this.ket = this.c;
-        a = this.find_among_b(a_7);
-        if (a === 0) return false;
-        this.bra = this.c;
-        switch (a) {
-            case 1: {
-                this.slice_del();
-                this.ket = this.c;
-                if (!(this.eq_s_b("\u043D"))) return false;
-                this.bra = this.c;
-                if (!(this.eq_s_b("\u043D"))) return false;
-                this.slice_del();
-                break;
-            }
-            case 2: {
-                if (!(this.eq_s_b("\u043D"))) return false;
-                this.slice_del();
-                break;
-            }
-            case 3: {
-                this.slice_del();
-                break;
-            }
-        }
-        return true;
-    }
 
     /** @return {boolean} */
     #stem() {
-        const /** number */ v_1 = this.c;
+        let /**@type {number}*/ a;
+        let /**@type {number}*/ I_p2;
+        let /**@type {number}*/ I_pV;
+        const /**@type {number}*/ v_1 = this.c;
         // deno-lint-ignore no-unused-labels
         lab0: {
             while (true) {
-                const /** number */ v_2 = this.c;
+                const /**@type {number}*/ v_2 = this.c;
                 // deno-lint-ignore no-unused-labels
                 lab1: {
                     // deno-lint-ignore no-unused-labels
                     golab2: while (true)
                     {
-                        const /** number */ v_3 = this.c;
+                        const /**@type {number}*/ v_3 = this.c;
                         // deno-lint-ignore no-unused-labels
                         lab3: {
                             this.bra = this.c;
@@ -389,75 +202,213 @@ export default class extends B {
             }
         }
         this.c = v_1;
-        this.#r_mark_regions();
-        this.limit_backward = this.c; this.c = this.limit;
-        if (this.c < this.#I_pV) return false;
-        const /** number */ v_4 = this.limit_backward;
-        this.limit_backward = this.#I_pV;
-        const /** number */ v_5 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
         lab4: {
+            I_pV = this.limit;
+            I_p2 = this.limit;
+            const /**@type {number}*/ v_4 = this.c;
             // deno-lint-ignore no-unused-labels
             lab5: {
-                const /** number */ v_6 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab6: {
-                    if (!this.#r_perfective_gerund()) break lab6;
-                    break lab5;
-                }
-                this.c = this.limit - v_6;
-                const /** number */ v_7 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab7: {
-                    if (!this.#r_reflexive()) {
-                        this.c = this.limit - v_7;
-                        break lab7;
-                    }
-                }
+                if (!this.go_out_grouping(g_v, 1072, 1103)) break lab5;
+                this.c++;
+                I_pV = this.c;
+                if (!this.go_in_grouping(g_v, 1072, 1103)) break lab5;
+                this.c++;
+                if (!this.go_out_grouping(g_v, 1072, 1103)) break lab5;
+                this.c++;
+                if (!this.go_in_grouping(g_v, 1072, 1103)) break lab5;
+                this.c++;
+                I_p2 = this.c;
+            }
+            this.c = v_4;
+        }
+        this.limit_backward = this.c; this.c = this.limit;
+        if (this.c < I_pV) return false;
+        const /**@type {number}*/ v_5 = this.limit_backward;
+        this.limit_backward = I_pV;
+        const /**@type {number}*/ v_6 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab6: {
+            // deno-lint-ignore no-unused-labels
+            lab7: {
+                const /**@type {number}*/ v_7 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab8: {
-                    const /** number */ v_8 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab9: {
-                        if (!this.#r_adjectival()) break lab9;
-                        break lab8;
+                    this.ket = this.c;
+                    a = this.find_among_b(a_0);
+                    if (a === 0) break lab8;
+                    this.bra = this.c;
+                    switch (a) {
+                        case 1: {
+                            // deno-lint-ignore no-unused-labels
+                            lab9: {
+                                // deno-lint-ignore no-unused-labels
+                                lab10: {
+                                    if (!(this.eq_s_b("\u0430"))) break lab10;
+                                    break lab9;
+                                }
+                                if (!(this.eq_s_b("\u044F"))) break lab8;
+                            }
+                            this.slice_del();
+                            break;
+                        }
+                        case 2: {
+                            this.slice_del();
+                            break;
+                        }
                     }
-                    this.c = this.limit - v_8;
-                    // deno-lint-ignore no-unused-labels
-                    lab10: {
-                        if (!this.#r_verb()) break lab10;
-                        break lab8;
+                    break lab7;
+                }
+                this.c = this.limit - v_7;
+                const /**@type {number}*/ v_8 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab11: {
+                    this.ket = this.c;
+                    if (this.find_among_b(a_3) === 0) {
+                        this.c = this.limit - v_8;
+                        break lab11;
                     }
-                    this.c = this.limit - v_8;
-                    if (!this.#r_noun()) break lab4;
+                    this.bra = this.c;
+                    this.slice_del();
+                }
+                // deno-lint-ignore no-unused-labels
+                lab12: {
+                    const /**@type {number}*/ v_9 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab13: {
+                        this.ket = this.c;
+                        if (this.find_among_b(a_1) === 0) break lab13;
+                        this.bra = this.c;
+                        this.slice_del();
+                        const /**@type {number}*/ v_10 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab14: {
+                            this.ket = this.c;
+                            a = this.find_among_b(a_2);
+                            if (a === 0) {
+                                this.c = this.limit - v_10;
+                                break lab14;
+                            }
+                            this.bra = this.c;
+                            switch (a) {
+                                case 1: {
+                                    // deno-lint-ignore no-unused-labels
+                                    lab15: {
+                                        // deno-lint-ignore no-unused-labels
+                                        lab16: {
+                                            if (!(this.eq_s_b("\u0430"))) break lab16;
+                                            break lab15;
+                                        }
+                                        if (!(this.eq_s_b("\u044F"))) {
+                                            this.c = this.limit - v_10;
+                                            break lab14;
+                                        }
+                                    }
+                                    this.slice_del();
+                                    break;
+                                }
+                                case 2: {
+                                    this.slice_del();
+                                    break;
+                                }
+                            }
+                        }
+                        break lab12;
+                    }
+                    this.c = this.limit - v_9;
+                    // deno-lint-ignore no-unused-labels
+                    lab17: {
+                        this.ket = this.c;
+                        a = this.find_among_b(a_4);
+                        if (a === 0) break lab17;
+                        this.bra = this.c;
+                        switch (a) {
+                            case 1: {
+                                // deno-lint-ignore no-unused-labels
+                                lab18: {
+                                    // deno-lint-ignore no-unused-labels
+                                    lab19: {
+                                        if (!(this.eq_s_b("\u0430"))) break lab19;
+                                        break lab18;
+                                    }
+                                    if (!(this.eq_s_b("\u044F"))) break lab17;
+                                }
+                                this.slice_del();
+                                break;
+                            }
+                            case 2: {
+                                this.slice_del();
+                                break;
+                            }
+                        }
+                        break lab12;
+                    }
+                    this.c = this.limit - v_9;
+                    this.ket = this.c;
+                    if (this.find_among_b(a_5) === 0) break lab6;
+                    this.bra = this.c;
+                    this.slice_del();
                 }
             }
         }
-        this.c = this.limit - v_5;
-        const /** number */ v_9 = this.limit - this.c;
+        this.c = this.limit - v_6;
+        const /**@type {number}*/ v_11 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
-        lab11: {
+        lab20: {
             this.ket = this.c;
             if (!(this.eq_s_b("\u0438"))) {
-                this.c = this.limit - v_9;
-                break lab11;
+                this.c = this.limit - v_11;
+                break lab20;
             }
             this.bra = this.c;
             this.slice_del();
         }
-        const /** number */ v_10 = this.limit - this.c;
-        this.#r_derivational();
-        this.c = this.limit - v_10;
-        const /** number */ v_11 = this.limit - this.c;
-        this.#r_tidy_up();
-        this.c = this.limit - v_11;
-        this.limit_backward = v_4;
+        const /**@type {number}*/ v_12 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab21: {
+            this.ket = this.c;
+            if (this.find_among_b(a_6) === 0) break lab21;
+            this.bra = this.c;
+            if (/**@type {boolean}*/(I_p2 > this.c)) break lab21;
+            this.slice_del();
+        }
+        this.c = this.limit - v_12;
+        const /**@type {number}*/ v_13 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab22: {
+            this.ket = this.c;
+            a = this.find_among_b(a_7);
+            if (a === 0) break lab22;
+            this.bra = this.c;
+            switch (a) {
+                case 1: {
+                    this.slice_del();
+                    this.ket = this.c;
+                    if (!(this.eq_s_b("\u043D"))) break lab22;
+                    this.bra = this.c;
+                    if (!(this.eq_s_b("\u043D"))) break lab22;
+                    this.slice_del();
+                    break;
+                }
+                case 2: {
+                    if (!(this.eq_s_b("\u043D"))) break lab22;
+                    this.slice_del();
+                    break;
+                }
+                case 3: {
+                    this.slice_del();
+                    break;
+                }
+            }
+        }
+        this.c = this.limit - v_13;
+        this.limit_backward = v_5;
         this.c = this.limit_backward;
         return true;
     }
 
     /**@return{string}*/
-    stem(/**string*/input) {
+    stem(/**@type {string}*/input) {
         this.setCurrent(input);
         this.#stem();
         return this.getCurrent();

@@ -1,4 +1,4 @@
-// Generated from turkish.sbl by Snowball 3.1.1 - https://snowballstem.org/
+// Generated from turkish.sbl by Snowball 3.2.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -194,38 +194,36 @@ const a_23 = [
     ["\u011F", 4]
 ];
 
-const /** Array<string> */ as_23 = ["p", "\u00E7", "t", "k"];
+const /**@type {Array<string>}*/ as_23 = ["p", "\u00E7", "t", "k"];
 
-const /** Array<number> */ g_vowel = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 8, 0, 0, 0, 0, 0, 0, 1];
+const /**@type {Array<number>}*/ g_vowel = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 8, 0, 0, 0, 0, 0, 0, 1];
 
-const /** Array<number> */ g_U = [1, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 1];
+const /**@type {Array<number>}*/ g_U = [1, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 1];
 
-const /** Array<number> */ g_vowel1 = [1, 64, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
+const /**@type {Array<number>}*/ g_vowel1 = [1, 64, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
 
-const /** Array<number> */ g_vowel2 = [17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 130];
+const /**@type {Array<number>}*/ g_vowel2 = [17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 130];
 
-const /** Array<number> */ g_vowel3 = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
+const /**@type {Array<number>}*/ g_vowel3 = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
 
-const /** Array<number> */ g_vowel4 = [17];
+const /**@type {Array<number>}*/ g_vowel4 = [17];
 
-const /** Array<number> */ g_vowel5 = [65];
+const /**@type {Array<number>}*/ g_vowel5 = [65];
 
-const /** Array<number> */ g_vowel6 = [65];
+const /**@type {Array<number>}*/ g_vowel6 = [65];
 
 import B from './base-stemmer.js'
 
 export default class extends B {
 
-    #B_continue_stemming_noun_suffixes/** boolean */ = false;
-
 
     /** @return {boolean} */
     #r_check_vowel_harmony() {
-        const /** number */ v_1 = this.limit - this.c;
+        const /**@type {number}*/ v_1 = this.limit - this.c;
         if (!this.go_out_grouping_b(g_vowel, 97, 305)) return false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_2 = this.limit - this.c;
+            const /**@type {number}*/ v_2 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!(this.eq_s_b("a"))) break lab1;
@@ -286,11 +284,11 @@ export default class extends B {
     #r_mark_suffix_with_optional_n_consonant() {
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /**@type {number}*/ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!(this.eq_s_b("n"))) break lab1;
-                const /** number */ v_2 = this.limit - this.c;
+                const /**@type {number}*/ v_2 = this.limit - this.c;
                 if (!(this.in_grouping_b(g_vowel, 97, 305))) break lab1;
                 this.c = this.limit - v_2;
                 break lab0;
@@ -301,35 +299,7 @@ export default class extends B {
                 if (!(this.eq_s_b("n"))) break lab2;
                 return false;
             }
-            const /** number */ v_3 = this.limit - this.c;
-            if (this.c <= this.limit_backward) return false;
-            this.c--;
-            if (!(this.in_grouping_b(g_vowel, 97, 305))) return false;
-            this.c = this.limit - v_3;
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_mark_suffix_with_optional_s_consonant() {
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            const /** number */ v_1 = this.limit - this.c;
-            // deno-lint-ignore no-unused-labels
-            lab1: {
-                if (!(this.eq_s_b("s"))) break lab1;
-                const /** number */ v_2 = this.limit - this.c;
-                if (!(this.in_grouping_b(g_vowel, 97, 305))) break lab1;
-                this.c = this.limit - v_2;
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab2: {
-                if (!(this.eq_s_b("s"))) break lab2;
-                return false;
-            }
-            const /** number */ v_3 = this.limit - this.c;
+            const /**@type {number}*/ v_3 = this.limit - this.c;
             if (this.c <= this.limit_backward) return false;
             this.c--;
             if (!(this.in_grouping_b(g_vowel, 97, 305))) return false;
@@ -342,11 +312,11 @@ export default class extends B {
     #r_mark_suffix_with_optional_y_consonant() {
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /**@type {number}*/ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!(this.eq_s_b("y"))) break lab1;
-                const /** number */ v_2 = this.limit - this.c;
+                const /**@type {number}*/ v_2 = this.limit - this.c;
                 if (!(this.in_grouping_b(g_vowel, 97, 305))) break lab1;
                 this.c = this.limit - v_2;
                 break lab0;
@@ -357,7 +327,7 @@ export default class extends B {
                 if (!(this.eq_s_b("y"))) break lab2;
                 return false;
             }
-            const /** number */ v_3 = this.limit - this.c;
+            const /**@type {number}*/ v_3 = this.limit - this.c;
             if (this.c <= this.limit_backward) return false;
             this.c--;
             if (!(this.in_grouping_b(g_vowel, 97, 305))) return false;
@@ -367,14 +337,15 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_mark_suffix_with_optional_U_vowel() {
+    #r_mark_possessives() {
+        if (this.find_among_b(a_0) === 0) return false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /**@type {number}*/ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!(this.in_grouping_b(g_U, 105, 305))) break lab1;
-                const /** number */ v_2 = this.limit - this.c;
+                const /**@type {number}*/ v_2 = this.limit - this.c;
                 if (!(this.out_grouping_b(g_vowel, 97, 305))) break lab1;
                 this.c = this.limit - v_2;
                 break lab0;
@@ -385,7 +356,7 @@ export default class extends B {
                 if (!(this.in_grouping_b(g_U, 105, 305))) break lab2;
                 return false;
             }
-            const /** number */ v_3 = this.limit - this.c;
+            const /**@type {number}*/ v_3 = this.limit - this.c;
             if (this.c <= this.limit_backward) return false;
             this.c--;
             if (!(this.out_grouping_b(g_vowel, 97, 305))) return false;
@@ -395,16 +366,33 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_mark_possessives() {
-        if (this.find_among_b(a_0) === 0) return false;
-        return this.#r_mark_suffix_with_optional_U_vowel();
-    }
-
-    /** @return {boolean} */
     #r_mark_sU() {
         if (!this.#r_check_vowel_harmony()) return false;
         if (!(this.in_grouping_b(g_U, 105, 305))) return false;
-        return this.#r_mark_suffix_with_optional_s_consonant();
+        // deno-lint-ignore no-unused-labels
+        lab0: {
+            const /**@type {number}*/ v_1 = this.limit - this.c;
+            // deno-lint-ignore no-unused-labels
+            lab1: {
+                if (!(this.eq_s_b("s"))) break lab1;
+                const /**@type {number}*/ v_2 = this.limit - this.c;
+                if (!(this.in_grouping_b(g_vowel, 97, 305))) break lab1;
+                this.c = this.limit - v_2;
+                break lab0;
+            }
+            this.c = this.limit - v_1;
+            // deno-lint-ignore no-unused-labels
+            lab2: {
+                if (!(this.eq_s_b("s"))) break lab2;
+                return false;
+            }
+            const /**@type {number}*/ v_3 = this.limit - this.c;
+            if (this.c <= this.limit_backward) return false;
+            this.c--;
+            if (!(this.in_grouping_b(g_vowel, 97, 305))) return false;
+            this.c = this.limit - v_3;
+        }
+        return true;
     }
 
     /** @return {boolean} */
@@ -413,36 +401,10 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_mark_yU() {
-        if (!this.#r_check_vowel_harmony()) return false;
-        if (!(this.in_grouping_b(g_U, 105, 305))) return false;
-        return this.#r_mark_suffix_with_optional_y_consonant();
-    }
-
-    /** @return {boolean} */
-    #r_mark_nU() {
-        if (!this.#r_check_vowel_harmony()) return false;
-        return this.find_among_b(a_2) !== 0;
-    }
-
-    /** @return {boolean} */
     #r_mark_nUn() {
         if (!this.#r_check_vowel_harmony()) return false;
         if (this.find_among_b(a_3) === 0) return false;
         return this.#r_mark_suffix_with_optional_n_consonant();
-    }
-
-    /** @return {boolean} */
-    #r_mark_yA() {
-        if (!this.#r_check_vowel_harmony()) return false;
-        if (this.find_among_b(a_4) === 0) return false;
-        return this.#r_mark_suffix_with_optional_y_consonant();
-    }
-
-    /** @return {boolean} */
-    #r_mark_nA() {
-        if (!this.#r_check_vowel_harmony()) return false;
-        return this.find_among_b(a_5) !== 0;
     }
 
     /** @return {boolean} */
@@ -455,32 +417,6 @@ export default class extends B {
     #r_mark_ndA() {
         if (!this.#r_check_vowel_harmony()) return false;
         return this.find_among_b(a_7) !== 0;
-    }
-
-    /** @return {boolean} */
-    #r_mark_DAn() {
-        if (!this.#r_check_vowel_harmony()) return false;
-        return this.find_among_b(a_8) !== 0;
-    }
-
-    /** @return {boolean} */
-    #r_mark_ndAn() {
-        if (!this.#r_check_vowel_harmony()) return false;
-        return this.find_among_b(a_9) !== 0;
-    }
-
-    /** @return {boolean} */
-    #r_mark_ylA() {
-        if (!this.#r_check_vowel_harmony()) return false;
-        if (this.find_among_b(a_10) === 0) return false;
-        return this.#r_mark_suffix_with_optional_y_consonant();
-    }
-
-    /** @return {boolean} */
-    #r_mark_ncA() {
-        if (!this.#r_check_vowel_harmony()) return false;
-        if (this.find_among_b(a_11) === 0) return false;
-        return this.#r_mark_suffix_with_optional_n_consonant();
     }
 
     /** @return {boolean} */
@@ -515,20 +451,9 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_mark_nUz() {
-        if (!this.#r_check_vowel_harmony()) return false;
-        return this.find_among_b(a_17) !== 0;
-    }
-
-    /** @return {boolean} */
     #r_mark_DUr() {
         if (!this.#r_check_vowel_harmony()) return false;
         return this.find_among_b(a_18) !== 0;
-    }
-
-    /** @return {boolean} */
-    #r_mark_cAsInA() {
-        return this.find_among_b(a_19) !== 0;
     }
 
     /** @return {boolean} */
@@ -552,260 +477,30 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_mark_yken() {
-        if (!(this.eq_s_b("ken"))) return false;
-        return this.#r_mark_suffix_with_optional_y_consonant();
-    }
-
-    /** @return {boolean} */
-    #r_stem_nominal_verb_suffixes() {
-        this.ket = this.c;
-        this.#B_continue_stemming_noun_suffixes = true;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            const /** number */ v_1 = this.limit - this.c;
-            // deno-lint-ignore no-unused-labels
-            lab1: {
-                // deno-lint-ignore no-unused-labels
-                lab2: {
-                    const /** number */ v_2 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab3: {
-                        if (!this.#r_mark_ymUs_()) break lab3;
-                        break lab2;
-                    }
-                    this.c = this.limit - v_2;
-                    // deno-lint-ignore no-unused-labels
-                    lab4: {
-                        if (!this.#r_mark_yDU()) break lab4;
-                        break lab2;
-                    }
-                    this.c = this.limit - v_2;
-                    // deno-lint-ignore no-unused-labels
-                    lab5: {
-                        if (!this.#r_mark_ysA()) break lab5;
-                        break lab2;
-                    }
-                    this.c = this.limit - v_2;
-                    if (!this.#r_mark_yken()) break lab1;
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab6: {
-                if (!this.#r_mark_cAsInA()) break lab6;
-                // deno-lint-ignore no-unused-labels
-                lab7: {
-                    const /** number */ v_3 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab8: {
-                        if (!this.#r_mark_sUnUz()) break lab8;
-                        break lab7;
-                    }
-                    this.c = this.limit - v_3;
-                    // deno-lint-ignore no-unused-labels
-                    lab9: {
-                        if (!this.#r_mark_lAr()) break lab9;
-                        break lab7;
-                    }
-                    this.c = this.limit - v_3;
-                    // deno-lint-ignore no-unused-labels
-                    lab10: {
-                        if (!this.#r_mark_yUm()) break lab10;
-                        break lab7;
-                    }
-                    this.c = this.limit - v_3;
-                    // deno-lint-ignore no-unused-labels
-                    lab11: {
-                        if (!this.#r_mark_sUn()) break lab11;
-                        break lab7;
-                    }
-                    this.c = this.limit - v_3;
-                    // deno-lint-ignore no-unused-labels
-                    lab12: {
-                        if (!this.#r_mark_yUz()) break lab12;
-                        break lab7;
-                    }
-                    this.c = this.limit - v_3;
-                }
-                if (!this.#r_mark_ymUs_()) break lab6;
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab13: {
-                if (!this.#r_mark_lAr()) break lab13;
-                this.bra = this.c;
-                this.slice_del();
-                const /** number */ v_4 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab14: {
-                    this.ket = this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab15: {
-                        const /** number */ v_5 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab16: {
-                            if (!this.#r_mark_DUr()) break lab16;
-                            break lab15;
-                        }
-                        this.c = this.limit - v_5;
-                        // deno-lint-ignore no-unused-labels
-                        lab17: {
-                            if (!this.#r_mark_yDU()) break lab17;
-                            break lab15;
-                        }
-                        this.c = this.limit - v_5;
-                        // deno-lint-ignore no-unused-labels
-                        lab18: {
-                            if (!this.#r_mark_ysA()) break lab18;
-                            break lab15;
-                        }
-                        this.c = this.limit - v_5;
-                        if (!this.#r_mark_ymUs_()) {
-                            this.c = this.limit - v_4;
-                            break lab14;
-                        }
-                    }
-                }
-                this.#B_continue_stemming_noun_suffixes = false;
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab19: {
-                if (!this.#r_mark_nUz()) break lab19;
-                // deno-lint-ignore no-unused-labels
-                lab20: {
-                    const /** number */ v_6 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab21: {
-                        if (!this.#r_mark_yDU()) break lab21;
-                        break lab20;
-                    }
-                    this.c = this.limit - v_6;
-                    if (!this.#r_mark_ysA()) break lab19;
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab22: {
-                // deno-lint-ignore no-unused-labels
-                lab23: {
-                    const /** number */ v_7 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab24: {
-                        if (!this.#r_mark_sUnUz()) break lab24;
-                        break lab23;
-                    }
-                    this.c = this.limit - v_7;
-                    // deno-lint-ignore no-unused-labels
-                    lab25: {
-                        if (!this.#r_mark_yUz()) break lab25;
-                        break lab23;
-                    }
-                    this.c = this.limit - v_7;
-                    // deno-lint-ignore no-unused-labels
-                    lab26: {
-                        if (!this.#r_mark_sUn()) break lab26;
-                        break lab23;
-                    }
-                    this.c = this.limit - v_7;
-                    if (!this.#r_mark_yUm()) break lab22;
-                }
-                this.bra = this.c;
-                this.slice_del();
-                const /** number */ v_8 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab27: {
-                    this.ket = this.c;
-                    if (!this.#r_mark_ymUs_()) {
-                        this.c = this.limit - v_8;
-                        break lab27;
-                    }
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            if (!this.#r_mark_DUr()) return false;
-            this.bra = this.c;
-            this.slice_del();
-            const /** number */ v_9 = this.limit - this.c;
-            // deno-lint-ignore no-unused-labels
-            lab28: {
-                this.ket = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab29: {
-                    const /** number */ v_10 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab30: {
-                        if (!this.#r_mark_sUnUz()) break lab30;
-                        break lab29;
-                    }
-                    this.c = this.limit - v_10;
-                    // deno-lint-ignore no-unused-labels
-                    lab31: {
-                        if (!this.#r_mark_lAr()) break lab31;
-                        break lab29;
-                    }
-                    this.c = this.limit - v_10;
-                    // deno-lint-ignore no-unused-labels
-                    lab32: {
-                        if (!this.#r_mark_yUm()) break lab32;
-                        break lab29;
-                    }
-                    this.c = this.limit - v_10;
-                    // deno-lint-ignore no-unused-labels
-                    lab33: {
-                        if (!this.#r_mark_sUn()) break lab33;
-                        break lab29;
-                    }
-                    this.c = this.limit - v_10;
-                    // deno-lint-ignore no-unused-labels
-                    lab34: {
-                        if (!this.#r_mark_yUz()) break lab34;
-                        break lab29;
-                    }
-                    this.c = this.limit - v_10;
-                }
-                if (!this.#r_mark_ymUs_()) {
-                    this.c = this.limit - v_9;
-                    break lab28;
-                }
-            }
-        }
-        this.bra = this.c;
-        this.slice_del();
-        return true;
-    }
-
-    /** @return {boolean} */
     #r_stem_suffix_chain_before_ki() {
         this.ket = this.c;
         if (!(this.eq_s_b("ki"))) return false;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /**@type {number}*/ v_1 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
                 if (!this.#r_mark_DA()) break lab1;
                 this.bra = this.c;
                 this.slice_del();
-                const /** number */ v_2 = this.limit - this.c;
+                const /**@type {number}*/ v_2 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab2: {
                     this.ket = this.c;
                     // deno-lint-ignore no-unused-labels
                     lab3: {
-                        const /** number */ v_3 = this.limit - this.c;
+                        const /**@type {number}*/ v_3 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
                         lab4: {
                             if (!this.#r_mark_lAr()) break lab4;
                             this.bra = this.c;
                             this.slice_del();
-                            const /** number */ v_4 = this.limit - this.c;
+                            const /**@type {number}*/ v_4 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
                             lab5: {
                                 if (!this.#r_stem_suffix_chain_before_ki()) {
@@ -822,7 +517,7 @@ export default class extends B {
                         }
                         this.bra = this.c;
                         this.slice_del();
-                        const /** number */ v_5 = this.limit - this.c;
+                        const /**@type {number}*/ v_5 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
                         lab6: {
                             this.ket = this.c;
@@ -847,13 +542,13 @@ export default class extends B {
                 if (!this.#r_mark_nUn()) break lab7;
                 this.bra = this.c;
                 this.slice_del();
-                const /** number */ v_6 = this.limit - this.c;
+                const /**@type {number}*/ v_6 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab8: {
                     this.ket = this.c;
                     // deno-lint-ignore no-unused-labels
                     lab9: {
-                        const /** number */ v_7 = this.limit - this.c;
+                        const /**@type {number}*/ v_7 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
                         lab10: {
                             if (!this.#r_mark_lArI()) break lab10;
@@ -867,7 +562,7 @@ export default class extends B {
                             this.ket = this.c;
                             // deno-lint-ignore no-unused-labels
                             lab12: {
-                                const /** number */ v_8 = this.limit - this.c;
+                                const /**@type {number}*/ v_8 = this.limit - this.c;
                                 // deno-lint-ignore no-unused-labels
                                 lab13: {
                                     if (!this.#r_mark_possessives()) break lab13;
@@ -878,7 +573,7 @@ export default class extends B {
                             }
                             this.bra = this.c;
                             this.slice_del();
-                            const /** number */ v_9 = this.limit - this.c;
+                            const /**@type {number}*/ v_9 = this.limit - this.c;
                             // deno-lint-ignore no-unused-labels
                             lab14: {
                                 this.ket = this.c;
@@ -908,7 +603,7 @@ export default class extends B {
             if (!this.#r_mark_ndA()) return false;
             // deno-lint-ignore no-unused-labels
             lab15: {
-                const /** number */ v_10 = this.limit - this.c;
+                const /**@type {number}*/ v_10 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
                 lab16: {
                     if (!this.#r_mark_lArI()) break lab16;
@@ -922,7 +617,7 @@ export default class extends B {
                     if (!this.#r_mark_sU()) break lab17;
                     this.bra = this.c;
                     this.slice_del();
-                    const /** number */ v_11 = this.limit - this.c;
+                    const /**@type {number}*/ v_11 = this.limit - this.c;
                     // deno-lint-ignore no-unused-labels
                     lab18: {
                         this.ket = this.c;
@@ -947,651 +642,859 @@ export default class extends B {
     }
 
     /** @return {boolean} */
-    #r_stem_noun_suffixes() {
+    #stem() {
+        let /**@type {number}*/ a;
+        let /**@type {boolean}*/ B_continue_stemming_noun_suffixes;
         // deno-lint-ignore no-unused-labels
         lab0: {
-            const /** number */ v_1 = this.limit - this.c;
+            const /**@type {number}*/ v_1 = this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                this.ket = this.c;
-                if (!this.#r_mark_lAr()) break lab1;
                 this.bra = this.c;
-                this.slice_del();
-                const /** number */ v_2 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
-                lab2: {
-                    if (!this.#r_stem_suffix_chain_before_ki()) {
-                        this.c = this.limit - v_2;
-                        break lab2;
-                    }
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab3: {
-                this.ket = this.c;
-                if (!this.#r_mark_ncA()) break lab3;
-                this.bra = this.c;
-                this.slice_del();
-                const /** number */ v_3 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab4: {
-                    // deno-lint-ignore no-unused-labels
-                    lab5: {
-                        const /** number */ v_4 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab6: {
-                            this.ket = this.c;
-                            if (!this.#r_mark_lArI()) break lab6;
-                            this.bra = this.c;
-                            this.slice_del();
-                            break lab5;
-                        }
-                        this.c = this.limit - v_4;
-                        // deno-lint-ignore no-unused-labels
-                        lab7: {
-                            this.ket = this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab8: {
-                                const /** number */ v_5 = this.limit - this.c;
-                                // deno-lint-ignore no-unused-labels
-                                lab9: {
-                                    if (!this.#r_mark_possessives()) break lab9;
-                                    break lab8;
-                                }
-                                this.c = this.limit - v_5;
-                                if (!this.#r_mark_sU()) break lab7;
-                            }
-                            this.bra = this.c;
-                            this.slice_del();
-                            const /** number */ v_6 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab10: {
-                                this.ket = this.c;
-                                if (!this.#r_mark_lAr()) {
-                                    this.c = this.limit - v_6;
-                                    break lab10;
-                                }
-                                this.bra = this.c;
-                                this.slice_del();
-                                if (!this.#r_stem_suffix_chain_before_ki()) {
-                                    this.c = this.limit - v_6;
-                                    break lab10;
-                                }
-                            }
-                            break lab5;
-                        }
-                        this.c = this.limit - v_4;
-                        this.ket = this.c;
-                        if (!this.#r_mark_lAr()) {
-                            this.c = this.limit - v_3;
-                            break lab4;
-                        }
-                        this.bra = this.c;
-                        this.slice_del();
-                        if (!this.#r_stem_suffix_chain_before_ki()) {
-                            this.c = this.limit - v_3;
-                            break lab4;
-                        }
-                    }
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab11: {
-                this.ket = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab12: {
-                    const /** number */ v_7 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab13: {
-                        if (!this.#r_mark_ndA()) break lab13;
-                        break lab12;
-                    }
-                    this.c = this.limit - v_7;
-                    if (!this.#r_mark_nA()) break lab11;
-                }
-                // deno-lint-ignore no-unused-labels
-                lab14: {
-                    const /** number */ v_8 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab15: {
-                        if (!this.#r_mark_lArI()) break lab15;
-                        this.bra = this.c;
-                        this.slice_del();
-                        break lab14;
-                    }
-                    this.c = this.limit - v_8;
-                    // deno-lint-ignore no-unused-labels
-                    lab16: {
-                        if (!this.#r_mark_sU()) break lab16;
-                        this.bra = this.c;
-                        this.slice_del();
-                        const /** number */ v_9 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab17: {
-                            this.ket = this.c;
-                            if (!this.#r_mark_lAr()) {
-                                this.c = this.limit - v_9;
-                                break lab17;
-                            }
-                            this.bra = this.c;
-                            this.slice_del();
-                            if (!this.#r_stem_suffix_chain_before_ki()) {
-                                this.c = this.limit - v_9;
-                                break lab17;
-                            }
-                        }
-                        break lab14;
-                    }
-                    this.c = this.limit - v_8;
-                    if (!this.#r_stem_suffix_chain_before_ki()) break lab11;
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab18: {
-                this.ket = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab19: {
-                    const /** number */ v_10 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab20: {
-                        if (!this.#r_mark_ndAn()) break lab20;
-                        break lab19;
-                    }
-                    this.c = this.limit - v_10;
-                    if (!this.#r_mark_nU()) break lab18;
-                }
-                // deno-lint-ignore no-unused-labels
-                lab21: {
-                    const /** number */ v_11 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab22: {
-                        if (!this.#r_mark_sU()) break lab22;
-                        this.bra = this.c;
-                        this.slice_del();
-                        const /** number */ v_12 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab23: {
-                            this.ket = this.c;
-                            if (!this.#r_mark_lAr()) {
-                                this.c = this.limit - v_12;
-                                break lab23;
-                            }
-                            this.bra = this.c;
-                            this.slice_del();
-                            if (!this.#r_stem_suffix_chain_before_ki()) {
-                                this.c = this.limit - v_12;
-                                break lab23;
-                            }
-                        }
-                        break lab21;
-                    }
-                    this.c = this.limit - v_11;
-                    if (!this.#r_mark_lArI()) break lab18;
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab24: {
-                this.ket = this.c;
-                if (!this.#r_mark_DAn()) break lab24;
-                this.bra = this.c;
-                this.slice_del();
-                const /** number */ v_13 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab25: {
-                    this.ket = this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab26: {
-                        const /** number */ v_14 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab27: {
-                            if (!this.#r_mark_possessives()) break lab27;
-                            this.bra = this.c;
-                            this.slice_del();
-                            const /** number */ v_15 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab28: {
-                                this.ket = this.c;
-                                if (!this.#r_mark_lAr()) {
-                                    this.c = this.limit - v_15;
-                                    break lab28;
-                                }
-                                this.bra = this.c;
-                                this.slice_del();
-                                if (!this.#r_stem_suffix_chain_before_ki()) {
-                                    this.c = this.limit - v_15;
-                                    break lab28;
-                                }
-                            }
-                            break lab26;
-                        }
-                        this.c = this.limit - v_14;
-                        // deno-lint-ignore no-unused-labels
-                        lab29: {
-                            if (!this.#r_mark_lAr()) break lab29;
-                            this.bra = this.c;
-                            this.slice_del();
-                            const /** number */ v_16 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab30: {
-                                if (!this.#r_stem_suffix_chain_before_ki()) {
-                                    this.c = this.limit - v_16;
-                                    break lab30;
-                                }
-                            }
-                            break lab26;
-                        }
-                        this.c = this.limit - v_14;
-                        if (!this.#r_stem_suffix_chain_before_ki()) {
-                            this.c = this.limit - v_13;
-                            break lab25;
-                        }
-                    }
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab31: {
-                this.ket = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab32: {
-                    const /** number */ v_17 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab33: {
-                        if (!this.#r_mark_nUn()) break lab33;
-                        break lab32;
-                    }
-                    this.c = this.limit - v_17;
-                    if (!this.#r_mark_ylA()) break lab31;
-                }
-                this.bra = this.c;
-                this.slice_del();
-                const /** number */ v_18 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab34: {
-                    // deno-lint-ignore no-unused-labels
-                    lab35: {
-                        const /** number */ v_19 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab36: {
-                            this.ket = this.c;
-                            if (!this.#r_mark_lAr()) break lab36;
-                            this.bra = this.c;
-                            this.slice_del();
-                            if (!this.#r_stem_suffix_chain_before_ki()) break lab36;
-                            break lab35;
-                        }
-                        this.c = this.limit - v_19;
-                        // deno-lint-ignore no-unused-labels
-                        lab37: {
-                            this.ket = this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab38: {
-                                const /** number */ v_20 = this.limit - this.c;
-                                // deno-lint-ignore no-unused-labels
-                                lab39: {
-                                    if (!this.#r_mark_possessives()) break lab39;
-                                    break lab38;
-                                }
-                                this.c = this.limit - v_20;
-                                if (!this.#r_mark_sU()) break lab37;
-                            }
-                            this.bra = this.c;
-                            this.slice_del();
-                            const /** number */ v_21 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab40: {
-                                this.ket = this.c;
-                                if (!this.#r_mark_lAr()) {
-                                    this.c = this.limit - v_21;
-                                    break lab40;
-                                }
-                                this.bra = this.c;
-                                this.slice_del();
-                                if (!this.#r_stem_suffix_chain_before_ki()) {
-                                    this.c = this.limit - v_21;
-                                    break lab40;
-                                }
-                            }
-                            break lab35;
-                        }
-                        this.c = this.limit - v_19;
-                        if (!this.#r_stem_suffix_chain_before_ki()) {
-                            this.c = this.limit - v_18;
-                            break lab34;
-                        }
-                    }
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab41: {
-                this.ket = this.c;
-                if (!this.#r_mark_lArI()) break lab41;
-                this.bra = this.c;
-                this.slice_del();
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab42: {
-                if (!this.#r_stem_suffix_chain_before_ki()) break lab42;
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab43: {
-                this.ket = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab44: {
-                    const /** number */ v_22 = this.limit - this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab45: {
-                        if (!this.#r_mark_DA()) break lab45;
-                        break lab44;
-                    }
-                    this.c = this.limit - v_22;
-                    // deno-lint-ignore no-unused-labels
-                    lab46: {
-                        if (!this.#r_mark_yU()) break lab46;
-                        break lab44;
-                    }
-                    this.c = this.limit - v_22;
-                    if (!this.#r_mark_yA()) break lab43;
-                }
-                this.bra = this.c;
-                this.slice_del();
-                const /** number */ v_23 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab47: {
-                    this.ket = this.c;
-                    // deno-lint-ignore no-unused-labels
-                    lab48: {
-                        const /** number */ v_24 = this.limit - this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab49: {
-                            if (!this.#r_mark_possessives()) break lab49;
-                            this.bra = this.c;
-                            this.slice_del();
-                            const /** number */ v_25 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab50: {
-                                this.ket = this.c;
-                                if (!this.#r_mark_lAr()) {
-                                    this.c = this.limit - v_25;
-                                    break lab50;
-                                }
-                            }
-                            break lab48;
-                        }
-                        this.c = this.limit - v_24;
-                        if (!this.#r_mark_lAr()) {
-                            this.c = this.limit - v_23;
-                            break lab47;
-                        }
-                    }
-                    this.bra = this.c;
-                    this.slice_del();
-                    this.ket = this.c;
-                    if (!this.#r_stem_suffix_chain_before_ki()) {
-                        this.c = this.limit - v_23;
-                        break lab47;
-                    }
-                }
-                break lab0;
-            }
-            this.c = this.limit - v_1;
-            this.ket = this.c;
-            // deno-lint-ignore no-unused-labels
-            lab51: {
-                const /** number */ v_26 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab52: {
-                    if (!this.#r_mark_possessives()) break lab52;
-                    break lab51;
-                }
-                this.c = this.limit - v_26;
-                if (!this.#r_mark_sU()) return false;
-            }
-            this.bra = this.c;
-            this.slice_del();
-            const /** number */ v_27 = this.limit - this.c;
-            // deno-lint-ignore no-unused-labels
-            lab53: {
-                this.ket = this.c;
-                if (!this.#r_mark_lAr()) {
-                    this.c = this.limit - v_27;
-                    break lab53;
-                }
-                this.bra = this.c;
-                this.slice_del();
-                if (!this.#r_stem_suffix_chain_before_ki()) {
-                    this.c = this.limit - v_27;
-                    break lab53;
-                }
-            }
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_post_process_last_consonants() {
-        let /** number */ a;
-        this.ket = this.c;
-        a = this.find_among_b(a_23);
-        if (a === 0) return false;
-        this.bra = this.c;
-        this.slice_from(as_23[a - 1]);
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_append_U_to_stems_ending_with_d_or_g() {
-        this.ket = this.c;
-        this.bra = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            // deno-lint-ignore no-unused-labels
-            lab1: {
-                if (!(this.eq_s_b("d"))) break lab1;
-                break lab0;
-            }
-            if (!(this.eq_s_b("g"))) return false;
-        }
-        if (!this.go_out_grouping_b(g_vowel, 97, 305)) return false;
-        // deno-lint-ignore no-unused-labels
-        lab2: {
-            const /** number */ v_1 = this.limit - this.c;
-            // deno-lint-ignore no-unused-labels
-            lab3: {
-                // deno-lint-ignore no-unused-labels
-                lab4: {
-                    // deno-lint-ignore no-unused-labels
-                    lab5: {
-                        if (!(this.eq_s_b("a"))) break lab5;
-                        break lab4;
-                    }
-                    if (!(this.eq_s_b("\u0131"))) break lab3;
-                }
-                this.slice_from("\u0131");
-                break lab2;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab6: {
-                // deno-lint-ignore no-unused-labels
-                lab7: {
-                    // deno-lint-ignore no-unused-labels
-                    lab8: {
-                        if (!(this.eq_s_b("e"))) break lab8;
-                        break lab7;
-                    }
-                    if (!(this.eq_s_b("i"))) break lab6;
-                }
-                this.slice_from("i");
-                break lab2;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab9: {
-                // deno-lint-ignore no-unused-labels
-                lab10: {
-                    // deno-lint-ignore no-unused-labels
-                    lab11: {
-                        if (!(this.eq_s_b("o"))) break lab11;
-                        break lab10;
-                    }
-                    if (!(this.eq_s_b("u"))) break lab9;
-                }
-                this.slice_from("u");
-                break lab2;
-            }
-            this.c = this.limit - v_1;
-            // deno-lint-ignore no-unused-labels
-            lab12: {
-                // deno-lint-ignore no-unused-labels
-                lab13: {
-                    if (!(this.eq_s_b("\u00F6"))) break lab13;
-                    break lab12;
-                }
-                if (!(this.eq_s_b("\u00FC"))) return false;
-            }
-            this.slice_from("\u00FC");
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_is_reserved_word() {
-        if (!(this.eq_s_b("ad"))) return false;
-        const /** number */ v_1 = this.limit - this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            if (!(this.eq_s_b("soy"))) {
-                this.c = this.limit - v_1;
-                break lab0;
-            }
-        }
-        return this.c <= this.limit_backward;
-    }
-
-    /** @return {boolean} */
-    #r_remove_proper_noun_suffix() {
-        const /** number */ v_1 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            this.bra = this.c;
-            // deno-lint-ignore no-unused-labels
-            golab1: while (true)
-            {
-                const /** number */ v_2 = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab2: {
+                golab2: while (true)
+                {
+                    const /**@type {number}*/ v_2 = this.c;
                     // deno-lint-ignore no-unused-labels
                     lab3: {
-                        if (!(this.eq_s("'"))) break lab3;
-                        break lab2;
+                        // deno-lint-ignore no-unused-labels
+                        lab4: {
+                            if (!(this.eq_s("'"))) break lab4;
+                            break lab3;
+                        }
+                        this.c = v_2;
+                        break golab2;
                     }
                     this.c = v_2;
-                    break golab1;
+                    if (this.c >= this.limit) break lab1;
+                    this.c++;
                 }
-                this.c = v_2;
-                if (this.c >= this.limit) break lab0;
-                this.c++;
+                this.ket = this.c;
+                this.slice_del();
             }
-            this.ket = this.c;
-            this.slice_del();
-        }
-        this.c = v_1;
-        const /** number */ v_3 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab4: {
-            if (this.c + 2 > this.limit) break lab4;
-            this.c += 2;
+            this.c = v_1;
+            const /**@type {number}*/ v_3 = this.c;
             // deno-lint-ignore no-unused-labels
-            golab5: while (true)
-            {
-                const /** number */ v_4 = this.c;
+            lab5: {
+                if (this.c + 2 > this.limit) break lab5;
+                this.c += 2;
                 // deno-lint-ignore no-unused-labels
-                lab6: {
-                    if (!(this.eq_s("'"))) break lab6;
+                golab6: while (true)
+                {
+                    const /**@type {number}*/ v_4 = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab7: {
+                        if (!(this.eq_s("'"))) break lab7;
+                        this.c = v_4;
+                        break golab6;
+                    }
                     this.c = v_4;
-                    break golab5;
+                    if (this.c >= this.limit) break lab5;
+                    this.c++;
                 }
-                this.c = v_4;
-                if (this.c >= this.limit) break lab4;
-                this.c++;
+                this.bra = this.c;
+                this.c = this.limit;
+                this.ket = this.c;
+                this.slice_del();
             }
-            this.bra = this.c;
-            this.c = this.limit;
-            this.ket = this.c;
-            this.slice_del();
+            this.c = v_3;
         }
-        this.c = v_3;
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_more_than_one_syllable_word() {
-        const /** number */ v_1 = this.c;
-        for (let /** number */ v_2 = 2; v_2 > 0; v_2--)
+        const /**@type {number}*/ v_5 = this.c;
+        for (let /**@type {number}*/ v_6 = 2; v_6 > 0; v_6--)
         {
             if (!this.go_out_grouping(g_vowel, 97, 305)) return false;
             this.c++;
         }
-        this.c = v_1;
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_postlude() {
+        this.c = v_5;
+        this.limit_backward = this.c; this.c = this.limit;
+        const /**@type {number}*/ v_7 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab8: {
+            this.ket = this.c;
+            B_continue_stemming_noun_suffixes = true;
+            // deno-lint-ignore no-unused-labels
+            lab9: {
+                const /**@type {number}*/ v_8 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab10: {
+                    // deno-lint-ignore no-unused-labels
+                    lab11: {
+                        const /**@type {number}*/ v_9 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab12: {
+                            if (!this.#r_mark_ymUs_()) break lab12;
+                            break lab11;
+                        }
+                        this.c = this.limit - v_9;
+                        // deno-lint-ignore no-unused-labels
+                        lab13: {
+                            if (!this.#r_mark_yDU()) break lab13;
+                            break lab11;
+                        }
+                        this.c = this.limit - v_9;
+                        // deno-lint-ignore no-unused-labels
+                        lab14: {
+                            if (!this.#r_mark_ysA()) break lab14;
+                            break lab11;
+                        }
+                        this.c = this.limit - v_9;
+                        if (!(this.eq_s_b("ken"))) break lab10;
+                        if (!this.#r_mark_suffix_with_optional_y_consonant()) break lab10;
+                    }
+                    break lab9;
+                }
+                this.c = this.limit - v_8;
+                // deno-lint-ignore no-unused-labels
+                lab15: {
+                    if (this.find_among_b(a_19) === 0) break lab15;
+                    // deno-lint-ignore no-unused-labels
+                    lab16: {
+                        const /**@type {number}*/ v_10 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab17: {
+                            if (!this.#r_mark_sUnUz()) break lab17;
+                            break lab16;
+                        }
+                        this.c = this.limit - v_10;
+                        // deno-lint-ignore no-unused-labels
+                        lab18: {
+                            if (!this.#r_mark_lAr()) break lab18;
+                            break lab16;
+                        }
+                        this.c = this.limit - v_10;
+                        // deno-lint-ignore no-unused-labels
+                        lab19: {
+                            if (!this.#r_mark_yUm()) break lab19;
+                            break lab16;
+                        }
+                        this.c = this.limit - v_10;
+                        // deno-lint-ignore no-unused-labels
+                        lab20: {
+                            if (!this.#r_mark_sUn()) break lab20;
+                            break lab16;
+                        }
+                        this.c = this.limit - v_10;
+                        // deno-lint-ignore no-unused-labels
+                        lab21: {
+                            if (!this.#r_mark_yUz()) break lab21;
+                            break lab16;
+                        }
+                        this.c = this.limit - v_10;
+                    }
+                    if (!this.#r_mark_ymUs_()) break lab15;
+                    break lab9;
+                }
+                this.c = this.limit - v_8;
+                // deno-lint-ignore no-unused-labels
+                lab22: {
+                    if (!this.#r_mark_lAr()) break lab22;
+                    this.bra = this.c;
+                    this.slice_del();
+                    const /**@type {number}*/ v_11 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab23: {
+                        this.ket = this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab24: {
+                            const /**@type {number}*/ v_12 = this.limit - this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab25: {
+                                if (!this.#r_mark_DUr()) break lab25;
+                                break lab24;
+                            }
+                            this.c = this.limit - v_12;
+                            // deno-lint-ignore no-unused-labels
+                            lab26: {
+                                if (!this.#r_mark_yDU()) break lab26;
+                                break lab24;
+                            }
+                            this.c = this.limit - v_12;
+                            // deno-lint-ignore no-unused-labels
+                            lab27: {
+                                if (!this.#r_mark_ysA()) break lab27;
+                                break lab24;
+                            }
+                            this.c = this.limit - v_12;
+                            if (!this.#r_mark_ymUs_()) {
+                                this.c = this.limit - v_11;
+                                break lab23;
+                            }
+                        }
+                    }
+                    B_continue_stemming_noun_suffixes = false;
+                    break lab9;
+                }
+                this.c = this.limit - v_8;
+                // deno-lint-ignore no-unused-labels
+                lab28: {
+                    if (!this.#r_check_vowel_harmony()) break lab28;
+                    if (this.find_among_b(a_17) === 0) break lab28;
+                    // deno-lint-ignore no-unused-labels
+                    lab29: {
+                        const /**@type {number}*/ v_13 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab30: {
+                            if (!this.#r_mark_yDU()) break lab30;
+                            break lab29;
+                        }
+                        this.c = this.limit - v_13;
+                        if (!this.#r_mark_ysA()) break lab28;
+                    }
+                    break lab9;
+                }
+                this.c = this.limit - v_8;
+                // deno-lint-ignore no-unused-labels
+                lab31: {
+                    // deno-lint-ignore no-unused-labels
+                    lab32: {
+                        const /**@type {number}*/ v_14 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab33: {
+                            if (!this.#r_mark_sUnUz()) break lab33;
+                            break lab32;
+                        }
+                        this.c = this.limit - v_14;
+                        // deno-lint-ignore no-unused-labels
+                        lab34: {
+                            if (!this.#r_mark_yUz()) break lab34;
+                            break lab32;
+                        }
+                        this.c = this.limit - v_14;
+                        // deno-lint-ignore no-unused-labels
+                        lab35: {
+                            if (!this.#r_mark_sUn()) break lab35;
+                            break lab32;
+                        }
+                        this.c = this.limit - v_14;
+                        if (!this.#r_mark_yUm()) break lab31;
+                    }
+                    this.bra = this.c;
+                    this.slice_del();
+                    const /**@type {number}*/ v_15 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab36: {
+                        this.ket = this.c;
+                        if (!this.#r_mark_ymUs_()) {
+                            this.c = this.limit - v_15;
+                            break lab36;
+                        }
+                    }
+                    break lab9;
+                }
+                this.c = this.limit - v_8;
+                if (!this.#r_mark_DUr()) break lab8;
+                this.bra = this.c;
+                this.slice_del();
+                const /**@type {number}*/ v_16 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab37: {
+                    this.ket = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab38: {
+                        const /**@type {number}*/ v_17 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab39: {
+                            if (!this.#r_mark_sUnUz()) break lab39;
+                            break lab38;
+                        }
+                        this.c = this.limit - v_17;
+                        // deno-lint-ignore no-unused-labels
+                        lab40: {
+                            if (!this.#r_mark_lAr()) break lab40;
+                            break lab38;
+                        }
+                        this.c = this.limit - v_17;
+                        // deno-lint-ignore no-unused-labels
+                        lab41: {
+                            if (!this.#r_mark_yUm()) break lab41;
+                            break lab38;
+                        }
+                        this.c = this.limit - v_17;
+                        // deno-lint-ignore no-unused-labels
+                        lab42: {
+                            if (!this.#r_mark_sUn()) break lab42;
+                            break lab38;
+                        }
+                        this.c = this.limit - v_17;
+                        // deno-lint-ignore no-unused-labels
+                        lab43: {
+                            if (!this.#r_mark_yUz()) break lab43;
+                            break lab38;
+                        }
+                        this.c = this.limit - v_17;
+                    }
+                    if (!this.#r_mark_ymUs_()) {
+                        this.c = this.limit - v_16;
+                        break lab37;
+                    }
+                }
+            }
+            this.bra = this.c;
+            this.slice_del();
+        }
+        this.c = this.limit - v_7;
+        if (!B_continue_stemming_noun_suffixes) return false;
+        const /**@type {number}*/ v_18 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab44: {
+            // deno-lint-ignore no-unused-labels
+            lab45: {
+                const /**@type {number}*/ v_19 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab46: {
+                    this.ket = this.c;
+                    if (!this.#r_mark_lAr()) break lab46;
+                    this.bra = this.c;
+                    this.slice_del();
+                    const /**@type {number}*/ v_20 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab47: {
+                        if (!this.#r_stem_suffix_chain_before_ki()) {
+                            this.c = this.limit - v_20;
+                            break lab47;
+                        }
+                    }
+                    break lab45;
+                }
+                this.c = this.limit - v_19;
+                // deno-lint-ignore no-unused-labels
+                lab48: {
+                    this.ket = this.c;
+                    if (!this.#r_check_vowel_harmony()) break lab48;
+                    if (this.find_among_b(a_11) === 0) break lab48;
+                    if (!this.#r_mark_suffix_with_optional_n_consonant()) break lab48;
+                    this.bra = this.c;
+                    this.slice_del();
+                    const /**@type {number}*/ v_21 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab49: {
+                        // deno-lint-ignore no-unused-labels
+                        lab50: {
+                            const /**@type {number}*/ v_22 = this.limit - this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab51: {
+                                this.ket = this.c;
+                                if (!this.#r_mark_lArI()) break lab51;
+                                this.bra = this.c;
+                                this.slice_del();
+                                break lab50;
+                            }
+                            this.c = this.limit - v_22;
+                            // deno-lint-ignore no-unused-labels
+                            lab52: {
+                                this.ket = this.c;
+                                // deno-lint-ignore no-unused-labels
+                                lab53: {
+                                    const /**@type {number}*/ v_23 = this.limit - this.c;
+                                    // deno-lint-ignore no-unused-labels
+                                    lab54: {
+                                        if (!this.#r_mark_possessives()) break lab54;
+                                        break lab53;
+                                    }
+                                    this.c = this.limit - v_23;
+                                    if (!this.#r_mark_sU()) break lab52;
+                                }
+                                this.bra = this.c;
+                                this.slice_del();
+                                const /**@type {number}*/ v_24 = this.limit - this.c;
+                                // deno-lint-ignore no-unused-labels
+                                lab55: {
+                                    this.ket = this.c;
+                                    if (!this.#r_mark_lAr()) {
+                                        this.c = this.limit - v_24;
+                                        break lab55;
+                                    }
+                                    this.bra = this.c;
+                                    this.slice_del();
+                                    if (!this.#r_stem_suffix_chain_before_ki()) {
+                                        this.c = this.limit - v_24;
+                                        break lab55;
+                                    }
+                                }
+                                break lab50;
+                            }
+                            this.c = this.limit - v_22;
+                            this.ket = this.c;
+                            if (!this.#r_mark_lAr()) {
+                                this.c = this.limit - v_21;
+                                break lab49;
+                            }
+                            this.bra = this.c;
+                            this.slice_del();
+                            if (!this.#r_stem_suffix_chain_before_ki()) {
+                                this.c = this.limit - v_21;
+                                break lab49;
+                            }
+                        }
+                    }
+                    break lab45;
+                }
+                this.c = this.limit - v_19;
+                // deno-lint-ignore no-unused-labels
+                lab56: {
+                    this.ket = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab57: {
+                        const /**@type {number}*/ v_25 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab58: {
+                            if (!this.#r_mark_ndA()) break lab58;
+                            break lab57;
+                        }
+                        this.c = this.limit - v_25;
+                        if (!this.#r_check_vowel_harmony()) break lab56;
+                        if (this.find_among_b(a_5) === 0) break lab56;
+                    }
+                    // deno-lint-ignore no-unused-labels
+                    lab59: {
+                        const /**@type {number}*/ v_26 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab60: {
+                            if (!this.#r_mark_lArI()) break lab60;
+                            this.bra = this.c;
+                            this.slice_del();
+                            break lab59;
+                        }
+                        this.c = this.limit - v_26;
+                        // deno-lint-ignore no-unused-labels
+                        lab61: {
+                            if (!this.#r_mark_sU()) break lab61;
+                            this.bra = this.c;
+                            this.slice_del();
+                            const /**@type {number}*/ v_27 = this.limit - this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab62: {
+                                this.ket = this.c;
+                                if (!this.#r_mark_lAr()) {
+                                    this.c = this.limit - v_27;
+                                    break lab62;
+                                }
+                                this.bra = this.c;
+                                this.slice_del();
+                                if (!this.#r_stem_suffix_chain_before_ki()) {
+                                    this.c = this.limit - v_27;
+                                    break lab62;
+                                }
+                            }
+                            break lab59;
+                        }
+                        this.c = this.limit - v_26;
+                        if (!this.#r_stem_suffix_chain_before_ki()) break lab56;
+                    }
+                    break lab45;
+                }
+                this.c = this.limit - v_19;
+                // deno-lint-ignore no-unused-labels
+                lab63: {
+                    this.ket = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab64: {
+                        const /**@type {number}*/ v_28 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab65: {
+                            if (!this.#r_check_vowel_harmony()) break lab65;
+                            if (this.find_among_b(a_9) === 0) break lab65;
+                            break lab64;
+                        }
+                        this.c = this.limit - v_28;
+                        if (!this.#r_check_vowel_harmony()) break lab63;
+                        if (this.find_among_b(a_2) === 0) break lab63;
+                    }
+                    // deno-lint-ignore no-unused-labels
+                    lab66: {
+                        const /**@type {number}*/ v_29 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab67: {
+                            if (!this.#r_mark_sU()) break lab67;
+                            this.bra = this.c;
+                            this.slice_del();
+                            const /**@type {number}*/ v_30 = this.limit - this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab68: {
+                                this.ket = this.c;
+                                if (!this.#r_mark_lAr()) {
+                                    this.c = this.limit - v_30;
+                                    break lab68;
+                                }
+                                this.bra = this.c;
+                                this.slice_del();
+                                if (!this.#r_stem_suffix_chain_before_ki()) {
+                                    this.c = this.limit - v_30;
+                                    break lab68;
+                                }
+                            }
+                            break lab66;
+                        }
+                        this.c = this.limit - v_29;
+                        if (!this.#r_mark_lArI()) break lab63;
+                    }
+                    break lab45;
+                }
+                this.c = this.limit - v_19;
+                // deno-lint-ignore no-unused-labels
+                lab69: {
+                    this.ket = this.c;
+                    if (!this.#r_check_vowel_harmony()) break lab69;
+                    if (this.find_among_b(a_8) === 0) break lab69;
+                    this.bra = this.c;
+                    this.slice_del();
+                    const /**@type {number}*/ v_31 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab70: {
+                        this.ket = this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab71: {
+                            const /**@type {number}*/ v_32 = this.limit - this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab72: {
+                                if (!this.#r_mark_possessives()) break lab72;
+                                this.bra = this.c;
+                                this.slice_del();
+                                const /**@type {number}*/ v_33 = this.limit - this.c;
+                                // deno-lint-ignore no-unused-labels
+                                lab73: {
+                                    this.ket = this.c;
+                                    if (!this.#r_mark_lAr()) {
+                                        this.c = this.limit - v_33;
+                                        break lab73;
+                                    }
+                                    this.bra = this.c;
+                                    this.slice_del();
+                                    if (!this.#r_stem_suffix_chain_before_ki()) {
+                                        this.c = this.limit - v_33;
+                                        break lab73;
+                                    }
+                                }
+                                break lab71;
+                            }
+                            this.c = this.limit - v_32;
+                            // deno-lint-ignore no-unused-labels
+                            lab74: {
+                                if (!this.#r_mark_lAr()) break lab74;
+                                this.bra = this.c;
+                                this.slice_del();
+                                const /**@type {number}*/ v_34 = this.limit - this.c;
+                                // deno-lint-ignore no-unused-labels
+                                lab75: {
+                                    if (!this.#r_stem_suffix_chain_before_ki()) {
+                                        this.c = this.limit - v_34;
+                                        break lab75;
+                                    }
+                                }
+                                break lab71;
+                            }
+                            this.c = this.limit - v_32;
+                            if (!this.#r_stem_suffix_chain_before_ki()) {
+                                this.c = this.limit - v_31;
+                                break lab70;
+                            }
+                        }
+                    }
+                    break lab45;
+                }
+                this.c = this.limit - v_19;
+                // deno-lint-ignore no-unused-labels
+                lab76: {
+                    this.ket = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab77: {
+                        const /**@type {number}*/ v_35 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab78: {
+                            if (!this.#r_mark_nUn()) break lab78;
+                            break lab77;
+                        }
+                        this.c = this.limit - v_35;
+                        if (!this.#r_check_vowel_harmony()) break lab76;
+                        if (this.find_among_b(a_10) === 0) break lab76;
+                        if (!this.#r_mark_suffix_with_optional_y_consonant()) break lab76;
+                    }
+                    this.bra = this.c;
+                    this.slice_del();
+                    const /**@type {number}*/ v_36 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab79: {
+                        // deno-lint-ignore no-unused-labels
+                        lab80: {
+                            const /**@type {number}*/ v_37 = this.limit - this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab81: {
+                                this.ket = this.c;
+                                if (!this.#r_mark_lAr()) break lab81;
+                                this.bra = this.c;
+                                this.slice_del();
+                                if (!this.#r_stem_suffix_chain_before_ki()) break lab81;
+                                break lab80;
+                            }
+                            this.c = this.limit - v_37;
+                            // deno-lint-ignore no-unused-labels
+                            lab82: {
+                                this.ket = this.c;
+                                // deno-lint-ignore no-unused-labels
+                                lab83: {
+                                    const /**@type {number}*/ v_38 = this.limit - this.c;
+                                    // deno-lint-ignore no-unused-labels
+                                    lab84: {
+                                        if (!this.#r_mark_possessives()) break lab84;
+                                        break lab83;
+                                    }
+                                    this.c = this.limit - v_38;
+                                    if (!this.#r_mark_sU()) break lab82;
+                                }
+                                this.bra = this.c;
+                                this.slice_del();
+                                const /**@type {number}*/ v_39 = this.limit - this.c;
+                                // deno-lint-ignore no-unused-labels
+                                lab85: {
+                                    this.ket = this.c;
+                                    if (!this.#r_mark_lAr()) {
+                                        this.c = this.limit - v_39;
+                                        break lab85;
+                                    }
+                                    this.bra = this.c;
+                                    this.slice_del();
+                                    if (!this.#r_stem_suffix_chain_before_ki()) {
+                                        this.c = this.limit - v_39;
+                                        break lab85;
+                                    }
+                                }
+                                break lab80;
+                            }
+                            this.c = this.limit - v_37;
+                            if (!this.#r_stem_suffix_chain_before_ki()) {
+                                this.c = this.limit - v_36;
+                                break lab79;
+                            }
+                        }
+                    }
+                    break lab45;
+                }
+                this.c = this.limit - v_19;
+                // deno-lint-ignore no-unused-labels
+                lab86: {
+                    this.ket = this.c;
+                    if (!this.#r_mark_lArI()) break lab86;
+                    this.bra = this.c;
+                    this.slice_del();
+                    break lab45;
+                }
+                this.c = this.limit - v_19;
+                // deno-lint-ignore no-unused-labels
+                lab87: {
+                    if (!this.#r_stem_suffix_chain_before_ki()) break lab87;
+                    break lab45;
+                }
+                this.c = this.limit - v_19;
+                // deno-lint-ignore no-unused-labels
+                lab88: {
+                    this.ket = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab89: {
+                        const /**@type {number}*/ v_40 = this.limit - this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab90: {
+                            if (!this.#r_mark_DA()) break lab90;
+                            break lab89;
+                        }
+                        this.c = this.limit - v_40;
+                        // deno-lint-ignore no-unused-labels
+                        lab91: {
+                            if (!this.#r_check_vowel_harmony()) break lab91;
+                            if (!(this.in_grouping_b(g_U, 105, 305))) break lab91;
+                            if (!this.#r_mark_suffix_with_optional_y_consonant()) break lab91;
+                            break lab89;
+                        }
+                        this.c = this.limit - v_40;
+                        if (!this.#r_check_vowel_harmony()) break lab88;
+                        if (this.find_among_b(a_4) === 0) break lab88;
+                        if (!this.#r_mark_suffix_with_optional_y_consonant()) break lab88;
+                    }
+                    this.bra = this.c;
+                    this.slice_del();
+                    const /**@type {number}*/ v_41 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab92: {
+                        this.ket = this.c;
+                        // deno-lint-ignore no-unused-labels
+                        lab93: {
+                            const /**@type {number}*/ v_42 = this.limit - this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab94: {
+                                if (!this.#r_mark_possessives()) break lab94;
+                                this.bra = this.c;
+                                this.slice_del();
+                                const /**@type {number}*/ v_43 = this.limit - this.c;
+                                // deno-lint-ignore no-unused-labels
+                                lab95: {
+                                    this.ket = this.c;
+                                    if (!this.#r_mark_lAr()) {
+                                        this.c = this.limit - v_43;
+                                        break lab95;
+                                    }
+                                }
+                                break lab93;
+                            }
+                            this.c = this.limit - v_42;
+                            if (!this.#r_mark_lAr()) {
+                                this.c = this.limit - v_41;
+                                break lab92;
+                            }
+                        }
+                        this.bra = this.c;
+                        this.slice_del();
+                        this.ket = this.c;
+                        if (!this.#r_stem_suffix_chain_before_ki()) {
+                            this.c = this.limit - v_41;
+                            break lab92;
+                        }
+                    }
+                    break lab45;
+                }
+                this.c = this.limit - v_19;
+                this.ket = this.c;
+                // deno-lint-ignore no-unused-labels
+                lab96: {
+                    const /**@type {number}*/ v_44 = this.limit - this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab97: {
+                        if (!this.#r_mark_possessives()) break lab97;
+                        break lab96;
+                    }
+                    this.c = this.limit - v_44;
+                    if (!this.#r_mark_sU()) break lab44;
+                }
+                this.bra = this.c;
+                this.slice_del();
+                const /**@type {number}*/ v_45 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab98: {
+                    this.ket = this.c;
+                    if (!this.#r_mark_lAr()) {
+                        this.c = this.limit - v_45;
+                        break lab98;
+                    }
+                    this.bra = this.c;
+                    this.slice_del();
+                    if (!this.#r_stem_suffix_chain_before_ki()) {
+                        this.c = this.limit - v_45;
+                        break lab98;
+                    }
+                }
+            }
+        }
+        this.c = this.limit - v_18;
+        this.c = this.limit_backward;
         this.limit_backward = this.c; this.c = this.limit;
         {
-            const /** number */ v_1 = this.limit - this.c;
+            const /**@type {number}*/ v_46 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
-            lab0: {
-                if (!this.#r_is_reserved_word()) break lab0;
+            lab99: {
+                if (!(this.eq_s_b("ad"))) break lab99;
+                const /**@type {number}*/ v_47 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab100: {
+                    if (!(this.eq_s_b("soy"))) {
+                        this.c = this.limit - v_47;
+                        break lab100;
+                    }
+                }
+                if (/**@type {boolean}*/(this.c > this.limit_backward)) break lab99;
                 return false;
             }
-            this.c = this.limit - v_1;
+            this.c = this.limit - v_46;
         }
-        const /** number */ v_2 = this.limit - this.c;
-        this.#r_append_U_to_stems_ending_with_d_or_g();
-        this.c = this.limit - v_2;
-        const /** number */ v_3 = this.limit - this.c;
-        this.#r_post_process_last_consonants();
-        this.c = this.limit - v_3;
+        const /**@type {number}*/ v_48 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab101: {
+            this.ket = this.c;
+            this.bra = this.c;
+            // deno-lint-ignore no-unused-labels
+            lab102: {
+                // deno-lint-ignore no-unused-labels
+                lab103: {
+                    if (!(this.eq_s_b("d"))) break lab103;
+                    break lab102;
+                }
+                if (!(this.eq_s_b("g"))) break lab101;
+            }
+            if (!this.go_out_grouping_b(g_vowel, 97, 305)) break lab101;
+            // deno-lint-ignore no-unused-labels
+            lab104: {
+                const /**@type {number}*/ v_49 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab105: {
+                    // deno-lint-ignore no-unused-labels
+                    lab106: {
+                        // deno-lint-ignore no-unused-labels
+                        lab107: {
+                            if (!(this.eq_s_b("a"))) break lab107;
+                            break lab106;
+                        }
+                        if (!(this.eq_s_b("\u0131"))) break lab105;
+                    }
+                    this.slice_from("\u0131");
+                    break lab104;
+                }
+                this.c = this.limit - v_49;
+                // deno-lint-ignore no-unused-labels
+                lab108: {
+                    // deno-lint-ignore no-unused-labels
+                    lab109: {
+                        // deno-lint-ignore no-unused-labels
+                        lab110: {
+                            if (!(this.eq_s_b("e"))) break lab110;
+                            break lab109;
+                        }
+                        if (!(this.eq_s_b("i"))) break lab108;
+                    }
+                    this.slice_from("i");
+                    break lab104;
+                }
+                this.c = this.limit - v_49;
+                // deno-lint-ignore no-unused-labels
+                lab111: {
+                    // deno-lint-ignore no-unused-labels
+                    lab112: {
+                        // deno-lint-ignore no-unused-labels
+                        lab113: {
+                            if (!(this.eq_s_b("o"))) break lab113;
+                            break lab112;
+                        }
+                        if (!(this.eq_s_b("u"))) break lab111;
+                    }
+                    this.slice_from("u");
+                    break lab104;
+                }
+                this.c = this.limit - v_49;
+                // deno-lint-ignore no-unused-labels
+                lab114: {
+                    // deno-lint-ignore no-unused-labels
+                    lab115: {
+                        if (!(this.eq_s_b("\u00F6"))) break lab115;
+                        break lab114;
+                    }
+                    if (!(this.eq_s_b("\u00FC"))) break lab101;
+                }
+                this.slice_from("\u00FC");
+            }
+        }
+        this.c = this.limit - v_48;
+        const /**@type {number}*/ v_50 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab116: {
+            this.ket = this.c;
+            a = this.find_among_b(a_23);
+            if (a === 0) break lab116;
+            this.bra = this.c;
+            this.slice_from(as_23[a - 1]);
+        }
+        this.c = this.limit - v_50;
         this.c = this.limit_backward;
         return true;
-    }
-
-    /** @return {boolean} */
-    #stem() {
-        this.#r_remove_proper_noun_suffix();
-        if (!this.#r_more_than_one_syllable_word()) return false;
-        this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_1 = this.limit - this.c;
-        this.#r_stem_nominal_verb_suffixes();
-        this.c = this.limit - v_1;
-        if (!this.#B_continue_stemming_noun_suffixes) return false;
-        const /** number */ v_2 = this.limit - this.c;
-        this.#r_stem_noun_suffixes();
-        this.c = this.limit - v_2;
-        this.c = this.limit_backward;
-        return this.#r_postlude();
     }
 
     /**@return{string}*/
-    stem(/**string*/input) {
+    stem(/**@type {string}*/input) {
         this.setCurrent(input);
         this.#stem();
         return this.getCurrent();

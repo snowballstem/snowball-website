@@ -1,4 +1,4 @@
-// Generated from hindi.sbl by Snowball 3.1.1 - https://snowballstem.org/
+// Generated from hindi.sbl by Snowball 3.2.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -137,7 +137,7 @@ const a_0 = [
     ["\u094D", -1]
 ];
 
-const /** Array<number> */ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248, 7];
+const /**@type {Array<number>}*/ g_consonant = [255, 255, 255, 255, 159, 0, 0, 0, 248, 7];
 
 import B from './base-stemmer.js'
 
@@ -163,7 +163,7 @@ export default class extends B {
     }
 
     /**@return{string}*/
-    stem(/**string*/input) {
+    stem(/**@type {string}*/input) {
         this.setCurrent(input);
         this.#stem();
         return this.getCurrent();
