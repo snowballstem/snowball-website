@@ -1,4 +1,4 @@
-// Generated from serbian.sbl by Snowball 3.1.1 - https://snowballstem.org/
+// Generated from serbian.sbl by Snowball 3.2.0 - https://snowballstem.org/
 
 // deno-lint-ignore-file ban-unused-ignore no-constant-condition no-empty prefer-const
 
@@ -35,7 +35,7 @@ const a_0 = [
     ["\u045F", 29]
 ];
 
-const /** Array<string> */ as_0 = ["a", "b", "v", "g", "d", "\u0111", "e", "\u017E", "z", "i", "j", "k", "l", "lj", "m", "n", "nj", "o", "p", "r", "s", "t", "\u0107", "u", "f", "h", "c", "\u010D", "d\u017E", "\u0161"];
+const /**@type {Array<string>}*/ as_0 = ["a", "b", "v", "g", "d", "\u0111", "e", "\u017E", "z", "i", "j", "k", "l", "lj", "m", "n", "nj", "o", "p", "r", "s", "t", "\u0107", "u", "f", "h", "c", "\u010D", "d\u017E", "\u0161"];
 
 const a_1 = [
     ["daba", 73],
@@ -2237,1360 +2237,1328 @@ const a_3 = [
     ["enu", 1, 1]
 ];
 
-const /** Array<number> */ g_v = [17, 65, 16];
+const /**@type {Array<number>}*/ g_v = [17, 65, 16];
 
-const /** Array<number> */ g_sa = [65, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 128];
+const /**@type {Array<number>}*/ g_sa = [65, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 128];
 
-const /** Array<number> */ g_ca = [119, 95, 23, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 136, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0, 0, 0, 16];
+const /**@type {Array<number>}*/ g_ca = [119, 95, 23, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 136, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0, 0, 0, 16];
 
-const /** Array<number> */ g_rg = [1];
+const /**@type {Array<number>}*/ g_rg = [1];
 
 import B from './base-stemmer.js'
 
 export default class extends B {
 
-    #I_p1/** number */ = 0;
-    #B_no_diacritics/** boolean */ = false;
-
-
-    /** @return {boolean} */
-    #r_cyr_to_lat() {
-        let /** number */ a;
-        const /** number */ v_1 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            while (true) {
-                const /** number */ v_2 = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab1: {
-                    // deno-lint-ignore no-unused-labels
-                    golab2: while (true)
-                    {
-                        const /** number */ v_3 = this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab3: {
-                            this.bra = this.c;
-                            a = this.find_among(a_0);
-                            if (a === 0) break lab3;
-                            this.ket = this.c;
-                            this.slice_from(as_0[a - 1]);
-                            this.c = v_3;
-                            break golab2;
-                        }
-                        this.c = v_3;
-                        if (this.c >= this.limit) break lab1;
-                        this.c++;
-                    }
-                    continue;
-                }
-                this.c = v_2;
-                break;
-            }
-        }
-        this.c = v_1;
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_prelude() {
-        const /** number */ v_1 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            while (true) {
-                const /** number */ v_2 = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab1: {
-                    // deno-lint-ignore no-unused-labels
-                    golab2: while (true)
-                    {
-                        const /** number */ v_3 = this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab3: {
-                            if (!(this.in_grouping(g_ca, 98, 382))) break lab3;
-                            this.bra = this.c;
-                            if (!(this.eq_s("ije"))) break lab3;
-                            this.ket = this.c;
-                            if (!(this.in_grouping(g_ca, 98, 382))) break lab3;
-                            this.slice_from("e");
-                            this.c = v_3;
-                            break golab2;
-                        }
-                        this.c = v_3;
-                        if (this.c >= this.limit) break lab1;
-                        this.c++;
-                    }
-                    continue;
-                }
-                this.c = v_2;
-                break;
-            }
-        }
-        this.c = v_1;
-        const /** number */ v_4 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab4: {
-            while (true) {
-                const /** number */ v_5 = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab5: {
-                    // deno-lint-ignore no-unused-labels
-                    golab6: while (true)
-                    {
-                        const /** number */ v_6 = this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab7: {
-                            if (!(this.in_grouping(g_ca, 98, 382))) break lab7;
-                            this.bra = this.c;
-                            if (!(this.eq_s("je"))) break lab7;
-                            this.ket = this.c;
-                            if (!(this.in_grouping(g_ca, 98, 382))) break lab7;
-                            this.slice_from("e");
-                            this.c = v_6;
-                            break golab6;
-                        }
-                        this.c = v_6;
-                        if (this.c >= this.limit) break lab5;
-                        this.c++;
-                    }
-                    continue;
-                }
-                this.c = v_5;
-                break;
-            }
-        }
-        this.c = v_4;
-        const /** number */ v_7 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab8: {
-            while (true) {
-                const /** number */ v_8 = this.c;
-                // deno-lint-ignore no-unused-labels
-                lab9: {
-                    // deno-lint-ignore no-unused-labels
-                    golab10: while (true)
-                    {
-                        const /** number */ v_9 = this.c;
-                        // deno-lint-ignore no-unused-labels
-                        lab11: {
-                            this.bra = this.c;
-                            if (!(this.eq_s("dj"))) break lab11;
-                            this.ket = this.c;
-                            this.slice_from("\u0111");
-                            this.c = v_9;
-                            break golab10;
-                        }
-                        this.c = v_9;
-                        if (this.c >= this.limit) break lab9;
-                        this.c++;
-                    }
-                    continue;
-                }
-                this.c = v_8;
-                break;
-            }
-        }
-        this.c = v_7;
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_mark_regions() {
-        this.#B_no_diacritics = true;
-        const /** number */ v_1 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab0: {
-            if (!this.go_out_grouping(g_sa, 263, 382)) break lab0;
-            this.c++;
-            this.#B_no_diacritics = false;
-        }
-        this.c = v_1;
-        this.#I_p1 = this.limit;
-        const /** number */ v_2 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab1: {
-            if (!this.go_out_grouping(g_v, 97, 117)) break lab1;
-            this.c++;
-            this.#I_p1 = this.c;
-            if (this.#I_p1 >= 2) break lab1;
-            if (!this.go_in_grouping(g_v, 97, 117)) break lab1;
-            this.c++;
-            this.#I_p1 = this.c;
-        }
-        this.c = v_2;
-        const /** number */ v_3 = this.c;
-        // deno-lint-ignore no-unused-labels
-        lab2: {
-            // deno-lint-ignore no-unused-labels
-            golab3: while (true)
-            {
-                // deno-lint-ignore no-unused-labels
-                lab4: {
-                    if (!(this.eq_s("r"))) break lab4;
-                    break golab3;
-                }
-                if (this.c >= this.limit) break lab2;
-                this.c++;
-            }
-            // deno-lint-ignore no-unused-labels
-            lab5: {
-                // deno-lint-ignore no-unused-labels
-                lab6: {
-                    if (this.c < 2) break lab6;
-                    break lab5;
-                }
-                if (!this.go_in_grouping(g_rg, 114, 114)) break lab2;
-                this.c++;
-            }
-            if ((this.#I_p1 - this.c) <= 1) break lab2;
-            this.#I_p1 = this.c;
-        }
-        this.c = v_3;
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_R1() {
-        return this.#I_p1 <= this.c;
-    }
-
-    /** @return {boolean} */
-    #r_Step_1() {
-        let /** number */ a;
-        this.ket = this.c;
-        a = this.find_among_b(a_1);
-        if (a === 0) return false;
-        this.bra = this.c;
-        switch (a) {
-            case 1: {
-                this.slice_from("loga");
-                break;
-            }
-            case 2: {
-                this.slice_from("peh");
-                break;
-            }
-            case 3: {
-                this.slice_from("vojka");
-                break;
-            }
-            case 4: {
-                this.slice_from("bojka");
-                break;
-            }
-            case 5: {
-                this.slice_from("jak");
-                break;
-            }
-            case 6: {
-                this.slice_from("\u010Dajni");
-                break;
-            }
-            case 7: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("cajni");
-                break;
-            }
-            case 8: {
-                this.slice_from("erni");
-                break;
-            }
-            case 9: {
-                this.slice_from("larni");
-                break;
-            }
-            case 10: {
-                this.slice_from("esni");
-                break;
-            }
-            case 11: {
-                this.slice_from("anjca");
-                break;
-            }
-            case 12: {
-                this.slice_from("ajca");
-                break;
-            }
-            case 13: {
-                this.slice_from("ljca");
-                break;
-            }
-            case 14: {
-                this.slice_from("ejca");
-                break;
-            }
-            case 15: {
-                this.slice_from("ojca");
-                break;
-            }
-            case 16: {
-                this.slice_from("ajka");
-                break;
-            }
-            case 17: {
-                this.slice_from("ojka");
-                break;
-            }
-            case 18: {
-                this.slice_from("\u0161ca");
-                break;
-            }
-            case 19: {
-                this.slice_from("ing");
-                break;
-            }
-            case 20: {
-                this.slice_from("tvenik");
-                break;
-            }
-            case 21: {
-                this.slice_from("tetika");
-                break;
-            }
-            case 22: {
-                this.slice_from("nstva");
-                break;
-            }
-            case 23: {
-                this.slice_from("nik");
-                break;
-            }
-            case 24: {
-                this.slice_from("tik");
-                break;
-            }
-            case 25: {
-                this.slice_from("zik");
-                break;
-            }
-            case 26: {
-                this.slice_from("snik");
-                break;
-            }
-            case 27: {
-                this.slice_from("kusi");
-                break;
-            }
-            case 28: {
-                this.slice_from("kusni");
-                break;
-            }
-            case 29: {
-                this.slice_from("kustva");
-                break;
-            }
-            case 30: {
-                this.slice_from("du\u0161ni");
-                break;
-            }
-            case 31: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("dusni");
-                break;
-            }
-            case 32: {
-                this.slice_from("antni");
-                break;
-            }
-            case 33: {
-                this.slice_from("bilni");
-                break;
-            }
-            case 34: {
-                this.slice_from("tilni");
-                break;
-            }
-            case 35: {
-                this.slice_from("avilni");
-                break;
-            }
-            case 36: {
-                this.slice_from("silni");
-                break;
-            }
-            case 37: {
-                this.slice_from("gilni");
-                break;
-            }
-            case 38: {
-                this.slice_from("rilni");
-                break;
-            }
-            case 39: {
-                this.slice_from("nilni");
-                break;
-            }
-            case 40: {
-                this.slice_from("alni");
-                break;
-            }
-            case 41: {
-                this.slice_from("ozni");
-                break;
-            }
-            case 42: {
-                this.slice_from("ravi");
-                break;
-            }
-            case 43: {
-                this.slice_from("stavni");
-                break;
-            }
-            case 44: {
-                this.slice_from("pravni");
-                break;
-            }
-            case 45: {
-                this.slice_from("tivni");
-                break;
-            }
-            case 46: {
-                this.slice_from("sivni");
-                break;
-            }
-            case 47: {
-                this.slice_from("atni");
-                break;
-            }
-            case 48: {
-                this.slice_from("enta");
-                break;
-            }
-            case 49: {
-                this.slice_from("tetni");
-                break;
-            }
-            case 50: {
-                this.slice_from("pletni");
-                break;
-            }
-            case 51: {
-                this.slice_from("\u0161avi");
-                break;
-            }
-            case 52: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("savi");
-                break;
-            }
-            case 53: {
-                this.slice_from("anta");
-                break;
-            }
-            case 54: {
-                this.slice_from("a\u010Dka");
-                break;
-            }
-            case 55: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("acka");
-                break;
-            }
-            case 56: {
-                this.slice_from("u\u0161ka");
-                break;
-            }
-            case 57: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("uska");
-                break;
-            }
-            case 58: {
-                this.slice_from("atka");
-                break;
-            }
-            case 59: {
-                this.slice_from("etka");
-                break;
-            }
-            case 60: {
-                this.slice_from("itka");
-                break;
-            }
-            case 61: {
-                this.slice_from("otka");
-                break;
-            }
-            case 62: {
-                this.slice_from("utka");
-                break;
-            }
-            case 63: {
-                this.slice_from("eskna");
-                break;
-            }
-            case 64: {
-                this.slice_from("ti\u010Dni");
-                break;
-            }
-            case 65: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ticni");
-                break;
-            }
-            case 66: {
-                this.slice_from("ojska");
-                break;
-            }
-            case 67: {
-                this.slice_from("esma");
-                break;
-            }
-            case 68: {
-                this.slice_from("metra");
-                break;
-            }
-            case 69: {
-                this.slice_from("centra");
-                break;
-            }
-            case 70: {
-                this.slice_from("istra");
-                break;
-            }
-            case 71: {
-                this.slice_from("osti");
-                break;
-            }
-            case 72: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("osti");
-                break;
-            }
-            case 73: {
-                this.slice_from("dba");
-                break;
-            }
-            case 74: {
-                this.slice_from("\u010Dka");
-                break;
-            }
-            case 75: {
-                this.slice_from("mca");
-                break;
-            }
-            case 76: {
-                this.slice_from("nca");
-                break;
-            }
-            case 77: {
-                this.slice_from("voljni");
-                break;
-            }
-            case 78: {
-                this.slice_from("anki");
-                break;
-            }
-            case 79: {
-                this.slice_from("vca");
-                break;
-            }
-            case 80: {
-                this.slice_from("sca");
-                break;
-            }
-            case 81: {
-                this.slice_from("rca");
-                break;
-            }
-            case 82: {
-                this.slice_from("alca");
-                break;
-            }
-            case 83: {
-                this.slice_from("elca");
-                break;
-            }
-            case 84: {
-                this.slice_from("olca");
-                break;
-            }
-            case 85: {
-                this.slice_from("njca");
-                break;
-            }
-            case 86: {
-                this.slice_from("ekta");
-                break;
-            }
-            case 87: {
-                this.slice_from("izma");
-                break;
-            }
-            case 88: {
-                this.slice_from("jebi");
-                break;
-            }
-            case 89: {
-                this.slice_from("baci");
-                break;
-            }
-            case 90: {
-                this.slice_from("a\u0161ni");
-                break;
-            }
-            case 91: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("asni");
-                break;
-            }
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_Step_2() {
-        let /** number */ a;
-        this.ket = this.c;
-        a = this.find_among_b(a_2);
-        if (a === 0) return false;
-        this.bra = this.c;
-        if (!this.#r_R1()) return false;
-        switch (a) {
-            case 1: {
-                this.slice_from("sk");
-                break;
-            }
-            case 2: {
-                this.slice_from("\u0161k");
-                break;
-            }
-            case 3: {
-                this.slice_from("stv");
-                break;
-            }
-            case 4: {
-                this.slice_from("\u0161tv");
-                break;
-            }
-            case 5: {
-                this.slice_from("tanij");
-                break;
-            }
-            case 6: {
-                this.slice_from("manij");
-                break;
-            }
-            case 7: {
-                this.slice_from("panij");
-                break;
-            }
-            case 8: {
-                this.slice_from("ranij");
-                break;
-            }
-            case 9: {
-                this.slice_from("ganij");
-                break;
-            }
-            case 10: {
-                this.slice_from("an");
-                break;
-            }
-            case 11: {
-                this.slice_from("in");
-                break;
-            }
-            case 12: {
-                this.slice_from("on");
-                break;
-            }
-            case 13: {
-                this.slice_from("n");
-                break;
-            }
-            case 14: {
-                this.slice_from("a\u0107");
-                break;
-            }
-            case 15: {
-                this.slice_from("e\u0107");
-                break;
-            }
-            case 16: {
-                this.slice_from("u\u0107");
-                break;
-            }
-            case 17: {
-                this.slice_from("ugov");
-                break;
-            }
-            case 18: {
-                this.slice_from("ug");
-                break;
-            }
-            case 19: {
-                this.slice_from("log");
-                break;
-            }
-            case 20: {
-                this.slice_from("g");
-                break;
-            }
-            case 21: {
-                this.slice_from("rari");
-                break;
-            }
-            case 22: {
-                this.slice_from("oti");
-                break;
-            }
-            case 23: {
-                this.slice_from("si");
-                break;
-            }
-            case 24: {
-                this.slice_from("li");
-                break;
-            }
-            case 25: {
-                this.slice_from("uj");
-                break;
-            }
-            case 26: {
-                this.slice_from("caj");
-                break;
-            }
-            case 27: {
-                this.slice_from("\u010Daj");
-                break;
-            }
-            case 28: {
-                this.slice_from("\u0107aj");
-                break;
-            }
-            case 29: {
-                this.slice_from("\u0111aj");
-                break;
-            }
-            case 30: {
-                this.slice_from("laj");
-                break;
-            }
-            case 31: {
-                this.slice_from("raj");
-                break;
-            }
-            case 32: {
-                this.slice_from("bij");
-                break;
-            }
-            case 33: {
-                this.slice_from("cij");
-                break;
-            }
-            case 34: {
-                this.slice_from("dij");
-                break;
-            }
-            case 35: {
-                this.slice_from("lij");
-                break;
-            }
-            case 36: {
-                this.slice_from("nij");
-                break;
-            }
-            case 37: {
-                this.slice_from("mij");
-                break;
-            }
-            case 38: {
-                this.slice_from("\u017Eij");
-                break;
-            }
-            case 39: {
-                this.slice_from("gij");
-                break;
-            }
-            case 40: {
-                this.slice_from("fij");
-                break;
-            }
-            case 41: {
-                this.slice_from("pij");
-                break;
-            }
-            case 42: {
-                this.slice_from("rij");
-                break;
-            }
-            case 43: {
-                this.slice_from("sij");
-                break;
-            }
-            case 44: {
-                this.slice_from("tij");
-                break;
-            }
-            case 45: {
-                this.slice_from("zij");
-                break;
-            }
-            case 46: {
-                this.slice_from("nal");
-                break;
-            }
-            case 47: {
-                this.slice_from("ijal");
-                break;
-            }
-            case 48: {
-                this.slice_from("ozil");
-                break;
-            }
-            case 49: {
-                this.slice_from("olov");
-                break;
-            }
-            case 50: {
-                this.slice_from("ol");
-                break;
-            }
-            case 51: {
-                this.slice_from("lem");
-                break;
-            }
-            case 52: {
-                this.slice_from("ram");
-                break;
-            }
-            case 53: {
-                this.slice_from("ar");
-                break;
-            }
-            case 54: {
-                this.slice_from("dr");
-                break;
-            }
-            case 55: {
-                this.slice_from("er");
-                break;
-            }
-            case 56: {
-                this.slice_from("or");
-                break;
-            }
-            case 57: {
-                this.slice_from("es");
-                break;
-            }
-            case 58: {
-                this.slice_from("is");
-                break;
-            }
-            case 59: {
-                this.slice_from("ta\u0161");
-                break;
-            }
-            case 60: {
-                this.slice_from("na\u0161");
-                break;
-            }
-            case 61: {
-                this.slice_from("ja\u0161");
-                break;
-            }
-            case 62: {
-                this.slice_from("ka\u0161");
-                break;
-            }
-            case 63: {
-                this.slice_from("ba\u0161");
-                break;
-            }
-            case 64: {
-                this.slice_from("ga\u0161");
-                break;
-            }
-            case 65: {
-                this.slice_from("va\u0161");
-                break;
-            }
-            case 66: {
-                this.slice_from("e\u0161");
-                break;
-            }
-            case 67: {
-                this.slice_from("i\u0161");
-                break;
-            }
-            case 68: {
-                this.slice_from("ikat");
-                break;
-            }
-            case 69: {
-                this.slice_from("lat");
-                break;
-            }
-            case 70: {
-                this.slice_from("et");
-                break;
-            }
-            case 71: {
-                this.slice_from("est");
-                break;
-            }
-            case 72: {
-                this.slice_from("ist");
-                break;
-            }
-            case 73: {
-                this.slice_from("kst");
-                break;
-            }
-            case 74: {
-                this.slice_from("ost");
-                break;
-            }
-            case 75: {
-                this.slice_from("i\u0161t");
-                break;
-            }
-            case 76: {
-                this.slice_from("ova");
-                break;
-            }
-            case 77: {
-                this.slice_from("av");
-                break;
-            }
-            case 78: {
-                this.slice_from("ev");
-                break;
-            }
-            case 79: {
-                this.slice_from("iv");
-                break;
-            }
-            case 80: {
-                this.slice_from("ov");
-                break;
-            }
-            case 81: {
-                this.slice_from("mov");
-                break;
-            }
-            case 82: {
-                this.slice_from("lov");
-                break;
-            }
-            case 83: {
-                this.slice_from("el");
-                break;
-            }
-            case 84: {
-                this.slice_from("anj");
-                break;
-            }
-            case 85: {
-                this.slice_from("enj");
-                break;
-            }
-            case 86: {
-                this.slice_from("\u0161nj");
-                break;
-            }
-            case 87: {
-                this.slice_from("en");
-                break;
-            }
-            case 88: {
-                this.slice_from("\u0161n");
-                break;
-            }
-            case 89: {
-                this.slice_from("\u010Din");
-                break;
-            }
-            case 90: {
-                this.slice_from("ro\u0161i");
-                break;
-            }
-            case 91: {
-                this.slice_from("o\u0161");
-                break;
-            }
-            case 92: {
-                this.slice_from("evit");
-                break;
-            }
-            case 93: {
-                this.slice_from("ovit");
-                break;
-            }
-            case 94: {
-                this.slice_from("ast");
-                break;
-            }
-            case 95: {
-                this.slice_from("k");
-                break;
-            }
-            case 96: {
-                this.slice_from("eva");
-                break;
-            }
-            case 97: {
-                this.slice_from("ava");
-                break;
-            }
-            case 98: {
-                this.slice_from("iva");
-                break;
-            }
-            case 99: {
-                this.slice_from("uva");
-                break;
-            }
-            case 100: {
-                this.slice_from("ir");
-                break;
-            }
-            case 101: {
-                this.slice_from("a\u010D");
-                break;
-            }
-            case 102: {
-                this.slice_from("a\u010Da");
-                break;
-            }
-            case 103: {
-                this.slice_from("ni");
-                break;
-            }
-            case 104: {
-                this.slice_from("a");
-                break;
-            }
-            case 105: {
-                this.slice_from("ur");
-                break;
-            }
-            case 106: {
-                this.slice_from("astaj");
-                break;
-            }
-            case 107: {
-                this.slice_from("istaj");
-                break;
-            }
-            case 108: {
-                this.slice_from("ostaj");
-                break;
-            }
-            case 109: {
-                this.slice_from("aj");
-                break;
-            }
-            case 110: {
-                this.slice_from("asta");
-                break;
-            }
-            case 111: {
-                this.slice_from("ista");
-                break;
-            }
-            case 112: {
-                this.slice_from("osta");
-                break;
-            }
-            case 113: {
-                this.slice_from("ta");
-                break;
-            }
-            case 114: {
-                this.slice_from("inj");
-                break;
-            }
-            case 115: {
-                this.slice_from("as");
-                break;
-            }
-            case 116: {
-                this.slice_from("i");
-                break;
-            }
-            case 117: {
-                this.slice_from("lu\u010D");
-                break;
-            }
-            case 118: {
-                this.slice_from("jeti");
-                break;
-            }
-            case 119: {
-                this.slice_from("e");
-                break;
-            }
-            case 120: {
-                this.slice_from("at");
-                break;
-            }
-            case 121: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("luc");
-                break;
-            }
-            case 122: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("snj");
-                break;
-            }
-            case 123: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("os");
-                break;
-            }
-            case 124: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ac");
-                break;
-            }
-            case 125: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ec");
-                break;
-            }
-            case 126: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("uc");
-                break;
-            }
-            case 127: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("rosi");
-                break;
-            }
-            case 128: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("aca");
-                break;
-            }
-            case 129: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("jas");
-                break;
-            }
-            case 130: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("tas");
-                break;
-            }
-            case 131: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("gas");
-                break;
-            }
-            case 132: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("nas");
-                break;
-            }
-            case 133: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("kas");
-                break;
-            }
-            case 134: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("vas");
-                break;
-            }
-            case 135: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("bas");
-                break;
-            }
-            case 136: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("as");
-                break;
-            }
-            case 137: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("cin");
-                break;
-            }
-            case 138: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("astaj");
-                break;
-            }
-            case 139: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("istaj");
-                break;
-            }
-            case 140: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ostaj");
-                break;
-            }
-            case 141: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("asta");
-                break;
-            }
-            case 142: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ista");
-                break;
-            }
-            case 143: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("osta");
-                break;
-            }
-            case 144: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ava");
-                break;
-            }
-            case 145: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("eva");
-                break;
-            }
-            case 146: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("iva");
-                break;
-            }
-            case 147: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("uva");
-                break;
-            }
-            case 148: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ova");
-                break;
-            }
-            case 149: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("jeti");
-                break;
-            }
-            case 150: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("inj");
-                break;
-            }
-            case 151: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ist");
-                break;
-            }
-            case 152: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("es");
-                break;
-            }
-            case 153: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("et");
-                break;
-            }
-            case 154: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("is");
-                break;
-            }
-            case 155: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ir");
-                break;
-            }
-            case 156: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ur");
-                break;
-            }
-            case 157: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("uj");
-                break;
-            }
-            case 158: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ni");
-                break;
-            }
-            case 159: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("sn");
-                break;
-            }
-            case 160: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("ta");
-                break;
-            }
-            case 161: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("a");
-                break;
-            }
-            case 162: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("i");
-                break;
-            }
-            case 163: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("e");
-                break;
-            }
-            case 164: {
-                if (!this.#B_no_diacritics) return false;
-                this.slice_from("n");
-                break;
-            }
-        }
-        return true;
-    }
-
-    /** @return {boolean} */
-    #r_Step_3() {
-        this.ket = this.c;
-        if (this.find_among_b(a_3) === 0) return false;
-        this.bra = this.c;
-        if (!this.#r_R1()) return false;
-        this.slice_del();
-        return true;
-    }
 
     /** @return {boolean} */
     #stem() {
-        this.#r_cyr_to_lat();
-        this.#r_prelude();
-        this.#r_mark_regions();
-        this.limit_backward = this.c; this.c = this.limit;
-        const /** number */ v_1 = this.limit - this.c;
-        this.#r_Step_1();
-        this.c = this.limit - v_1;
-        const /** number */ v_2 = this.limit - this.c;
+        let /**@type {number}*/ a;
+        let /**@type {number}*/ I_p1;
+        let /**@type {boolean}*/ B_no_diacritics;
         // deno-lint-ignore no-unused-labels
         lab0: {
+            const /**@type {number}*/ v_1 = this.c;
             // deno-lint-ignore no-unused-labels
             lab1: {
-                const /** number */ v_3 = this.limit - this.c;
-                // deno-lint-ignore no-unused-labels
-                lab2: {
-                    if (!this.#r_Step_2()) break lab2;
-                    break lab1;
+                while (true) {
+                    const /**@type {number}*/ v_2 = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab2: {
+                        // deno-lint-ignore no-unused-labels
+                        golab3: while (true)
+                        {
+                            const /**@type {number}*/ v_3 = this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab4: {
+                                this.bra = this.c;
+                                a = this.find_among(a_0);
+                                if (a === 0) break lab4;
+                                this.ket = this.c;
+                                this.slice_from(as_0[a - 1]);
+                                this.c = v_3;
+                                break golab3;
+                            }
+                            this.c = v_3;
+                            if (this.c >= this.limit) break lab2;
+                            this.c++;
+                        }
+                        continue;
+                    }
+                    this.c = v_2;
+                    break;
                 }
-                this.c = this.limit - v_3;
-                if (!this.#r_Step_3()) break lab0;
+            }
+            this.c = v_1;
+        }
+        // deno-lint-ignore no-unused-labels
+        lab5: {
+            const /**@type {number}*/ v_4 = this.c;
+            // deno-lint-ignore no-unused-labels
+            lab6: {
+                while (true) {
+                    const /**@type {number}*/ v_5 = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab7: {
+                        // deno-lint-ignore no-unused-labels
+                        golab8: while (true)
+                        {
+                            const /**@type {number}*/ v_6 = this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab9: {
+                                if (!(this.in_grouping(g_ca, 98, 382))) break lab9;
+                                this.bra = this.c;
+                                if (!(this.eq_s("ije"))) break lab9;
+                                this.ket = this.c;
+                                if (!(this.in_grouping(g_ca, 98, 382))) break lab9;
+                                this.slice_from("e");
+                                this.c = v_6;
+                                break golab8;
+                            }
+                            this.c = v_6;
+                            if (this.c >= this.limit) break lab7;
+                            this.c++;
+                        }
+                        continue;
+                    }
+                    this.c = v_5;
+                    break;
+                }
+            }
+            this.c = v_4;
+            const /**@type {number}*/ v_7 = this.c;
+            // deno-lint-ignore no-unused-labels
+            lab10: {
+                while (true) {
+                    const /**@type {number}*/ v_8 = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab11: {
+                        // deno-lint-ignore no-unused-labels
+                        golab12: while (true)
+                        {
+                            const /**@type {number}*/ v_9 = this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab13: {
+                                if (!(this.in_grouping(g_ca, 98, 382))) break lab13;
+                                this.bra = this.c;
+                                if (!(this.eq_s("je"))) break lab13;
+                                this.ket = this.c;
+                                if (!(this.in_grouping(g_ca, 98, 382))) break lab13;
+                                this.slice_from("e");
+                                this.c = v_9;
+                                break golab12;
+                            }
+                            this.c = v_9;
+                            if (this.c >= this.limit) break lab11;
+                            this.c++;
+                        }
+                        continue;
+                    }
+                    this.c = v_8;
+                    break;
+                }
+            }
+            this.c = v_7;
+            const /**@type {number}*/ v_10 = this.c;
+            // deno-lint-ignore no-unused-labels
+            lab14: {
+                while (true) {
+                    const /**@type {number}*/ v_11 = this.c;
+                    // deno-lint-ignore no-unused-labels
+                    lab15: {
+                        // deno-lint-ignore no-unused-labels
+                        golab16: while (true)
+                        {
+                            const /**@type {number}*/ v_12 = this.c;
+                            // deno-lint-ignore no-unused-labels
+                            lab17: {
+                                this.bra = this.c;
+                                if (!(this.eq_s("dj"))) break lab17;
+                                this.ket = this.c;
+                                this.slice_from("\u0111");
+                                this.c = v_12;
+                                break golab16;
+                            }
+                            this.c = v_12;
+                            if (this.c >= this.limit) break lab15;
+                            this.c++;
+                        }
+                        continue;
+                    }
+                    this.c = v_11;
+                    break;
+                }
+            }
+            this.c = v_10;
+        }
+        // deno-lint-ignore no-unused-labels
+        lab18: {
+            B_no_diacritics = true;
+            const /**@type {number}*/ v_13 = this.c;
+            // deno-lint-ignore no-unused-labels
+            lab19: {
+                if (!this.go_out_grouping(g_sa, 263, 382)) break lab19;
+                this.c++;
+                B_no_diacritics = false;
+            }
+            this.c = v_13;
+            I_p1 = this.limit;
+            const /**@type {number}*/ v_14 = this.c;
+            // deno-lint-ignore no-unused-labels
+            lab20: {
+                if (!this.go_out_grouping(g_v, 97, 117)) break lab20;
+                this.c++;
+                I_p1 = this.c;
+                if (/**@type {boolean}*/(I_p1 > 1)) break lab20;
+                if (!this.go_in_grouping(g_v, 97, 117)) break lab20;
+                this.c++;
+                I_p1 = this.c;
+            }
+            this.c = v_14;
+            const /**@type {number}*/ v_15 = this.c;
+            // deno-lint-ignore no-unused-labels
+            lab21: {
+                // deno-lint-ignore no-unused-labels
+                golab22: while (true)
+                {
+                    // deno-lint-ignore no-unused-labels
+                    lab23: {
+                        if (!(this.eq_s("r"))) break lab23;
+                        break golab22;
+                    }
+                    if (this.c >= this.limit) break lab21;
+                    this.c++;
+                }
+                // deno-lint-ignore no-unused-labels
+                lab24: {
+                    // deno-lint-ignore no-unused-labels
+                    lab25: {
+                        if (/**@type {boolean}*/(this.c < 2)) break lab25;
+                        break lab24;
+                    }
+                    if (!this.go_in_grouping(g_rg, 114, 114)) break lab21;
+                    this.c++;
+                }
+                if (/**@type {boolean}*/((I_p1 - this.c) < 2)) break lab21;
+                I_p1 = this.c;
+            }
+            this.c = v_15;
+        }
+        this.limit_backward = this.c; this.c = this.limit;
+        const /**@type {number}*/ v_16 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab26: {
+            this.ket = this.c;
+            a = this.find_among_b(a_1);
+            if (a === 0) break lab26;
+            this.bra = this.c;
+            switch (a) {
+                case 1: {
+                    this.slice_from("loga");
+                    break;
+                }
+                case 2: {
+                    this.slice_from("peh");
+                    break;
+                }
+                case 3: {
+                    this.slice_from("vojka");
+                    break;
+                }
+                case 4: {
+                    this.slice_from("bojka");
+                    break;
+                }
+                case 5: {
+                    this.slice_from("jak");
+                    break;
+                }
+                case 6: {
+                    this.slice_from("\u010Dajni");
+                    break;
+                }
+                case 7: {
+                    if (!B_no_diacritics) break lab26;
+                    this.slice_from("cajni");
+                    break;
+                }
+                case 8: {
+                    this.slice_from("erni");
+                    break;
+                }
+                case 9: {
+                    this.slice_from("larni");
+                    break;
+                }
+                case 10: {
+                    this.slice_from("esni");
+                    break;
+                }
+                case 11: {
+                    this.slice_from("anjca");
+                    break;
+                }
+                case 12: {
+                    this.slice_from("ajca");
+                    break;
+                }
+                case 13: {
+                    this.slice_from("ljca");
+                    break;
+                }
+                case 14: {
+                    this.slice_from("ejca");
+                    break;
+                }
+                case 15: {
+                    this.slice_from("ojca");
+                    break;
+                }
+                case 16: {
+                    this.slice_from("ajka");
+                    break;
+                }
+                case 17: {
+                    this.slice_from("ojka");
+                    break;
+                }
+                case 18: {
+                    this.slice_from("\u0161ca");
+                    break;
+                }
+                case 19: {
+                    this.slice_from("ing");
+                    break;
+                }
+                case 20: {
+                    this.slice_from("tvenik");
+                    break;
+                }
+                case 21: {
+                    this.slice_from("tetika");
+                    break;
+                }
+                case 22: {
+                    this.slice_from("nstva");
+                    break;
+                }
+                case 23: {
+                    this.slice_from("nik");
+                    break;
+                }
+                case 24: {
+                    this.slice_from("tik");
+                    break;
+                }
+                case 25: {
+                    this.slice_from("zik");
+                    break;
+                }
+                case 26: {
+                    this.slice_from("snik");
+                    break;
+                }
+                case 27: {
+                    this.slice_from("kusi");
+                    break;
+                }
+                case 28: {
+                    this.slice_from("kusni");
+                    break;
+                }
+                case 29: {
+                    this.slice_from("kustva");
+                    break;
+                }
+                case 30: {
+                    this.slice_from("du\u0161ni");
+                    break;
+                }
+                case 31: {
+                    if (!B_no_diacritics) break lab26;
+                    this.slice_from("dusni");
+                    break;
+                }
+                case 32: {
+                    this.slice_from("antni");
+                    break;
+                }
+                case 33: {
+                    this.slice_from("bilni");
+                    break;
+                }
+                case 34: {
+                    this.slice_from("tilni");
+                    break;
+                }
+                case 35: {
+                    this.slice_from("avilni");
+                    break;
+                }
+                case 36: {
+                    this.slice_from("silni");
+                    break;
+                }
+                case 37: {
+                    this.slice_from("gilni");
+                    break;
+                }
+                case 38: {
+                    this.slice_from("rilni");
+                    break;
+                }
+                case 39: {
+                    this.slice_from("nilni");
+                    break;
+                }
+                case 40: {
+                    this.slice_from("alni");
+                    break;
+                }
+                case 41: {
+                    this.slice_from("ozni");
+                    break;
+                }
+                case 42: {
+                    this.slice_from("ravi");
+                    break;
+                }
+                case 43: {
+                    this.slice_from("stavni");
+                    break;
+                }
+                case 44: {
+                    this.slice_from("pravni");
+                    break;
+                }
+                case 45: {
+                    this.slice_from("tivni");
+                    break;
+                }
+                case 46: {
+                    this.slice_from("sivni");
+                    break;
+                }
+                case 47: {
+                    this.slice_from("atni");
+                    break;
+                }
+                case 48: {
+                    this.slice_from("enta");
+                    break;
+                }
+                case 49: {
+                    this.slice_from("tetni");
+                    break;
+                }
+                case 50: {
+                    this.slice_from("pletni");
+                    break;
+                }
+                case 51: {
+                    this.slice_from("\u0161avi");
+                    break;
+                }
+                case 52: {
+                    if (!B_no_diacritics) break lab26;
+                    this.slice_from("savi");
+                    break;
+                }
+                case 53: {
+                    this.slice_from("anta");
+                    break;
+                }
+                case 54: {
+                    this.slice_from("a\u010Dka");
+                    break;
+                }
+                case 55: {
+                    if (!B_no_diacritics) break lab26;
+                    this.slice_from("acka");
+                    break;
+                }
+                case 56: {
+                    this.slice_from("u\u0161ka");
+                    break;
+                }
+                case 57: {
+                    if (!B_no_diacritics) break lab26;
+                    this.slice_from("uska");
+                    break;
+                }
+                case 58: {
+                    this.slice_from("atka");
+                    break;
+                }
+                case 59: {
+                    this.slice_from("etka");
+                    break;
+                }
+                case 60: {
+                    this.slice_from("itka");
+                    break;
+                }
+                case 61: {
+                    this.slice_from("otka");
+                    break;
+                }
+                case 62: {
+                    this.slice_from("utka");
+                    break;
+                }
+                case 63: {
+                    this.slice_from("eskna");
+                    break;
+                }
+                case 64: {
+                    this.slice_from("ti\u010Dni");
+                    break;
+                }
+                case 65: {
+                    if (!B_no_diacritics) break lab26;
+                    this.slice_from("ticni");
+                    break;
+                }
+                case 66: {
+                    this.slice_from("ojska");
+                    break;
+                }
+                case 67: {
+                    this.slice_from("esma");
+                    break;
+                }
+                case 68: {
+                    this.slice_from("metra");
+                    break;
+                }
+                case 69: {
+                    this.slice_from("centra");
+                    break;
+                }
+                case 70: {
+                    this.slice_from("istra");
+                    break;
+                }
+                case 71: {
+                    this.slice_from("osti");
+                    break;
+                }
+                case 72: {
+                    if (!B_no_diacritics) break lab26;
+                    this.slice_from("osti");
+                    break;
+                }
+                case 73: {
+                    this.slice_from("dba");
+                    break;
+                }
+                case 74: {
+                    this.slice_from("\u010Dka");
+                    break;
+                }
+                case 75: {
+                    this.slice_from("mca");
+                    break;
+                }
+                case 76: {
+                    this.slice_from("nca");
+                    break;
+                }
+                case 77: {
+                    this.slice_from("voljni");
+                    break;
+                }
+                case 78: {
+                    this.slice_from("anki");
+                    break;
+                }
+                case 79: {
+                    this.slice_from("vca");
+                    break;
+                }
+                case 80: {
+                    this.slice_from("sca");
+                    break;
+                }
+                case 81: {
+                    this.slice_from("rca");
+                    break;
+                }
+                case 82: {
+                    this.slice_from("alca");
+                    break;
+                }
+                case 83: {
+                    this.slice_from("elca");
+                    break;
+                }
+                case 84: {
+                    this.slice_from("olca");
+                    break;
+                }
+                case 85: {
+                    this.slice_from("njca");
+                    break;
+                }
+                case 86: {
+                    this.slice_from("ekta");
+                    break;
+                }
+                case 87: {
+                    this.slice_from("izma");
+                    break;
+                }
+                case 88: {
+                    this.slice_from("jebi");
+                    break;
+                }
+                case 89: {
+                    this.slice_from("baci");
+                    break;
+                }
+                case 90: {
+                    this.slice_from("a\u0161ni");
+                    break;
+                }
+                case 91: {
+                    if (!B_no_diacritics) break lab26;
+                    this.slice_from("asni");
+                    break;
+                }
             }
         }
-        this.c = this.limit - v_2;
+        this.c = this.limit - v_16;
+        const /**@type {number}*/ v_17 = this.limit - this.c;
+        // deno-lint-ignore no-unused-labels
+        lab27: {
+            // deno-lint-ignore no-unused-labels
+            lab28: {
+                const /**@type {number}*/ v_18 = this.limit - this.c;
+                // deno-lint-ignore no-unused-labels
+                lab29: {
+                    this.ket = this.c;
+                    a = this.find_among_b(a_2);
+                    if (a === 0) break lab29;
+                    this.bra = this.c;
+                    if (/**@type {boolean}*/(I_p1 > this.c)) break lab29;
+                    switch (a) {
+                        case 1: {
+                            this.slice_from("sk");
+                            break;
+                        }
+                        case 2: {
+                            this.slice_from("\u0161k");
+                            break;
+                        }
+                        case 3: {
+                            this.slice_from("stv");
+                            break;
+                        }
+                        case 4: {
+                            this.slice_from("\u0161tv");
+                            break;
+                        }
+                        case 5: {
+                            this.slice_from("tanij");
+                            break;
+                        }
+                        case 6: {
+                            this.slice_from("manij");
+                            break;
+                        }
+                        case 7: {
+                            this.slice_from("panij");
+                            break;
+                        }
+                        case 8: {
+                            this.slice_from("ranij");
+                            break;
+                        }
+                        case 9: {
+                            this.slice_from("ganij");
+                            break;
+                        }
+                        case 10: {
+                            this.slice_from("an");
+                            break;
+                        }
+                        case 11: {
+                            this.slice_from("in");
+                            break;
+                        }
+                        case 12: {
+                            this.slice_from("on");
+                            break;
+                        }
+                        case 13: {
+                            this.slice_from("n");
+                            break;
+                        }
+                        case 14: {
+                            this.slice_from("a\u0107");
+                            break;
+                        }
+                        case 15: {
+                            this.slice_from("e\u0107");
+                            break;
+                        }
+                        case 16: {
+                            this.slice_from("u\u0107");
+                            break;
+                        }
+                        case 17: {
+                            this.slice_from("ugov");
+                            break;
+                        }
+                        case 18: {
+                            this.slice_from("ug");
+                            break;
+                        }
+                        case 19: {
+                            this.slice_from("log");
+                            break;
+                        }
+                        case 20: {
+                            this.slice_from("g");
+                            break;
+                        }
+                        case 21: {
+                            this.slice_from("rari");
+                            break;
+                        }
+                        case 22: {
+                            this.slice_from("oti");
+                            break;
+                        }
+                        case 23: {
+                            this.slice_from("si");
+                            break;
+                        }
+                        case 24: {
+                            this.slice_from("li");
+                            break;
+                        }
+                        case 25: {
+                            this.slice_from("uj");
+                            break;
+                        }
+                        case 26: {
+                            this.slice_from("caj");
+                            break;
+                        }
+                        case 27: {
+                            this.slice_from("\u010Daj");
+                            break;
+                        }
+                        case 28: {
+                            this.slice_from("\u0107aj");
+                            break;
+                        }
+                        case 29: {
+                            this.slice_from("\u0111aj");
+                            break;
+                        }
+                        case 30: {
+                            this.slice_from("laj");
+                            break;
+                        }
+                        case 31: {
+                            this.slice_from("raj");
+                            break;
+                        }
+                        case 32: {
+                            this.slice_from("bij");
+                            break;
+                        }
+                        case 33: {
+                            this.slice_from("cij");
+                            break;
+                        }
+                        case 34: {
+                            this.slice_from("dij");
+                            break;
+                        }
+                        case 35: {
+                            this.slice_from("lij");
+                            break;
+                        }
+                        case 36: {
+                            this.slice_from("nij");
+                            break;
+                        }
+                        case 37: {
+                            this.slice_from("mij");
+                            break;
+                        }
+                        case 38: {
+                            this.slice_from("\u017Eij");
+                            break;
+                        }
+                        case 39: {
+                            this.slice_from("gij");
+                            break;
+                        }
+                        case 40: {
+                            this.slice_from("fij");
+                            break;
+                        }
+                        case 41: {
+                            this.slice_from("pij");
+                            break;
+                        }
+                        case 42: {
+                            this.slice_from("rij");
+                            break;
+                        }
+                        case 43: {
+                            this.slice_from("sij");
+                            break;
+                        }
+                        case 44: {
+                            this.slice_from("tij");
+                            break;
+                        }
+                        case 45: {
+                            this.slice_from("zij");
+                            break;
+                        }
+                        case 46: {
+                            this.slice_from("nal");
+                            break;
+                        }
+                        case 47: {
+                            this.slice_from("ijal");
+                            break;
+                        }
+                        case 48: {
+                            this.slice_from("ozil");
+                            break;
+                        }
+                        case 49: {
+                            this.slice_from("olov");
+                            break;
+                        }
+                        case 50: {
+                            this.slice_from("ol");
+                            break;
+                        }
+                        case 51: {
+                            this.slice_from("lem");
+                            break;
+                        }
+                        case 52: {
+                            this.slice_from("ram");
+                            break;
+                        }
+                        case 53: {
+                            this.slice_from("ar");
+                            break;
+                        }
+                        case 54: {
+                            this.slice_from("dr");
+                            break;
+                        }
+                        case 55: {
+                            this.slice_from("er");
+                            break;
+                        }
+                        case 56: {
+                            this.slice_from("or");
+                            break;
+                        }
+                        case 57: {
+                            this.slice_from("es");
+                            break;
+                        }
+                        case 58: {
+                            this.slice_from("is");
+                            break;
+                        }
+                        case 59: {
+                            this.slice_from("ta\u0161");
+                            break;
+                        }
+                        case 60: {
+                            this.slice_from("na\u0161");
+                            break;
+                        }
+                        case 61: {
+                            this.slice_from("ja\u0161");
+                            break;
+                        }
+                        case 62: {
+                            this.slice_from("ka\u0161");
+                            break;
+                        }
+                        case 63: {
+                            this.slice_from("ba\u0161");
+                            break;
+                        }
+                        case 64: {
+                            this.slice_from("ga\u0161");
+                            break;
+                        }
+                        case 65: {
+                            this.slice_from("va\u0161");
+                            break;
+                        }
+                        case 66: {
+                            this.slice_from("e\u0161");
+                            break;
+                        }
+                        case 67: {
+                            this.slice_from("i\u0161");
+                            break;
+                        }
+                        case 68: {
+                            this.slice_from("ikat");
+                            break;
+                        }
+                        case 69: {
+                            this.slice_from("lat");
+                            break;
+                        }
+                        case 70: {
+                            this.slice_from("et");
+                            break;
+                        }
+                        case 71: {
+                            this.slice_from("est");
+                            break;
+                        }
+                        case 72: {
+                            this.slice_from("ist");
+                            break;
+                        }
+                        case 73: {
+                            this.slice_from("kst");
+                            break;
+                        }
+                        case 74: {
+                            this.slice_from("ost");
+                            break;
+                        }
+                        case 75: {
+                            this.slice_from("i\u0161t");
+                            break;
+                        }
+                        case 76: {
+                            this.slice_from("ova");
+                            break;
+                        }
+                        case 77: {
+                            this.slice_from("av");
+                            break;
+                        }
+                        case 78: {
+                            this.slice_from("ev");
+                            break;
+                        }
+                        case 79: {
+                            this.slice_from("iv");
+                            break;
+                        }
+                        case 80: {
+                            this.slice_from("ov");
+                            break;
+                        }
+                        case 81: {
+                            this.slice_from("mov");
+                            break;
+                        }
+                        case 82: {
+                            this.slice_from("lov");
+                            break;
+                        }
+                        case 83: {
+                            this.slice_from("el");
+                            break;
+                        }
+                        case 84: {
+                            this.slice_from("anj");
+                            break;
+                        }
+                        case 85: {
+                            this.slice_from("enj");
+                            break;
+                        }
+                        case 86: {
+                            this.slice_from("\u0161nj");
+                            break;
+                        }
+                        case 87: {
+                            this.slice_from("en");
+                            break;
+                        }
+                        case 88: {
+                            this.slice_from("\u0161n");
+                            break;
+                        }
+                        case 89: {
+                            this.slice_from("\u010Din");
+                            break;
+                        }
+                        case 90: {
+                            this.slice_from("ro\u0161i");
+                            break;
+                        }
+                        case 91: {
+                            this.slice_from("o\u0161");
+                            break;
+                        }
+                        case 92: {
+                            this.slice_from("evit");
+                            break;
+                        }
+                        case 93: {
+                            this.slice_from("ovit");
+                            break;
+                        }
+                        case 94: {
+                            this.slice_from("ast");
+                            break;
+                        }
+                        case 95: {
+                            this.slice_from("k");
+                            break;
+                        }
+                        case 96: {
+                            this.slice_from("eva");
+                            break;
+                        }
+                        case 97: {
+                            this.slice_from("ava");
+                            break;
+                        }
+                        case 98: {
+                            this.slice_from("iva");
+                            break;
+                        }
+                        case 99: {
+                            this.slice_from("uva");
+                            break;
+                        }
+                        case 100: {
+                            this.slice_from("ir");
+                            break;
+                        }
+                        case 101: {
+                            this.slice_from("a\u010D");
+                            break;
+                        }
+                        case 102: {
+                            this.slice_from("a\u010Da");
+                            break;
+                        }
+                        case 103: {
+                            this.slice_from("ni");
+                            break;
+                        }
+                        case 104: {
+                            this.slice_from("a");
+                            break;
+                        }
+                        case 105: {
+                            this.slice_from("ur");
+                            break;
+                        }
+                        case 106: {
+                            this.slice_from("astaj");
+                            break;
+                        }
+                        case 107: {
+                            this.slice_from("istaj");
+                            break;
+                        }
+                        case 108: {
+                            this.slice_from("ostaj");
+                            break;
+                        }
+                        case 109: {
+                            this.slice_from("aj");
+                            break;
+                        }
+                        case 110: {
+                            this.slice_from("asta");
+                            break;
+                        }
+                        case 111: {
+                            this.slice_from("ista");
+                            break;
+                        }
+                        case 112: {
+                            this.slice_from("osta");
+                            break;
+                        }
+                        case 113: {
+                            this.slice_from("ta");
+                            break;
+                        }
+                        case 114: {
+                            this.slice_from("inj");
+                            break;
+                        }
+                        case 115: {
+                            this.slice_from("as");
+                            break;
+                        }
+                        case 116: {
+                            this.slice_from("i");
+                            break;
+                        }
+                        case 117: {
+                            this.slice_from("lu\u010D");
+                            break;
+                        }
+                        case 118: {
+                            this.slice_from("jeti");
+                            break;
+                        }
+                        case 119: {
+                            this.slice_from("e");
+                            break;
+                        }
+                        case 120: {
+                            this.slice_from("at");
+                            break;
+                        }
+                        case 121: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("luc");
+                            break;
+                        }
+                        case 122: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("snj");
+                            break;
+                        }
+                        case 123: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("os");
+                            break;
+                        }
+                        case 124: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ac");
+                            break;
+                        }
+                        case 125: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ec");
+                            break;
+                        }
+                        case 126: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("uc");
+                            break;
+                        }
+                        case 127: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("rosi");
+                            break;
+                        }
+                        case 128: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("aca");
+                            break;
+                        }
+                        case 129: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("jas");
+                            break;
+                        }
+                        case 130: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("tas");
+                            break;
+                        }
+                        case 131: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("gas");
+                            break;
+                        }
+                        case 132: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("nas");
+                            break;
+                        }
+                        case 133: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("kas");
+                            break;
+                        }
+                        case 134: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("vas");
+                            break;
+                        }
+                        case 135: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("bas");
+                            break;
+                        }
+                        case 136: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("as");
+                            break;
+                        }
+                        case 137: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("cin");
+                            break;
+                        }
+                        case 138: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("astaj");
+                            break;
+                        }
+                        case 139: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("istaj");
+                            break;
+                        }
+                        case 140: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ostaj");
+                            break;
+                        }
+                        case 141: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("asta");
+                            break;
+                        }
+                        case 142: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ista");
+                            break;
+                        }
+                        case 143: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("osta");
+                            break;
+                        }
+                        case 144: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ava");
+                            break;
+                        }
+                        case 145: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("eva");
+                            break;
+                        }
+                        case 146: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("iva");
+                            break;
+                        }
+                        case 147: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("uva");
+                            break;
+                        }
+                        case 148: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ova");
+                            break;
+                        }
+                        case 149: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("jeti");
+                            break;
+                        }
+                        case 150: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("inj");
+                            break;
+                        }
+                        case 151: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ist");
+                            break;
+                        }
+                        case 152: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("es");
+                            break;
+                        }
+                        case 153: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("et");
+                            break;
+                        }
+                        case 154: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("is");
+                            break;
+                        }
+                        case 155: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ir");
+                            break;
+                        }
+                        case 156: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ur");
+                            break;
+                        }
+                        case 157: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("uj");
+                            break;
+                        }
+                        case 158: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ni");
+                            break;
+                        }
+                        case 159: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("sn");
+                            break;
+                        }
+                        case 160: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("ta");
+                            break;
+                        }
+                        case 161: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("a");
+                            break;
+                        }
+                        case 162: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("i");
+                            break;
+                        }
+                        case 163: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("e");
+                            break;
+                        }
+                        case 164: {
+                            if (!B_no_diacritics) break lab29;
+                            this.slice_from("n");
+                            break;
+                        }
+                    }
+                    break lab28;
+                }
+                this.c = this.limit - v_18;
+                this.ket = this.c;
+                if (this.find_among_b(a_3) === 0) break lab27;
+                this.bra = this.c;
+                if (/**@type {boolean}*/(I_p1 > this.c)) break lab27;
+                this.slice_del();
+            }
+        }
+        this.c = this.limit - v_17;
         this.c = this.limit_backward;
         return true;
     }
 
     /**@return{string}*/
-    stem(/**string*/input) {
+    stem(/**@type {string}*/input) {
         this.setCurrent(input);
         this.#stem();
         return this.getCurrent();
