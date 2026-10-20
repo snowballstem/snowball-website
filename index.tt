@@ -126,6 +126,9 @@ speedily, and in any case they reserve the right to post their answers on snowba
     <strong>Oct 2026</strong> - <a href="algorithms/ukrainian/stemmer.html">Ukrainian stemming algorithm</a> contributed by Dmitry Prudnikov.
   </li>
   <li>
+    <strong>Oct 2026</strong> - Experimental <a href="algorithms/korean/stemmer.html">Korean stemming proposal and demo</a> contributed by Bonghwan Kim (pending upstream acceptance; not included in Snowball 3.2.0).
+  </li>
+  <li>
     <strong>Jun 2026</strong> - <a href="algorithms/earlymodernenglish/stemmer.html">Early Modern English stemmer</a> enhanced and added to the distribution.
   </li>
   <li>

@@ -1,0 +1,82 @@
+[% header('Experimental Korean stemming algorithm') %]
+
+<h2>Links to resources</h2>
+<ul>
+[% algorithm_lis('korean', 'Korean', 'https://en.wikipedia.org/wiki/Korean_language') %]
+</ul>
+
+<p>This deliberately limited Korean stemmer was contributed by Bonghwan Kim.
+It is an experimental baseline for review, not a general Korean morphological
+analyser. The same Snowball source generates each target-language implementation;
+there is no Python-specific dictionary or external language model.</p>
+
+<h2>Input and output</h2>
+<p>Pass one NFC-normalized word at a time. Sentence tokenization, Unicode
+normalization and contextual part-of-speech analysis belong to the caller.
+The language identifiers are <code>korean</code>, <code>ko</code> and
+<code>kor</code>. The algorithm returns a single stem using the ordinary
+Snowball interface.</p>
+<table>
+<tr><th>Input</th><th>Output</th><th>Reason</th></tr>
+<tr><td>학생이</td><td>학생</td><td>Listed noun with subject particle</td></tr>
+<tr><td>사과를</td><td>사과</td><td>Listed noun with object particle</td></tr>
+<tr><td>먹었다</td><td>먹다</td><td>Listed inflection</td></tr>
+<tr><td>공부했다</td><td>공부하다</td><td>Listed contracted inflection</td></tr>
+<tr><td>고양이</td><td>고양이</td><td>Preserve the lexical final syllable</td></tr>
+<tr><td>걸었다</td><td>걸었다</td><td>Context is required to choose a lemma</td></tr>
+<tr><td>철수가</td><td>철수가</td><td>Unlisted base is preserved</td></tr>
+<tr><td>먹는다</td><td>먹는다</td><td>Unlisted inflection is preserved</td></tr>
+</table>
+
+<h2>Why the rules are conservative</h2>
+<p>Blindly removing final 이, 가, 을 or 를 damages words such as 고양이,
+국가, 사과 and 마을. The noun routine therefore accepts only complete
+base-plus-particle paths for 24 noun or pronoun bases, including the selected
+particle allomorphs. It does not infer a noun class for an unseen word.</p>
+<p>The verb routine maps explicitly enumerated inflections of 13 verb or
+adjective lemmas to dictionary forms. These selected regular, irregular and
+contracted forms let retrieval match cases such as 공부했다 and 공부하다
+without introducing a general conjugation engine. This is a bounded design
+choice; it is not evidence that handling every irregular verb is desirable
+or that the present coverage is sufficient for general Korean search.</p>
+<p>걸었다 and 들었다 can represent different verbs. 나는 and the pronoun
+contractions 내가, 제가, 네가 and 누가 are also preserved by the initial
+policy. Context-free listed forms can still collide with nouns: <code>보고</code>
+becomes <code>보다</code> even when it means a report, and <code>작고</code>
+becomes <code>작다</code> even when it denotes a death. These are known lexical
+over-stemming risks; the listed mappings do not perform part-of-speech analysis.
+Additional particles, particle chains, unlisted inflections, mixed
+script words and unknown words are retained. Stop-word removal is separate:
+the algorithm does not intentionally turn words into empty strings.</p>
+
+<h2>Matching and wide-character generation</h2>
+<p>Each accepted path must consume the complete word. Alternative paths
+restore the cursor on failure, so a recognized segment inside an unknown
+word is not silently replaced. The verb rules use separate <code>among</code>
+tables for each lemma. A single sparse Hangul table can exceed the C/C++
+generator's signed-short offset range in wide-character mode; the split
+preserves the same matching semantics within that range.</p>
+
+<h2>Vocabulary and testing</h2>
+<p>The <a href="https://github.com/snowballstem/snowball-data/tree/main/korean">test
+vocabulary</a> contains 49,336 unique inputs: 49,239 words extracted from a documented
+Korean Wikipedia shard, supplemented by 216 authored regression cases (97
+additional unique words). Source, extraction settings
+and licenses are recorded in <code>korean/COPYING</code>. This shard is not the
+whole Korean Wikipedia and is not a balanced general Korean corpus.</p>
+<p>The expected outputs generated for natural vocabulary provide a regression
+baseline, not independent linguistic gold labels. The small explicit rule set
+changed 87 of the 49,239 natural word types (about 0.18%) in the documented
+snapshot. This is a transformation rate, not recall or accuracy: many unchanged
+words need no stemming, while unlisted inflections remain unsupported. No
+general-language accuracy or recall claim is made. Separate positive, boundary, ambiguous, and unknown-word cases
+check the intended conservative behavior.</p>
+<p>With sibling <code>snowball</code> and <code>snowball-data</code> checkouts,
+use the standard <code>make check</code>, <code>make check_python</code>,
+<code>make check_js</code> and <code>make check_cxx</code> paths. Build C++ wide
+separately with <code>SNOWBALL_WIDE=1</code>; the existing wide CLI runner
+requires a Linux UTF-8 locale. There is no Korean-only build or runtime dependency.</p>
+
+<h2>The full algorithm in Snowball</h2>
+[% highlight_file('korean') %]
+[% footer %]

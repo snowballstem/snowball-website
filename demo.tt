@@ -39,8 +39,8 @@ function stem_demo(elt) {
     var s = new mod.default();
     var result = '';
     var i = 0;
-    for (const m of words.matchAll(/([A-Za-z0-9']+)/ug)) {
-      result += words.substring(i, m.index).replace(/[ &<>\n]/g, function(c){
+    function escape_text(text) {
+      return text.replace(/[ &<>\n]/g, function(c){
           if (c === ' ') return '&nbsp;';
           if (c === '<') return '&lt;';
           if (c === '>') return '&gt;';
@@ -48,10 +48,18 @@ function stem_demo(elt) {
           // Zero width space means a trailing newline will get rendered.
           return '<br>&#8203;';
       });
+    }
+    // Keep mixed-script and decomposed Korean words intact for the stemmer.
+    const word_pattern = lang === 'Korean'
+      ? /([\p{L}\p{M}\p{N}']+)/ug
+      : /([A-Za-z0-9']+)/ug;
+    for (const m of words.matchAll(word_pattern)) {
+      result += escape_text(words.substring(i, m.index));
       const w = m[0];
       result += '<span style="background-color:#dfd" title="' + lang + '(' + w + ')">' + s.stemWord(w.toLowerCase()) + '</span>';
       i = m.index + w.length;
     }
+    result += escape_text(words.substring(i));
     document.getElementById('results').innerHTML = result;
   });
 }
