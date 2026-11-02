@@ -1,0 +1,166 @@
+[% header('Albanian stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('albanian', 'Albanian', 'https://en.wikipedia.org/wiki/Albanian_language') %]
+</ul>
+
+<p>
+The algorithm was developed in a
+<a href="https://github.com/edisnord/albanian-stemmer">separate repository</a>,
+which generates the Snowball source from a rules file and keeps the data and
+measurements behind each choice described here.
+</p>
+
+<h2>Design Notes</h2>
+
+<p>
+This is a light, inflectional stemmer for keyword search in standard
+(Tosk-based) Albanian.  It removes the endings that inflect a word for case,
+definiteness, number, person, tense and mood, and conflates derived words in
+only two places (below), on purpose.
+</p>
+
+<p>
+The candidate endings come from the Academy grammar (<i>Gramatika e gjuhës
+shqipe 1: Morfologjia</i>, Akademia e Shkencave, Tiranë 1995).  They were then
+pruned against lexicons of Albanian text tagged with lemmas: an ending was
+kept only while it made words sharing a lemma share a stem more often, without
+letting precision (words with the same stem sharing a lemma) fall below a
+fixed floor.  The result was checked on BM25 retrieval benchmarks and on a
+sample of 300 word families labelled by hand.
+</p>
+
+<h3>Folding ë and ç</h3>
+
+<p>
+The stemmer first replaces <i>ë</i> with <i>e</i> and <i>ç</i> with <i>c</i>.
+Much Albanian text on the web, and more of what people type into a search
+box, is written without them (<i>shume</i> for <i>shumë</i>, <i>cfare</i>
+for <i>çfarë</i>): in a sample of web text 4.5% of the occurrences of words
+spelt with ë or ç were written without them, and 12.7% in a crawl of public
+documents.  Keeping ë in the stems separates more homographs (<i>rend</i>
+"order" and <i>rëndë</i> "heavy") but lost far more retrieval quality than it
+gained, so stems are always written without the diacritics.
+</p>
+
+<h3>The definite article comes first</h3>
+
+<p>
+As in Romanian, Albanian suffixes its definite article and fuses it with the
+case ending (<i>mollë</i>, <i>molla</i>, <i>mollës</i>, <i>mollën</i>,
+<i>mollët</i>, <i>mollëve</i> "apple"), and verbs stack person and tense on
+the stem (<i>punoj</i>, <i>punonte</i>, <i>punohet</i>, <i>punuar</i>
+"work").  So, as in the <a href="/algorithms/romanian/stemmer.html">Romanian
+stemmer</a>, the longest article, case or verb ending is removed first
+(step 1), then a plural or stem vowel in front of it (<i>-e</i>, <i>-a</i>,
+<i>-enj</i>, <i>-inj</i>; step 2).  All of these become <i>moll</i> and
+<i>pun</i>.
+</p>
+
+<p>
+Step 1 holds the <i>-oj</i> conjugation written out whole (<i>-onte</i>,
+<i>-ohet</i>, <i>-uar</i>, <i>-uara</i>, <i>-uarit</i>, <i>-ua</i>), not the
+thematic <i>o</i>/<i>ua</i> on its own: removing a bare <i>-o</i> or
+<i>-u</i> would also cut nouns such as <i>radio</i> and <i>kilo</i>, and
+merge <i>tregues</i> "indicator" with <i>treg</i> "market".
+</p>
+
+<h3>Minimum stem and the letter before an ending</h3>
+
+<p>
+No ending is removed from the first three letters, so a stem keeps at least
+three.  Letting stems go down to two letters merged too many unrelated short
+words.
+</p>
+
+<p>
+Several short endings are also verb or noun stems, so, as in the Finnish and
+Turkish stemmers, they come off only after a particular kind of letter: a
+vowel (<i>-t</i>, <i>-s</i>, <i>-j</i>, <i>-ja</i>, <i>-ra</i>, <i>-het</i>
+and others: <i>mollët</i> loses <i>-t</i> after <i>ë</i>, but <i>rast</i>
+"case" keeps its <i>t</i>), a consonant (<i>-ka</i>), or <i>k</i>, <i>g</i>
+or <i>h</i> (<i>-am</i>, <i>-rin</i>, <i>-rit</i>).  Which ending takes which
+condition was chosen against the lexicons; the conditions raised recall
+without costing precision.  The usual Snowball regions were tried for the same job
+and did less well, so they are used only for <i>-im</i> (below).
+</p>
+
+<h3>Tidying the stem</h3>
+
+<p>
+After the endings, the end of the stem is normalized so that the forms of a
+paradigm meet: a final <i>e</i> or <i>j</i> goes (<i>sëmundje</i>,
+<i>sëmundjet</i> &rarr; <i>semund</i>), <i>k</i> becomes <i>q</i> (<i>mik</i>,
+<i>miqtë</i> &rarr; <i>miq</i>), <i>er</i> becomes <i>r</i> (<i>libër</i>,
+<i>librin</i> &rarr; <i>libr</i>), and <i>odh</i> becomes <i>edh</i>
+(<i>zgjedh</i>, <i>zgjodhi</i> "choose", "chose" &rarr; <i>zgjedh</i>).  The
+rewrites apply to every stem ending that way, so a stem need not be a word
+(<i>ndodh</i> &rarr; <i>ndedh</i>); what matters is that a paradigm's forms
+meet.
+</p>
+
+<h3>Two derivations, on purpose</h3>
+
+<p>
+Derived words otherwise keep their own stems (<i>punëtor</i> "worker" stays
+apart from <i>punoj</i> "work"), but two derivations are conflated because
+searchers expect them to be:
+</p>
+
+<ul>
+<li>an <i>-oj</i> verb meets the noun it is made from, since the verb ending
+    goes whole (<i>kontrolloj</i>, <i>kontrollit</i> &rarr; <i>kontroll</i>);</li>
+<li>a noun of action in <i>-im</i> meets its verb: a third step removes
+    <i>-im</i> once step 1 has taken the article (<i>përdorimi</i>,
+    <i>përdor</i> &rarr; <i>perdor</i>).  It applies only in R2, so short
+    words keep it (<i>trim</i>, <i>klim</i>).</li>
+</ul>
+
+<h3>Exceptions</h3>
+
+<p>
+A table of whole words is looked up before any ending is removed, as in the
+English (Porter2) stemmer.  It holds two kinds of word:
+</p>
+
+<ul>
+<li>the forms of irregular verbs, which share no stem a suffix rule could
+    reach (<i>vij</i>, <i>vjen</i>, <i>erdhi</i>, <i>ardhur</i> &rarr;
+    <i>erdh</i>; <i>jam</i>, <i>është</i>, <i>ishte</i>, <i>qenë</i>
+    &rarr; <i>je</i>), each verb mapped to a stem no other word has;</li>
+<li>forms of frequent nouns that the endings split off their paradigm
+    (<i>problemi</i> would lose <i>-emi</i> as a verb ending; <i>duar</i> is
+    the plural of <i>dorë</i> "hand"), mapped to the stem most of the
+    paradigm's forms get, as the Lithuanian stemmer's <code>fix_conflicts</code>
+    does for its suffix conflicts.</li>
+</ul>
+
+<p>
+The table has 1,000 entries, cut from about 2,200 by keeping whole words in
+order of frequency: they carry 93% of the occurrences of the full list in
+the corpus, and nearly all of its gain.  A verb is kept or dropped with all
+its forms, since mapping only some of them would split it.  A form that is
+also another common word stays with the rules (<i>parë</i> "seen" or "first",
+<i>tha</i> "said" or "dried"; <i>ka</i> "has" or "ox").  The auxiliaries
+<i>jam</i> "be" and <i>kam</i> "have" are listed although most of their
+forms are also in the stop list, so that the verb gets one stem when no stop
+list is applied.  Removing stopwords made no measurable difference to BM25
+retrieval.
+</p>
+
+<h3>What it does not do</h3>
+
+<ul>
+<li>It does not remove prefixes.</li>
+<li>Homographs that only ë tells apart are merged (<i>para</i> "money" and
+    <i>parë</i> "first"; <i>rend</i> and <i>rëndë</i>).</li>
+<li>Gheg forms are only partly covered (the participle in <i>-ue</i> is).</li>
+</ul>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('albanian') %]
+
+[% footer %]
