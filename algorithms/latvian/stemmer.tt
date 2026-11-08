@@ -1,0 +1,296 @@
+[% header('Latvian stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('latvian', 'Latvian', 'https://en.wikipedia.org/wiki/Latvian_language') %]
+</ul>
+
+[% algorithm_vocab([20, 'liela', 'strādā']) %]
+
+<h2>Design Notes</h2>
+
+<p>
+The algorithm is based on Kārlis Krēsliņš, <i>A stemming algorithm for
+Latvian</i>, PhD thesis, Loughborough University, 1996, and on the light
+form of it in Lucene's <code>LatvianStemmer</code>, which removes one
+noun or adjective ending and undoes some consonant alternations.  The
+Snowball stemmer starts from the light form and adds verbs, participles,
+diminutives and the definite and comparative suffixes of adjectives.
+Each addition was measured on the lemmas of the UD Latvian-LVTB treebank
+(see <a href="#evaluation">Evaluation</a>) and kept only if it merged
+forms of one word without merging too many different words.  The intended
+use is information retrieval, so a rule which merged a word with its
+opposite or with an unrelated word was dropped even when it scored well.
+</p>
+
+<p>
+The differences from Krēsliņš are: one inflectional ending is removed
+(the longest that leaves a valid stem) rather than a cascade of
+first-match lists; the size checks are regions rather than the Porter
+measure; there is no stopword list; the type vowel of a verb is removed
+with its ending (so <i>strādāt</i> and <i>strādāju</i> meet); his
+derivational suffix steps are not included; and <i>ļ ņ č š ž</i> are
+undone at the end of the stem, which he leaves alone as ambiguous (the
+exception lists below handle the cases where that goes wrong).  The
+difference from Lucene, apart from what is added, is that Lucene allows
+<i>-ie</i> to leave a stem with no vowel, while here it follows the same
+rule as the other endings.
+</p>
+
+<h3>Letters and regions</h3>
+
+<p>
+The vowels are <i>a ā e ē i ī o u ū</i>.  The type vowels of verbs are
+<i>ā ē ī o</i> (<i>strādāt</i>, <i>redzēt</i>, <i>skatīt</i>,
+<i>darboties</i>).  None of the single-byte encodings Snowball supports
+has all the Latvian letters, so the stemmer is UTF-8 only.  It expects lower
+case input.
+</p>
+
+<p>
+<i>p1</i> is the position after the first vowel, but at least 3 letters
+into the word: a suffix in <i>p1</i> leaves a stem of at least 3 letters
+with a vowel.  This is the condition of the light stemmer, and of all the
+noun endings.  It keeps short words such as <i>ola</i>, <i>sula</i>,
+<i>tēja</i> intact enough to be found.
+</p>
+
+<p>
+<i>p2</i> is the same, but the vowel must come after the negation prefix
+<i>ne-</i> and a verb prefix (<i>aiz- ap- at- ie- iz- no- pa- pār- pie-
+sa- uz-</i>), if the word has them.  It is used for the verb endings and
+for every suffix rule.  Without it short verbs lose their whole root:
+<i>aizies</i> would become the preposition <i>aiz</i>, <i>nostājas</i> the
+adverb <i>nost</i>, <i>pienāk</i> would meet <i>piens</i>.
+</p>
+
+<h3>Step 1: ending</h3>
+
+<p>
+First a verb ending is tried, with the conditions given; if there is none,
+a noun or adjective ending in <i>p1</i>.  A verb ending is always longer
+than any noun ending of the same word, so this is the same as taking the
+longest ending.  After a verb ending, a type vowel before it is removed
+too (if the rest is in <i>p2</i>): <i>strādāt</i>, <i>strādāšu</i>,
+<i>strādāsiet</i> &rarr; <i>strād</i>; <i>skatīties</i> &rarr;
+<i>skat</i>.
+</p>
+
+<dl>
+<dt><i>-t</i> (infinitive)
+<dd>if the stem has two vowels.  One-syllable infinitives (<i>nest</i>,
+<i>sākt</i>, <i>ņemt</i>) keep their <i>-t</i>: removing it as well gained
+almost nothing on the tuning lemmas and was worse on the held-out ones.
+<dt><i>-šu -si -sim -siet</i> (future)
+<dd>only after a type vowel: <i>strādāšu</i>, but <i>-šu</i> is also the
+genitive plural of many nouns (<i>sieviešu</i>, <i>interešu</i>).
+<dt><i>-ētu</i> (conditional)
+<dd><i>-ātu</i>, <i>-ītu</i>, <i>-otu</i> are not removed: they are also
+accusatives of common nouns (<i>rezultātu</i>, <i>kredītu</i>,
+<i>pilotu</i>).
+<dt><i>-ties</i>
+<dd>not after <i>n</i>: <i>centies</i> is <i>cent-ies</i> (from
+<i>censties</i>), and <i>cen-ties</i> would meet <i>cena</i>.
+<dt><i>-iet -ies -aties -oties -amies -āmies -dams -dama -damas -damās
+-damies -usi -usies -ušies</i>
+<dd>in <i>p2</i>.
+</dl>
+
+<p>
+The noun and adjective endings are those of the light stemmer (case,
+number, gender, definiteness): <i>-ajiem -ajai -ajam -ajām -ajos -ajās
+-ajā -iem -ais -ai -ei -ām -am -ēm -īm -im -um -us -as -ās -es -os -ij -īs
+-ēs -is -ie -u -a -i -e -ā -ē -ī -ū -o -s -š</i>.  Which ending was
+removed matters later: <i>-a -i -u -us -os -iem</i> are the endings after
+which the consonant alternations of declensions II, V and VI appear, and
+<i>-is -im -ī -e -ei -ē -es -ēm -ēs</i> are endings which a participle in
+<i>-īt-</i> does not have (see step 3).
+</p>
+
+<h3>Step 2: definite and comparative adjectives</h3>
+
+<p>
+<i>-aj-</i> of the definite adjective is removed if in <i>p2</i>.  Most
+definite endings are already removed whole in step 1 (<i>pirmajiem</i>
+&rarr; <i>pirm</i>), so this only catches forms such as <i>pirmaja</i>
+written without the long vowel; it also shortens nouns in <i>-ajs</i>
+(<i>samurajs</i>, <i>tramvajs</i>), but the same way in all their forms.  Then <i>-āk-</i> of the comparative
+(<i>lielāks</i>, <i>lielākā</i>, <i>labāk</i> &rarr; <i>liel</i>,
+<i>lab</i>), unless the word is <i>vecāk-</i>: <i>vecāki</i> (parents) is a noun.  If a comparative
+was removed and the word starts with <i>vis-</i>, the superlative prefix
+is removed too, provided 3 letters remain (<i>vislielākais</i> &rarr;
+<i>liel</i>), and the regions are worked out again for the rest.
+</p>
+
+<p>
+The <i>-āk-</i> of <i>nākt</i> and <i>sākt</i> (<i>pienāk</i>,
+<i>iesākas</i>) is safe because of <i>p2</i>.
+</p>
+
+<h3>Step 3: diminutives</h3>
+
+<p>
+Diminutives are merged with their base word: this is what a search
+user expects (<i>sieriņš</i> and <i>siers</i>, <i>maizīte</i> and
+<i>maize</i>).  In the evaluation data they have their own lemma, so these
+rules were judged by reading the pairs of words they merge rather than by
+the score.
+</p>
+
+<dl>
+<dt><i>-iņ-</i>
+<dd>if in <i>p1</i> and after a consonant: <i>izmaiņa</i>, <i>pārmaiņa</i>
+are not diminutives.  Not in <i>ziņa</i> and its prefixed forms
+(<i>apziņa</i>, <i>paziņot</i>), <i>atmiņa</i>, <i>piemiņa</i> or
+<i>tūliņ</i>, where <i>-iņ-</i> is part of the root.  A <i>c</i> or
+<i>dz</i> left before it is the <i>k</i> or <i>g</i> of the base word:
+<i>kūciņa</i> &rarr; <i>kūk</i> like <i>kūka</i>, <i>pīrādziņi</i>
+&rarr; <i>pīrāg</i> like <i>pīrāgi</i>.
+<dt><i>-īt-</i>
+<dd>if in <i>p1</i>, after a consonant, and the ending removed in step 1
+was one a participle does not have.  <i>-īt-</i> is also the past
+participle of <i>-īt</i> verbs, which is adjective-like and keeps its
+<i>-īt-</i> (<i>dalīts</i>, <i>sālītas</i>); <i>-īti</i> is both and is
+left alone.  Not in <i>vizīte</i>, <i>favorīte</i>, <i>satelīt-</i>.
+<dt><i>-īš-</i>
+<dd>if in <i>p1</i> and after a consonant: <i>brālīša</i>, <i>brālīši</i>
+&rarr; <i>brāl</i>.  It also brings the future forms in <i>-īšos</i>,
+<i>-īšot</i> of <i>-īt</i> verbs to the verb's stem (<i>klausīšos</i>,
+<i>klausīties</i> &rarr; <i>klaus</i>).
+</dl>
+
+<p>
+The diminutive <i>-ēn-</i> (<i>kaķēns</i>) is not removed: it gained
+nothing and merged <i>skolēns</i> with <i>skola</i>, and <i>velēna</i>,
+<i>domēns</i> with unrelated words.
+</p>
+
+<h3>Step 4: consonant alternations after the ending</h3>
+
+<p>
+If no diminutive was removed and step 2 changed nothing, then after
+<i>-a -i -u -us -os -iem</i> the alternations of declensions II, V and VI
+are undone, as in the light stemmer: labial + <i>j</i> &rarr; labial
+(<i>zivju</i> &rarr; <i>ziv</i>), <i>šņ žņ šļ žļ ļņ ļļ</i> &rarr; <i>sn zn
+sl zl ln ll</i>, and after <i>-u</i>, <i>-us</i> also <i>kš</i> &rarr;
+<i>kst</i> (<i>dzirkšu</i> &rarr; <i>dzirkst</i>) and <i>ņņ</i> &rarr;
+<i>nn</i>.
+</p>
+
+<h3>Step 5: participles and the verb stem</h3>
+
+<p>
+<i>-oš-</i>, then <i>-uš-</i>, then <i>-am-</i> or <i>-ām-</i> is removed
+if in <i>p2</i> (<i>strādājošs</i>, <i>strādājušais</i>,
+<i>redzams</i>, <i>lasāms</i>), and then the <i>-j-</i> of the present and
+past stem after a type vowel, if the type vowel is in <i>p2</i>
+(<i>strādāja</i>, <i>strādājis</i>, <i>strādājošs</i> &rarr;
+<i>strād</i>).  <i>-ēj-</i> is kept in adjectives formed from adverbs
+and nouns (<i>vidējs</i>, <i>vietējs</i>, <i>kopējs</i>, <i>pēdējs</i>,
+<i>vispārējs</i>, ...), which would otherwise meet <i>vide</i>,
+<i>vieta</i>, <i>kopā</i>, and <i>-āj-</i> in agent nouns in
+<i>-tājs</i> (<i>vadītājs</i>, <i>ražotājs</i>).
+</p>
+
+<p>
+The <i>-ts</i>, <i>-ta</i> past passive participles are not removed: they
+behave like adjectives, and removing <i>-āt-</i>, <i>-īt-</i>, <i>-ot-</i>
+merges <i>salāti</i> with <i>sala</i> and <i>rezultāts</i> with other
+<i>rezult-</i> words.
+</p>
+
+<h3>Step 6: š, ž, ļ, ņ, č</h3>
+
+<p>
+If an ending was removed in step 1, a final <i>ļ ņ č</i> becomes <i>l n
+c</i> and a final <i>š ž</i> becomes <i>s z</i>.  The light stemmer does
+the first only after <i>-a -i -u</i>, so <i>gaļa</i> &rarr; <i>gal</i> but
+<i>gaļas</i> &rarr; <i>gaļ</i>; here both give <i>gal</i>.  <i>š</i>
+comes from <i>s</i> or <i>t</i> and <i>ž</i> from <i>z</i> or <i>d</i>, so
+folding to <i>s</i>, <i>z</i> merges <i>lasis</i>/<i>laša</i>,
+<i>interese</i>/<i>interešu</i>, <i>reize</i>/<i>reižu</i>.  The one
+common <i>t</i> case is <i>-ieš-</i>, which becomes <i>-iet-</i> if at
+least 3 letters precede it (<i>sieviete</i>/<i>sieviešu</i>,
+<i>vīrietis</i>/<i>vīriešu</i>).  Doing this only after the endings which
+cause the alternation was measured too and was worse, because it splits
+adjectives whose <i>š</i> is their own (<i>tieša</i> &rarr; <i>ties</i>
+but <i>tiešs</i> &rarr; <i>tieš</i>).
+</p>
+
+<p>
+Stems ending in <i>tieš tumš gaiš augš plaš sveš droš mīkš kauš biež mež
+lauž</i>, and the stems <i>duš</i> and <i>māš</i>, keep their <i>š</i>,
+<i>ž</i>: otherwise <i>tiešs</i> would meet <i>tiesa</i>, <i>tumšs</i>
+<i>tumsa</i>, <i>gaišs</i> <i>gaiss</i>, <i>bieži</i> <i>biezs</i>, and
+<i>māšu</i> (of <i>māte</i>) <i>māsa</i>.
+</p>
+
+<p>
+Uninflected words keep their letters: <i>dēļ</i> does not become
+<i>dēl</i> (<i>dēls</i>).
+</p>
+
+<h3>What is not done</h3>
+
+<ul>
+<li>Krēsliņš' derivational suffix steps (<i>-šan-</i>, <i>-niek-</i>,
+    <i>-isk-</i>, <i>-um-</i>, <i>-īb-</i>, <i>-īg-</i>, <i>-ācij-</i>
+    &rarr; <i>-āc-</i>, ...).  They merge words of one root, but also
+    many unrelated ones (<i>tikšanās</i>/<i>tikai</i>,
+    <i>zemnieks</i>/<i>zems</i>), and the measured gain did not justify
+    it.</li>
+<li>The negation prefix <i>ne-</i>.  The treebank lemmatizes
+    <i>nestrādā</i> as <i>strādāt</i>, so removing it scores well, but
+    for search it merges opposites (<i>nelabprāt</i>/<i>labprāt</i>).</li>
+<li>Stem changes of the first conjugation (<i>teikt</i>/<i>teic</i>,
+    <i>braukt</i>/<i>brauc</i>, <i>notikt</i>/<i>notiek</i>), suppletion
+    (<i>būt</i>/<i>ir</i>, <i>iet</i>/<i>gāja</i>) and the conditional of
+    verbs other than <i>-ēt</i> verbs (<i>nodrošinātu</i>).</li>
+<li>A stopword list.  Some function words equal the stem of a noun or
+    adjective (<i>zem</i> and <i>zeme</i>, <i>kur</i> and
+    <i>kurš</i>); that needs a stopword list rather than a suffix
+    rule.</li>
+</ul>
+
+<h2 id="evaluation">Evaluation</h2>
+
+<p>
+The rules were chosen on the word forms of UD Latvian-LVTB r2.18 (CC BY-SA
+4.0) grouped by lemma, using Paice's understemming (UI) and overstemming
+(OI) indices, counting each form-lemma pair once, with proper nouns left
+out.  The lemmas were split by hash into a tuning set (80%), used while
+choosing rules, and a held-out set (20%), measured only at the end.  Each rule
+was judged by how much it lowered UI on the tuning set against how many
+pairs of different lemmas it merged, and by reading the pairs it merged.
+</p>
+
+<table style="border-collapse: separate; border-spacing: 1em 0">
+<tr><th></th><th>UI tune</th><th>OI tune</th><th>UI held-out</th><th>OI held-out</th></tr>
+<tr><td>no stemming</td><td>1.0000</td><td>6.96e-07</td><td>1.0000</td><td>6.09e-07</td></tr>
+<tr><td>light stemmer</td><td>0.5956</td><td>1.26e-05</td><td>0.5657</td><td>1.09e-05</td></tr>
+<tr><td>this algorithm</td><td>0.4251</td><td>3.85e-05</td><td>0.3720</td><td>2.89e-05</td></tr>
+<tr><td>truncation to 5 letters</td><td>0.4476</td><td>1.53e-04</td><td>0.3979</td><td>1.62e-04</td></tr>
+</table>
+
+<p>
+Over all lemmas, UI goes from 0.838 to 0.638 for verbs, from 0.303 to
+0.032 for adjectives and from 0.050 to 0.026 for nouns.  Most of the new
+merges of different lemmas are words of one root (<i>darbs</i> and
+<i>darboties</i>, <i>gatavs</i> and <i>gatavoties</i>); the unrelated
+ones among the most frequent are <i>paziņot</i>/<i>pazīt</i>,
+<i>protams</i>/<i>proti</i>, <i>tikties</i>/<i>ticēt</i> and
+<i>mesties</i>/<i>mēs</i>.
+</p>
+
+<h2>History of functional changes to the algorithm</h2>
+
+<ul>
+<li>Nov 2026: Algorithm contributed by Janis Jansons.
+</ul>
+
+<h2>The full algorithm in Snowball</h2>
+
+[% highlight_file('latvian') %]
+
+[% footer %]
