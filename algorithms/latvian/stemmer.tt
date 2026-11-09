@@ -83,12 +83,17 @@ too (if the rest is in <i>p2</i>): <i>strādāt</i>, <i>strādāšu</i>,
 <dd>if the stem has two vowels.  One-syllable infinitives (<i>nest</i>,
 <i>sākt</i>, <i>ņemt</i>) keep their <i>-t</i>: removing it as well gained
 almost nothing on the tuning lemmas and was worse on the held-out ones.
-<dt><i>-šu -si -sim -siet</i> (future)
-<dd>only after a type vowel: <i>strādāšu</i>, but <i>-šu</i> is also the
-genitive plural of many nouns (<i>sieviešu</i>, <i>interešu</i>).
-<i>-šu</i> is not removed after <i>ī</i> either: <i>-īšu</i> is the
-genitive plural of the diminutives in <i>-ītis</i> and <i>-īte</i>
-(<i>brālīšu</i>), and the future <i>darīšu</i> is left as <i>darīt</i>.
+<dt><i>-šu -si -sim -siet -šot -šoties</i> (future)
+<dd>only after a type vowel: <i>strādāšu</i>, <i>atradīšot</i>,
+<i>neatgriezīšoties</i>, but <i>-šu</i> is also the genitive plural of
+many nouns (<i>sieviešu</i>, <i>interešu</i>).  <i>-šu</i> is not removed
+after <i>ī</i> either: <i>-īšu</i> is the genitive plural of the
+diminutives in <i>-ītis</i> and <i>-īte</i> (<i>brālīšu</i>).  That is a
+trade-off: the first person of the future of verbs with <i>ī</i> before
+it (<i>darīšu</i>, <i>atradīšu</i>) and its reflexive in <i>-īšos</i>
+(<i>mācīšos</i>, like the locative plural <i>brālīšos</i>) are read as
+diminutives and do not meet their verb: <i>darīšu</i> &rarr;
+<i>darīt</i>, <i>darīt</i> &rarr; <i>dar</i>.
 <dt><i>-ētu</i> (conditional)
 <dd><i>-ātu</i>, <i>-ītu</i>, <i>-otu</i> are not removed: they are also
 accusatives of common nouns (<i>rezultātu</i>, <i>kredītu</i>,
@@ -154,9 +159,9 @@ other words (<i>paziņoja</i>, <i>paziņot</i> &rarr; <i>pazin</i>).
 diminutive before <i>-a -i -u</i> and becomes <i>-īt-</i> again:
 <i>brālītis</i>, <i>brālīša</i>, <i>brālīši</i>, <i>brālīšu</i> &rarr;
 <i>brālīt</i>.  Step 6 would otherwise make it <i>brālīs</i>.  The
-reflexive and relative future of verbs in <i>-īšos</i>, <i>-īšot</i>
-(<i>klausīšos</i>) has the same letters and is left as <i>klausīt</i>,
-apart from <i>klausīties</i> &rarr; <i>klaus</i>.
+reflexive future of verbs in <i>-īšos</i> (<i>klausīšos</i>) has the
+same letters and is left as <i>klausīt</i>, apart from
+<i>klausīties</i> &rarr; <i>klaus</i> (see step 1).
 </dl>
 
 <p>
@@ -277,12 +282,12 @@ pairs of different lemmas it merged, and by reading the pairs it merged.
 <tr><th></th><th>UI tune</th><th>OI tune</th><th>UI held-out</th><th>OI held-out</th></tr>
 <tr><td>no stemming</td><td>1.0000</td><td>6.96e-07</td><td>1.0000</td><td>6.09e-07</td></tr>
 <tr><td>light stemmer</td><td>0.5956</td><td>1.26e-05</td><td>0.5657</td><td>1.09e-05</td></tr>
-<tr><td>this algorithm</td><td>0.4262</td><td>3.41e-05</td><td>0.3715</td><td>2.61e-05</td></tr>
+<tr><td>this algorithm</td><td>0.4250</td><td>3.42e-05</td><td>0.3708</td><td>2.61e-05</td></tr>
 <tr><td>truncation to 5 letters</td><td>0.4476</td><td>1.53e-04</td><td>0.3979</td><td>1.62e-04</td></tr>
 </table>
 
 <p>
-Over all lemmas, UI goes from 0.838 to 0.641 for verbs, from 0.303 to
+Over all lemmas, UI goes from 0.838 to 0.639 for verbs, from 0.303 to
 0.032 for adjectives and from 0.050 to 0.023 for nouns.  Most of the new
 merges of different lemmas are words of one root (<i>darbs</i> and
 <i>darboties</i>, <i>gatavs</i> and <i>gatavoties</i>); the unrelated
