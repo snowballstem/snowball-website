@@ -172,10 +172,9 @@ nothing and merged <i>skolēns</i> with <i>skola</i>, and <i>velēna</i>,
 If no diminutive was removed and step 2 changed nothing, then after
 <i>-a -i -u -us -os -iem</i> the alternations of declensions II, V and VI
 are undone, as in the light stemmer: labial + <i>j</i> &rarr; labial
-(<i>zivju</i> &rarr; <i>ziv</i>), <i>šņ žņ šļ žļ ļņ ļļ</i> &rarr; <i>sn zn
-sl zl ln ll</i>, and after <i>-u</i>, <i>-us</i> also <i>kš</i> &rarr;
-<i>kst</i> (<i>dzirkšu</i> &rarr; <i>dzirkst</i>) and <i>ņņ</i> &rarr;
-<i>nn</i>.
+(<i>zivju</i> &rarr; <i>ziv</i>), and after <i>-u</i>, <i>-us</i> also
+<i>kš</i> &rarr; <i>kst</i> (<i>dzirkšu</i> &rarr; <i>dzirkst</i>) and
+<i>ņņ</i> &rarr; <i>nn</i>.  The palatal consonants are undone in step 6.
 </p>
 
 <h3>Step 5: participles and the verb stem</h3>
@@ -204,9 +203,12 @@ merges <i>salāti</i> with <i>sala</i> and <i>rezultāts</i> with other
 
 <p>
 If an ending was removed in step 1, a final <i>ļ ņ č</i> becomes <i>l n
-c</i> and a final <i>š ž</i> becomes <i>s z</i>.  The light stemmer does
-the first only after <i>-a -i -u</i>, so <i>gaļa</i> &rarr; <i>gal</i> but
-<i>gaļas</i> &rarr; <i>gaļ</i>; here both give <i>gal</i>.  <i>š</i>
+c</i>, a final <i>šņ žņ šļ žļ ļņ ļļ</i> becomes <i>sn zn sl zl ln ll</i>
+and a final <i>š ž</i> becomes <i>s z</i>.  The light stemmer does the
+first two only after <i>-a -i -u -us -os -iem</i>, so <i>gaļa</i> &rarr;
+<i>gal</i> but <i>gaļas</i> &rarr; <i>gaļ</i>, and <i>eļļa</i> &rarr;
+<i>ell</i> but <i>eļļas</i> &rarr; <i>eļļ</i>; here they give <i>gal</i>
+and <i>ell</i>.  <i>š</i>
 comes from <i>s</i> or <i>t</i> and <i>ž</i> from <i>z</i> or <i>d</i>, so
 folding to <i>s</i>, <i>z</i> merges <i>lasis</i>/<i>laša</i>,
 <i>interese</i>/<i>interešu</i>, <i>reize</i>/<i>reižu</i>.  The one
@@ -269,7 +271,7 @@ pairs of different lemmas it merged, and by reading the pairs it merged.
 <tr><th></th><th>UI tune</th><th>OI tune</th><th>UI held-out</th><th>OI held-out</th></tr>
 <tr><td>no stemming</td><td>1.0000</td><td>6.96e-07</td><td>1.0000</td><td>6.09e-07</td></tr>
 <tr><td>light stemmer</td><td>0.5956</td><td>1.26e-05</td><td>0.5657</td><td>1.09e-05</td></tr>
-<tr><td>this algorithm</td><td>0.4251</td><td>3.85e-05</td><td>0.3720</td><td>2.89e-05</td></tr>
+<tr><td>this algorithm</td><td>0.4250</td><td>3.86e-05</td><td>0.3716</td><td>2.91e-05</td></tr>
 <tr><td>truncation to 5 letters</td><td>0.4476</td><td>1.53e-04</td><td>0.3979</td><td>1.62e-04</td></tr>
 </table>
 

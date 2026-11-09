@@ -108,14 +108,8 @@ const a_6 = [
 
 const a_7 = [
     ["j", 1],
-    ["\u013C\u013C", 7],
-    ["\u0161\u013C", 4],
-    ["\u017E\u013C", 5],
-    ["\u013C\u0146", 6],
-    ["\u0146\u0146", 9],
-    ["\u0161\u0146", 2],
-    ["\u017E\u0146", 3],
-    ["k\u0161", 8]
+    ["\u0146\u0146", 3],
+    ["k\u0161", 2]
 ];
 
 const a_8 = [
@@ -170,7 +164,13 @@ const a_11 = [
 const a_12 = [
     ["\u010D", 5],
     ["\u013C", 3],
+    ["\u013C\u013C", 11, 1],
+    ["\u0161\u013C", 8, 2],
+    ["\u017E\u013C", 9, 3],
     ["\u0146", 4],
+    ["\u013C\u0146", 10, 1],
+    ["\u0161\u0146", 6, 2],
+    ["\u017E\u0146", 7, 3],
     ["\u0161", 1],
     ["\u017E", 2]
 ];
@@ -520,35 +520,11 @@ export default class extends B {
                         break;
                     }
                     case 2: {
-                        this.slice_from("sn");
-                        break;
-                    }
-                    case 3: {
-                        this.slice_from("zn");
-                        break;
-                    }
-                    case 4: {
-                        this.slice_from("sl");
-                        break;
-                    }
-                    case 5: {
-                        this.slice_from("zl");
-                        break;
-                    }
-                    case 6: {
-                        this.slice_from("ln");
-                        break;
-                    }
-                    case 7: {
-                        this.slice_from("ll");
-                        break;
-                    }
-                    case 8: {
                         if (!B_palatal_u) break lab8;
                         this.slice_from("kst");
                         break;
                     }
-                    case 9: {
+                    case 3: {
                         if (!B_palatal_u) break lab8;
                         this.slice_from("nn");
                         break;
@@ -679,6 +655,30 @@ export default class extends B {
                 }
                 case 5: {
                     this.slice_from("c");
+                    break;
+                }
+                case 6: {
+                    this.slice_from("sn");
+                    break;
+                }
+                case 7: {
+                    this.slice_from("zn");
+                    break;
+                }
+                case 8: {
+                    this.slice_from("sl");
+                    break;
+                }
+                case 9: {
+                    this.slice_from("zl");
+                    break;
+                }
+                case 10: {
+                    this.slice_from("ln");
+                    break;
+                }
+                case 11: {
+                    this.slice_from("ll");
                     break;
                 }
             }
