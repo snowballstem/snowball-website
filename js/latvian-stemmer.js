@@ -18,16 +18,16 @@ const a_0 = [
 
 const a_1 = [
     ["dama", -1, 0, 2],
-    ["si", -1, 0, 3],
+    ["si", -1, 0, 4],
     ["usi", -1, 1, 2],
-    ["sim", -1, 0, 3],
+    ["sim", -1, 0, 4],
     ["damas", -1, 0, 2],
     ["ies", -1, 0, 2],
     ["amies", -1, 1, 2],
     ["damies", -1, 1, 2],
     ["\u0101mies", -1, 3, 2],
     ["usies", -1, 4, 2],
-    ["ties", -1, 5, 4],
+    ["ties", -1, 5, 5],
     ["aties", -1, 1, 2],
     ["oties", -1, 2, 2],
     ["u\u0161ies", -1, 8, 2],
@@ -35,48 +35,48 @@ const a_1 = [
     ["dam\u0101s", -1, 0, 2],
     ["t", -1, 0, 1],
     ["iet", -1, 1, 2],
-    ["siet", -1, 1, 3],
+    ["siet", -1, 1, 4],
     ["\u0113tu", -1, 0, 2],
     ["\u0161u", -1, 0, 3]
 ];
 
 const a_2 = [
-    ["a", 2],
-    ["e", 1],
+    ["a", 1],
+    ["e", -1],
     ["ie", -1, 1],
-    ["i", 2],
+    ["i", 1],
     ["ai", -1, 1],
     ["ajai", -1, 1],
-    ["ei", 1, 3],
+    ["ei", -1, 3],
     ["ij", -1],
     ["am", -1],
     ["ajam", -1, 1],
-    ["iem", 2],
+    ["iem", 1],
     ["ajiem", -1, 1],
-    ["im", 1],
+    ["im", -1],
     ["um", -1],
     ["\u0101m", -1],
     ["aj\u0101m", -1, 1],
-    ["\u0113m", 1],
+    ["\u0113m", -1],
     ["\u012Bm", -1],
     ["o", -1],
     ["s", -1],
     ["as", -1, 1],
-    ["es", 1, 2],
-    ["is", 1, 3],
+    ["es", -1, 2],
+    ["is", -1, 3],
     ["ais", -1, 1],
-    ["os", 2, 5],
+    ["os", 1, 5],
     ["ajos", -1, 1],
-    ["us", 3, 7],
+    ["us", 2, 7],
     ["\u0101s", -1, 8],
     ["aj\u0101s", -1, 1],
-    ["\u0113s", 1, 10],
+    ["\u0113s", -1, 10],
     ["\u012Bs", -1, 11],
-    ["u", 3],
+    ["u", 2],
     ["\u0101", -1],
     ["aj\u0101", -1, 1],
-    ["\u0113", 1],
-    ["\u012B", 1],
+    ["\u0113", -1],
+    ["\u012B", -1],
     ["\u0161", -1],
     ["\u016B", -1]
 ];
@@ -88,36 +88,22 @@ const a_3 = [
 ];
 
 const a_4 = [
-    ["c", 2],
-    ["dz", 1]
+    ["i\u0146", 1],
+    ["\u012B\u0161", 2]
 ];
-
-const /**@type {Array<string>}*/ as_4 = ["g", "k"];
 
 const a_5 = [
-    ["satel", -1],
-    ["favor", -1],
-    ["viz", -1]
-];
-
-const a_6 = [
-    ["\u012Bt", 2],
-    ["i\u0146", 1],
-    ["\u012B\u0161", 3]
-];
-
-const a_7 = [
     ["j", 1],
     ["\u0146\u0146", 3],
     ["k\u0161", 2]
 ];
 
-const a_8 = [
+const a_6 = [
     ["am", -1],
     ["\u0101m", -1]
 ];
 
-const a_9 = [
+const a_7 = [
     ["tagad", -1],
     ["vid", -1],
     ["p\u0113d", -1],
@@ -137,14 +123,14 @@ const a_9 = [
     ["m\u016B\u017E", -1]
 ];
 
-const a_10 = [
+const a_8 = [
     ["oj", -1],
     ["\u0101j", 1],
     ["\u0113j", 2],
     ["\u012Bj", -1]
 ];
 
-const a_11 = [
+const a_9 = [
     ["pla\u0161", -1],
     ["tie\u0161", -1],
     ["sve\u0161", -1],
@@ -161,7 +147,7 @@ const a_11 = [
     ["lau\u017E", -1]
 ];
 
-const a_12 = [
+const a_10 = [
     ["\u010D", 5],
     ["\u013C", 3],
     ["\u013C\u013C", 11, 1],
@@ -195,8 +181,9 @@ export default class extends B {
         switch (this.af) {
             case 1: return this.#r_infinitive();
             case 2: return this.#r_R2();
-            case 3: return this.#r_future();
-            case 4: return this.#r_reflexive_ties();
+            case 3: return this.#r_future_su();
+            case 4: return this.#r_future();
+            case 5: return this.#r_reflexive_ties();
         }
         return false;
     }
@@ -286,6 +273,17 @@ export default class extends B {
     }
 
     /** @return {boolean} */
+    #r_future_su() {
+        if (/**@type {boolean}*/(this.#I_p2 > this.c)) return false;
+        // deno-lint-ignore no-unused-labels
+        lab0: {
+            if (!(this.eq_s_b("\u012B"))) break lab0;
+            return false;
+        }
+        return this.in_grouping_b(g_type_v, 111, 299);
+    }
+
+    /** @return {boolean} */
     #r_reflexive_ties() {
         if (/**@type {boolean}*/(this.#I_p2 > this.c)) return false;
         // deno-lint-ignore no-unused-labels
@@ -299,16 +297,16 @@ export default class extends B {
     /** @return {boolean} */
     #stem() {
         let /**@type {number}*/ a;
+        let /**@type {boolean}*/ B_diminutive_found;
         let /**@type {boolean}*/ B_comparative_found;
-        let /**@type {boolean}*/ B_noun_only;
         let /**@type {boolean}*/ B_palatal_u;
         let /**@type {boolean}*/ B_palatal;
         let /**@type {boolean}*/ B_ending_removed;
         B_ending_removed = false;
         B_palatal = false;
         B_palatal_u = false;
-        B_noun_only = false;
         B_comparative_found = false;
+        B_diminutive_found = false;
         const /**@type {number}*/ v_1 = this.c;
         this.#r_mark_regions();
         this.c = v_1;
@@ -357,14 +355,10 @@ export default class extends B {
                 this.limit_backward = v_5;
                 switch (a) {
                     case 1: {
-                        B_noun_only = true;
-                        break;
-                    }
-                    case 2: {
                         B_palatal = true;
                         break;
                     }
-                    case 3: {
+                    case 2: {
                         B_palatal = true;
                         B_palatal_u = true;
                         break;
@@ -436,15 +430,15 @@ export default class extends B {
                 // deno-lint-ignore no-unused-labels
                 lab10: {
                     this.ket = this.c;
-                    a = this.find_among_b(a_6);
+                    a = this.find_among_b(a_4);
                     if (a === 0) break lab10;
                     this.bra = this.c;
                     if (/**@type {boolean}*/(this.#I_p1 > this.c)) break lab10;
+                    const /**@type {number}*/ v_14 = this.limit - this.c;
+                    if (!(this.out_grouping_b(g_v, 97, 363))) break lab10;
+                    this.c = this.limit - v_14;
                     switch (a) {
                         case 1: {
-                            const /**@type {number}*/ v_14 = this.limit - this.c;
-                            if (!(this.out_grouping_b(g_v, 97, 363))) break lab10;
-                            this.c = this.limit - v_14;
                             {
                                 const /**@type {number}*/ v_15 = this.limit - this.c;
                                 // deno-lint-ignore no-unused-labels
@@ -464,53 +458,20 @@ export default class extends B {
                                 }
                                 this.c = this.limit - v_16;
                             }
-                            this.slice_del();
-                            const /**@type {number}*/ v_17 = this.limit - this.c;
-                            // deno-lint-ignore no-unused-labels
-                            lab13: {
-                                this.ket = this.c;
-                                a = this.find_among_b(a_4);
-                                if (a === 0) {
-                                    this.c = this.limit - v_17;
-                                    break lab13;
-                                }
-                                this.bra = this.c;
-                                this.slice_from(as_4[a - 1]);
-                            }
                             break;
                         }
                         case 2: {
-                            const /**@type {number}*/ v_18 = this.limit - this.c;
-                            if (!(this.out_grouping_b(g_v, 97, 363))) break lab10;
-                            this.c = this.limit - v_18;
-                            if (!B_noun_only) break lab10;
-                            {
-                                const /**@type {number}*/ v_19 = this.limit - this.c;
-                                // deno-lint-ignore no-unused-labels
-                                lab14: {
-                                    if (this.find_among_b(a_5) === 0) break lab14;
-                                    if (/**@type {boolean}*/(this.c > this.limit_backward)) break lab14;
-                                    break lab10;
-                                }
-                                this.c = this.limit - v_19;
-                            }
-                            this.slice_del();
-                            break;
-                        }
-                        case 3: {
-                            const /**@type {number}*/ v_20 = this.limit - this.c;
-                            if (!(this.out_grouping_b(g_v, 97, 363))) break lab10;
-                            this.c = this.limit - v_20;
-                            this.slice_del();
+                            this.slice_from("\u012Bt");
                             break;
                         }
                     }
+                    B_diminutive_found = true;
                     break lab9;
                 }
                 this.c = this.limit - v_13;
                 if (!B_palatal) break lab8;
                 this.ket = this.c;
-                a = this.find_among_b(a_7);
+                a = this.find_among_b(a_5);
                 if (a === 0) break lab8;
                 this.bra = this.c;
                 switch (a) {
@@ -534,109 +495,110 @@ export default class extends B {
         }
         this.c = this.limit - v_12;
         // deno-lint-ignore no-unused-labels
-        lab15: {
-            const /**@type {number}*/ v_21 = this.limit - this.c;
+        lab13: {
+            const /**@type {number}*/ v_17 = this.limit - this.c;
+            // deno-lint-ignore no-unused-labels
+            lab14: {
+                this.ket = this.c;
+                if (!(this.eq_s_b("o\u0161"))) break lab14;
+                this.bra = this.c;
+                if (/**@type {boolean}*/(this.#I_p2 > this.c)) break lab14;
+                this.slice_del();
+            }
+            this.c = this.limit - v_17;
+            const /**@type {number}*/ v_18 = this.limit - this.c;
+            // deno-lint-ignore no-unused-labels
+            lab15: {
+                this.ket = this.c;
+                if (!(this.eq_s_b("u\u0161"))) break lab15;
+                this.bra = this.c;
+                if (/**@type {boolean}*/(this.#I_p2 > this.c)) break lab15;
+                this.slice_del();
+            }
+            this.c = this.limit - v_18;
+            const /**@type {number}*/ v_19 = this.limit - this.c;
             // deno-lint-ignore no-unused-labels
             lab16: {
                 this.ket = this.c;
-                if (!(this.eq_s_b("o\u0161"))) break lab16;
+                if (this.find_among_b(a_6) === 0) break lab16;
                 this.bra = this.c;
                 if (/**@type {boolean}*/(this.#I_p2 > this.c)) break lab16;
                 this.slice_del();
             }
-            this.c = this.limit - v_21;
-            const /**@type {number}*/ v_22 = this.limit - this.c;
-            // deno-lint-ignore no-unused-labels
-            lab17: {
-                this.ket = this.c;
-                if (!(this.eq_s_b("u\u0161"))) break lab17;
-                this.bra = this.c;
-                if (/**@type {boolean}*/(this.#I_p2 > this.c)) break lab17;
-                this.slice_del();
-            }
-            this.c = this.limit - v_22;
-            const /**@type {number}*/ v_23 = this.limit - this.c;
-            // deno-lint-ignore no-unused-labels
-            lab18: {
-                this.ket = this.c;
-                if (this.find_among_b(a_8) === 0) break lab18;
-                this.bra = this.c;
-                if (/**@type {boolean}*/(this.#I_p2 > this.c)) break lab18;
-                this.slice_del();
-            }
-            this.c = this.limit - v_23;
+            this.c = this.limit - v_19;
         }
-        const /**@type {number}*/ v_24 = this.limit - this.c;
+        const /**@type {number}*/ v_20 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
-        lab19: {
+        lab17: {
             this.ket = this.c;
-            a = this.find_among_b(a_10);
-            if (a === 0) break lab19;
+            a = this.find_among_b(a_8);
+            if (a === 0) break lab17;
             this.bra = this.c;
-            if (/**@type {boolean}*/(this.#I_p2 > this.c)) break lab19;
+            if (/**@type {boolean}*/(this.#I_p2 > this.c)) break lab17;
             switch (a) {
                 case 1: {
                     // deno-lint-ignore no-unused-labels
-                    lab20: {
-                        if (!(this.eq_s_b("t"))) break lab20;
-                        break lab19;
+                    lab18: {
+                        if (!(this.eq_s_b("t"))) break lab18;
+                        break lab17;
                     }
                     break;
                 }
                 case 2: {
                     {
-                        const /**@type {number}*/ v_25 = this.limit - this.c;
+                        const /**@type {number}*/ v_21 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
-                        lab21: {
-                            if (this.find_among_b(a_9) === 0) break lab21;
-                            break lab19;
+                        lab19: {
+                            if (this.find_among_b(a_7) === 0) break lab19;
+                            break lab17;
                         }
-                        this.c = this.limit - v_25;
+                        this.c = this.limit - v_21;
                     }
                     break;
                 }
             }
             this.slice_del();
         }
-        this.c = this.limit - v_24;
-        const /**@type {number}*/ v_26 = this.limit - this.c;
+        this.c = this.limit - v_20;
+        const /**@type {number}*/ v_22 = this.limit - this.c;
         // deno-lint-ignore no-unused-labels
-        lab22: {
-            if (!B_ending_removed) break lab22;
+        lab20: {
+            if (!B_ending_removed) break lab20;
+            if (B_diminutive_found) break lab20;
             {
-                const /**@type {number}*/ v_27 = this.limit - this.c;
+                const /**@type {number}*/ v_23 = this.limit - this.c;
                 // deno-lint-ignore no-unused-labels
-                lab23: {
-                    a = this.find_among_b(a_11);
-                    if (a === 0) break lab23;
+                lab21: {
+                    a = this.find_among_b(a_9);
+                    if (a === 0) break lab21;
                     switch (a) {
                         case 1: {
-                            if (/**@type {boolean}*/(this.c > this.limit_backward)) break lab23;
+                            if (/**@type {boolean}*/(this.c > this.limit_backward)) break lab21;
                             break;
                         }
                     }
-                    break lab22;
+                    break lab20;
                 }
-                this.c = this.limit - v_27;
+                this.c = this.limit - v_23;
             }
             this.ket = this.c;
-            a = this.find_among_b(a_12);
-            if (a === 0) break lab22;
+            a = this.find_among_b(a_10);
+            if (a === 0) break lab20;
             this.bra = this.c;
             switch (a) {
                 case 1: {
                     // deno-lint-ignore no-unused-labels
-                    lab24: {
-                        const /**@type {number}*/ v_28 = this.limit - this.c;
+                    lab22: {
+                        const /**@type {number}*/ v_24 = this.limit - this.c;
                         // deno-lint-ignore no-unused-labels
-                        lab25: {
-                            if (!(this.eq_s_b("ie"))) break lab25;
-                            if (this.c - 3 < this.limit_backward) break lab25;
+                        lab23: {
+                            if (!(this.eq_s_b("ie"))) break lab23;
+                            if (this.c - 3 < this.limit_backward) break lab23;
                             this.c -= 3;
                             this.slice_from("t");
-                            break lab24;
+                            break lab22;
                         }
-                        this.c = this.limit - v_28;
+                        this.c = this.limit - v_24;
                         this.slice_from("s");
                     }
                     break;
@@ -683,7 +645,7 @@ export default class extends B {
                 }
             }
         }
-        this.c = this.limit - v_26;
+        this.c = this.limit - v_22;
         this.c = this.limit_backward;
         return true;
     }

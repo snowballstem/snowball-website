@@ -15,8 +15,9 @@ The algorithm is based on Kārlis Krēsliņš, <i>A stemming algorithm for
 Latvian</i>, PhD thesis, Loughborough University, 1996, and on the light
 form of it in Lucene's <code>LatvianStemmer</code>, which removes one
 noun or adjective ending and undoes some consonant alternations.  The
-Snowball stemmer starts from the light form and adds verbs, participles,
-diminutives and the definite and comparative suffixes of adjectives.
+Snowball stemmer starts from the light form and adds verbs, participles
+and the definite and comparative suffixes of adjectives, and keeps the
+forms of a diminutive together.
 Each addition was measured on the lemmas of the UD Latvian-LVTB treebank
 (see <a href="#evaluation">Evaluation</a>) and kept only if it merged
 forms of one word without merging too many different words.  The intended
@@ -85,6 +86,9 @@ almost nothing on the tuning lemmas and was worse on the held-out ones.
 <dt><i>-šu -si -sim -siet</i> (future)
 <dd>only after a type vowel: <i>strādāšu</i>, but <i>-šu</i> is also the
 genitive plural of many nouns (<i>sieviešu</i>, <i>interešu</i>).
+<i>-šu</i> is not removed after <i>ī</i> either: <i>-īšu</i> is the
+genitive plural of the diminutives in <i>-ītis</i> and <i>-īte</i>
+(<i>brālīšu</i>), and the future <i>darīšu</i> is left as <i>darīt</i>.
 <dt><i>-ētu</i> (conditional)
 <dd><i>-ātu</i>, <i>-ītu</i>, <i>-otu</i> are not removed: they are also
 accusatives of common nouns (<i>rezultātu</i>, <i>kredītu</i>,
@@ -103,9 +107,7 @@ number, gender, definiteness): <i>-ajiem -ajai -ajam -ajām -ajos -ajās
 -ajā -iem -ais -ai -ei -ām -am -ēm -īm -im -um -us -as -ās -es -os -ij -īs
 -ēs -is -ie -u -a -i -e -ā -ē -ī -ū -o -s -š</i>.  Which ending was
 removed matters later: <i>-a -i -u -us -os -iem</i> are the endings after
-which the consonant alternations of declensions II, V and VI appear, and
-<i>-is -im -ī -e -ei -ē -es -ēm -ēs</i> are endings which a participle in
-<i>-īt-</i> does not have (see step 3).
+which the consonant alternations of declensions II, V and VI appear.
 </p>
 
 <h3>Step 2: definite and comparative adjectives</h3>
@@ -131,45 +133,48 @@ The <i>-āk-</i> of <i>nākt</i> and <i>sākt</i> (<i>pienāk</i>,
 <h3>Step 3: diminutives</h3>
 
 <p>
-Diminutives are merged with their base word: this is what a search
-user expects (<i>sieriņš</i> and <i>siers</i>, <i>maizīte</i> and
-<i>maize</i>).  In the evaluation data they have their own lemma, so these
-rules were judged by reading the pairs of words they merge rather than by
-the score.
+Diminutives are not reduced to their base word: they often name a
+different thing (<i>riekstiņi</i> are biscuits, not <i>rieksti</i>, nuts;
+<i>sieriņš</i> is a curd snack, not <i>siers</i>, cheese; <i>desiņas</i>
+are frankfurters), and the evaluation data gives them their own lemma.
+What this step does is keep the forms of a diminutive together.
 </p>
 
 <dl>
 <dt><i>-iņ-</i>
-<dd>if in <i>p1</i> and after a consonant: <i>izmaiņa</i>, <i>pārmaiņa</i>
-are not diminutives.  Not in <i>ziņa</i> and its prefixed forms
-(<i>apziņa</i>, <i>paziņot</i>), <i>atmiņa</i>, <i>piemiņa</i> or
-<i>tūliņ</i>, where <i>-iņ-</i> is part of the root.  A <i>c</i> or
-<i>dz</i> left before it is the <i>k</i> or <i>g</i> of the base word:
-<i>kūciņa</i> &rarr; <i>kūk</i> like <i>kūka</i>, <i>pīrādziņi</i>
-&rarr; <i>pīrāg</i> like <i>pīrāgi</i>.
-<dt><i>-īt-</i>
-<dd>if in <i>p1</i>, after a consonant, and the ending removed in step 1
-was one a participle does not have.  <i>-īt-</i> is also the past
-participle of <i>-īt</i> verbs, which is adjective-like and keeps its
-<i>-īt-</i> (<i>dalīts</i>, <i>sālītas</i>); <i>-īti</i> is both and is
-left alone.  Not in <i>vizīte</i>, <i>favorīte</i>, <i>satelīt-</i>.
+<dd>if in <i>p1</i> and after a consonant, the <i>ņ</i> is not undone in
+step 6: <i>riekstiņš</i>, <i>riekstiņi</i>, <i>riekstiņu</i> &rarr;
+<i>riekstiņ</i>, also the vocative <i>riekstiņ</i>.  <i>izmaiņa</i> and
+<i>pārmaiņa</i> are not diminutives, nor are <i>ziņa</i> and its prefixed
+forms (<i>apziņa</i>, <i>paziņot</i>), <i>atmiņa</i>, <i>piemiņa</i> and
+<i>tūliņ</i>, where <i>-iņ-</i> is part of the root; they are folded like
+other words (<i>paziņoja</i>, <i>paziņot</i> &rarr; <i>pazin</i>).
 <dt><i>-īš-</i>
-<dd>if in <i>p1</i> and after a consonant: <i>brālīša</i>, <i>brālīši</i>
-&rarr; <i>brāl</i>.  It also brings the future forms in <i>-īšos</i>,
-<i>-īšot</i> of <i>-īt</i> verbs to the verb's stem (<i>klausīšos</i>,
-<i>klausīties</i> &rarr; <i>klaus</i>).
+<dd>if in <i>p1</i> and after a consonant, it is the <i>-īt-</i> of the
+diminutive before <i>-a -i -u</i> and becomes <i>-īt-</i> again:
+<i>brālītis</i>, <i>brālīša</i>, <i>brālīši</i>, <i>brālīšu</i> &rarr;
+<i>brālīt</i>.  Step 6 would otherwise make it <i>brālīs</i>.  The
+reflexive and relative future of verbs in <i>-īšos</i>, <i>-īšot</i>
+(<i>klausīšos</i>) has the same letters and is left as <i>klausīt</i>,
+apart from <i>klausīties</i> &rarr; <i>klaus</i>.
 </dl>
 
 <p>
-The diminutive <i>-ēn-</i> (<i>kaķēns</i>) is not removed: it gained
-nothing and merged <i>skolēns</i> with <i>skola</i>, and <i>velēna</i>,
-<i>domēns</i> with unrelated words.
+Reducing diminutives to the base (<i>-iņ-</i>, <i>-īt-</i>, <i>-īš-</i>
+removed, <i>c</i>, <i>dz</i> before <i>-iņ-</i> back to <i>k</i>,
+<i>g</i>) was tried and merged <i>sieriņš</i> with <i>siers</i> and
+<i>maizīte</i> with <i>maize</i>, but also <i>soliņš</i> (a bench) with
+<i>solīt</i> (to promise), <i>mītiņš</i> (a rally) with <i>mīts</i> and
+<i>daļiņa</i> with <i>dalīt</i>.  The diminutive <i>-ēn-</i>
+(<i>kaķēns</i>) is left alone as well: removing it merged
+<i>skolēns</i> with <i>skola</i>, and <i>velēna</i>, <i>domēns</i> with
+unrelated words.
 </p>
 
 <h3>Step 4: consonant alternations after the ending</h3>
 
 <p>
-If no diminutive was removed and step 2 changed nothing, then after
+If step 3 found no diminutive and step 2 changed nothing, then after
 <i>-a -i -u -us -os -iem</i> the alternations of declensions II, V and VI
 are undone, as in the light stemmer: labial + <i>j</i> &rarr; labial
 (<i>zivju</i> &rarr; <i>ziv</i>), and after <i>-u</i>, <i>-us</i> also
@@ -202,7 +207,8 @@ merges <i>salāti</i> with <i>sala</i> and <i>rezultāts</i> with other
 <h3>Step 6: š, ž, ļ, ņ, č</h3>
 
 <p>
-If an ending was removed in step 1, a final <i>ļ ņ č</i> becomes <i>l n
+If an ending was removed in step 1 and step 3 found no diminutive, a
+final <i>ļ ņ č</i> becomes <i>l n
 c</i>, a final <i>šņ žņ šļ žļ ļņ ļļ</i> becomes <i>sn zn sl zl ln ll</i>
 and a final <i>š ž</i> becomes <i>s z</i>.  The light stemmer does the
 first two only after <i>-a -i -u -us -os -iem</i>, so <i>gaļa</i> &rarr;
@@ -271,13 +277,13 @@ pairs of different lemmas it merged, and by reading the pairs it merged.
 <tr><th></th><th>UI tune</th><th>OI tune</th><th>UI held-out</th><th>OI held-out</th></tr>
 <tr><td>no stemming</td><td>1.0000</td><td>6.96e-07</td><td>1.0000</td><td>6.09e-07</td></tr>
 <tr><td>light stemmer</td><td>0.5956</td><td>1.26e-05</td><td>0.5657</td><td>1.09e-05</td></tr>
-<tr><td>this algorithm</td><td>0.4250</td><td>3.86e-05</td><td>0.3716</td><td>2.91e-05</td></tr>
+<tr><td>this algorithm</td><td>0.4262</td><td>3.41e-05</td><td>0.3715</td><td>2.61e-05</td></tr>
 <tr><td>truncation to 5 letters</td><td>0.4476</td><td>1.53e-04</td><td>0.3979</td><td>1.62e-04</td></tr>
 </table>
 
 <p>
-Over all lemmas, UI goes from 0.838 to 0.638 for verbs, from 0.303 to
-0.032 for adjectives and from 0.050 to 0.026 for nouns.  Most of the new
+Over all lemmas, UI goes from 0.838 to 0.641 for verbs, from 0.303 to
+0.032 for adjectives and from 0.050 to 0.023 for nouns.  Most of the new
 merges of different lemmas are words of one root (<i>darbs</i> and
 <i>darboties</i>, <i>gatavs</i> and <i>gatavoties</i>); the unrelated
 ones among the most frequent are <i>paziņot</i>/<i>pazīt</i>,
